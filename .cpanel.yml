@@ -14,12 +14,12 @@ deployment:
     - /bin/cp -R storage $DEPLOYPATH
     - /bin/cp -R tests $DEPLOYPATH
     - /bin/cp -R vendor $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
     - /bin/cp .edittorconfig $DEPLOYPATH
     - /bin/cp .env $DEPLOYPATH
-    - /bin/cp .htaccess $DEPLOYPATH
     - /bin/cp composer.json $DEPLOYPATH
     - /bin/cp composer.lock $DEPLOYPATH
-    - /bin/cp index.php $DEPLOYPATH
     - /bin/cp package-lock.json $DEPLOYPATH
     - /bin/cp package.json $DEPLOYPATH
     - /bin/cp phpunit.xml $DEPLOYPATH
