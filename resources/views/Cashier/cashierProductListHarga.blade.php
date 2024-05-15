@@ -1,0 +1,1 @@
+<input type="text" name="hargaSatuan" id="hargaSatuan" class="form-control-plaintext form-control-sm harga-satuan" autocomplete="off" value="{{$hargaSatuan->product_price_sell}}">

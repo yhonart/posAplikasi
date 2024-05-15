@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-style: normal;
+    font-size: small;
+    font-weight: 400;
+    src: url(/public/font/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf) format('woff2');
+}
+
+.el-zoom {
+    transition: transform .5s ease;
+}
+
+.el-zoom:hover{
+    transform: scale(1.1);
+}
+.text-indigo-700{
+    color: #4338ca;
+}
+.modal-content.MODAL-CONTENT-GLOBAL {
+    background-color: transparent;
+    border: 0px;
+    box-shadow: none;
+    --bg-color: #fff;
+}
+
+.MODAL-BODY-GLOBAL {
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    background-color: var(--bg-color);
+    margin-bottom: 10px;
+    border-radius: 0.2em;
+}
+
+.yellow-alert {
+    background-color: #fef08a;
+    color: #a16207;
+}
+
+.red-alert {
+    background-color: #fecaca;
+    color: #b91c1c;
+}
+
+.green-alert {
+    background-color: #bbf7d0;
+    color: #15803d;
+}
+
+.blue-alert {
+    background-color: #bfdbfe;
+    color: #1d4ed8;
+}

@@ -1,0 +1,85 @@
+<div class="content-header">
+    <div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+        <h1 class="m-0">Pengaturan Nama Toko/Gudang</h1>
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="content">
+    <div class="container-fluid">            
+        <div class="row">
+            <div class="col-12">
+                <?php
+                    if ($countCompany >= '1') {
+                        $count = "Disabled";
+                    }
+                    else{
+                        $count = "";
+                    }
+                ?>
+                <button class="btn bg-gradient-lightblue" id="btnCreate" {{$count}}>Input Nama Usaha</button>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div id="DisplayFormInput"></div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                @if(!empty($dataCompany))
+                                <dl class="row">
+                                    <dt class="col-4">Nama Usaha</dt>
+                                    <dd class="col-8">: {{$dataCompany->company_name}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-4">Bidang Usaha</dt>
+                                    <dd class="col-8">: {{$dataCompany->company_description}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-4">Alamat</dt>
+                                    <dd class="col-8">: {{$dataCompany->address}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-4">Owner</dt>
+                                    <dd class="col-8">: {{$dataCompany->owner}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-4">Contact Person</dt>
+                                    <dd class="col-8">: {{$dataCompany->telefone}}</dd>
+                                </dl>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button type="button" id="btnDelete" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hapus Akun</button>
+                                    </div>
+                                </div>
+                                @else
+                                <div class="row">
+                                    <div class="col-12">
+                                    <div class="red-alert p-2 rounded rounded-2 notive-display">
+                                        <span class="font-weight-bold">Tambahkan nama perusahaan terlebih dahulu.</span>
+                                    </div>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){               
+        $('#btnCreate').on('click', function (e) {
+            e.preventDefault();
+            $("#DisplayFormInput").load("{{route('CompanySetup')}}/companyDisplay/add_new_cp");
+        });
+    })
+</script>
