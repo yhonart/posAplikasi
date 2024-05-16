@@ -130,10 +130,20 @@
         $('.ITEM-MAIN-MENU').on('click', function (e) {
             e.preventDefault();
             let link = $(this).attr('data-menu');
-            $("#DivContent").load(link);
+            loadPageInfo(link);
         });
         // Initial 
-        $('#tab-menu-home').trigger('click');
+        $('#tab-menu-home').trigger('foclick');
+
+        function loadPageInfo(link){
+            $.ajax({
+                type : 'get',
+                url : link,
+                success : function(response){                
+                    $("#DivContent").html(response);
+                }
+            });
+        }
     })
 </script>
 @endsection
