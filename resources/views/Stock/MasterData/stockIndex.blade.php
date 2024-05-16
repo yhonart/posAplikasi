@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        @include('global.global_spinner')
+                        @include('Global.global_spinner')
                         <div id="displayTableCategory"></div>
                     </div>
                 </div>
