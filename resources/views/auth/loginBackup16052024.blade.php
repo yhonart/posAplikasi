@@ -47,19 +47,15 @@
             </div>
             <div class="row mb-0">
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary btn-block mb-2">
+                    <button type="submit" class="btn btn-primary btn-block">
                         {{ __('Login') }}
                     </button>
 
-                    <div class="card bg-gradient-warning">
-                        <div class="card-body p-1">
-                            <p class="font-weight-bold">Login demo aplikasi</p>
-                            <ul>
-                                <li>Username : admin1</li>
-                                <li>Password : adminsatu</li>
-                            </ul>
-                        </div>
-                    </div>
+                    @if (Route::has('password.request'))
+                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                    @endif
                 </div>
             </div>
         </form>
