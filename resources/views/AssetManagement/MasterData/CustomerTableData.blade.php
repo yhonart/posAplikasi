@@ -3,6 +3,7 @@
     $Status = array(
         0=>"Non Aktif",
         1=>"Aktif",
+        2=>"Non Member",
     );
 @endphp
 
