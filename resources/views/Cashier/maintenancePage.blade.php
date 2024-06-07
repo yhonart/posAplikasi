@@ -31,33 +31,25 @@
     <!-- content -->
     <div class="content mt-0">
         <div class="container-fluid">
-            @if($checkArea <> 0)
-            <div class="row">
-                <div class="col-12 col-md-4">
-                    <div class="form-group">
-                        <input type="text" name="scanBarcodeProduk" id="scanBarcodeProduk" class="form-control" placeholder="Scan Barcode Produk">
-                    </div>
-                </div>
-            </div>
+            @if($checkArea <> 0)            
             <div class="row">
                 <div class="col-12 col-lg-8">
                     <div class="card">
                         <div class="card-body p-0 table-responsive" style="height:700px;">
+                            @include('Global.global_spinner')
                             <div id="mainListProduct"></div>
+                        </div>
+                        <div class="card-footer">
+                            <span><i class="fa-solid fa-circle-question text-info"></i> Ctrl+B : Dokumen Bantuan. Gunakan TAB pada keyboard untuk memindahkan field</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="card">
-                        <div class="card-body table-responsive" style="height:700px;">                            
+                        <div class="card-body table-responsive">                            
                             <div id="mainButton"></div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <span><i class="fa-solid fa-circle-question text-info"></i> F1 : Dokumen Bantuan </span>
                 </div>
             </div>
             @else
@@ -76,7 +68,7 @@
         </div>
     </div>
     <div class="modal MODAL-CASHIER" id="modal-global-sm" tabindex="-1" role="dialog" aria-labelledby="modalCashier" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
             <div class="modal-content MODAL-CONTENT-CASHIER">
                 <!-- Content will be placed here -->
                 <!-- class default MODAL-BODY-GLOBAL -->
@@ -91,11 +83,9 @@
             panelProductList = $("#mainListProduct"),
             urlButtonForm = "buttonAction",
             panelButtonForm = $("#mainButton");
-
         cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
-        cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
-
-        $('#scanBarcodeProduk').val("").focus();
+        cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);        
+        
     });
     
 </script>

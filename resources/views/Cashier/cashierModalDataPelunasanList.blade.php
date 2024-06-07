@@ -1,4 +1,4 @@
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped text-xs">
     <thead>
         <tr>
             <th>No Transaksi</th>

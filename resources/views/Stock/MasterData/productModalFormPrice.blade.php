@@ -1,45 +1,67 @@
-<div class="card">
-    <div class="card-header border-0">
-        <h3 class="card-title font-weight-bold">Pengaturan Harga Utama</h3>
-        <div class="card-tools">
-            <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i></button>
+<form class="form">
+    <div class="form-group row mb-2">
+        <label class="col-3 align-self-end">Kode Barang</label>
+        <div class="col-4">
+            <input type="text" name="prodCode" id="productCode" class="form-control form-control-border border-width-2 border-info" value="">
         </div>
     </div>
-    <div class="card-body"> 
-        <div class="row">
-            <div class="col-12 table-responsive">
-                <table class="table table-striped table-bordered">
-                    <thead class="text-center bg-indigo">
-                        <tr>
-                            <th>Ukuran</th>
-                            <th>Satuan</th>
-                            <th>Stock</th>
-                            <th>Isi Satuan</th>
-                            <th>Harga Beli</th>
-                            <th>Harga Jual</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($mProdUnit as $mProdU)
-                            <tr>
-                                <td>{{$mProdU->product_size}}</td>
-                                <td>{{$mProdU->product_satuan}}</td>
-                                <td class="text-center" contenteditable="true" onBlur="saveToDatabase(this,'m_product_unit','stock','{{$mProdU->idm_product_satuan}}','idm_product_satuan')" onClick="showEdit(this);">{{$mProdU->stock}}</td>
-                                <td class="text-center" contenteditable="true" onBlur="saveToDatabase(this,'m_product_unit','product_volume','{{$mProdU->idm_product_satuan}}','idm_product_satuan')" onClick="showEdit(this);">{{$mProdU->product_volume}}</td>
-                                <td class="text-right" contenteditable="true" onBlur="saveToDatabase(this,'m_product_unit','product_price_order','{{$mProdU->idm_product_satuan}}','idm_product_satuan')" onClick="showEdit(this);">
-                                    {{number_format($mProdU->product_price_order)}}
-                                </td>
-                                <td class="text-right" contenteditable="true" onBlur="saveToDatabase(this,'m_product_unit','product_price_sell','{{$mProdU->idm_product_satuan}}','idm_product_satuan')" onClick="showEdit(this);">
-                                    {{number_format($mProdU->product_price_sell)}}
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>  
+    <div class="form-group row mb-2">
+        <label class="col-3 align-self-end">Nama Barang</label>
+        <div class="col-4">
+            <input type="text" name="prodCode" id="productCode" class="form-control form-control-border border-width-2 border-info" value="{{$mProduct->product_name}}">
+        </div>
     </div>
-</div>
+    <div class="form-group row mb-2">
+        <label class="col-3 align-self-end">Kategori Barang</label>
+        <div class="col-4">
+            <input type="text" name="prodCode" id="productCode" class="form-control form-control-border border-width-2 border-info" value="{{$mProduct->product_category}}">
+        </div>
+    </div>
+    
+    <div class="form-group row mb-2">
+        <label class="col-3 align-self-end">Satuan Besar</label>
+        <div class="col-3">
+            <select name="satuanBesar" class="form-control form-control-border border-width-2 border-info">
+                <option value="0"></option>
+                @foreach($mUnit as $mU1)
+                    <option value="{{$mU1->unit_note}}">{{$mU1->unit_note}}</option>
+                @endforeach
+            </select>
+        </div>
+        <label class="col-3 align-self-end text-right">Isi Satuan Besar</label>
+        <div class="col-3">
+            <input type="text" name="satuanBesar" id="satuanBesar" class="form-control form-control-border border-width-2 border-info" value="">
+        </div>
+    </div>
+    <div class="form-group row mb-2">
+        <label class="col-3 align-self-end">Satuan Kecil</label>
+        <div class="col-3">
+            <select name="satuanKecil" class="form-control form-control-border border-width-2 border-info">
+                @foreach($mUnit as $mU2)
+                    <option value="{{$mU2->unit_note}}">{{$mU2->unit_note}}</option>
+                @endforeach
+            </select>
+        </div>
+        <label class="col-3 align-self-end text-right">Isi Satuan Kecil</label>
+        <div class="col-3">
+            <input type="text" name="satuanKecil" id="satuanKecil" class="form-control form-control-border border-width-2 border-info" value="">
+        </div>
+    </div>
+    <div class="form-group row mb-2">
+        <label class="col-3 align-self-end">Satuan konv.</label>
+        <div class="col-3">
+            <select name="satuanKonv" class="form-control form-control-border border-width-2 border-info">
+                @foreach($mUnit as $mU3)
+                    <option value="{{$mU3->unit_note}}">{{$mU3->unit_note}}</option>
+                @endforeach
+            </select>
+        </div>
+        <label class="col-3 align-self-end text-right">Isi Satuan Konv.</label>
+        <div class="col-3">
+            <input type="text" name="satuanKonv" id="satuanKonv" class="form-control form-control-border border-width-2 border-info" value="">
+        </div>
+    </div>
+</form>
 <script>
     $.ajaxSetup({
         headers: {
@@ -49,7 +71,7 @@
 
     //Edit Table
     function showEdit(editTableObj) {
-        $(editTableObj).css("background","#FBFF69");
+        $(editTableObj).css("background","#c7d2fe");
         $(editTableObj).mask('000.000.000', {reverse: true});
     }
     function saveToDatabase(editTableObj,tableName,column,id,priceId) {

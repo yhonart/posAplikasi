@@ -21,6 +21,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home/getMenu', [App\Http\Controllers\HomeController::class, 'getMenu']);
+Route::get('home/GetGlobaDelete/WithDeleteId/{dataId}/{dataTb}/{dataCol}', [App\Http\Controllers\HomeController::class, 'GlobalDelete']);
+Route::post('home/GlobalLiveEditTable', [App\Http\Controllers\HomeController::class, 'GlobalEditTable']);
+
 Route::get('Stock', [App\Http\Controllers\StockListController::class, 'getMenu'])->name('Stock');
 Route::get('MoU', [App\Http\Controllers\MoUController::class, 'mainIndex'])->name('MoU');
 Route::get('Supplier', [App\Http\Controllers\SuplayerController::class, 'mainIndex'])->name('Supplier');
@@ -28,6 +31,10 @@ Route::get('Customers', [App\Http\Controllers\CustomersController::class, 'mainI
 Route::get('Personalia', [App\Http\Controllers\PersonaliaController::class, 'mainIndex'])->name('Personalia');
 Route::get('TransProduct', [App\Http\Controllers\TransactionController::class, 'mainTransaction'])->name('TransProduct');
 Route::get('Cashier', [App\Http\Controllers\CashierController::class, 'mainCashier'])->name('Cashier');
+Route::get('Purchasing', [App\Http\Controllers\PurchasingController::class, 'mainPurch'])->name('Purchasing');
+Route::get('Dashboard', [App\Http\Controllers\DashboardController::class, 'mainDashboard'])->name('Dashboard');
+
+
 include __DIR__.'/section/accounting.php';
 include __DIR__.'/section/asset.php';
 include __DIR__.'/section/cp_setup.php';

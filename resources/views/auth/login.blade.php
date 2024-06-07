@@ -9,7 +9,7 @@
         <form id="fromLogin" method="POST" action="{{ route('login') }}">
             @csrf   
             <div class="input-group mb-3">
-                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Username" required autofocus>
+                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Username" autocomplete="off" required autofocus>
                 <div class="input-group-append">
                     <div class="input-group-text">
                     <span class="fas fa-user"></span>
@@ -47,15 +47,9 @@
             </div>
             <div class="row mb-0">
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary btn-block">
+                    <button type="submit" class="btn btn-primary btn-block mb-2">
                         {{ __('Login') }}
                     </button>
-
-                    @if (Route::has('password.request'))
-                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
-                    @endif
                 </div>
             </div>
         </form>

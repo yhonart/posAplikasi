@@ -13,7 +13,19 @@
             <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                 <li class="nav-item">                    
                     <a href="#" class="nav-link"><i class="fa fa-user"></i> {{ Auth::user()->name }}</a>
-                </li>                
+                </li>  
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
+                    </a>
+        
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                    
+                </li>
             </ul>
         </div>
     </div>

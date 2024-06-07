@@ -3,49 +3,49 @@
     $arayStatus = array(
         0=>"Return",
         1=>"Active",
-        2=>"On Save",
-        3=>"On Hold",
-        4=>"On Loan",
-        5=>"Complated",
+        2=>"Hold",
+        3=>"On Loan",
+        4=>"Completed",
     );
 ?>
 <div id="dataPaginate">
     <div class="row">
-        <div class="col-6">
-            <h5>Total : {{$listDataSelling->total()}}</h5>
+        <div class="col-4">
+            <p class="badge badge-success p-2">Total : {{$listDataSelling->total()}}</p>
         </div>
-        <div class="col-6 text-right">
-            {{$listDataSelling->links()}}
+        <div class="col-4">
+            <p class="badge badge-success p-2">Total Transaksi : {{number_format($countBelanja->sumPayment,'0',',','.')}}</p>
         </div>
     </div>
-    <table class="table table-sm table-striped table-hover table-valign-middle">
-        <thead>
-            <tr>
-                <th>No Struk</th>            
-                <th>Pelanggan</th>
-                <th>Jumlah Barang</th>
-                <th>Total Belanja</th>
-                <th>Status</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($listDataSelling as $lds)
-                <tr>
-                    <td>{{$lds->billing_number}}</td>
-                    <td>{{$lds->customer_name}}</td>
-                    <td>{{$lds->t_item}}</td>
-                    <td>{{number_format($lds->t_bill)}}</td>
-                    <td>{{$arayStatus[$lds->status]}}</td>
-                    <td>
-                        @if($lds->status <= 4 AND $lds->status >= 1)
-                        <button type="button" id="btnSelectData" class="btn btn-info btn-sm" data-bil = "{{$lds->billing_number}}"><i class="fa-solid fa-circle-check"></i></button>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-12 table-responsive">
+            <table class="table table-sm table-striped table-hover table-valign-middle text-xs table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>            
+                        <th>Tanggal</th>            
+                        <th>Pelanggan</th>
+                        <th>Jumlah</th>
+                        <th>Bayar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($listDataSelling as $lds)
+                        <tr>
+                            <td>{{$lds->trx_code}}</td>
+                            <td>{{$lds->date_trx}}</td>
+                            <td>{{$lds->customer_store}}</td>
+                            <td>{{number_format($lds->total_payment)}}</td>
+                            <td>{{$lds->method_name}}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+                <tfooter>
+                    {{$listDataSelling->links()}}
+                </tfooter>
+            </table>
+        </div>
+    </div>
 </div>
 <script>
     function ajaxPaging() {

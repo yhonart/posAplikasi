@@ -10,11 +10,7 @@
 </div>
 <div class="row">
     <div class="col-12">
-        <div class="text-center DIV-SPIN text-sm" style="display:none;">    
-            <span class="spinner-grow spinner-grow-sm text-info" role="status"></span>
-            <span class="spinner-grow spinner-grow-sm text-info" role="status"></span>
-            <span class="spinner-grow spinner-grow-sm text-info" role="status"></span>
-        </div>
+        @include('Global.global_spinner')
         <div id="divListProduct"></div>
     </div>
 </div>
@@ -34,7 +30,7 @@
         let timer_cari_equipment = null;
         $("#SearchProduk").keyup(function (e){
             e.preventDefault();
-            $(".DIV-SPIN").fadeIn();
+            $(".LOAD-SPINNER").fadeIn();
             clearTimeout(timer_cari_equipment);
             timer_cari_equipment = setTimeout(function(){
                 let keyWord = $("#SearchProduk").val().trim();
@@ -49,7 +45,7 @@
                 type : 'get',
                 url : "{{route('TransProduct')}}/StockBarang/SearchProduct/"+keyWord,
                 success : function(response){
-                    $(".DIV-SPIN").fadeOut();
+                    $(".LOAD-SPINNER").fadeOut();
                     $("#divListProduct").html(response);
                 }
             });

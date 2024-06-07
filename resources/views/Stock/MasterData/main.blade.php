@@ -62,7 +62,7 @@
         </li>
     </ul>
 </nav>
-<aside class="main-sidebar sidebar-light-indigo">
+<aside class="main-sidebar sidebar-light-indigo elevation-2">
     <!-- Brand Logo -->
     <a href="{{route('home')}}" class="brand-link"> 
     <img src="{{asset('public/images/favicon_dazira/favicon-32x32.png')}}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">     
@@ -72,8 +72,8 @@
     <div class=" sidebar">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
                         <i class="nav-icon fa-solid fa-database"></i>
                         <p>
                             Master Data
@@ -84,6 +84,7 @@
                         @foreach($mastermenu as $sm)
                         <li class="nav-item">
                             <a href="#" class="nav-link ITEM-MAIN-MENU" data-menu="{{$sm->data_menu}}">
+                                <i class="fa-solid fa-database"></i>
                                 <p>
                                     {{$sm->name_menu}}
                                 </p>
@@ -92,8 +93,8 @@
                         @endforeach
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
                         <i class="nav-icon fa-solid fa-right-left "></i>
                         <p>
                             Transaksi
@@ -104,6 +105,7 @@
                         @foreach($transactionmenu as $tm)
                         <li class="nav-item">
                             <a href="#" class="nav-link ITEM-MAIN-MENU" data-menu="{{$tm->data_menu}}">
+                            <i class="fa-solid fa-store"></i>
                                 <p>
                                     {{$tm->name_menu}}
                                 </p>
@@ -112,7 +114,27 @@
                         @endforeach
                     </ul>
                 </li>
-                
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fa-solid fa-right-left "></i>
+                        <p>
+                            Laporan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                       @foreach($dashboardMenu as $ds)
+                        <li class="nav-item">
+                            <a href="#" class="nav-link ITEM-MAIN-MENU" data-menu="{{$ds->data_menu}}">
+                            <i class="fa-solid fa-store"></i>
+                                <p>
+                                    {{$ds->name_menu}}
+                                </p>
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </li>
             </ul>
         </nav>
     </div>
@@ -126,14 +148,28 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        });        
+        });  
+
+        let link = "Dashboard";
+        loadPageInfo(link);
+
         $('.ITEM-MAIN-MENU').on('click', function (e) {
             e.preventDefault();
             let link = $(this).attr('data-menu');
-            $("#DivContent").load(link);
+            loadPageInfo(link);
         });
         // Initial 
-        $('#tab-menu-home').trigger('click');
+        $('#tab-menu-home').trigger('foclick');
+
+        function loadPageInfo(link){
+            $.ajax({
+                type : 'get',
+                url : link,
+                success : function(response){                
+                    $("#DivContent").html(response);
+                }
+            });
+        }
     })
 </script>
 @endsection

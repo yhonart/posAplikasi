@@ -22,9 +22,17 @@ class StockListController extends Controller
                 'group_menu'=>'2',
                 ])
             ->orderBy('ordering','asc')
+            ->get();       
+            
+        $dashboardMenu = DB::table('m_submenu')
+            ->where([
+                'status'=>'1',
+                'group_menu'=>'3',
+                ])
+            ->orderBy('ordering','asc')
             ->get();           
 
-        return view ('Stock/MasterData/main', compact('mastermenu','transactionmenu'));
+        return view ('Stock/MasterData/main', compact('mastermenu','transactionmenu','dashboardMenu'));
     }
 
     public function stockList (){
@@ -54,7 +62,11 @@ class StockListController extends Controller
             ->orderBy('idm_product_satuan','DESC')
             ->first();
 
-        return view ('Stock/MasterData/stockFormNew', compact('catProduct', 'unit','manufacture','product','nextID','nextIdSatuan'));
+        $listGroup = DB::table('m_cos_group')
+            ->where('group_status','1')
+            ->get();
+
+        return view ('Stock/MasterData/stockFormNew', compact('catProduct', 'unit','manufacture','product','nextID','nextIdSatuan','listGroup'));
     }
 
     public function PostProductSetSizing (Request $reqPostSize){
@@ -63,7 +75,6 @@ class StockListController extends Controller
         $unit = $reqPostSize->Unit;
         $volume = $reqPostSize->Volume;
         $priceOrder = str_replace(".","",$reqPostSize->PriceOrder);
-        $priceSell = str_replace(".","",$reqPostSize->PriceSell);
         $setBarcode = $reqPostSize->SetBarcode;
         
         DB::table('m_product_unit')
@@ -71,7 +82,6 @@ class StockListController extends Controller
                 'core_id_product'=>$idProduct,
                 'product_satuan'=>$unit,
                 'product_price_order'=>$priceOrder,
-                'product_price_sell'=>$priceSell,
                 'status'=>'1',
                 'created_at'=>now(),
                 'set_barcode'=>$setBarcode,
@@ -82,13 +92,48 @@ class StockListController extends Controller
         return back()->withInput();
     }
 
+    public function PostProductSetGrouping (Request $reqPriceGrouping){
+        $idProduct = $reqPriceGrouping->idProduct;
+        $size = $reqPriceGrouping->size;
+        $prodCategory = $reqPriceGrouping->prodCategory;
+        $priceSell = str_replace(".","",$reqPriceGrouping->priceSell);
+
+        DB::table('m_product_price_sell')
+            ->insert([
+                'core_product_price'=>$idProduct,
+                'size_product'=>$size,
+                'cos_group'=>$prodCategory,
+                'price_sell'=>$priceSell,
+                'price_sell_status'=>'1'
+            ]);
+    }
+
+    public function prodCategoryInput($productID){
+        $groupProdList = DB::table('m_product_price_sell as a')
+            ->select('a.size_product','a.cos_group','a.price_sell','b.group_name','a.idm_price_sell')
+            ->leftJoin('m_cos_group as b','a.cos_group','=','b.idm_cos_group')
+            ->where('core_product_price',$productID)
+            ->get();
+            
+        $listSizeGroup = DB::table('m_size')
+            ->get();
+
+        return view ('Stock/MasterData/stockFormNewGroupListPrd', compact('productID','groupProdList','listSizeGroup'));    
+    }
+
     public function listSizePrdInput ($dataIdProd){
         $listSizePrd = DB::table('m_product_unit')
             ->where('core_id_product',$dataIdProd)
             ->orderBy('idm_product_satuan','ASC')
             ->get();
+        
+        $listUnit = DB::table('m_unit')
+            ->get();
+            
+        $listSize = DB::table('m_size')
+            ->get();
 
-        return view ('Stock/MasterData/stockFormNewSizeListPrd', compact('dataIdProd','listSizePrd'));
+        return view ('Stock/MasterData/stockFormNewSizeListPrd', compact('dataIdProd','listSizePrd','listUnit','listSize'));
     }
 
     public function PostProduct(Request $reqProd){
@@ -153,11 +198,11 @@ class StockListController extends Controller
     }
 
     public function ProductSearch($keyword){
-        $productList = DB::table('product_list_view');
+        $productList = DB::table('m_product');
             if ($keyword <> 0) {
                 $productList = $productList->where('product_name','LIKE','%'.$keyword.'%');
             }
-            $productList = $productList->paginate(5);
+            $productList = $productList->paginate(10);
 
         $prodUnit = DB::table('m_product_unit')
             ->where('status','1')
@@ -167,11 +212,29 @@ class StockListController extends Controller
     }
 
     public function PriceEdit ($id){
+        $mProduct = DB::table('m_product')
+            ->where('idm_data_product',$id)
+            ->first();
+            
         $mProdUnit = DB::table('m_product_unit')
             ->where('core_id_product',$id)
             ->get();
+            
+        $mPriceSell = DB::table('m_product_price_sell')
+            ->where('core_product_price',$id)
+            ->get();
+            
+        $mPoint = DB::table('m_product_point')
+            ->where('core_product_id',$id)
+            ->get();
+            
+        $mPointType = DB::table('m_type_point')
+            ->get();
+            
+        $mUnit = DB::table('m_unit')
+            ->get();
 
-        return view ('Stock/MasterData/productModalFormPrice', compact('mProdUnit'));
+        return view ('Stock/MasterData/productModalFormPrice', compact('mProdUnit','mProduct','mPriceSell','mPoint','mPointType','mUnit'));
     }
 
     public function PostNewProductPrice(Request $reqNewPrice){
@@ -265,5 +328,31 @@ class StockListController extends Controller
 
         $msg = array('success' => '✔ SUCCESS DATA BERHASIL DIUPDATE.');
         return response()->json($msg);  
+    }
+
+    public function MenuEditHarga ($idProduct){
+        $mUnit = DB::table('m_unit')
+            ->orderBy('unit_note','asc')
+            ->get();        
+
+        $dataEditCosGroup = DB::table('m_product_price_sell')
+            ->where('core_product_price',$idProduct)
+            ->get();
+
+        $dataCosGroup = DB::table('m_cos_group')
+            ->get();
+        
+        $listSizeNew = DB::table('m_size')
+            ->get();
+
+        return view ('Stock/MasterData/productModalFormPriceEdit', compact('dataEditCosGroup','mUnit','idProduct','dataCosGroup','listSizeNew'));
+    }
+
+    public function listSizePrdEdit($coreProdId){
+        $dataEditUnit = DB::table('m_product_unit')
+            ->where('core_id_product',$coreProdId)
+            ->get();
+
+        return view ('Stock/MasterData/productModalFormPriceEditSize', compact('dataEditUnit'));
     }
 }

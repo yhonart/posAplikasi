@@ -18,7 +18,7 @@
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body">
-                        @include('global.global_spinner')
+                        @include('Global.global_spinner')
                         <div id="displayWHTable"></div>
                     </div>
                 </div>

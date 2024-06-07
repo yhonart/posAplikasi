@@ -1,19 +1,10 @@
 <div class="row">
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-4">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
             </div>
             <input type="text" name="SearchProduk" id="SearchProduk" class="form-control" placeholder="Cari Produk">
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        <div class="text-center DIV-SPIN text-sm" style="display:none;">    
-            <span class="spinner-grow spinner-grow-sm text-info" role="status"></span>
-            <span class="spinner-grow spinner-grow-sm text-info" role="status"></span>
-            <span class="spinner-grow spinner-grow-sm text-info" role="status"></span>
         </div>
         <div id="divListProduct"></div>
     </div>

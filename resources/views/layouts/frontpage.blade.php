@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{asset('public/dazbuild/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
     <!-- daterange picker -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="{{asset('public/dazbuild/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -41,7 +42,7 @@
     <div class="wrapper">
         @yield('content')
         <div class="modal MODAL-GLOBAL" id="modal-global-large" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+          <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
               <div class="modal-content MODAL-CONTENT-GLOBAL">
                   <!-- Content will be placed here -->
                   <!-- class default MODAL-BODY-GLOBAL -->

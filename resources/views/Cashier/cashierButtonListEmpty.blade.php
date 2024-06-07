@@ -7,7 +7,7 @@
     </div>
 
     <div class="form-group row align-items-end ">
-        <label for="pelanggan" class="form-label col-4">Member [F2]</label>
+        <label for="pelanggan" class="form-label col-4">Member [F1]</label>
         <div class="col-8">
             <select name="pelanggan" id="pelanggan" class="form-control form-control-lg select2 select2-danger" data-dropdown-css-class="select2-danger">
                 <option value="0"></option>
@@ -30,40 +30,42 @@
         
     </div>
 
-    <div class="row mb-1">
+    <div class="row mb-2">
         <div class="col-4">
-            <button type="button" class="btn bg-navy elevation-1 btn-block p-0 font-weight-bold">[F5] <br> Load</button>
+            <button type="button" class="btn bg-gradient-success elevation-2 btn-block border border-2 border-light p-2" disabled><b>[F2]</b> <br> BAYAR</button>
         </div>
         <div class="col-4">
-            <button type="button" class="btn bg-navy elevation-1 btn-block p-0 font-weight-bold">[F6] <br> Dt.Penjualan</button>
+            <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2"><b>[Ctrl+A]</b> <br> DT.PENJUALAN</button>
         </div>
         <div class="col-4">
-            <button type="button" class="btn btn-light elevation-1 btn-block p-0 font-weight-bold" disabled>[F7] <br> Point</button>
-        </div>
-    </div>
-    <div class="row mb-1">
-        <div class="col-4">
-            <button type="button" class="btn btn-primary elevation-1 font-weight-bold btn-block p-0">[F8] <br> Check Stock</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="btn btn-primary elevation-1 font-weight-bold btn-block p-0">[F9] <br> Pinjaman</button>
-        </div>        
-        <div class="col-4">
-            <button type="button" class="btn btn-danger elevation-1 btn-block p-0">[F10] <br> Return</button>
+            <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2" disabled><b>[F4]</b> <br> CLEAR</button>
         </div>
     </div>
-    <div class="row ">
+    <div class="row mb-2">
         <div class="col-4">
-            <button type="button" class="btn btn-light elevation-1 btn-block font-weight-bold p-0" disabled>[Ctrl+B] <br> BAYAR</button>
+            <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2"><b>[F7]</b> <br> POINT</button>
         </div>
         <div class="col-4">
-            <button type="button" class="btn btn-light elevation-1 btn-block font-weight-bold p-0" disabled>[Ctrl+S] <br> Simpan Tr</button>
+            <button type="button" class="btn bg-gradient-primary elevation-2 btn-block border border-2 border-light p-2"><b>[F9]</b> <br> PELUNASAN</button>
         </div>
         <div class="col-4">
-            <button type="button" class="btn bg-navy elevation-1 btn-block font-weight-bold p-0">[Ctrl+x] <br> Keluar</button>
+            <button type="button" class="btn bg-gradient-danger elevation-2 btn-block border border-2 border-light p-2"><b>[F10]</b> <br> RETURN</button>
         </div>
-        
     </div>
+    <div class="row mb-2">
+        <div class="col-4">
+            <button type="button" class="btn bg-gradient-indigo elevation-2 btn-block border border-2 border-light p-2" disabled><b>[Ctrl+H]</b> <br> HOLD</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn bg-gradient-purple elevation-2 btn-block border border-2 border-light p-2"><b>[Ctrl+L]</b> <br> LOAD</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn bg-gradient-navy elevation-2 btn-block border border-2 border-light p-2"><b>[Ctrl+X]</b> <br> LOG-OUT</button>
+        </div>
+    </div>
+</form>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+    @csrf
 </form>
 <script src="{{asset('public/js/cashierButton.js')}}"></script>
 <script>
@@ -96,11 +98,15 @@
 
     document.addEventListener('keydown', function(event) {
         
-        if (event.key === 'F1') { // Menampilkan modal bantuan
+        if (event.ctrlKey && event.key === 'h') { // Menampilkan modal bantuan
             event.preventDefault();
-            el_modal_sm.modal('show').find(id_modal_content_cashier).load(url_cashier + "/buttonAction/loadHelp");
+            toastr.error('Tidak ada transaksi yang dapat di simpan !')
         }
-        else if (event.key === 'F2') { // Mengarahkan ke field pelanggan untuk di pilih.
+        else if (event.ctrlKey && event.key === 'l') { // Menampilkan modal bantuan
+            event.preventDefault();
+            el_modal_sm.modal('show').find(id_modal_content_cashier).load(url_cashier + "/buttonAction/loadDataSaved");
+        }
+        else if (event.key === 'F1') { // Mengarahkan ke field pelanggan untuk di pilih.
             event.preventDefault();
             var selectField = document.getElementById('pelanggan');
             selectField.focus();
@@ -110,17 +116,17 @@
             event.preventDefault();
             document.getElementById('logout-form').submit();
         }
-        else if (event.key === 'F6') {
+        else if (event.ctrlKey && event.key === 'a') {
             event.preventDefault();
             el_modal_sm.modal('show').find(id_modal_content_cashier).load(url_cashier + "/buttonAction/dataPenjualan");
+        }
+        else if (event.ctrlKey && event.key === 'b') {
+            event.preventDefault();
+            el_modal_sm.modal('show').find(id_modal_content_cashier).load(url_cashier + "/buttonAction/loadHelp");
         }
         else if (event.key === 'F7') {
             event.preventDefault();
             toastr.error('Tidak dapat menampilkan data, dikarenakan tidak ada nama pelanggan yang dipilih')
-        }
-        else if (event.key === 'F8') {
-            event.preventDefault();
-            el_modal_sm.modal('show').find(id_modal_content_cashier).load(url_cashier + "/buttonAction/dataStock")
         }
         else if (event.key === 'F9') {
             event.preventDefault();
@@ -134,15 +140,13 @@
             event.preventDefault();            
             toastr.error('Tidak ada transaksi yang dapat di simpan !')
         }
-        else if (event.ctrlKey && event.key === 'b') {
+        else if (event.key === 'F2') {
             event.preventDefault();
-            let t_Bayar = $("#tBayar").val(),
-                ppn = $("#ppn").val();
-                ppnNominal = $("#nominalPPN").val();
-                
-            toastr.error('Tidak ada transaksi yang dapat dibayarkan !')
+            if(t_Belanja === '0') {
+                toastr.error('Tidak ada transaksi yang dapat dibayarkan !')
+            }
+            
         }
-
     });
     $(document).ready(function(){
         let routeIndex = "{{route('Cashier')}}",
@@ -158,6 +162,7 @@
                 url : "{{route('Cashier')}}/buttonAction/postVariableData",
                 data :  {t_Belanja:t_Belanja, no_Struck:no_Struck, pelanggan:idPelanggan, t_Bayar:t_Bayar, t_Selisih:t_Selisih, t_Item:t_Item, pengiriman:pengiriman, ppn:ppn},
                 success : function(data){                
+                    cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                     cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);                    
                 }
             }); 

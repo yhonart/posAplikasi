@@ -9,11 +9,24 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12 col-md-3">
                         <div class="form-group">
-                            <input type="text" class="form-control datetimepicker-input" id="searchData" name="searchData"/>                            
+                            <label>Cari</label>
+                            <input type="text" class="form-control form-control-border border-width-2 border-info" name="searchDataReturn" id="searchDataReturn" placeholder="Nomor transaksi atau nama pelanggan"/>                            
                         </div>
-                    </div>
+                    </div>                    
+                    <div class="col-12 col-md-3">
+                        <div class="form-group">
+                            <label>Cari Dari Tanggal</label>
+                            <input type="text" class="form-control form-control-border border-width-2 border-info datetimepicker-input" name="fromDateReturn" id="fromDateReturn"/>                            
+                        </div>
+                    </div>                    
+                    <div class="col-12 col-md-3">
+                        <div class="form-group">
+                            <label>Cari Sampai Tanggal</label>
+                            <input type="text" class="form-control form-control-border border-width-2 border-info datetimepicker-input" name="endDateReturn" id="endDateReturn"/>                            
+                        </div>
+                    </div>                    
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -24,3 +37,69 @@
         </div>
     </div>
 </div>
+<script>
+    $(function() {
+        $( ".datetimepicker-input" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('.datetimepicker-input').datepicker("setDate",new Date());
+        $('#searchDataReturn').val('').focus();
+    });
+
+    $(document).ready(function(){
+        let keyword = '0',
+            fromDate = $('#fromDateReturn').val(),
+            endDate = $('#endDateReturn').val(),
+            timer_cari_return = null;
+            
+        funcDataReturn(keyword, fromDate, endDate);
+
+        $("#fromDateReturn").change(function(){
+            let fromDate = $('#fromDateReturn').val(),
+            endDate = $('#endDateReturn').val(),
+                keyword = $('#keyword').val();
+                if(keyword == ''){
+                    keyword = '0';
+                }                
+            funcDataReturn(keyword, fromDate, endDate);
+        });
+
+        $("#endDateReturn").change(function(){
+            let fromDate = $('#fromDateReturn').val(),
+                endDate = $('#endDateReturn').val(),
+                keyword = $('#keyword').val();
+                if(keyword == ''){
+                    keyword = '0';
+                }
+                
+            funcDataReturn(keyword, fromDate, endDate);
+        });
+
+        $("#searchDataReturn").keyup(function (e) {
+            e.preventDefault();
+            clearTimeout(timer_cari_return); 
+            timer_cari_return = setTimeout(function(){
+                let keyword = $("#searchDataReturn").val().trim(),
+                    fromDate = $('#fromDateReturn').val(),
+                    endDate = $('#endDateReturn').val();
+
+                if(keyword == ''){
+                    keyword = '0';
+                }
+            funcDataReturn(keyword, fromDate, endDate)},700)
+        });
+    });
+
+    function funcDataReturn(keyword, fromDate, endDate){        
+        $.ajax({
+            type : 'get',
+            url : "{{route('Cashier')}}/buttonAction/dataReturn/searchDataReturn/"+keyword+"/"+fromDate+"/"+endDate,
+            success : function(response){
+                $("#divDataReturn").html(response);
+            }
+        });
+    }
+    
+</script>

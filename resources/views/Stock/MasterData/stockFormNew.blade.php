@@ -30,19 +30,19 @@
             <div class="form-group row">
                 <label for="ProductCode" class="form-label col-md-3">Kode Barang <sup class="font-weight-bold text-danger">*</sup></label>
                 <div class="col-md-3">
-                    <input type="text" name="ProductCode" id="ProductCode" style="text-transform: uppercase" class="form-control form-control-sm">
+                    <input type="text" name="ProductCode" id="ProductCode" style="text-transform: uppercase" class="form-control form-control-border">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="ProductName" class="form-label col-md-3">Nama Barang <sup class="font-weight-bold text-danger">*</sup></label>
                 <div class="col-md-3">
-                    <input type="text" name="ProductName" id="ProductName" style="text-transform: uppercase" class="form-control form-control-sm">                    
+                    <input type="text" name="ProductName" id="ProductName" style="text-transform: uppercase" class="form-control form-control-border">                    
                 </div>
             </div>
             <div class="form-group row">
                 <label for="KodeBarang" class="form-label col-md-3">Kategori Produk <sup class="font-weight-bold text-danger">*</sup></label>
                 <div class="col-md-3">
-                    <select name="KatProduk" id="KatProduk" class="form-control form-control-sm kategori-produk">
+                    <select name="KatProduk" id="KatProduk" class="custom-select form-control-border kategori-produk">
                         <option value="0" readonly>Pilih Kategori Produk</option>
                         <option value="0" readonly></option>
                         @foreach($catProduct as $cp)
@@ -54,7 +54,7 @@
             <div class="form-group row">
                 <label for="SmallBarcode" class="form-label col-md-3">Brand <sup class="font-weight-bold text-danger">*</sup></label>
                 <div class="col-md-3">
-                    <select name="brand" id="brand" class="form-control form-control-sm">
+                    <select name="brand" id="brand" class="custom-select form-control-border">
                         <option value="0" readonly>Nama Brand</option>
                         @foreach($manufacture as $mnf)
                             <option value="{{$mnf->manufacture_code}}">{{$mnf->manufacture_name}}</option>
@@ -71,7 +71,7 @@
             <div class="form-group row">
                 <label for="pajak" class="form-label col-md-3">Pajak Jual</label>
                 <div class="col-md-3">
-                    <select name="pajak" id="pajak" class="form-control form-control-sm">
+                    <select name="pajak" id="pajak" class="custom-select form-control-border">
                         <option value="0" readonly></option>
                         <option value="PPN">PPN</option>
                         <option value="Non PPN">Non PPN</option>
@@ -85,7 +85,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
-                        <table class="table table-sm table-valign-middle" id="tableUkuran">
+                        <table class="table table-sm table-valign-middle table-striped table-bordered table-hover" id="tableUkuran">
+                            <thead>
+                                <tr>
+                                    <th colspan="7" class="bg-info font-weight-bold">Setup Barcode & Isi Satuan</th>
+                                </tr>
+                            </thead>
                             <thead>
                                 <tr>
                                     <th>Set Barcode</th>
@@ -93,17 +98,16 @@
                                     <th>Satuan</th>
                                     <th>Isi</th>
                                     <th>Harga Beli</th>
-                                    <th>Harga Jual</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody>                                
                                 <tr>
                                     <td>
-                                        <input type="text" name="setBarcode" id="setBarcode" style="text-transform: uppercase" class="form-control form-control-sm">
+                                        <input type="text" name="setBarcode" id="setBarcode" style="text-transform: uppercase" class="form-control form-control-border">
                                     </td>
                                     <td>                                        
-                                        <select name="sizeProduct" id="sizeProduct" class="form-control form-control-sm load-input">
+                                        <select name="sizeProduct" id="sizeProduct" class="custom-select form-control-border">
                                             <option value="0"></option>
                                             <option value="Besar">Besar</option>
                                             <option value="Kecil">Kecil</option>
@@ -111,7 +115,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="unitProduct" id="unitProduct" class="form-control form-control-sm load-input">                        
+                                        <select name="unitProduct" id="unitProduct" class="custom-select form-control-border load-input">                        
                                             <option value="0"></option>
                                             @foreach($unit as $uOne)
                                                 <option value="{{$uOne->unit_note}}">{{$uOne->unit_note}}</option>                                                
@@ -119,23 +123,64 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" name="volumeProduct" id="volumeProduct" class="form-control form-control-sm load-input">
+                                        <input type="text" name="volumeProduct" id="volumeProduct" class="form-control form-control-border load-input">
                                     </td>
                                     <td>
-                                        <input type="text" name="priceOrder" id="priceOrder" style="text-transform: uppercase" class="form-control form-control-sm price-text load-input">
-                                    </td>
-                                    <td>
-                                        <input type="text" name="priceSell" id="priceSell" style="text-transform: uppercase" class="form-control form-control-sm price-text load-input">
-                                    </td>                                    
+                                        <input type="text" name="priceOrder" id="priceOrder" style="text-transform: uppercase" class="form-control form-control-border price-text load-input">
+                                    </td>                                                                        
                                     <td>
                                         <button type="button" id="addUnit" class="btn btn-block btn-info add-child">Tambah</button>
                                     </td>
-                                </tr>                      
-                            </tbody>
+                                </tr>
+                            </tbody>                            
                             <tbody id="displaySize">
 
                             </tbody>                           
                         </table> 
+                        <table class="table table-sm table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th colspan="7" class="bg-info font-weight-bold">Setup Harga Jual</th>
+                                </tr>
+                            </thead>
+                            <thead>
+                                <tr>
+                                    <th width="20%">Ukuran</th>
+                                    <th width="20%">Kategori Harga</th>
+                                    <th width="20%">Harga Jual</th>
+                                    <th width="20%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <select name="sizeByGroup" id="sizeByGroup" class="custom-select form-control-border">
+                                            <option value="0"></option>
+                                            <option value="Besar">Besar</option>
+                                            <option value="Kecil">Kecil</option>
+                                            <option value="Terkecil">Terkecil</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="prodCategory" id="prodCategory" class="custom-select form-control-border">
+                                            <option value="0"></option>
+                                            @foreach($listGroup as $lG)
+                                                <option value="{{$lG->idm_cos_group}}">{{$lG->group_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>
+                                    <input type="text" name="priceSell" id="priceSell" style="text-transform: uppercase" class="form-control form-control-border price-text load-input">
+                                    </td>
+                                    <td class="text-right">                                        
+                                        <button type="button" id="addByGroup" class="btn btn-info add-group">Tambah</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody id="displayPriceGroup">
+
+                            </tbody> 
+                        </table>
                     </div>
                 </div>
             </div>            
@@ -169,21 +214,39 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        let dataIdProd = $("input[name=nextID]").val();
+        let dataIdProd = $("#nextID").val();
         dataTableSize(dataIdProd);
+        dataTableGroup(dataIdProd);
         $('#addUnit').on('click', function(){            
             let Size = $("#sizeProduct").find(":selected").val(),
                 Unit = $("#unitProduct").find(":selected").val(),
                 Volume = $("input[name=volumeProduct]").val(),
                 PriceOrder = $("input[name=priceOrder]").val(),
-                PriceSell = $("input[name=priceSell]").val(),
                 SetBarcode = $("input[name=setBarcode]").val();            
                 $.ajax({
                     type : 'post',
                     url : "{{route('Stock')}}/AddProduct/PostProductSetSizing",
-                    data :  {idProduct:dataIdProd,Size:Size,Unit:Unit,Volume:Volume,PriceOrder:PriceOrder,PriceSell:PriceSell,SetBarcode:SetBarcode},
+                    data :  {idProduct:dataIdProd,Size:Size,Unit:Unit,Volume:Volume,PriceOrder:PriceOrder,SetBarcode:SetBarcode},
                     success : function(data){        
                         dataTableSize(dataIdProd);
+                    }
+                });
+            $('.load-input').val(''); 
+        });
+
+        $('#addByGroup').on('click', function(){            
+            let Size = $("#sizeByGroup").find(":selected").val(),                
+                prodCategory = $('#prodCategory').find(":selected").val(),
+                priceSell = $("#priceSell").val();            
+                $.ajax({
+                    type : 'post',
+                    url : "{{route('Stock')}}/AddProduct/PostProductSetGrouping",
+                    data :  {idProduct:dataIdProd, size:Size, prodCategory:prodCategory, priceSell:priceSell},
+                    success : function(data){        
+                        dataTableGroup(dataIdProd);
+                        $("#sizeByGroup").value();
+                        $('#prodCategory').value();
+                        $("#priceSell").value();
                     }
                 });
             $('.load-input').val(''); 
@@ -225,6 +288,15 @@
             url : "{{route('Stock')}}/AddProduct/sizeProductInput/"+dataIdProd,
             success : function(response){
                 $("#displaySize").html(response);
+            }
+        });
+    }
+    function dataTableGroup(dataIdProd){        
+        $.ajax({
+            type : 'get',
+            url : "{{route('Stock')}}/AddProduct/prodCategoryInput/"+dataIdProd,
+            success : function(response){
+                $("#displayPriceGroup").html(response);
             }
         });
     }

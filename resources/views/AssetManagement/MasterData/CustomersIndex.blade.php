@@ -15,10 +15,18 @@
             </div>
         </div>
         <div class="row mt-2">
-            <div class="col-12">
+            <div class="col-12 col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        @include('global.global_spinner')
+                        <div class="form-group">
+                            <input type="text" name="searchCustomer" id="searchCustomer" class="form-control" placeholder="Cari nama pelanggan" autofocus>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body p-0">
+                        @include('Global.global_spinner')
+                        
                         <div id="displayTableCustomers"></div>
                     </div>
                 </div>
