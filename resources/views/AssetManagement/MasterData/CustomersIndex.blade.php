@@ -18,6 +18,7 @@
             <div class="col-12 col-md-4">
                 <div class="card">
                     <div class="card-body">
+<<<<<<< HEAD
                         <div class="form-group">
                             <input type="text" name="searchCustomer" id="searchCustomer" class="form-control" placeholder="Cari nama pelanggan" autofocus>
                         </div>
@@ -27,6 +28,9 @@
                     <div class="card-body p-0">
                         @include('Global.global_spinner')
                         
+=======
+                        @include('Global.global_spinner')
+>>>>>>> origin/master
                         <div id="displayTableCustomers"></div>
                     </div>
                 </div>
