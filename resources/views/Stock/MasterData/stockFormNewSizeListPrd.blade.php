@@ -7,11 +7,18 @@
     $noList = '1';
 ?>
 @foreach($listSizePrd as $deu)
+@php
+    if($deu->product_size=="KONV"){
+        $disabled = "disabled";
+    }
+    else{
+        $disabled = "";
+    }
+
+@endphp
 <tr>
-    <td>{{$noList++}}</td>
-    <td contenteditable="true" onBlur="saveToDatabase(this,'m_product_unit','set_barcode','{{$deu->idm_product_satuan}}','idm_product_satuan')" onClick="showEdit(this);">{{$deu->set_barcode}}</td>
-    <td>
-        <select name="onChangeSize" id="onChangeSize" class="custom-select form-control-border" onchange="saveToDatabase(this,'m_product_unit','product_size','{{$deu->idm_product_satuan}}','idm_product_satuan')">
+    <td class="border p-0">
+        <select name="onChangeSize" id="onChangeSize" class="form-control form-control-sm rounded-0" onchange="saveToDatabase(this,'m_product_unit','product_size','{{$deu->idm_product_satuan}}','idm_product_satuan','{{$deu->core_id_product}}')" {{$disabled}}>
             <option value="{{$deu->product_size}}">{{$deu->product_size}}</option>
             @foreach($listSize as $lS)
                 @if($lS->size_name <> $deu->product_size)
@@ -20,8 +27,8 @@
             @endforeach
         </select>            
     </td>
-    <td>
-        <select name="onChangeSize" id="onChangeSize" class="custom-select form-control-border" onchange="saveToDatabase(this,'m_product_unit','product_satuan','{{$deu->idm_product_satuan}}','idm_product_satuan')">
+    <td class="border p-0">
+        <select name="onChangeSize" id="onChangeSize" class="form-control form-control-sm rounded-0" onchange="saveToDatabase(this,'m_product_unit','product_satuan','{{$deu->idm_product_satuan}}','idm_product_satuan','{{$deu->core_id_product}}')">
             <option value="{{$deu->product_satuan}}">{{$deu->product_satuan}}</option>
             @foreach($listUnit as $lU)
                 @if($deu->product_satuan<>$lU->unit_note)
@@ -30,10 +37,14 @@
             @endforeach
         </select>
     </td>
-    <td contenteditable="true" onBlur="saveToDatabase(this,'m_product_unit','product_volume','{{$deu->idm_product_satuan}}','idm_product_satuan')" onClick="showEdit(this);">{{$deu->product_volume}}</td>
-    <td contenteditable="true" onBlur="saveToDatabase(this,'m_product_unit','product_price_order','{{$deu->idm_product_satuan}}','idm_product_satuan')" onClick="showEdit(this);">{{$deu->product_price_order}}</td>
-    <td>
-        <button type="button" class="btn btn-danger DELETE-PRICE-SIZE" data-id="{{$deu->idm_product_satuan}}" data-tb="m_product_unit" data-col="idm_product_satuan"><i class="fa-solid fa-xmark"></i></button>
+    <td class="border p-0">
+        <input type="text" onchange="saveToDatabase(this,'m_product_unit','product_volume','{{$deu->idm_product_satuan}}','idm_product_satuan','{{$deu->core_id_product}}')" value="{{$deu->product_volume}}" class="form-control form-control-sm rounded-0">
+    </td>
+    <td class="border p-0">
+        <input type="text" onchange="saveToDatabase(this,'m_product_unit','set_barcode','{{$deu->idm_product_satuan}}','idm_product_satuan','{{$deu->core_id_product}}')" value="{{$deu->set_barcode}}" class="form-control form-control-sm rounded-0">
+    </td>
+    <td class="p-0">
+        <button type="button" class="btn btn-sm btn-danger DELETE-PRICE-SIZE float-right" data-id="{{$deu->idm_product_satuan}}" data-tb="{{$deu->core_id_product}}"><i class="fa-solid fa-xmark"></i></button>
     </td>
 </tr>
 @endforeach
@@ -43,15 +54,37 @@
         e.preventDefault();
         let dataId = $(this).attr('data-id'),
             dataTb = $(this).attr('data-tb'),
-            dataCol = $(this).attr('data-col'),
-            dataIdProd = "{{$dataIdProd}}";
+            dataIdProd = "{{$idPrd}}";
 
         $.ajax({
-            url : "{{route('home')}}/GetGlobaDelete/WithDeleteId/"+dataId+"/"+dataTb+"/"+dataCol,
+            url : "{{route('Stock')}}/ProductMaintenance/deleteUnit/"+dataId,
             type : 'GET',
             success : function (response) {
-                dataTableSize(dataIdProd)
+                displayLoadData(dataTb)
             }
         })
     });
+    
+    function saveToDatabase(editTableObj,tableName,column,id,tableID,idProd) {
+        $.ajax({
+            url: "{{route('Stock')}}/ProductMaintenance/postEditProduct",
+            type: "POST",
+            data:'tableName='+tableName+'&column='+column+'&editVal='+editTableObj.value+'&id='+id+'&tableID='+tableID+'&idProd='+idProd,
+            success: function(data){
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Data berhasil disimpan'
+                })
+            }
+        });
+    } 
+    function displayLoadData(id){        
+        $.ajax({
+            type : 'get',
+            url : "{{route('Stock')}}/AddProduct/sizeProductInput/"+id,
+            success : function(response){
+                $("#displayTableVolume").html(response);
+            }
+        });
+    }
 </script>

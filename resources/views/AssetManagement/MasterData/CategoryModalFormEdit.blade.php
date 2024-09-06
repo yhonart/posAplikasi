@@ -13,18 +13,18 @@
                     <div class="form-group row">
                         <label for="CatName" class="col-sm-6 col-form-label">Kode Kategori</label>
                         <div class="col-sm-6">
-                            <input type="text" name="categoryCode" id="categoryCode" class="form-control" autocomplate="off" value="{{$CategoryEdit->category_code}}" >
+                            <input type="text" name="categoryCode" id="categoryCode" class="form-control rounded-0 font-weight-bold" autocomplate="off" value="CAT{{sprintf('%05d',$id)}}" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="CatName" class="col-sm-6 col-form-label">Nama Kategori</label>
                         <div class="col-sm-6">
-                            <input type="text" name="categoryName" id="categoryName" class="form-control" autocomplate="off" value="{{$CategoryEdit->category_name}}">
+                            <input type="text" name="categoryName" id="categoryName" class="form-control rounded-0" autocomplate="off" value="{{$CategoryEdit->category_name}}">
                         </div>
                     </div>
                     <hr>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-info">Simpan</button>
+                        <button type="submit" class="btn btn-success btn-flat font-weight-bold"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
                     </div>
                 </form>                
             </div>

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,9 @@ class AppServiceProvider extends ServiceProvider
         Paginator::defaultView('vendor.pagination.default');
 
         Paginator::defaultSimpleView('vendor.pagination.default');
+        
+        config(['app.locale' => 'id']);
+	    
+	    Carbon::setLocale('id');
     }
 }

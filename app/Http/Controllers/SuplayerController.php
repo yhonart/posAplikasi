@@ -39,13 +39,17 @@ class SuplayerController extends Controller
                 'salesman'=>$suppSalesman,
                 'level'=>$suppLevel,
                 'supplier_status'=>$suppStatus,
-                'created_date'=>now(),
+                'created_at'=>now(),
             ]);
     }
 
-    public function tableSupplier (){
-        $supplier = DB::table('m_supplier')
-            ->paginate(10);
+    public function tableSupplier ($keyWord){
+        $supplier = DB::table('m_supplier');
+        if($keyWord <> '0'){
+            $supplier = $supplier->where('store_name','like','%'.$keyWord.'%');
+        }
+            $supplier = $supplier->orderBy('store_name','asc');
+            $supplier = $supplier->get();
         
         return view ('AssetManagement/MasterData/SupplierTableData', compact('supplier'));        
     }

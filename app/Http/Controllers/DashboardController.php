@@ -59,6 +59,79 @@ class DashboardController extends Controller
             
         return view ('Dashboard/DashboardTransaksi', compact('countPenjualan','countProcess','countKredit','countcompleted'));
     }
+    
+    public function lodaDataTransaksi ($fromDate, $endDate){
+        // echo $fromDate."/".$endDate;
+        $thisPeriode = date("m-Y");
+        
+        $lastTrxAll = DB::table('tr_payment_record')
+            ->select(DB::raw('SUM(total_struk) as totalAll'))
+            ->whereBetween('date_trx',[$fromDate, $endDate])
+            ->first();
+            
+        $countTransaksi = DB::table('tr_payment_record')
+            ->whereBetween('date_trx',[$fromDate, $endDate])
+            ->count();
+            
+        $lastTrxTransfer = DB::table('tr_payment_record')
+            ->select(DB::raw('SUM(total_payment) as totalPayment'))
+            ->whereBetween('date_trx',[$fromDate, $endDate])
+            ->where('trx_method','4')
+            ->first();
+            
+        $lastTrxonProcess = DB::table('tr_store_prod_list')
+            ->whereBetween('date',[$fromDate, $endDate])
+            ->where('status','1')
+            ->count();
+            
+        $lastTrxKredit = DB::table('tr_kredit')
+            ->whereBetween('created_at',[$fromDate, $endDate])
+            ->count();
+            
+        $garpPenjualan = DB::table('tr_payment_record')
+            ->select(DB::raw('SUM(total_payment) as totalPayment'), 'date_trx')
+            ->where(DB::raw('DATE_FORMAT(date_trx,"%m-%Y")'),$thisPeriode)
+            ->groupBy('date_trx')
+            ->get();
+            
+        $totalTransaksi = DB::table('view_billing_action')
+            ->whereBetween('tr_date',[$fromDate, $endDate])
+            ->count();
+            
+        return view ('Dashboard/DashboardLoadTrx', compact('countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','garpPenjualan','lastTrxAll','totalTransaksi'));
+    }
+    
+    public function onClickDetail (Request $reqPostOnClick){
+        $condition = $reqPostOnClick->condition;
+        $fromDate = $reqPostOnClick->fromDate;
+        $endDate = $reqPostOnClick->endDate;
+        
+        // echo $condition."-".$fromDate."-".$endDate;
+        
+        if($condition == "alltrx"){
+            $allCondition = DB::table('view_trx_method')
+                ->whereBetween('date_trx',[$fromDate, $endDate])
+                ->get();
+        }
+        elseif($condition == "onprocess"){
+            $allCondition = DB::table('view_billing_action')
+                ->whereBetween('tr_date',[$fromDate, $endDate])
+                ->where('status','1')
+                ->get();
+        }
+        elseif($condition == "kredit"){
+            $allCondition = DB::table('view_customer_kredit')
+                ->whereBetween('created_at',[$fromDate, $endDate])
+                ->get();
+        }
+        elseif($condition == "allSummery"){
+            $allCondition = DB::table('view_billing_action')
+                ->whereBetween('tr_date',[$fromDate, $endDate])
+                ->get();
+        }
+        
+        return view ('Dashboard/DashboardLoadOnClick', compact('allCondition','condition','fromDate','endDate'));
+    }
 
     
 }

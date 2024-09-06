@@ -11,7 +11,7 @@
                         <td>{{$companyName->company_name}}</td>
                     </tr>
                     <tr>
-                        <td>{{$companyName->address}}</td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
@@ -21,19 +21,16 @@
             <table>
                 <tbody>
                     <tr>
-                        <td>No</td>
-                        <td>: {{$trStore->billing_number}}</td>
-                        <td>{{$trStore->tr_date}}</td>
+                        <td>No {{$trStore->billing_number}}</td>
+                        <td>{{date('d/m/Y', strtotime($trStore->tr_date))}}</td>
                     </tr>
                     <tr>
-                        <td>Cus</td>
-                        <td>: {{$trStore->customer_name}}</td>
+                        <td>Cus:{{$trStore->customer_name}}</td>
+                        <td>Ksr:{{$trStore->created_by}}</td>
+                    </tr>
+                    <tr>
+                        <td>Kirim:{{$trStore->tr_delivery}}</td>
                         <td>{{date("H:i:s",strtotime($trStore->created_date))}}</td>
-                    </tr>
-                    <tr>
-                        <td>Ksr</td>
-                        <td>: {{$trStore->created_by}}</td>
-                        <td>{{date("H:i:s")}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -41,13 +38,6 @@
                 echo (str_repeat("=", 40)."<br/>");
             ?>
             <table cellpadding="0" cellspacing="0" style="width:100%">
-                <thead>
-                    <tr>
-                        <th align="left" class="txt-left">Item</th>
-                        <th align="left" class="txt-left">Harga</th>
-                        <th align="left" class="txt-left">Total</th>
-                    </tr>
-                </thead>
                 <tbody>
                     @foreach($trStoreList as $tSL)
                         <tr>
@@ -56,53 +46,114 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="txt-left" align="left">{{$tSL->qty}}x</td>
-                            <td class="txt-right" align="right">{{number_format($tSL->unit_price,0,',','.')}}</td>
+                            <td class="txt-left" align="left">{{$tSL->qty}} {{$tSL->unit}} {{number_format($tSL->m_price,0,',','.')}}</td>
                             <td class="txt-right" align="right">{{number_format($tSL->t_price,0,',','.')}}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             <?php
-                echo (str_repeat("-", 37)."<br/>");
+                echo (str_repeat("-", 34)."<br/>");
             ?>
             <table cellpadding="0" cellspacing="0" style="width:100%">
                 <tbody>
                     <tr>
                         <td>Total Item</td>
-                        <td class="txt-right" align="right">:{{$trStore->t_item}}</td>
+                        <td>:</td>
+                        <td class="txt-right" align="right">{{$trStore->t_item}}</td>
                     </tr>
                     <tr>
-                        <td>Total</td>
-                        <td class="txt-right" align="right">:{{number_format($trStore->t_bill,0,',','.')}}</td>
+                        <td>Total Belanja</td>
+                        <td>:</td>
+                        <td class="txt-right" align="right">{{number_format($trStore->t_bill,0,',','.')}}</td>
+                    </tr>
+                    <tr>
+                        <td>Hutang Sebelumnya</td>
+                        <td>:</td>
+                        @if($countBilling >= '1')
+                            <td class="txt-right" align="right">{{number_format($remainKredit->kredit,0,',','.')}}</td>
+                        @else
+                            <td class="txt-right" align="right">0</td>
+                        @endif
                     </tr>
                     <tr>
                         <td>Tunai</td>
-                        <td class="txt-right" align="right">:{{number_format($trStore->t_pay,0,',','.')}}</td>
+                        <td>:</td>
+                        <td class="txt-right" align="right">{{number_format($trStore->t_pay,0,',','.')}}</td>
                     </tr>
                     <tr>
                         <td>Kembali</td>
+                        <td>:</td>
                         <td class="txt-right" align="right">
                             <?php
                                 $kembali = $trStore->t_bill - $trStore->t_pay;
                             ?>
-                            :{{number_format(abs($kembali),'0',',','.')}}
+                            {{number_format(abs($kembali),'0',',','.')}}
                         
                         </td>
                     </tr>
-                    <tr>
-                        <td>Saldo Poin</td>
-                        <td class="txt-right" align="right">:</td>
-                    </tr>
+                    
                 </tbody>
             </table>
             <?php
-            $footer = 'Terima kasih atas kunjungan anda';
-            $starSpace = ( 32 - strlen($footer) ) / 2;
-            $starFooter = str_repeat('*', $starSpace+1);
-            echo($starFooter. '&nbsp;'.$footer . '&nbsp;'. $starFooter."<br/><br/><br/><br/>");
-            echo '<p>&nbsp;</p>'; 
+                echo (str_repeat("-", 34)."<br/>");
             ?>
+            <table cellpadding="0" cellspacing="0" style="width:100%">
+                <tbody>
+                    <tr>
+                        <td>Saldo Hutang</td>
+                        <td>:</td>
+                        @if($countBilling >= '1')
+                            <td class="txt-right" align="right">{{number_format($cekBon->kredit,0,',','.')}}</td>
+                        @else
+                            <td class="txt-right" align="right">0</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td>Saldo Poin</td>
+                        <td>:</td>
+                        <td class="txt-right" align="right"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table cellpadding="0" cellspacing="0" style="width:100%">
+                <tbody>
+                    @foreach($paymentRecord as $pr)
+                        <tr>
+                            <td>Pembayaran</td>
+                            <td class="txt-right" align="right">
+                                {{$pr->methodName}} <br>
+                            </td>
+                            <td class="txt-right" align="right">{{number_format($pr->nominal,0,',','.')}}</td>
+                        </tr>
+                        @if($pr->codeMethod == '4')
+                        <tr>
+                            <td>Bank Trf.</td>
+                            <td>{{$pr->namaBank}}</td>
+                            <td class="txt-right" align="right">{{substr($pr->norek,0,4)}}.xxxxx</td>
+                        </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+            <?php
+                echo (str_repeat("-", 34)."<br/>");
+            ?>
+            <table cellpadding="0" cellspacing="0" style="width:100%">
+                <tbody>
+                    <tr>
+                        <td class="text-center" align="center">Barang yang sudah dibeli tidak dapat dikembalikan, silahkan untuk cek kembali barang yang sudah dibeli sebelum meninggalkan toko.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table cellpadding="0" cellspacing="0" style="width:100%">
+                <tbody>
+                    <tr>
+                        <td class="text-center" align="center">*Terima kasih atas kunjungan anda*</td>
+                    </tr>
+                </tbody>
+            </table>
+            
         </section>
     </body>
 </html>

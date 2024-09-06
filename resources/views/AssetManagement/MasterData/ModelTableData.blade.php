@@ -3,7 +3,7 @@
 @endphp
 <div class="row">
     <div class="col-12">
-        <table class="table table-striped table-valign-middle">
+        <table class="table table-striped table-valign-middle" id="tableModel">
             <thead>
                 <tr>
                     <th></th>
@@ -49,6 +49,17 @@
 </div>
 
 <script>
+    $(function () {
+        $('#tableModel').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
+    });
     $(document).ready(function(){
         $('.ITEM-ACTION').on('click',function (){
             let el = $(this);

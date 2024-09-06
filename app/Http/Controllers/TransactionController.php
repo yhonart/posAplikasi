@@ -16,11 +16,13 @@ class TransactionController extends Controller
     }
 
     public function SearchProduct ($keyword){
-        $productList = DB::table('m_product');        
+        $productList = DB::table('m_product');
+            $productList = $productList->select('idm_data_product','product_name');
             if ($keyword <> 0) {
-                $productList = $productList->where(['product_name','LIKE','%'.$keyword.'%']);
+                $productList = $productList->where('product_name','LIKE','%'.$keyword.'%');
             }
-        $productList = $productList->paginate(5);
+        $productList = $productList->orderBy('product_name','ASC');
+        $productList = $productList->get();
 
         $productPrice = DB::table('m_product_unit')
             ->get();            

@@ -12,7 +12,7 @@
                     <div class="form-group row">
                         <label for="CatName" class="col-sm-6 col-form-label">Kode Kategori</label>
                         <div class="col-sm-6">
-                            <input type="text" name="categoryCode" id="categoryCode" class="form-control" autocomplated="off" req>
+                            <input type="text" name="categoryCode" id="categoryCode" class="form-control font-weight-bold" autocomplated="off" value="CAT{{sprintf('%05d',$next_id)}}" readonly>
                         </div>
                     </div>
                     <div class="form-group row">

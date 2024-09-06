@@ -8,28 +8,29 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row">
+                <div class="row mb-2">
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <label>Cari</label>
-                            <input type="text" class="form-control form-control-border border-width-2 border-info" name="searchDataReturn" id="searchDataReturn" placeholder="Nomor transaksi atau nama pelanggan"/>                            
+                            <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info" name="searchDataReturn" id="searchDataReturn" placeholder="Nomor transaksi atau nama pelanggan"/>                            
                         </div>
                     </div>                    
                     <div class="col-12 col-md-3">
                         <div class="form-group">
-                            <label>Cari Dari Tanggal</label>
-                            <input type="text" class="form-control form-control-border border-width-2 border-info datetimepicker-input" name="fromDateReturn" id="fromDateReturn"/>                            
+                            <label>Dari Tanggal</label>
+                            <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="fromDateReturn" id="fromDateReturn"/>                            
                         </div>
                     </div>                    
                     <div class="col-12 col-md-3">
                         <div class="form-group">
-                            <label>Cari Sampai Tanggal</label>
-                            <input type="text" class="form-control form-control-border border-width-2 border-info datetimepicker-input" name="endDateReturn" id="endDateReturn"/>                            
+                            <label>s.d Tanggal</label>
+                            <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="endDateReturn" id="endDateReturn"/>                            
                         </div>
-                    </div>                    
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
+                        <p id="adminWarning"></p>
                         <div id="divDataReturn"></div>
                     </div>
                 </div>
@@ -58,18 +59,19 @@
 
         $("#fromDateReturn").change(function(){
             let fromDate = $('#fromDateReturn').val(),
-            endDate = $('#endDateReturn').val(),
-                keyword = $('#keyword').val();
+                endDate = $('#endDateReturn').val(),
+                keyword = $('#searchDataReturn').val();
                 if(keyword == ''){
                     keyword = '0';
-                }                
+                } 
+                // alert(fromDate);
             funcDataReturn(keyword, fromDate, endDate);
         });
-
+        
         $("#endDateReturn").change(function(){
             let fromDate = $('#fromDateReturn').val(),
                 endDate = $('#endDateReturn').val(),
-                keyword = $('#keyword').val();
+                keyword = $('#searchDataReturn').val();
                 if(keyword == ''){
                     keyword = '0';
                 }
@@ -90,9 +92,21 @@
                 }
             funcDataReturn(keyword, fromDate, endDate)},700)
         });
+        // let passAdminVal = document.getElementById("passAdmin");
+        // q_select.oninput = function() {
+        //     let fromDate = $('#fromDateReturn').val(),
+        //         endDate = $('#endDateReturn').val(),
+        //         passAdmin = document.getElementById("passAdmin").value;
+        //         keyword = $('#searchDataReturn').val();
+        //         if(keyword == ''){
+        //             keyword = '0';
+        //         }
+        //     funcDataReturn(keyword, fromDate, endDate, passAdmin);
+        // };
     });
 
-    function funcDataReturn(keyword, fromDate, endDate){        
+    function funcDataReturn(keyword, fromDate, endDate){ 
+        // alert(fromDate);
         $.ajax({
             type : 'get',
             url : "{{route('Cashier')}}/buttonAction/dataReturn/searchDataReturn/"+keyword+"/"+fromDate+"/"+endDate,

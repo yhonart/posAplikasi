@@ -10,45 +10,45 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Nama Pelanggan</label>
                 <div class="col-md-4">
-                    <input type="text" name="Customer" id="Customer" class="form-control form-control-sm text-uppercase">
+                    <input type="text" name="Customer" id="Customer" class="form-control form-control-sm text-uppercase rounded-0">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Alamat</label>
                 <div class="col-md-4">
-                    <input type="text" name="Address" id="Address" class="form-control form-control-sm">
+                    <input type="text" name="Address" id="Address" class="form-control form-control-sm rounded-0">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Kota</label>
                 <div class="col-md-4">
-                    <input type="text" name="City" id="City" class="form-control form-control-sm">
+                    <input type="text" name="City" id="City" class="form-control form-control-sm rounded-0">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">PIC</label>
                 <div class="col-md-4">
-                    <input type="text" name="pic" id="pic" class="form-control form-control-sm">
+                    <input type="text" name="pic" id="pic" class="form-control form-control-sm rounded-0">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Telefone</label>
                 <div class="col-md-4">
-                    <input type="text" name="phone" id="phone" class="form-control form-control-sm" data-inputmask="'mask': ['9999-9999-9999', '+99 999-9999-9999']" data-mask>
+                    <input type="text" name="phone" id="phone" class="form-control form-control-sm rounded-0" data-inputmask="'mask': ['9999-9999-9999', '+99 999-9999-9999']" data-mask>
                     <small class="text-danger">Contoh +62 812-xxxx-xxxx (Gunakan kode negara +62)</small>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Tanggal Member</label>
                 <div class="col-md-4">
-                    <input type="text" name="registeredDate" id="registeredDate" class="form-control form-control-sm" data-inputmask="'mask': ['99-99-9999']" data-mask>
+                    <input type="text" name="registeredDate" id="registeredDate" class="form-control form-control-sm rounded-0" data-inputmask="'mask': ['99-99-9999']" data-mask>
                     <small class="text-danger">Gunakan format tanggal : DD:MM:YYYY, Contoh : 29-02-2022</small>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Email</label>
                 <div class="col-md-4">
-                    <input type="email" name="emailUser" id="emailUser" class="form-control form-control-sm">
+                    <input type="email" name="emailUser" id="emailUser" class="form-control form-control-sm rounded-0">
                 </div>
             </div>
             <div class="form-group row">
@@ -69,7 +69,7 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Tipe Pembayaran</label>
                 <div class="col-md-4">
-                    <select name="paymentType" id="paymentType" class="form-control form-control-sm">
+                    <select name="paymentType" id="paymentType" class="form-control form-control-sm rounded-0">
                         <option value="0" readonly></option>
                         <option value="Tunai">Tunai</option>
                         <option value="Tempo">Tempo</option>
@@ -79,7 +79,7 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Tipe Penjualan</label>
                 <div class="col-md-4">
-                    <select name="typePenjualan" id="typePenjualan" class="form-control form-control-sm">
+                    <select name="typePenjualan" id="typePenjualan" class="form-control form-control-sm rounded-0">
                         <option value="0" readonly></option>
                         <option value="Gold">Promo</option>
                         <option value="Retail">Retail</option>
@@ -91,7 +91,7 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Level</label>
                 <div class="col-md-4">
-                    <select name="Level" id="Level" class="form-control form-control-sm">
+                    <select name="Level" id="Level" class="form-control form-control-sm rounded-0">
                         <option value="0" readonly></option>
                         <option value="Gold">Gold</option>
                         <option value="Silver">Silver</option>
@@ -101,12 +101,18 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Sales</label>
                 <div class="col-md-4">
-                    <select name="Sales" id="Sales" class="form-control form-control-sm">
+                    <select name="Sales" id="Sales" class="form-control form-control-sm rounded-0">
                         <option value="0" readonly></option>
                         @foreach($sales as $s)
                             <option value="{{$s->sales_code}}">{{$s->sales_name}}</option>
                         @endforeach
                     </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="form-label col-md-4 text-right">Kredit Limit</label>
+                <div class="col-md-4">
+                    <input class="form-control form-control-sm rounded-0 price-text" name="kreditLimit" id="kreditLimit">
                 </div>
             </div>
             <div class="form-group">
@@ -117,6 +123,9 @@
 </div>
 <script>
     $('[data-mask]').inputmask();
+    $('.price-text').mask('000.000.000', {
+            reverse: true
+        });
     $(document).ready(function(){        
         let loadSpinner = $(".LOAD-SPINNER"),
             routeIndex = "{{route('Customers')}}",
@@ -133,9 +142,18 @@
                     cache: true,
                     contentType: false,
                     processData: false,
-                    success: function (data) {                    
-                        global_style.hide_modal();
-                        global_style.load_table(loadSpinner,routeIndex,tableData,displayData);                        
+                    success: function (data) { 
+                        if(data.warning){
+                            alertify
+                              .alert(data.warning, function(){
+                                alertify.message('Input Data Dibatalkan!');
+                              }).set({title:"WARNING"});
+                        }
+                        else if(data.success){
+                            alertify.success(data.success);
+                            global_style.hide_modal();
+                            global_style.load_table(loadSpinner,routeIndex,tableData,displayData);
+                        }
                     },                
                 });
                 return false;

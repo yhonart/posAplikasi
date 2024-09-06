@@ -89,4 +89,18 @@ class cpSetupController extends Controller
             ->where('idm_site',$id)
             ->delete();
     }
+    
+    public function siteDataUpdate (Request $reqUpdateSite){
+        $tableName = $reqUpdateSite->tableName;
+        $column = $reqUpdateSite->column;
+        $editVal = $reqUpdateSite->editVal;
+        $id = $reqUpdateSite->id;
+        $tableId = $reqUpdateSite->tableID;
+        
+        DB::table($tableName)
+            ->where($tableId,$id)
+            ->update([
+                $column => $editVal,    
+            ]);
+    }
 }

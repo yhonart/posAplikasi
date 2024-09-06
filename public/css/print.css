@@ -1,6 +1,6 @@
 @page { margin: 0 }
-body { margin: 0; font-size:10px;font-family: monospace;}
-td { font-size:10px; }
+body { margin: 0; font-size:11px;font-family: monospace;}
+td { font-size:11px; }
 .sheet {
   margin: 0;
   overflow: hidden;
@@ -10,8 +10,8 @@ td { font-size:10px; }
 }
 
 /** Paper sizes **/
-body.struk        .sheet { width: 58mm; }
-body.struk .sheet        { padding: 2mm; }
+body.struk        .sheet { width: 65mm; }
+body.struk .sheet        { padding: 5mm; }
 
 .txt-left { text-align: left;}
 .txt-center { text-align: center;}
@@ -30,8 +30,8 @@ body.struk .sheet        { padding: 2mm; }
 /** Fix for Chrome issue #273306 **/
 @media print {
     body { font-family: monospace; }
-    body.struk                 { width: 58mm; text-align: left;}
-    body.struk .sheet          { padding: 2mm; }
+    body.struk                 { width: 65mm; text-align: left;}
+    body.struk .sheet          { padding: 5mm; }
     .txt-left { text-align: left;}
     .txt-center { text-align: center;}
     .txt-right { text-align: right;}

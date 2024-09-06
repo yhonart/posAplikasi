@@ -1,7 +1,7 @@
 @php
     $no = 1;
 @endphp
-<table class="table table-striped table-valign-middle table-sm">
+<table class="table table-striped table-valign-middle table-sm" id="tableMou">
     <thead class="bg-purple text-center">
         <tr>
             <th>No.</th>
@@ -32,3 +32,16 @@
         @endforeach
     </tbody>
 </table>
+<script>
+    $(function () {
+        $('#tableMou').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
+    });
+</script>

@@ -13,7 +13,7 @@
                     <div class="form-group row">
                         <label for="CatName" class="col-sm-6 col-form-label">Kode Brand</label>
                         <div class="col-sm-6">
-                            <input type="text" name="manufactureCode" id="manufactureCode" class="form-control" autocomplate="off" value="{{$manufactureEdit->manufacture_code}}" >
+                            <input type="text" name="manufactureCode" id="manufactureCode" class="form-control font-weight-bold" autocomplate="off" value="MF{{sprintf('%05d',$id)}}" readonly>
                         </div>
                     </div>
                     <div class="form-group row">

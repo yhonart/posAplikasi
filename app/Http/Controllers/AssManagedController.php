@@ -17,7 +17,10 @@ class AssManagedController extends Controller
     }
 
     public function FormAddCategory(){
-        return view ('AssetManagement/MasterData/CategoryModalFormAdd');
+        $id=DB::select("SHOW TABLE STATUS LIKE 'm_asset_category'");
+        $next_id=$id[0]->Auto_increment;
+            
+        return view ('AssetManagement/MasterData/CategoryModalFormAdd',compact('next_id'));
     }
 
     public function PostNewCategory(Request $reqNewCat){
@@ -68,28 +71,15 @@ class AssManagedController extends Controller
         $id = $reqEditCat->categoryId;
         $categoryCode = $reqEditCat->categoryCode;
         $categoryName = $reqEditCat->categoryName;
-
-        $countData = DB::table('m_asset_category')
-            ->where([
-                'category_code'=>$categoryCode,
-                ])
-            ->count();
-
-        if ($categoryCode=="" OR $categoryCode==" " OR $categoryName=="" OR $categoryName==" ") {
-            $msg = array('warning' => '! Nama dan kode kategori harus di isi.');
-        }
-        elseif ($countData>=1) {
-            $msg = array('warning' => '! Nama atau kode kategori sudah ada.');
-        }
-        else {
-            DB::table('m_asset_category')
-            ->where('idm_asset_category',$id)
-            ->update([
-                'category_code'=>$categoryCode,
-                'category_name'=>$categoryName,
-            ]);            
-            $msg = array('success' => '✔ Data berhasil diupdate.');
-        }
+        
+        DB::table('m_asset_category')
+        ->where('idm_asset_category',$id)
+        ->update([
+            'category_code'=>$categoryCode,
+            'category_name'=>$categoryName,
+        ]);  
+        
+        $msg = array('success' => '✔ Data berhasil diupdate.');
         return response()->json($msg);
     }
 
@@ -105,11 +95,14 @@ class AssManagedController extends Controller
     }
 
     public function FormAddManufacture(){
+        $id=DB::select("SHOW TABLE STATUS LIKE 'm_asset_manufacture'");
+        $next_id=$id[0]->Auto_increment;
+        
         $category = DB::table('m_asset_category')
             ->where('category_status','1')
             ->get();
 
-        return view('AssetManagement/MasterData/ManufactureModalFormAdd',compact('category'));
+        return view('AssetManagement/MasterData/ManufactureModalFormAdd',compact('category','next_id'));
     }
 
     public function PostNewManufacture(Request $reqNewMft){

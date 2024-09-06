@@ -14,35 +14,30 @@
     }
 ?>
 <div class="row">
-    <div class="col-12">
-        <div class="alert alert-info alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h5><i class="icon fas fa-info"></i> Alert!</h5>
-            Form ini hanya untuk input data barang / produk yang tidak ada pada stock.
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12">
+    <div class="col-12 p-0">
         <form id="FormNewProduct" autocomplete="off">
-            <input type="hidden" name="nextID" id="nextID" value="{{$nextIdVal}}"> 
             <div class="form-group row">
-                <label for="ProductCode" class="form-label col-md-3">Kode Barang <sup class="font-weight-bold text-danger">*</sup></label>
-                <div class="col-md-3">
-                    <input type="text" name="ProductCode" id="ProductCode" style="text-transform: uppercase" class="form-control form-control-border">
+                <label for="PrdNextID" class="form-label col-md-3">ID Data</label>
+                <div class="col-md-6">
+                    <input type="text" name="PrdNextID" id="PrdNextID" style="text-transform: uppercase" class="form-control form-control-sm font-weight-bold" value="{{$next_id}}" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="ProductCode" class="form-label col-md-3">Kode Barang</label>
+                <div class="col-md-6">
+                    <input type="text" name="ProductCode" id="ProductCode" style="text-transform: uppercase" class="form-control form-control-sm font-weight-bold" value="{{$productCode}}" readonly>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="ProductName" class="form-label col-md-3">Nama Barang <sup class="font-weight-bold text-danger">*</sup></label>
-                <div class="col-md-3">
-                    <input type="text" name="ProductName" id="ProductName" style="text-transform: uppercase" class="form-control form-control-border">                    
+                <div class="col-md-6">
+                    <input type="text" name="ProductName" id="ProductName" style="text-transform: uppercase" class="form-control form-control-sm">                    
                 </div>
             </div>
             <div class="form-group row">
                 <label for="KodeBarang" class="form-label col-md-3">Kategori Produk <sup class="font-weight-bold text-danger">*</sup></label>
-                <div class="col-md-3">
-                    <select name="KatProduk" id="KatProduk" class="custom-select form-control-border kategori-produk">
+                <div class="col-md-6">
+                    <select name="KatProduk" id="KatProduk" class="form-control form-control-sm">
                         <option value="0" readonly>Pilih Kategori Produk</option>
                         <option value="0" readonly></option>
                         @foreach($catProduct as $cp)
@@ -52,147 +47,140 @@
                 </div>               
             </div>
             <div class="form-group row">
-                <label for="SmallBarcode" class="form-label col-md-3">Brand <sup class="font-weight-bold text-danger">*</sup></label>
-                <div class="col-md-3">
-                    <select name="brand" id="brand" class="custom-select form-control-border">
-                        <option value="0" readonly>Nama Brand</option>
+                <label for="SmallBarcode" class="form-label col-md-3">Brand </label>
+                <div class="col-md-6">
+                    <select name="brand" id="brand" class="form-control form-control-sm">
+                        <option value="0" readonly>Kategori Brand</option>
                         @foreach($manufacture as $mnf)
                             <option value="{{$mnf->manufacture_code}}">{{$mnf->manufacture_name}}</option>
                         @endforeach
                     </select>
                 </div>
+                <div class="col-md-3">
+                    <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG btn-sm btn-flat" href="{{route('M_Manufacture')}}/AddManufacture"><i class="fa-solid fa-plus"></i></button>
+                </div>
             </div>
             <div class="form-group row">
+                <label for="SmallBarcode" class="form-label col-md-3">Set Minimum Stock <sup class="font-weight-bold text-danger">*</sup></label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control form-control-sm" name="setMinimum" id="setMinimum">
+                </div>
+            </div>
+            <hr>
+            <!--Pengaturan stock dan volume barang-->
+            <p class="text-info font-weight-bold">Pengaturan Volume dan Satuan :</p>
+            <table class="table table-sm table-borderless p-0 table-valign-middle">
+                <thead>
+                    <tr>
+                        <th colspan="6" class="text-muted">* Disarankan input data dari ukuran Besar terlebih dahulu !</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <form id="formNewUnit">
+                            <input type="hidden" name="prdunID" value="{{$next_id}}">
+                            <input type="hidden" name="stock" class="form-control form-control-sm rounded-0" placeholder="Stock" value="0">
+                            <td>
+                                <select name="addPrdSize" id="addPrdSize" class="form-control form-control-sm rounded-0">
+                                    <option value="0">Pilih Size</option>
+                                    <option value="BESAR">BESAR</option>
+                                    <option value="KECIL">KECIL</option>
+                                    <option value="KONV">KONV</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="addSatuan" id="addSatuan" class="form-control form-control-sm rounded-0">
+                                    <option value="0">Pilih Satuan</option>
+                                    @foreach($unit as $mU2)
+                                        <option value="{{$mU2->unit_note}}">{{$mU2->unit_note}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" name="addVolumeBarang" class="form-control form-control-sm rounded-0" placeholder="Satuan Isi">
+                            </td>
+                            <td>
+                                <input type="text" name="setBarcode" class="form-control form-control-sm rounded-0" placeholder="Set Barcode">
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info btn-sm BTN-ADD-UNIT float-right btn-flat" id="btnAddUnit">Tambah</button>
+                            </td>
+                        </form>
+                    </tr>
+                </tbody>
+                <tbody id="displayTableVolume"></tbody>
+            </table>
+            <!--End Pengaturan stock dan volume barang-->
+            
+            <!--Pengaturan harga barang-->
+            <p class="font-weight-bold"><span class="text-info">Pengaturan Harga Barang :</span></p>
+            <table class="table table-sm table-borderless p-0 table-valign-middle">
+                <thead>
+                    <tr>
+                        <th colspan="5" class="text-muted">*Pastikan pengaturan volume & satuan sudah dimasukkan!</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select name="unitHarga" id="unitHarga" class="form-control form-control-sm rounded-0">
+                                <option value="0">Pilih Ukuran</option>
+                                <option value="BESAR">BESAR</option>
+                                <option value="KECIL">KECIL</option>
+                                <option value="KONV">KONV</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="form-control form-control-sm rounded-0 PRICE" name="priceOrder" autocomplete="off" placeholder="Harga Pembelian">
+                        </td>
+                        <td>
+                            <input class="form-control form-control-sm rounded-0 PRICE" name="priceSell" autocomplete="off" placeholder="Harga Jual">
+                        </td>
+                        <td>
+                            <select class="form-control form-control-sm rounded-0" name="cosGroup" id="cosGroup">
+                                    <option value="0" readonly>Tipe Pelangan</option>
+                                @foreach($listGroup as $cG)
+                                    <option value="{{$cG->idm_cos_group}}">{{$cG->group_name}}</option>
+                                @endforeach
+                            </select>
+                        </td> 
+                        <td><button type="button" class="btn btn-info btn-sm float-right btn-flat" id="btnTambahHarga">Tambah</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="displayTableHrg"></div>
+            <!--End pengaturan harga barang-->
+            
+            <hr>
+            <div class="form-group row">
                 <label for="productImage" class="form-label col-md-3">Gambar Produk</label>
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <input type="file" name="productImage" id="productImage" class="form-control-file">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="pajak" class="form-label col-md-3">Pajak Jual</label>
-                <div class="col-md-3">
-                    <select name="pajak" id="pajak" class="custom-select form-control-border">
+                <div class="col-md-6">
+                    <select name="pajak" id="pajak" class="form-control form-control-sm">
                         <option value="0" readonly></option>
                         <option value="PPN">PPN</option>
                         <option value="Non PPN">Non PPN</option>
                     </select>
                 </div>
             </div>
-            <div class="row mt-5 mb-2">
-                <div class="col-md-3"><span class="font-weight-bold text-info">Pengaturan Satuan dan Harga Barang</span></div>
-                <div class="col-md-9"><hr></div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="table-responsive">
-                        <table class="table table-sm table-valign-middle table-striped table-bordered table-hover" id="tableUkuran">
-                            <thead>
-                                <tr>
-                                    <th colspan="7" class="bg-info font-weight-bold">Setup Barcode & Isi Satuan</th>
-                                </tr>
-                            </thead>
-                            <thead>
-                                <tr>
-                                    <th>Set Barcode</th>
-                                    <th>Ukuran</th>
-                                    <th>Satuan</th>
-                                    <th>Isi</th>
-                                    <th>Harga Beli</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>                                
-                                <tr>
-                                    <td>
-                                        <input type="text" name="setBarcode" id="setBarcode" style="text-transform: uppercase" class="form-control form-control-border">
-                                    </td>
-                                    <td>                                        
-                                        <select name="sizeProduct" id="sizeProduct" class="custom-select form-control-border">
-                                            <option value="0"></option>
-                                            <option value="Besar">Besar</option>
-                                            <option value="Kecil">Kecil</option>
-                                            <option value="Terkecil">Terkecil</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="unitProduct" id="unitProduct" class="custom-select form-control-border load-input">                        
-                                            <option value="0"></option>
-                                            @foreach($unit as $uOne)
-                                                <option value="{{$uOne->unit_note}}">{{$uOne->unit_note}}</option>                                                
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="volumeProduct" id="volumeProduct" class="form-control form-control-border load-input">
-                                    </td>
-                                    <td>
-                                        <input type="text" name="priceOrder" id="priceOrder" style="text-transform: uppercase" class="form-control form-control-border price-text load-input">
-                                    </td>                                                                        
-                                    <td>
-                                        <button type="button" id="addUnit" class="btn btn-block btn-info add-child">Tambah</button>
-                                    </td>
-                                </tr>
-                            </tbody>                            
-                            <tbody id="displaySize">
-
-                            </tbody>                           
-                        </table> 
-                        <table class="table table-sm table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th colspan="7" class="bg-info font-weight-bold">Setup Harga Jual</th>
-                                </tr>
-                            </thead>
-                            <thead>
-                                <tr>
-                                    <th width="20%">Ukuran</th>
-                                    <th width="20%">Kategori Harga</th>
-                                    <th width="20%">Harga Jual</th>
-                                    <th width="20%"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <select name="sizeByGroup" id="sizeByGroup" class="custom-select form-control-border">
-                                            <option value="0"></option>
-                                            <option value="Besar">Besar</option>
-                                            <option value="Kecil">Kecil</option>
-                                            <option value="Terkecil">Terkecil</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="prodCategory" id="prodCategory" class="custom-select form-control-border">
-                                            <option value="0"></option>
-                                            @foreach($listGroup as $lG)
-                                                <option value="{{$lG->idm_cos_group}}">{{$lG->group_name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <td>
-                                    <input type="text" name="priceSell" id="priceSell" style="text-transform: uppercase" class="form-control form-control-border price-text load-input">
-                                    </td>
-                                    <td class="text-right">                                        
-                                        <button type="button" id="addByGroup" class="btn btn-info add-group">Tambah</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tbody id="displayPriceGroup">
-
-                            </tbody> 
-                        </table>
-                    </div>
-                </div>
-            </div>            
             
             <div class="form-group row">
-                <div class="col-2">
-                    <button type="submit" id="productSubmit" class="btn btn-block btn-success font-weight-bold">Simpan</button>
+                <div class="col-md-2">
+                    <button type="button" id="productSubmit" class="btn btn-block btn-success font-weight-bold">Simpan</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" id="productCencel" class="btn btn-block btn-danger font-weight-bold">Batal</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
 
 <div class="row">
     <div class="col-12 red-alert p-2 rounded rounded-2 mb-2 notive-display" style="display:none;">
@@ -201,11 +189,16 @@
 </div>
 
 <script>    
-    
     $(function(){
         $('.select2').select2({
             theme: 'bootstrap4'
-        });        
+        }); 
+        var id = $("#PrdNextID").val();
+        $(".PRICE").mask('000.000.000',{
+            reverse: true,
+        });
+        funcTableVol(id);
+        funcTableHrg(id);
     });
 
     $(document).ready(function () {
@@ -214,57 +207,87 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        let dataIdProd = $("#nextID").val();
-        dataTableSize(dataIdProd);
-        dataTableGroup(dataIdProd);
-        $('#addUnit').on('click', function(){            
-            let Size = $("#sizeProduct").find(":selected").val(),
-                Unit = $("#unitProduct").find(":selected").val(),
-                Volume = $("input[name=volumeProduct]").val(),
-                PriceOrder = $("input[name=priceOrder]").val(),
-                SetBarcode = $("input[name=setBarcode]").val();            
+        
+        $('#btnAddUnit').on('click', function () {
+            let size = $("#addPrdSize").find(":selected").val(),
+                satuan = $("#addSatuan").find(":selected").val(),
+                volume = $("input[name=addVolumeBarang]").val(),
+                setBarcode = $("input[name=setBarcode]").val(),
+                stock = $("input[name=stock]").val();
+                id = $("input[name=PrdNextID]").val();
+                
+            $.ajax({
+                url: "{{route('Stock')}}/ProductMaintenance/postAddUnit",
+                type: 'POST',
+                data: {prdID:id,size:size,satuan:satuan,volume:volume,setBarcode:setBarcode,stock:stock},
+                success: function (data) {                    
+                    funcTableVol(id);
+                    $("#addPrdSize").val('0');
+                    $("#addSatuan").val('0');
+                    $("#volume").val('');
+                }
+            });
+        });
+
+        $('#btnTambahHarga').on('click', function(){            
+            let unitHarga = $('#unitHarga').find(":selected").val(),
+                priceOrder = $("input[name=priceOrder]").val(),
+                priceSell = $("input[name=priceSell]").val(),
+                cosGroup = $('#cosGroup').find(":selected").val(),
+                id = $("input[name=PrdNextID]").val();
+                
                 $.ajax({
                     type : 'post',
-                    url : "{{route('Stock')}}/AddProduct/PostProductSetSizing",
-                    data :  {idProduct:dataIdProd,Size:Size,Unit:Unit,Volume:Volume,PriceOrder:PriceOrder,SetBarcode:SetBarcode},
-                    success : function(data){        
-                        dataTableSize(dataIdProd);
+                    url : "{{route('Stock')}}/AddProduct/PostProductSetGrouping",
+                    data :  {unitHarga:unitHarga,priceOrder:priceOrder,priceSell:priceSell,cosGroup:cosGroup,routeID:id},
+                    success : function(data){ 
+                        if(data.warning){
+                            alertify
+                              .alert(data.warning, function(){
+                                alertify.message('OK');
+                              }).set({title:"Warning!"});
+                        }else if(data.success){
+                            alertify.success(data.success);
+                            funcTableHrg(id);
+                            $("#unitHarga").val('0');
+                            $("#priceOrder").val('0');
+                            $("#priceSell").val('0');
+                            $("#cosGroup").val('0');
+                        }
                     }
                 });
             $('.load-input').val(''); 
         });
-
-        $('#addByGroup').on('click', function(){            
-            let Size = $("#sizeByGroup").find(":selected").val(),                
-                prodCategory = $('#prodCategory').find(":selected").val(),
-                priceSell = $("#priceSell").val();            
-                $.ajax({
-                    type : 'post',
-                    url : "{{route('Stock')}}/AddProduct/PostProductSetGrouping",
-                    data :  {idProduct:dataIdProd, size:Size, prodCategory:prodCategory, priceSell:priceSell},
-                    success : function(data){        
-                        dataTableGroup(dataIdProd);
-                        $("#sizeByGroup").value();
-                        $('#prodCategory').value();
-                        $("#priceSell").value();
-                    }
-                });
-            $('.load-input').val(''); 
+        
+        $('#productCencel').on('click', function(){            
+            let id = $("input[name=PrdNextID]").val();
+                alertify
+                  .alert("Apakah Anda Yakin Ingin Membatalkan Input Data ?", function(){
+                    $.ajax({
+                        type : 'get',
+                        url : "{{route('Stock')}}/AddProduct/cencelSubmit/"+id,
+                        success : function(data){        
+                            window.location.reload();
+                        }
+                    });
+                }).set({title:"Konfirmasi !"});
         });
 
         $('.price-text').mask('000.000.000', {reverse: true});
         let alertNotive = $('.notive-display');
-
-        $("form#FormNewProduct").submit(function(event){
-            event.preventDefault();
+       
+        $('#productSubmit').on('click', function(e){ 
+            var keyWord = '0';
+            e.preventDefault();
+            let data_form = new FormData(document.getElementById("FormNewProduct"));
             $.ajax({
                 url : "{{route('Stock')}}/AddProduct/PostProduct",
-                type : 'POST',
-                data : new FormData(this),
-                async : true,
-                cache : true,
-                contentType : false,
-                processData : false,
+                type: 'post',
+                data: data_form,
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
                 success : function (data) {
                     if (data.warning) {
                         $(".notive-display").fadeIn();
@@ -272,31 +295,46 @@
                         alertNotive.removeClass('green-alert').addClass('red-alert');
                     }
                     else{
-                        $("#displayTableCategory").load("{{route('Stock')}}/ProductMaintenance");
-                        $(".notive-display").fadeIn();
-                        $("#notiveDisplay").html(data.success);
-                        alertNotive.removeClass('red-alert').addClass('green-alert');
-                        $("form#FormNewProduct")[0].reset(); 
+                        funcLoadForm();
+                        funcLoadPrdList(keyWord);
                     }
                 }
             })
         })
     });
-    function dataTableSize(dataIdProd){        
+    function funcTableVol(id){        
         $.ajax({
             type : 'get',
-            url : "{{route('Stock')}}/AddProduct/sizeProductInput/"+dataIdProd,
+            url : "{{route('Stock')}}/AddProduct/sizeProductInput/"+id,
             success : function(response){
-                $("#displaySize").html(response);
+                $("#displayTableVolume").html(response);
             }
         });
     }
-    function dataTableGroup(dataIdProd){        
+    function funcTableHrg(id){        
         $.ajax({
             type : 'get',
-            url : "{{route('Stock')}}/AddProduct/prodCategoryInput/"+dataIdProd,
+            url : "{{route('Stock')}}/AddProduct/prodCategoryInput/"+id,
             success : function(response){
-                $("#displayPriceGroup").html(response);
+                $("#displayTableHrg").html(response);
+            }
+        });
+    }
+    function funcLoadForm(){        
+        $.ajax({
+            type:'get',
+            url:"{{route('Stock')}}/AddProduct", 
+            success : function(response){
+                $("#detailProduct").html(response);
+            }           
+        });
+    }
+    function funcLoadPrdList(keyWord){        
+        $.ajax({
+            type : 'get',
+            url : "{{route('TransProduct')}}/StockBarang/cariTransaksiProduk/"+keyWord,
+            success : function(response){
+                $("#divListProduct").html(response);
             }
         });
     }

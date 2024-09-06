@@ -12,7 +12,9 @@
             <select name="pelanggan" id="pelanggan" class="form-control form-control-lg select2 select2-danger" data-dropdown-css-class="select2-danger">
                 <option value="0"></option>
                 @foreach($members as $m)                    
-                    <option value="{{$m->idm_customer}}">{{$m->customer_store}}</option>
+                    <option value="{{$m->idm_customer}}">
+                        {{$m->customer_store}}-{{$m->address}}
+                    </option>
                 @endforeach
             </select>
         </div>
@@ -32,38 +34,46 @@
 
     <div class="row mb-2">
         <div class="col-4">
-            <button type="button" class="btn bg-gradient-success elevation-2 btn-block border border-2 border-light p-2" disabled><b>[F2]</b> <br> BAYAR</button>
+            <button type="button" class="btn bg-gradient-success elevation-2 btn-block border border-2 border-light p-2" id="btnBayar" disabled><b>[F2]</b> <br> BAYAR</button>
         </div>
         <div class="col-4">
-            <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2"><b>[Ctrl+A]</b> <br> DT.PENJUALAN</button>
+            <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2" id="btnPembayaran"><b>[F6]</b> <br> Dt. Penjualan</button>
         </div>
         <div class="col-4">
-            <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2" disabled><b>[F4]</b> <br> CLEAR</button>
-        </div>
-    </div>
-    <div class="row mb-2">
-        <div class="col-4">
-            <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2"><b>[F7]</b> <br> POINT</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="btn bg-gradient-primary elevation-2 btn-block border border-2 border-light p-2"><b>[F9]</b> <br> PELUNASAN</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="btn bg-gradient-danger elevation-2 btn-block border border-2 border-light p-2"><b>[F10]</b> <br> RETURN</button>
+            <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2" id="btnClear" disabled><b>[F4]</b> <br>Tutup</button>
         </div>
     </div>
     <div class="row mb-2">
         <div class="col-4">
-            <button type="button" class="btn bg-gradient-indigo elevation-2 btn-block border border-2 border-light p-2" disabled><b>[Ctrl+H]</b> <br> HOLD</button>
+            <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2" id="btnPoint"><b>[F7]</b> <br> Point</button>
         </div>
         <div class="col-4">
-            <button type="button" class="btn bg-gradient-purple elevation-2 btn-block border border-2 border-light p-2"><b>[Ctrl+L]</b> <br> LOAD</button>
+            <button type="button" class="btn bg-gradient-primary elevation-2 btn-block border border-2 border-light p-2" id="btnPelunasan"><b>[F9]</b> <br> Pelunasan</button>
         </div>
         <div class="col-4">
-            <button type="button" class="btn bg-gradient-navy elevation-2 btn-block border border-2 border-light p-2"><b>[Ctrl+X]</b> <br> LOG-OUT</button>
+            <button type="button" class="btn bg-gradient-danger elevation-2 btn-block border border-2 border-light p-2" id="btnReturn"><b>[F10]</b> <br> Return</button>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4">
+            <button type="button" class="btn bg-gradient-indigo elevation-2 btn-block border border-2 border-light p-2" id="btnHold" disabled><b>[Ctrl+H]</b> <br> HOLD</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn bg-gradient-purple elevation-2 btn-block border border-2 border-light p-2" id="btnLoad"><b>[Ctrl+L]</b> <br> LOAD</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn bg-gradient-navy elevation-2 btn-block border border-2 border-light p-2" id="btnLogOut"><b>[Ctrl+X]</b> <br> Log-out</button>
         </div>
     </div>
 </form>
+<div class="modal MODAL-GLOBAL" id="modal-global-large" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+      <div class="modal-content MODAL-CONTENT-GLOBAL">
+          <!-- Content will be placed here -->
+          <!-- class default MODAL-BODY-GLOBAL -->
+      </div>
+  </div>
+</div>
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
     @csrf
 </form>
@@ -75,12 +85,19 @@
         showConfirmButton: false,
         timer: 3000
     });
-    const el_modal_all = $('.MODAL-CASHIER'),
-                    el_modal_sm = $('#modal-global-sm'),
-                    id_modal_content_cashier = '.MODAL-CONTENT-CASHIER',
-                    url_cashier = "{{route('Cashier')}}";
+    var el_modal_all = $('.MODAL-GLOBAL'),
+        el_modal_large = $('#modal-global-large'),
+        id_modal_content = '.MODAL-CONTENT-GLOBAL',
+        url_cashier = "{{route('Cashier')}}";
+            
+    el_modal_all.on('show.bs.modal', function () {
+        global_style.container_spinner($(this).find(id_modal_content));
+    });
+    el_modal_all.on('hidden.bs.modal', function () {
+        $(this).find(id_modal_content).html('');
+    });
 
-    let t_Belanja = $("input[name=totalPayment]").val(),
+    var t_Belanja = $("input[name=totalPayment]").val(),
         no_Struck = $("input[name=noStruck]").val(),
         idPelanggan = $("#pelanggan").find(":selected").val(),
         t_Bayar = $("input[name=tBayar]").val(),
@@ -95,6 +112,33 @@
             theme: 'bootstrap4'
         });
     });
+    $("#btnPoint").click(function(){
+        toastr.error('Item ini belum dapat ditampilkan')
+    });
+    $("#btnReturn").click(function(){
+        event.preventDefault();
+        el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/dataReturn");
+    });
+    $("#btnPelunasan").click(function(){
+        event.preventDefault();
+        el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/dataPelunasan");
+    });
+    $("#btnHold").click(function(){
+        event.preventDefault();
+        el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/dataReturn");
+    });
+    $("#btnLoad").click(function(){
+        event.preventDefault();
+        el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/loadDataSaved");
+    });
+    $("#btnPembayaran").click(function(){
+        event.preventDefault();
+        el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/dataPenjualan");
+    });
+    $("#btnLogOut").click(function(){
+        event.preventDefault();
+        document.getElementById('logout-form').submit();
+    });
 
     document.addEventListener('keydown', function(event) {
         
@@ -104,7 +148,7 @@
         }
         else if (event.ctrlKey && event.key === 'l') { // Menampilkan modal bantuan
             event.preventDefault();
-            el_modal_sm.modal('show').find(id_modal_content_cashier).load(url_cashier + "/buttonAction/loadDataSaved");
+            el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/loadDataSaved");
         }
         else if (event.key === 'F1') { // Mengarahkan ke field pelanggan untuk di pilih.
             event.preventDefault();
@@ -116,13 +160,13 @@
             event.preventDefault();
             document.getElementById('logout-form').submit();
         }
-        else if (event.ctrlKey && event.key === 'a') {
+        else if (event.key === 'F6') {
             event.preventDefault();
-            el_modal_sm.modal('show').find(id_modal_content_cashier).load(url_cashier + "/buttonAction/dataPenjualan");
+            el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/dataPenjualan");
         }
         else if (event.ctrlKey && event.key === 'b') {
             event.preventDefault();
-            el_modal_sm.modal('show').find(id_modal_content_cashier).load(url_cashier + "/buttonAction/loadHelp");
+            el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/loadHelp");
         }
         else if (event.key === 'F7') {
             event.preventDefault();
@@ -130,11 +174,11 @@
         }
         else if (event.key === 'F9') {
             event.preventDefault();
-            el_modal_sm.modal('show').find(id_modal_content_cashier).load(url_cashier + "/buttonAction/dataPelunasan")
+            el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/dataPelunasan")
         }
         else if (event.key === 'F10') {
             event.preventDefault();
-            el_modal_sm.modal('show').find(id_modal_content_cashier).load(url_cashier + "/buttonAction/dataReturn")
+            el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/dataReturn")
         }
         else if (event.ctrlKey && event.key === 's') {
             event.preventDefault();            
@@ -149,7 +193,7 @@
         }
     });
     $(document).ready(function(){
-        let routeIndex = "{{route('Cashier')}}",
+        var routeIndex = "{{route('Cashier')}}",
             urlProductList = "productList",
             panelProductList = $("#mainListProduct"),
             urlButtonForm = "buttonAction",
@@ -160,7 +204,7 @@
             $.ajax({
                 type : 'post',
                 url : "{{route('Cashier')}}/buttonAction/postVariableData",
-                data :  {t_Belanja:t_Belanja, no_Struck:no_Struck, pelanggan:idPelanggan, t_Bayar:t_Bayar, t_Selisih:t_Selisih, t_Item:t_Item, pengiriman:pengiriman, ppn:ppn},
+                data :  {t_Belanja:t_Belanja, pelanggan:idPelanggan, t_Bayar:t_Bayar, t_Selisih:t_Selisih, t_Item:t_Item, pengiriman:pengiriman, ppn:ppn},
                 success : function(data){                
                     cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                     cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);                    

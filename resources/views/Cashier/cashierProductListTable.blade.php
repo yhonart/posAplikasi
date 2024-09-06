@@ -2,31 +2,33 @@
     $noProdList = "1";
 ?>
 @foreach($listTrProduct as $ltrp)
-<tr>
-    <td>{{$noProdList++}}</td>
+<tr id="{{$ltrp->list_id}}">    
+    <td>
+        {{$noProdList++}}
+    </td>
     <td>
         {{$ltrp->productName}}
-        <input type="hidden" name="hiddenPrdID" id="hiddenPrdID" value="{{$ltrp->product_code}}">
     </td>
-    <td class="text-center" contenteditable="true" onBlur="saveToDatabase(this,'tr_store_prod_list','qty','{{$ltrp->list_id}}','list_id')" onClick="showEdit(this);">
-        {{$ltrp->qty}}
+    <td class="p-0">
+        <input type="text" name="editQty[]" id="editQty{{$ltrp->list_id}}" class="form-control form-control-sm rounded-0" value="{{$ltrp->qty}}" onchange="saveToPrdList(this,'tr_store_prod_list','qty','{{$ltrp->list_id}}','list_id','{{$ltrp->stock}}')" onfocus="this.select()" autocomplate="off">        
     </td>
-    <td class="text-center">
+    <td class="p-0">
         {{$ltrp->unit}}
     </td>
-    <td class="text-right">
-        
-        <input type="text" name="editPriceSatuan" id="editPriceSatuan" class="form-control form-control-sm price-text text-right" value="{{$ltrp->unit_price}}" readonly>
+    <td class="p-0">
+        <input type="text" name="editPriceSatuan" id="editPriceSatuan{{$ltrp->list_id}}" class="form-control form-control-sm rounded-0 price-text text-right" value="{{$ltrp->unit_price}}" readonly>
+    </td>
+    <td class="p-0">
+        <input type="text" name="editDisc[]" id="editDisc{{$ltrp->list_id}}" class="form-control form-control-sm rounded-0" value="{{$ltrp->disc}}" onchange="saveToPrdList(this,'tr_store_prod_list','disc','{{$ltrp->list_id}}','list_id','{{$ltrp->stock}}')" onfocus="this.select()">
+    </td>
+    <td class="p-0">
+        <input type="text" name="editTotalPrice" id="editTotalPrice{{$ltrp->list_id}}" class="form-control form-control-sm rounded-0 price-text text-right" value="{{$ltrp->t_price}}" readonly>
     </td>
     <td class="text-center">
-        {{$ltrp->disc}}
+        {{$ltrp->stock}}
     </td>
-    <td class="text-right">
-        <input type="text" name="editTotalPrice" id="editTotalPrice" class="form-control form-control-sm price-text text-right" value="{{$ltrp->t_price}}" readonly>
-    </td>
-    <td class="text-center">{{$ltrp->stock}}</td>
-    <td class="text-right">
-        <button type="button" class="btn btn-sm btn-danger DELETE-LIST elevation-1" data-id="{{$ltrp->list_id}}"><i class="fa-solid fa-xmark"></i></button>
+    <td class="text-right p-0">
+        <button type="button" class="btn btn-sm btn-danger DELETE-LIST elevation-1 rounded-0" data-id="{{$ltrp->list_id}}"><i class="fa-solid fa-xmark"></i></button>
     </td>
 </tr>
 @endforeach
@@ -38,7 +40,6 @@
             urlButtonForm = "buttonAction",
             panelButtonForm = $("#mainButton");
         $('.price-text').mask('000.000.000', {reverse: true});
-        
 
         $('.DELETE-LIST').on('click', function(){
             let elThis = $(this),
@@ -54,28 +55,37 @@
         });
         
     });
-    // EDIT TABLE
-    function showEdit(editTableObj) {
-        $(editTableObj).css("background","#c7d2fe");
-        $(editTableObj).mask('000.000.000', {reverse: true});
-    }
     
-    function saveToDatabase(editTableObj,tableName,column,id,priceId) {
+    // EDIT TABLE
+    function saveToPrdList(editTableObj,tableName,column,id,priceId,lastStock){
+        $.ajax({
+            url: "{{route('Cashier')}}/buttonAction/dataPenjualan/postEditItem",
+            type: "POST",
+            data:'tablename='+tableName+'&column='+column+'&editval='+editTableObj.value+'&id='+id+'&priceId='+priceId+'&lastStock='+lastStock,
+            success: function(data){
+                loadDataActive();
+            }
+        });
+    }
+    function savePrdUnit(editTableObj,tableName,column,id,priceId,prdID,prdQty){
+        $.ajax({
+            url: "{{route('Cashier')}}/buttonAction/dataPenjualan/postEditItemUnit",
+            type: "POST",
+            data:'tablename='+tableName+'&column='+column+'&editval='+editTableObj.value+'&id='+id+'&priceId='+priceId+'&prdID='+prdID+'&prdQty='+prdQty,
+            success: function(data){
+                loadDataActive();
+            }
+        });
+    }
+    function loadDataActive(){ 
         const routeIndex = "{{route('Cashier')}}",
             urlProductList = "productList",
             panelProductList = $("#mainListProduct"),
             urlButtonForm = "buttonAction",
             panelButtonForm = $("#mainButton");
-        $(editTableObj).css("background","#FFF");
-        $.ajax({
-            url: "{{route('Cashier')}}/buttonAction/dataPenjualan/postEditItem",
-            type: "POST",
-            data:'tableName='+tableName+'&column='+column+'&editVal='+editTableObj.innerHTML+'&id='+id+'&priceId='+priceId,
-            success: function(data){
-                $(editTableObj).css("background","#FDFDFD");
-                cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
-                cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
-            }
-        });
+            
+        cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
+        cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
     }
+    
 </script>

@@ -1,3 +1,6 @@
+@extends('layouts.sidebarpage')
+
+@section('content')
 <div class="content-header">
     <div class="container-fluid">
     <div class="row mb-2">
@@ -11,7 +14,7 @@
     <div class="container-fluid">            
         <div class="row">
             <div class="col-12">
-                <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('M_Manufacture')}}/AddManufacture">Tambah Brand</button>
+                <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG btn-flat font-weight-bold" href="{{route('M_Manufacture')}}/AddManufacture">Tambah Brand</button>
             </div>
         </div>
         <div class="row mt-2">
@@ -36,3 +39,4 @@
         global_style.load_table(loadSpinner,routeIndex,tableData,displayData);
     });
 </script>
+@endsection

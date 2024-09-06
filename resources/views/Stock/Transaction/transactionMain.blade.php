@@ -1,3 +1,6 @@
+@extends('layouts.sidebarpage')
+
+@section('content')
 <div class="content-header">
     <div class="container-fluid">
     <div class="row mb-2">
@@ -9,25 +12,11 @@
 </div>
 
 <div class="content">
-    <div class="container-fluid">            
-        <div class="row">
-            <div class="col-12">
-                <div class="btn-group">
-                    <button class="btn btn-default text-info font-weight-bold ITEM-DISPLAY" id="StockBarang" data-open="StockBarang"><i class="fa-solid fa-plus"></i> Stock Barang</button>
-                    <button class="btn btn-default text-info font-weight-bold ITEM-DISPLAY" id="StockOpname" data-open="StockOpname"><i class="fa-solid fa-list"></i> Stock Opname</button>
-                    <button class="btn btn-default text-info font-weight-bold ITEM-DISPLAY" id="KoreksiItem" data-open="KoreksiItem"><i class="fa-solid fa-list"></i> Koreksi Item</button>
-                    <button class="btn btn-default text-info font-weight-bold ITEM-DISPLAY" id="MutasiBarang" data-open="MutasiBarang"><i class="fa-solid fa-list"></i> Mutasi Barang</button>
-                </div>
-            </div>
-        </div>
+    <div class="container-fluid"> 
         <div class="row mt-2">
             <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        @include('Global.global_spinner')
-                        <div id="diplayTransaction"></div>
-                    </div>
-                </div>
+                @include('Global.global_spinner')
+                <div id="diplayTransaction"></div>
             </div>
         </div>
     </div>
@@ -48,3 +37,4 @@
         global_style.load_table(loadSpinner,routeIndex,tableData,displayData);
     });
 </script>
+@endsection

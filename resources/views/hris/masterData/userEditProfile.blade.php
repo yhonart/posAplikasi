@@ -1,0 +1,101 @@
+<div class="row p-1">
+    <div class="col-12">
+        <div class="card card-purple">
+            <div class="card-header border-0">
+                <h3 class="card-title font-weight-bold">Edit Profile User {{$tbUser->name}}</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <form id="formEditProfile">
+                    <input type="hidden" name="idUser" id="idUser" value="{{$id}}">
+                    <div class="form-group row">
+                        <label class="label col-2">Nama Lengkap</label>
+                        <div class="col-4">
+                            <input type="text" class="form-control form-control-sm rounded-0" name="namaLengkap" autocomplate="off" value="{{$tbUser->name}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="label col-2">Username</label>
+                        <div class="col-4">
+                            <input type="text" class="form-control form-control-sm rounded-0" name="userName" autocomplate="off" value="{{$tbUser->username}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="label col-2">Email</label>
+                        <div class="col-4">
+                            <input type="text" class="form-control form-control-sm rounded-0" name="email" autocomplate="off" value="{{$tbUser->email}}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-success btn-block btn-sm font-weight-bold">Simpan Profile</button>
+                        </div>
+                        <div class="col-8">
+                            <span id="notive-display" style="display:none;">Data Berhasil Dimasukkan</span>
+                        </div>
+                    </div>
+                </form>
+                <button class="btn btn-primary mb-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Ganti Password
+                </button>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <button type="button" class="btn bg-olive" id="changePassword">Ganti</button>
+                          </div>
+                          <!-- /btn-group -->
+                          <input type="password" class="form-control" name="password" id="password">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <span class="notive-display bg-danger p-2 rounded rounded-2 elevation-2 font-weight-bold" id="notiveDisplay" style="display:none;"></span>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        let id = "{{$id}}",
+            keyWord = '0';
+        
+        $("form#formEditProfile").submit(function(event){
+            event.preventDefault();
+            $.ajax({
+                url: "{{route('Personalia')}}/formEditProfile",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {                    
+                    searchData(keyWord);
+                },                
+            });
+            return false;
+        });
+        
+        $("#changePassword").on('click', function(){
+            alertify.error('Untuk merubah password belum dapat digunakan !');
+        });
+        
+        function searchData(keyWord){        
+            $.ajax({
+                type : 'get',
+                url : "{{route('Personalia')}}/dataTablePersonalia/searchData/"+keyWord,
+                success : function(response){
+                    $(".DIV-SPIN").fadeOut();
+                    $("#divListPersonalia").html(response);
+                }
+            });
+        }
+    });
+</script>

@@ -1,4 +1,4 @@
-@extends('layouts.frontpage')
+@extends('layouts.print')
 @section('content')
 <div class="row">
     <div class="col-12 text-center">
@@ -8,14 +8,14 @@
 <div class="row">
     <div class="col-8">
         <p>Kepada Yth.</p>
-        <p>{{$trStore->customer_name}}</p>
         <address>
+            <span class="font-weight-bold">{{$trStore->customer_name}}</span> <br>
             {{$trStore->address}}
         </address>
         <p>Kota : </p>
     </div>
     <div class="col-4">
-        <dl class="row">
+        <dl class="row mb-0">
             <dt class="col-4">No.</dt>
             <dd class="col-8">{{$trStore->billing_number}}</dd>
         </dl>
@@ -30,25 +30,25 @@
 ?>
 <div class="row">
     <div class="col-12">
-        <table class="table table-sm">
-            <thead>
+        <table class="table table-sm table-bordered table-valign-middle">
+            <thead class="bg-gray font-weight-bold">
                 <tr>
-                    <th>No.</th>
-                    <th>Qty</th>
-                    <th>Satuan</th>
-                    <th>Nama Barang</th>
-                    <th>Harga</th>
-                    <th>Total (Rp)</th>
+                    <th class="text-center">No.</th>
+                    <th class="text-right">Qty</th>
+                    <th class="text-left">Satuan</th>
+                    <th class="text-center">Nama Barang</th>
+                    <th class="text-center">Harga</th>
+                    <th class="text-center">Total (Rp)</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($trStoreList as $list)
                     <tr>
-                        <td>{{$no++}}</td>
-                        <td>{{$list->qty}}</td>
-                        <td>{{$list->unit}}</td>
+                        <td class="text-center">{{$no++}}</td>
+                        <td class="text-right">{{$list->qty}}</td>
+                        <td class="text-left">{{$list->unit}}</td>
                         <td>{{$list->product_name}}</td>
-                        <td class="text-right">{{number_format($list->unit_price,'0',',','.')}}</td>
+                        <td class="text-right">{{number_format($list->m_price,'0',',','.')}}</td>
                         <td class="text-right">{{number_format($list->t_price,'0',',','.')}}</td>
                     </tr>
                 @endforeach
@@ -71,41 +71,74 @@
                 <tr>
                     <td>Discount</td>
                     <td class="text-right">:</td>
-                    <td class="text-right">{{number_format($totalPayment->sumDisc,'0',',','.')}}</td>
+                    <td class="text-right">0</td>
                 </tr>
                 <tr>
                     <td>Bon Lalu</td>
                     <td class="text-right">:</td>
-                    <td class="text-right">{{number_format($cekBon->nominal,'0',',','.')}}</td>
+                    <td class="text-right">
+                        <?php
+                            if($countBilling >= '1'){
+                                $lastKredit = $remainKredit->kredit;
+                            }
+                            else{
+                                $lastKredit = '0';
+                            }
+                        ?>
+                        {{number_format($lastKredit,0,',','.')}}
+                    </td>
                 </tr>
                 <tr>
                     <td>PPN</td>
                     <td class="text-right">:</td>
-                    <td class="text-right">{{$trStore->ppn}}</td>
+                    <td class="text-right"></td>
                 </tr>
                 <tr>
                     <td>Total</td>
                     <td class="text-right">:</td>
                     <td class="text-right">
                         <?php
-                            $total = $totalPayment->totalBilling+$cekBon->nominal;
+                            if($countBilling >= '1'){
+                                $lastKredit = $remainKredit->kredit;
+                            }
+                            else{
+                                $lastKredit = '0';
+                            }
                         ?>
-                        {{number_format($total,'0',',','.')}}
+                        {{number_format($lastKredit,0,',','.')}}
                     </td>
                 </tr>
+                
             </tbody>
-            <tfother>
+        </table>
+        <table cellpadding="0" cellspacing="0" style="width:100%" class="table">
+            <tbody>
+                @foreach($paymentRecord as $pr)
+                    <tr>
+                        <td class="font-weight-bold">Pembayaran</td>
+                        <td class="txt-right font-weight-bold" align="right">{{$pr->methodName}}</td>
+                        <td class="txt-right font-weight-bold" align="right">{{number_format($pr->nominal,0,',','.')}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-borderless">
+            <thead class="text-center">
                 <tr>
-                    <td>Tunai</td>
-                    <td class="text-right">:</td>
-                    <td class="text-right"></td>
+                    <td>Hormat Kami</td>
+                    <td>Tanda Terima</td>
                 </tr>
+            </thead>
+            <tbody class="text-center font-weight-bold">
                 <tr>
-                    <td>Kembali</td>
-                    <td class="text-right">:</td>
-                    <td class="text-right"></td>
+                    <td>{{$companyName->company_name}}</td>
+                    <td>{{$trStore->customer_name}}</td>
                 </tr>
-            </tfother>
+            </tbody>
         </table>
     </div>
 </div>

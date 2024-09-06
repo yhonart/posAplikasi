@@ -8,23 +8,34 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row mb-2">
-                    <div class="col-4">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            </div>
-                            <input type="text" class="form-control datetimepicker-input" id="searchData" name="searchData" placeholder="Cari Nomor Struk"/>                            
+                <p class="border border-info p-3 rounded-lg font-weight-bold text-info bg-light">*Pilih nama pelanggan untuk input pembayaran kredit</p>
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Cari</label>
+                            <select class="form-control form-control-sm" id="cariNamaPelanggan" class="form-control form-control-sm select-pelanggan">
+                                <option value="0" readonly>Nama Pelanggan</option>
+                                @foreach($dbMCustomer as $dcs)
+                                <option value="{{$dcs->idm_customer }}">{{$dcs->customer_store}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <button type="button" class="btn btn-primary font-weight-bold elevation-1 btnPelunasan" id="btnPelunasan" data-point="2">Pelunasan Pelanggan</button>
-                        <button type="button" class="btn btn-primary font-weight-bold elevation-1 btnListDataSaved" id="btnListDataSaved" data-point="1" style="display:none;">Penjualan Tersimpan</button>
+                    <div class="col-6 col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Dari Tanggal</label>
+                            <input type="text" class="form-control datetimepicker-input rounded-0" name="dariTanggal" id="dariTanggal">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">s.d Tanggal</label>
+                            <input type="text" class="form-control datetimepicker-input roundedd-0" name="sampaiTanggal" id="sampaiTanggal">
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
-                        @include('Global.global_spinner')
+                    <div class="col-12 table-responsive">
                         <div id="divDataPelunasan"></div>
                     </div>
                 </div>
@@ -33,55 +44,75 @@
     </div>
 </div>
 <script>
+    $(function() {
+        $( ".datetimepicker-input" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        // $('#cariNamaPelanggan').focus();
+        $('.datetimepicker-input').datepicker("setDate",new Date());
+        $('#cariNamaPelanggan').select2({
+            theme: 'bootstrap4',
+            dropdownParent: $('#modal-global-large')
+        });
+        dataPinjaman();
+    });
+    
     $(document).ready(function() {
-        let keyWord = 0,
-            infoCode = 1;
-        searchData(keyWord, infoCode);
-        let timer_cari_equipment = null;
-
-        $("#searchData").keyup(function (e){
-            e.preventDefault();
-            $(".LOAD-SPINNER").fadeIn();
-            clearTimeout(timer_cari_equipment);
-            timer_cari_equipment = setTimeout(function(){
-                let keyWord = $("#searchData").val().trim();
-                let infoCode = "1";
-                if (keyWord=='') {
+        let fromDate = $('#dariTanggal').val(),
+            endDate = $('#sampaiTanggal').val(),
+            keyWord = $("#cariNamaPelanggan").find(":selected").val();
+            timer_cari_member = null;
+        
+        $("#cariNamaPelanggan").change(function(){
+            let keyWord = $(this).find(":selected").val();
+            fromDate = $('#dariTanggal').val(),
+            endDate = $('#sampaiTanggal').val(),
+            
+            searchData(keyWord, fromDate, endDate);
+        })
+        
+        
+        $("#dariTanggal").change(function(){
+            let fromDate = $('#dariTanggal').val(),
+                endDate = $('#sampaiTanggal').val(),
+                keyWord = $("#cariNamaPelanggan").find(":selected").val();
+                if(keyWord == ''){
                     keyWord = '0';
-                }
-            searchData(keyWord, infoCode)},700)
-        });
-        $('.btnPelunasan').click(function() {
-            $("#btnPelunasan").fadeOut('slow');
-            $("#btnListDataSaved").fadeIn('slow');
-            let keyWord = $("#searchData").val(),
-                infoCode = "2";
-                if (keyWord=='') {
-                    keyWord = '0';
-                }
-            searchData(keyWord, infoCode);
+                }                
+            searchData(keyWord, fromDate, endDate);
         });
 
-        $('.btnListDataSaved').click(function() {
-            $("#btnListDataSaved").fadeOut('slow');
-            $("#btnPelunasan").fadeIn('slow');
-            let keyWord = $("#searchData").val(),
-                infoCode = "1";
-                if (keyWord=='') {
+        $("#sampaiTanggal").change(function(){
+            let fromDate = $('#dariTanggal').val(),
+                endDate = $('#sampaiTanggal').val(),
+                keyWord = $("#cariNamaPelanggan").find(":selected").val();
+                if(keyWord == ''){
                     keyWord = '0';
                 }
-            searchData(keyWord, infoCode);
+                
+            searchData(keyWord, fromDate, endDate);
         });
+        
 
-        function searchData(keyWord, infoCode){        
+        function searchData(keyWord, fromDate, endDate){  
             $.ajax({
                 type : 'get',
-                url : "{{route('Cashier')}}/buttonAction/dataPelunasan/funcData/"+keyWord+"/"+infoCode,
+                url : "{{route('Cashier')}}/buttonAction/dataPelunasan/funcData/"+keyWord+"/"+fromDate+"/"+endDate,
                 success : function(response){
-                    $(".LOAD-SPINNER").fadeOut();
                     $("#divDataPelunasan").html(response);
                 }
             });
         }
     });
+    function dataPinjaman(){
+        $.ajax({
+            type : 'get',
+            url : "{{route('Cashier')}}/buttonAction/dataPelunasan/listDataPinjaman",
+            success : function(response){
+                $("#divDataPelunasan").html(response);
+            }
+        });
+    }
 </script>

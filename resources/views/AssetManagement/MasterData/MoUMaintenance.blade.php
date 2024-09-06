@@ -1,3 +1,6 @@
+@extends('layouts.sidebarpage')
+
+@section('content')
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -35,3 +38,4 @@
         global_style.load_table(loadSpinner,routeIndex,tableData,displayData);
     });
 </script>
+@endsection

@@ -1,5 +1,4 @@
-@extends('layouts.frontpage')
-
+@extends('layouts.sidebarpage')
 @section('content')
 <nav class="main-header navbar navbar-expand-md navbar-dark navbar-purple border-0">
     <div class="container">

@@ -50,19 +50,6 @@
                     <button type="submit" class="btn btn-primary btn-block mb-2">
                         {{ __('Login') }}
                     </button>
-<<<<<<< HEAD
-=======
-
-                    <div class="card bg-gradient-warning">
-                        <div class="card-body p-1">
-                            <p class="font-weight-bold">Login demo aplikasi</p>
-                            <ul>
-                                <li>Username : admin1</li>
-                                <li>Password : adminsatu</li>
-                            </ul>
-                        </div>
-                    </div>
->>>>>>> origin/master
                 </div>
             </div>
         </form>

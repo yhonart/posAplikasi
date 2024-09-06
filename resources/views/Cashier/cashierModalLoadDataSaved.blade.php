@@ -25,10 +25,16 @@
                         <div class="tampilDataSimpan"></div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button class="btn btn-warning btn-sm font-weight-bold elevation-2" id="btnCloseModal"><i class="fa-solid fa-xmark font-weight-bold"></i> Close</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     $( function() {
@@ -36,9 +42,11 @@
             dateFormat: 'yy-mm-dd',
             autoclose: true,
         });
+        $('.datetimepicker-input').datepicker("setDate",new Date());
     } );
+    
     $(document).ready(function(){
-        let dateData = "0";
+        let dateData = $('#pilihTanggal').val();
         functLoadData(dateData);
         
         $("#pilihTanggal").change(function(){
@@ -54,5 +62,8 @@
                 }
             });
         }
+        $("#btnCloseModal").on('click', function(){
+            window.location.reload();
+        });
     });
 </script>

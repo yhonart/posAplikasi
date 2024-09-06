@@ -67,11 +67,11 @@ class HomeController extends Controller
     
     public function index()
     {
-        $role = $this->userRole();
+        $role = Auth::user()->hakakses;
         $checkArea = $this->checkuserInfo(); 
         
         if($role == '1'){
-            return view('home');
+            return view('Dashboard/DashboardTransaksi');
         }
         elseif($role == '2'){
             return view('Cashier/maintenancePage', compact('checkArea'));
@@ -82,8 +82,51 @@ class HomeController extends Controller
         // }
     }
     
+    public function mainMenu(){
+        $userID = Auth::user()->id;
+        
+        $cekUserGroup = DB::table('users_role')
+            ->where([
+                ['user_id',$userID],
+                ['role_code','1']
+            ])
+            ->count();
+            
+        if($cekUserGroup >= '1'){
+            $mainMenu = DB::table('m_public_system')
+                ->where('status','1')
+                ->orderBy('ordering','asc')
+                ->get();
+                
+            $subMenu = DB::table('m_submenu')
+                ->where('status','1')
+                ->get();
+                
+        }
+        else{
+           $mainMenu = DB::table('users_auth as a')
+                ->leftJoin('m_public_system as b','a.menu_id','=','b.idm_system')
+                ->where([
+                    ['a.users_id',$userID],
+                    ['b.status','1']
+                    ])
+                ->orderBy('b.ordering','asc')
+                ->get(); 
+                
+           $subMenu = DB::table('users_auth as a')
+                ->leftJoin('m_submenu as b','a.submenu_id','=','b.idm_submenu')
+                ->where([
+                    ['a.users_id',$userID],
+                    ['b.status','1']
+                    ])
+                ->get(); 
+        }
+        
+        
+        return view('mainDivMenu', compact('mainMenu','subMenu','cekUserGroup')); 
+        
+    }
     
-
     public function getMenu(){
         $dbSystem = DB::table('m_public_system')
             ->where('status','1')
@@ -113,5 +156,9 @@ class HomeController extends Controller
                 $column => $editVal,
             ]);
         return back();
+    }
+    
+    public function UnderMaintenance (){
+        return view ('UnderMaintenance');
     }
 }

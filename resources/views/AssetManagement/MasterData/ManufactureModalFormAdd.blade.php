@@ -12,19 +12,19 @@
                     <div class="form-group row">
                         <label for="CatName" class="col-sm-6 col-form-label">Kode Brand</label>
                         <div class="col-sm-6">
-                            <input type="text" name="manufactureCode" id="manufactureCode" class="form-control" autocomplated="off" req>
+                            <input type="text" name="manufactureCode" id="manufactureCode" class="form-control rounded-0 font-weight-bold" autocomplated="off" value="MF{{sprintf('%05d',$next_id)}}" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="CatName" class="col-sm-6 col-form-label">Nama Brand</label>
                         <div class="col-sm-6">
-                            <input type="text" name="manufactureName" id="manufactureName" class="form-control" autocomplated="off" placeholder="E.g. Laptop, PC, etc">
+                            <input type="text" name="manufactureName" id="manufactureName" class="form-control rounded-0" autocomplated="off" placeholder="E.g. Laptop, PC, etc">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="CatName" class="col-sm-6 col-form-label">Produk Kategori</label>
                         <div class="col-sm-6">
-                            <select name="catID" id="catID" class="form-control">
+                            <select name="catID" id="catID" class="form-control rounded-0">
                                 <option value="0" readonly></option>
                                 @foreach($category as $c)
                                     <option value="{{$c->idm_asset_category}}">{{$c->category_name}}</option>
@@ -34,7 +34,7 @@
                     </div>
                     <hr>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-info">Simpan</button>
+                        <button type="submit" class="btn btn-success btn-flat font-weight-bold"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
                     </div>
                 </form>                
             </div>
@@ -48,7 +48,10 @@
 </div>
 <script>
     $(document).ready(function(){
-
+        $("#catID").select2({
+            theme: 'bootstrap4',
+            dropdownParent: $('#modal-global-large')
+        });
         let loadSpinner = $(".LOAD-SPINNER"),
             routeIndex = "{{route('M_Manufacture')}}",
             tableData = "arrayManufacture",

@@ -1,14 +1,16 @@
-<table class="table table-sm table-valign-middle table-head-fixed table-bordered text-xs table-hover">
+<!--<p class="bg-danger p-1">Halaman ini sedang proses perbaikan 🙏</p>-->
+<table class="table table-sm table-valign-middle table-head-fixed table-hover table-bordered" id="mainTablePrdList">
     <thead class="text-center">
         <tr>
-            <th>No</th>
-            <th>Nama Barang [F3]</th>
+            <th width="5%">No</th>
+            <th width="20%">Nama Barang [F3]</th>
             <th>Qty</th>
             <th>Satuan</th>
             <th>Hrg. Satuan</th>
             <th>Disc</th>
             <th>Jumlah</th>
             <th>Stock</th>
+            <th></th>
         </tr>
     </thead>
     <tbody id="trLoadProduct"></tbody>
@@ -16,43 +18,43 @@
         <form id="formInputBarangKasir">
             <input type="hidden" name="createdBy" id="createdBy" value="{{Auth::user()->name}}">
             <input type="hidden" name="transNumber" id="transNumber" value="{{$billNumber}}">
-            <tr>                            
-                <td></td>
-                <td>
+            <tr>
+                <td colspan="2" class="p-0">
                     <input type="hidden" class="form-control form-control-sm prd-input" name="prodName" id="prodName" autocomplete="off" list="browsers">
                     <input type="hidden" class="form-control form-control-sm prd-input" name="prodNameHidden1" id="prodNameHidden1">
-                    <div id="livesearch"></div>
-                    <select name="prodNameHidden" id="prodNameHidden" class="form-control form-control-sm select2">
-                        <option value="0" readonly>F3 For Select</option>
+                    <select name="prodNameHidden" id="prodNameHidden" class="form-control form-control-sm" style="width: 100%">
+                        <option value="0" readonly>Tekan ENTER</option>
                         @foreach($productList as $pL)
                             <option value="{{$pL->idm_data_product}}">{{$pL->product_name}}</option>
                         @endforeach
                     </select>
                 </td>
-                <td><input type="number" name="qty" id="qty" class="form-control form-control-border border-width-3 quantity prd-input text-xs" autocomplete="off"></td>
-                <td>
-                    <select name="satuan" id="satuan" class="form-control form-control-border border-width-3 satuan prd-input text-xs">
-                        <option value="0"></option>                        
+                <td class="p-0"><input type="number" name="qty" id="qty" class="form-control rounded-0 quantity prd-input form-control-sm" autocomplete="off"></td>
+                <td class="p-0">
+                    <select name="satuan" id="satuan" class="form-control rounded-0 satuan prd-input form-control-sm">
+                        <option value="0"></option>
                     </select>
                 </td>
-                <td><input type="text" name="hargaSatuan" id="hargaSatuan" class="form-control form-control-border border-width-3 price-text prd-input text-xs" readonly></td>
-                <td><input type="text" name="disc" id="disc" class="form-control form-control-border price-text border-width-3 prd-input text-xs"></td>
-                <td><input type="text" name="jumlah" id="jumlah" class="form-control form-control-border border-width-3 prd-input text-xs" readonly></td>
-                <td>
-                    <input type="hidden" name="stockHidden" id="stockHidden" class="form-control form-control-border text-xs" readonly>
-                    <input type="text" name="stock" id="stock" class="form-control form-control-border prd-input border-width-3 text-xs" readonly>
+                <td class="p-0"><input type="text" name="hargaSatuan" id="hargaSatuan" class="form-control rounded-0 price-text prd-input form-control-sm" readonly></td>
+                <td class="p-0"><input type="text" name="disc" id="disc" class="form-control rounded-0 prd-input form-control-sm" autocomplete="off"></td>
+                <td class="p-0"><input type="text" name="jumlah" id="jumlah" class="form-control rounded-0 prd-input form-control-sm" readonly></td>
+                <td class="p-0">
+                    <input type="hidden" name="stockHidden" id="stockHidden" class="form-control rounded-0 form-control-sm" readonly>
+                    <input type="text" name="stock" id="stock" class="form-control rounded-0 prd-input form-control-sm" readonly>
                 </td>
+                <td></td>
             </tr>
         </form>
     </tbody>
 </table>
-<script>
-    
+<script type="text/javascript">
     $(function () {        
-        $('.select2').select2({
-            theme: 'bootstrap4',
-            width: 'resolve' 
+        $('#prodNameHidden').select2({
+            width: 'resolve',
         });
+        
+        $("#prodNameHidden").val(null).focus();
+        loadTableData();
     });   
 
     $(document).ready(function(){
@@ -62,28 +64,25 @@
             }
         });
         
-        $("#prodNameHidden").val(null).focus();
-        // $("#prodName").keyup(function (e){
-        //     e.preventDefault();            
-        //     let keyWord = $("#prodName").val().trim();
-        //     if (keyWord=='') {
-        //         keyWord = '0';
-        //     }
-        //     searchProduct(keyWord);
-        // });
-
-        // function searchProduct(keyWord){   
-        //     $.ajax({
-        //         type : 'get',
-        //         url : "{{route('Cashier')}}/productList/searchProduct/by/"+keyWord,
-        //         success : function(response){
-        //             $("#livesearch").html(response);
-        //         }
-        //     });
-        // }
+        $('.price-text').mask('000.000.000', {
+            reverse: true,
+            translation: {
+                'S': {
+                    pattern: /-/,
+                    optional: true
+                }
+            }
+        });
         
-        $('.price-text').mask('000.000.000', {reverse: true});
-        loadTableData();
+        $("#disc").mask("S##.###.###", {
+            translation: {
+                'S': {
+                    pattern: /-/,
+                    optional: true
+                }
+            }
+        });
+        
         let hargaSatuan = document.getElementById("hargaSatuan"),
             discount = document.getElementById("disc"),
             jumlah = document.getElementById("jumlah"),
@@ -92,24 +91,68 @@
             satuan = document.getElementById('satuan'),
             countBill = "{{$countBill}}";
             
+        var routeIndex = "{{route('Cashier')}}",
+            urlProductList = "productList",
+            panelProductList = $("#mainListProduct");
+            
+            
         $("#prodNameHidden").change(function(){
             let productID = $(this).find(":selected").val();
             $.ajax({
                 type : 'get',
                 url : "{{route('Cashier')}}/productList/satuan/" + productID,
-                success : function(response){     
-                    $("#qty").val("1").focus();
+                success : function(response){  
                     $("#satuan").html(response);
                 }
             });
+            fetch("{{route('Cashier')}}/productList/prdResponse/" + productID)
+            .then(response => response.json())
+            .then(data => {                    
+                if ((data.price) || (data.discount) || (data.prdStock)) {
+                    hargaSatuan.value = accounting.formatMoney(data.price,{
+                        symbol: "",
+                        precision: 0,
+                        thousand: ".",
+                    });
+                    discount.value = data.discount;
+
+                    //Menghitung Jumlah
+                    let qtyVal = '1',
+                        priceVal = data.price,
+                        discVal = data.discount;
+                    $("#jumlah").val(accounting.formatMoney(priceVal * qtyVal,{
+                        symbol: "",
+                        precision: 0,
+                        thousand: ".",
+                    }));
+                    $("#qty").val("1").focus().select();
+                    $("#stock").val(data.prdStock);
+                    $("#stockHidden").val(data.prdStock-qtyVal);
+                    
+                    if(data.prdStock == '0'){
+                        alertify
+                          .alert("Tidak ada stock yang tercatat di system, silahkan hubungi admin untuk koreksi stok barang !", function(){
+                            alertify.message('OK');
+                            cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
+                          }).set({title:"INFO STOCK"});
+                    }
+                } else {
+                    hargaSatuan.value = "0";
+                }
+                
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         })
+        
         satuan.addEventListener("change", function() {
             let satuanUnit = $(this).find(":selected").val(),
                 prdID = $("#prodNameHidden").val();
                 // alert(countBill);
-            if (satuanUnit != "0") {                
+            if (satuanUnit !== "0") {                
                 // FATCH DATA SATUAN
-                if (satuanUnit !== undefined){
+                if (satuanUnit !== undefined){  
                     if (countBill === '0'){
                         toastr.error('Harap create customer terlebih dahulu !')
                     }
@@ -129,13 +172,10 @@
                                 let qtyVal = $("#qty").val(),
                                     priceVal = data.price,
                                     discVal = data.discount;
-        
-                                $("#jumlah").val(accounting.formatMoney(priceVal * qtyVal,{
-                                    symbol: "",
-                                    precision: 0,
-                                    thousand: ".",
-                                }));
-                                $("#disc").val("0").focus();
+                                
+                                computeJumlah();
+                                
+                                $("#disc").val("0").focus().select();
                             } else {
                                 hargaSatuan.value = "0";
                             }
@@ -146,60 +186,43 @@
                     }
                 }
     
-                // FATCH DATA STOCK
+                // MENAMPILKAN DATA STOCK
                 if (satuanUnit !== undefined){
                     fetch("{{route('Cashier')}}/productList/stockBarang/" + satuanUnit + '/' + prdID)
                     .then(response => response.json())
                     .then(data => {                    
-                        if (data.stock) {
-                            let readyStock = data.stock,
-                                qtyVal = $("#qty").val();
-                            $("#stock").val(readyStock);
-                            $("#stockHidden").val(readyStock-qtyVal);
-    
-                            qty.addEventListener("change", updateQtyValue);
-                            function updateQtyValue(e){
-                                let priceVal = $("#hargaSatuan").val().replaceAll(",", ""),
-                                    qtyVal = e.target.value,
-                                    inputJumlahVal = priceVal * qtyVal;                                
-                                $("#jumlah").val(accounting.formatMoney(inputJumlahVal,"",0));
-                                $("#stock").val(readyStock - qtyVal+" / "+readyStock);
-                                $("#stockHidden").val(readyStock - qtyVal);
-                                // alert(priceVal + "," + qtyVal + "," + inputJumlahVal); 
-                            }
-                        } else {
-                            stock.value = "0";
-                        }
+                        let readyStock = data.stock,
+                            qtyVal = $("#qty").val();
+                        $("#stock").val(readyStock);
+                        $("#stockHidden").val(readyStock-qtyVal);
+                        qty.addEventListener("change", updateQtyValue);
+                        // if (data.stock) {
+                        // } else {
+                        //     alertify
+                        //       .alert("Tidak ada stok barang di sistem, silahkan hubungi admin untuk koreksi stok barang !", function(){
+                        //         alertify.message('OK');
+                        //         cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
+                        //       }).set({title:"INFO STOCK"});
+                        //     stock.value = "0";
+                        // }
                     })
                     .catch(error => {
                         console.error('Error:', error);
                     });
                 }
                 
-                //INPUT DISCOUNT
-                $("#disc").on('input', computeDisc);
-                $("#qty").on('input', computeDisc);
-                
-                function computeDisc(){
-
-                    let valHrgSatuan = $("#hargaSatuan").val(),
-                        valQty = $("#qty").val(),
-                        valDisc = $("#disc").val(), 
-
-                        inputHrgSatuan = valHrgSatuan.replace(/\./g, ""),
-                        inputQty = valQty.replace(/\./g, "");
-                        inputDisc = valDisc.replace(/\./g, "");
-
-                    if (typeof inputDisc == "undefined" || typeof inputDisc == "0") {
-                        return
-                    }
-                    // alert(percBilling);
-                    let beforeDisc = parseInt(inputHrgSatuan) * parseInt(inputQty);
-                    $("#jumlah").val(accounting.formatMoney(beforeDisc-inputDisc,{
-                        symbol: "",
-                        precision: 0,
-                        thousand: ".",
-                    })); 
+                function updateQtyValue(e){
+                    let priceVal = $("#hargaSatuan").val().replaceAll(".", ""),
+                            qtyVal = e.target.value,
+                            inputJumlahVal = priceVal * qtyVal;
+                        $("#jumlah").val(accounting.formatMoney(inputJumlahVal,{
+                            symbol: "",
+                            precision: 0,
+                            thousand: ".",
+                        }));
+                        $("#stock").val(readyStock - qtyVal+" / "+readyStock);
+                        $("#stockHidden").val(readyStock - qtyVal);
+                        // alert(priceVal + "," + qtyVal + "," + inputJumlahVal); 
                 }
             }
             else{
@@ -210,6 +233,45 @@
             }
                
         });
+        //INPUT DISCOUNT
+        $("#disc").on('input', computeDisc);
+        function computeDisc(){
+            let valHrgSatuan = $("#hargaSatuan").val(),
+                valQty = $("#qty").val(),
+                valDisc = $("#disc").val(), 
+
+                inputHrgSatuan = valHrgSatuan.replace(/\./g, ""),
+                inputQty = valQty.replace(/\./g, "");
+                inputDisc = valDisc.replace(/\./g, "");
+
+            if (typeof inputDisc == "undefined" || typeof inputDisc == "0") {
+                return
+            }
+            // alert(percBilling);
+            
+            // let beforeDisc = parseInt(inputHrgSatuan) - parseInt(inputQty);
+            let hrgAfterDis = parseInt(inputHrgSatuan) - parseInt(inputDisc);
+            $("#jumlah").val(accounting.formatMoney(hrgAfterDis*inputQty,{
+                symbol: "",
+                precision: 0,
+                thousand: ".",
+            })); 
+        }
+        
+        $("#qty").on('input', computeJumlah);
+        function computeJumlah(){
+            let qtyVal = $("#qty").val(),
+                valPriceUnit = $("#hargaSatuan").val(),
+                priceVal = valPriceUnit.replace(/\./g, "");
+            // alert (qtyVal);
+            $("#jumlah").val(accounting.formatMoney(priceVal * qtyVal,{
+                symbol: "",
+                precision: 0,
+                thousand: ".",
+            }));
+        }
+        
+        
         document.addEventListener('keydown', function(event) {  
             if (event.key === 'F3') {
                 event.preventDefault();
@@ -218,6 +280,8 @@
         });
         
         var activities = document.getElementById("disc");
+        var actqty = document.getElementById("qty");
+        var actsat = document.getElementById("satuan");
         var actJumlah = document.getElementById("jumlah");
         var actDisc = document.getElementById("stock");
         
@@ -277,23 +341,24 @@
             panelProductList = $("#mainListProduct"),
             urlButtonForm = "buttonAction",
             panelButtonForm = $("#mainButton");
+        let billCode = "{{$billNumber}}";
         $.ajax({
             type : 'post',
             url : "{{route('Cashier')}}/productList/postProduct",
             data :  dataform,
-            
             success : function(data){                  
                 loadTableData();
-                cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
-                $('#prodNameHidden').val(null).focus();
-                $("#qty").val(null);            
-                $("#hargaSatuan").val(null);           
-                $("#disc").val(null);           
-                $("#jumlah").val(null);           
-                $("#stockHidden").val(null);           
-                $("#stock").val(null);           
-                $("#satuan").val(null);       
-                // $("#prodName").val("").focus();           
+                totalBelanja(billCode);
+                // $('#prodNameHidden').val(null).focus();
+                // $("#qty").val(null);            
+                // $("#hargaSatuan").val(null);           
+                // $("#disc").val(null);           
+                // $("#jumlah").val(null);           
+                // $("#stockHidden").val(null);           
+                // $("#stock").val(null);           
+                // $("#satuan").val(null);       
+                // $("#prodName").val("").focus();
+                cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
             }
         });
     }
@@ -306,60 +371,14 @@
             }
         });
     }
-</script>
-<script>
-    input.onfocus = function () {
-  browsers.style.display = 'block';
-  input.style.borderRadius = "5px 5px 0 0";  
-};
-for (let option of browsers.options) {
-  option.onclick = function () {
-    input.value = option.value;
-    browsers.style.display = 'none';
-    input.style.borderRadius = "5px";
-  }
-};
-
-input.oninput = function() {
-  currentFocus = -1;
-  var text = input.value.toUpperCase();
-  for (let option of browsers.options) {
-    if(option.value.toUpperCase().indexOf(text) > -1){
-      option.style.display = "block";
-  }else{
-    option.style.display = "none";
+        
+    function totalBelanja(billCode){
+        $.ajax({
+            type : 'get',
+            url : "{{route('Cashier')}}/buttonAction/updateTotalBeanja/"+billCode,
+            success : function(response){
+                $('#totalBelanja').html(response);
+            }
+        });
     }
-  };
-}
-var currentFocus = -1;
-input.onkeydown = function(e) {
-  if(e.keyCode == 40){
-    currentFocus++
-   addActive(browsers.options);
-  }
-  else if(e.keyCode == 38){
-    currentFocus--
-   addActive(browsers.options);
-  }
-  else if(e.keyCode == 13){
-    e.preventDefault();
-        if (currentFocus > -1) {
-          /*and simulate a click on the "active" item:*/
-          if (browsers.options) browsers.options[currentFocus].click();
-        }
-  }
-}
-
-function addActive(x) {
-    if (!x) return false;
-    removeActive(x);
-    if (currentFocus >= x.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = (x.length - 1);
-    x[currentFocus].classList.add("active");
-  }
-  function removeActive(x) {
-    for (var i = 0; i < x.length; i++) {
-      x[i].classList.remove("active");
-    }
-  }
 </script>

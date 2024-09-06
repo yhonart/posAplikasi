@@ -3,7 +3,7 @@
 @endphp
 <div class="row">
     <div class="col-12">
-        <table class="table table-hover table-valign-middle table-sm">
+        <table class="table table-hover table-valign-middle table-sm" id="tableManufacture">
             <thead class="text-center bg-gradient-purple">
                 <tr>
                     <th>No.</th>
@@ -16,19 +16,11 @@
                 @foreach($tableManufacture as $tm)
                     <tr>
                         <td>{{$no++}}</td>
-                        <td>{{$tm->manufacture_code}}</td>
+                        <td class="font-weight-bold">MF{{sprintf('%05d',$tm->idm_asset_manufacture)}}</td>
                         <td>{{$tm->manufacture_name}}</td>
                         <td class="text-right">
-                            <div class="btn-group btn-sm">
-                                <button type="button" class="btn btn-default" data-toggle="dropdown">
-                                    <i class="fa-solid fa-bars"></i>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                    <a class="dropdown-item BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('M_Manufacture')}}/arrayManufacture/editMenu/{{$tm->idm_asset_manufacture}}">Edit</a>
-                                    <a class="dropdown-item ITEM-ACTION" href="#" idMF="{{$tm->idm_asset_manufacture}}">Delete (Permanently)</a>                                    
-                                </div>
-                            </div>
+                            <a class="btn btn-flat btn-sm btn-info font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('M_Manufacture')}}/arrayManufacture/editMenu/{{$tm->idm_asset_manufacture}}"><i class="fa-solid fa-pencil"></i> Edit</a>
+                            <a class="btn btn-flat btn-sm btn-danger ITEM-ACTION font-weight-bold" href="#" idMF="{{$tm->idm_asset_manufacture}}"><i class="fa-solid fa-trash-can"></i> Delete</a>
                         </td>
                     </tr>
                 @endforeach
@@ -37,7 +29,18 @@
     </div>
 </div>
 
-<script>    
+<script>  
+    $(function () {
+        $('#tableManufacture').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
+    });
     $(document).ready(function(){
         $('.ITEM-ACTION').on('click',function (){
             let el = $(this);

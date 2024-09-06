@@ -1,3 +1,6 @@
+@extends('layouts.sidebarpage')
+
+@section('content')
 <div class="content-header">
     <div class="container-fluid">
     <div class="row mb-2">
@@ -11,65 +14,67 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-success">
-                  <div class="inner">
-                    <h3>{{$countPenjualan}}</h3>
-        
-                    <p>Penjualan Hari Ini</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-bag"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <div class="col-6 col-md-3">
+                <div class="form-group">
+                    <label class="form-label">Cari Dari Tanggal</label>
+                    <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="dariTanggal" id="dariTanggal">
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-info">
-                  <div class="inner">
-                    <h3>{{$countProcess}}</h3>
-        
-                    <p>On Process</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-bag"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <div class="col-6 col-md-3">
+                <div class="form-group">
+                    <label class="form-label">s.d Tanggal</label>
+                    <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="sampaiTanggal" id="sampaiTanggal">
                 </div>
             </div>
-            
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-danger">
-                  <div class="inner">
-                    <h3>{{$countKredit}}</h3>
-        
-                    <p>On Kredit</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-bag"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-primary">
-                  <div class="inner">
-                    <h3>{{$countcompleted}}</h3>
-        
-                    <p>Completed</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-bag"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div id="loadDataDashboard"></div>
             </div>
         </div>
     </div>
 </div>
+
 <script>
+    $(function() {
+        $( ".datetimepicker-input" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('.datetimepicker-input').datepicker("setDate",new Date());
+        $('#searchDataReturn').val('').focus();
+    });
+    
     $(document).ready(function(){
+        let fromDate = $('#dariTanggal').val(),
+            endDate = $('#sampaiTanggal').val();
+        funcLoadDataTrx(fromDate, endDate);
+            
+        $("#dariTanggal").change(function(){
+            let fromDate = $('#dariTanggal').val(),
+            endDate = $('#sampaiTanggal').val();
+            
+            funcLoadDataTrx(fromDate, endDate);
+        });
+
+        $("#sampaiTanggal").change(function(){
+            let fromDate = $('#dariTanggal').val(),
+                endDate = $('#sampaiTanggal').val();
+                
+            funcLoadDataTrx(fromDate, endDate);
+        });
+        
+        function funcLoadDataTrx(fromDate, endDate){
+            $.ajax({
+                type : 'get',
+                url : "{{route('Dashboard')}}/loadDataTransaksi/"+fromDate+"/"+endDate,
+                success : function(response){
+                    $("#loadDataDashboard").html(response);
+                }
+            });
+        };
+        
         let loadSpinner = $(".LOAD-SPINNER"),
             routeIndex = "{{route('TransProduct')}}",
             tableData = "StockBarang",
@@ -84,3 +89,4 @@
         global_style.load_table(loadSpinner,routeIndex,tableData,displayData);
     });
 </script>
+@endsection

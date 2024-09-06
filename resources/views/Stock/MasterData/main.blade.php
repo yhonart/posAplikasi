@@ -46,7 +46,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                    <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                    <img src="{{asset('public/images/user.png')}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                     <div class="media-body">
                         <h3 class="dropdown-item-title">
                         Brad Diesel
@@ -105,7 +105,7 @@
                         @foreach($transactionmenu as $tm)
                         <li class="nav-item">
                             <a href="#" class="nav-link ITEM-MAIN-MENU" data-menu="{{$tm->data_menu}}">
-                            <i class="fa-solid fa-store"></i>
+                            <i class="{{$tm->icon}}"></i>
                                 <p>
                                     {{$tm->name_menu}}
                                 </p>

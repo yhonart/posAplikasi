@@ -12,11 +12,13 @@
 }
 
 .el-zoom {
-    transition: transform .5s ease;
+    transition: transform .8s ease;
 }
 
 .el-zoom:hover{
-    transform: scale(1.1);
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1); 
 }
 .text-indigo-700{
     color: #4338ca;
@@ -55,4 +57,9 @@
 .blue-alert {
     background-color: #bfdbfe;
     color: #1d4ed8;
+}
+
+.disable_section {
+  pointer-events: none;
+  opacity: 0.4;
 }

@@ -1,26 +1,32 @@
-@php
-    $no = 1;
-    $Status = array(
-        0=>"Non Aktif",
-        1=>"Aktif",
-        2=>"Non Member",
-    );
-@endphp
-<table class="table table-sm table-valign-middle table-hover">
-    <thead class="text-center bg-gradient-purple">
-        <tr>
-            <th>Nama Pelanggan</th>
-    </thead>
-    <tbody>
-        @foreach($customer as $c)
+<div id="loadPaginate">
+    @php
+        $no = 1;
+        $Status = array(
+            0=>"Non Aktif",
+            1=>"Aktif",
+            2=>"Non Member",
+        );
+    @endphp
+    <table class="table table-valign-middle table-hover">
+        <thead class="text-center bg-gradient-purple">
             <tr>
-                <td>
-                    <a class="text-navy DETAIL-CUS" href="{{route('Customers')}}/TableDataCustomer/EditTable/{{$c->idm_customer}}">{{$c->customer_store}}</a>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+                <th>Klik Pada Nama Pelanggan</th>
+        </thead>
+        <tbody>
+            @foreach($customer as $c)
+                <tr>
+                    <td>
+                        <a class="text-navy DETAIL-CUS" href="#" data-index="{{$c->idm_customer}}">{{$c->customer_store}}</a>
+                        <a class="DEL-CUS btn btn-flat btn-outline-danger btn-sm float-right" href="#" data-id="{{$c->idm_customer}}" title="delete">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <small>{{$customer->links()}}</small>
+</div>
 <script>
     $(document).ready(function(){
         $.ajaxSetup({
@@ -28,19 +34,34 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });  
-        let loadSpinner = $(".LOAD-SPINNER"),
-            routeIndex = "{{route('Customers')}}",
-            tableData = "TableDataCustomer",
-            displayData = $("#displayTableCustomers");
+        function ajaxPaging() {
+            $('.pagination a').on('click', function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                $('#loadPaginate').load(url);
+            });
+        }
+        ajaxPaging();
 
-        $('.SUPP-DELETE').on('click', function () {
+        $('.DEL-CUS').on('click', function () {
             let el = $(this);
             let dataID = el.attr('data-id');
             $.ajax({
                 url: routeIndex + "/TableDataCustomer/DeleteTable/" + dataID,
                 type: 'GET',
                 success: function (data) {   
-                    global_style.load_table(loadSpinner,routeIndex,tableData,displayData);                        
+                    window.location.reload();                       
+                },                
+            });
+        });
+        $('.DETAIL-CUS').on('click', function () {
+            let el = $(this);
+            let dataID = el.attr('data-index');
+            $.ajax({
+                url: "{{route('Customers')}}/TableDataCustomer/EditTable/" + dataID,
+                type: 'GET',
+                success: function (response) {
+                    $("#displayEditCos").html(response);
                 },                
             });
         });

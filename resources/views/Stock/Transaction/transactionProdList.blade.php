@@ -5,32 +5,26 @@
 </style>
 <div id="loadPaginate">
     <div class="row">
-        <div class="col-12 col-md-3">
-            {{$productList->links()}}
-            <table class="table table-valign-middle table-bordered table-hover">
-                <thead class="text-center bg-gradient-indigo">
-                    <tr>
-                        <th>Nama Produk</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($productList as $pl)
-                        <tr>
-                            <td class="font-weight-bold"> 
-                                <a class="text-navy CLICK-PRODUCT" href="#" data-id="{{$pl->idm_data_product}}">
-                                    {{$pl->product_name}}
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-        <div class="col-12 col-md-9">
-            <div id="detailProduct"></div>
+        <div class="col-md-12">
+            <div class="sticky-top mb-3">
+                <div class="card card-body table-responsive p-0" style="height:500px;">
+                    <table class="table table-valign-middle table-hover text-sm table-sm">
+                        <tbody>
+                            @foreach($productList as $pl)
+                                <tr>
+                                    <td class="p-1"> 
+                                        <a class="text-navy CLICK-PRODUCT" href="#" data-id="{{$pl->idm_data_product}}">
+                                            {{$pl->product_name}}
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-    
 </div>
 <script>
     function ajaxPaging() {

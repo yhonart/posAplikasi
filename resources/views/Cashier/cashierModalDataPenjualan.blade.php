@@ -1,6 +1,21 @@
 <?php
     $dateNow = date('Y-m-d');
 ?>
+@if($area <> '3')
+<div class="row p-1">
+    <div class="card card-purple">
+        <div class="card-header border-0">
+            <h3 class="card-title font-weight-bold">Data Penjualan</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+        <div class="card-body text-center">
+            <p class="font-weight-bold text-danger">Ooppss..! user area anda bukan di "KASIR"</p>
+        </div>
+    </div>
+</div>
+@else
 <div class="row p-1">
     <div class="col-12">
         <div class="card card-purple">
@@ -32,9 +47,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="row">
+                            <div class="col-md-12">
                                 <select class="form-control form-control-border form-control-sm" name="jeniBayar" id="jenisBayar">
-                                    <option value="0">Metode Pembayaran</option>
+                                    <option value="0">Pilih Metode Pembayaran</option>
                                     @foreach($method as $m)
                                         <option value="{{$m->idm_payment_method}}">{{$m->method_name}}</option>
                                     @endforeach
@@ -43,13 +58,9 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                @if($cekClosing >= '1')
-                                    <button class="btn bg-indigo m-1" id="btnLapor"><i class="fa-solid fa-shop-lock"></i> Closing Transaksi</button>
-                                @else
-                                    <button class="btn btn-default m-1" id="btnLapor" disabled><i class="fa-solid fa-shop-lock"></i> Tanggal sudah terclose</button>
-                                @endif
-                                <button class="btn bg-indigo m-1" id="btnLap1"><i class="fa-solid fa-file-pdf"></i> Laporan Kasir</button>
-                                <button class="btn bg-indigo m-1" id="btnLap2"><i class="fa-solid fa-file-pdf"></i> Ringkasan Laporan Kasir</button>
+                                <button class="btn btn-success m-1 btn-flat elevation-1" id="btnLapor"><i class="fa-solid fa-shop-lock"></i> Closing Transaksi</button>
+                                <button class="btn btn-danger m-1 elevation-1 btn-flat" id="btnLap1"><i class="fa-solid fa-file-pdf"></i> Laporan Kasir</button>
+                                <button class="btn btn-danger m-1 elevation-1 btn-flat" id="btnLap2"><i class="fa-solid fa-file-pdf"></i> Ringkasan Laporan Kasir</button>
                             </div>
                         </div>
                     </div>
@@ -143,11 +154,19 @@
                     $('body').removeClass('modal-open');
                     $(".MODAL-CASHIER").modal('hide'); 
                     $('.modal-backdrop').remove(); 
+                    window.open("{{route('Cashier')}}/buttonAction/trxReportClosing/"+fromdate+"/"+enddate, "_blank");
                 }
             })
         }); 
         $("#btnLap1").click(function(){
+            let fromdate = $('#fromDatePenjualan').val(),
+                enddate = $('#endDatePenjualan').val();
             window.open("{{route('Cashier')}}/buttonAction/trxReportDetailPdf/"+fromdate+"/"+enddate, "_blank");
+        })
+        $("#btnLap2").click(function(){
+            let fromdate = $('#fromDatePenjualan').val(),
+                enddate = $('#endDatePenjualan').val();
+            window.open("{{route('Cashier')}}/buttonAction/trxReportRecapPdf/"+fromdate+"/"+enddate, "_blank");
         })
     });
     function funcDataPenjualan(fromdate, enddate, keyword, method){        
@@ -161,3 +180,4 @@
     }
     
 </script>
+@endif
