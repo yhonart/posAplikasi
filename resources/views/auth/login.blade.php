@@ -48,7 +48,7 @@
             <div class="row mb-0">
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary btn-block mb-2">
-                        {{ __('Login') }}
+                        {{ __('Login') }}ss
                     </button>
                 </div>
             </div>
