@@ -3,10 +3,10 @@
 ?>
 @foreach($listTrProduct as $ltrp)
 <tr id="{{$ltrp->list_id}}">    
-    <td>
+    <td class="text-xs">
         {{$noProdList++}}
     </td>
-    <td>
+    <td class="text-xs">
         {{$ltrp->productName}}
     </td>
     <td class="p-0">
@@ -24,7 +24,7 @@
     <td class="p-0">
         <input type="text" name="editTotalPrice" id="editTotalPrice{{$ltrp->list_id}}" class="form-control form-control-sm rounded-0 price-text text-right" value="{{$ltrp->t_price}}" readonly>
     </td>
-    <td class="text-center">
+    <td class="text-center text-xs">
         {{$ltrp->stock}}
     </td>
     <td class="text-right p-0">

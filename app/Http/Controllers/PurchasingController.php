@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class PurchasingController extends Controller
 {
     protected $tempInv;
-    protected $tempUser;
-    
+    protected $tempUser;    
     public function __construct(TempInventoryController $tempInv, TempUsersController $tempUser)
     {
         $this->TempInventoryController = $tempInv;

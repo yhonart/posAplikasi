@@ -147,7 +147,8 @@ class CashierController extends Controller
                 ->where([
                     ['store_id',$area],
                     ['status','1'],
-                    ['created_by',$username]
+                    ['created_by',$username],
+                    ['tr_date',$dateNow]
                     ])
                 ->first();
         }
@@ -156,12 +157,14 @@ class CashierController extends Controller
                 ->where([
                     ['store_id',$area],
                     ['status','1'],
-                    ['created_by',$username]
+                    ['created_by',$username],
+                    ['tr_date',$dateNow]
                     ])
                 ->orWhere([
                     ['store_id',$area],
                     ['status','1'],
-                    ['return_by',$username]
+                    ['return_by',$username],
+                    ['tr_date',$dateNow]
                     ])
                 ->first();
         }
@@ -300,6 +303,7 @@ class CashierController extends Controller
         
         $memberType = $memberInfo->customer_type;
         
+        //Cari size dan id produk dalam ukuran besar
         $sizeProd = DB::table('m_product_unit')
             ->select('product_size','idm_product_satuan')
             ->where([
@@ -309,20 +313,21 @@ class CashierController extends Controller
             ->first();
         $idSatuan = $sizeProd->product_size;
         
-        //CEK HARGA DI TABEL PENJUALAN
+        //Cek harga di penjualan 
         $countSellByType = DB::table('m_product_price_sell')
             ->where([
                 ['core_product_price',$idPrd],
                 ['cos_group',$memberType],
                 ['size_product',$idSatuan],
             ])
-            ->count();            
+            ->count();    
+        
         // CEK STOCK
         $dataStock = DB::table('inv_stock')
             ->where([
                 ['product_id',$sizeProd->idm_product_satuan],
                 ['location_id','3']
-                ])
+                ])            
             ->first();
             
         if ($countSellByType >= '1') {
@@ -351,7 +356,7 @@ class CashierController extends Controller
                 'discount' => '0',
                 'prdStock' => $dataStock->stock
             ]);                
-        } 
+        }   
 
         // return view ('Cashier/cashierProductListHarga', compact('hargaSatuan'));
         return response()->json(['error' => 'Product not found'], 404);

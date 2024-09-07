@@ -128,14 +128,6 @@
                     $("#qty").val("1").focus().select();
                     $("#stock").val(data.prdStock);
                     $("#stockHidden").val(data.prdStock-qtyVal);
-                    
-                    if(data.prdStock == '0'){
-                        alertify
-                          .alert("Tidak ada stock yang tercatat di system, silahkan hubungi admin untuk koreksi stok barang !", function(){
-                            alertify.message('OK');
-                            cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
-                          }).set({title:"INFO STOCK"});
-                    }
                 } else {
                     hargaSatuan.value = "0";
                 }
@@ -261,6 +253,7 @@
         $("#qty").on('input', computeJumlah);
         function computeJumlah(){
             let qtyVal = $("#qty").val(),
+                stockVal = $("#stock").val(),
                 valPriceUnit = $("#hargaSatuan").val(),
                 priceVal = valPriceUnit.replace(/\./g, "");
             // alert (qtyVal);
@@ -269,6 +262,7 @@
                 precision: 0,
                 thousand: ".",
             }));
+            $("#stockHidden").val(stockVal - qtyVal);
         }
         
         
