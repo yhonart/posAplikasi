@@ -14,14 +14,14 @@
 </div>
 <div class="row">
     <div class="col-12">
-        <div class="card card-body table-responsive">
+        <div class="card card-body table-responsive p-1">
             <div class="row">
                 <div class="col-12">
                     <button type="submit" class="btn btn-success font-weight-bold elevation-1 btn-flat mb-2 btn-sm" id="submitDataMutasi" data-number="{{$number}}"><i class="fa-solid fa-circle-check"></i> Simpan Transaksi</button>
                 </div>
             </div>
-            <table class="table table-sm table-bordered table-hover table-valign-middle">
-                <thead class="bg-gradient-purple">
+            <table class="table table-sm table-valign-middle">
+                <thead>
                     <tr>
                         <th>No.</th>
                         <th width="30%">Nama Barang</th>
@@ -56,13 +56,13 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input type"text" class="form-control form-control-sm rounded-0" name="lastStock" id="lastStock" readonly>
+                                    <input type="number" class="form-control form-control-sm rounded-0" name="lastStock" id="lastStock" readonly>
                                 </td>
                                 <td>
-                                    <input type"text" class="form-control form-control-sm rounded-0" name="qty" id="qty">
+                                    <input type="number" class="form-control form-control-sm rounded-0" name="qty" id="qty">
                                 </td>
                                 <td>
-                                    <input type"text" class="form-control form-control-sm rounded-0" name="keterangan" id="keterangan">
+                                    <input type="text" class="form-control form-control-sm rounded-0" name="keterangan" id="keterangan">
                                 </td>
                                 <td></td>
                             </tr>

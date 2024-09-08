@@ -288,7 +288,7 @@ class MutasibarangController extends Controller
     }
     
     public function editDocMutasi ($idParam){
-        echo $idParam;
+        // echo $idParam;
         
         $tbMutasi = DB::table('inv_moving')
             ->where('number',$idParam)

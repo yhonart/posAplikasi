@@ -25,7 +25,7 @@
                 <h3 class="card-title font-weight-bold">List Data Stock Opname</h3>
             </div>
             <div class="card-body table-responsive">
-                <table class="table table-sm table-valign-middle table-hover table-striped table-bordered" id="listDocOpname">
+                <table class="table table-sm table-valign-middle table-hover table-striped" id="listDocOpname">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -88,16 +88,8 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        
-        $(function () {
-            $('.pagination a').on('click', function (e) {
-                e.preventDefault();
-                var url = $(this).attr('href');
-                $('#table_my_events').load(url);
-            });
-        });
-        
-        $('.btnDetail').on('click', function () {
+
+        $(".dataTable").on('click','.btnDetail', function () {
             var element = $(this);
             var  idparam = element.attr("data-opname");
             $.ajax({
@@ -110,7 +102,7 @@
             });
         });
         
-        $('.btnApprove').on('click', function () {
+        $(".dataTable").on('click','.btnApprove', function () {
             var element = $(this);
             var  idparam = element.attr("data-opname");
             $.ajax({
@@ -127,7 +119,7 @@
             });
         });
         
-        $('.btnEdit').on('click', function () {
+        $(".dataTable").on('click','.btnEdit', function () {
             var element = $(this);
             var  idparam = element.attr("data-opname");
             $.ajax({
@@ -140,8 +132,8 @@
                 }
             });
         });
-        
-        $('.btnDelete').on('click', function () {
+
+        $(".dataTable").on('click','.btnDelete', function () {
             var element = $(this);
             var  idparam = element.attr("data-opname");
             alertify.confirm("Apakah anda yakin ingin menghapus transaksi ini?.",

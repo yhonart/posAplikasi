@@ -276,7 +276,7 @@ class TempInventoryController extends Controller
             elseif($size == "KECIL"){
                 if($i->size_code == '1'){
                     $a1 = $qty / $invB;
-                    $a = $i->stock + $a1;
+                    $a = $i->stock + (int)$a1;
                 }
                 elseif($i->size_code == '2'){
                     $a = $i->stock + $qty;
