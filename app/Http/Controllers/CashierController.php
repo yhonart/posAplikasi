@@ -2354,11 +2354,13 @@ class CashierController extends Controller
     public function trxReportClosing ($fromDate, $endDate){
         $createdBy = Auth::user()->name;
         $hakakses = Auth::user()->hakakses;
+        $userID = Auth::user()->id;
         
         $companyName = DB::table('m_company')
             ->first();
             
         $mSetKas = DB::table('m_set_kas')
+            ->where('personal_id',$userID)
             ->where('status','1')
             ->first();
         

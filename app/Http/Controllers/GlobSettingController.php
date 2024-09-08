@@ -8,16 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 class GlobSettingController extends Controller
-{
-    protected $tempInv;
-    protected $tempUser;
-    
-    public function __construct(TempInventoryController $tempInv, TempUsersController $tempUser)
-    {
-        $this->TempInventoryController = $tempInv;
-        $this->TempUsersController = $tempUser;
-    }
-    
+{   
     public function userApproval (){
         $userID = Auth::user()->id;
         $cekUserGroup = DB::table('users_role')
@@ -35,11 +26,29 @@ class GlobSettingController extends Controller
     }
     
     public function newNominal(){
-        return view ('globalSetting/newFormKas');
+        $userKasir = DB::table('users')
+            ->where('hakakses','2')
+            ->get();
+
+        return view ('globalSetting/newFormKas',compact('userKasir'));
+    }
+
+    public function postNewNominal(Request $reqPostNom){
+        $userKasir = $reqPostNom->selectPersonil;
+        $nominalKas = $reqPostNom->nominalKas;
+
+        if ($nominalKas <> '' OR $nominalKas <> '0') {
+            DB::table('m_set_kas')
+                ->insert([
+                    'personal_id'=>$userKasir,
+                    'nominal'=>$nominalKas,
+                ]);
+        }
     }
     
     public function tableSetKasKasir(){
-        $tbKasKasir = DB::table('m_set_kas')
+        $tbKasKasir = DB::table('m_set_kas as a')
+            ->leftJoin('users as b','a.personal_id','=','b.id')
             ->get();
             
         return view ('globalSetting/tableKasKasir', compact('tbKasKasir'));

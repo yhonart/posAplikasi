@@ -15,15 +15,13 @@
     <div class="container-fluid"> 
         <div class="row mb-2">
             <div class="col-12">
-                <button class="btn btn-primary font-weight-bold btn-flat DIS-ONCLICK" data-display="listDataKoreksi"><i class="fa-solid fa-table-list"></i> List Dok. Koreksi</button>
-                <button class="btn btn-primary font-weight-bold btn-flat DIS-ONCLICK" data-display="listInputBarang"><i class="fa-solid fa-plus"></i> Entry Data</button>
+                <button class="btn bg-olive font-weight-bold btn-flat DIS-ONCLICK" data-display="listDataKoreksi"><i class="fa-solid fa-table-list"></i> List Dok. Koreksi</button>
+                <button class="btn bg-lightblue font-weight-bold btn-flat DIS-ONCLICK" data-display="listInputBarang"><i class="fa-solid fa-plus"></i> Entry Data</button>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="card card-body card-info card-outline">
-                    <div id="displayOnDiv"></div>
-                </div>
+                <div id="displayOnDiv"></div>
             </div>
         </div>
         

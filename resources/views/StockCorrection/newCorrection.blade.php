@@ -1,28 +1,30 @@
-<form class="form" id="formInputKoreksi">
-    <div class="form-group row">
-        <label class="label col-6 col-md-2">No. Koreksi</label>
-        <div class="col-6 col-md-4">
-            <input type="text" name="nomorKoreksi" id="nomorKoreksi" class="form-control form-control-sm" value="{{$nKrs}}" readonly>
+<div class="card card-body">
+    <form class="form" id="formInputKoreksi">
+        <div class="form-group row">
+            <label class="label col-6 col-md-2">No. Koreksi</label>
+            <div class="col-6 col-md-4">
+                <input type="text" name="nomorKoreksi" id="nomorKoreksi" class="form-control form-control-sm" value="{{$nKrs}}" readonly>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label class="label col-6 col-md-2">Tanggal</label>
-        <div class="col-6 col-md-4">
-            <input type="text" name="filterTanggal" id="filterTanggal" class="form-control form-control-sm">
+        <div class="form-group row">
+            <label class="label col-6 col-md-2">Tanggal</label>
+            <div class="col-6 col-md-4">
+                <input type="text" name="filterTanggal" id="filterTanggal" class="form-control form-control-sm">
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label class="label col-6 col-md-2">Keterangan</label>
-        <div class="col-6 col-md-4">
-            <textarea class="form-control" rows="4" placeholder="Enter ..." name="description" id="description"></textarea>
+        <div class="form-group row">
+            <label class="label col-6 col-md-2">Keterangan</label>
+            <div class="col-6 col-md-4">
+                <textarea class="form-control" rows="4" placeholder="Enter ..." name="description" id="description"></textarea>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-md-2">
-            <button type="submit" class="btn btn-success font-weight-bold btn-block"><i class="fa-solid fa-magnifying-glass"></i> Submit</button>
+        <div class="form-group row">
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-success font-weight-bold btn-block"><i class="fa-solid fa-magnifying-glass"></i> Submit</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
 
 <script>
     $( function() {

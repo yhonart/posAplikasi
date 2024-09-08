@@ -21,7 +21,7 @@
         <div class="row mt-2">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body table-responsive">
+                    <div class="card-body table-responsive p-0">
                         @include('Global.global_spinner')
                         <div id="displayTableKasKasir"></div>
                     </div>

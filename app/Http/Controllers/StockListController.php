@@ -8,12 +8,11 @@ use Illuminate\Support\Facades\DB;
 class StockListController extends Controller
 {
     protected $tempInv;
-    protected $tempUser;
-    
+    protected $tempUser;    
     public function __construct(TempInventoryController $tempInv, TempUsersController $tempUser)
     {
-        $this->TempInventoryController = $tempInv;
         $this->TempUsersController = $tempUser;
+        $this->TempInventoryController = $tempInv;
     }
     
     public function getProductCode (){
@@ -300,6 +299,51 @@ class StockListController extends Controller
                     $productImage->move($dirImage, $NameDoc);
                 }
             }
+
+            $valBesar = DB::table('m_product_unit')
+                ->select('product_volume')
+                ->where([
+                    ['core_id_product',$nextID],
+                    ['size_code','1']
+
+                ])
+                ->first();
+
+            $valKecil = DB::table('m_product_unit')
+                ->select('product_volume')
+                ->where([
+                    ['core_id_product',$nextID],
+                    ['size_code','2']
+
+                ])
+                ->first();
+
+            $valKonv = DB::table('m_product_unit')
+                ->select('product_volume')
+                ->where([
+                    ['core_id_product',$nextID],
+                    ['size_code','3']
+
+                ])
+                ->first();
+            
+            $volBesar = $valBesar->product_volume;
+
+            if (!empty($valKecil)) {
+                $volKecil = $valKecil->product_volume;
+            }
+            else {
+                $volKecil = '0';
+            }
+
+            if (!empty($valKonv)) {
+                $volKonv = $valKonv->product_volume;
+            }
+            else {
+                $volKonv = '0';
+            }
+
+            
             DB::table('m_product')
                 ->insert([
                     'product_code'=>$prodCode,
@@ -308,6 +352,9 @@ class StockListController extends Controller
                     'file_name'=>$NameDoc,
                     'file_type'=>$TypeDoc,
                     'product_category'=>$prodCategory,
+                    'large_unit_val'=>$volBesar,
+                    'medium_unit_val'=>$volKecil,
+                    'small_unit_val'=>$volKonv
                 ]); 
                 
             $mUnit = DB::table('m_product_unit')
@@ -483,6 +530,22 @@ class StockListController extends Controller
                     'product_volume'=>$a
                 ]);
             
+            if ($selectCode->size_code == '1') {
+                $colM_Product = "large_unit_val";
+            }
+            elseif ($selectCode->size_code == '2') {
+                $colM_Product = "medium_unit_val";
+            }
+            elseif ($selectCode->size_code == '3') {
+                $colM_Product = "small_unit_val";
+            }
+            
+            DB::table('m_product')
+                ->where('idm_data_product',$idProd)
+                ->update([
+                    $colM_Product => $editVal
+                ]);
+            
         }
         else{
             DB::table($tableName)
@@ -615,6 +678,28 @@ class StockListController extends Controller
     }
     
     public function deleteUnit($id){
+        $m_unit = DB::table('m_product_unit')
+            ->select('core_id_product','size_code')
+            ->where('idm_product_satuan',$id)
+            ->first();
+
+        $colM_Product = '';
+
+        if ($m_unit->size_code == '1') {
+            $colM_Product = "large_unit_val";
+        }
+        elseif ($m_unit->size_code == '2') {
+            $colM_Product = "medium_unit_val";
+        }
+        elseif ($m_unit->size_code == '3') {
+            $colM_Product = "small_unit_val";
+        }
+        DB::table('m_product')
+            ->where('idm_data_product',$m_unit->core_id_product)
+            ->update([
+                $colM_Product => '0'
+            ]);
+            
         DB::table('m_product_unit')
             ->where('idm_product_satuan',$id)
             ->delete();
@@ -631,10 +716,13 @@ class StockListController extends Controller
         
         if($prdSize == "BESAR"){
             $sizecode = '1';
+            $colM_Product = "large_unit_val";
         }elseif($prdSize == "KECIL"){
             $sizecode = '2';
+            $colM_Product = "medium_unit_val";
         }elseif($prdSize == "KONV"){
             $sizecode = '3';
+            $colM_Product = "small_unit_val";
         }
         
         $id=DB::select("SHOW TABLE STATUS LIKE 'm_product_unit'");
@@ -647,11 +735,11 @@ class StockListController extends Controller
             
         $siteLoc = DB::table("m_site")
                 ->get();
-                
+
         // Jika jumlah data lebih atau sama dengan 1 maka akan dijalankan proses pemecahan stock    
         if($cekDatUnit >= '1'){
-            // Ambil satuan volume unit dengan size code 1
-            
+            // Ambil satuan volume unit dengan size code 1  
+
             // Insert into inv_stock dengan id baru / next ID dari m_product_unit   
             foreach($siteLoc as $ls){
                 $location = $ls->idm_site;
@@ -716,6 +804,13 @@ class StockListController extends Controller
                     ]);
                 
             }
+
+            DB::table('m_product')
+                ->where('idm_data_product',$prdID)
+                ->update([
+                    $colM_Product => $volume
+                ]);
+            
         }
         
         

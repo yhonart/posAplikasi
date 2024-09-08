@@ -1,124 +1,130 @@
 <?php
     $selisih = '';
 ?>
-<div class="row">
-    <div class="col-md-6">
-        <form id="formSubmitReportKoreksi">
-            <div class="form-group">
-                <input type="hidden" class="form-control form-control-sm" name="sumQty" id="sumQty" value="{{$sumKoreksi->qty}}" readonly>
-            </div>
-            <div class="form-group">
-                <input type="hidden" class="form-control form-control-sm" name="sumStock" id="sumStock" value="{{$sumKoreksi->stock}}" readonly>
-            </div>
-            <div class="form-group">
-                <input type="hidden" class="form-control form-control-sm" name="t_item" id="t_item" value="{{$sumKoreksi->countKrs}}" readonly>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary font-weight-bold elevation-1 rounded-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Dokumen Koreksi Barang
-                </button>
-                <button type="submit" class="btn btn-success font-weight-bold elevation-1 rounded-0" id="submitButton"><i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan</button>
-            </div>
-        </form>
+<div class="card card-body">
+
+    <div class="row">
+        <div class="col-md-6">
+            <form id="formSubmitReportKoreksi">
+                <div class="form-group">
+                    <input type="hidden" class="form-control form-control-sm" name="sumQty" id="sumQty" value="{{$sumKoreksi->qty}}" readonly>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" class="form-control form-control-sm" name="sumStock" id="sumStock" value="{{$sumKoreksi->stock}}" readonly>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" class="form-control form-control-sm" name="t_item" id="t_item" value="{{$sumKoreksi->countKrs}}" readonly>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary font-weight-bold elevation-1 rounded-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Dokumen Koreksi Barang
+                    </button>
+                    <button type="submit" class="btn btn-success font-weight-bold elevation-1 rounded-0" id="submitButton"><i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="collapse mb-2" id="collapseExample">
+      <div class="card card-body">
+          <form class="form" id="formEditKoreksi">
+                <div class="form-group row">
+                    <label class="label col-6 col-md-2">No. Koreksi</label>
+                    <div class="col-6 col-md-4">
+                        <input type="text" name="nomorKoreksi" id="nomorKoreksi" class="form-control form-control-sm" value="{{$koreksi->number}}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="label col-6 col-md-2">Tanggal</label>
+                    <div class="col-6 col-md-4">
+                        <input type="text" name="filterTanggal" id="filterTanggal" class="form-control form-control-sm" value="{{$koreksi->dateInput}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="label col-6 col-md-2">Keterangan</label>
+                    <div class="col-6 col-md-4">
+                        <textarea class="form-control" rows="4" placeholder="Enter ..." name="description" id="description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-success font-weight-bold btn-block"><i class="fa-solid fa-magnifying-glass"></i> Update</button>
+                    </div>
+                </div>
+            </form>
+      </div>
     </div>
 </div>
-<div class="collapse mb-2" id="collapseExample">
-  <div class="card card-body">
-      <form class="form" id="formEditKoreksi">
-            <div class="form-group row">
-                <label class="label col-6 col-md-2">No. Koreksi</label>
-                <div class="col-6 col-md-4">
-                    <input type="text" name="nomorKoreksi" id="nomorKoreksi" class="form-control form-control-sm" value="{{$koreksi->number}}" readonly>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="label col-6 col-md-2">Tanggal</label>
-                <div class="col-6 col-md-4">
-                    <input type="text" name="filterTanggal" id="filterTanggal" class="form-control form-control-sm" value="{{$koreksi->dateInput}}">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="label col-6 col-md-2">Keterangan</label>
-                <div class="col-6 col-md-4">
-                    <textarea class="form-control" rows="4" placeholder="Enter ..." name="description" id="description"></textarea>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-success font-weight-bold btn-block"><i class="fa-solid fa-magnifying-glass"></i> Update</button>
-                </div>
-            </div>
-        </form>
-  </div>
-</div>
-<div class="table-responsive">
-    <table class="table table-sm table-hover table-valign-middle text-nowrap">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th width="30%">Nama Barang</th>
-                <th>Kode Lokasi</th>
-                <th>Satuan</th>
-                <th>D/K</th>
-                <th>Qty</th>
-                <th>Stok Awal</th>
-                <th>Perbaikan</th>
-                <th></th>
-            </tr>
-        </thead>
-        
-        <tbody>
-            <form id="formKoreksiInputBarang">
+<div class="card card-body p-0 table-responsive">
+
+    <div class="table-responsive">
+        <table class="table table-sm table-hover table-valign-middle text-nowrap">
+            <thead>
                 <tr>
-                    <td>
-                        #
-                        <input type="hidden" name="numberKoreksi" id="numberKoreksi" value="{{$numberKrs}}">
-                        <input type="hidden" class="form-control form-control-sm" name="invID" id="invID">
-                    </td>
-                    <td class="p-0">
-                        <select class="form-control val-reset" name="product" id="product">
-                            <option value="0">..</option>
-                            @foreach($mProduct as $mP)
-                                <option value="{{$mP->idm_data_product}}">{{$mP->product_name}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td class="p-0">
-                        <select class="form-control form-control-sm val-reset rounded-0" name="location" id="location">
-                            <option value="0">..</option>
-                            @foreach($mSite as $site)
-                                <option value="{{$site->idm_site}}">{{$site->site_name}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td class="p-0">
-                        <select class="form-control form-control-sm val-reset rounded-0" name="satuan" id="satuan">
-                            <option value="0"></option>
-                        </select>
-                    </td>
-                    <td class="p-0">
-                        <select class="form-control form-control-sm val-reset rounded-0" name="t_type" id="t_type">
-                            <option value="D">Debit</option>
-                            <option value="K">Kredit</option>
-                        </select>
-                    </td>
-                    <td class="p-0">
-                        <input type="number" class="form-control form-control-sm val-reset rounded-0" name="qty" id="qty" autocomplate="off">
-                    </td>
-                    <td class="p-0">
-                        <input type="number" class="form-control form-control-sm val-reset rounded-0" name="lastStock" id="lastStock" readonly>
-                    </td>
-                    <td class="p-0">
-                        <input type="text" class="form-control form-control-sm val-reset rounded-0" name="tPerbaikan" id="tPerbaikan" readonly>
-                    </td>
-                    <td>
-                        <button class="btn btn-success btn-flat btn-sm elevation-1" id="addItemKorek"><i class="fa-solid fa-check"></i></button>
-                    </td>
+                    <th>No</th>
+                    <th width="30%">Nama Barang</th>
+                    <th>Kode Lokasi</th>
+                    <th>Satuan</th>
+                    <th>D/K</th>
+                    <th>Qty</th>
+                    <th>Stok Awal</th>
+                    <th>Perbaikan</th>
+                    <th></th>
                 </tr>
-            </form>
-        </tbody>
-        <tbody id="locadListKoreksi"></tbody>
-    </table>
+            </thead>
+            
+            <tbody>
+                <form id="formKoreksiInputBarang">
+                    <tr>
+                        <td>
+                            #
+                            <input type="hidden" name="numberKoreksi" id="numberKoreksi" value="{{$numberKrs}}">
+                            <input type="hidden" class="form-control form-control-sm" name="invID" id="invID">
+                        </td>
+                        <td class="p-0">
+                            <select class="form-control val-reset" name="product" id="product">
+                                <option value="0">..</option>
+                                @foreach($mProduct as $mP)
+                                    <option value="{{$mP->idm_data_product}}">{{$mP->product_name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td class="p-0">
+                            <select class="form-control form-control-sm val-reset rounded-0" name="location" id="location">
+                                <option value="0">..</option>
+                                @foreach($mSite as $site)
+                                    <option value="{{$site->idm_site}}">{{$site->site_name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td class="p-0">
+                            <select class="form-control form-control-sm val-reset rounded-0" name="satuan" id="satuan">
+                                <option value="0"></option>
+                            </select>
+                        </td>
+                        <td class="p-0">
+                            <select class="form-control form-control-sm val-reset rounded-0" name="t_type" id="t_type">
+                                <option value="D">Debit</option>
+                                <option value="K">Kredit</option>
+                            </select>
+                        </td>
+                        <td class="p-0">
+                            <input type="number" class="form-control form-control-sm val-reset rounded-0" name="qty" id="qty" autocomplate="off">
+                        </td>
+                        <td class="p-0">
+                            <input type="number" class="form-control form-control-sm val-reset rounded-0" name="lastStock" id="lastStock" readonly>
+                        </td>
+                        <td class="p-0">
+                            <input type="text" class="form-control form-control-sm val-reset rounded-0" name="tPerbaikan" id="tPerbaikan" readonly>
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-flat btn-sm elevation-1" id="addItemKorek"><i class="fa-solid fa-check"></i></button>
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+            <tbody id="locadListKoreksi"></tbody>
+        </table>
+    </div>
 </div>
 <script>
     $(function(){

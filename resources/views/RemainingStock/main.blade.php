@@ -17,7 +17,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-primary mb-2 mt-1 btn-flat" data-toggle="collapse" href="#collapseSatuan" role="button" aria-expanded="false" aria-controls="collapseSatuan">
+                        <a class="btn btn-success mb-2 mt-1 btn-flat" data-toggle="collapse" href="#collapseSatuan" role="button" aria-expanded="false" aria-controls="collapseSatuan">
                             <i class="fa-solid fa-filter"></i> Filtering
                         </a>
                         <div class="collapse" id="collapseSatuan">
@@ -88,12 +88,6 @@
                                             <!--<div class="col-md-3">-->
                                             <!--    <a class="btn btn-primary font-weight-bold btn-block elevation-1" href="#"><i class="fa-solid fa-file-excel"></i> Cetak Kartu Stock Excel</a>-->
                                             <!--</div>-->
-                                        </div>
-                                        
-                                        <div class="form-group row">
-                                            <div class="col-12">
-                                                <span class="text-muted"><i class="fa-solid fa-circle-info"></i> Untuk dapat melihat detail sesuai nama barang dapat menggunakan tombol Cari.</span>
-                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -259,7 +253,7 @@
                 success: function (data) {
                     divDisplay.html(data);
                     $("#spinnerStock").fadeOut();
-                    $("#filTeringAll").fadeOut();
+                    // $("#filTeringAll").fadeOut();
                 }
             });
             return false;

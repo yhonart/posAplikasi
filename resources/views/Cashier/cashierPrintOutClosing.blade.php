@@ -33,7 +33,11 @@
                     </tr>
                     <tr>
                         <td>Modal Kas</td>
-                        <td align="right">: {{number_format($mSetKas->nominal,'0',',','.')}}</td>
+                        @if(!empty($mSetKas))
+                            <td align="right">: {{number_format($mSetKas->nominal,'0',',','.')}}</td>
+                            @else
+                            <td align="right">: 0</td>
+                        @endif
                     </tr>
                 </tbody>
             </table>

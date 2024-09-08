@@ -1,7 +1,7 @@
 <?php
     $no = '1';
 ?>
-<table class="table table-sm table-valign-middle table-bordered">
+<table class="table table-sm table-valign-middle table-hover">
     <thead class="bg-gradient-purple">
         <tr>
             <th>No</th>
@@ -13,7 +13,7 @@
     <tbody>
         @foreach($tbKasKasir as $tkk)
             <td>{{$no++}}</td>
-            <td>{{$tkk->personal_id}}</td>
+            <td>{{$tkk->name}}</td>
             <td>Rp. {{number_format($tkk->nominal,'0',',','.')}}</td>
             <td class="text-right">
                 <button type="button" class="btn btn-sm btn-info btn-flat" disabled>Edit</button>

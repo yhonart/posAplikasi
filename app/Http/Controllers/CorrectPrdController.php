@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Hash;
 
 class CorrectPrdController extends Controller
 {    
+    protected $tempInv;   
+    public function __construct(TempInventoryController $tempInv)
+    {
+        $this->TempInventoryController = $tempInv;
+    }
+
     // CEK INFORMASI USER TERKAIT AREA KERJA YANG TERDAFTAR PADA SISTEM
     public function checkuserInfo (){
         $userID = Auth::user()->id;
@@ -294,7 +300,7 @@ class CorrectPrdController extends Controller
                 ['created_by',$createdBy]
             ])
         ->count();
-        
+
         $productUnit = DB::table('product_list_view as a')
                 ->select('a.*','b.location_id','b.stock','b.idinv_stock')
                 ->leftJoin('inv_stock as b','a.idm_product_satuan','b.product_id')
@@ -318,6 +324,7 @@ class CorrectPrdController extends Controller
                     ['size_code','2']
                     ])
                 ->first();
+
         $vol = $volKonversi->product_volume;
         if(!empty($valKecil)){
             $volkodedua = $valKecil->product_volume;
@@ -325,107 +332,68 @@ class CorrectPrdController extends Controller
         else{
             $volkodedua = $vol;
         }
-            
-                
-        if($cekProduct == '0'){
-            
+
+        $mProduk = DB::table('m_product')
+            ->where('idm_data_product',$product)
+            ->first();
+
+        $volBesar = $mProduk->large_unit_val;    
+        $volKecil = $mProduk->medium_unit_val;    
+        $volKonv = $mProduk->small_unit_val;
+        $prodName = $mProduk->product_name;
+
+        // Jalankan update apabila tidak ada jumlah data produk yang sama.
+        if($cekProduct == '0'){            
             foreach($productUnit as $inputUnit){
                 $sizeCode = $inputUnit->size_code;
                 $prodZise = $inputUnit->product_size;   
                 
-                if($sizeCode == '1'){
-                    if($satuan == "BESAR"){
-                        $ab = $tPerbaikan; // input to stock
-                        $c = $tPerbaikan; // input to stock satuan
+                if ($satuan == "BESAR") {
+                    if ($sizeCode == '1') {
+                        $a = $tPerbaikan;
                         $display = '1';
                     }
-                    else{
-                        if ($vol == '0'){
-                            $a = $tPerbaikan;
-                        }
-                        else{
-                            $a = $tPerbaikan / $vol;
-                        }
-                        $ab = (int)$a;
-                        $c = (int)$a;
+                    elseif ($sizeCode == '2') {
+                        $a = $tPerbaikan * $volBesar;
+                        $display = '0';
+                    }
+                    elseif ($sizeCode == '3') {
+                        $a = $tPerbaikan * $volKonv;
                         $display = '0';
                     }
                 }
-                elseif($sizeCode == '2'){
-                    $vol2 = $inputUnit->product_volume;
-                    if($satuan == "KECIL"){
-                        $ab = $tPerbaikan;
-                        $c = $ab;
-                        $display = '1';
-                    }elseif($satuan == "BESAR"){
-                        if ($vol == '0'){
-                            $a = $tPerbaikan;
-                            
-                        }
-                        else{
-                            $a = $tPerbaikan / $vol;
-                        }
-                        $ab = (int)$a;
-                        $c = $tPerbaikan*$vol2;
+                elseif ($satuan == "KECIL") {
+                    if ($sizeCode == '1') {
+                        $a1 = $tPerbaikan / $volBesar;
+                        $a = (int)$a1;
                         $display = '0';
                     }
-                    else{
-                        $a = $tPerbaikan/$vol;
-                        // $ab = (int)$a;
-                        $konversi1 = $tPerbaikan - $vol;
-                        $konversi2 = $konversi1 / $volkodedua;
-                        $ab = (int)$konversi2;
-                        $c1 = $tPerbaikan/$vol2;
-                        $c = (int)$c1;
+                    elseif ($sizeCode == '2') {
+                        $a = $tPerbaikan;
+                        $display = '1';
+                    }
+                    elseif ($sizeCode == '3') {
+                        $a = $tPerbaikan * $volKecil;
                         $display = '0';
                     }
                 }
-                elseif($sizeCode == '3'){
-                    $vol2 = $inputUnit->product_volume;
-                    if($satuan == "KONV"){
-                        $konversi1 = $tPerbaikan - $vol;
-                        $konversi2 = $konversi1 / $volkodedua;
-                        $intKonv = (int)$konversi2;
-                        $konversi3 = $intKonv * $volkodedua;
-                        $ab = $konversi1 - $konversi3;
-                        $c = $tPerbaikan;
-                        $display = '1';
-                        
-                        // echo $konversi1."/".$konversi2."/".$konversi3;
-                    }elseif($satuan == "BESAR"){
-                         if ($vol == '0'){
-                            $a = $tPerbaikan;
-                        }
-                        else{
-                            $a = $tPerbaikan / $vol;
-                        }
-                        $ab = (int)$a;
-                        $c = $tPerbaikan*$vol2;
-                        $display = '0';
-                    }else{
-                        // $a = $tPerbaikan/$vol;
-                        // $ab = (int)$a;
-                        // $ab = $tPerbaikan*$vol2;
-                        if ($vol == '0'){
-                            $a = $tPerbaikan;
-                            
-                        }
-                        else{
-                            $a = $tPerbaikan / $volkodedua;
-                        }
-                        $decimalPart = strstr($a, '.');
-                        
-                        if($decimalPart !== false){
-                            $decimalPart = substr($decimalPart, 1);
-                            $ab = $decimalPart[1];
-                        }
-                        else{
-                            $ab = '0';
-                        }
-                        $c = $a;
+                elseif ($satuan == "KONV") {
+                    if ($sizeCode == '1') {
+                        $a1 = $tPerbaikan / $volKonv;
+                        $a = (int)$a1;
                         $display = '0';
                     }
+                    elseif ($sizeCode == '2') {
+                        $a1 = $tPerbaikan / $volKecil;
+                        $a = (int)$a1;
+                        $display = '0';
+                    }
+                    elseif ($sizeCode == '3') {
+                        $a = $tPerbaikan;
+                        $display = '1';
+                    }
                 }
+
                 DB::table('inv_list_correction')
                     ->insert([
                         'number_correction'=>$numberKoreksi, 
@@ -434,14 +402,25 @@ class CorrectPrdController extends Controller
                         'location'=>$location,
                         'd_k'=>$t_type,
                         'input_qty'=>$qty,
-                        'qty'=>$c,
+                        'qty'=>$a,
                         'stock'=>$lastStock,
                         'created_by'=>$createdBy,
-                        'saldo'=>$c,
+                        'saldo'=>$a,
                         'display'=>$display,
                     ]);
                 
             }
+            $description = "Koreksi Barang Oleh : ".Auth::user()->name;
+            if ($t_type == 'D') {
+                $inInv = $qty;
+                $outInv = '0';
+            }
+            elseif ($t_type == "K") {
+                $inInv = '0';
+                $outInv = $qty;
+            }
+            
+            $this->TempInventoryController->insertLapInv ($numberKoreksi, $description, $inInv, $outInv, $createdBy, $product, $prodName, $satuan, $location);
             $msg = array('success'=>'<h4>SUCCESS</h4> Koreksi Barang berhasil dimasukkan');
         }
         else{
