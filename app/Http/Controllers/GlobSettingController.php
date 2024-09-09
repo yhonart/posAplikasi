@@ -54,4 +54,72 @@ class GlobSettingController extends Controller
         return view ('globalSetting/tableKasKasir', compact('tbKasKasir'));
     }
     
+    //Set Metod Pembayaran
+    public function setPembayaran(){
+        return view('globalSetting/setMetodPembayaran');
+    }
+
+    public function tableSetPembayaran (){
+        $mPayMethod = DB::table('m_payment_method')
+            ->orderBy('method_name','asc')
+            ->get();
+
+        $mAccountBank = DB::table('m_company_payment')
+            ->get();
+
+        return view('globalSetting/setMetodPembayaranList', compact('mPayMethod','mAccountBank'));
+    }
+
+    public function newPembayaran(){
+        return view('globalSetting/setMetodPembayaranAdd');
+    }
+
+    public function postPembayaran(Request $reqPostPmb){
+        DB::table('m_payment_method')
+            ->insert([
+                'method_name'=> $reqPostPmb->mPembayaran,
+                'category'=>"CASH",
+                'status'=>'1'
+            ]);
+    }
+
+    public function newAkunBank(){
+        return view('globalSetting/setAkunPembayaranAdd');
+    }
+    
+    public function postnewAkunBank(Request $reqAkunBank){
+        DB::table('m_company_payment')
+            ->insert([
+                'core_payment_method'=>'4',
+                'bank_code'=>strtoupper($reqAkunBank->kodeBank),
+                'bank_name'=>strtoupper($reqAkunBank->namaBank),
+                'account_number'=>$reqAkunBank->noRek,
+                'account_name'=>strtoupper($reqAkunBank->namaAkun),
+            ]);
+    }
+    public function editAkun($id){
+        $tbEditAkun = DB::table('m_company_payment')
+            ->where('idm_payment',$id)
+            ->first();
+
+        return view('globalSetting/setAkunPembayaranEdit', compact('tbEditAkun','id'));
+    }
+
+    public function postEditAkun(Request $reqEditAkun){
+        DB::table('m_company_payment')
+            ->where('idm_payment',$reqEditAkun->idAkun)
+            ->update([
+                'core_payment_method'=>'4',
+                'bank_code'=>strtoupper($reqEditAkun->kodeBank),
+                'bank_name'=>strtoupper($reqEditAkun->namaBank),
+                'account_number'=>$reqEditAkun->noRek,
+                'account_name'=>strtoupper($reqEditAkun->namaAkun),
+            ]);
+    }
+
+    public function deleteAkun($id){
+        DB::table('m_company_payment')
+            ->where('idm_payment',$id)
+            ->delete();
+    }
 }
