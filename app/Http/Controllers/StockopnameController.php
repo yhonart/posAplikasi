@@ -451,7 +451,15 @@ class StockopnameController extends Controller
             else{
                 $volkodedua = $vol;
             }
-            
+            $mProduk = DB::table('m_product')
+                ->where('idm_data_product',$product)
+                ->first();
+
+            $volBesar = $mProduk->large_unit_val;    
+            $volKecil = $mProduk->medium_unit_val;    
+            $volKonv = $mProduk->small_unit_val;
+            $prodName = $mProduk->product_name;
+
             if($cekProduct == '0' AND $qty <> ''){
                 
                 foreach($productUnit as $inputUnit){
@@ -460,97 +468,49 @@ class StockopnameController extends Controller
                     $prodZise = $inputUnit->product_size;
                     
                     // IF untuk memasukkan data stock besar
-                    if($sizeCode == '1'){
-                        if($satuan == "BESAR"){
-                            $ab = $qty; // input to stock
-                            $c = $qty; // input to stock satuan
+                    if ($satuan == "BESAR") {
+                        if ($sizeCode == '1') {
+                            $a = $qty;
                             $display = '1';
                         }
-                        else{
-                            if ($vol == '0'){
-                                $a = $qty;
-                            }
-                            else{
-                                $a = $qty / $vol;
-                            }
-                            $ab = (int)$a;
-                            $c = (int)$a;
+                        elseif ($sizeCode == '2') {
+                            $a = $qty * $volBesar;
+                            $display = '0';
+                        }
+                        elseif ($sizeCode == '3') {
+                            $a = $qty * $volKonv;
                             $display = '0';
                         }
                     }
-                    elseif($sizeCode == '2'){
-                        $vol2 = $inputUnit->product_volume;
-                        if($satuan == "KECIL"){
-                            $ab = $qty;
-                            $c = $ab;
-                            $display = '1';
-                        }elseif($satuan == "BESAR"){
-                            if ($vol == '0'){
-                                $a = $qty;
-                                
-                            }
-                            else{
-                                $a = $qty / $vol;
-                            }
-                            $ab = (int)$a;
-                            $c = $qty*$vol2;
+                    elseif ($satuan == "KECIL") {
+                        if ($sizeCode == '1') {
+                            $a1 = $qty / $volBesar;
+                            $a = (int)$a1;
                             $display = '0';
                         }
-                        else{
-                            $a = $qty/$vol;
-                            // $ab = (int)$a;
-                            $konversi1 = $qty - $vol;
-                            $konversi2 = $konversi1 / $volkodedua;
-                            $ab = (int)$konversi2;
-                            $c1 = $qty/$vol2;
-                            $c = (int)$c1;
+                        elseif ($sizeCode == '2') {
+                            $a = $qty;
+                            $display = '1';
+                        }
+                        elseif ($sizeCode == '3') {
+                            $a = $qty * $volKecil;
                             $display = '0';
                         }
                     }
-                    elseif($sizeCode == '3'){
-                        $vol2 = $inputUnit->product_volume;
-                        if($satuan == "KONV"){
-                            $konversi1 = $qty - $vol;
-                            $konversi2 = $konversi1 / $volkodedua;
-                            $intKonv = (int)$konversi2;
-                            $konversi3 = $intKonv * $volkodedua;
-                            $ab = $konversi1 - $konversi3;
-                            $c = $qty;
+                    elseif ($satuan == "KONV") {
+                        if ($sizeCode == '1') {
+                            $a1 = $qty / $volKonv;
+                            $a = (int)$a1;
+                            $display = '0';
+                        }
+                        elseif ($sizeCode == '2') {
+                            $a1 = $qty / $volKecil;
+                            $a = (int)$a1;
+                            $display = '0';
+                        }
+                        elseif ($sizeCode == '3') {
+                            $a = $qty;
                             $display = '1';
-                            
-                            // echo $konversi1."/".$konversi2."/".$konversi3;
-                        }elseif($satuan == "BESAR"){
-                             if ($vol == '0'){
-                                $a = $qty;
-                            }
-                            else{
-                                $a = $qty / $vol;
-                            }
-                            $ab = (int)$a;
-                            $c = $qty*$vol2;
-                            $display = '0';
-                        }else{
-                            // $a = $qty/$vol;
-                            // $ab = (int)$a;
-                            // $ab = $qty*$vol2;
-                            if ($vol == '0'){
-                                $a = $qty;
-                                
-                            }
-                            else{
-                                $a = $qty / $volkodedua;
-                            }
-                            $decimalPart = strstr($a, '.');
-                            
-                            if($decimalPart !== false){
-                                $decimalPart = substr($decimalPart, 1);
-                                $ab = $decimalPart[1];
-                            }
-                            else{
-                                $ab = '0';
-                            }
-                            $c = $a;
-                            $display = '0';
                         }
                     }
                     if($inputUnit->stock <> ''){
@@ -560,8 +520,8 @@ class StockopnameController extends Controller
                                 'inv_id'=>$inputUnit->idinv_stock,
                                 'product_id'=>$inputUnit->idm_data_product,
                                 'last_stock'=>$inputUnit->stock,
-                                'input_stock'=>$ab,
-                                'input_stock2'=>$c,
+                                'input_stock'=>$a,
+                                'input_stock2'=>$a,
                                 'product_size'=>$inputUnit->product_satuan,
                                 'unit_volume'=>$inputUnit->product_volume,
                                 'created_by'=>$createdBy,
