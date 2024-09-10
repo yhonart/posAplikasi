@@ -103,9 +103,9 @@
             return false;
         });
         
-        $("#changePassword").on('click', function(){
-            alertify.error('Untuk merubah password belum dapat digunakan !');
-        });
+        // $("#changePassword").on('click', function(){
+        //     alertify.error('Untuk merubah password belum dapat digunakan !');
+        // });
         
         function searchData(keyWord){        
             $.ajax({
