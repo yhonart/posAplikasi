@@ -322,11 +322,31 @@ class PersonaliaController extends Controller
                 'created_at'=>now(),
             ]);
 
+        $cekUserAdminSPV = DB::table('users_role')
+            ->where([
+                ['user_id',$userID],
+                ['role_id','!=','3']
+            ])
+            ->count();
+
         DB::table('users')
             ->where('id',$userID)
             ->update([
                 'password'=>$changePass
             ]);
+
+        if ($cekUserAdminSPV >= '1') {
+            DB::table('admin_token')
+                ->where('user_id',$userID)
+                ->delete();
+
+            DB::table('admin_token')
+                ->insert([
+                    'user_id'=>$userID,
+                    'user_token'=>$password,
+                    'hak_akses'=>'1'
+                ]);
+        }
 
     }
     
