@@ -325,7 +325,7 @@ class PersonaliaController extends Controller
         $cekUserAdminSPV = DB::table('users_role')
             ->where([
                 ['user_id',$userID],
-                ['role_id','!=','3']
+                ['role_code','!=','3']
             ])
             ->count();
 
