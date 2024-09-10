@@ -19,3 +19,4 @@ Route::post('Personalia/postHakAksesMenu', [App\Http\Controllers\PersonaliaContr
 Route::get('Personalia/loadHakAksesMenu/{id}', [App\Http\Controllers\PersonaliaController::class, 'loadHakAksesMenu']);
 Route::get('Personalia/subMenuList/{menuId}', [App\Http\Controllers\PersonaliaController::class, 'subMenuList']);
 Route::get('Personalia/deleteAksesMenu/{paramId}', [App\Http\Controllers\PersonaliaController::class, 'deleteAksesMenu']);
+Route::post('Personalia/postChangePassword', [App\Http\Controllers\PersonaliaController::class, 'postChangePassword']);

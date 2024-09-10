@@ -43,13 +43,16 @@
                 </button>
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body">
-                        <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <button type="button" class="btn bg-olive" id="changePassword">Ganti</button>
-                          </div>
-                          <!-- /btn-group -->
-                          <input type="password" class="form-control" name="password" id="password">
-                        </div>
+                        <form id="formGantiPassword">
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <button type="submit" class="btn bg-olive" id="changePassword">Simpan</button>
+                              </div>
+                              <input type="hidden" name="userID" id="userID" value="{{$id}}">
+                              <input type="hidden" name="email" id="email" value="{{$tbUser->email}}">
+                              <input type="password" class="form-control" name="password" id="password">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -70,6 +73,23 @@
             event.preventDefault();
             $.ajax({
                 url: "{{route('Personalia')}}/formEditProfile",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {                    
+                    searchData(keyWord);
+                },                
+            });
+            return false;
+        });
+
+        $("form#formGantiPassword").submit(function(event){
+            event.preventDefault();
+            $.ajax({
+                url: "{{route('Personalia')}}/postChangePassword",
                 type: 'POST',
                 data: new FormData(this),
                 async: true,

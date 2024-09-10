@@ -307,5 +307,28 @@ class PersonaliaController extends Controller
             ->where('idusers_auth',$paramId)
             ->delete();
     }
+
+    public function postChangePassword (Request $reqChangePass){
+        $userID = $reqChangePass->userID;
+        $email = $reqChangePass->email;
+        $password = $reqChangePass->password;
+        $token = str_random(60);
+        $changePass = \Hash::make($password);
+
+        //log change password;
+        DB::table('password_resets')
+            ->insert([
+                'email'=>$email,
+                'token'=>$token,
+                'created_at'=>now(),
+            ]);
+
+        DB::table('users')
+            ->where('id',$userID)
+            ->update([
+                'password'=>$changePass
+            ]);
+
+    }
     
 }
