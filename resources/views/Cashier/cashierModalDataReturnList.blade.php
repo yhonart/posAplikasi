@@ -111,7 +111,7 @@
                 dataTrx = el.attr("data-id"),
                 dataAction = el.attr("data-action");
             $("#cardConfirmPassword").show();
-            $("#passInput").focus();
+            $("#userName").focus();
             $("#datAction").val(dataAction);
             $("#datId").val(dataTrx);
         });
@@ -125,7 +125,7 @@
                 dataTrx = el.attr("data-id"),
                 dataAction = el.attr("data-action");
             $("#cardConfirmPassword").show();
-            $("#passInput").focus();
+            $("#userName").focus();
             $("#datAction").val(dataAction);
             $("#datId").val(dataTrx);
         });
