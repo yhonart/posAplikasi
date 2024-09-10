@@ -30,7 +30,7 @@ Route::get('/', function () {
     }
 });
 Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
+    return view('auth.passwords.reset');
 })->middleware('guest')->name('password.request');
 
 
