@@ -97,7 +97,7 @@
                 contentType: false,
                 processData: false,
                 success: function (data) {                    
-                    searchData(keyWord);
+                    window.location.reload();
                 },                
             });
             return false;
