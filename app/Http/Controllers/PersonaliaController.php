@@ -312,14 +312,13 @@ class PersonaliaController extends Controller
         $userID = $reqChangePass->userID;
         $email = $reqChangePass->email;
         $password = $reqChangePass->password;
-        $token = str_random(60);
         $changePass = \Hash::make($password);
 
         //log change password;
         DB::table('password_resets')
             ->insert([
                 'email'=>$email,
-                'token'=>$token,
+                'token'=>null,
                 'created_at'=>now(),
             ]);
 
