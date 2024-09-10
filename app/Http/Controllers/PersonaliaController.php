@@ -344,7 +344,7 @@ class PersonaliaController extends Controller
                 ->insert([
                     'user_id'=>$userID,
                     'user_token'=>$password,
-                    'hak_akses'=>'1'
+                    'hakakses'=>'1'
                 ]);
         }
 
