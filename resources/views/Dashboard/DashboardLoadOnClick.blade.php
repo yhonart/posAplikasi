@@ -1,11 +1,11 @@
 <?php
     $no = '1';
     $arayStatus = array(
-        0=>"Deleted",
-        1=>"Active",
+        0=>"Trs. Batal",
+        1=>"Dlm. Proses",
         2=>"Hold",
-        3=>"On Loan",
-        4=>"Completed",
+        3=>"Kredit",
+        4=>"Trs. Sukses",
     );
     $arayColor = array(
         0=>"bg-danger",
