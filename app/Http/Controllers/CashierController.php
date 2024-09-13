@@ -601,12 +601,12 @@ class CashierController extends Controller
         $billNumber = $this->getInfoNumber();
         $createdName = Auth::user()->name;
         $hakAkses = Auth::user()->hakakses;
-        $checkActiveBtn = $countDisplay;
-        // if($hakAkses == '1' AND $countReturn >= '1'){
-        //     $checkActiveBtn = '1';
-        // }
-        // else{
-        // }
+        if($hakAkses == '1' AND $countReturn >= '1'){
+            $checkActiveBtn = '1';
+        }
+        else{
+            $checkActiveBtn = $countDisplay;
+        }
         // echo $checkActiveBtn;
         //Get number billing and display active where status 1
         $cekBillNumber = DB::table('tr_store')
