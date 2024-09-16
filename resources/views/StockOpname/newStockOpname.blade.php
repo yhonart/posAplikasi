@@ -77,7 +77,7 @@
         
         $("form#formInputOpname").submit(function(event){
             event.preventDefault();
-            let loadDiv = "listInputBarang";
+            var loadDiv = "listInputBarang";
             $("#btnFormPenyesuaian").fadeOut('slow');
             $.ajax({
                 url: "{{route('stockOpname')}}/submitStockOpname",

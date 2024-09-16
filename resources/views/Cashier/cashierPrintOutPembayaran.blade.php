@@ -8,7 +8,11 @@
             <table cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr>
-                        <td>{{$companyName->company_name}}</td>
+                        <td>
+                            @if(!empty($companyName))
+                                {{$companyName->company_name}}
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <td></td>

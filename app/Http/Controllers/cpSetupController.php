@@ -103,4 +103,9 @@ class cpSetupController extends Controller
                 $column => $editVal,    
             ]);
     }
+
+    public function deleteToko (Request $reqDelToko){
+        DB::table('m_company')
+            ->delete();
+    }
 }

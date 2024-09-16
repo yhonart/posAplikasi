@@ -31,7 +31,7 @@
     function showEdit(editableObj) {
         $(editableObj).focus().select();
     }
-    let loadDiv = "listInputBarang";
+    var loadDiv = "listInputBarang";
     function saveToDatabase(editableObj,tablename,column,id,ideqm,idprd) {
         $(editableObj).css("background","#FFF url({{asset('public/images/loadericon.gif')}}) no-repeat right");
         $.ajax({

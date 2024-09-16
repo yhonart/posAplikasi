@@ -223,7 +223,7 @@
     
     function submitData(dataForm){
         $(".LOAD-SPINNER").fadeIn();
-        let loadDiv = "listInputBarang";
+        var loadDiv = "listInputBarang";
         $.ajax({
             type : 'post',
             url : "{{route('stockOpname')}}/listInputBarang/submitOpname",

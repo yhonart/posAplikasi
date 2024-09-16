@@ -8,7 +8,11 @@
             <table cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr>
-                        <td style="text-align: center; vertical-align: middle;">{{$companyName->company_name}}</td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            @if(!empty($companyName))
+                                {{$companyName->company_name}}
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <td style="text-align: center; vertical-align: middle;">LAPORAN HARIAN CLOSING KASIR</td>

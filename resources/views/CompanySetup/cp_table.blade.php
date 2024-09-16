@@ -57,14 +57,14 @@
                                 </dl>
                                 <div class="row">
                                     <div class="col-12">
-                                        <button type="button" id="btnDelete" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hapus Akun</button>
+                                        <button type="button" id="btnDelete" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hapus Toko</button>
                                     </div>
                                 </div>
                                 @else
                                 <div class="row">
                                     <div class="col-12">
                                     <div class="red-alert p-2 rounded rounded-2 notive-display">
-                                        <span class="font-weight-bold">Tambahkan nama perusahaan terlebih dahulu.</span>
+                                        <span class="font-weight-bold">Masukkan Nama Toko.</span>
                                     </div>
                                     </div>
                                 </div>
@@ -83,6 +83,14 @@
         $('#btnCreate').on('click', function (e) {
             e.preventDefault();
             $("#DisplayFormInput").load("{{route('CompanySetup')}}/companyDisplay/add_new_cp");
+        });
+    })
+    $(document).ready(function(){               
+        $('#btnDelete').on('click', function (e) {
+            e.preventDefault();
+            $("#DisplayFormInput").load("{{route('CompanySetup')}}/companyDisplay/deleteToko");
+            alertify.success('Success message');
+            window.location.reload();
         });
     })
 </script>
