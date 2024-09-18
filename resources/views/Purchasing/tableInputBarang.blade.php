@@ -205,7 +205,7 @@
                         else{
                             stockAwal.value = '0';
                         }
-                        $("#stockAkhir").val(data.stock + qty);
+                        $("#stockAkhir").val(parseInt(data.stock) + parseInt(qty));
                     })
                     .catch(error => {
                         console.error('Error:', error);
