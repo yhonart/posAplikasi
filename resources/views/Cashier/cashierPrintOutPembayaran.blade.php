@@ -64,7 +64,7 @@
                     <tr>
                         <td>Total Item</td>
                         <td>:</td>
-                        <td class="txt-right" align="right">{{$trStore->t_item}}</td>
+                        <td class="txt-right" align="right">{{$totalPayment->countList}}</td>
                     </tr>
                     <tr>
                         <td>Total Belanja</td>
