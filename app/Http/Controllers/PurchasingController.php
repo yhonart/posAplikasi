@@ -74,7 +74,7 @@ class PurchasingController extends Controller
                 ->first();
                 
             $no = $poNumber;
-            $nomorPembelian = $numberExisting->purchase_date;
+            $nomorPembelian = $numberExisting->purchase_number;
         }
             
         return $nomorPembelian;
