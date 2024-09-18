@@ -5,7 +5,7 @@
     </head>
     <body class="struk" onload="printOut()">
         <section class="sheet">
-            <table cellpadding="0" cellspacing="0">
+            <table cellpadding="0" cellspacing="0" style="width:100%">
                 <tbody>
                     <tr>
                         <td>
@@ -22,7 +22,7 @@
             <?php
                 echo (str_repeat("=", 40)."<br/>");
             ?>
-            <table>
+            <table cellpadding="0" cellspacing="0" style="width:100%">
                 <tbody>
                     <tr>
                         <td>No {{$trStore->billing_number}}</td>

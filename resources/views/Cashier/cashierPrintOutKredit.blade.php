@@ -5,7 +5,7 @@
     </head>
     <body class="struk" onload="printOut()">
         <section class="sheet">
-            <table cellpadding="0" cellspacing="0">
+            <table cellpadding="0" cellspacing="0" style="width:100%">
                 <tbody>
                     <tr>
                         <td>
@@ -22,24 +22,21 @@
             <?php
                 echo (str_repeat("=", 40)."<br/>");
             ?>
-            <table>
+            <table cellpadding="0" cellspacing="0" style="width:100%">
                 <tbody>
                     <tr>
-                        <td>No</td>
-                        <td>: {{$trStore->billing_number}}</td>
-                        <td align="right">{{$trStore->tr_date}}</td>
+                        <td>No {{$trStore->billing_number}}</td>
+                        <td>{{date('d/m/Y', strtotime($trStore->tr_date))}}</td>
                     </tr>
                     <tr>
-                        <td>Cus</td>
-                        <td>: {{$trStore->customer_name}}</td>
-                        <td></td>
+                        <td>Cus:{{$trStore->customer_name}}</td>
+                        <td>Ksr:{{$trStore->created_by}}</td>
                     </tr>
                     <tr>
-                        <td>Ksr</td>
-                        <td>: {{$trStore->created_by}}</td>
-                        <td align="right">{{date("H:i:s",strtotime($trStore->created_date))}}</td>
+                        <td>Kirim:{{$trStore->tr_delivery}}</td>
+                        <td>{{date("H:i:s",strtotime($trStore->created_date))}}</td>
                     </tr>
-                </tbody>
+                </tbody>                
             </table>
             <?php
                 echo (str_repeat("=", 40)."<br/>");
