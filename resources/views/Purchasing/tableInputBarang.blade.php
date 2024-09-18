@@ -205,6 +205,7 @@
                         else{
                             stockAwal.value = '0';
                         }
+                        $("#stockAkhir").val(data.stock + qty);
                     })
                     .catch(error => {
                         console.error('Error:', error);
@@ -212,7 +213,6 @@
                 }
                 
                 let valStockAwal = $("#stockAwal").val();
-                $("#stockAkhir").val(valStockAwal + qty);
                 $("#btnSubmit").focus().removeClass('btn-default');
                 $("#btnSubmit").focus().addClass('bg-success');
         })
