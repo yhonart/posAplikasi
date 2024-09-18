@@ -36,20 +36,20 @@ class PurchasingController extends Controller
         $date = date('Y-m-d');
         
         
-        $poNumber = DB::table('purchase_list_order')
-            ->select(DB::raw('DISTINCT(purchase_number) as number'))
+        $poNumber = DB::table('purchase_order')
+            ->select('purchase_number')
             ->where([
-                ['date_input',$date],
+                ['purchase_date',$date],
                 ['created_by',$name],
                 ['status','1']
                 ])
             ->count();
             
         if($poNumber == '0'){
-            $numberByDate = DB::table('purchase_list_order')
-                ->select(DB::raw('DISTINCT(purchase_number) as number'))
+            $numberByDate = DB::table('purchase_order')
+                ->select('purchase_number')
                 ->where([
-                        ['date_input',$date],
+                        ['purchase_date',$date],
                         ['status','>=','1']
                     ])
                 ->count();
@@ -64,17 +64,17 @@ class PurchasingController extends Controller
                 }
         }
         else{
-            $numberExisting = DB::table('purchase_list_order')
-                ->select(DB::raw('DISTINCT(purchase_number) as number'))
+            $numberExisting = DB::table('purchase_order')
+                ->select('purchase_number')
                 ->where([
-                    ['date_input',$date],
+                    ['purchase_date',$date],
                     ['created_by',$name],
                     ['status','1']
                     ])
                 ->first();
                 
             $no = $poNumber;
-            $nomorPembelian = $numberExisting->number;
+            $nomorPembelian = $numberExisting->purchase_date;
         }
             
         return $nomorPembelian;
