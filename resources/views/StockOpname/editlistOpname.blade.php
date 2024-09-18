@@ -4,12 +4,9 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-md-12">
-                        <button class="btn btn-sm btn-primary font-weight-bold btn-flat" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Dokumen Stock Opname
-                        </button>
-                        <button class="btn btn-sm btn-warning font-weight-bold btn-flat" type="button" onClick="window.location.reload()">
-                            Kemabali ke list Dokumen
-                        </button>
+                        <a href="#" class="font-weight-bold" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Dokumen Opname
+                        </a>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -41,11 +38,12 @@
                             <table class="table table-sm" id="tableEditList">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
-                                        <th>Nama Barang</th>
+                                        <th></th>
+                                        <th width="30%">Nama Barang</th>
                                         <th>Satuan</th>
-                                        <th>Jml. Sebelumnya</th>
-                                        <th>Jml. Opname</th>
+                                        <th>Qty. Opname</th>
+                                        <th>Stok Sebelumnya</th>
+                                        <th>Selisih</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -58,8 +56,7 @@
                                             <input type="hidden" class="form-control form-control-sm" name="invID" id="invID">
                                             <input type="hidden" class="form-control form-control-sm" name="unitID" id="unitID">
                                             <input type="hidden" class="form-control form-control-sm" name="unitVol" id="unitVol">
-                                            <input type="hidden" class="form-control form-control-sm" name="location" id="location" value="{{$docOpname->loc_so}}">
-                                            <input type="hidden" class="form-control form-control-sm rounded-0" name="total" id="total" readonly>
+                                            <input type="hidden" class="form-control form-control-sm" name="location" id="location" value="{{$docOpname->loc_so}}">                                            
                                         </td>
                                         <td class="p-0">
                                             <select class="form-control form-control-sm" name="addProduct" id="addProduct">
@@ -75,17 +72,19 @@
                                             </select>
                                         </td>
                                         <td class="p-0">
+                                            <input type="number" class="form-control form-control-sm rounded-0" name="qty" id="qty">
+                                        </td>
+                                        <td class="p-0">
                                             <input type="text" class="form-control form-control-sm rounded-0" name="lastStock" id="lastStock" readonly>
                                         </td>
                                         <td class="p-0">
-                                            <input type="number" class="form-control form-control-sm rounded-0" name="qty" id="qty">
+                                            <input type="text" name="total" id="total" class="form-control form-control-sm rounded-0" readonly>
                                         </td>
                                         <td></td>
                                     </tr>
                                     </form>
                                 </tbody>
-                                <tbody id="listOpnamePrd"></tbody>
-                                
+                                <tbody id="listOpnamePrd"></tbody>                                
                             </table>
                         </div>
                     </div>
@@ -163,7 +162,7 @@
             if (typeof qty == "undefined" || typeof qty == "0") {
                 return
             }
-            $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));
+            $("#total").val(parseFloat(lastStockVal) + parseFloat(qty));
         }
         var actQty = document.getElementById("qty");
         actQty.addEventListener('keydown', function(event) {  
