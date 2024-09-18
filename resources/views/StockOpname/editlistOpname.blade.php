@@ -162,7 +162,7 @@
             if (typeof qty == "undefined" || typeof qty == "0") {
                 return
             }
-            $("#total").val(parseFloat(lastStockVal) + parseFloat(qty));
+            $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));
         }
         var actQty = document.getElementById("qty");
         actQty.addEventListener('keydown', function(event) {  
