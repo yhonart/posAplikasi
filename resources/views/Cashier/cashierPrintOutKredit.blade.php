@@ -27,7 +27,7 @@
                     <tr>
                         <td>No</td>
                         <td>: {{$trStore->billing_number}}</td>
-                        <td>{{$trStore->tr_date}}</td>
+                        <td align="right">{{$trStore->tr_date}}</td>
                     </tr>
                     <tr>
                         <td>Cus</td>
@@ -37,7 +37,7 @@
                     <tr>
                         <td>Ksr</td>
                         <td>: {{$trStore->created_by}}</td>
-                        <td>{{date("H:i:s",strtotime($trStore->created_date))}}</td>
+                        <td align="right">{{date("H:i:s",strtotime($trStore->created_date))}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -68,7 +68,7 @@
                 </tbody>
             </table>
             <?php
-                echo (str_repeat("-", 37)."<br/>");
+                echo (str_repeat("-", 34)."<br/>");
             ?>
             
             <!--TOTAL BELANJA -->
@@ -122,7 +122,7 @@
                                     $displayBayar = $totalBayar;
                                 }
                             ?>
-                            {{number_format($displayBayar,0,',','.')}}
+                            {{number_format($trStore->t_pay,0,',','.')}}
                         </td>
                     </tr>
                     <tr>
