@@ -86,7 +86,7 @@
             <div class="container">
                 <a href="{{url('/')}}" class="navbar-brand">
                     <!--<img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
-                    <span class="brand-text font-weight-bold"><i class="fa-solid fa-store"></i> Toko LINGLING</span>
+                    <span class="brand-text font-weight-bold"><i class="fa-solid fa-store"></i> KASIR</span>
                 </a>
                 
                 <!--<ul class="navbar-nav">-->

@@ -6,14 +6,14 @@
         </div>
     </div>
 
-    <div class="form-group row align-items-end ">
+    <div class="form-group row align-items-end">
         <label for="pelanggan" class="form-label col-4">Member [F1]</label>
         <div class="col-8">
-            <select name="pelanggan" id="pelanggan" class="form-control form-control-lg select2 select2-danger" data-dropdown-css-class="select2-danger">
+            <select name="pelanggan" id="pelanggan" class="form-control form-control-lg select2">
                 <option value="0"></option>
                 @foreach($members as $m)                    
                     <option value="{{$m->idm_customer}}">
-                        {{$m->customer_store}}-{{$m->address}}
+                        {{$m->customer_store}} / {{$m->address}}
                     </option>
                 @endforeach
             </select>
@@ -107,7 +107,9 @@
         ppn = $("#ppn").find(":selected").val();
     
     $(function () {
-        $('.select2').select2();
+        $("#pelanggan").select2({
+            width: 'resolve'
+        });
         $('.select2bs4').select2({
             theme: 'bootstrap4'
         });

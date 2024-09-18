@@ -11,14 +11,11 @@
 </div>  
 <div class="row">
     <div class="col-12">
-        <div class="card card-body">
+        <div class="card card-body p-0 table-responsive">
             <p id="notifLoading" class="bg-danger p-2" style="display:none;">Proses Load Data</p>
             <input type="hidden" name="inputNoPo" id="inputNoPo" value="{{$statusPurchase->purchase_number}}">
             <table class="table table-sm table-hover table-valign-middle animate__animated animate__fadeIn" id="tableInputBarang">
                 <thead class="bg-indigo">
-                    <tr>
-                        <th colspan="11" class="bg-gray">Gunakan tombol TAB untuk memindahkan kolom !</th>
-                    </tr>
                     <tr>
                         <th width="5%">No</th>
                         <th width="20%">Nama Barang</th>

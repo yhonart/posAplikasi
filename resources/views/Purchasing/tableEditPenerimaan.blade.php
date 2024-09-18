@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <a class="text-info" type="button" data-toggle="collapse" data-target="#formCollapsePembelian" aria-expanded="false" aria-controls="formCollapsePembelian" href="#"><i class="fa-solid fa-file-pen"></i> Edit Dokumen</button>
+        <a class="text-info font-weight-bold" data-toggle="collapse" data-target="#formCollapsePembelian" aria-expanded="false" aria-controls="formCollapsePembelian" href="#"><i class="fa-solid fa-file-pen"></i> Edit Dokumen</a>
     </div>
 </div>
 <div class="row">

@@ -1525,7 +1525,8 @@ class CashierController extends Controller
         $billingCode = $prdItem->from_payment_code;
         $productID = $prdItem->product_code;
         $satuan = $prdItem->unit;
-        
+        $lastQty = $prdItem->qty;
+
         $productView = DB::table('view_product_stock')
             ->select('product_size')
             ->where([
@@ -1542,6 +1543,12 @@ class CashierController extends Controller
             $totalBelanja = $hrgSatuan * $editVal;
             $lastQty = $prdItem->qty;
             
+            //update history qty terlebih dahulu.
+            DB::table('tr_store_prod_list')
+                ->where('list_id',$id)
+                ->update([
+                    'qty_history'=>$lastQty
+                ]);
             
             // UPDATE STOCK
             $dataStock = DB::table('view_product_stock')
@@ -2120,7 +2127,9 @@ class CashierController extends Controller
                 ['trx_code',$noBill]    
             ])
             ->count();
-        if($countStatus >= '1'){
+        
+        if($countStatus >= '1'){ //Mengembalikan kedalam status sebelummnya
+            
             // Hitung nominal transaksi 
             $trxList = DB::table('tr_store_prod_list')
                 ->select(DB::raw('SUM(t_price) as total'))
@@ -2134,21 +2143,35 @@ class CashierController extends Controller
                 ->first();
                 
             if(!empty($statusReturn)){
-                $trStore = DB::table('tr_store')
+                foreach ($prdList as $prdL) {
+                    $totalPrice = $prdL->unit_price * $prdL->qty_history;
+                    DB::table('tr_store_prod_list')
+                        ->where([
+                            ['from_payment_code',$noBill],
+                            ['list_id',$prdL->list_id],
+                            ['qty_history','!=',null]
+                        ])
+                        ->update([
+                            'qty'=>$prdL->qty_history,
+                            't_price'=>$totalPrice
+                        ]);
+                }
+
+                DB::table('tr_store')
                     ->where('billing_number',$noBill)
                     ->update([
                             'status' => $statusReturn->last_status_trx, 
                             't_bill' => $trxList->total
                         ]
                     );
-                $trPrdList = DB::table('tr_store_prod_list')
+                DB::table('tr_store_prod_list')
                     ->where('from_payment_code',$noBill)
                     ->update([
                         'status' => $statusReturn->last_status_trx, 
                     ]);
             }   
         }
-        else{  
+        else{  // Mengubah status transaksi menjadi 0 /hapus
             foreach($prdList as $pest){
                 $prodID = $pest->product_code;   
                 $unit = $pest->unit;

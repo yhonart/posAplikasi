@@ -52,11 +52,7 @@
                     </div>
                 </div>
             @endif
-            <div class="row">
-                <div class="col-12">
-                    <a class="text-muted font-weight-bold align-self-end" href="{{asset('public/Document/ProsesInputBarang.pdf')}}" target="_blank"><i class="fa-solid fa-circle-info"></i> Dokumentasi Proses Pembelian Barang</a>
-                </div>
-            </div>
+            
         </div>
     </div>
     <div class="modal MODAL-CASHIER" id="modal-global-sm" tabindex="-1" role="dialog" aria-labelledby="modalCashier" aria-hidden="true">
