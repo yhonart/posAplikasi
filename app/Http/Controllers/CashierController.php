@@ -646,7 +646,28 @@ class CashierController extends Controller
                 ])
             ->orderBy('tr_store_id','desc')
             ->first();
-            
+        
+        if (!empty($trPaymentInfo)) {
+            $customerID = $trPaymentInfo->member_id;
+        }
+        else {
+            $customerID = '0';
+        }
+
+        $customerType = DB::table('m_customers as a')
+                ->select('a.customer_type','b.group_name')
+                ->leftJoin('m_cos_group as b','a.customer_type','=','b.idm_cos_group')
+                ->where('a.idm_customer',$customerID)
+                ->first();
+
+        $trPoint = DB::table('tr_member_point')
+                ->select(DB::raw('SUM(point) as point'))
+                ->where([
+                    ['core_member_id',$customerID],
+                    ['status','1']
+                    ])
+                ->first();
+
         $totalPayment = DB::table('tr_store_prod_list')
             ->select(DB::raw('SUM(t_price) as totalBilling'), DB::raw('COUNT(list_id) as countList'))
             ->where([
@@ -656,7 +677,7 @@ class CashierController extends Controller
             ->first();
             
         if($checkActiveBtn >= '1'){
-            return view ('Cashier/cashierButtonListNotEmpty', compact('pCode','members','delivery','countDisplay','trPaymentInfo','totalPayment','areaID'));
+            return view ('Cashier/cashierButtonListNotEmpty', compact('pCode','members','delivery','countDisplay','trPaymentInfo','totalPayment','areaID','customerType','trPoint'));
         }
         else{
             return view ('Cashier/cashierButtonListEmpty', compact('pCode','members','delivery','countDisplay','trPaymentInfo','totalPayment','areaID'));
@@ -1462,7 +1483,14 @@ class CashierController extends Controller
                 ['status','1']
                 ])
             ->first();
-        
+        $pointMember = DB::table('tr_member_point')
+                ->select(DB::raw('SUM(point) as point'))
+                ->where([
+                    ['core_member_id',$memberID],
+                    ['status','1']
+                    ])
+                ->first();
+
         $countKredit = DB::table('tr_kredit')
             ->select('nominal')
             ->where([
@@ -1507,7 +1535,7 @@ class CashierController extends Controller
                 
         }
             
-        return view ('Cashier/cashierModalPembayaran', compact('dataBilling','noBill','paymentMethod','tBayar','tBill','pengiriman','totalBayar','cekKredit','countKredit','bankAccount','cekRecord','cekTotalBayar','cekPayMethod'));
+        return view ('Cashier/cashierModalPembayaran', compact('dataBilling','noBill','paymentMethod','tBayar','tBill','pengiriman','totalBayar','cekKredit','countKredit','bankAccount','cekRecord','cekTotalBayar','cekPayMethod','pointMember'));
     }
     
     public function postEditItem(Request $editItem){
@@ -1859,12 +1887,35 @@ class CashierController extends Controller
         $kredit = str_replace(".","",$dataPembayaran->kredit);
         $tplusKredit = str_replace(".","",$dataPembayaran->tPlusKredit);
         $nomSelisih = str_replace(".","",$dataPembayaran->nomSelisih);
-        $tPembayaran = str_replace(".","",$dataPembayaran->tPembayaran);
+        $fieldBayar = str_replace(".","",$dataPembayaran->tPembayaran);
         $cusName = $dataPembayaran->cusName;
         $absSelisih = abs($nomSelisih);
         $record = $dataPembayaran->record;
         $updateBy = Auth::user()->name;
-        
+        $checkBoxPoint = $dataPembayaran->pointBelanja;
+        $memberID = $dataPembayaran->memberID;
+        $nilaiPoint = '0';
+
+        if (isset($checkBoxPoint)) {
+            $tPembayaran = $fieldBayar + $checkBoxPoint;
+            DB::table('tr_member_point')
+                ->where([
+                    ['status','1'],
+                    ['core_member_id',$memberID]
+                    ])
+                ->update([
+                    'status'=>'2'
+                ]);
+            //update tr_store
+            DB::table('tr_store')
+                ->where('billing_number',$noBill)
+                ->update([
+                    'point'=>$checkBoxPoint
+                ]);
+        }else {
+            $tPembayaran = $fieldBayar;
+        }
+
         $checkList = $dataPembayaran->radioMethod;
         $methodPembayaran = $dataPembayaran->metodePembayaran1;
         $bankAccount = $dataPembayaran->bankAccount1;
@@ -1874,11 +1925,25 @@ class CashierController extends Controller
         
         $pengiriman = $dataPembayaran->pengiriman;
         $ppn2 = $dataPembayaran->ppn2;
-        $memberID = $dataPembayaran->memberID;
         $nominalPPN2 = str_replace(".","",$dataPembayaran->nominalPPN2);
         $tKredit = $tBelanja-$tPembayaran;
         
-        
+        //cek nilai pembayaran sebelumnya
+        $trxLastBayar = DB::table('tr_store')
+            ->select('t_pay')
+            ->where('billing_number',$noBill)
+            ->first();
+
+        if ($trxLastBayar->t_pay > $tPembayaran) {
+            $nilaiPoint = $trxLastBayar->t_pay - $tPembayaran;
+            DB::table('tr_member_point')
+                ->insert([
+                    'core_member_id'=>$memberID,
+                    'point'=>$nilaiPoint,
+                    'status'=>'1'
+                ]);
+        }
+
         if($tPembayaran == ''){
             $tPembayaran = '0';
         }
@@ -2022,7 +2087,7 @@ class CashierController extends Controller
             }
             
         }
-        $description = "Penjualan dari ".$cusName;
+        $description = "Penjualan ".$cusName;
         $inInv = '0';
         $forInputLap = DB::table('trans_product_list_view')
             ->where('from_payment_code',$noBill)
@@ -2103,15 +2168,23 @@ class CashierController extends Controller
                 ['status','1']
                 ])
             ->first();
+
+        $point = DB::table('tr_member_point')
+                ->select(DB::raw('SUM(point) as point'))
+                ->where([
+                    ['core_member_id',$memberID],
+                    ['status','1']
+                ])
+                ->first();
         
         if($status == '4' AND $typeCetak == '1'){
-            return view ('Cashier/cashierPrintOutPembayaran', compact('noBill','trStore','trStoreList','companyName','totalPayment','paymentRecord','cekBon','countBilling','remainKredit'));
+            return view ('Cashier/cashierPrintOutPembayaran', compact('noBill','trStore','trStoreList','companyName','totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point'));
         }
         elseif($typeCetak == '2'){
-            return view ('Cashier/cashierPrintOutLoan', compact('noBill','trStore','trStoreList','companyName', 'totalPayment','paymentRecord','cekBon','countBilling','remainKredit'));
+            return view ('Cashier/cashierPrintOutLoan', compact('noBill','trStore','trStoreList','companyName', 'totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point'));
         }
         elseif($status == '3'){
-            return view ('Cashier/cashierPrintOutKredit', compact('noBill','trStore','trStoreList','companyName', 'totalPayment','paymentRecord','cekBon','countBilling','remainKredit'));
+            return view ('Cashier/cashierPrintOutKredit', compact('noBill','trStore','trStoreList','companyName', 'totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point'));
         }
     }
     
@@ -2752,5 +2825,19 @@ class CashierController extends Controller
             ->where('from_payment_code',$idTrx)
             ->delete();
     }
-    
+
+    public function changeDate(Request $reqChangeDate){
+        $tableName = $reqChangeDate->tablename;
+        $column = $reqChangeDate->column;
+        $editval = $reqChangeDate->editval;
+        $id = $reqChangeDate->id;
+        $dataId = $reqChangeDate->dataId;
+
+        DB::table($tableName)
+            ->where($dataId,$id)
+            ->update([
+                $column => $editval
+            ]);
+        
+    }    
 }

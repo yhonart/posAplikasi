@@ -37,8 +37,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <button type="submit" id="submitFilter" class="btn btn-info btn-flat"><i class="fa-solid fa-filter"></i> Filter</button>
+            <div class="col-md-12">
+                <button type="submit" id="submitFilter" class="btn btn-info btn-flat btn-sm"><i class="fa-solid fa-filter"></i> Filter</button>
+                <button type="button" class="btn btn-flat btn-sm btn-danger"><i class="fa-solid fa-file-pdf"></i> Cetak Kartu Stock</button>
                 <div class="spinner-border spinner-border-sm text-dark" role="status" id="spinnerFilter" style="display:none;">
                   <span class="sr-only">Loading...</span>
                 </div>
@@ -47,7 +48,7 @@
     </form>
 </div>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12">        
         <div id="displayFilter"></div>
     </div>
 </div>
@@ -65,7 +66,7 @@
         $.ajax({
             url: "{{route('lapInv')}}/getFilter/"+idPRD,
             type: 'GET',
-            success: function (response) {
+            success: function (response) {                
                 $("#displayFilter").html(response);
             }
         });
@@ -84,6 +85,7 @@
                 contentType: false,
                 processData: false,
                 success: function (data) {
+                    $("#infoAwal").hide();
                     $("#displayFilter").html(data);
                     $("#spinnerFilter").fadeOut();
                 }

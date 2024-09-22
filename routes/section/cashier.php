@@ -48,6 +48,7 @@ Route::get('Cashier/buttonAction/dataReturn/clickListProduk/{dataTrx}/{trxType}'
 Route::get('Cashier/buttonAction/dataReturn/clickRetur/{idBrgRet}', [App\Http\Controllers\CashierController::class, 'clickRetur']);
 Route::get('Cashier/buttonAction/dataReturn/sumDataInfo/{trxCode}', [App\Http\Controllers\CashierController::class, 'sumDataInfo']);
 Route::get('Cashier/buttonAction/dataReturn/updateDataBelanja', [App\Http\Controllers\CashierController::class, 'updateDataBelanja']);
+Route::post('Cashier/buttonAction/dataReturn/changeDate', [App\Http\Controllers\CashierController::class, 'changeDate']);
 
 Route::get('Cashier/productList/searchProduct/by/{keyword}', [App\Http\Controllers\CashierController::class, 'searchProdByKeyword']);
 Route::post('Cashier/buttonAction/dataPenjualan/postEditItem', [App\Http\Controllers\CashierController::class, 'postEditItem']);

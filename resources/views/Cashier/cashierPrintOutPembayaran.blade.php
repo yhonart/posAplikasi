@@ -116,7 +116,7 @@
                     <tr>
                         <td>Saldo Poin</td>
                         <td>:</td>
-                        <td class="txt-right" align="right"></td>
+                        <td class="txt-right" align="right">{{$point->point}}</td>
                     </tr>
                 </tbody>
             </table>

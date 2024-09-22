@@ -5,7 +5,7 @@
         1=>"On Process",
         2=>"Hold",
         3=>"Kredit",
-        4=>"Tunai"
+        4=>"Berhasil"
     );
     $arrayBG = array(
         ''=>"bg-light",
@@ -49,10 +49,11 @@
 <div class="row">
     <div class="col-12 table-responsive">
         <table class="table table-sm text-sm table-hover table-valign-middle text-nowrap">
-            <thead>
+            <thead class="text-center">
                 <tr>
-                    <th>Nomor Transaksi</th>
-                    <th>Nama Toko</th>
+                    <th>No. Transaksi</th>
+                    <th>Tanggal.</th>
+                    <th>Pelanggan</th>
                     <th>Total Transaksi (Rp.)</th>
                     <th>Pembayaran</th>
                     <th>Status</th>
@@ -66,6 +67,9 @@
                             <a href="#" class="text-info font-weight-bold CLICK-DATA-RETURN" data-id="{{$ldN->billing_number}}" data-action="2">
                                 {{$ldN->billing_number}}
                             </a>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm form-control-border date-change" name="editDate" id="editDate" value="{{$ldN->tr_date}}" onchange="saveChangeDate(this,'tr_store','tr_date','{{$ldN->tr_store_id}}','tr_store_id')">
                         </td>
                         <td>{{$ldN->customer_name}}</td>
                         <td class="text-right font-weight-bold">{{number_format($ldN->t_bill,'0',',','.')}}</td>
@@ -81,6 +85,23 @@
     </div>
 </div>
 <script>
+    $(function(){
+        $( ".date-change" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+    })
+    function saveChangeDate(editableObj,tablename,column,id,dataId){
+        $.ajax({
+            url: "{{route('Cashier')}}/buttonAction/dataReturn/changeDate",
+            type: "POST",
+            data:'tablename='+tablename+'&column='+column+'&editval='+editableObj.value+'&id='+id+'&dataId='+dataId,
+            success: function(data){
+                alertify.success('Tanggal Berhasil Dirubah');
+            }
+        });
+    }
     $(document).ready(function(){
         let divViewId = $("#divDataReturn");        
         $(".click-info-data").click(function(){
@@ -130,6 +151,7 @@
             $("#datId").val(dataTrx);
         });
     });
+
     $("form#formKonfirmAdmin").submit(function(eventvendor){
         eventvendor.preventDefault();
         let dataAction = $("#datAction").val(),

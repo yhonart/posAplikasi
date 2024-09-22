@@ -69,19 +69,39 @@ class LapInventoryController extends Controller
             }
             $dataReportInv = $dataReportInv->whereBetween('date_input',[$fromDate, $endDate]);
             $dataReportInv = $dataReportInv->get();
-        
+
+        $dataSaldoAwal = DB::table('report_inv');
+            if($produk <> '0'){
+                $dataSaldoAwal = $dataSaldoAwal->where('product_id',$produk);
+            }
+            if($lokasi <> '0'){
+                $dataSaldoAwal = $dataSaldoAwal->where('location',$lokasi);
+            }
+            $dataSaldoAwal = $dataSaldoAwal->whereBetween('date_input',[$fromDate, $endDate]);
+            $dataSaldoAwal = $dataSaldoAwal->orderBy('idr_inv','asc');
+            $dataSaldoAwal = $dataSaldoAwal->first();
+
+        $mProduct = DB::table('m_product')
+            ->select('large_unit_val','medium_unit_val','small_unit_val')
+            ->where('idm_data_product',$produk)
+            ->first();
+
         $codeDisplay = '1';
         
-        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay'));
+        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay','dataSaldoAwal','mProduct'));
     }
     
     public function getFilter($prdID){
         
         $dataReportInv = DB::table('report_inv')
             ->get();
+
+        $mProduct = DB::table('m_product')
+            ->select('idm_data_product','large_unit_val','medium_unit_val','small_unit_val')
+            ->get();
         
         $codeDisplay = '2'; 
-        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay'));
+        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay','mProduct'));
     }
     
 }

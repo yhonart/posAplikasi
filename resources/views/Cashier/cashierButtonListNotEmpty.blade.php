@@ -4,25 +4,14 @@
             <dd class="col-12">
                 <div id="totalBelanja"></div>
             </dd>
-        </dl>
-        
+        </dl>        
         <div class="form-group row">
-            <label for="noStruck" class="form-label col-4">No Struck</label>
+            <label for="noStruck" class="form-label col-md-4">No Struck</label>
             <div class="col-8">
-                <input type="text" name="noStruck" id="noStruck" class="form-control form-control-lg form-control-border" value="{{$trPaymentInfo->billing_number}}" readonly>
-            </div>
-        </div>
-        <input type="hidden" name="totalPayment" id="totalPayment" value="{{$totalPayment->totalBilling}}" readonly>
-        <div class="form-group row ">
-            <label for="tBayar" class="form-label col-4">Pembayaran</label>
-            <div class="col-8">
-                <input type="text" name="tBayar" id="tBayar" class="form-control form-control-sm form-control-border" value="0">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="tSelisih" class="form-label col-4">Pengembalian</label>
-            <div class="col-8">
-                <input type="text" name="tSelisih" id="tSelisih" class="form-control font-weight-bold form-control-sm text-danger form-control-border" readonly>
+                <input type="hidden" name="tBayar" id="tBayar" value="0">
+                <input type="hidden" name="tSelisih" id="tSelisih" readonly>
+                <input type="hidden" name="totalPayment" id="totalPayment" value="{{$totalPayment->totalBilling}}" readonly>
+                <input type="text" name="noStruck" id="noStruck" class="form-control rounded-0" value="{{$trPaymentInfo->billing_number}}" readonly>
             </div>
         </div>
         <hr>
@@ -38,7 +27,22 @@
                     @endforeach
                 </select>
             </div>
-        </div>
+        </div>   
+        <dl class="row">
+            <dt class="col-md-4">Tipe Pelanggan</dt>
+            <dd class="col-md-8">: {{$customerType->group_name}}</dd>
+            <dt class="col-md-4">Alamat</dt>
+            <dd class="col-md-8">: {{$trPaymentInfo->address}}</dd>
+            <dt class="col-md-4">Point Belanja</dt>
+            <dd class="col-md-8">: 
+                <?php
+                    if ($trPoint->point <> '') {
+                        echo "Rp. ".number_format($trPoint->point,'0',',','.');
+                    }
+                ?>                
+            </dd>
+        </dl>  
+        <hr>
         
         <div class="form-group row mb-4">
             <label for="ppn" class="form-label col-4">PPN</label>

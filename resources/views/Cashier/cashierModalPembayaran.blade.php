@@ -61,6 +61,24 @@
                             <input type="text" class="form-control form-control-lg rounded-0 font-weight-bold" name="tPembayaran" id="tPembayaran" value="{{$totalBayar->totalBilling}}" autocomplete="off" onClick="this.select();">
                         </div>
                     </div>
+                    <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
+                        <label class="col-md-4 text-right">Point Belanja</label>
+                        <div class="col-md-4">
+                            <div class="custom-control custom-checkbox">
+                                <?php
+                                    if ($pointMember->point <> '') {
+                                        $pointPlg = $pointMember->point;
+                                    }
+                                    else {
+                                        $pointPlg = '0';                                        
+                                    }
+                                ?>
+                                <input class="custom-control-input" type="checkbox" id="pointBelanja" name="pointBelanja" value="{{$pointPlg}}" onclick="myFunctionAddPoint()">
+                                <label for="pointBelanja" class="custom-control-label text-muted">Point yang bisa digunakan : Rp. {{$pointPlg}},-</label>
+                                
+                            </div>
+                        </div>
+                    </div>
                     <hr>
                     <div class="form-group row mb-1 d-flex align-items-center" id="divMethod1">
                         <label class="col-md-4 text-right">Metode Pembayaran</label>
@@ -226,8 +244,28 @@
         
     });
     
-    $(document).ready(function() {
-        
+    function myFunctionAddPoint() {
+        var checkBox = document.getElementById("pointBelanja");
+        var valCheckBox = $("#pointBelanja").val();
+        var tBayar = $("#tPembayaran").val();
+        var hitPoint = tBayar.replace(/\./g, "");
+        var bayar = "{{$totalBayar->totalBilling}}";
+        if (checkBox.checked == true){
+            $("#tPembayaran").val(accounting.formatMoney(parseInt(hitPoint) - parseInt(valCheckBox),{
+                symbol: "",
+                precision: 0,
+    	        thousand: ".",
+            }));
+        }
+        else{
+            $("#tPembayaran").val(accounting.formatMoney(parseInt(bayar),{
+                symbol: "",
+                precision: 0,
+    	        thousand: ".",
+            }));
+        }
+    }
+    $(document).ready(function() {  
         $("#metodePembayaran").change(function(){
             let findMethod = $(this).find(":selected").val();
             if (findMethod === '4'){

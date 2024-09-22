@@ -450,7 +450,7 @@ class PurchasingController extends Controller
             
             //INPUT REPORT
             $numberCode = $dataEdit;
-            $description = "Pembelian dari ".$idDataReport->store_name;
+            $description = "Pembelian ".$idDataReport->store_name;
             $inInv = $qty;
             $outInv = '0';
             $prodId = $productID;

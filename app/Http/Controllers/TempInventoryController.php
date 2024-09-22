@@ -181,8 +181,9 @@ class TempInventoryController extends Controller
     }
     
     public function insertLapInv ($numberCode, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc){
+        
         $findSatuan = DB::table('m_product_unit')
-            ->select('product_satuan', 'idm_product_satuan')
+            ->select('product_satuan', 'idm_product_satuan','product_volume')
             ->where([
                 ['core_id_product',$prodId],
                 ['product_size',$satuan]
@@ -193,7 +194,17 @@ class TempInventoryController extends Controller
             ->select('stock')
             ->where('product_id',$findSatuan->idm_product_satuan)
             ->first();
-            
+
+        if ($outInv == '0') {
+            $lastSaldo = $findStock->stock - $inInv;
+        } 
+        elseif ($inInv == '0') {
+            $lastSaldo = $findStock->stock + $outInv;
+        }
+        else {
+            $lastSaldo = '0';
+        }
+
         $inserReport = DB::table('report_inv')
             ->insert([
                 'date_input'=>now(),
@@ -206,7 +217,9 @@ class TempInventoryController extends Controller
                 'inv_out'=>$outInv,
                 'saldo'=>$findStock->stock,
                 'created_by'=>$createdBy,
-                'location'=>$loc
+                'location'=>$loc,
+                'last_saldo'=>$lastSaldo,
+                'vol_prd'=>$findSatuan->product_volume
                 ]);
         return $inserReport;
     }
