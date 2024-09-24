@@ -15,5 +15,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/resources/views/layouts/login.php
-/resources/views/layouts/sidebarpage.php
+/resources/views/layouts/login.blade.php
+/resources/views/layouts/sidebarpage.blade.php
