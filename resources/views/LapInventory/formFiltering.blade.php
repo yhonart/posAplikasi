@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-md-12">
                 <button type="submit" id="submitFilter" class="btn btn-info btn-flat btn-sm"><i class="fa-solid fa-filter"></i> Filter</button>
-                <button type="button" class="btn btn-flat btn-sm btn-danger"><i class="fa-solid fa-file-pdf"></i> Cetak Kartu Stock</button>
+                <button type="button" class="btn btn-flat btn-sm btn-danger" id="reportToPDF"><i class="fa-solid fa-file-pdf"></i> Cetak Kartu Stock</button>
                 <div class="spinner-border spinner-border-sm text-dark" role="status" id="spinnerFilter" style="display:none;">
                   <span class="sr-only">Loading...</span>
                 </div>
@@ -91,6 +91,14 @@
                 }
             });
             return false;
+        });
+
+        $("#reportToPDF").on('click', function(){
+            let valProduk = $("#produk").find(":selected").val(),
+                valFromDate = $("#fromDate").val(),
+                valEndDate = $("#endDate").val(),
+                valLocation = $("#lokasi").find(":selected").val();
+            window.open("{{route('lapInv')}}/downloadKartuStock/"+valProduk+"/"+valFromDate+"/"+valEndDate+"/"+valLocation,"_blank");            
         });
     });
 </script>

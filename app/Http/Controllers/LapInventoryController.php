@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class LapInventoryController extends Controller
 {
@@ -89,6 +90,42 @@ class LapInventoryController extends Controller
         $codeDisplay = '1';
         
         return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay','dataSaldoAwal','mProduct'));
+    }
+
+    public function downloadKartuStock($produk, $fromDate, $endDate, $lokasi){
+        $dataReportInv = DB::table('report_inv');
+            if($produk <> '0'){
+                $dataReportInv = $dataReportInv->where('product_id',$produk);
+            }
+            if($lokasi <> '0'){
+                $dataReportInv = $dataReportInv->where('location',$lokasi);
+            }
+            $dataReportInv = $dataReportInv->whereBetween('date_input',[$fromDate, $endDate]);
+            $dataReportInv = $dataReportInv->get();
+
+        $dataSaldoAwal = DB::table('report_inv');
+            if($produk <> '0'){
+                $dataSaldoAwal = $dataSaldoAwal->where('product_id',$produk);
+            }
+            if($lokasi <> '0'){
+                $dataSaldoAwal = $dataSaldoAwal->where('location',$lokasi);
+            }
+            $dataSaldoAwal = $dataSaldoAwal->whereBetween('date_input',[$fromDate, $endDate]);
+            $dataSaldoAwal = $dataSaldoAwal->orderBy('idr_inv','asc');
+            $dataSaldoAwal = $dataSaldoAwal->first();
+
+        $mProduct = DB::table('m_product')
+            ->where('idm_data_product',$produk)
+            ->first();
+
+        $locData = DB::table('m_site')
+            ->where('idm_site',$lokasi)
+            ->first();
+
+        $codeDisplay = '1';
+
+        $pdf = PDF::loadview('LapInventory/displayKartuStok', compact('dataReportInv','codeDisplay','dataSaldoAwal','mProduct','locData','fromDate','endDate'))->setPaper("A4", 'portrait');
+		return $pdf->stream();     
     }
     
     public function getFilter($prdID){

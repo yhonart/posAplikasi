@@ -26,15 +26,15 @@
                                 echo "<td></td>";
                                 echo "<td></td>";
                                 echo "<td>Saldo Awal</td>";
-                                echo "<td>0</td>";
-                                echo "<td>0</td>";
-                                echo "<td>";
+                                echo "<td class='text-right'>0</td>";
+                                echo "<td class='text-right'>0</td>";
+                                echo "<td class='text-right'>";
 
                                 if ($dataSaldoAwal->inv_in == '0') {
-                                    $saldoawal = $dataSaldoAwal->saldo - $dataSaldoAwal->inv_out;
+                                    $saldoawal = $dataSaldoAwal->saldo + $dataSaldoAwal->inv_out;
                                 }
                                 else {
-                                    $saldoawal = $dataSaldoAwal->saldo + $dataSaldoAwal->inv_in;
+                                    $saldoawal = $dataSaldoAwal->saldo - $dataSaldoAwal->inv_in;
                                 }
 
                                 if ($mProduct->medium_unit_val == '0') {
@@ -57,9 +57,9 @@
                             <td>{{$dri->number_code}}</td>
                             <td>{{$dri->product_name}}</td>
                             <td>{{$dri->description}}</td>
-                            <td>{{$dri->inv_in}}</td>
-                            <td>{{$dri->inv_out}}</td>
-                            <td>
+                            <td class="text-right">{{$dri->inv_in}}</td>
+                            <td class="text-right">{{$dri->inv_out}}</td>
+                            <td class="text-right">
                                 {{$dri->saldo}}
                             </td>
                         </tr>

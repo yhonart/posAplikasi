@@ -183,26 +183,60 @@ class TempInventoryController extends Controller
     public function insertLapInv ($numberCode, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc){
         
         $findSatuan = DB::table('m_product_unit')
-            ->select('product_satuan', 'idm_product_satuan','product_volume')
+            ->select('product_satuan', 'idm_product_satuan','product_volume','size_code')
             ->where([
                 ['core_id_product',$prodId],
                 ['product_size',$satuan]
                 ])
             ->first();
             
+        $findDescSatuan = DB::table('m_product_unit')
+                ->select('product_satuan', 'idm_product_satuan','product_volume','size_code')
+                ->where('core_id_product',$prodId)
+                ->orderBy('size_code','desc')
+                ->first();
+
         $findStock = DB::table('inv_stock')
             ->select('stock')
-            ->where('product_id',$findSatuan->idm_product_satuan)
+            ->where('product_id',$findDescSatuan->idm_product_satuan)
             ->first();
-
+        
+        $mVolPrd = DB::table('m_product')
+                ->select('large_unit_val','medium_unit_val','small_unit_val')
+                ->where('idm_data_product',$prodId)
+                ->first();
+        
+        if ($findDescSatuan->size_code == '1') {
+            $inputValIn = $inInv;
+            $inputValOut = $outInv;
+        }
+        else {
+            // Jika yang di input dengan satuan code :
+            if ($findSatuan->size_code == '1') {
+                $inputValIn = $inInv * $mVolPrd->small_unit_val;
+                $inputValOut = $outInv * $mVolPrd->small_unit_val;
+            }
+            elseif ($findSatuan->size_code == '2') {
+                $inputValIn = $inInv * $mVolPrd->large_unit_val;
+                $inputValOut = $outInv * $mVolPrd->large_unit_val;
+            }
+            elseif ($findSatuan->size_code == '3') {
+                $inputValIn = $inInv;
+                $inputValOut = $outInv;
+            }
+        }
+        
         if ($outInv == '0') {
-            $lastSaldo = $findStock->stock - $inInv;
+            $lastSaldo = $findStock->stock - $inputValIn;
+            $actualInput = $inInv;
         } 
         elseif ($inInv == '0') {
-            $lastSaldo = $findStock->stock + $outInv;
+            $lastSaldo = $findStock->stock + $inputValOut;
+            $actualInput = $outInv;
         }
         else {
             $lastSaldo = '0';
+            $actualInput = '0';
         }
 
         $inserReport = DB::table('report_inv')
@@ -212,14 +246,16 @@ class TempInventoryController extends Controller
                 'product_id'=>$prodId,
                 'product_name'=>$prodName,
                 'satuan'=>$findSatuan->product_satuan,
+                'satuan_code'=>$findDescSatuan->size_code,
                 'description'=>$description,
-                'inv_in'=>$inInv,
-                'inv_out'=>$outInv,
+                'inv_in'=>$inputValIn,
+                'inv_out'=>$inputValOut,
                 'saldo'=>$findStock->stock,
                 'created_by'=>$createdBy,
                 'location'=>$loc,
                 'last_saldo'=>$lastSaldo,
-                'vol_prd'=>$findSatuan->product_volume
+                'vol_prd'=>$findSatuan->product_volume,
+                'actual_input'=>$actualInput
                 ]);
         return $inserReport;
     }
