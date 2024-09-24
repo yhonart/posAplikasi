@@ -173,7 +173,7 @@
             <!-- Brand Logo -->
             <a href="{{route('home')}}" class="brand-link"> 
             <img src="{{asset('public/images/favicon_dazira/favicon-32x32.png')}}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">     
-                <span class="brand-text font-weight-bold">Toko Ling Ling</span>
+                <span class="brand-text font-weight-bold">Application POS</span>
             </a>
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
