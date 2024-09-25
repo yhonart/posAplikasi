@@ -70,7 +70,8 @@ class DashboardController extends Controller
             ->whereBetween('date_trx',[$fromDate, $endDate])
             ->first();
             
-        $countTransaksi = DB::table('tr_payment_record')
+        $countTransaksi = DB::table('trx_record_view')
+            ->where('status_by_store','>=','3')
             ->whereBetween('date_trx',[$fromDate, $endDate])
             ->count();
             
@@ -112,6 +113,7 @@ class DashboardController extends Controller
         if($condition == "alltrx"){
             $allCondition = DB::table('view_trx_method')
                 ->whereBetween('date_trx',[$fromDate, $endDate])
+                ->orderBy('core_id_trx','asc')
                 ->get();
         }
         elseif($condition == "onprocess"){
