@@ -81,9 +81,9 @@ class DashboardController extends Controller
             ->where('trx_method','4')
             ->first();
             
-        $lastTrxonProcess = DB::table('tr_store_prod_list')
+        $lastTrxonProcess = DB::table('trx_record_view')
             ->whereBetween('date',[$fromDate, $endDate])
-            ->where('status','1')
+            ->where('status_by_store','1')
             ->count();
             
         $lastTrxKredit = DB::table('tr_kredit')
