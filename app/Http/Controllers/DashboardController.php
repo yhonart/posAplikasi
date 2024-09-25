@@ -66,7 +66,7 @@ class DashboardController extends Controller
         
         $lastTrxAll = DB::table('trx_record_view')
             ->select(DB::raw('SUM(total_struk) as totalAll'))
-            ->where('status_by_store','!=','2')
+            ->where('status_by_store','>=','3')
             ->whereBetween('date_trx',[$fromDate, $endDate])
             ->first();
             
