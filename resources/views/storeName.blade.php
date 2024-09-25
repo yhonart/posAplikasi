@@ -1,0 +1,1 @@
+<span class="brand-text font-weight-bold">{{$storeName->company_name}}</span>
