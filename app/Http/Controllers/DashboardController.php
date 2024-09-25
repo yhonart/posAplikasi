@@ -64,8 +64,9 @@ class DashboardController extends Controller
         // echo $fromDate."/".$endDate;
         $thisPeriode = date("m-Y");
         
-        $lastTrxAll = DB::table('tr_payment_record')
+        $lastTrxAll = DB::table('trx_record_view')
             ->select(DB::raw('SUM(total_struk) as totalAll'))
+            ->where('status_by_store','!=','2')
             ->whereBetween('date_trx',[$fromDate, $endDate])
             ->first();
             
