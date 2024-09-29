@@ -17,8 +17,10 @@
             @if($checkArea <> 0).
             <div class="row">
                 <div class="col-12">
-                   <div class="card card-body">
-                       <p class="border border-info p-3 rounded-lg font-weight-bold text-info bg-light">*Pilih nama pelanggan untuk input pembayaran kredit</p>
+                    <div class="alert alert-primary" role="alert">
+                        *Pilih nama pelanggan untuk input pembayaran kredit !
+                    </div>                       
+                    <div class="card card-body">
                         <div class="row">
                             <div class="col-12 col-md-3">
                                 <div class="form-group">

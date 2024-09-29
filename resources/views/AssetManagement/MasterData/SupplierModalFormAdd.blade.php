@@ -114,8 +114,7 @@
                     contentType: false,
                     processData: false,
                     success: function (data) {                    
-                        global_style.hide_modal();
-                        global_style.load_table(loadSpinner,routeIndex,tableData,displayData);                        
+                        window.location.reload();
                     },                
                 });
                 return false;

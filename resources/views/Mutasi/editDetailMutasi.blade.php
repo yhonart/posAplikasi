@@ -1,10 +1,17 @@
+<hr>
 <div class="row mb-2">
     <div class="col-12">
-        <a class="text-muted font-weight-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <a class="btn btn-sm btn-default btn-flat font-weight-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
             <i class="fa-solid fa-circle-info"></i> Dokumen Mutasi
         </a>
+        <button type="submit" class="btn btn-sm btn-default font-weight-bold btn-flat" id="submitDataMutasi" data-number="{{$tbMutasi->number}}"><i class="fa-solid fa-circle-check"></i> Simpan Perubahan</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
         <div class="collapse" id="collapseExample">
-          <div class="card card-body">
+            <div class="card card-body">
+            <input type="hidden" name="numberMutasi" id="numberMutasi" value="{{$tbMutasi->number}}">
             <div id="editDocMutasi"></div>
           </div>
         </div>
@@ -14,9 +21,7 @@
     <div class="col-12">
         <div class="card card-body">
             <form class="form mb-2" id="formSubmitUpdate">
-                <input type="hidden" name="numberMutasi" id="numberMutasi" value="{{$tbMutasi->number}}">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-sm btn-warning font-weight-bold btn-flat" id="submitDataMutasi" data-number="{{$tbMutasi->number}}"><i class="fa-solid fa-circle-check"></i> Simpan Perubahan</button>
                 </div>
             </form>
             <table class="table table-sm table-hover table-valign-middle">

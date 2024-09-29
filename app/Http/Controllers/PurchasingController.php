@@ -749,5 +749,24 @@ class PurchasingController extends Controller
         // return view ('Cashier/cashierProductListHarga', compact('hargaSatuan'));
         return response()->json(['error' => 'Product not found'], 404);
     }
+
+    public function postEditDocPenerimaan(Request $reqEditDoc){
+        $updateBy = Auth::user()->name;
+        DB::table('purchase_order')
+            ->where('id_purchase',$reqEditDoc->purchaseID)
+            ->update([
+                'supplier_id'=>$reqEditDoc->supplier,
+                'purchase_date'=>$reqEditDoc->tglTrx,
+                'delivery_by'=>$reqEditDoc->deliveryBy,
+                'delivery_date'=>$reqEditDoc->dateDelivery,
+                'payment_methode'=>$reqEditDoc->methodPayment,
+                'tempo'=>$reqEditDoc->dayKredit,
+                'faktur_number'=>$reqEditDoc->noFaktur,
+                'faktur_date'=>$reqEditDoc->tglFaktur,
+                'ppn_type'=>$reqEditDoc->ppn,
+                'updated_date'=>now(),
+                'updated_by'=>$updateBy
+            ]);
+    }
     
 }

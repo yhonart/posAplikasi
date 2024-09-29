@@ -8,6 +8,7 @@
         <div class="collapse multi-collapse" id="formCollapsePembelian">
             <div class="card card-body">
                 <form class="form" id="fromEditPembelian">
+                    <input type="hidden" name="purchaseID" id="purchaseID" value="{{$editPurchase->id_purchase}}">
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="form-group row">
@@ -114,8 +115,8 @@
                                 <label class="label col-6">%</label>
                             </div>
                             <div class="form-group row">
-                                <div class="col-6">
-                                    <button type="submit" class="btn btn-success btn-sm btn-block font-weight-bold elevation-2" id="submitPenerimaan">Update</button>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-success btn-sm btn-block font-weight-bold elevation-2 rounded-0" id="submitPenerimaan">Update Dokumen</button>
                                 </div>
                             </div>
                         </div>
@@ -142,4 +143,36 @@
             }
         });
     })
+
+    $(document).ready(function(){
+
+        var dataEdit = "{{$editPurchase->id_purchase}}";
+        $("form#fromEditPembelian").submit(function(event){            
+            event.preventDefault();
+            $.ajax({
+                url: "{{route('Purchasing')}}/editPurchasing/postEditDocPenerimaan",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {                    
+                    loadEditDoc(dataEdit);
+                }
+            });
+            return false;
+        });
+    });
+
+    function loadEditDoc(dataEdit){
+        $.ajax({
+            type : 'get',
+            url : "{{route('Purchasing')}}/tablePenerimaan/editTable/"+dataEdit,
+            success : function(response){
+                $(".LOAD-SPINNER").fadeOut();
+                $("#divPageProduct").html(response);
+            }
+        });
+    }
 </script>

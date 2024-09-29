@@ -152,7 +152,7 @@
                         else if(data.success){
                             alertify.success(data.success);
                             global_style.hide_modal();
-                            global_style.load_table(loadSpinner,routeIndex,tableData,displayData);
+                            window.location.reload();
                         }
                     },                
                 });

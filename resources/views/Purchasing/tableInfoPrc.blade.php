@@ -83,11 +83,7 @@
 </div>
 <div class="row" id="tablePembelian">
     <div class="col-12">
-        <div class="card card-info rounded-0 card-outline">
-            <div class="card-body">
-                <div class="tab-pane fade show active" id="custom-purchase-data" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab"></div>
-            </div>
-        </div>
+        <div id="custom-purchase-data" role="tabpanel"></div>
     </div>
 </div>
 <script>

@@ -1,6 +1,9 @@
 <div class="card">
-    <div class="card-header">
+    <div class="card-header border-0">
         <h3 class="card-title">Tambah Akun Pembayaran</h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
     </div>
     <div class="card-body">
         <form id="formAddAkunPembayaran">
@@ -47,7 +50,7 @@
                 contentType: false,
                 processData: false,
                 success: function (data) {                    
-                    window.location.reload();
+                    window.location.reload();                    
                 },                
             });
             return false;

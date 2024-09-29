@@ -135,6 +135,7 @@ class StockListController extends Controller
                 ['product_size',$size]
                 ])
             ->count();
+
         if($countUnit == "0"){
             $msg = array('warning' => 'Pastikan satuan pada pengaturan volume & satuan sudah dimasukkan!');
         }
@@ -270,13 +271,15 @@ class StockListController extends Controller
             ->orWhere('product_name',$prodName)
             ->count();
 
-            
-        $statement = DB::table('m_product')
-            ->select('idm_data_product')
-            ->orderBy('idm_data_product','desc')
-            ->first();
+        $id=DB::select("SHOW TABLE STATUS LIKE 'm_product'");
+            $nextIdProd=$id[0]->Auto_increment;
 
-        $nextIdProd = $statement->idm_data_product;
+        // $statement = DB::table('m_product')
+        //     ->select('idm_data_product')
+        //     ->orderBy('idm_data_product','desc')
+        //     ->first();
+        
+        // $nextIdProd = $statement->idm_data_product;
 
         if ($prodName=="" OR $prodCategory=="0") {
             $msg = array('warning' => '! FIELD YANG BERTANDA BINTANG WAJIB DI ISI (*).');        
@@ -825,6 +828,21 @@ class StockListController extends Controller
                 'size_code'=>$sizecode,
                 'status'=>'1'
             ]);
+        
+        $getCusGroup = DB::table('m_cos_group')
+            ->get();
+            
+        foreach($getCusGroup as $gcg){
+            DB::table('m_product_price_sell')
+            ->insert([
+                'core_product_price'=>$prdID,
+                'size_product'=>$prdSize,
+                'cos_group'=>$gcg->idm_cos_group,
+                'price_sell'=>'0',
+                'price_sell_status'=>'1'
+            ]);
+        }
+        
             
         // $countKonv = DB::table('m_product_unit')
         //     ->where([

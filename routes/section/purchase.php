@@ -23,6 +23,7 @@ Route::get('Purchasing/modalSupplier/{supplierID}', [App\Http\Controllers\Purcha
 //Edit Table
 Route::get('Purchasing/tablePenerimaan/editTable/{dataEdit}', [App\Http\Controllers\PurchasingController::class, 'editTablePO']);
 Route::get('Purchasing/tablePenerimaan/btnApprove/{dataEdit}', [App\Http\Controllers\PurchasingController::class, 'btnApprove']);
+Route::post('Purchasing/editPurchasing/postEditDocPenerimaan', [App\Http\Controllers\PurchasingController::class, 'postEditDocPenerimaan']);
 
 // Dashboar 
 Route::get('Purchasing/dashboard', [App\Http\Controllers\PurchasingController::class, 'mainDashboard']);

@@ -85,6 +85,8 @@ Route::get('lapInv', [App\Http\Controllers\LapInventoryController::class, 'mainl
 //global setting
 Route::get('glob_setting', [App\Http\Controllers\GlobSettingController::class, 'mainSetting'])->name('glob_setting');
 
+Route::get('lapLabaRugi', [App\Http\Controllers\LapLabaRugiController::class, 'mainPage'])->name('lapLabaRugi');
+
 
 
 
@@ -112,6 +114,7 @@ include __DIR__.'/section/mutasi.php';
 include __DIR__.'/section/store.php';
 include __DIR__.'/section/ReturnItem.php';
 include __DIR__.'/section/LapInventory.php';
+include __DIR__.'/section/LapLabaRugi.php';
 
 //setup apl
 include __DIR__.'/section/globalsetting.php';
