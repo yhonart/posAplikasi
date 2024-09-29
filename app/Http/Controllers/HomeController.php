@@ -26,6 +26,20 @@ class HomeController extends Controller
      */
      
      //cek user role
+
+    public function storeName (){
+        $storeName = DB::table('m_company')
+            ->first();
+
+        return view ('storeName', compact('storeName'));
+    }
+
+    public function storeNameLogin (){
+        $storeName = DB::table('m_company')
+            ->first();
+            
+        return view ('storeName', compact('storeNameLogin'));
+    }
     public function userRole (){
         if (Auth::check()) { 
             $userID = Auth::user()->id;

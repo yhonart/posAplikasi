@@ -2558,7 +2558,7 @@ class CashierController extends Controller
             if($hakakses=='2'){
                 $tableMthodPayment = $tableMthodPayment->where('created_by',$createdBy);
             }
-            
+            $tableMthodPayment = $tableMthodPayment->where('status_by_store','>=','3');
             $tableMthodPayment = $tableMthodPayment->orderBy('core_id_trx','ASC');
             $tableMthodPayment = $tableMthodPayment->get();
             

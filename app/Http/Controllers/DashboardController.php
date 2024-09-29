@@ -64,12 +64,14 @@ class DashboardController extends Controller
         // echo $fromDate."/".$endDate;
         $thisPeriode = date("m-Y");
         
-        $lastTrxAll = DB::table('tr_payment_record')
+        $lastTrxAll = DB::table('trx_record_view')
             ->select(DB::raw('SUM(total_struk) as totalAll'))
+            ->where('status_by_store','>=','3')
             ->whereBetween('date_trx',[$fromDate, $endDate])
             ->first();
             
-        $countTransaksi = DB::table('tr_payment_record')
+        $countTransaksi = DB::table('trx_record_view')
+            ->where('status_by_store','>=','3')
             ->whereBetween('date_trx',[$fromDate, $endDate])
             ->count();
             
@@ -79,8 +81,8 @@ class DashboardController extends Controller
             ->where('trx_method','4')
             ->first();
             
-        $lastTrxonProcess = DB::table('tr_store_prod_list')
-            ->whereBetween('date',[$fromDate, $endDate])
+        $lastTrxonProcess = DB::table('view_billing_action')
+            ->whereBetween('tr_date',[$fromDate, $endDate])
             ->where('status','1')
             ->count();
             
@@ -111,6 +113,7 @@ class DashboardController extends Controller
         if($condition == "alltrx"){
             $allCondition = DB::table('view_trx_method')
                 ->whereBetween('date_trx',[$fromDate, $endDate])
+                ->orderBy('core_id_trx','asc')
                 ->get();
         }
         elseif($condition == "onprocess"){
