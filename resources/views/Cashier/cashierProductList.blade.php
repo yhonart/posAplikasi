@@ -20,7 +20,7 @@
             <input type="hidden" name="transNumber" id="transNumber" value="{{$billNumber}}">
             <input type="hidden" name="prodName" id="prodName" autocomplete="off" list="browsers">
             <input type="hidden" name="prodNameHidden1" id="prodNameHidden1">
-            <input type="hidden" name="hargaModal" id="hargaModal">
+            <input type="text" name="hargaModal" id="hargaModal">
             <tr>
                 <td colspan="2" class="p-0">
                     <select name="prodNameHidden" id="prodNameHidden" class="form-control form-control-sm" style="width: 100%">
