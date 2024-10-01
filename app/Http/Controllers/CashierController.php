@@ -422,6 +422,7 @@ class CashierController extends Controller
 
         $dataSatuan = $satuanSell->product_satuan;
         $idPrdUnit = $satuanSell->idm_product_satuan;
+        $hrgModal = $satuanSell->product_price_order;
         
         // hitung jumlah produk yang ada list produk yang sama 
         $countProduct = DB::table('tr_store_prod_list')
@@ -448,6 +449,7 @@ class CashierController extends Controller
                     'stock'=>$stock,
                     'status'=>'1',
                     'created_by'=>$createdBy,
+                    'capital_price'=>$hrgModal,
                     'date'=>now()
                 ]); 
             
