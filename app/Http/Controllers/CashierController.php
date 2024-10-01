@@ -313,7 +313,7 @@ class CashierController extends Controller
             ->first();
         $idSatuan = $sizeProd->product_size;
         
-        //Cek harga di penjualan 
+        //Cek jumlah harga yang sesuai dengan group di customer
         $countSellByType = DB::table('m_product_price_sell')
             ->where([
                 ['core_product_price',$idPrd],
@@ -337,11 +337,21 @@ class CashierController extends Controller
                 ['cos_group',$memberType],
                 ['size_product',$idSatuan],
             ]);
+
+            $hargaModal = DB::table('m_product_unit')
+                ->select('product_price_order')
+                ->where([
+                    ['core_id_product',$idPrd],
+                    ['product_size',$idSatuan]
+                ])
+                ->first();
+
             $hargaSatuan = $hargaSatuan->first();
             return response()->json([
                 'price' => $hargaSatuan->price_sell,
                 'discount' => '0',
-                'prdStock' => $dataStock->stock
+                'prdStock' => $dataStock->stock,
+                'hrgModal' => $hargaModal->product_price_order
             ]); 
         }
         else {
@@ -350,11 +360,13 @@ class CashierController extends Controller
                 ['core_id_product',$idPrd],
                 ['product_size',$idSatuan]
             ]);
+
             $hargaSatuan = $hargaSatuan->first();
             return response()->json([
                 'price' => $hargaSatuan->product_price_sell,
                 'discount' => '0',
-                'prdStock' => $dataStock->stock
+                'prdStock' => $dataStock->stock,
+                'hrgModal' => $hargaSatuan->product_price_order
             ]);                
         }   
 

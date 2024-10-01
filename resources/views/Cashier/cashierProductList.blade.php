@@ -18,10 +18,11 @@
         <form id="formInputBarangKasir">
             <input type="hidden" name="createdBy" id="createdBy" value="{{Auth::user()->name}}">
             <input type="hidden" name="transNumber" id="transNumber" value="{{$billNumber}}">
+            <input type="hidden" name="prodName" id="prodName" autocomplete="off" list="browsers">
+            <input type="hidden" name="prodNameHidden1" id="prodNameHidden1">
+            <input type="hidden" name="hargaModal" id="hargaModal">
             <tr>
                 <td colspan="2" class="p-0">
-                    <input type="hidden" class="form-control form-control-sm prd-input" name="prodName" id="prodName" autocomplete="off" list="browsers">
-                    <input type="hidden" class="form-control form-control-sm prd-input" name="prodNameHidden1" id="prodNameHidden1">
                     <select name="prodNameHidden" id="prodNameHidden" class="form-control form-control-sm" style="width: 100%">
                         <option value="0" readonly>Tekan ENTER</option>
                         @foreach($productList as $pL)
@@ -84,6 +85,7 @@
         });
         
         let hargaSatuan = document.getElementById("hargaSatuan"),
+            hargaModal = document.getElementById("hargaModal"),
             discount = document.getElementById("disc"),
             jumlah = document.getElementById("jumlah"),
             stock = document.getElementById("stock"),
@@ -108,14 +110,14 @@
             fetch("{{route('Cashier')}}/productList/prdResponse/" + productID)
             .then(response => response.json())
             .then(data => {                    
-                if ((data.price) || (data.discount) || (data.prdStock)) {
+                if ((data.price) || (data.discount) || (data.prdStock) || (data.hrgModal)) {
                     hargaSatuan.value = accounting.formatMoney(data.price,{
                         symbol: "",
                         precision: 0,
                         thousand: ".",
                     });
                     discount.value = data.discount;
-
+                    hargaModal.value = data.hrgModal;
                     //Menghitung Jumlah
                     let qtyVal = '1',
                         priceVal = data.price,
