@@ -122,4 +122,27 @@ class GlobSettingController extends Controller
             ->where('idm_payment',$id)
             ->delete();
     }
+
+    public function generateData(){
+        $getDataTrx = DB::table('tr_store_prod_list')
+            ->get();
+
+        $getDataOrder = DB::table('m_product_unit')
+            ->get();
+
+        foreach ($getDataTrx as $gdt) {
+            foreach ($getDataOrder as $gdo) {
+                DB::table('tr_store_prod_list')
+                    ->where([
+                        ['product_code',$gdo->core_id_product],
+                        ['satuan',$gdo->product_size]
+                    ])
+                    ->update([
+                        'capital_price'=>$gdo->product_price_order
+                    ]);
+            }
+        }
+
+        return view('globalSetting/generateData', compact('getDataTrx','getDataOrder'));
+    }
 }

@@ -42,6 +42,8 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-sm btn-info btn-flat"><i class="fa-solid fa-filter"></i> Filter</button>
+                                    <button type="button" class="btn btn-sm btn-success btn-flat" id="reportToExcel"><i class="fa-solid fa-file-excel"></i> Download Excel</button>
+                                    <button type="button" class="btn btn-sm btn-danger btn-flat" id="reportToPdf"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +74,21 @@
                 $("#displayFilterTable").html(response);
             }
         });
-    })
+    });
+
+    $(document).ready(function(){
+        var productName = $("#produk").val(),
+            fromDate = $("#fromDate").val(),
+            endDate = $("#endDate").val();
+        
+        $("#reportToExcel").on('click', function(){
+            window.open("{{route('lapLabaRugi')}}/getDownloadExcel/"+productName+"/"+fromDate+"/"+endDate,"_blank");
+        });
+        $("#reportToPdf").on('click', function(){
+            window.open("{{route('lapLabaRugi')}}/getDownloadPdf/"+productName+"/"+fromDate+"/"+endDate,"_blank");
+        });
+        
+    });
 
 </script>
 @endsection

@@ -88,7 +88,7 @@ Route::get('glob_setting', [App\Http\Controllers\GlobSettingController::class, '
 
 Route::get('lapLabaRugi', [App\Http\Controllers\LapLabaRugiController::class, 'mainPage'])->name('lapLabaRugi');
 
-
+Route::get('generateData', [App\Http\Controllers\GlobSettingController::class, 'generateData'])->name('generateData');
 
 
 include __DIR__.'/section/accounting.php';
