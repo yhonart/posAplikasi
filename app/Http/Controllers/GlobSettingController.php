@@ -163,8 +163,7 @@ class GlobSettingController extends Controller
             $sizeCodeSatu = DB::table('m_product_unit')
                 ->where([
                     ['size_code','1'],
-                    ['core_id_product','228'],
-                    ['idm_product_satuan',$codeDua->idm_product_satuan]
+                    ['core_id_product',$codeDua->core_id_product]
                     ])
                 ->first();
             if ($codeDua->size_code == '2') {
