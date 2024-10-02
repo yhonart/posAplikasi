@@ -28,35 +28,31 @@
     </thead>
     <tbody>
         @foreach($tableProduct as $mpd1)
-            @foreach($mProduct as $mpd)
-                @if($mpd->product_code == $mpd1->idm_data_product)
-                    <tr>
-                        <td>
-                            <span title="{{$mpd->list_id}} - {{$mpd->from_payment_code}}">{{$mpd->product_name}}</span>                        
-                        </td>
-                        <td>{{$mpd->unit}}</td>
-                        <td>{{$mpd->qty}}</td>
-                        <td class="text-right">{{number_format($mpd->m_price,'0',',','.')}}</td>
-                        <td class="text-right">{{number_format($mpd->capital_price,'0',',','.')}}</td>
-                        <td class="text-right">{{number_format($mpd->t_price,'0',',','.')}}</td>
-                        <td class="text-right">
-                            <?php
-                                $totHpp = $mpd->capital_price * $mpd->qty;
-                                echo number_format($totHpp, '0',',','.');
-                            ?>
-                        </td>
-                        <td class="text-right">
-                            <?php
-                                $selisih = $mpd->t_price - $totHpp;
-                                echo number_format($selisih,'0',',','.');
-                            ?>
-                        </td>
-                        <td>
+            <tr>
+                <td>
+                    <span title="{{$mpd->list_id}} - {{$mpd->from_payment_code}}">{{$mpd->product_name}}</span>                        
+                </td>
+                <td>{{$mpd->unit}}</td>
+                <td>{{$mpd->qty}}</td>
+                <td class="text-right">{{number_format($mpd->m_price,'0',',','.')}}</td>
+                <td class="text-right">{{number_format($mpd->capital_price,'0',',','.')}}</td>
+                <td class="text-right">{{number_format($mpd->t_price,'0',',','.')}}</td>
+                <td class="text-right">
+                    <?php
+                        $totHpp = $mpd->capital_price * $mpd->qty;
+                        echo number_format($totHpp, '0',',','.');
+                    ?>
+                </td>
+                <td class="text-right">
+                    <?php
+                        $selisih = $mpd->t_price - $totHpp;
+                        echo number_format($selisih,'0',',','.');
+                    ?>
+                </td>
+                <td>
 
-                        </td>
-                    </tr>
-                @endif
-            @endforeach
+                </td>
+            </tr>
         @endforeach
     </tbody>
 </table>

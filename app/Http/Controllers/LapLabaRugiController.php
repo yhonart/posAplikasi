@@ -51,6 +51,21 @@ class LapLabaRugiController extends Controller
         $mProduct = $mProduct->whereBetween('a.date',[$fromDate, $endDate]);
         $mProduct = $mProduct->orderBy('b.product_name','ASC');
         $mProduct = $mProduct->get();
+        
+        $sumPrice = DB::table('tr_store_prod_list as a');
+        $sumPrice = $sumPrice->select('');
+        $sumPrice = $sumPrice->leftJoin('m_product as b', 'a.product_code','=','b.idm_data_product');
+        if ($prdID <> '0') {
+            $sumPrice = $sumPrice->where([
+                    ['a.product_code',$prdID]
+            ]);            
+        }
+        $sumPrice = $sumPrice->where('a.status','4');
+        $sumPrice = $sumPrice->whereBetween('a.date',[$fromDate, $endDate]);
+        $sumPrice = $sumPrice->orderBy('b.product_name','ASC');
+        $sumPrice = $sumPrice->get();
+
+        
 
         return view('lapLabaRugi/getDownloadExcel', compact('mProduct','tableProduct'));
     }
