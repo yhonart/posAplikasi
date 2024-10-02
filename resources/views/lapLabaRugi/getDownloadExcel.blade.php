@@ -30,7 +30,7 @@
         @foreach($mProduct as $mpd1)
             <tr>
                 <td colapse="9">
-                    <span title="{{$mpd1->list_id}} - {{$mpd1->from_payment_code}}">{{$mpd1->product_name}}</span>                        
+                    <b title="{{$mpd1->list_id}} - {{$mpd1->from_payment_code}}">{{$mpd1->product_name}}</b>                        
                 </td>
             </tr>
 
@@ -66,7 +66,7 @@
             @endforeach
 
             @foreach($sumPrice as $sp)
-                @if($sp->product_code == $mpd->product_code)
+                @if($sp->product_code == $mpd1->product_code)
                     <tr>
                         <td></td>
                         <td></td>
