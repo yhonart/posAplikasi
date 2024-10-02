@@ -564,7 +564,7 @@ class StockListController extends Controller
                 DB::table('m_product_unit')
                     ->where([
                         ['core_id_product',$idProd],
-                        ['size_code',$selectCode->size_code]
+                        ['size_code',$sc->size_code]
                     ])
                     ->update([
                         'product_price_order'=>$colUpdateHrg
