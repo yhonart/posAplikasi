@@ -17,11 +17,23 @@
                 <div class="col-12">
                     <form id="formFilterLaporan">
                         <div class="row">
-                        <div class="col-md-3">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="label">Tipe Laporan</label>
+                                    <select class="form-control form-control-sm rounded-0" name="produk" id="produk">
+                                        <option value="1">Ringkasan</option>      
+                                        <option value="2">Detail</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="label">Produk Item</label>
                                     <select class="form-control form-control-sm rounded-0" name="produk" id="produk">
-                                        <option value="0">All Item</option>                                        
+                                        <option value="0">All Item</option>      
+                                        @foreach($mProduct as $mp)
+                                            <option value="{{$mp->idm_data_product}}">{{$mp->product_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -79,13 +91,14 @@
     $(document).ready(function(){
         var productName = $("#produk").val(),
             fromDate = $("#fromDate").val(),
-            endDate = $("#endDate").val();
+            endDate = $("#endDate").val(),
+            tipeCetak = $("#endDate").val();
         
         $("#reportToExcel").on('click', function(){
-            window.open("{{route('lapLabaRugi')}}/getDownloadExcel/"+productName+"/"+fromDate+"/"+endDate,"_blank");
+            window.open("{{route('lapLabaRugi')}}/getDownloadExcel/"+productName+"/"+fromDate+"/"+endDate+"/"+tipeCetak,"_blank");
         });
         $("#reportToPdf").on('click', function(){
-            window.open("{{route('lapLabaRugi')}}/getDownloadPdf/"+productName+"/"+fromDate+"/"+endDate,"_blank");
+            window.open("{{route('lapLabaRugi')}}/getDownloadPdf/"+productName+"/"+fromDate+"/"+endDate+"/"+tipeCetak,"_blank");
         });
         
     });
