@@ -16,7 +16,9 @@
         <tbody>
             @foreach($mProduct as $mpd)
                 <tr>
-                    <td>{{$mpd->product_name}}</td>
+                    <td>
+                        <span title="{{$mpd->list_id}}">{{$mpd->product_name}}</span>                        
+                    </td>
                     <td>{{$mpd->unit}}</td>
                     <td>{{$mpd->qty}}</td>
                     <td class="text-right">{{number_format($mpd->m_price,'0',',','.')}}</td>

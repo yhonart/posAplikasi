@@ -127,7 +127,7 @@ class GlobSettingController extends Controller
         $getDataTrx = DB::table('tr_store_prod_list')
             ->get();
 
-        $getDataOrder = DB::table('m_product_unit')
+        $getDataOrder = DB::table('m_product_unit')            
             ->get();
 
         $dateConfig = "2024-09-09";
