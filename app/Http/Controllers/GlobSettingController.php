@@ -152,7 +152,7 @@ class GlobSettingController extends Controller
         
         //Ambil data dengan sizecode selain 1
         $sizeCodeDua = DB::table('m_product_unit')
-        ->select('idm_product_satuan','product_price_order')
+        ->select('idm_product_satuan','product_price_order','size_code')
         ->where([
             ['size_code','!=','1'],
             ['core_id_product','228']
