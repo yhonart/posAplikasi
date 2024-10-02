@@ -27,7 +27,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($tableProduct as $mpd1)
+        @foreach($tableProduct as $mpd)
             <tr>
                 <td>
                     <span title="{{$mpd->list_id}} - {{$mpd->from_payment_code}}">{{$mpd->product_name}}</span>                        
@@ -53,6 +53,16 @@
 
                 </td>
             </tr>
+            @foreach($sumPrice as $sp)
+                @if($sp->product_code == $mpd->product_code)
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{$sp->hargaModal}}</td>
+                    </tr>
+                @endif
+            @endforeach
         @endforeach
     </tbody>
 </table>

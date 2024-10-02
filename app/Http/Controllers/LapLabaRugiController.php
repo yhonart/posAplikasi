@@ -53,7 +53,7 @@ class LapLabaRugiController extends Controller
         $mProduct = $mProduct->get();
         
         $sumPrice = DB::table('tr_store_prod_list as a');
-        $sumPrice = $sumPrice->select('');
+        $sumPrice = $sumPrice->select('a.product_code',DB::row('SUM(m_price) as hargaModal'));
         $sumPrice = $sumPrice->leftJoin('m_product as b', 'a.product_code','=','b.idm_data_product');
         if ($prdID <> '0') {
             $sumPrice = $sumPrice->where([
@@ -67,6 +67,6 @@ class LapLabaRugiController extends Controller
 
         
 
-        return view('lapLabaRugi/getDownloadExcel', compact('mProduct','tableProduct'));
+        return view('lapLabaRugi/getDownloadExcel', compact('mProduct','tableProduct','sumPrice'));
     }
 }
