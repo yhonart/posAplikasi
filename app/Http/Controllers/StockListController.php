@@ -570,6 +570,12 @@ class StockListController extends Controller
                         'product_price_order'=>$colUpdateHrg
                     ]);
             }
+
+            DB::table($tableName)
+                ->where($tableID,$idData)
+                ->update([
+                    $coloumn => $editVal    
+                ]);
         }
         else{
             DB::table($tableName)
