@@ -550,6 +550,27 @@ class StockListController extends Controller
                 ]);
             
         }
+        elseif ($coloumn == "product_price_order") {
+            $selectCode = DB::table('m_product_unit')
+                ->select('size_code','product_volume')
+                ->where([
+                    ['core_id_product',$idProd],
+                    ['size_code','!=','1']
+                    ])
+                ->get();
+                
+            foreach ($selectCode as $sc) {
+                $colUpdateHrg = $editVal * $sc->product_volume;
+                DB::table('m_product_unit')
+                    ->where([
+                        ['core_id_product',$idProd],
+                        ['size_code',$selectCode->size_code]
+                    ])
+                    ->update([
+                        'product_price_order'=>$colUpdateHrg
+                    ]);
+            }
+        }
         else{
             DB::table($tableName)
                 ->where($tableID,$idData)
