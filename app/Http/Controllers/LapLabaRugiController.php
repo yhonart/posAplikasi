@@ -53,7 +53,7 @@ class LapLabaRugiController extends Controller
         $mProduct = $mProduct->get();
         
         $sumPrice = DB::table('tr_store_prod_list as a');
-        $sumPrice = $sumPrice->select('a.product_code',DB::row('SUM(m_price) as hargaModal'));
+        $sumPrice = $sumPrice->select('a.product_code',DB::raw('SUM(m_price) as hargaModal'));
         $sumPrice = $sumPrice->leftJoin('m_product as b', 'a.product_code','=','b.idm_data_product');
         if ($prdID <> '0') {
             $sumPrice = $sumPrice->where([
