@@ -130,12 +130,15 @@ class GlobSettingController extends Controller
         $getDataOrder = DB::table('m_product_unit')
             ->get();
 
+        $dateConfig = "2024-09-09";
+
         foreach ($getDataTrx as $gdt) {
             foreach ($getDataOrder as $gdo) {
                 DB::table('tr_store_prod_list')
                     ->where([
                         ['product_code',$gdo->core_id_product],
-                        ['satuan',$gdo->product_size]
+                        ['satuan',$gdo->product_size],
+                        ['date',$dateConfig]
                     ])
                     ->update([
                         'capital_price'=>$gdo->product_price_order
