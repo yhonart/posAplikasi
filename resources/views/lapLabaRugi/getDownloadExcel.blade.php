@@ -55,7 +55,9 @@
 
                         </td>
                     </tr>
+                    @php
                     $sumSelisih +=$selisih;
+                    @endphp
                 @endif
             @endforeach
             <tr>
