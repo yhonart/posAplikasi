@@ -167,10 +167,10 @@ class GlobSettingController extends Controller
                     ])
                 ->first();
             if ($codeDua->size_code == '2') {
-                $hargaBeli = $sizeCodeSatu->product_price_order / $sizeCodeSatu->size_code;
+                $hargaBeli = $sizeCodeSatu->product_price_order / $sizeCodeSatu->product_volume;
             }
             else {
-                $hargaBeli = $sizeCodeSatu->product_price_order / $codeDua->size_code;
+                $hargaBeli = $sizeCodeSatu->product_price_order / $codeDua->product_volume;
             }
 
             DB::table('m_product_unit')
