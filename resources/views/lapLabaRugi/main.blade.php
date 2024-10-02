@@ -20,7 +20,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="label">Tipe Laporan</label>
-                                    <select class="form-control form-control-sm rounded-0" name="produk" id="produk">
+                                    <select class="form-control form-control-sm rounded-0" name="typeCetak" id="typeCetak">
                                         <option value="1">Ringkasan</option>      
                                         <option value="2">Detail</option>
                                     </select>
@@ -92,7 +92,7 @@
         var productName = $("#produk").val(),
             fromDate = $("#fromDate").val(),
             endDate = $("#endDate").val(),
-            tipeCetak = $("#endDate").val();
+            tipeCetak = $("#typeCetak").val();
         
         $("#reportToExcel").on('click', function(){
             window.open("{{route('lapLabaRugi')}}/getDownloadExcel/"+productName+"/"+fromDate+"/"+endDate+"/"+tipeCetak,"_blank");
