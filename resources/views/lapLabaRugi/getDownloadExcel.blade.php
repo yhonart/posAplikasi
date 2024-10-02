@@ -29,7 +29,7 @@
     <tbody>
         @foreach($tableProduct as $mpd1)
             @foreach($mProduct as $mpd)
-                @if($mpd->product_code == $mpd1->product_code)
+                @if($mpd->product_code == $mpd1->idm_data_product)
                     <tr>
                         <td>
                             <span title="{{$mpd->list_id}}">{{$mpd->product_name}}</span>                        
