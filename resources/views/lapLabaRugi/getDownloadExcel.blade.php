@@ -1,6 +1,6 @@
 <?php 
-    header("Content-type: application/vnd-ms-excel");
-    header("Content-Disposition: attachment; filename=Report Laba Rugi Ringkasan.xls");
+    // header("Content-type: application/vnd-ms-excel");
+    // header("Content-Disposition: attachment; filename=Report Laba Rugi Ringkasan.xls");
     $no = '1';
 ?>
 <table weight="100%">
@@ -87,7 +87,7 @@
                         <td style="text-align: right;">
                             <?php
                                 $sumtotHpp = $sp->hargaModal * $sp->qty;
-                                echo number_format($totHpp, '0',',','.');
+                                echo number_format($sumtotHpp, '0',',','.');
                             ?>
                         </td>
                         <td style="text-align: right;">
