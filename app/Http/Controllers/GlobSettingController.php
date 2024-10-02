@@ -172,6 +172,14 @@ class GlobSettingController extends Controller
             else {
                 $hargaBeli = $sizeCodeSatu->product_price_order / $codeDua->size_code;
             }
+
+            DB::table('m_product_unit')
+                ->where(
+                    'idm_product_satuan',$codeDua->idm_product_satuan
+                )
+                ->update([
+                    'product_price_order'=>$hargaBeli
+                ]);
             
         }
 
