@@ -1,5 +1,5 @@
-<div class="card card-body p-0 table-responsive">
-    <p>Report Hari Ini : {{date("d-M-Y")}}</p>
+<div class="card card-body p-2 table-responsive">
+    <p class="font-weight-bold text-muted">Report Hari Ini : {{date("d-M-Y")}}</p>
     <table class="table table-sm table-bordered table-valign-middle" id="labaRugiReport">
         <thead class="bg-gradient-purple">
             <tr>
