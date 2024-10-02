@@ -63,6 +63,7 @@ class LapLabaRugiController extends Controller
         $sumPrice = $sumPrice->where('a.status','4');
         $sumPrice = $sumPrice->whereBetween('a.date',[$fromDate, $endDate]);
         $sumPrice = $sumPrice->orderBy('b.product_name','ASC');
+        $sumPrice = $sumPrice->groupBy('a.product_code');
         $sumPrice = $sumPrice->get();
 
         
