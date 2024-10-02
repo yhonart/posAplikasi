@@ -218,7 +218,11 @@ $statusBarang = array(
                             {{$size->product_size}} <br>
                         </td>
                         <td class="bg-gray">
-                            <input class="form-control form-control-sm text-right EDIT-PRICE rounded-0" name="priceOrder" value="{{$size->product_price_order}}" onchange="saveMasterBarang(this,'m_product_unit','product_price_order','{{$size->idm_product_satuan}}','idm_product_satuan','{{$id}}')">
+                            @if($size->size_code == '1')
+                                <input class="form-control form-control-sm text-right EDIT-PRICE rounded-0" name="priceOrder" value="{{$size->product_price_order}}" onchange="saveMasterBarang(this,'m_product_unit','product_price_order','{{$size->idm_product_satuan}}','idm_product_satuan','{{$id}}')">
+                            @else
+                                <input class="form-control form-control-sm text-right rounded-0" value="{{$size->product_price_order}}" readonly>
+                            @endif
                         </td>
                         @foreach($cosGroup as $cg1)
                             <td>
