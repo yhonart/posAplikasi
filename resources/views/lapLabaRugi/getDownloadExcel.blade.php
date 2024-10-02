@@ -2,6 +2,7 @@
     // header("Content-type: application/vnd-ms-excel");
     // header("Content-Disposition: attachment; filename=Report Laba Rugi Ringkasan.xls");
     $no = '1';
+    $totHpp = '0';
 ?>
 <table weight="100%">
     <tbody>
@@ -60,6 +61,7 @@
                             <?php
                                 $totHpp = $mpd->capital_price * $mpd->qty;
                                 echo number_format($totHpp, '0',',','.');
+                                $sumTotHpp += $totHpp;
                             ?>
                         </td>
                         <td style="text-align: right;">
@@ -80,21 +82,15 @@
                     <tr>
                         <td></td>
                         <td></td>
-                        <td>{{$sp->qty}}</td>
+                        <td><b>SUB TOTAL</b></td>
                         <td style="text-align: right;">{{number_format($sp->hargaJual,'0',',','.')}}</td>
                         <td style="text-align: right;">{{number_format($sp->hargaModal,'0',',','.')}}</td>
                         <td style="text-align: right;">{{number_format($sp->totalJual,'0',',','.')}}</td>
                         <td style="text-align: right;">
-                            <?php
-                                $sumtotHpp = $sp->hargaModal * $sp->qty;
-                                echo number_format($sumtotHpp, '0',',','.');
-                            ?>
+                            {{$totHpp}}
                         </td>
                         <td style="text-align: right;">
-                            <?php
-                                $sumselisih = $sp->totalJual - $sumtotHpp;
-                                echo number_format($sumselisih,'0',',','.');
-                            ?>
+                            
                         </td>
                         <td style="text-align: right;">
 
