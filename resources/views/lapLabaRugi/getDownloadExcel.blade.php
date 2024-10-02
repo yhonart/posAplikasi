@@ -55,8 +55,12 @@
 
                         </td>
                     </tr>
+                    $sumSelisih +=$selisih;
                 @endif
             @endforeach
+            <tr>
+                <td>{{$sumSelisih}}</td>
+            </tr>
         @endforeach
     </tbody>
 </table>
