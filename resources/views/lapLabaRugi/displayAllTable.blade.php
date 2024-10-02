@@ -1,5 +1,6 @@
 <div class="card card-body p-0 table-responsive">
-    <table class="table table-sm table-bordered table-valign-middle">
+    <p>Report Hari Ini : {{date("d-M-Y")}}</p>
+    <table class="table table-sm table-bordered table-valign-middle" id="labaRugiReport">
         <thead class="bg-gradient-purple">
             <tr>
                 <th>Nama Barang</th>
@@ -44,4 +45,17 @@
         </tbody>
     </table>
 </div>
+<script>
+$(function () {
+    $('#labaRugiReport').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+</script>
 

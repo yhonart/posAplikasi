@@ -14,9 +14,11 @@ class LapLabaRugiController extends Controller
     }
 
     public function getDisplayAll(){
+        $today = date("Y-m-d");
         $mProduct = DB::table('tr_store_prod_list as a')
             ->select('a.*','b.product_name')
             ->leftJoin('m_product as b', 'a.product_code','=','b.idm_data_product')
+            ->where('a.date',$today)
             ->get();
 
         return view('lapLabaRugi/displayAllTable', compact('mProduct'));
