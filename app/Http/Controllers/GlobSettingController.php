@@ -146,4 +146,35 @@ class GlobSettingController extends Controller
 
         return view('globalSetting/generateData', compact('getDataTrx','getDataOrder'));
     }
+
+    public function generateHarga(){
+        //Ambil data dengan sizecode 1
+        
+        //Ambil data dengan sizecode selain 1
+        $sizeCodeDua = DB::table('m_product_unit')
+        ->select('idm_product_satuan','product_price_order')
+        ->where([
+            ['size_code','!=','1'],
+            ['core_id_product','228']
+            ])
+            ->get();
+            
+        foreach ($sizeCodeDua as $codeDua) {
+            $sizeCodeSatu = DB::table('m_product_unit')
+                ->where([
+                    ['size_code','1'],
+                    ['core_id_product','228'],
+                    ['idm_product_satuan',$codeDua->idm_product_satuan]
+                    ])
+                ->first();
+            if ($codeDua->size_code == '2') {
+                $hargaBeli = $sizeCodeSatu->product_price_order / $sizeCodeSatu->size_code;
+            }
+            else {
+                $hargaBeli = $sizeCodeSatu->product_price_order / $codeDua->size_code;
+            }
+        }
+
+        echo "SUKSES";
+    }
 }
