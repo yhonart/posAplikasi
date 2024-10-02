@@ -51,7 +51,7 @@ class LapLabaRugiController extends Controller
                     ['status','4']            
             ]);
         }
-        $mProduct = $mProduct->whereBetween('a.tr_date',[$fromDate, $endDate]);
+        $mProduct = $mProduct->whereBetween('a.date',[$fromDate, $endDate]);
         $mProduct = $mProduct->orderBy('b.product_name','ASC');
         $mProduct = $mProduct->get();
 
