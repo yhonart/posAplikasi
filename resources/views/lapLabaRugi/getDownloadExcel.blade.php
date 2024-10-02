@@ -27,10 +27,10 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($mProduct as $mpd1)
+        @foreach($tableProduct as $mpd1)
             <tr>
                 <td colspan="9">
-                    <span title="{{$mpd1->list_id}}">{{$mpd1->product_name}}</span>                        
+                    <span title="{{$mpd1->list_id}}"><b><i>{{$mpd1->product_name}}</i></b></span>                        
                 </td>
             </tr>
             @foreach($mProduct as $mpd)
