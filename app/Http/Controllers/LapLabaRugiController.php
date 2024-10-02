@@ -73,6 +73,6 @@ class LapLabaRugiController extends Controller
 
         
 
-        return view('lapLabaRugi/getDownloadExcel', compact('mProduct','tableProduct','sumPrice'));
+        return view('lapLabaRugi/getDownloadExcel', compact('mProduct','tableProduct','sumPrice','fromDate','endDate'));
     }
 }

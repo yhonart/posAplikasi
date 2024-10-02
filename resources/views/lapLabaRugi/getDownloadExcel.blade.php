@@ -1,13 +1,23 @@
+<?php 
+    header("Content-type: application/vnd-ms-excel");
+    header("Content-Disposition: attachment; filename=Report Laba Rugi Ringkasan.xls");
+    $no = '1';
+?>
 <table weight="100%">
     <tbody>
         <tr>
-            <td>
-                <h4>TOKO LING LING</h4>
+            <td style="text-align: center;">
+                <h2>TOKO LING LING</h2>
             </td>
         </tr>
         <tr>
-            <td>
+            <td style="text-align: center;">
                 Laporan Laba Rugi Ringkasan
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                Dari Tgl {{$fromDate}} s.d {{$endDate}}
             </td>
         </tr>
     </tbody>
@@ -70,7 +80,7 @@
                     <tr>
                         <td></td>
                         <td></td>
-                        <td></td>
+                        <td>{{$sp->qty}}</td>
                         <td style="text-align: right;">{{number_format($sp->hargaJual,'0',',','.')}}</td>
                         <td style="text-align: right;">{{number_format($sp->hargaModal,'0',',','.')}}</td>
                         <td style="text-align: right;">{{number_format($sp->totalJual,'0',',','.')}}</td>
