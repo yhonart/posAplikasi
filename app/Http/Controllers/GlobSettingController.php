@@ -172,6 +172,7 @@ class GlobSettingController extends Controller
             else {
                 $hargaBeli = $sizeCodeSatu->product_price_order / $codeDua->size_code;
             }
+            
         }
 
         echo "SUKSES";
