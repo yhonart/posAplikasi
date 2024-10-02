@@ -36,9 +36,6 @@ class LapLabaRugiController extends Controller
 
         $today = date("Y-m-d");
 
-        $tableProduct = DB::table('m_product')
-            ->get();
-
         $mProduct = DB::table('tr_store_prod_list as a');
         $mProduct = $mProduct->select('a.*','b.product_name');
         $mProduct = $mProduct->leftJoin('m_product as b', 'a.product_code','=','b.idm_data_product');
@@ -51,6 +48,14 @@ class LapLabaRugiController extends Controller
         $mProduct = $mProduct->whereBetween('a.date',[$fromDate, $endDate]);
         $mProduct = $mProduct->orderBy('b.product_name','ASC');
         $mProduct = $mProduct->get();
+
+        $tableProduct = DB::table('tr_store_prod_list as a');
+        $tableProduct = $tableProduct->select('a.*','b.product_name');
+        $tableProduct = $tableProduct->leftJoin('m_product as b', 'a.product_code','=','b.idm_data_product');       
+        $tableProduct = $tableProduct->where('a.status','4');
+        $tableProduct = $tableProduct->whereBetween('a.date',[$fromDate, $endDate]);
+        $tableProduct = $tableProduct->orderBy('b.product_name','ASC');
+        $tableProduct = $tableProduct->get();
         
         $sumPrice = DB::table('tr_store_prod_list as a');
         $sumPrice = $sumPrice->select('a.product_code',DB::raw('SUM(m_price) as hargaModal'));
