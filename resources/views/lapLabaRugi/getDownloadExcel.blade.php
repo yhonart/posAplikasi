@@ -2,7 +2,7 @@
     // header("Content-type: application/vnd-ms-excel");
     // header("Content-Disposition: attachment; filename=Report Laba Rugi Ringkasan.xls");
     $no = '1';
-    $totHpp = '0';
+    $sumTotHpp = '0';
 ?>
 <table weight="100%">
     <tbody>
@@ -87,7 +87,7 @@
                         <td style="text-align: right;">{{number_format($sp->hargaModal,'0',',','.')}}</td>
                         <td style="text-align: right;">{{number_format($sp->totalJual,'0',',','.')}}</td>
                         <td style="text-align: right;">
-                            {{$totHpp}}
+                            {{$sumTotHpp}}
                         </td>
                         <td style="text-align: right;">
                             
