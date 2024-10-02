@@ -55,13 +55,10 @@
 
                         </td>
                     </tr>
-                    @php
-                    $sumSelisih +=$selisih;
-                    @endphp
                 @endif
             @endforeach
             <tr>
-                <td>{{$sumSelisih}}</td>
+                <td></td>
             </tr>
         @endforeach
     </tbody>
