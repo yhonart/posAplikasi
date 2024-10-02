@@ -27,7 +27,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($tableProduct as $mpd)
+        @foreach($mProduct as $mpd)
             <tr>
                 <td>
                     <span title="{{$mpd->list_id}} - {{$mpd->from_payment_code}}">{{$mpd->product_name}}</span>                        
