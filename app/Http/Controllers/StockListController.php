@@ -560,7 +560,7 @@ class StockListController extends Controller
                 ->get();
                 
             foreach ($selectCode as $sc) {
-                $colUpdateHrg = $editVal * $sc->product_volume;
+                $colUpdateHrg = $editVal / $sc->product_volume;
                 DB::table('m_product_unit')
                     ->where([
                         ['core_id_product',$idProd],
