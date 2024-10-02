@@ -15,10 +15,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($mProduct as $mpd)
+            @foreach($tableProduct as $mpd)
                 <tr>
                     <td>
-                        <span title="{{$mpd->list_id}}">{{$mpd->product_name}}</span>                        
+                        <span title="{{$mpd->list_id}}"><b><u>{{$mpd->product_name}}</u></b></span>                        
                     </td>
                     <td>{{$mpd->unit}}</td>
                     <td>{{$mpd->qty}}</td>
