@@ -27,14 +27,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($tableProduct as $mpd1)
+        @foreach($mProduct as $mpd1)
             <tr>
                 <td colspan="9">
-                    <span><b><i>{{$mpd1->product_name}}</i></b></span>                        
+                    <span><b><u>{{$mpd1->product_name}}</u></b></span>                        
                 </td>
             </tr>
             @foreach($mProduct as $mpd)
-                @if($mpd->product_name == $mpd1->product_name)
+                @if($mpd->product_code == $mpd1->product_code)
                 <tr>
                     <td>
                         <span title="{{$mpd->list_id}}">{{$mpd->product_name}}</span>                        
