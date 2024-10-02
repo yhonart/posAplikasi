@@ -29,7 +29,7 @@
     <tbody>
         @foreach($mProduct as $mpd1)
             <tr>
-                <td colapse="9">
+                <td colspan="9">
                     <b title="{{$mpd1->list_id}} - {{$mpd1->from_payment_code}}">{{$mpd1->product_name}}</b>                        
                 </td>
             </tr>
@@ -43,22 +43,22 @@
 
                         <td>{{$mpd->unit}}</td>
                         <td>{{$mpd->qty}}</td>
-                        <td class="text-right">{{number_format($mpd->m_price,'0',',','.')}}</td>
-                        <td class="text-right">{{number_format($mpd->capital_price,'0',',','.')}}</td>
-                        <td class="text-right">{{number_format($mpd->t_price,'0',',','.')}}</td>
-                        <td class="text-right">
+                        <td style="text-align: right;">{{number_format($mpd->m_price,'0',',','.')}}</td>
+                        <td style="text-align: right;">{{number_format($mpd->capital_price,'0',',','.')}}</td>
+                        <td style="text-align: right;">{{number_format($mpd->t_price,'0',',','.')}}</td>
+                        <td style="text-align: right;">
                             <?php
                                 $totHpp = $mpd->capital_price * $mpd->qty;
                                 echo number_format($totHpp, '0',',','.');
                             ?>
                         </td>
-                        <td class="text-right">
+                        <td style="text-align: right;">
                             <?php
                                 $selisih = $mpd->t_price - $totHpp;
                                 echo number_format($selisih,'0',',','.');
                             ?>
                         </td>
-                        <td>
+                        <td style="text-align: right;">
 
                         </td>
                     </tr>
@@ -71,7 +71,24 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>{{$sp->hargaModal}}</td>
+                        <td style="text-align: right;">{{number_format($sp->hargaJual,'0',',','.')}}</td>
+                        <td style="text-align: right;">{{number_format($sp->hargaModal,'0',',','.')}}</td>
+                        <td style="text-align: right;">{{number_format($sp->totalJual,'0',',','.')}}</td>
+                        <td style="text-align: right;">
+                            <?php
+                                $sumtotHpp = $sp->hargaModal * $sp->qty;
+                                echo number_format($totHpp, '0',',','.');
+                            ?>
+                        </td>
+                        <td style="text-align: right;">
+                            <?php
+                                $sumselisih = $sp->totalJual - $sumtotHpp;
+                                echo number_format($sumselisih,'0',',','.');
+                            ?>
+                        </td>
+                        <td style="text-align: right;">
+
+                        </td>
                     </tr>
                 @endif
             @endforeach
