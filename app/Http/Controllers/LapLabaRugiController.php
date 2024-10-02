@@ -40,17 +40,10 @@ class LapLabaRugiController extends Controller
         $mProduct = $mProduct->leftJoin('m_product as b', 'a.product_code','=','b.idm_data_product');
         if ($prdID <> '0') {
             $mProduct = $mProduct->where([
-                    ['a.product_code',$prdID],
-                    ['a.date',$today],
-                    ['status','4']
+                    ['a.product_code',$prdID]
             ]);            
         }
-        else {
-            $mProduct = $mProduct->where([
-                    ['a.date',$today],
-                    ['status','4']            
-            ]);
-        }
+        $mProduct = $mProduct->where('a.status','4');
         $mProduct = $mProduct->whereBetween('a.date',[$fromDate, $endDate]);
         $mProduct = $mProduct->orderBy('b.product_name','ASC');
         $mProduct = $mProduct->get();

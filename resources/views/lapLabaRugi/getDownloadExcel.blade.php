@@ -12,7 +12,7 @@
         </tr>
     </tbody>
 </table>
-<table border="1" weight="100%">
+<table border="1" cellpadding="0" cellspacing="0" style="width:100%">
     <thead class="bg-gradient-purple">
         <tr>
             <th>Nama Barang</th>
