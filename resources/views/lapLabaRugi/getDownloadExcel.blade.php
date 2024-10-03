@@ -3,6 +3,7 @@
     // header("Content-Disposition: attachment; filename=Report Laba Rugi Ringkasan.xls");
     $no = '1';
     $sumTotHpp = '0';
+    $sumSelisih = '0';
 ?>
 <table weight="100%">
     <tbody>
@@ -68,6 +69,7 @@
                             <?php
                                 $selisih = $mpd->t_price - $totHpp;
                                 echo number_format($selisih,'0',',','.');
+                                $sumSelisih += $selisih;
                             ?>
                         </td>
                         <td style="text-align: right;">
@@ -87,10 +89,10 @@
                         <td style="text-align: right;">{{number_format($sp->hargaModal,'0',',','.')}}</td>
                         <td style="text-align: right;">{{number_format($sp->totalJual,'0',',','.')}}</td>
                         <td style="text-align: right;">
-                            {{$sumTotHpp}}
+                            {{number_format($sumTotHpp,'0',',','.')}}
                         </td>
                         <td style="text-align: right;">
-                            
+                            {{number_format(sumSelisih,'0',',','.')}}
                         </td>
                         <td style="text-align: right;">
 
