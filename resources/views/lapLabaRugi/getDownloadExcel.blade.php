@@ -62,14 +62,14 @@
                             <?php
                                 $totHpp = $mpd->capital_price * $mpd->qty;
                                 echo number_format($totHpp, '0',',','.');
-                                $sumTotHpp += $totHpp;
+                                // $sumTotHpp += $totHpp;
                             ?>
                         </td>
                         <td style="text-align: right;">
                             <?php
                                 $selisih = $mpd->t_price - $totHpp;
                                 echo number_format($selisih,'0',',','.');
-                                $sumSelisih += $selisih;
+                                // $sumSelisih += $selisih;
                             ?>
                         </td>
                         <td style="text-align: right;">
