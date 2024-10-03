@@ -92,7 +92,7 @@
                             {{number_format($sumTotHpp,'0',',','.')}}
                         </td>
                         <td style="text-align: right;">
-                            {{number_format(sumSelisih,'0',',','.')}}
+                            {{number_format($sumSelisih,'0',',','.')}}
                         </td>
                         <td style="text-align: right;">
 
