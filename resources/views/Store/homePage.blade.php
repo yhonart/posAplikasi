@@ -1,23 +1,6 @@
-@extends('layouts.frontpage')
+@extends('layouts.store')
 @section('content')
 <script src="{{asset('public/js/cashierButton.js')}}"></script>
-<nav class="main-header navbar navbar-expand-md navbar-dark navbar-navy border-0">
-    <div class="container">
-        <a href="{{route('home')}}" class="navbar-brand">        
-            <span class="brand-text font-weight-light"> <strong>Daz</strong>-POS</span>
-        </a>
-        <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-            <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                <li class="nav-item">                    
-                    <a href="#" class="nav-link"><i class="fa fa-user"></i> {{ Auth::user()->name }}</a>
-                </li>                
-            </ul>
-        </div>
-    </div>
-</nav>
 <div class="content-wrapper">
     <!-- Header -->
         <div class="content-header">
