@@ -24,7 +24,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-md-6 col-12">   
+                        @if(!empty($namaToko))
                         <h3 class="m-0">Online Store {{$namaToko->company_name}}</h3>
+                        @else
+                        <h3 class="m-0">Online Store</h3>
+                        @endif
                     </div>          
                 </div>
             </div>
