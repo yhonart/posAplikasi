@@ -20,7 +20,7 @@
     </div>
 
     <script>
-        function(){
+        $(function(){
             $.ajax({
                 type : 'get',
                 url : "{{route('Purchasing')}}/Bayar",
@@ -28,6 +28,6 @@
                     $('#tableFilter').html(response);
                 }
             });
-        }
+        });
     </script>
 @endsection
