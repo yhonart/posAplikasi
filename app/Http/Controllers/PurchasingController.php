@@ -479,6 +479,16 @@ class PurchasingController extends Controller
                 'status'=>'3'
                 ]);
     }
+
+    public function btnDelete ($dataDelete){
+        DB::table('purchase_order')
+            ->where('purchase_number',$dataDelete)
+            ->delete();
+
+        DB::table('purchase_list_order')
+            ->where('purchase_number',$dataDelete)
+            ->delete();
+    }
     
     public function Bayar (){
         $tbPurchase = DB::table('view_purchase_order')

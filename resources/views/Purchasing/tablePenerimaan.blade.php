@@ -50,7 +50,8 @@ $statusDokumen = array(
                                 </td>
                                 <td class="text-right">
                                     @if($ltp->status =='2' AND $approval >= '1')
-                                    <button class="btn btn-success btn-sm btn-flat font-weight-bold BTN-APPROVE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Approve</button>
+                                    <button class="btn btn-success btn-sm btn-flat font-weight-bold BTN-APPROVE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Setujui</button>
+                                    <button class="btn btn-danger btn-sm btn-flat font-weight-bold BTN-DELETE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Hapus</button>
                                     @endif
                                     @if($ltp->status =='2')
                                         <button class="btn btn-info btn-sm btn-flat font-weight-bold BTN-EDIT" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-pencil"></i> Edit</button>
@@ -84,16 +85,38 @@ $statusDokumen = array(
         
         $('.BTN-APPROVE').on('click', function (e) {
             e.preventDefault();
-            $(".LOAD-SPINNER").fadeIn();
             let dataEdit = $(this).attr('data-number');
-            $.ajax({
-                type : 'get',
-                url : "{{route('Purchasing')}}/tablePenerimaan/btnApprove/"+dataEdit,
-                success : function(response){
-                    window.location.reload();
-                    $(".LOAD-SPINNER").fadeOut();
-                }
-            });
+            alertify.confirm("Apakah anda yakin ingin menyetuji transaksi ini ?",
+            function(){
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('Purchasing')}}/tablePenerimaan/btnApprove/"+dataEdit,
+                    success : function(response){
+                        window.location.reload();
+                    }
+                });
+            },
+            function(){
+                alertify.error('Persetujuan dibatalkan');
+            }).set({title:"Konfirmasi Persetujuan Transaksi"});
+        });
+
+        $('.BTN-DELETE').on('click', function (e) {
+            e.preventDefault();
+            let dataEdit = $(this).attr('data-number');
+            alertify.confirm("Apakah anda yakin ingin menghapus transaksi pembelian ini ?",
+            function(){
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('Purchasing')}}/tablePenerimaan/btnDelete/"+dataEdit,
+                    success : function(response){
+                        window.location.reload();
+                    }
+                });
+            },
+            function(){
+                alertify.error('Penghapusan data dibatalkan');
+            }).set({title:"Konfirmasi Penghapusan Transaksi"});
         });
         
         $('.BTN-DETAIL').on('click', function (e) {
