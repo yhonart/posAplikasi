@@ -778,5 +778,9 @@ class PurchasingController extends Controller
                 'updated_by'=>$updateBy
             ]);
     }
+
+    public function piutangSupplier (){
+        return view ('Purchasing/PurchaseOrder/mainPiutangSupplier');
+    }
     
 }

@@ -90,6 +90,7 @@ Route::get('lapLabaRugi', [App\Http\Controllers\LapLabaRugiController::class, 'm
 
 Route::get('generateData', [App\Http\Controllers\GlobSettingController::class, 'generateData'])->name('generateData');
 Route::get('generateHarga', [App\Http\Controllers\GlobSettingController::class, 'generateHarga'])->name('generateHarga');
+Route::get('piutangSupplier', [App\Http\Controllers\PurchasingController::class, 'piutangSupplier'])->name('piutangSupplier');
 
 
 include __DIR__.'/section/accounting.php';
