@@ -1,6 +1,6 @@
 <?php 
-    // header("Content-type: application/vnd-ms-excel");
-    // header("Content-Disposition: attachment; filename=Report Laba Rugi Ringkasan.xls");
+    header("Content-type: application/vnd-ms-excel");
+    header("Content-Disposition: attachment; filename=Laporan Laba Rugi.xls");
     $no = '1';
     $sumTotHpp = '0';
     $sumSelisih = '0';
