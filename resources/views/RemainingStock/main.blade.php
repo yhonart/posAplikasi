@@ -117,6 +117,9 @@
                                     <label>Cari Nama Barang</label>
                                     <input type="text" name="keyword" id="keyword" class="form-control form-control-sm" placeholder="Cari Nama Produk">
                                 </div>
+                                <div class="col-6 col-md-3">
+                                    <button class="btn btn-success btn-flat btn-sm" style="position:absolute; left:0%; bottom:0%" id="btnDownloadExcel"><i class="fa-solid fa-file-excel"></i> Download Excel</button>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -185,6 +188,17 @@
             }
             searchData(keyWord, filOption, lokasi);
         });
+
+        $("#btnDownloadExcel").on('click', function(){
+            let filOption = $(this).find(":selected").val(),
+                lokasi = $("#pilihLokasi").val(),
+                keyWord = $("#keyword").val();
+                
+            if (keyWord=='') {
+                keyWord = '0';
+            }
+            window.open("{{route('remainingStock')}}/downloadData/"+keyWord+"/"+filOption+"/"+lokasi,"_blank");
+        })
         
         function searchData(keyWord, filOption, lokasi){ 
             $(".LOAD-SPINNER").show();

@@ -227,6 +227,97 @@ class RemainingController extends Controller
         
         return view('RemainingStock/displayFilteringProduct', compact('tbCekStockBarang','mProduct','totalStock','saldoStock','valKecil','mUnit','valBesar'));
     }
+    public function downloadData($keyword, $filOption, $lokasi){
+            
+        $mProduct = DB::table('view_product_stock');
+            $mProduct = $mProduct->select(DB::raw('DISTINCT(product_name) as product_name'), 'idm_data_product');
+            if($keyword <> '0' AND $lokasi <> '0'){
+                $mProduct = $mProduct->where([
+                    ['product_name', 'like', '%' . $keyword .'%'],
+                    ['location_id',$lokasi]
+                    ]);
+            }
+            elseif($keyword <> '0' AND $lokasi == '0'){
+                $mProduct = $mProduct->where([
+                    ['product_name', 'like', '%' . $keyword .'%']
+                    ]);
+            }
+            
+            if($filOption == '0'){
+                $mProduct = $mProduct->where([
+                    ['stock','=','0'],
+                    ['size_code','3']
+                    ]);
+            }
+            elseif($filOption == '2'){
+                $mProduct = $mProduct->where([
+                    ['stock','>','0'],
+                    ['stock','<','100'],
+                    ['size_code','3']
+                    ]);
+            }
+            elseif($filOption == '3'){
+                $mProduct = $mProduct->where([
+                    ['stock','>','0'],
+                    ['size_code','3']
+                    ]);
+            }
+            $mProduct = $mProduct->orderBy('product_name','asc');
+            $mProduct = $mProduct->get(20);
+        
+        $tbCekStockBarang = DB::table('view_product_stock')
+            ->get();
+            
+        $mUnit = DB::table('m_product_unit')
+            ->get();
+            
+        $valBesar = DB::table('m_product_unit')
+            ->select('core_id_product','size_code','product_volume')
+            ->where('size_code','1')
+            ->get();
+        
+        $valKecil = DB::table('m_product_unit')
+            ->select('core_id_product','size_code','product_volume')
+            ->where('size_code','2')
+            ->get();
+            
+        $totalStock = DB::table('view_product_stock as b');
+        $totalStock = $totalStock->select(DB::raw('SUM(b.stock) as sumstock'),'b.stock', 'b.idm_data_product', 'b.product_name', 'b.product_price_order','b.stock_unit','b.product_volume','b.size_code',DB::raw('COUNT(size_code) as countsize'));
+        $totalStock = $totalStock->join(
+                DB::raw('(SELECT product_name, MAX(size_code) AS max_code, stock_unit, idm_data_product FROM view_product_stock GROUP BY idm_data_product) as subquery') ,
+                function($join){
+                    $join->on('b.idm_data_product', '=', 'subquery.idm_data_product');
+                    $join->on('b.size_code','=','subquery.max_code');
+                }
+            );
+        if($keyword <> '0' AND $lokasi <> '0'){
+            $totalStock = $totalStock->where([
+                ['b.product_name', 'like', '%' . $keyword .'%'],
+                ['b.location_id',$lokasi]
+                ]);
+        }
+        elseif($keyword <> '0' AND $lokasi == '0'){
+            $totalStock = $totalStock->where([
+                ['b.product_name', 'like', '%' . $keyword .'%']
+                ]);
+        }
+        $totalStock = $totalStock->groupBy('b.idm_data_product');
+        $totalStock = $totalStock->get();
+            
+        $saldoStock = DB::table('view_product_stock as b')
+            ->select(DB::raw('SUM(b.stock) as sumstock'),'b.stock', 'b.idm_data_product', 'b.product_name', 'b.product_price_order','b.stock_unit','b.product_volume','b.size_code')
+            ->join(
+                DB::raw('(SELECT product_name, MAX(size_code) AS max_code, stock_unit, idm_data_product FROM view_product_stock WHERE size_code = 1 GROUP BY idm_data_product) as subquery') ,
+                function($join){
+                    $join->on('b.idm_data_product', '=', 'subquery.idm_data_product');
+                    $join->on('b.size_code','=','subquery.max_code');
+                }
+            )
+            ->groupBy('b.idm_data_product')
+            ->get();
+        
+        return view('RemainingStock/downloadExcel', compact('tbCekStockBarang','mProduct','totalStock','saldoStock','valKecil','mUnit','valBesar'));
+    }
     
     public function generateStock(Request $reqGenerate){
         
