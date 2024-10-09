@@ -26,7 +26,7 @@ header("Content-Disposition: attachment; filename=Inventory_Control.xls");
                 <td>{{$no++}}</td>
                 <td>{{$mp->product_code}}</td>
                 <td>{{$mp->product_name}}</td>
-                <td align="center">{{$mp->size_code}} {{$mp->product_satuan}}</td>
+                <td align="right">{{$mp->size_code}} {{$mp->product_satuan}}</td>
                 <td align="right">
                     <?php
                         foreach($totalStock as $tStock){
