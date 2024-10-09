@@ -230,7 +230,7 @@ class RemainingController extends Controller
     public function downloadData($keyword, $filOption, $lokasi){
             
         $mProduct = DB::table('view_product_stock');
-            $mProduct = $mProduct->select(DB::raw('DISTINCT(product_name) as product_name'), 'idm_data_product');
+            $mProduct = $mProduct->select(DB::raw('MAX(size_code) as size_code'), 'idm_data_product','product_code','product_name','product_satuan');
             if($keyword <> '0' AND $lokasi <> '0'){
                 $mProduct = $mProduct->where([
                     ['product_name', 'like', '%' . $keyword .'%'],
