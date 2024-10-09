@@ -97,6 +97,7 @@ class DashboardController extends Controller
             ->get();
             
         $totalTransaksi = DB::table('view_billing_action')
+            ->where('status','4')
             ->whereBetween('tr_date',[$fromDate, $endDate])
             ->count();
             
@@ -130,6 +131,7 @@ class DashboardController extends Controller
         elseif($condition == "allSummery"){
             $allCondition = DB::table('view_billing_action')
                 ->whereBetween('tr_date',[$fromDate, $endDate])
+                ->where('status','4')
                 ->get();
         }
         

@@ -903,7 +903,7 @@ class CashierController extends Controller
     }
 
     public function funcDataPenjualan ($fromdate, $enddate, $keyword, $method){
-        $fields = ['trx_code','customer_store'];
+        $fields = ['a.billing_number','a.customer_name'];
         $createdBy = Auth::user()->name;
         $hakakses = Auth::user()->hakakses;
         $area = $this->checkuserInfo();
@@ -916,6 +916,7 @@ class CashierController extends Controller
         $listDataSelling = $listDataSelling->leftJoin('m_payment_method as b', 'a.trx_method','=','b.idm_payment_method');
         $listDataSelling = $listDataSelling->whereBetween('a.tr_date',[$fromdate, $enddate]);
         if($keyword <> '0'){
+            // $listDataSelling = $listDataSelling->where('a.customer_name', 'like','%'.$keyword.'%');
             $listDataSelling = $listDataSelling->where(function ($query) use($keyword, $fields) {
                 for ($i = 0; $i < count($fields); $i++){
                 $query->orwhere($fields[$i], 'like',  '%' . $keyword .'%');
@@ -932,46 +933,44 @@ class CashierController extends Controller
         $listDataSelling = $listDataSelling->orderBy('a.tr_store_id','asc');
         $listDataSelling = $listDataSelling->get();
         
-//         $listDataSelling = DB::table('trx_record_view');
-//         // $listDataSelling = $listDataSelling->where('status','1');
-//         $listDataSelling = $listDataSelling->whereBetween('date_trx',[$fromdate, $enddate]);
-//         if($keyword <> '0'){
-//             $listDataSelling = $listDataSelling->where(function ($query) use($keyword, $fields) {
-// 				for ($i = 0; $i < count($fields); $i++){
-// 				$query->orwhere($fields[$i], 'like',  '%' . $keyword .'%');
-// 				}      
-// 			});
-//         }
-//         if($hakakses == '2'){
-//             $listDataSelling = $listDataSelling->where('created_by',$createdBy);
-//         }
-//         if($method <> '0'){
-//             $listDataSelling = $listDataSelling->where('trx_method',$method);
-//         }
-//         $listDataSelling = $listDataSelling->paginate(10);
+        // $listDataSelling = DB::table('trx_record_view');
+        // // $listDataSelling = $listDataSelling->where('status','1');
+        // $listDataSelling = $listDataSelling->whereBetween('date_trx',[$fromdate, $enddate]);
+        // if($keyword <> '0'){
+        //     $listDataSelling = $listDataSelling->where(function ($query) use($keyword, $fields) {
+		// 		for ($i = 0; $i < count($fields); $i++){
+		// 		$query->orwhere($fields[$i], 'like',  '%' . $keyword .'%');
+		// 		}      
+		// 	});
+        // }
+        // if($hakakses == '2'){
+        //     $listDataSelling = $listDataSelling->where('created_by',$createdBy);
+        // }
+        // if($method <> '0'){
+        //     $listDataSelling = $listDataSelling->where('trx_method',$method);
+        // }
+        // $listDataSelling = $listDataSelling->paginate(10);
         
         
-        $countBelanja = DB::table('trx_record_view');
-        $countBelanja = $countBelanja->select(DB::raw('COUNT(idtr_record) AS countID'), DB::raw('SUM(total_payment) AS sumPayment'), 'total_struk','trx_method');
-        $countBelanja = $countBelanja->whereBetween('date_trx',[$fromdate, $enddate]);
-        if($keyword <> '0'){
-            $countBelanja = $countBelanja->where(function ($query) use($keyword, $fields) {
-				for ($i = 0; $i < count($fields); $i++){
-				$query->orwhere($fields[$i], 'like',  '%' . $keyword .'%');
-				}      
-			});
-        }
-        if($method <> '0'){
-            $countBelanja = $countBelanja->where('trx_method',$method);
-        }
-        if($hakakses == '2'){
-            $countBelanja = $countBelanja->where('created_by',$createdBy);
-        }
-        $countBelanja = $countBelanja->first();
-        
-        
+        // $countBelanja = DB::table('trx_record_view');
+        // $countBelanja = $countBelanja->select(DB::raw('COUNT(idtr_record) AS countID'), DB::raw('SUM(total_payment) AS sumPayment'), 'total_struk','trx_method');
+        // $countBelanja = $countBelanja->whereBetween('date_trx',[$fromdate, $enddate]);
+        // if($keyword <> '0'){
+        //     $countBelanja = $countBelanja->where(function ($query) use($keyword, $fields) {
+		// 		for ($i = 0; $i < count($fields); $i++){
+		// 		$query->orwhere($fields[$i], 'like',  '%' . $keyword .'%');
+		// 		}      
+		// 	});
+        // }
+        // if($method <> '0'){
+        //     $countBelanja = $countBelanja->where('trx_method',$method);
+        // }
+        // if($hakakses == '2'){
+        //     $countBelanja = $countBelanja->where('created_by',$createdBy);
+        // }
+        // $countBelanja = $countBelanja->first();
             
-        return view ('Cashier/cashierModalDataPenjualanList', compact('listDataSelling','countBelanja','area'));
+        return view ('Cashier/cashierModalDataPenjualanList', compact('listDataSelling','area'));
     }
 
     public function billingIden ($billingIden, $trxType){

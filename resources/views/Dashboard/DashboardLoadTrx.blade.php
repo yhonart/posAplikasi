@@ -109,7 +109,7 @@
             align: 'left'
         },
         xAxis: {
-            categories: [
+            categories: [                
                 @foreach($garpPenjualan as $xAxisDate)
                     '{{$xAxisDate->date_trx}}',
                 @endforeach
