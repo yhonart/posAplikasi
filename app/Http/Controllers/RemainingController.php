@@ -262,6 +262,7 @@ class RemainingController extends Controller
                     ['size_code','3']
                     ]);
             }
+            $mProduct = $mProduct->groupBy('idm_data_product');
             $mProduct = $mProduct->orderBy('product_name','asc');
             $mProduct = $mProduct->get(20);
         
