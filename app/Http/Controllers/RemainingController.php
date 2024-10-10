@@ -229,43 +229,49 @@ class RemainingController extends Controller
     }
     public function downloadData($keyword, $filOption, $lokasi){
             
-        $mProduct = DB::table('view_product_stock');
-            $mProduct = $mProduct->select(DB::raw('MAX(size_code) as size_code'), 'idm_data_product','product_code','product_name','product_satuan');
+        $mProduct = DB::table('view_product_stock as a');
+            $mProduct = $mProduct->select('a.size_code', 'a.idm_data_product','a.product_code','a.product_name','a.product_satuan');
+            $mProduct = $mProduct->join(
+                DB::raw('(SELECT MAX(size_code) AS max_code, stock_unit, idm_data_product FROM view_product_stock GROUP BY idm_data_product) as subquery') ,
+                function($join){
+                    $join->on('a.idm_data_product', '=', 'subquery.idm_data_product');
+                    $join->on('a.size_code','=','subquery.max_code');
+                }
+            );            
             if($keyword <> '0' AND $lokasi <> '0'){
                 $mProduct = $mProduct->where([
-                    ['product_name', 'like', '%' . $keyword .'%'],
-                    ['location_id',$lokasi]
+                    ['a.product_name', 'like', '%' . $keyword .'%'],
+                    ['a.location_id',$lokasi]
                     ]);
             }
-            
             elseif($keyword <> '0' AND $lokasi == '0'){
                 $mProduct = $mProduct->where([
-                    ['product_name', 'like', '%' . $keyword .'%']
+                    ['a.product_name', 'like', '%' . $keyword .'%']
                     ]);
             }
             
             if($filOption == '0'){
                 $mProduct = $mProduct->where([
-                    ['stock','=','0'],
-                    ['size_code','3']
+                    ['a.stock','=','0'],
+                    ['a.size_code','3']
                     ]);
             }
             elseif($filOption == '2'){
                 $mProduct = $mProduct->where([
-                    ['stock','>','0'],
-                    ['stock','<','100'],
-                    ['size_code','3']
+                    ['a.stock','>','0'],
+                    ['a.stock','<','100'],
+                    ['a.size_code','3']
                     ]);
             }
             elseif($filOption == '3'){
                 $mProduct = $mProduct->where([
-                    ['stock','>','0'],
-                    ['size_code','3']
+                    ['a.stock','>','0'],
+                    ['a.size_code','3']
                     ]);
             }
-            $mProduct = $mProduct->groupBy('idm_data_product');
-            $mProduct = $mProduct->orderBy('product_name','asc');
-            $mProduct = $mProduct->get(20);
+            $mProduct = $mProduct->groupBy('a.idm_data_product');
+            $mProduct = $mProduct->orderBy('a.product_name','asc');
+            $mProduct = $mProduct->get();
         
         $tbCekStockBarang = DB::table('view_product_stock')
             ->get();
