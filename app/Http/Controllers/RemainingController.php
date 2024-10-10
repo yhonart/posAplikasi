@@ -137,7 +137,7 @@ class RemainingController extends Controller
     }
     
     public function searchByKeyword($keyword, $filOption, $lokasi){
-            
+        
         $mProduct = DB::table('view_product_stock');
             $mProduct = $mProduct->select(DB::raw('DISTINCT(product_name) as product_name'), 'idm_data_product');
             if($keyword <> '0' AND $lokasi <> '0'){
@@ -237,6 +237,7 @@ class RemainingController extends Controller
                     ['location_id',$lokasi]
                     ]);
             }
+            
             elseif($keyword <> '0' AND $lokasi == '0'){
                 $mProduct = $mProduct->where([
                     ['product_name', 'like', '%' . $keyword .'%']

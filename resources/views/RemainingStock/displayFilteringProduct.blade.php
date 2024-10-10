@@ -24,7 +24,7 @@
                         <?php
                             foreach($totalStock as $tStock){
                                 if($tStock->idm_data_product == $mp->idm_data_product){
-                                    $besar = $tStock->sumstock / $tStock->product_volume; //result 71.93
+                                    $besar = $tStock->sumstock / $tStock->product_volume;
                                     foreach($mUnit as $filData){
                                         if($filData->size_code == '1'){
                                             if($tStock->size_code == '3'){
@@ -40,9 +40,10 @@
                                         }
                                         elseif($filData->size_code == '2'){
                                             if($tStock->size_code == '3'){
-                                                $a = $filData->product_volume * $besar; // Result 719,3
-                                                $a1 = $filData->product_volume * (int)$besar;
-                                                $b = (int)$a -$a1;
+                                                $a = (int)$besar * $tStock->product_volume;
+                                                $a1 = $tStock->sumstock - $a;
+                                                $a2 = $a1 / $filData->product_volume;
+                                                $b = (int)$a2;
                                             }
                                             elseif($tStock->size_code == '2'){
                                                 foreach($valBesar as $vb){
