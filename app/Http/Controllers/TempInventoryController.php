@@ -207,7 +207,9 @@ class TempInventoryController extends Controller
         $findReportInv = DB::table('report_inv')
                 ->where('product_id',$prodId)
                 ->orderBy('idr_inv','desc')
-                ->first();        
+                ->first();
+
+        
         
         $mVolPrd = DB::table('m_product')
                 ->select('large_unit_val','medium_unit_val','small_unit_val')
@@ -277,7 +279,7 @@ class TempInventoryController extends Controller
                 'description'=>$description,
                 'inv_in'=>$inputValIn,
                 'inv_out'=>$inputValOut,
-                'saldo'=>$saldo,
+                'saldo'=>$findStock->stock,
                 'created_by'=>$createdBy,
                 'location'=>$loc,
                 'last_saldo'=>$lastSaldo,
