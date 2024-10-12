@@ -221,9 +221,9 @@ class TempInventoryController extends Controller
                 $inputValVol = $mVolPrd->small_unit_val;
             }
             elseif ($findSatuan->size_code == '2') {
-                $inputValIn = $inInv * $mVolPrd->large_unit_val;
-                $inputValOut = $outInv * $mVolPrd->large_unit_val;
-                $inputValVol = $mVolPrd->large_unit_val;
+                $inputValIn = $inInv * $mVolPrd->medium_unit_val;
+                $inputValOut = $outInv * $mVolPrd->medium_unit_val;
+                $inputValVol = $mVolPrd->medium_unit_val;
             }
             elseif ($findSatuan->size_code == '3') {
                 $inputValIn = $inInv;
