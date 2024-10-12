@@ -217,9 +217,9 @@ class TempInventoryController extends Controller
             // Jika yang di input dengan satuan code :
             if ($findSatuan->size_code == '1') {
                 if ($mVolPrd->small_unit_val == '0') {
-                    $inputValIn = $inInv * $mVolPrd->medium_unit_val;
-                    $inputValOut = $outInv * $mVolPrd->medium_unit_val;
-                    $inputValVol = $mVolPrd->medium_unit_val;
+                    $inputValIn = $inInv * $mVolPrd->large_unit_val;
+                    $inputValOut = $outInv * $mVolPrd->large_unit_val;
+                    $inputValVol = $mVolPrd->large_unit_val;
                 }
                 else {
                     $inputValIn = $inInv * $mVolPrd->small_unit_val;
