@@ -216,14 +216,28 @@ class TempInventoryController extends Controller
         else {
             // Jika yang di input dengan satuan code :
             if ($findSatuan->size_code == '1') {
-                $inputValIn = $inInv * $mVolPrd->small_unit_val;
-                $inputValOut = $outInv * $mVolPrd->small_unit_val;
-                $inputValVol = $mVolPrd->small_unit_val;
+                if ($mVolPrd->small_unit_val == '0') {
+                    $inputValIn = $inInv * $mVolPrd->medium_unit_val;
+                    $inputValOut = $outInv * $mVolPrd->medium_unit_val;
+                    $inputValVol = $mVolPrd->medium_unit_val;
+                }
+                else {
+                    $inputValIn = $inInv * $mVolPrd->small_unit_val;
+                    $inputValOut = $outInv * $mVolPrd->small_unit_val;
+                    $inputValVol = $mVolPrd->small_unit_val;                    
+                }
             }
             elseif ($findSatuan->size_code == '2') {
-                $inputValIn = $inInv * $mVolPrd->medium_unit_val;
-                $inputValOut = $outInv * $mVolPrd->medium_unit_val;
-                $inputValVol = $mVolPrd->medium_unit_val;
+                if ($mVolPrd->medium_unit_val == '0') {
+                    $inputValIn = $inInv * $mVolPrd->large_unit_val;
+                    $inputValOut = $outInv * $mVolPrd->large_unit_val;
+                    $inputValVol = $mVolPrd->large_unit_val;
+                }
+                else {
+                    $inputValIn = $inInv * $mVolPrd->medium_unit_val;
+                    $inputValOut = $outInv * $mVolPrd->medium_unit_val;
+                    $inputValVol = $mVolPrd->medium_unit_val;
+                }
             }
             elseif ($findSatuan->size_code == '3') {
                 $inputValIn = $inInv;
