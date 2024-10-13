@@ -17,16 +17,8 @@
                 <td>{{$mou->unit_initial}}</td>
                 <td>{{$mou->unit_note}}</td>
                 <td class="text-right">
-                    <div class="btn-group btn-sm">
-                        <button type="button" class="btn btn-default" data-toggle="dropdown">
-                            <i class="fa-solid fa-bars"></i>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" role="menu">
-                            <a class="dropdown-item BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('MoU')}}/tableMoU/EditMoU/{{$mou->idm_unit}}"><i class="fa-solid fa-pencil"></i> Edit Unit</a>                                    
-                            <a class="dropdown-item BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('MoU')}}/tableMoU/DeleteMoU/{{$mou->idm_unit}}"><i class="fa-solid fa-trash-can"></i> Delete Permanently</a>
-                        </div>
-                    </div>
+                    <a class="btn btn-info btn-flat btn-sm BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('MoU')}}/tableMoU/EditMoU/{{$mou->idm_unit}}"><i class="fa-solid fa-pencil"></i> Edit Unit</a>                                    
+                    <a class="btn btn-info btn-flat btn-sm BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('MoU')}}/tableMoU/DeleteMoU/{{$mou->idm_unit}}"><i class="fa-solid fa-trash-can"></i> Delete Permanently</a>
                 </td>
             </tr>
         @endforeach

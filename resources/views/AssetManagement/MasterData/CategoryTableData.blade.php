@@ -20,7 +20,7 @@
                         <td>{{$tc->category_name}}</td>
                         <td class="text-right">
                             <button class="btn btn-info btn-sm btn-flat BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('M_Category')}}/arrayCategory/editMenu/{{$tc->idm_asset_category}}"><i class="fa-solid fa-pencil"></i> Edit</button>
-                            <button class="btn btn-danger btn-sm btn-flat ITEM-ACTION" idCat="{{$tc->idm_asset_category}}"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                            <button class="btn btn-danger btn-sm btn-flat ITEM-ACTION" idCat="{{$tc->idm_asset_category}}" nameCat="{{$tc->category_name}}"><i class="fa-solid fa-trash-can"></i> Delete</button>
                         </td>
                     </tr>
                 @endforeach
@@ -45,17 +45,25 @@
         $(".dataTable").on('click','.ITEM-ACTION', function () {
             let el = $(this);
             let id = el.attr("idCat");
+            let nameCat = el.attr("nameCat");
             let loadSpinner = $(".LOAD-SPINNER"),
                 routeIndex = "{{route('M_Category')}}",
                 tableData = "arrayCategory",
                 displayData = $("#displayTableCategory");
-            $.ajax({
-                type:'get',
-                url:routeIndex + "/arrayCategory/DelPermanently/" + id, 
-                success : function(response){
-                    global_style.load_table(loadSpinner,routeIndex,tableData,displayData);
-                }           
-            });            
+                alertify.confirm("Apakah anda yakin ingin menghapus kategori "+nameCat+" ?.",
+                function(){
+                    $.ajax({
+                        type:'get',
+                        url:routeIndex + "/arrayCategory/DelPermanently/" + id, 
+                        success : function(response){
+                            global_style.load_table(loadSpinner,routeIndex,tableData,displayData);
+                        }           
+                    });            
+                    alertify.success('Ok');
+                },
+                function(){
+                    alertify.error('Cancel');
+                });
         })
     })
 </script>

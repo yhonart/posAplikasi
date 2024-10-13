@@ -4,6 +4,8 @@ Route::get('setKasKasir', [App\Http\Controllers\GlobSettingController::class, 's
 Route::get('setKasKasir/newNominal', [App\Http\Controllers\GlobSettingController::class, 'newNominal']);
 Route::post('setKasKasir/newNominal/postNewNominal', [App\Http\Controllers\GlobSettingController::class, 'postNewNominal']);
 Route::get('setKasKasir/tableSetKasKasir', [App\Http\Controllers\GlobSettingController::class, 'tableSetKasKasir']);
+Route::get('setKasKasir/editKasKasir/{idKasir}', [App\Http\Controllers\GlobSettingController::class, 'editKasKasir']);
+Route::get('setKasKasir/deleteKasKasir/{idKasir}', [App\Http\Controllers\GlobSettingController::class, 'deleteKasKasir']);
 
 //set metode pembayarann
 Route::get('setPembayaran', [App\Http\Controllers\GlobSettingController::class, 'setPembayaran'])->name('setPembayaran');

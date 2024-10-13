@@ -53,6 +53,14 @@ class GlobSettingController extends Controller
             
         return view ('globalSetting/tableKasKasir', compact('tbKasKasir'));
     }
+
+    public function editKasKasir($idKasir){
+        $kasirInfo = DB::table('m_set_kas as a')
+            ->leftJoin('users as b','a.personal_id','=','b.id')
+            ->first();
+
+        return view ('globalSetting/modalEditKas', compact('kasirInfo'));
+    }
     
     //Set Metod Pembayaran
     public function setPembayaran(){
