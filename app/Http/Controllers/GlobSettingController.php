@@ -61,6 +61,17 @@ class GlobSettingController extends Controller
 
         return view ('globalSetting/modalEditKas', compact('kasirInfo'));
     }
+
+    public function postEditKasKasir(Request $postReqEdit){
+        $id = $postReqEdit->idMKasir;
+        $nominal = $postReqEdit->nominal;
+
+        DB::table('m_set_kas')
+            ->where('idm_kas',$id)
+            ->update([
+                'nominal'=>$nominal
+            ]);
+    }
     
     //Set Metod Pembayaran
     public function setPembayaran(){
