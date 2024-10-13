@@ -75,7 +75,7 @@ class GlobSettingController extends Controller
 
     public function deleteKasKasir($idKas){
         DB::table('m_set_kas')
-            ->where('idm_kas',$id)
+            ->where('idm_kas',$idKas)
             ->delete();
     }
     

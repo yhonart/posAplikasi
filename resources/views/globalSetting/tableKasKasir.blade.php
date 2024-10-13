@@ -42,7 +42,7 @@
             },
             function(){
                 alertify.error('Cancel');
-            });
+            }).set({title:"Delete Kas Kasir!"});
         });
     });
 </script>
