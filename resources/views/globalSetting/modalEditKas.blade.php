@@ -6,13 +6,13 @@
                 <div class="form-group row">
                     <label for="nameKasir" class="label col-md-4">Nama Kasir</label>
                     <div class="col-md-8">
-                        <input type="text" name="nameKasir" id="nameKasir" value="{{$kasirInfo->name}}" readonly>
+                        <input type="text" class="form-control form-control-sm" name="nameKasir" id="nameKasir" value="{{$kasirInfo->name}}" readonly>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group row">
                     <label for="nameKasir" class="label col-md-4">Nominal</label>
                     <div class="col-md-4">
-                        <input type="text" name="nameKasir" id="nameKasir" value="{{$kasirInfo->nominal}}">
+                        <input type="text" class="form-control form-control-sm" name="nameKasir" id="nameKasir" value="{{$kasirInfo->nominal}}">
                     </div>
                 </div>
                 <div class="form-group">
