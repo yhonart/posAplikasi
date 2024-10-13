@@ -18,3 +18,6 @@ Route::post('setPembayaran/newAkunBank/postnewAkunBank', [App\Http\Controllers\G
 Route::get('setPembayaran/editAkun/{id}', [App\Http\Controllers\GlobSettingController::class, 'editAkun']);
 Route::post('setPembayaran/postEditAkun', [App\Http\Controllers\GlobSettingController::class, 'postEditAkun']);
 Route::get('setPembayaran/deleteAkun/{id}', [App\Http\Controllers\GlobSettingController::class, 'deleteAkun']);
+Route::get('setPembayaran/deletePembayaran/{id}', [App\Http\Controllers\GlobSettingController::class, 'deletePembayaran']);
+Route::get('setPembayaran/editMethod/{id}', [App\Http\Controllers\GlobSettingController::class, 'editMethod']);
+Route::post('setPembayaran/editMethod/postEditPembayaran', [App\Http\Controllers\GlobSettingController::class, 'postEditPembayaran']);

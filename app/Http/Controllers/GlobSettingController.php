@@ -95,6 +95,32 @@ class GlobSettingController extends Controller
         return view('globalSetting/setMetodPembayaranList', compact('mPayMethod','mAccountBank'));
     }
 
+    public function editMethod ($idMethod){
+        $dbMstrMethod = DB::table('m_payment_method')
+            ->where('idm_payment_method',$idMethod)
+            ->first();
+
+        return view('globalSetting/setEditPembayaran', compact('dbMstrMethod'));
+    }
+
+    public function postEditPembayaran (Request $reqEditMethod){
+        $id = $reqEditMethod->idMethod;
+        $nameMethod = $reqEditMethod->mPembayaran;
+
+        DB::table('m_payment_method')
+            ->where('idm_payment_method',$id)
+            ->update([
+                'method_name'=>$nameMethod
+            ]);
+    }
+
+    public function deletePembayaran ($idMethod){
+        DB::table('m_payment_method')
+            ->where('idm_payment_method',$idMethod)
+            ->delete();
+
+    }
+
     public function newPembayaran(){
         return view('globalSetting/setMetodPembayaranAdd');
     }

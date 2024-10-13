@@ -10,7 +10,6 @@
                     <thead>
                         <tr>
                             <th>Metode Pembayaran</th>
-                            <th>Status</th>
                             <th>#</th>
                         </tr>
                     </thead>
@@ -18,9 +17,9 @@
                         @foreach($mPayMethod as $mpm)
                             <tr>
                                 <td>{{$mpm->method_name}}</td>
-                                <td>{{$mpm->status}}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-info btn-flat" disabled><i class="fa-solid fa-pencil"></i></button>
+                                    <button class="btn btn-sm btn-info btn-flat BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('setPembayaran')}}/editMethod/{{$mpm->idm_payment_method}}"><i class="fa-solid fa-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger btn-flat DEL-METHOD" id-method="{{$mpm->idm_payment_method}}"><i class="fa-solid fa-trash"></i></button>
                                 </td>
                             </tr>
                         @endforeach
@@ -70,13 +69,38 @@
         $('.DELETE-AKUN').on('click',function (){
             let el = $(this);
             let id = el.attr("id-akun");
-            $.ajax({
-                type:'get',
-                url:"{{route('setPembayaran')}}/deleteAkun/"+id, 
-                success : function(response){
-                    window.location.reload();
-                }           
-            });            
+            alertify.confirm("This is a confirm dialog.",
+            function(){
+                $.ajax({
+                    type:'get',
+                    url:"{{route('setPembayaran')}}/deleteAkun/"+id, 
+                    success : function(response){
+                        window.location.reload();
+                    }           
+                });            
+                alertify.success('Ok');
+            },
+            function(){
+                alertify.error('Cancel');
+            });
+        })
+        $('.DEL-METHOD').on('click',function (){
+            let el = $(this);
+            let id = el.attr("id-method");
+            alertify.confirm("This is a confirm dialog.",
+            function(){
+                $.ajax({
+                    type:'get',
+                    url:"{{route('setPembayaran')}}/deletePembayaran/"+id, 
+                    success : function(response){
+                        alertify.success('Ok');
+                        window.location.reload();
+                    }           
+                });            
+            },
+            function(){
+                alertify.error('Cancel');
+            });
         })
     })
 </script>
