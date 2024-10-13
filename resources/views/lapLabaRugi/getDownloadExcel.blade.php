@@ -84,21 +84,38 @@
                         <td style="text-align: right;"><b>{{number_format($sp->hargaModal,'0',',','.')}}</b></td>
                         <td style="text-align: right;"><b>{{number_format($sp->totalJual,'0',',','.')}}</b></td>
                         <td style="text-align: right;">
-                            <b>
-                                {{number_format($sumTotHpp,'0',',','.')}}
-                            </b>
+                            <b>--</b>
                         </td>
                         <td style="text-align: right;">
-                            <b>
-                                {{number_format($sumSelisih,'0',',','.')}}
-                            </b>
+                            <b>--</b>
                         </td>
                         <td style="text-align: right;">
 
                         </td>
                     </tr>
                 @endif
-            @endforeach       
+            @endforeach 
+            <tr>
+                <td>GRAND TOTAL</td>
+                <td></td>
+                <td></td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <b>
+                        {{number_format($sumTotHpp,'0',',','.')}}
+                    </b>
+                </td>
+                <td>
+                    <b>
+                        {{number_format($sumSelisih,'0',',','.')}}
+                    </b>
+                </td>
+                <td>
+
+                </td>
+            </tr>      
         @endforeach
     </tbody>
 </table>
