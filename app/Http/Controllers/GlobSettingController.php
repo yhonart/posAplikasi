@@ -72,6 +72,12 @@ class GlobSettingController extends Controller
                 'nominal'=>$nominal
             ]);
     }
+
+    public function deleteKasKasir($idKas){
+        DB::table('m_set_kas')
+            ->where('idm_kas',$id)
+            ->delete();
+    }
     
     //Set Metod Pembayaran
     public function setPembayaran(){

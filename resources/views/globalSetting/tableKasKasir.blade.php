@@ -29,12 +29,19 @@
         $('.DEL-KAS').on('click', function () {
             let el = $(this);
             let dataID = el.attr('data-id');
-            $.ajax({
-                url: "{{route('setKasKasir')}}/deleteKasKasir/"+dataID,
-                type: 'GET',
-                success: function (data) {   
-                    window.location.reload();                
-                },                
+            alertify.confirm("Apakah anda yakin ingin menghapus data ini ?",
+            function(){
+                $.ajax({
+                    url: "{{route('setKasKasir')}}/deleteKasKasir/"+dataID,
+                    type: 'GET',
+                    success: function (data) {   
+                        alertify.success('Ok');
+                        window.location.reload();                
+                    },                
+                });
+            },
+            function(){
+                alertify.error('Cancel');
             });
         });
     });
