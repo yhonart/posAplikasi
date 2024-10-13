@@ -12,7 +12,7 @@
                 <div class="form-group row">
                     <label for="nameKasir" class="label col-md-4">Nominal</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control form-control-sm" name="nameKasir" id="nameKasir" value="{{$kasirInfo->nominal}}">
+                        <input type="text" class="form-control form-control-sm" name="nominal" id="nominal" value="{{$kasirInfo->nominal}}">
                     </div>
                 </div>
                 <div class="form-group">
