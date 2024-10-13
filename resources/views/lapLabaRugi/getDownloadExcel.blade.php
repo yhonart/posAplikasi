@@ -43,31 +43,7 @@
             </tr>
             
 
-            @foreach($sumPrice as $sp)
-                @if($sp->product_code == $mpd1->product_code)
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td><b>SUB TOTAL</b></td>
-                        <td style="text-align: right;"><b>{{number_format($sp->hargaJual,'0',',','.')}}</b></td>
-                        <td style="text-align: right;"><b>{{number_format($sp->hargaModal,'0',',','.')}}</b></td>
-                        <td style="text-align: right;"><b>{{number_format($sp->totalJual,'0',',','.')}}</b></td>
-                        <td style="text-align: right;">
-                            <b>
-                                {{number_format($sumTotHpp,'0',',','.')}}
-                            </b>
-                        </td>
-                        <td style="text-align: right;">
-                            <b>
-                                {{number_format($sumSelisih,'0',',','.')}}
-                            </b>
-                        </td>
-                        <td style="text-align: right;">
-
-                        </td>
-                    </tr>
-                @endif
-            @endforeach
+           
         @endforeach
     </tbody>
 </table>
