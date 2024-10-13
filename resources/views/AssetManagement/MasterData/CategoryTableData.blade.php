@@ -20,7 +20,7 @@
                         <td>{{$tc->category_name}}</td>
                         <td class="text-right">
                             <button class="btn btn-info btn-sm btn-flat BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('M_Category')}}/arrayCategory/editMenu/{{$tc->idm_asset_category}}"><i class="fa-solid fa-pencil"></i> Edit</button>
-                            <button class="btn btn-danger btn-sm btn-flat ITEM-ACTION"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                            <button class="btn btn-danger btn-sm btn-flat ITEM-ACTION" idCat="{{$tc->idm_asset_category}}"><i class="fa-solid fa-trash-can"></i> Delete</button>
                         </td>
                     </tr>
                 @endforeach
@@ -49,7 +49,6 @@
                 routeIndex = "{{route('M_Category')}}",
                 tableData = "arrayCategory",
                 displayData = $("#displayTableCategory");
-
             $.ajax({
                 type:'get',
                 url:routeIndex + "/arrayCategory/DelPermanently/" + id, 
