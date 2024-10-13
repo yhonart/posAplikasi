@@ -29,3 +29,4 @@ Route::post('M_Model/arrayModel/PostEditModel', [App\Http\Controllers\AssManaged
 //Asset List
 Route::get('AllAssets', [App\Http\Controllers\AssetController::class, 'AssetListIndex'])->name('AllAssets');
 Route::get('AllAssets/NewAsset', [App\Http\Controllers\AssetController::class, 'AssetListIndex']);
+?>
