@@ -208,8 +208,6 @@ class TempInventoryController extends Controller
                 ->where('product_id',$prodId)
                 ->orderBy('idr_inv','desc')
                 ->first();
-
-        
         
         $mVolPrd = DB::table('m_product')
                 ->select('large_unit_val','medium_unit_val','small_unit_val')
@@ -261,12 +259,14 @@ class TempInventoryController extends Controller
         elseif ($inInv == '0') {
             $lastSaldo = $findStock->stock + $inputValOut;
             $actualInput = $outInv;
-            $saldo = $findReportInv->saldo - $inputValIn;
+            $saldo = $findReportInv->saldo - $inputValOut;
         }
         else {
             $lastSaldo = '0';
             $actualInput = '0';
         }
+
+        
 
         $inserReport = DB::table('report_inv')
             ->insert([
@@ -279,7 +279,7 @@ class TempInventoryController extends Controller
                 'description'=>$description,
                 'inv_in'=>$inputValIn,
                 'inv_out'=>$inputValOut,
-                'saldo'=>$findStock->stock,
+                'saldo'=>$saldo,
                 'created_by'=>$createdBy,
                 'location'=>$loc,
                 'last_saldo'=>$lastSaldo,
