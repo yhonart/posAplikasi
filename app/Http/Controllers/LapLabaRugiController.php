@@ -46,6 +46,7 @@ class LapLabaRugiController extends Controller
         $mProduct = $mProduct->where('status','4');
         $mProduct = $mProduct->whereBetween('date',[$fromDate, $endDate]);
         $mProduct = $mProduct->orderBy('product_name','ASC');
+        $mProduct = $mProduct->groupBy('product_name');
         $mProduct = $mProduct->get();
 
         $tableProduct = DB::table('tr_store_prod_list as a');
