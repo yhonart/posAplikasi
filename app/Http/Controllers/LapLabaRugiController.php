@@ -33,7 +33,7 @@ class LapLabaRugiController extends Controller
     }
 
     public function getDownloadExcel($prdID, $fromDate, $endDate, $typeCetak){
-
+        echo $fromDate."-".$endDate;
         $today = date("Y-m-d");
         $mCompany = DB::table('m_company')
             ->first();
