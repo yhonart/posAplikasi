@@ -88,8 +88,8 @@
 
     $(document).ready(function(){
         var productName = $("#produk").val(),
-            fromDate = $("#fromDate").find(":selected").val(),
-            endDate = $("#endDate").find(":selected").val(),
+            fromDate = $("#fromDate").val(),
+            endDate = $("#endDate").val(),
             tipeCetak = $("#typeCetak").val();
         
         $("#reportToExcel").on('click', function(){
