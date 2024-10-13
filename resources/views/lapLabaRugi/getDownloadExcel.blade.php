@@ -57,7 +57,7 @@
                             <?php
                                 $totHpp = $mpd->capital_price * $mpd->qty;
                                 echo number_format($totHpp, '0',',','.');
-                                // $sumTotHpp += $totHpp;
+                                $sumTotHpp += $totHpp;
                             ?>
                         </td>
                         <td style="text-align: right;">
@@ -80,9 +80,9 @@
                         <td></td>
                         <td></td>
                         <td><b>SUB TOTAL</b></td>
-                        <td style="text-align: right;">{{number_format($sp->hargaJual,'0',',','.')}}</td>
-                        <td style="text-align: right;">{{number_format($sp->hargaModal,'0',',','.')}}</td>
-                        <td style="text-align: right;">{{number_format($sp->totalJual,'0',',','.')}}</td>
+                        <td style="text-align: right;"><b>{{number_format($sp->hargaJual,'0',',','.')}}</b></td>
+                        <td style="text-align: right;"><b>{{number_format($sp->hargaModal,'0',',','.')}}</b></td>
+                        <td style="text-align: right;"><b>{{number_format($sp->totalJual,'0',',','.')}}</b></td>
                         <td style="text-align: right;">
                             <b>
                                 {{number_format($sumTotHpp,'0',',','.')}}
