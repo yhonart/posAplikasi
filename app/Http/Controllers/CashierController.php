@@ -528,8 +528,14 @@ class CashierController extends Controller
                     $a = $ds->stock - $prodQty;
                 }
                 elseif($ds->size_code == '2'){
-                    $a1 = $ds->product_volume * $prodQty;
-                    $a = $ds->stock - $a1;
+                    if (empty($codeTiga)) {
+                        $a1 = $prodQty * $codeSatu->product_volume;
+                        $a = $ds->stock - $a1;
+                    }
+                    else {
+                        $a1 = $ds->product_volume * $prodQty;
+                        $a = $ds->stock - $a1;
+                    }
                 }
                 elseif($ds->size_code == '3'){
                     $a1 = $ds->product_volume * $prodQty;

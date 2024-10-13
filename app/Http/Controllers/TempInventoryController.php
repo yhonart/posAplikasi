@@ -254,12 +254,10 @@ class TempInventoryController extends Controller
         if ($outInv == '0') {
             $lastSaldo = $findStock->stock - $inputValIn;
             $actualInput = $inInv;
-            $saldo = $findReportInv->saldo + $inputValIn;
         } 
         elseif ($inInv == '0') {
             $lastSaldo = $findStock->stock + $inputValOut;
             $actualInput = $outInv;
-            $saldo = $findReportInv->saldo - $inputValOut;
         }
         else {
             $lastSaldo = '0';
@@ -279,7 +277,7 @@ class TempInventoryController extends Controller
                 'description'=>$description,
                 'inv_in'=>$inputValIn,
                 'inv_out'=>$inputValOut,
-                'saldo'=>$saldo,
+                'saldo'=>$findStock->stock,
                 'created_by'=>$createdBy,
                 'location'=>$loc,
                 'last_saldo'=>$lastSaldo,
