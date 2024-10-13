@@ -37,9 +37,7 @@ class LapLabaRugiController extends Controller
         $mCompany = DB::table('m_company')
             ->first();
 
-        $mProduct = DB::table('tr_store_prod_list as a');
-        $mProduct = $mProduct->select('a.*','b.product_name');
-        $mProduct = $mProduct->leftJoin('m_product as b', 'a.product_code','=','b.idm_data_product');
+        $mProduct = DB::table('trans_product_list_view');
         if ($prdID <> '0') {
             $mProduct = $mProduct->where([
                     ['a.product_code',$prdID]
