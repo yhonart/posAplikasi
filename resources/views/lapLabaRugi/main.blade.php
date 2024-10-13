@@ -86,8 +86,7 @@
         });
     });
 
-    $(document).ready(function(){
-        
+    $(document).ready(function(){        
         $("#reportToExcel").on('click', function(){
             let productName = $("#produk").val(),
                 fromDate = $("input[name=fromDate]").val(),
@@ -95,7 +94,7 @@
                 tipeCetak = $("#typeCetak").val();
             window.open("{{route('lapLabaRugi')}}/getDownloadExcel/"+productName+"/"+fromDate+"/"+endDate+"/"+tipeCetak,"_blank");
         });
-        
+
         $("#reportToPdf").on('click', function(){
             window.open("{{route('lapLabaRugi')}}/getDownloadPdf/"+productName+"/"+fromDate+"/"+endDate+"/"+tipeCetak,"_blank");
         });

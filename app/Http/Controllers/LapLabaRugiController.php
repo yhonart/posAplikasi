@@ -32,8 +32,7 @@ class LapLabaRugiController extends Controller
         return view('lapLabaRugi/displayAllTable', compact('mProduct'));
     }
 
-    public function getDownloadExcel($prdID, $fromDate, $endDate, $typeCetak){
-        echo $fromDate."-".$endDate;
+    public function getDownloadExcel($prdID, $fromDate, $endDate, $typeCetak){        
         $today = date("Y-m-d");
         $mCompany = DB::table('m_company')
             ->first();

@@ -80,7 +80,6 @@
 
             
         $('#btnSubmitModel').on('click', function(){
-
             let val_mCode = $("input[name=modelCode]").val(),
                 val_mName = $("#modelName").val(),
                 val_mCategory = $("#modelCategory").find(":selected").val(),

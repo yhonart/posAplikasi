@@ -41,38 +41,7 @@
                     <b title="{{$mpd1->list_id}} - {{$mpd1->from_payment_code}}">{{$mpd1->product_name}}</b>                        
                 </td>
             </tr>
-            @foreach($tableProduct as $mpd)
-                @if($mpd->product_code == $mpd1->product_code)
-                    <tr>
-                        <td>
-                            <span>{{$mpd->product_name}}</span>                        
-                        </td>
-
-                        <td>{{$mpd->unit}}</td>
-                        <td>{{$mpd->qty}}</td>
-                        <td style="text-align: right;">{{number_format($mpd->m_price,'0',',','.')}}</td>
-                        <td style="text-align: right;">{{number_format($mpd->capital_price,'0',',','.')}}</td>
-                        <td style="text-align: right;">{{number_format($mpd->t_price,'0',',','.')}}</td>
-                        <td style="text-align: right;">
-                            <?php
-                                $totHpp = $mpd->capital_price * $mpd->qty;
-                                echo number_format($totHpp, '0',',','.');
-                                $sumTotHpp += $totHpp;
-                            ?>
-                        </td>
-                        <td style="text-align: right;">
-                            <?php
-                                $selisih = $mpd->t_price - $totHpp;
-                                echo number_format($selisih,'0',',','.');
-                                // $sumSelisih += $selisih;
-                            ?>
-                        </td>
-                        <td style="text-align: right;">
-
-                        </td>
-                    </tr>
-                @endif
-            @endforeach
+            
 
             @foreach($sumPrice as $sp)
                 @if($sp->product_code == $mpd1->product_code)
