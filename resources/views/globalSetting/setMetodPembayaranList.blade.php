@@ -69,7 +69,7 @@
         $('.DELETE-AKUN').on('click',function (){
             let el = $(this);
             let id = el.attr("id-akun");
-            alertify.confirm("This is a confirm dialog.",
+            alertify.confirm("Apakah anda yakin ingin menghapus data ini ?",
             function(){
                 $.ajax({
                     type:'get',
@@ -87,7 +87,7 @@
         $('.DEL-METHOD').on('click',function (){
             let el = $(this);
             let id = el.attr("id-method");
-            alertify.confirm("This is a confirm dialog.",
+            alertify.confirm("Apakah anda yakin ingin menghapus data ini ?",
             function(){
                 $.ajax({
                     type:'get',
