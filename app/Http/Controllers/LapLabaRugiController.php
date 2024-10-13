@@ -40,12 +40,12 @@ class LapLabaRugiController extends Controller
         $mProduct = DB::table('trans_product_list_view');
         if ($prdID <> '0') {
             $mProduct = $mProduct->where([
-                    ['a.product_code',$prdID]
+                    ['product_code',$prdID]
             ]);            
         }
-        $mProduct = $mProduct->where('a.status','4');
-        $mProduct = $mProduct->whereBetween('a.date',[$fromDate, $endDate]);
-        $mProduct = $mProduct->orderBy('b.product_name','ASC');
+        $mProduct = $mProduct->where('status','4');
+        $mProduct = $mProduct->whereBetween('date',[$fromDate, $endDate]);
+        $mProduct = $mProduct->orderBy('product_name','ASC');
         $mProduct = $mProduct->get();
 
         $tableProduct = DB::table('tr_store_prod_list as a');
