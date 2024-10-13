@@ -1,30 +1,26 @@
 <?php 
-    header("Content-type: application/vnd-ms-excel");
-    header("Content-Disposition: attachment; filename=Laporan Laba Rugi.xls");
+    // header("Content-type: application/vnd-ms-excel");
+    // header("Content-Disposition: attachment; filename=Laporan Laba Rugi.xls");
     $no = '1';
     $sumTotHpp = '0';
     $sumSelisih = '0';
 ?>
-<table weight="100%">
-    <tbody>
-        <tr>
-            <td style="text-align: center;">
-                <h2>TOKO LING LING</h2>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">
-                Laporan Laba Rugi Ringkasan
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">
-                Dari Tgl {{$fromDate}} s.d {{$endDate}}
-            </td>
-        </tr>
-    </tbody>
-</table>
 <table border="1" cellpadding="0" cellspacing="0" style="width:100%">
+    <thead>
+        <tr>
+            @if(!empty($mCompany))
+                <th colspan="9">{{$mCompany->company_name}}</th>
+            @else
+                <th colspan="9">Nama Toko</th>
+            @endif
+        </tr>
+        <tr>
+            <th colspan="9">Ringkasan Laporan Laba Rugi</th>
+        </tr>
+        <tr>
+            <th colspan="9">Dari Tgl {{$fromDate}} s.d {{$endDate}}</th>
+        </tr>
+    </thead>
     <thead class="bg-gradient-purple">
         <tr>
             <th>Nama Barang</th>
@@ -45,7 +41,6 @@
                     <b title="{{$mpd1->list_id}} - {{$mpd1->from_payment_code}}">{{$mpd1->product_name}}</b>                        
                 </td>
             </tr>
-
             @foreach($tableProduct as $mpd)
                 @if($mpd->product_code == $mpd1->product_code)
                     <tr>
@@ -89,10 +84,14 @@
                         <td style="text-align: right;">{{number_format($sp->hargaModal,'0',',','.')}}</td>
                         <td style="text-align: right;">{{number_format($sp->totalJual,'0',',','.')}}</td>
                         <td style="text-align: right;">
-                            {{number_format($sumTotHpp,'0',',','.')}}
+                            <b>
+                                {{number_format($sumTotHpp,'0',',','.')}}
+                            </b>
                         </td>
                         <td style="text-align: right;">
-                            {{number_format($sumSelisih,'0',',','.')}}
+                            <b>
+                                {{number_format($sumSelisih,'0',',','.')}}
+                            </b>
                         </td>
                         <td style="text-align: right;">
 
@@ -100,7 +99,6 @@
                     </tr>
                 @endif
             @endforeach
-
         @endforeach
     </tbody>
 </table>

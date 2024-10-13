@@ -35,6 +35,8 @@ class LapLabaRugiController extends Controller
     public function getDownloadExcel($prdID, $fromDate, $endDate, $typeCetak){
 
         $today = date("Y-m-d");
+        $mCompany = DB::table('m_company')
+            ->first();
 
         $mProduct = DB::table('tr_store_prod_list as a');
         $mProduct = $mProduct->select('a.*','b.product_name');
@@ -73,6 +75,6 @@ class LapLabaRugiController extends Controller
 
         
 
-        return view('lapLabaRugi/getDownloadExcel', compact('mProduct','tableProduct','sumPrice','fromDate','endDate'));
+        return view('lapLabaRugi/getDownloadExcel', compact('mProduct','tableProduct','sumPrice','fromDate','endDate','mCompany'));
     }
 }
