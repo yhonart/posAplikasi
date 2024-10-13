@@ -489,7 +489,7 @@ class CashierController extends Controller
             't_item'=>$tItem,
         ]);
         
-        // UPDATE STOCK
+        // UPDATE STOCK        
         $dataStock = DB::table('view_product_stock')
         ->where([
             ['idm_data_product',$prodName],
@@ -498,6 +498,14 @@ class CashierController extends Controller
         ->get();
         
         // Cek volume by kode size 2
+        $codeSatu = DB::table('view_product_stock')
+        ->where([
+            ['idm_data_product',$prodName],
+            ['location_id','3'],
+            ['size_code','1'],
+        ])
+        ->first();
+
         $codeDua = DB::table('view_product_stock')
         ->where([
             ['idm_data_product',$prodName],
@@ -533,7 +541,13 @@ class CashierController extends Controller
                     $a1 = $codeDua->stock / $codeDua->product_volume;
                     $b1 = $prodQty / $codeDua->product_volume;
                     $a2 = $a1 - $b1;
-                    $a = (int)$a2;
+                    $a3 = $a2 / $codeSatu->product_volume;                    
+                    if (empty($codeTiga)) {
+                        $a = (int)$a3;
+                    }
+                    else {
+                        $a = (int)$a2;
+                    }
                 }
                 elseif($ds->size_code == '2'){
                     $a1 = $ds->stock - $prodQty;
