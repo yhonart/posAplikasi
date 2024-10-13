@@ -39,13 +39,13 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="label">Dari Tanggal</label>
-                                <input class="form-control form-control-sm rounded-0 datetimepicker-input" name="fromDate" id="fromDate">
+                                <input type="text" class="form-control form-control-sm rounded-0 datetimepicker-input" name="fromDate" id="fromDate">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="label">s/d Tanggal</label>
-                                <input class="form-control form-control-sm rounded-0 datetimepicker-input" name="endDate" id="endDate">
+                                <input type="text" class="form-control form-control-sm rounded-0 datetimepicker-input" name="endDate" id="endDate">
                             </div>
                         </div>                            
                     </div>
@@ -75,7 +75,7 @@
             autoclose: true,
             todayHighlight: true,
         });
-        $('.datetimepicker-input').datepicker("setDate",new Date());
+        // $('.datetimepicker-input').datepicker("setDate",new Date());
 
         $.ajax({
             url: "{{route('lapLabaRugi')}}/getDisplayAll",
