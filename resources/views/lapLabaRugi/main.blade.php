@@ -75,7 +75,7 @@
             autoclose: true,
             todayHighlight: true,
         });
-        // $('.datetimepicker-input').datepicker("setDate",new Date());
+        $('.datetimepicker-input').datepicker("setDate",new Date());
 
         $.ajax({
             url: "{{route('lapLabaRugi')}}/getDisplayAll",
@@ -87,7 +87,7 @@
     });
 
     $(document).ready(function(){
-        var productName = $("#produk").val(),
+        let productName = $("#produk").val(),
             fromDate = $("#fromDate").val(),
             endDate = $("#endDate").val(),
             tipeCetak = $("#typeCetak").val();
