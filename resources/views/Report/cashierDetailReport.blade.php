@@ -263,8 +263,9 @@
                 $grndTotalBayar = $sumTunai + $sumTransfer;
                 $grndTotalKredit = $sumTempo1 + $sumKreditTf;
                 $grndTotalBelanja = $totalBelanjaTunai + $totalBelanjaTransfer;
+                $grndTotalPembelian2 = $totalBelanjaTunai + $totalBelanjaTransfer;
             ?>
-            <td class="text-right">{{number_format($grndTotalPembelian->grandTotalBelanja,'0',',','.')}}</td>
+            <td class="text-right">{{number_format($grndTotalPembelian2,'0',',','.')}}</td>
             <td class="text-right">{{number_format($grndTotalBayar,'0',',','.')}}</td>
             <td></td>
             <td class="text-right">{{number_format($grndTotalKredit,'0',',','.')}}</td>
