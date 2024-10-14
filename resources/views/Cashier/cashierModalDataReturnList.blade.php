@@ -69,7 +69,7 @@
                             </a>
                         </td>
                         <td>
-                            <input type="text" class="form-control form-control-sm form-control-border date-change" name="editDate" id="editDate" value="{{$ldN->tr_date}}" onchange="saveChangeDate(this,'tr_store','tr_date','{{$ldN->tr_store_id}}','tr_store_id')">
+                            <input type="text" class="form-control form-control-sm form-control-border date-change" name="editDate" value="{{$ldN->tr_date}}" onchange="saveChangeDate(this,'tr_store','tr_date','{{$ldN->tr_store_id}}','tr_store_id')">
                         </td>
                         <td>{{$ldN->customer_name}}</td>
                         <td class="text-right font-weight-bold">{{number_format($ldN->t_bill,'0',',','.')}}</td>
@@ -93,6 +93,7 @@
         });
     })
     function saveChangeDate(editableObj,tablename,column,id,dataId){
+        alert(id);
         $.ajax({
             url: "{{route('Cashier')}}/buttonAction/dataReturn/changeDate",
             type: "POST",
