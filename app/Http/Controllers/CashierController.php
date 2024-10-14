@@ -107,7 +107,8 @@ class CashierController extends Controller
                 $countTrx = DB::table("tr_store")
                     ->where([
                         ['store_id', $areaID],
-                        ['tr_date',$dateDB]
+                        ['tr_date',$dateDB],
+                        ['is_update_date','!=','1']
                         ])
                     ->count();
                     
@@ -2869,7 +2870,8 @@ class CashierController extends Controller
         DB::table($tableName)
             ->where($dataId,$id)
             ->update([
-                $column => $editval
+                $column => $editval,
+                'is_update_date'=>'1'
             ]);
         
     }    
