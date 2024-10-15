@@ -135,7 +135,13 @@
             </thead>
             <tbody class="text-center font-weight-bold">
                 <tr>
-                    <td>{{$companyName->company_name}}</td>
+                    <td>
+                        @if(!empty($companyName))
+                        {{$companyName->company_name}}
+                        @else
+                        <b>------</b>
+                        @endif
+                    </td>
                     <td>{{$trStore->customer_name}}</td>
                 </tr>
             </tbody>
