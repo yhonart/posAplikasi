@@ -2164,9 +2164,9 @@ class CashierController extends Controller
 
         $paymentRecord = DB::table('tr_store_prod_list as a')
             ->select(DB::raw('SUM(a.t_price) as nominal'),'c.method_name as methodName','d.bank_name as namaBank','d.account_number as norek','b.method_name as codeMethod')
-            ->leftJoin('tr_payment_method as b','a.from_payment_code','=','b.core_id_trx')
-            ->leftJoin('m_payment_method as c','c.idm_payment_method','=','b.method_name')
-            ->leftJoin('m_company_payment as d','d.idm_payment','=','b.bank_transfer')
+            ->join('tr_payment_method as b','a.from_payment_code','=','b.core_id_trx')
+            ->join('m_payment_method as c','c.idm_payment_method','=','b.method_name')
+            ->join('m_company_payment as d','d.idm_payment','=','b.bank_transfer')
             ->where([
                 ['a.from_payment_code',$noBill],
                 ['b.status','1']
