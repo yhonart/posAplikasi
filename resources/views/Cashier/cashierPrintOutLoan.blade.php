@@ -113,13 +113,11 @@
         </table>
         <table cellpadding="0" cellspacing="0" style="width:100%" class="table">
             <tbody>
-                @foreach($paymentRecord as $pr)
-                    <tr>
-                        <td class="font-weight-bold">Pembayaran</td>
-                        <td class="txt-right font-weight-bold" align="right">{{$pr->methodName}}</td>
-                        <td class="txt-right font-weight-bold" align="right">{{number_format($pr->nominal,0,',','.')}}</td>
-                    </tr>
-                @endforeach
+                <tr>
+                    <td class="font-weight-bold">Pembayaran</td>
+                    <td class="txt-right font-weight-bold" align="right">{{$paymentRecord->methodName}}</td>
+                    <td class="txt-right font-weight-bold" align="right">{{number_format($paymentRecord->nominal,0,',','.')}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
