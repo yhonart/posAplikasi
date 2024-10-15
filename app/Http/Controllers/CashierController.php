@@ -107,8 +107,7 @@ class CashierController extends Controller
                 $countTrx = DB::table("tr_store")
                     ->where([
                         ['store_id', $areaID],
-                        ['tr_date',$dateDB],
-                        ['is_update_date','!=','1']
+                        ['tr_date',$dateDB]
                         ])
                     ->count();
                     
@@ -2162,15 +2161,13 @@ class CashierController extends Controller
         
         $status = $trStore->status;
         $memberID = $trStore->member_id;
-        
-        $paymentRecord = DB::table('tr_store_prod_list as a')
-            ->select(DB::raw('SUM(a.t_price) as nominal'), 'b.method_name as methodName','d.bank_name as namaBank','d.account_number as norek','b.method_name as codeMethod')
-            ->leftJoin('tr_payment_method as b','a.from_payment_code','=','b.core_id_trx')
-            // ->leftJoin('m_payment_method as c','c.idm_payment_method','=','b.method_name')
-            ->leftJoin('m_company_payment as d','d.idm_payment','=','b.bank_transfer')
+        $paymentRecord = DB::table('tr_payment_method as a')
+            ->select('b.method_name as methodName','a.nominal as nominal','c.bank_name as namaBank','c.account_number as norek','a.method_name as codeMethod')
+            ->leftJoin('m_payment_method as b','a.method_name','=','b.idm_payment_method')
+            ->leftJoin('m_company_payment as c','a.bank_transfer','=','c.idm_payment')
             ->where([
-                ['a.from_payment_code',$noBill],
-                ['b.status','1']
+                ['a.core_id_trx',$noBill],
+                ['a.status','1']
                 ])
             ->get();
             
@@ -2871,8 +2868,7 @@ class CashierController extends Controller
         DB::table($tableName)
             ->where($dataId,$id)
             ->update([
-                $column => $editval,
-                'is_update_date'=>'1'
+                $column => $editval
             ]);
         
     }    
