@@ -182,17 +182,6 @@
             event.preventDefault();
             el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/dataReturn")
         }
-        else if (event.ctrlKey && event.key === 's') {
-            event.preventDefault();            
-            toastr.error('Tidak ada transaksi yang dapat di simpan !')
-        }
-        else if (event.key === 'F2') {
-            event.preventDefault();
-            if(t_Belanja === '0') {
-                toastr.error('Tidak ada transaksi yang dapat dibayarkan !')
-            }
-            
-        }
     });
     $(document).ready(function(){
         var routeIndex = "{{route('Cashier')}}",
