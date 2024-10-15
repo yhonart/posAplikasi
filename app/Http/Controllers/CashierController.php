@@ -2162,16 +2162,20 @@ class CashierController extends Controller
         $status = $trStore->status;
         $memberID = $trStore->member_id;
 
-        $paymentRecord = DB::table('tr_store_prod_list as a')
-            ->select(DB::raw('SUM(a.t_price) as nominal'),'c.method_name as methodName','d.bank_name as namaBank','d.account_number as norek','b.method_name as codeMethod')
-            ->join('tr_payment_method as b','a.from_payment_code','=','b.core_id_trx')
-            ->join('m_payment_method as c','c.idm_payment_method','=','b.method_name')
-            ->join('m_company_payment as d','d.idm_payment','=','b.bank_transfer')
-            ->where([
-                ['a.from_payment_code',$noBill],
-                ['b.status','1']
-                ])
+        $sumpaymentRecord = DB::table('tr_store_prod_list')
+            ->select(DB::raw('SUM(t_price) as nominal'))
+            ->where('from_payment_code',$noBill)
             ->first();
+
+        $paymentRecord = DB::table('tr_payment_method as a')
+            ->select('b.method_name as methodName','a.nominal as nominal','c.bank_name as namaBank','c.account_number as norek','a.method_name as codeMethod')
+            ->leftJoin('m_payment_method as b','a.method_name','=','b.idm_payment_method')
+            ->leftJoin('m_company_payment as c','a.bank_transfer','=','c.idm_payment')
+            ->where([
+                ['a.core_id_trx',$noBill],
+                ['a.status','1']
+                ])
+            ->get();
             
         $countBilling = DB::table('tr_kredit')
             ->where([
@@ -2212,13 +2216,13 @@ class CashierController extends Controller
                 ->first();
         
         if($status == '4' AND $typeCetak == '1'){
-            return view ('Cashier/cashierPrintOutPembayaran', compact('noBill','trStore','trStoreList','companyName','totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point'));
+            return view ('Cashier/cashierPrintOutPembayaran', compact('noBill','trStore','trStoreList','companyName','totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point','sumpaymentRecord'));
         }
         elseif($typeCetak == '2'){
-            return view ('Cashier/cashierPrintOutLoan', compact('noBill','trStore','trStoreList','companyName', 'totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point'));
+            return view ('Cashier/cashierPrintOutLoan', compact('noBill','trStore','trStoreList','companyName', 'totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point','sumpaymentRecord'));
         }
         elseif($status == '3'){
-            return view ('Cashier/cashierPrintOutKredit', compact('noBill','trStore','trStoreList','companyName', 'totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point'));
+            return view ('Cashier/cashierPrintOutKredit', compact('noBill','trStore','trStoreList','companyName', 'totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point','sumpaymentRecord'));
         }
     }
     

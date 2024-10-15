@@ -122,20 +122,22 @@
             </table>
             <table cellpadding="0" cellspacing="0" style="width:100%">
                 <tbody>
-                    <tr>
-                        <td>Pembayaran</td>
-                        <td class="txt-right" align="right">
-                            {{$paymentRecord->methodName}} <br>
-                        </td>
-                        <td class="txt-right" align="right">{{number_format($paymentRecord->nominal,0,',','.')}}</td>
-                    </tr>
-                    @if($paymentRecord->codeMethod == '4')
-                    <tr>
-                        <td>Bank Trf.</td>
-                        <td>{{$paymentRecord->namaBank}}</td>
-                        <td class="txt-right" align="right">{{substr($paymentRecord->norek,0,4)}}.xxxxx</td>
-                    </tr>
-                    @endif
+                    @foreach($paymentRecord as $pr)
+                        <tr>
+                            <td>Pembayaran</td>
+                            <td class="txt-right" align="right">
+                                {{$pr->methodName}} <br>
+                            </td>
+                            <td class="txt-right" align="right">{{number_format($sumpaymentRecord->nominal,0,',','.')}}</td>
+                        </tr>
+                        @if($pr->codeMethod == '4')
+                        <tr>
+                            <td>Bank Trf.</td>
+                            <td>{{$pr->namaBank}}</td>
+                            <td class="txt-right" align="right">{{substr($pr->norek,0,4)}}.xxxxx</td>
+                        </tr>
+                        @endif
+                    @endforeach
                 </tbody>
             </table>
             <?php
