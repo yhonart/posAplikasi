@@ -111,7 +111,8 @@
                         else {
                             $kurangBayar1 = $tgR->total_struk - $tgR->total_payment;
                             $nominalBayar = $tgR->nominal - $kurangBayar1;
-                        }
+                            echo $nominalBayar;
+                        }                        
                     ?>
                 </td>
                 <td></td>
