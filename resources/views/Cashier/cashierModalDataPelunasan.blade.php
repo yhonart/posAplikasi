@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <p class="font-weight-bold text-muted">*Pilih nama pelanggan untuk input pembayaran kredit</p>
+                <p class="text-muted">*Pilih nama pelanggan untuk input pembayaran kredit</p>
                 <div class="row">
                     <div class="col-12 col-md-3">
                         <div class="form-group">

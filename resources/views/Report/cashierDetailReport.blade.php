@@ -103,9 +103,9 @@
                 <td class="text-right">
                     {{number_format($tgR->total_struk,'0',',','.')}}
                 </td>
-                <td class="text-right">
+                <td class="text-right">                    
                     @if($tgR->method_name == '1')
-                    {{number_format($tgR->nominal,'0',',','.')}}
+                        {{number_format($tgR->total_payment,'0',',','.')}}
                     @endif
                 </td>
                 <td></td>
@@ -121,7 +121,7 @@
             </tr>
             <?php
                 if($tgR->method_name <> '8'){
-                    $sumTunai += $tgR->nominal;
+                    $sumTunai += $tgR->total_payment;
                 }
                 $sumTempo1 += $kurangBayar;
                 $totalBelanjaTunai += $tgR->total_struk;
