@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 table-responsive">
+                    <div class="col-12">
                         <div id="divDataPelunasan"></div>
                     </div>
                 </div>
