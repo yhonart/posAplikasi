@@ -128,9 +128,9 @@
                 <td>{{$tgR->created_by}}</td>
             </tr>
             <?php
-                if($tgR->method_name <> '8'){
-                    $sumTunai += $nominalBayar;
-                }
+                // if($tgR->method_name <> '8'){
+                // }
+                $sumTunai += $nominalBayar;
                 $sumTempo1 += $kurangBayar;
                 $totalBelanjaTunai += $tgR->total_struk;
             ?>
