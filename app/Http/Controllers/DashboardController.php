@@ -113,6 +113,7 @@ class DashboardController extends Controller
         if($condition == "alltrx"){
             $allCondition = DB::table('view_trx_method')
                 ->whereBetween('date_trx',[$fromDate, $endDate])
+                ->where('status_by_store','>=','3')
                 ->orderBy('core_id_trx','asc')
                 ->get();
         }
