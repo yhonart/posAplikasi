@@ -131,7 +131,6 @@ class DashboardController extends Controller
         elseif($condition == "allSummery"){
             $allCondition = DB::table('view_billing_action')
                 ->whereBetween('tr_date',[$fromDate, $endDate])
-                ->where('status','4')
                 ->get();
         }
         
