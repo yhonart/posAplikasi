@@ -2,7 +2,7 @@
     $grandTotalKredit = '0';
     $grandTotalBayar = '0';
 @endphp
-<div class="card card-body table-responsive" style="height:400px;">
+<div class="card card-body table-responsive p-0" style="height:400px;">
     <table class="table table-valign-middle table-hover">
         <thead class="bg-gradient-purple">
             <tr>
