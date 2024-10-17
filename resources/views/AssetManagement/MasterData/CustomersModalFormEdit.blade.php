@@ -137,7 +137,7 @@ $customerStatus = array(
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Kredit Limit</label>
                 <div class="col-md-4">
-                    <input name="kreditLimit" id="kreditLimit" class="form-control form-control-sm price-text rounded-0">
+                    <input name="kreditLimit" id="kreditLimit" value="{{$editCustomer->kredit_limit}}" class="form-control form-control-sm price-text rounded-0">
                 </div>
             </div>
             <div class="form-group">
