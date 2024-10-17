@@ -158,7 +158,7 @@ $customerStatus = array(
             displayData = $("#displayTableCustomers");
             
             $("form#FormEditCustomer").submit(function(event){
-                event.preventDefault();
+                event.preventDefault();                
                 $.ajax({
                     url: routeIndex + "/TableDataCustomer/PostEditTable",
                     type: 'POST',
@@ -167,9 +167,12 @@ $customerStatus = array(
                     cache: true,
                     contentType: false,
                     processData: false,
-                    success: function (data) {                    
-                        global_style.hide_modal();
-                        global_style.load_table(loadSpinner,routeIndex,tableData,displayData);                        
+                    success: function (data) {
+                        alertify
+                        .alert("Data berhasil telah di update, terima kasih.", function(){
+                            global_style.load_table(loadSpinner,routeIndex,tableData,displayData);                        
+                            // alertify.message('OK');
+                        });
                     },                
                 });
                 return false;
