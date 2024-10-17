@@ -17,7 +17,11 @@
             <tr>
                 <td class="p-0"><b>{{$mPrd->product_satuan}}/</b><small>{{$mPrd->product_size}}</small></td>
                 <td class="p-0">
-                    <input class="form-control form-control-sm rounded-0 EDIT-PRICE" name="editPriceOrder" id="eeditPriceOrder" value="{{$mPrd->product_price_order}}" onchange="saveToDatabase(this,'m_product_unit','product_price_order','{{$mPrd->idm_product_satuan}}','idm_product_satuan')">
+                    @if($mPrd->size_code == '1')
+                        <input class="form-control form-control-sm rounded-0 EDIT-PRICE" name="editPriceOrder" id="eeditPriceOrder" value="{{$mPrd->product_price_order}}" onchange="saveToDatabase(this,'m_product_unit','product_price_order','{{$mPrd->idm_product_satuan}}','idm_product_satuan')">
+                    @else
+                        <input class="form-control form-control-sm text-right rounded-0" value="{{$mPrd->product_price_order}}" readonly>
+                    @endif
                 </td>
                 @foreach($mGroupCus as $mG1)
                     <td class="p-0">
