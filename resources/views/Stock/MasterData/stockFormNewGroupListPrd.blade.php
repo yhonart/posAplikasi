@@ -67,6 +67,7 @@ function saveToDatabase(editTableObj,tableName,column,id,tableID,idProd) {
         type: "POST",
         data:'tableName='+tableName+'&column='+column+'&editVal='+editTableObj.value+'&id='+id+'&tableID='+tableID+'&idProd='+idProd,
         success: function(data){
+            funcTableHrg(dataIdProd);
             Toast.fire({
                 icon: 'success',
                 title: column
