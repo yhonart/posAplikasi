@@ -81,9 +81,7 @@
                 <div class="col-md-4">
                     <select name="typePenjualan" id="typePenjualan" class="form-control form-control-sm rounded-0">
                         @foreach($cosGroup as $cg)
-                            @if($cg->idm_cos_group <> $editCustomer->customer_type)
-                            <option value="{{$cg->idm_cos_group}}">{{$cg->group_name}}</option>
-                            @endif
+                            <option value="{{$cg->idm_cos_group}}">{{$cg->group_name}}</option>                            
                         @endforeach
                     </select>
                 </div>
