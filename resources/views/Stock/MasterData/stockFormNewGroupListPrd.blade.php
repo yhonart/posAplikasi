@@ -20,7 +20,7 @@
                     @if($mPrd->size_code == '1')
                         <input class="form-control form-control-sm rounded-0 EDIT-PRICE" name="editPriceOrder" id="eeditPriceOrder" value="{{$mPrd->product_price_order}}" onchange="saveToDatabase(this,'m_product_unit','product_price_order','{{$mPrd->idm_product_satuan}}','idm_product_satuan','{{$mPrd->core_id_product}}')">
                     @else
-                        <input class="form-control form-control-sm text-right rounded-0" value="{{$mPrd->product_price_order}}" readonly>
+                        <input class="form-control form-control-sm text-right rounded-0 EDIT-PRICE" value="{{$mPrd->product_price_order}}" readonly>
                     @endif
                 </td>
                 @foreach($mGroupCus as $mG1)
