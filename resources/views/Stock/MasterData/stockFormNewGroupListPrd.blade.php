@@ -69,7 +69,7 @@ function saveToDatabase(editTableObj,tableName,column,id,tableID,idProd) {
         success: function(data){
             Toast.fire({
                 icon: 'success',
-                title: 'Data berhasil disimpan'
+                title: column
             })
         }
     });
