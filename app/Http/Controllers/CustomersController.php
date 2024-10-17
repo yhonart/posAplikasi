@@ -16,7 +16,10 @@ class CustomersController extends Controller
             ->where('sales_status',1)
             ->get();
 
-        return view ('AssetManagement/MasterData/CustomersModalFormAdd', compact('sales'));
+        $cosGroup = DB::table('m_cos_group')
+            ->get();
+
+        return view ('AssetManagement/MasterData/CustomersModalFormAdd', compact('sales','cosGroup'));
     }
 
     public function PostNewCustomer (Request $reqPostCustomer){
@@ -38,7 +41,7 @@ class CustomersController extends Controller
                     'sales'=>$reqPostCustomer->Sales,
                     'registered_date'=>$reqPostCustomer->registeredDate,
                     'level'=>$reqPostCustomer->Level,
-                    'kredit_limit'=>$reqPostCustomer->kreditLimit,
+                    'kredit_limit'=>str_replace(".","",$reqPostCustomer->kreditLimit),
                     'customer_status'=>'1',
                     'created_date'=>now(),
                 ]);
@@ -93,7 +96,7 @@ class CustomersController extends Controller
                 'registered_date'=>$reqPostEditCust->registeredDate,
                 'level'=>$reqPostEditCust->Level,
                 'customer_status'=>$reqPostEditCust->Status,
-                'kredit_limit'=>$reqPostEditCust->kreditLimit,
+                'kredit_limit'=>str_replace(".","",$reqPostEditCust->kreditLimit),
                 'updated_date'=>now(),
             ]);
        

@@ -80,11 +80,11 @@
                 <label class="form-label col-md-4 text-right">Tipe Penjualan</label>
                 <div class="col-md-4">
                     <select name="typePenjualan" id="typePenjualan" class="form-control form-control-sm rounded-0">
-                        <option value="0" readonly></option>
-                        <option value="Gold">Promo</option>
-                        <option value="Retail">Retail</option>
-                        <option value="Grosir">Grosir</option>
-                        <option value="Partai">Partai</option>
+                        @foreach($cosGroup as $cg)
+                            @if($cg->idm_cos_group <> $editCustomer->customer_type)
+                            <option value="{{$cg->idm_cos_group}}">{{$cg->group_name}}</option>
+                            @endif
+                        @endforeach
                     </select>
                 </div>
             </div>
