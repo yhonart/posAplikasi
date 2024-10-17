@@ -53,6 +53,7 @@ class CashierController extends Controller
             
         return $countReturn;
     }
+
     public function checkProdActive (){
         $areaID = $this->checkuserInfo();
         $createdName = Auth::user()->name;
@@ -92,47 +93,49 @@ class CashierController extends Controller
         $trxActived = $this->checkProdActive();
         $thisDate = date("dmy");
         $dateDB = date("Y-m-d");
-        
-        // cek jumlah data delete transaksi
-        $countDel = DB::table("tr_store")
+
+        $countTrx = DB::table("tr_store")
             ->where([
                 ['store_id', $areaID],
-                ['tr_date',$dateDB],
-                ['is_delete','1']
+                ['tr_date',$dateDB]
                 ])
             ->count();
             
+        if($countTrx == '0'){
+            $no = "1";
+            $pCode = "P".$thisDate."-".sprintf("%07d",$no);
+        }
+        else{
+            $no = $countTrx + 1;
+            $pCode = "P".$thisDate."-".sprintf("%07d",$no);
+        }
+        
+        // cek jumlah data delete transaksi
+        // $countDel = DB::table("tr_store")
+        //     ->where([
+        //         ['store_id', $areaID],
+        //         ['tr_date',$dateDB],
+        //         ['is_delete','1']
+        //         ])
+        //     ->count();
+            
         // Jika tidak ada no struk yang di delete maka akan melakukan generate nomor baru
-            if($countDel == '0'){
-                $countTrx = DB::table("tr_store")
-                    ->where([
-                        ['store_id', $areaID],
-                        ['tr_date',$dateDB]
-                        ])
-                    ->count();
-                    
-                if($countTrx == '0'){
-                    $no = "1";
-                    $pCode = "P".$thisDate."-".sprintf("%07d",$no);
-                }
-                else{
-                    $no = $countTrx + 1;
-                    $pCode = "P".$thisDate."-".sprintf("%07d",$no);
-                }
-            }
+        // if($countDel == '0'){
+        // }
         // Jika lebih dari atau sama dengan 1 maka akan mengambil nomor struk yang lama. 
-            elseif($countDel >= '1'){
-                $countDel = DB::table("tr_store")
-                    ->where([
-                        ['store_id', $areaID],
-                        ['tr_date',$dateDB],
-                        ['is_delete','1']
-                        ])
-                    ->orderBy('billing_number','asc')
-                    ->first();
-                    
-                $pCode = $countDel->billing_number;
-            }
+        // elseif($countDel >= '1'){
+        //     $countDel = DB::table("tr_store")
+        //         ->where([
+        //             ['store_id', $areaID],
+        //             ['tr_date',$dateDB],
+        //             ['is_delete','1']
+        //             ])
+        //         ->orderBy('billing_number','asc')
+        //         ->first();
+                
+        //     $pCode = $countDel->billing_number;
+        // }
+        
         return $pCode;
     }
     
