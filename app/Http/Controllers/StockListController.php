@@ -551,6 +551,7 @@ class StockListController extends Controller
             
         }
         elseif ($coloumn == "product_price_order") {
+            echo $coloumn;
             $selectCode = DB::table('m_product_unit')
                 ->select('size_code','product_volume')
                 ->where([
