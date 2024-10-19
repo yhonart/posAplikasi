@@ -32,6 +32,7 @@
                     <option value="{{$ms->idm_site}}">{{$ms->site_name}}</option>
                     @endforeach
                 </select>
+                <span>Mohon pilih lokasi</span>
             </div>
         </div>
     </div>

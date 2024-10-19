@@ -252,23 +252,21 @@ class TempInventoryController extends Controller
             }
         }
         
-        if ($outInv == '0') {
+        if ($outInv == '0') { // Untuk transaksi penjualan (Trx Keluar)
             $lastSaldo = $findStock->stock - $inputValIn;
             $actualInput = $inInv;
-            $statusTrx = '4';
+            $statusTrx = '1';
         } 
-        elseif ($inInv == '0') {
+        elseif ($inInv == '0') { // Untuk transaksi pembelian (Trx Masuk)
             $lastSaldo = $findStock->stock + $inputValOut;
             $actualInput = $outInv;
-            $statusTrx = '1';
+            $statusTrx = '4';
         }
         else {
             $lastSaldo = '0';
             $actualInput = '0';
             $statusTrx = '0';
         }
-
-        
 
         $inserReport = DB::table('report_inv')
             ->insert([
