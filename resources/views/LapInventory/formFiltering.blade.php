@@ -32,7 +32,6 @@
                     <option value="{{$ms->idm_site}}">{{$ms->site_name}}</option>
                     @endforeach
                 </select>
-                <span>Mohon pilih lokasi</span>
             </div>
         </div>
     </div>
@@ -72,23 +71,32 @@
     });
     
     $(document).ready(function(){
+        let valLocation = $("#lokasi").find(":selected").val();
         $("form#formFilterReport").submit(function(event){
             event.preventDefault();
             $("#spinnerFilter").fadeIn();
-            $.ajax({
-                url: "{{route('lapInv')}}/postFilter",
-                type: 'POST',
-                data: new FormData(this),
-                async: true,
-                cache: true,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    $("#infoAwal").hide();
-                    $("#displayFilter").html(data);
-                    $("#spinnerFilter").fadeOut();
-                }
-            });
+            if (valLocation === '0') {
+                alertify
+                .alert("Mohon pilih lokasi yang dituju.", function(){
+                    alertify.message('OK');
+                }).set({title:"Update"});
+            }
+            else{
+                $.ajax({
+                    url: "{{route('lapInv')}}/postFilter",
+                    type: 'POST',
+                    data: new FormData(this),
+                    async: true,
+                    cache: true,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $("#infoAwal").hide();
+                        $("#displayFilter").html(data);
+                        $("#spinnerFilter").fadeOut();
+                    }
+                });
+            }
             return false;
         });
 
