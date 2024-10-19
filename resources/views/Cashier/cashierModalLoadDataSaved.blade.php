@@ -18,10 +18,10 @@
                         <div class="form-group">
                             <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" id="fromDate" name="fromDate"/>
                         </div>
-                    </div>
+                    </div>                    
                     <div class="col-md-3">
                         <div class="form-group">
-                            s/d <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" id="endDate" name="endDate"/>
+                            <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" id="endDate" name="endDate"/>
                         </div>
                     </div>
                 </div>
