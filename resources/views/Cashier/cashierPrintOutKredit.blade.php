@@ -125,7 +125,7 @@
                     <tr>
                         <td colspan="3">
                             <?php
-                                echo (str_repeat("-", 37)."<br/>");
+                                echo (str_repeat("-", 34)."<br/>");
                             ?>
                         </td>
                     </tr>
@@ -162,7 +162,7 @@
                 </tbody>
             </table>
             <?php
-                echo (str_repeat("-", 37)."<br/>");
+                echo (str_repeat("-", 34)."<br/>");
             ?>
             <table cellpadding="0" cellspacing="0" style="width:100%">
                 <tbody>

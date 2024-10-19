@@ -52,6 +52,7 @@ class CashierController extends Controller
             
         return $countReturn;
     }
+
     public function checkProdActive (){
         $areaID = $this->checkuserInfo();
         $createdName = Auth::user()->name;
@@ -91,48 +92,49 @@ class CashierController extends Controller
         $trxActived = $this->checkProdActive();
         $thisDate = date("dmy");
         $dateDB = date("Y-m-d");
-        
-        // cek jumlah data delete transaksi
-        $countDel = DB::table("tr_store")
+
+        $countTrx = DB::table("tr_store")
             ->where([
                 ['store_id', $areaID],
-                ['tr_date',$dateDB],
-                ['is_delete','1']
+                ['tr_date',$dateDB]
                 ])
             ->count();
             
+        if($countTrx == '0'){
+            $no = "1";
+            $pCode = "P".$thisDate."-".sprintf("%07d",$no);
+        }
+        else{
+            $no = $countTrx + 1;
+            $pCode = "P".$thisDate."-".sprintf("%07d",$no);
+        }
+        
+        // cek jumlah data delete transaksi
+        // $countDel = DB::table("tr_store")
+        //     ->where([
+        //         ['store_id', $areaID],
+        //         ['tr_date',$dateDB],
+        //         ['is_delete','1']
+        //         ])
+        //     ->count();
+            
         // Jika tidak ada no struk yang di delete maka akan melakukan generate nomor baru
-            if($countDel == '0'){
-                $countTrx = DB::table("tr_store")
-                    ->where([
-                        ['store_id', $areaID],
-                        ['tr_date',$dateDB],
-                        ['is_update_date','!=','1']
-                        ])
-                    ->count();
-                    
-                if($countTrx == '0'){
-                    $no = "1";
-                    $pCode = "P".$thisDate."-".sprintf("%07d",$no);
-                }
-                else{
-                    $no = $countTrx + 1;
-                    $pCode = "P".$thisDate."-".sprintf("%07d",$no);
-                }
-            }
+        // if($countDel == '0'){
+        // }
         // Jika lebih dari atau sama dengan 1 maka akan mengambil nomor struk yang lama. 
-            elseif($countDel >= '1'){
-                $countDel = DB::table("tr_store")
-                    ->where([
-                        ['store_id', $areaID],
-                        ['tr_date',$dateDB],
-                        ['is_delete','1']
-                        ])
-                    ->orderBy('billing_number','asc')
-                    ->first();
-                    
-                $pCode = $countDel->billing_number;
-            }
+        // elseif($countDel >= '1'){
+        //     $countDel = DB::table("tr_store")
+        //         ->where([
+        //             ['store_id', $areaID],
+        //             ['tr_date',$dateDB],
+        //             ['is_delete','1']
+        //             ])
+        //         ->orderBy('billing_number','asc')
+        //         ->first();
+                
+        //     $pCode = $countDel->billing_number;
+        // }
+        
         return $pCode;
     }
     
@@ -2168,7 +2170,12 @@ class CashierController extends Controller
         
         $status = $trStore->status;
         $memberID = $trStore->member_id;
-        
+
+        $sumpaymentRecord = DB::table('tr_store_prod_list')
+            ->select(DB::raw('SUM(t_price) as nominal'))
+            ->where('from_payment_code',$noBill)
+            ->first();
+
         $paymentRecord = DB::table('tr_payment_method as a')
             ->select('b.method_name as methodName','a.nominal as nominal','c.bank_name as namaBank','c.account_number as norek','a.method_name as codeMethod')
             ->leftJoin('m_payment_method as b','a.method_name','=','b.idm_payment_method')
@@ -2218,13 +2225,13 @@ class CashierController extends Controller
                 ->first();
         
         if($status == '4' AND $typeCetak == '1'){
-            return view ('Cashier/cashierPrintOutPembayaran', compact('noBill','trStore','trStoreList','companyName','totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point'));
+            return view ('Cashier/cashierPrintOutPembayaran', compact('noBill','trStore','trStoreList','companyName','totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point','sumpaymentRecord'));
         }
         elseif($typeCetak == '2'){
-            return view ('Cashier/cashierPrintOutLoan', compact('noBill','trStore','trStoreList','companyName', 'totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point'));
+            return view ('Cashier/cashierPrintOutLoan', compact('noBill','trStore','trStoreList','companyName', 'totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point','sumpaymentRecord'));
         }
         elseif($status == '3'){
-            return view ('Cashier/cashierPrintOutKredit', compact('noBill','trStore','trStoreList','companyName', 'totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point'));
+            return view ('Cashier/cashierPrintOutKredit', compact('noBill','trStore','trStoreList','companyName', 'totalPayment','paymentRecord','cekBon','countBilling','remainKredit','point','sumpaymentRecord'));
         }
     }
     
@@ -2655,6 +2662,7 @@ class CashierController extends Controller
         $prdTrx = DB::table('tr_store_prod_list as a')
             ->leftJoin('m_product as b','a.product_code','=','b.idm_data_product')
             ->leftJoin('view_billing_action as c','a.from_payment_code','=','c.billing_number')
+            ->where('a.status','>=','3')
             ->whereBetween('a.date',[$fromDate, $endDate])
             ->get();
             
@@ -2876,8 +2884,7 @@ class CashierController extends Controller
         DB::table($tableName)
             ->where($dataId,$id)
             ->update([
-                $column => $editval,
-                'is_update_date'=>'1'
+                $column => $editval
             ]);
         
     }    

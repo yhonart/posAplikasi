@@ -103,10 +103,18 @@
                 <td class="text-right">
                     {{number_format($tgR->total_struk,'0',',','.')}}
                 </td>
-                <td class="text-right">
-                    @if($tgR->method_name == '1')
-                    {{number_format($tgR->nominal,'0',',','.')}}
-                    @endif
+                <td class="text-right">   
+                    <?php
+                        if ($tgR->method_name == '1') {
+                            $nominalBayar = $tgR->nominal;
+                            echo number_format($tgR->nominal,'0',',','.');
+                        }
+                        else {
+                            $kurangBayar1 = $tgR->total_struk - $tgR->total_payment;
+                            $nominalBayar = $tgR->nominal - $kurangBayar1;
+                            echo number_format($nominalBayar,'0',',','.');
+                        }                        
+                    ?>
                 </td>
                 <td></td>
                 <td class="text-right">
@@ -120,9 +128,9 @@
                 <td>{{$tgR->created_by}}</td>
             </tr>
             <?php
-                if($tgR->method_name <> '8'){
-                    $sumTunai += $tgR->nominal;
-                }
+                // if($tgR->method_name <> '8'){
+                // }
+                $sumTunai += $nominalBayar;
                 $sumTempo1 += $kurangBayar;
                 $totalBelanjaTunai += $tgR->total_struk;
             ?>

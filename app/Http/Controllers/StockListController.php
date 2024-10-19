@@ -551,6 +551,7 @@ class StockListController extends Controller
             
         }
         elseif ($coloumn == "product_price_order") {
+            echo $coloumn;
             $selectCode = DB::table('m_product_unit')
                 ->select('size_code','product_volume')
                 ->where([
@@ -558,9 +559,23 @@ class StockListController extends Controller
                     ['size_code','!=','1']
                     ])
                 ->get();
+
+            $selectCode1 = DB::table('m_product_unit')
+                ->select('size_code','product_volume')
+                ->where([
+                    ['core_id_product',$idProd],
+                    ['size_code','1']
+                    ])
+                ->first();           
                 
             foreach ($selectCode as $sc) {
-                $colUpdateHrg = $editVal / $sc->product_volume;
+                if ($sc->size_code == '2') {
+                    $colUpdateHrg = $editVal / $selectCode1->product_volume;                    
+                }
+                else {
+                    $colUpdateHrg = $editVal / $sc->product_volume;                                        
+                }
+                
                 DB::table('m_product_unit')
                     ->where([
                         ['core_id_product',$idProd],

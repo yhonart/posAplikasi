@@ -217,6 +217,7 @@ class TempInventoryController extends Controller
         if ($findDescSatuan->size_code == '1') {
             $inputValIn = $inInv;
             $inputValOut = $outInv;
+            $inputValVol = $mVolPrd->large_unit_val;
         }
         else {
             // Jika yang di input dengan satuan code :

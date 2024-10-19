@@ -290,6 +290,17 @@
                 });
             }
         });
+
+        function holdTransaksi(){
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/buttonAction/updateToSave/"+no_Struck,
+                success : function(data){                  
+                    loadTableData();                
+                    window.location.reload();             
+                }
+            });
+        }
     }) 
     
     // INPUT TOTAL PENGEMBALIAN
@@ -301,16 +312,7 @@
     $("#totalPayment").on('input', compute1);
     $("#ppn").on('input', compute1);
     
-    function holdTransaksi(){
-        $.ajax({
-            type : 'get',
-            url : "{{route('Cashier')}}/buttonAction/updateToSave/"+no_Struck,
-            success : function(data){                  
-                loadTableData();                
-                window.location.reload();             
-            }
-        });
-    }
+    
     function compute1(){
         var bayar = $("#tBayar").val(),
             billing = $("#HiddenPayment").val(),            

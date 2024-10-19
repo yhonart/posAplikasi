@@ -117,7 +117,7 @@
                     <tr>
                         <td class="font-weight-bold">Pembayaran</td>
                         <td class="txt-right font-weight-bold" align="right">{{$pr->methodName}}</td>
-                        <td class="txt-right font-weight-bold" align="right">{{number_format($pr->nominal,0,',','.')}}</td>
+                        <td class="txt-right font-weight-bold" align="right">{{number_format($sumpaymentRecord->nominal,0,',','.')}}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -135,7 +135,13 @@
             </thead>
             <tbody class="text-center font-weight-bold">
                 <tr>
-                    <td>{{$companyName->company_name}}</td>
+                    <td>
+                        @if(!empty($companyName))
+                        {{$companyName->company_name}}
+                        @else
+                        <b>------</b>
+                        @endif
+                    </td>
                     <td>{{$trStore->customer_name}}</td>
                 </tr>
             </tbody>

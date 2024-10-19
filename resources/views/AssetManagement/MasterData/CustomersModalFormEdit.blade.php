@@ -137,7 +137,7 @@ $customerStatus = array(
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Kredit Limit</label>
                 <div class="col-md-4">
-                    <input name="kreditLimit" id="kreditLimit" class="form-control form-control-sm price-text rounded-0">
+                    <input name="kreditLimit" id="kreditLimit" value="{{$editCustomer->kredit_limit}}" class="form-control form-control-sm price-text rounded-0">
                 </div>
             </div>
             <div class="form-group">
@@ -166,7 +166,7 @@ $customerStatus = array(
             displayData = $("#displayTableCustomers");
             
             $("form#FormEditCustomer").submit(function(event){
-                event.preventDefault();
+                event.preventDefault();                
                 $.ajax({
                     url: routeIndex + "/TableDataCustomer/PostEditTable",
                     type: 'POST',
@@ -175,9 +175,12 @@ $customerStatus = array(
                     cache: true,
                     contentType: false,
                     processData: false,
-                    success: function (data) {                    
-                        global_style.hide_modal();
-                        global_style.load_table(loadSpinner,routeIndex,tableData,displayData);                        
+                    success: function (data) {
+                        alertify
+                        .alert("Data berhasil telah di update, terima kasih.", function(){
+                            global_style.load_table(loadSpinner,routeIndex,tableData,displayData);                        
+                            // alertify.message('OK');
+                        });
                     },                
                 });
                 return false;

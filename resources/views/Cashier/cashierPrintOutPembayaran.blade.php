@@ -128,7 +128,7 @@
                             <td class="txt-right" align="right">
                                 {{$pr->methodName}} <br>
                             </td>
-                            <td class="txt-right" align="right">{{number_format($pr->nominal,0,',','.')}}</td>
+                            <td class="txt-right" align="right">{{number_format($sumpaymentRecord->nominal,0,',','.')}}</td>
                         </tr>
                         @if($pr->codeMethod == '4')
                         <tr>
