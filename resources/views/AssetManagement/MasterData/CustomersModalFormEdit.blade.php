@@ -164,7 +164,7 @@ $customerStatus = array(
             $("form#FormEditCustomer").submit(function(event){
                 event.preventDefault();                
                 $.ajax({
-                    url: routeIndex + "/TableDataCustomer/PostEditTable",
+                    url: "{{route('Customers')}}/TableDataCustomer/PostEditTable",
                     type: 'POST',
                     data: new FormData(this),
                     async: true,
