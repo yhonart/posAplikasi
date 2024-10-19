@@ -160,11 +160,7 @@ $customerStatus = array(
             reverse: true
         });
     $(document).ready(function(){        
-        let loadSpinner = $(".LOAD-SPINNER"),
-            routeIndex = "{{route('Customers')}}",
-            tableData = "TableDataCustomer",
-            displayData = $("#displayTableCustomers");
-            
+        let dataID = "{{$id}}";            
             $("form#FormEditCustomer").submit(function(event){
                 event.preventDefault();                
                 $.ajax({
@@ -178,12 +174,21 @@ $customerStatus = array(
                     success: function (data) {
                         alertify
                         .alert("Data berhasil telah di update, terima kasih.", function(){
-                            global_style.load_table(loadSpinner,routeIndex,tableData,displayData);                        
-                            // alertify.message('OK');
-                        });
+                            reloadEditForm(dataID);
+                        }).set({title:"Update"});
                     },                
                 });
                 return false;
             });
+
+            function reloadEditForm(dataID){        
+            $.ajax({
+                url: "{{route('Customers')}}/TableDataCustomer/EditTable/" + dataID,
+                type: 'GET',
+                success: function (response) {
+                    $("#displayEditCos").html(response);
+                },                
+            });
+        }
     });
 </script>
