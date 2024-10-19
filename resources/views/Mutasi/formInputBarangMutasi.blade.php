@@ -30,7 +30,7 @@
                         <th>Stock</th>
                         <th width="10%">Mutasi</th>
                         <th width="30%">Keterangan</th>
-                        <th></th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 @if($countActive >= '1')
@@ -65,7 +65,9 @@
                                 <td>
                                     <input type="text" class="form-control form-control-sm rounded-0" name="keterangan" id="keterangan">
                                 </td>
-                                <td></td>
+                                <td>
+                                    <button class="btn border-0 elevation-0 btn-default btn-flat" id="btnSubmit"><i class="fa-solid fa-check"></i></button>
+                                </td>
                             </tr>
                         </form>
                     </tbody>
@@ -137,15 +139,23 @@
         });
         
         $("#qty").on('input', computeSaldo);
+        
         function computeSaldo(){
-            let lastStockVal = $("#lastStock").val(),
-                qty = $("#qty").val();
+            // let lastStockVal = $("#lastStock").val(),
+            //     qty = $("#qty").val();
                 
-            if (typeof qty == "undefined" || typeof qty == "0") {
-                return
-            }
-            $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));
+            // if (typeof qty == "undefined" || typeof qty == "0") {
+            //     return
+            // }
+            // $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));
+            $("#btnSubmit").focus().removeClass('btn-default');
+            $("#btnSubmit").focus().addClass('bg-success');
         }
+        
+        $("#btnSubmit").on('click', function(e){
+            e.preventDefault();
+            addActivityItem();
+        });
         
         var actQty = document.getElementById("qty");
         

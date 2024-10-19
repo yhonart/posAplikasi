@@ -16,11 +16,13 @@
                 <div class="row mb-2">
                     <div class="col-md-3">
                         <div class="form-group">
+                            <label for="fromDate">Dari Tanggal</label>
                             <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" id="fromDate" name="fromDate"/>
                         </div>
                     </div>                    
                     <div class="col-md-3">
                         <div class="form-group">
+                            <label for="endDate">S.d Tanggal</label>
                             <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" id="endDate" name="endDate"/>
                         </div>
                     </div>
