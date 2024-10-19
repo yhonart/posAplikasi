@@ -14,9 +14,14 @@
                     </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-4">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-border border-width-2 border-info form-control-sm datetimepicker-input" id="pilihTanggal" name="pilihTanggal" placeholder="Cari tanggal transaksi"/>
+                            <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" id="fromDate" name="fromDate"/>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            s/d <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" id="endDate" name="endDate"/>
                         </div>
                     </div>
                 </div>
