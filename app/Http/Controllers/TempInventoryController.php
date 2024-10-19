@@ -254,14 +254,17 @@ class TempInventoryController extends Controller
         if ($outInv == '0') {
             $lastSaldo = $findStock->stock - $inputValIn;
             $actualInput = $inInv;
+            $statusTrx = '4';
         } 
         elseif ($inInv == '0') {
             $lastSaldo = $findStock->stock + $inputValOut;
             $actualInput = $outInv;
+            $statusTrx = '1';
         }
         else {
             $lastSaldo = '0';
             $actualInput = '0';
+            $statusTrx = '0';
         }
 
         
@@ -282,7 +285,8 @@ class TempInventoryController extends Controller
                 'location'=>$loc,
                 'last_saldo'=>$lastSaldo,
                 'vol_prd'=>$inputValVol,
-                'actual_input'=>$actualInput
+                'actual_input'=>$actualInput,
+                'status_trx'=>$statusTrx
                 ]);
         return $inserReport;
     }

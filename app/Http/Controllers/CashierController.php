@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Hash;
 
-
 class CashierController extends Controller
 {    
     protected $tempInv;
@@ -850,10 +849,17 @@ class CashierController extends Controller
             ->update([
                 'status'=>'2'
             ]);
+
         DB::table('tr_store_prod_list')
             ->where('from_payment_code',$noBilling)
             ->update([
                 'status'=>'2'
+            ]);
+
+        DB::table('report_inv')
+            ->where('number_code',$noBilling)
+            ->update([
+                'status_trx'=>'2'
             ]);
             
         $trDay = date("N");
