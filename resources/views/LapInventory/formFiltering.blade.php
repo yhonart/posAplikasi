@@ -71,15 +71,16 @@
     });
     
     $(document).ready(function(){
-        let valLocation = $("#lokasi").find(":selected").val();
         $("form#formFilterReport").submit(function(event){
+            let valLocation = $("#lokasi").find(":selected").val();
             event.preventDefault();
             $("#spinnerFilter").fadeIn();
             if (valLocation === '0') {
                 alertify
-                .alert("Mohon pilih lokasi yang dituju.", function(){
+                .alert("Mohon pilih lokasi terlebih dahulu. "+valLocation, function(){
                     alertify.message('OK');
-                }).set({title:"Update"});
+                }).set({title:"Notifikasi"});
+                $("#spinnerFilter").fadeOut();
             }
             else{
                 $.ajax({
@@ -105,7 +106,16 @@
                 valFromDate = $("#fromDate").val(),
                 valEndDate = $("#endDate").val(),
                 valLocation = $("#lokasi").find(":selected").val();
-            window.open("{{route('lapInv')}}/downloadKartuStock/"+valProduk+"/"+valFromDate+"/"+valEndDate+"/"+valLocation,"_blank");            
+
+            if (valLocation === '0') {
+                alertify
+                .alert("Mohon pilih lokasi terlebih dahulu", function(){
+                    alertify.message('OK');
+                }).set({title:"Notifikasi"});
+            }
+            else{
+                window.open("{{route('lapInv')}}/downloadKartuStock/"+valProduk+"/"+valFromDate+"/"+valEndDate+"/"+valLocation,"_blank");
+            }
         });
     });
 </script>
