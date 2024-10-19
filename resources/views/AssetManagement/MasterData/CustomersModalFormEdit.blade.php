@@ -55,7 +55,7 @@ $customerStatus = array(
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Tanggal Member</label>
                 <div class="col-md-4">
-                    <input type="text" name="registeredDate" id="registeredDate" value="{{$editCustomer->registered_date}}" class="form-control form-control-sm rounded-0" data-inputmask="'mask': ['99-99-9999']" data-mask>
+                    <input type="text" name="registeredDate" id="registeredDate" value="{{$editCustomer->registered_date}}" class="form-control form-control-sm rounded-0">
                     <small class="text-info">Gunakan format : DD-MM-YYYY</small>
                 </div>
             </div>
@@ -147,6 +147,14 @@ $customerStatus = array(
     </div>
 </div>
 <script>
+    $( function() {
+        $( "#registeredDate" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('#registeredDate').datepicker("setDate",new Date());
+    } );
     $('[data-mask]').inputmask();
     $('.price-text').mask('000.000.000', {
             reverse: true
