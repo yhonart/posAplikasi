@@ -419,7 +419,7 @@ class CorrectPrdController extends Controller
                 $inInv = '0';
                 $outInv = $qty;
             }
-            
+                        
             $this->TempInventoryController->insertLapInv ($numberKoreksi, $description, $inInv, $outInv, $createdBy, $product, $prodName, $satuan, $location);
             $msg = array('success'=>'<h4>SUCCESS</h4> Koreksi Barang berhasil dimasukkan');
         }

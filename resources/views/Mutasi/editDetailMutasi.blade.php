@@ -56,15 +56,17 @@
                                     </select>
                                 </td>
                                 <td class="p-0">
-                                    <input type"text" class="form-control form-control-sm rounded-0" name="lastStock" id="lastStock" readonly>
+                                    <input type="text" class="form-control form-control-sm rounded-0" name="lastStock" id="lastStock" readonly>
                                 </td>
                                 <td class="p-0">
-                                    <input type"text" class="form-control form-control-sm rounded-0" name="qty" id="qty">
+                                    <input type="number" class="form-control form-control-sm rounded-0" name="qty" id="qty">
                                 </td>
                                 <td class="p-0">
-                                    <input type"text" class="form-control form-control-sm rounded-0" name="keterangan" id="keterangan">
+                                    <input type="text" class="form-control form-control-sm rounded-0" name="keterangan" id="keterangan">
                                 </td>
-                                <td class="border border-1"></td>
+                                <td class="p-0">
+                                    <button class="btn border-0 elevation-0 btn-default btn-flat" id="btnSubmit"><i class="fa-solid fa-check"></i></button>
+                                </td>
                             </tr>
                         </form>
                     </tbody>
@@ -130,15 +132,22 @@
         
         $("#qty").on('input', computeSaldo);
         function computeSaldo(){
-            let lastStockVal = $("#lastStock").val(),
-                qty = $("#qty").val();
+            // let lastStockVal = $("#lastStock").val(),
+            //     qty = $("#qty").val();
                 
-            if (typeof qty == "undefined" || typeof qty == "0") {
-                return
-            }
-            $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));
+            // if (typeof qty == "undefined" || typeof qty == "0") {
+            //     return
+            // }
+            // $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));
+            $("#btnSubmit").focus().removeClass('btn-default');
+            $("#btnSubmit").focus().addClass('bg-success');
         }
         
+        $("#btnSubmit").on('click', function(e){
+            e.preventDefault();
+            addActivityItem();
+        });
+
         var actQty = document.getElementById("qty");
         
         actQty.addEventListener('keydown', function(event) {  
