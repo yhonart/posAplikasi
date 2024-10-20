@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        if ($codeDisplay == '1') {
+                        if ($codeDisplay == '1' AND !empty($dataSaldoAwal)) {
                             echo "<tr>";
                                 echo "<td>".$dataSaldoAwal->date_input."</td>";
                                 echo "<td></td>";
