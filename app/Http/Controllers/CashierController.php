@@ -2236,6 +2236,7 @@ class CashierController extends Controller
     }
     
     public function deleteAllTrx($noBill){
+        $deleteUser = Auth::user()->name;
         //UPDATE STOCK
         $prdList = DB::table('tr_store_prod_list')
             ->where([
@@ -2412,6 +2413,14 @@ class CashierController extends Controller
                             'stock_out'=>$stockOut,
                             'saldo'=>$c
                             ]);
+                    $inInv = $qty;
+                    $outInv = '0';
+                    $createdBy = $deleteUser;
+                    $prodId = $prodID;
+                    $prodName = $p->product_name;
+                    $loc = $p->location_id;
+                    $description = "Hapus oleh : ".$deleteUser;
+                    $this->TempInventoryController->insertLapInv ($noBill, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc);
                 }
             }
             $trStore = DB::table('tr_store')
@@ -2437,6 +2446,7 @@ class CashierController extends Controller
                 ->where('trx_code',$noBill)
                 ->delete();
         }
+        
     
     }
     
