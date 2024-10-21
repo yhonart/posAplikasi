@@ -2671,8 +2671,7 @@ class CashierController extends Controller
     }
     
     public function trxReportRecapExcel ($fromDate, $endDate){
-        $prdTrx = DB::table('tr_store_prod_list as a')
-            ->leftJoin('m_product as b','a.product_code','=','b.idm_data_product')
+        $prdTrx = DB::table('trans_product_list_view as a')
             ->leftJoin('view_billing_action as c','a.from_payment_code','=','c.billing_number')
             ->where('a.status','>=','3')
             ->whereBetween('a.date',[$fromDate, $endDate])
