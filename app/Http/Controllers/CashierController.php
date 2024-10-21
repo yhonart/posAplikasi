@@ -2413,14 +2413,14 @@ class CashierController extends Controller
                             'stock_out'=>$stockOut,
                             'saldo'=>$c
                             ]);
-                    $inInv = $qty;
-                    $outInv = '0';
-                    $createdBy = $deleteUser;
-                    $prodId = $prodID;
-                    $prodName = $p->product_name;
-                    $loc = $p->location_id;
-                    $description = "Hapus oleh : ".$deleteUser;
-                    $this->TempInventoryController->insertLapInv ($noBill, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc);
+                    // $inInv = $qty;
+                    // $outInv = '0';
+                    // $createdBy = $deleteUser;
+                    // $prodId = $prodID;
+                    // $prodName = $p->product_name;
+                    // $loc = $p->location_id;
+                    // $description = "Hapus oleh : ".$deleteUser;
+                    // $this->TempInventoryController->insertLapInv ($noBill, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc);
                 }
             }
             $trStore = DB::table('tr_store')
@@ -2765,6 +2765,14 @@ class CashierController extends Controller
             foreach($adminCheck as $aC){
                 if($password == $aC->user_token){
                     if($datAction == '1'){ // DELETE PERMANENTLY
+                        //UPDATE STOCK
+                        $trPrdList = DB::table('tr_store')
+                            ->where('from_payment_code',$datBilling)
+                            ->get();
+
+                        foreach ($trPrdList as $keyPrd) {
+                            
+                        }
                         $dataTransaksi = DB::table('tr_store_prod_list')
                             ->where('from_payment_code',$datBilling)
                             ->get();
@@ -2807,7 +2815,7 @@ class CashierController extends Controller
                             ->delete();
                         DB::table('tr_kredit_record')
                             ->where('trx_code',$datBilling)
-                            ->delete();
+                            ->delete();                        
                         DB::table('tr_kredit')
                             ->where('from_payment_code',$datBilling)
                             ->delete();
