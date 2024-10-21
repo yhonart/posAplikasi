@@ -744,56 +744,57 @@ class CashierController extends Controller
             ->count();
 
         if ($cekStruck == '0') {
-            $isDelete = DB::table('tr_store')
-                ->where([
-                    ['billing_number',$no_Struck],
-                    ['is_delete','1']
-                ])
-                ->count();
-                
-                if($isDelete == '0'){
-                    DB::table('tr_store')
-                        ->insert([
-                            'store_id'=>$areaID,
-                            'billing_number'=>$no_Struck,
-                            'member_id'=>$pelanggan,
-                            't_bill'=>$t_Bill,
-                            't_pay'=>$t_Pay,
-                            't_difference'=>$t_Difference,
-                            't_pay_return'=>$t_PayReturn,
-                            't_item'=>$t_Item,
-                            'tr_delivery'=>$deliveryBy,
-                            'ppn'=>$ppn,
-                            'status'=>'1',
-                            'created_date'=>now(),
-                            'tr_date'=>now(), 
-                            'created_by'=>$createdBy
-                        ]);
+            DB::table('tr_store')
+                ->insert([
+                    'store_id'=>$areaID,
+                    'billing_number'=>$no_Struck,
+                    'member_id'=>$pelanggan,
+                    't_bill'=>$t_Bill,
+                    't_pay'=>$t_Pay,
+                    't_difference'=>$t_Difference,
+                    't_pay_return'=>$t_PayReturn,
+                    't_item'=>$t_Item,
+                    'tr_delivery'=>$deliveryBy,
+                    'ppn'=>$ppn,
+                    'status'=>'1',
+                    'created_date'=>now(),
+                    'tr_date'=>now(), 
+                    'created_by'=>$createdBy
+                ]);
+
+                // $isDelete = DB::table('tr_store')
+                //     ->where([
+                //         ['billing_number',$no_Struck],
+                //         ['is_delete','1']
+                //     ])
+                //     ->count();
+                // if($isDelete == '0'){
                     
-                }
-                else{
-                    DB::table('tr_store')
-                    ->where([
-                        ['billing_number',$no_Struck],
-                        ['is_delete','1']
-                    ])
-                    ->update([
-                        'store_id'=>$areaID,
-                        'billing_number'=>$no_Struck,
-                        'member_id'=>$pelanggan,
-                        't_bill'=>$t_Bill,
-                        't_pay'=>$t_Pay,
-                        't_difference'=>$t_Difference,
-                        't_pay_return'=>$t_PayReturn,
-                        't_item'=>$t_Item,
-                        'tr_delivery'=>$deliveryBy,
-                        'ppn'=>$ppn,
-                        'status'=>'1',
-                        'created_date'=>now(),
-                        'tr_date'=>now(), 
-                        'is_delete'=>'0'
-                    ]);
-                }
+                    
+                // }
+                // else{
+                //     DB::table('tr_store')
+                //     ->where([
+                //         ['billing_number',$no_Struck],
+                //         ['is_delete','1']
+                //     ])
+                //     ->update([
+                //         'store_id'=>$areaID,
+                //         'billing_number'=>$no_Struck,
+                //         'member_id'=>$pelanggan,
+                //         't_bill'=>$t_Bill,
+                //         't_pay'=>$t_Pay,
+                //         't_difference'=>$t_Difference,
+                //         't_pay_return'=>$t_PayReturn,
+                //         't_item'=>$t_Item,
+                //         'tr_delivery'=>$deliveryBy,
+                //         'ppn'=>$ppn,
+                //         'status'=>'1',
+                //         'created_date'=>now(),
+                //         'tr_date'=>now(), 
+                //         'is_delete'=>'0'
+                //     ]);
+                // }
         }
     }
     
@@ -2159,7 +2160,7 @@ class CashierController extends Controller
         $trStore = DB::table('view_billing_action')
             ->where('billing_number',$noBill)
             ->first();
-            
+
         $dateRecord = $trStore->created_date;
         
         $trStoreList = DB::table('trans_product_list_view')
