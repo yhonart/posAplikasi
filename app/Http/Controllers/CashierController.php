@@ -2772,9 +2772,9 @@ class CashierController extends Controller
                             ->where('from_payment_code',$datBilling)
                             ->get();
 
-                        foreach ($trPrdList as $keyPrd) {
+                        // foreach ($trPrdList as $keyPrd) {
                             
-                        }
+                        // }
                         $dataTransaksi = DB::table('tr_store_prod_list')
                             ->where('from_payment_code',$datBilling)
                             ->get();

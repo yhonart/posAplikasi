@@ -54,6 +54,10 @@
         font-size : 8;
     }
 </style>
+<?php
+    $sumHrgSatuan = '0';
+    $sumJumlah = '0';
+?>
 <table class="styled-table" width="100%" border="1">
     <thead class="text-center">
         <tr>
@@ -109,6 +113,16 @@
                 <td></td>
                 <td></td>
             </tr>
+            <?php
+                $sumHrgSatuan += $ptrx->unit_price;
+                $sumJumlah += $ptrx->t_price;
+            ?>
         @endforeach
+            <tr>
+                <td colspan="11">Total</td>
+                <td>{{$sumHrgSatuan}}</td>
+                <td>{{$sumJumlah}}</td>
+                <td colspan="10"></td>
+            </tr>
     </tbody>
 </table>
