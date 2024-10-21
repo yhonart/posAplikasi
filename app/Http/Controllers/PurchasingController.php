@@ -382,10 +382,12 @@ class PurchasingController extends Controller
             ]);
     }
     
-    public function tablePenerimaan(){
+    public function tablePenerimaan($status, $fromDate, $endDate){
         $approval = $this->userApproval();
+
         $listTablePem = DB::table('view_purchase_order')
-            ->where('status','>=','2')
+            ->where('status',$status)
+            ->whereBetween('purchase_date',[$fromDate,$endDate])
             ->orderBy('id_purchase','desc')
             ->get();
             

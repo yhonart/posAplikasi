@@ -76,11 +76,39 @@
         </div>
     </div>
 </div>
+
 <div class="row" id="rowFilter" style="display:none;">
     <div class="col-12">
         <div id="tableFilter"></div>
     </div>
 </div>
+
+<div class="row mb-2" id="filteringData">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="status" class="label">Status Dok.</label>
+            <select name="status" id="status" class="form-control form-control-sm">
+                <option value="2">Permohonan Persetujuan</option>
+                <option value="1">Sedang Proses</option>
+                <option value="0">Dihapus</option>
+                <option value="3">Disetujui</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="fromDate" class="label">Dari Tanggal</label>
+            <input type="text" class="from-control form-control-sm" name="fromDate" id="fromDate">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="fromDate" class="label">S.d Tanggal</label>
+            <input type="text" class="from-control form-control-sm" name="endDate" id="endDate">
+        </div>
+    </div>
+</div>
+
 <div class="row" id="tablePembelian">
     <div class="col-12">
         <div id="custom-purchase-data" role="tabpanel"></div>
@@ -94,14 +122,21 @@
     });
     
     $(function(){
-        let appData = "tablePenerimaan";
-        viewDisplayPurchasing(appData);
+        let appData = "tablePenerimaan",
+            status = "1",
+            fromDate = $("#fromDate").val(),
+            endDate = $("#endDate").val();
+
+        viewDisplayPurchasing(appData,status,fromDate,endDate);
     })
     
     $('.display-onclick').click(function(){
-        let el = $(this);
+        let el = $(this),
+            status = "1",
+            fromDate = $("#fromDate").val(),
+            endDate = $("#endDate").val();
         let appData = el.attr("data-display");
-        viewDisplayPurchasing(appData);
+        viewDisplayPurchasing(appData,status,fromDate,endDate);
     });
     
     $('.filter-info').click(function(){
@@ -109,11 +144,35 @@
         let appFilter = el.attr("data-display");
         displayPanelFilter(appFilter);
     });
+
+    $("#status").change(function(){
+        let status = $(this).find(":selected").val(),
+            fromDate = $("#fromDate").val(),
+            endDate = $("#endDate").val();
+            
+        viewDisplayPurchasing(appData,status,fromDate,endDate);
+    });
+
+    $("#fromDate").change(function(){
+        let status = $("#status").find(":selected").val(),
+            fromDate = $("#fromDate").val(),
+            endDate = $("#endDate").val();
+
+        viewDisplayPurchasing(appData,status,fromDate,endDate);
+    });
+
+    $("#endDate").change(function(){
+        let status = $("#status").find(":selected").val(),
+            fromDate = $("#fromDate").val(),
+            endDate = $("#endDate").val();
+
+        viewDisplayPurchasing(appData,status,fromDate,endDate);
+    });
     
-    function viewDisplayPurchasing(appData){
+    function viewDisplayPurchasing(appData,status,fromDate,endDate){
         $.ajax({
             type : 'get',
-            url : "{{route('Purchasing')}}/"+appData,
+            url : "{{route('Purchasing')}}/"+appData+"/"+status+"/"+fromDate+"/"+endDate,
             success : function(response){
                 $('#custom-purchase-data').html(response);
             }
@@ -121,7 +180,8 @@
     }
     
     function displayPanelFilter(appFilter){
-        $("#tablePembelian").hide();
+        $("#tablePembelian").fadeOut();
+        $("#filteringData").fadeOut();
         $("#rowFilter").show();
         $.ajax({
             type : 'get',

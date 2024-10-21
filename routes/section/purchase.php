@@ -16,7 +16,7 @@ Route::get('Purchasing/tableInputBarang/stockIden/{gudang}/{satuan}/{product}', 
 Route::get('Purchasing/purchOrder/InputDataPO', [App\Http\Controllers\PurchasingController::class, 'mainPurchaseOrder']);
 
 //Table
-Route::get('Purchasing/tablePenerimaan', [App\Http\Controllers\PurchasingController::class, 'tablePenerimaan']);
+Route::get('Purchasing/tablePenerimaan/{status}/{fromDate}/{endDate}', [App\Http\Controllers\PurchasingController::class, 'tablePenerimaan']);
 Route::get('Purchasing/modalPenerimaanPO/{poNumber}', [App\Http\Controllers\PurchasingController::class, 'modalPenerimaanPO']);
 Route::get('Purchasing/modalSupplier/{supplierID}', [App\Http\Controllers\PurchasingController::class, 'modalSupplier']);
 
