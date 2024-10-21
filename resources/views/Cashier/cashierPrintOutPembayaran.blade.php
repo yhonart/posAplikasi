@@ -4,6 +4,9 @@
         <link rel="stylesheet" href="{{asset('public/css/print.css')}}">
     </head>
     <body class="struk" onload="printOut()">
+        <?php
+            $totalBelanja = '0';
+        ?>
         <section class="sheet">
             <table cellpadding="0" cellspacing="0" style="width:100%">
                 <tbody>
@@ -53,6 +56,9 @@
                             <td class="txt-left" align="left">{{$tSL->qty}} {{$tSL->unit}} {{number_format($tSL->m_price,0,',','.')}}</td>
                             <td class="txt-right" align="right">{{number_format($tSL->t_price,0,',','.')}}</td>
                         </tr>
+                        <?php
+                            $totalBelanja += $tSL->t_price;
+                        ?>
                     @endforeach
                 </tbody>
             </table>
@@ -69,7 +75,7 @@
                     <tr>
                         <td>Total Belanja</td>
                         <td>:</td>
-                        <td class="txt-right" align="right">{{number_format($trStore->t_bill,0,',','.')}}</td>
+                        <td class="txt-right" align="right">{{number_format($totalBelanja,0,',','.')}}</td>
                     </tr>
                     <tr>
                         <td>Hutang Sebelumnya</td>
@@ -90,7 +96,8 @@
                         <td>:</td>
                         <td class="txt-right" align="right">
                             <?php
-                                $kembali = $trStore->t_bill - $trStore->t_pay;
+                                // $kembali = $trStore->t_bill - $trStore->t_pay;
+                                $kembali = $totalBelanja - $trStore->t_pay;
                             ?>
                             {{number_format(abs($kembali),'0',',','.')}}
                         
