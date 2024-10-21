@@ -96,7 +96,8 @@
                         <td>:</td>
                         <td class="txt-right" align="right">
                             <?php
-                                $kembali = $trStore->t_bill - $trStore->t_pay;
+                                // $kembali = $trStore->t_bill - $trStore->t_pay;
+                                $kembali = $totalBelanja - $trStore->t_pay;
                             ?>
                             {{number_format(abs($kembali),'0',',','.')}}
                         
