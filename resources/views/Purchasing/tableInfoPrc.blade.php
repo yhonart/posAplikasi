@@ -98,13 +98,13 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="fromDate" class="label">Dari Tanggal</label>
-            <input type="text" class="from-control form-control-sm" name="fromDate" id="fromDate">
+            <input type="text" class="form-control form-control-sm datetimepicker-input" name="fromDate" id="fromDate">
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
             <label for="fromDate" class="label">S.d Tanggal</label>
-            <input type="text" class="from-control form-control-sm" name="endDate" id="endDate">
+            <input type="text" class="form-control form-control-sm datetimepicker-input" name="endDate" id="endDate">
         </div>
     </div>
 </div>
@@ -122,6 +122,13 @@
     });
     
     $(function(){
+        $( ".datetimepicker-input" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('.datetimepicker-input').datepicker("setDate",new Date());
+
         let appData = "tablePenerimaan",
             status = "1",
             fromDate = $("#fromDate").val(),
