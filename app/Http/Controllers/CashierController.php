@@ -2159,6 +2159,7 @@ class CashierController extends Controller
         $trStore = DB::table('view_billing_action')
             ->where('billing_number',$noBill)
             ->first();
+            
         $dateRecord = $trStore->created_date;
         
         $trStoreList = DB::table('trans_product_list_view')
