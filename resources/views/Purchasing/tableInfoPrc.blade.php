@@ -98,13 +98,13 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="fromDate" class="label">Dari Tanggal</label>
-            <input type="text" class="form-control form-control-sm datetimepicker-input" name="fromDate" id="fromDate">
+            <input type="text" class="form-control form-control-sm datetimepicker-input" name="fromDate" id="fromDate" value="0">
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
             <label for="fromDate" class="label">S.d Tanggal</label>
-            <input type="text" class="form-control form-control-sm datetimepicker-input" name="endDate" id="endDate">
+            <input type="text" class="form-control form-control-sm datetimepicker-input" name="endDate" id="endDate" value="0">
         </div>
     </div>
 </div>
@@ -129,7 +129,7 @@
         });
 
         let appData = "tablePenerimaan",
-            status = "1",
+            status = "2",
             fromDate = '0',
             endDate = '0';
         viewDisplayPurchasing(appData,status,fromDate,endDate);
