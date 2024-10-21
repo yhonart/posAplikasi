@@ -127,13 +127,11 @@
             autoclose: true,
             todayHighlight: true,
         });
-        $('.datetimepicker-input').datepicker("setDate",new Date());
 
         let appData = "tablePenerimaan",
             status = "1",
-            fromDate = $("#fromDate").val(),
-            endDate = $("#endDate").val();
-
+            fromDate = '0',
+            endDate = '0';
         viewDisplayPurchasing(appData,status,fromDate,endDate);
     })
     

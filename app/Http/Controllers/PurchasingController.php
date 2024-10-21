@@ -385,11 +385,13 @@ class PurchasingController extends Controller
     public function tablePenerimaan($status, $fromDate, $endDate){
         $approval = $this->userApproval();
 
-        $listTablePem = DB::table('view_purchase_order')
-            ->where('status',$status)
-            ->whereBetween('purchase_date',[$fromDate,$endDate])
-            ->orderBy('id_purchase','desc')
-            ->get();
+        $listTablePem = DB::table('view_purchase_order');
+        $listTablePem = $listTablePem->where('status',$status);
+            if ($fromDate <> '0' AND $endDate <> '0') {
+                $listTablePem = $listTablePem->whereBetween('purchase_date',[$fromDate,$endDate]);
+            }
+            $listTablePem = $listTablePem->orderBy('id_purchase','desc');
+            $listTablePem = $listTablePem->get();
             
         return view ('Purchasing/tablePenerimaan', compact('listTablePem','approval'));
     }
