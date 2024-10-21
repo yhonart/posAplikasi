@@ -148,7 +148,8 @@
     $("#status").change(function(){
         let status = $(this).find(":selected").val(),
             fromDate = $("#fromDate").val(),
-            endDate = $("#endDate").val();
+            endDate = $("#endDate").val(),
+            appData = "tablePenerimaan";
             
         viewDisplayPurchasing(appData,status,fromDate,endDate);
     });
@@ -156,7 +157,8 @@
     $("#fromDate").change(function(){
         let status = $("#status").find(":selected").val(),
             fromDate = $("#fromDate").val(),
-            endDate = $("#endDate").val();
+            endDate = $("#endDate").val(),
+            appData = "tablePenerimaan";
 
         viewDisplayPurchasing(appData,status,fromDate,endDate);
     });
@@ -164,7 +166,8 @@
     $("#endDate").change(function(){
         let status = $("#status").find(":selected").val(),
             fromDate = $("#fromDate").val(),
-            endDate = $("#endDate").val();
+            endDate = $("#endDate").val(),
+            appData = "tablePenerimaan";
 
         viewDisplayPurchasing(appData,status,fromDate,endDate);
     });
