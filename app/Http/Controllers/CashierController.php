@@ -2681,7 +2681,7 @@ class CashierController extends Controller
             ->select(DB::raw('SUM(a.t_price) as sumTPrice'), 'c.billing_number')
             ->leftJoin('view_billing_action as c','a.from_payment_code','=','c.billing_number')
             ->where('a.status','>=','3')
-            ->groupBy('a.billing_number')
+            ->groupBy('a.from_payment_code')
             ->whereBetween('a.date',[$fromDate, $endDate])
             ->get();
             
