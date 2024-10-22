@@ -128,3 +128,19 @@
             </tr>
     </tbody>
 </table>
+<table>
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Jumlah</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($tempTPrice as $tmp)
+            <tr>
+                <td>{{$tmp->billing_number}}</td>
+                <td>{{$tmp->sumTPrice}}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>

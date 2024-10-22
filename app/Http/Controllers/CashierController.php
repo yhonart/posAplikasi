@@ -2676,8 +2676,16 @@ class CashierController extends Controller
             ->where('a.status','>=','3')
             ->whereBetween('a.date',[$fromDate, $endDate])
             ->get();
+
+        $tempTPrice = DB::table('trans_product_list_view as a')
+            ->select(DB::raw('SUM(a.t_price) as sumTPrice'), 'a.billing_number')
+            ->leftJoin('view_billing_action as c','a.from_payment_code','=','c.billing_number')
+            ->where('a.status','>=','3')
+            ->groupBy('a.billing_number')
+            ->whereBetween('a.date',[$fromDate, $endDate])
+            ->get();
             
-        return view('Report/cashierRecapExcel',compact('prdTrx'));
+        return view('Report/cashierRecapExcel',compact('prdTrx','tempTPrice'));
     }
     
     public function clickListProduk ($dataTrx,$trxType){
