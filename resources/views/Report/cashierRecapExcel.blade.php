@@ -121,14 +121,15 @@
             ?>
         @endforeach
             <tr>
-                <td colspan="11">Total</td>
-                <td>{{$sumHrgSatuan}}</td>
-                <td>{{$sumJumlah}}</td>
-                <td colspan="10"></td>
+                <td colspan="11"> <b>TOTAL</b> </td>
+                <td> <b>{{$sumHrgSatuan}}</b> </td>
+                <td></td>
+                <td> <b>{{$sumJumlah}}</b> </td>
+                <td colspan="9"></td>
             </tr>
     </tbody>
 </table>
-<table>
+<!-- <table>
     <thead>
         <tr>
             <th>Number</th>
@@ -136,11 +137,6 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($tempTPrice as $tmp)
-            <tr>
-                <td>{{$tmp->billing_number}}</td>
-                <td>{{$tmp->sumTPrice}}</td>
-            </tr>
-        @endforeach
+        
     </tbody>
-</table>
+</table> -->
