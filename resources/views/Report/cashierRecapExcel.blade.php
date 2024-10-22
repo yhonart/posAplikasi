@@ -73,6 +73,7 @@
             <th>Satuan</th>
             <th>Qty</th>
             <th>Hrg. Satuan</th>
+            <th>disc</th>
             <th>Jumlah</th>
             <th>Pembayaran 1</th>
             <th>Pembayaran 2</th>
@@ -101,6 +102,7 @@
                 <td>{{$ptrx->unit}}</td>
                 <td>{{$ptrx->qty}}</td>
                 <td>{{$ptrx->unit_price}}</td>
+                <td>{{$ptrx->disc}}</td>
                 <td>{{$ptrx->t_price}}</td>
                 <td></td>
                 <td></td>
