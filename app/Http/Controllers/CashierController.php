@@ -2915,4 +2915,17 @@ class CashierController extends Controller
             ]);
         
     }    
+
+    // add temporer trx
+    public function addTmpTrx($prdID, $billNumber){
+        $actionBy = Auth::user()->name;
+        DB::table("tr_temp_prod")
+            ->insert([
+                'bill_number'=>$billNumber,
+                'product_id'=>$prdID,
+                'status'=>'1',
+                'created_at'=>now(),
+                'created_by'=>$actionBy
+            ]);
+    }
 }

@@ -99,7 +99,9 @@
             
             
         $("#prodNameHidden").change(function(){
-            let productID = $(this).find(":selected").val();
+            let productID = $(this).find(":selected").val(),
+                transNumber = $("#transNumber").val();
+            
             $.ajax({
                 type : 'get',
                 url : "{{route('Cashier')}}/productList/satuan/" + productID,
@@ -107,6 +109,15 @@
                     $("#satuan").html(response);
                 }
             });
+
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/productList/addTmpTrx/" + productID + "/" + transNumber,
+                success : function(response){  
+                    $("#satuan").html(response);
+                }
+            });
+
             fetch("{{route('Cashier')}}/productList/prdResponse/" + productID)
             .then(response => response.json())
             .then(data => {                    

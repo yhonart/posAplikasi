@@ -8,6 +8,7 @@ Route::get('Cashier/productList/listTableTransaksi', [App\Http\Controllers\Cashi
 Route::get('Cashier/productList/listTableInputPrd', [App\Http\Controllers\CashierController::class, 'listTableInputPrd']);
 Route::get('Cashier/productList/stockBarang/{idSatuan}/{prdID}', [App\Http\Controllers\CashierController::class, 'stoockBarang']);
 Route::post('Cashier/productList/postProduct', [App\Http\Controllers\CashierController::class, 'postProductList']);
+Route::get('Cashier/productList/addTmpTrx/{prdID}/{billNumber}', [App\Http\Controllers\CashierController::class, 'addTmpTrx']);
 
 //Button rule
 Route::get('Cashier/buttonAction', [App\Http\Controllers\CashierController::class, 'buttonAction']);
