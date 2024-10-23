@@ -36,9 +36,10 @@
             <dt class="col-md-4">Point Belanja</dt>
             <dd class="col-md-8">: 
                 <?php
-                    if ($trPoint->point <> '') {
-                        echo "Rp. ".number_format($trPoint->point,'0',',','.');
-                    }
+                    // if ($trPoint->point <> '') {
+                    //     echo "Rp. ".number_format($trPoint->point,'0',',','.');
+                    // }
+                    echo "0";
                 ?>                
             </dd>
         </dl>  
