@@ -79,23 +79,24 @@
         
         $(".btnDel").click(function(){
             let el = $(this);
-            let dataTrx = el.attr("data-trx"),
-                dateData = "{{$dateTampil}}";
+            let dataTrx = el.attr("data-trx");
+            let fromDate = "{{$fromDate}}",
+                endDate = "{{$endDate}}";
                 
             $.ajax({
                 type : "get",
                 url: "{{route('Cashier')}}/buttonAction/deleteHoldData/"+dataTrx,
                 success: function(response) {                    
                     $("#notifAction").html("Data "+dataTrx+" berhasil dihapus !");
-                    funcLoadSuccess(dateData);
+                    funcLoadSuccess(fromDate, endDate);
                 }
             })
         });
         
-        function funcLoadSuccess(dateData){        
+        function funcLoadSuccess(fromDate, endDate){        
             $.ajax({
                 type : 'get',
-                url : "{{route('Cashier')}}/buttonAction/dataPenjualan/tampilData/"+dateData,
+                url : "{{route('Cashier')}}/buttonAction/dataPenjualan/tampilData/"+fromDate+"/"+endDate,
                 success : function(response){
                     $(".tampilDataSimpan").html(response);
                 }
