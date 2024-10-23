@@ -53,17 +53,29 @@
     } );
     
     $(document).ready(function(){
-        let dateData = $('#pilihTanggal').val();
-        functLoadData(dateData);
+        let fromDate = $('#fromDate').val(),
+            endDate = $('#endDate').val();
+
+        functLoadData(fromDate,endDate );
         
-        $("#pilihTanggal").change(function(){
-            let dateData = $('#pilihTanggal').val();
-            functLoadData(dateData);
+        $("#fromDate").change(function(){
+            let fromDate = $('#fromDate').val(),
+                endDate = $('#endDate').val();
+
+            functLoadData(fromDate,endDate );
         });
-        function functLoadData(dateData){        
+
+        $("#endDate").change(function(){
+            let fromDate = $('#fromDate').val(),
+                endDate = $('#endDate').val();
+
+            functLoadData(fromDate,endDate);
+        });
+
+        function functLoadData(fromDate,endDate){        
             $.ajax({
                 type : 'get',
-                url : "{{route('Cashier')}}/buttonAction/dataPenjualan/tampilData/"+dateData,
+                url : "{{route('Cashier')}}/buttonAction/dataPenjualan/tampilData/"+fromDate+"/"+endDate,
                 success : function(response){
                     $(".tampilDataSimpan").html(response);
                 }

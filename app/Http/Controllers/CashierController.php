@@ -2461,27 +2461,30 @@ class CashierController extends Controller
     
     }
     
-    public function tampilDataSimpan($dateTampil){
+    public function tampilDataSimpan($fromDate, $endDate){
         $today = date("Y-m-d");
         
         $dataSaved = DB::table('view_trx_store');
-        if ($dateTampil == "" OR $dateTampil == "0"){
-            $dataSaved = $dataSaved->where('status','2');
-            $dataSaved = $dataSaved->orWhere('status','0');
-        }
-        else{
-            $dataSaved = $dataSaved
-                ->where([
-                    ['status','2'],
-                    ['tr_date',$dateTampil]
-                ]);
-            // $dataSaved = $dataSaved
-            //     ->orWhere([
-            //         ['status','0'],
-            //         ['tr_date',$dateTampil]
-            //     ]);
-        }
-        $dataSaved = $dataSaved->paginate(10);
+        // if ($dateTampil == "" OR $dateTampil == "0"){
+        //     $dataSaved = $dataSaved->where('status','2');
+        //     $dataSaved = $dataSaved->orWhere('status','0');
+        // }
+        // else{
+        //     $dataSaved = $dataSaved
+        //         ->where([
+        //             ['status','2'],
+        //             ['tr_date',$dateTampil]
+        //         ]);
+        //     // $dataSaved = $dataSaved
+        //     //     ->orWhere([
+        //     //         ['status','0'],
+        //     //         ['tr_date',$dateTampil]
+        //     //     ]);
+        // }
+        $dataSaved = $dataSaved->where("status",'2');
+        $dataSaved = $dataSaved->whereBetween("tr_date",[$fromDate,$endDate]);
+        $dataSaved = $dataSaved->limit(20);
+        $dataSaved = $dataSaved->get();
         
         return view ('Cashier/cashierModalLoadDataSavedList',compact('dataSaved','dateTampil'));
     }
