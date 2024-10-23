@@ -139,8 +139,10 @@
     </thead>
     <tbody>
         @foreach($tempTPrice as $tmp)
-            <tr>{{$tmp->billing_number}}</tr>
-            <tr>{{$tmp->sumTPrice}}</tr>
+            <tr>
+                <td>{{$tmp->billing_number}}</td>
+                <td>{{$tmp->sumTPrice}}</td>
+            </tr>
         @endforeach
     </tbody>
 </table>
