@@ -114,7 +114,7 @@
                 type : 'get',
                 url : "{{route('Cashier')}}/productList/addTmpTrx/" + productID + "/" + transNumber,
                 success : function(response){  
-                    $("#satuan").html(response);
+                    $("#qty").val("1").focus().select();
                 }
             });
 
@@ -138,7 +138,7 @@
                         precision: 0,
                         thousand: ".",
                     }));
-                    $("#qty").val("1").focus().select();
+                    // $("#qty").val("1").focus().select();
                     $("#stock").val(data.prdStock);
                     $("#stockHidden").val(data.prdStock-qtyVal);
                 } else {

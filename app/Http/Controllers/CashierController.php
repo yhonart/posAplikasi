@@ -421,7 +421,7 @@ class CashierController extends Controller
                 ['product_size',$prodSatuan]
             ])
             ->first();
-
+        
         $dataSatuan = $satuanSell->product_satuan;
         $idPrdUnit = $satuanSell->idm_product_satuan;
         $hrgModal = $satuanSell->product_price_order;
