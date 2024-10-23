@@ -23,7 +23,7 @@ Route::post('Cashier/buttonAction/updateToPayment', [App\Http\Controllers\Cashie
 Route::get('Cashier/buttonAction/dataPenjualan', [App\Http\Controllers\CashierController::class, 'modalDataPenjualan']);
 Route::post('Cashier/buttonAction/dataPenjualan/postDataClosing', [App\Http\Controllers\CashierController::class, 'postDataClosing']);
 Route::get('Cashier/buttonAction/dataPenjualan/funcData/{fromdate}/{enddate}/{keyword}/{method}', [App\Http\Controllers\CashierController::class, 'funcDataPenjualan']);
-Route::get('Cashier/buttonAction/dataPenjualan/tampilData/{dateData}', [App\Http\Controllers\CashierController::class, 'tampilDataSimpan']);
+Route::get('Cashier/buttonAction/dataPenjualan/tampilData/{fromDate}/{endDate}', [App\Http\Controllers\CashierController::class, 'tampilDataSimpan']);
 Route::get('Cashier/buttonAction/dataPenjualan/selectData/{billingIden}/{trxType}', [App\Http\Controllers\CashierController::class, 'billingIden']);
 Route::get('Cashier/buttonAction/dataPenjualan/deleteData/{data}', [App\Http\Controllers\CashierController::class, 'deleteData']);
 Route::get('Cashier/buttonAction/dataStock', [App\Http\Controllers\CashierController::class, 'modalDataStock']);
