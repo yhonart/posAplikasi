@@ -129,7 +129,8 @@
             </tr>
     </tbody>
 </table>
-<!-- <table>
+<H4>RECAP SUMMARY TOTAL BELANJA</H4>
+<table>
     <thead>
         <tr>
             <th>Number</th>
@@ -137,6 +138,9 @@
         </tr>
     </thead>
     <tbody>
-        
+        @foreach($tempTPrice as $tmp)
+            <tr>{{$tmp->billing_number}}</tr>
+            <tr>{{$tmp->sumTPrice}}</tr>
+        @endforeach
     </tbody>
-</table> -->
+</table>
