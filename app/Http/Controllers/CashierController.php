@@ -2486,7 +2486,7 @@ class CashierController extends Controller
         $dataSaved = $dataSaved->limit(20);
         $dataSaved = $dataSaved->get();
         
-        return view ('Cashier/cashierModalLoadDataSavedList',compact('dataSaved','dateTampil'));
+        return view ('Cashier/cashierModalLoadDataSavedList',compact('dataSaved','fromDate','endDate'));
     }
     
     public function deleteHoldData($noBill){
