@@ -592,6 +592,15 @@ class CashierController extends Controller
                     'saldo'=>$a
                 ]);
         }
+        //update status temp insert prd 
+        DB::table('tr_temp_prod')
+            ->where([
+                ['bill_number',$transNumber],
+                ['product_id',$prodName]
+            ])
+            ->update([
+                'status'=>'2'
+            ]);
     }
 
     public function listTableTransaksi(){
