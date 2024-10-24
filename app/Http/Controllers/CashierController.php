@@ -1074,7 +1074,9 @@ class CashierController extends Controller
             ->select('from_payment_code','product_code','qty','unit','t_price')
             ->where('list_id',$data)
             ->first();
-            
+        
+        $deleteBy = Auth::user()->name;
+
         $prodID = $listData->product_code;
         $qty = $listData->qty;
         $unit = $listData->unit;
@@ -1186,7 +1188,12 @@ class CashierController extends Controller
         // Delete item store.
         DB::table('tr_store_prod_list')
             ->where('list_id',$data)
-            ->delete();
+            ->update([
+                'status'=>'0',
+                'is_delete'=>'1',
+                'delete_by'=>$deleteBy,
+                'delete_date'=>now()
+            ]);
         
     }
 
