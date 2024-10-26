@@ -98,7 +98,9 @@ class CashierController extends Controller
                 ['store_id', $areaID],
                 ['is_return','1'],
                 ['status','1']
-            ]);
+            ])
+            ->count();
+
         if ($countReturn == '0') {
             # code...
             $countTrx = DB::table("tr_store")
@@ -161,8 +163,24 @@ class CashierController extends Controller
     public function getInfoNumber (){
         $username = Auth::user()->name;
         $area = $this->checkuserInfo();
-        $dateNow = date("Y-m-d");
         $hakAkses = Auth::user()->hakakses;
+        
+        // count transaksi data return atau data load dari data hold
+        $countReturnOrHold = DB::table('tr_store')
+        ->where([
+            ['status','1'],
+            ['is_return','1']
+            ])
+            ->count();
+            
+        if ($countReturnOrHold == '0') {
+            $colTable = "tr_date";
+            $dateNow = date("Y-m-d");
+        }
+        else {
+            $colTable = "is_return";
+            $dateNow = '1';
+        }
         
         if($hakAkses == '2'){
             $billNumbering = DB::table("tr_store")
@@ -170,7 +188,7 @@ class CashierController extends Controller
                     ['store_id',$area],
                     ['status','1'],
                     ['created_by',$username],
-                    ['tr_date',$dateNow]
+                    [$colTable,$dateNow]
                     ])
                 ->first();
         }
@@ -180,13 +198,13 @@ class CashierController extends Controller
                     ['store_id',$area],
                     ['status','1'],
                     ['created_by',$username],
-                    ['tr_date',$dateNow]
+                    [$colTable,$dateNow]
                     ])
                 ->orWhere([
                     ['store_id',$area],
                     ['status','1'],
                     ['return_by',$username],
-                    ['tr_date',$dateNow]
+                    [$colTable,$dateNow]
                     ])
                 ->first();
         }
@@ -673,7 +691,7 @@ class CashierController extends Controller
         else{
             $checkActiveBtn = $countDisplay;
         }
-
+        // echo $countReturn;
         // echo $checkActiveBtn;
         //Get number billing and display active where status 1
         $cekBillNumber = DB::table('tr_store')
@@ -1059,7 +1077,8 @@ class CashierController extends Controller
             ->where('billing_number',$billingIden)
             ->update([
                 'status'=>'1',
-                'is_return'=>'1'
+                'is_return'=>'1',
+                'return_by'=>$userAction
             ]);
 
         DB::table('tr_store_prod_list')
