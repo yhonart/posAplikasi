@@ -15,37 +15,39 @@
                     <input type="hidden" class="form-control form-control-sm" name="t_item" id="t_item" value="{{$sumKoreksi->countKrs}}" readonly>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary font-weight-bold elevation-1 rounded-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Dokumen Koreksi Barang
+                    <button class="btn btn-default font-weight-bold border-0 rounded-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fa-solid fa-file text-primary"></i> Dokumen Koreksi Barang
                     </button>
-                    <button type="submit" class="btn btn-success font-weight-bold elevation-1 rounded-0" id="submitButton"><i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan</button>
+                    <button type="submit" class="btn btn-default font-weight-bold border-0 rounded-0" id="submitButton"><i class="fa-solid fa-floppy-disk text-success"></i> Simpan Perubahan</button>
                 </div>
             </form>
-            <form class="form" id="formEditKoreksi">
-                <div class="form-group row">
-                    <label class="label col-6 col-md-2">No. Koreksi</label>
-                    <div class="col-6 col-md-4">
-                        <input type="text" name="nomorKoreksi" id="nomorKoreksi" class="form-control form-control-sm" value="{{$koreksi->number}}" readonly>
+            <div class="collapse" id="collapseExample">
+                <form class="form" id="formEditKoreksi">
+                    <div class="form-group row">
+                        <label class="label col-6 col-md-2">No. Koreksi</label>
+                        <div class="col-6 col-md-4">
+                            <input type="text" name="nomorKoreksi" id="nomorKoreksi" class="form-control form-control-sm" value="{{$koreksi->number}}" readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="label col-6 col-md-2">Tanggal</label>
-                    <div class="col-6 col-md-4">
-                        <input type="text" name="filterTanggal" id="filterTanggal" class="form-control form-control-sm" value="{{$koreksi->dateInput}}">
+                    <div class="form-group row">
+                        <label class="label col-6 col-md-2">Tanggal</label>
+                        <div class="col-6 col-md-4">
+                            <input type="text" name="filterTanggal" id="filterTanggal" class="form-control form-control-sm" value="{{$koreksi->dateInput}}">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="label col-6 col-md-2">Keterangan</label>
-                    <div class="col-6 col-md-4">
-                        <textarea class="form-control" rows="4" placeholder="Enter ..." name="description" id="description"></textarea>
+                    <div class="form-group row">
+                        <label class="label col-6 col-md-2">Keterangan</label>
+                        <div class="col-6 col-md-4">
+                            <textarea class="form-control" rows="4" placeholder="Enter ..." name="description" id="description"></textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-success font-weight-bold btn-block"><i class="fa-solid fa-magnifying-glass"></i> Update</button>
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-success font-weight-bold btn-block"><i class="fa-solid fa-magnifying-glass"></i> Update</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -183,14 +185,24 @@
             }
             
             if (t_type === 'D'){
-                $("#tPerbaikan").val(parseFloat(qty) + parseFloat(lastStockVal));
+                if (lastStockVal <= 0) {
+                    $("#tPerbaikan").val(parseFloat(qty));
+                }
+                else{
+                    $("#tPerbaikan").val(parseFloat(qty) + parseFloat(lastStockVal));
+                }
             }
             else if (t_type === 'K'){
-                $("#tPerbaikan").val(parseFloat(lastStockVal) - parseFloat(qty));
+                if (lastStockVal <= 0) {
+                    $("#tPerbaikan").val(parseFloat(qty));                    
+                }
+                else{
+                    $("#tPerbaikan").val(parseFloat(lastStockVal) - parseFloat(qty));
+                }
             }
 
-            $("#addItemKorek").focus().removeClass('btn-default');
-            $("#addItemKorek").focus().addClass('bg-success');
+            $("#addItemKorek").removeClass('btn-default');
+            $("#addItemKorek").addClass('bg-success');
         }
         
         var actQty = document.getElementById("qty");

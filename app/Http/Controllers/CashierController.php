@@ -2304,13 +2304,19 @@ class CashierController extends Controller
                 ['from_payment_code',$noBill],
                 ])
             ->get();
+
         $countStatus = DB::table('tr_return_record') //Pengecekan data hasil retur dan mengembalikan status ke status sebelumnya. 
             ->where([
                 ['trx_code',$noBill]    
             ])
             ->count();
-        
-        if($countStatus >= '1'){ //Mengembalikan kedalam status sebelummnya
+
+        $countFromHold = DB::table('tr_store')
+            ->select('is_return')
+            ->where('billing_number',$noBill)
+            ->first();
+
+        if($countStatus >= '1' OR $countFromHold->is_return == '1' ){ //Mengembalikan kedalam status sebelummnya
             
             // Hitung nominal transaksi 
             $trxList = DB::table('tr_store_prod_list')
@@ -2324,7 +2330,13 @@ class CashierController extends Controller
                 ])
                 ->first();
                 
-            if(!empty($statusReturn)){
+            if(!empty($statusReturn) OR $countFromHold->is_return == '1'){
+                if ($countFromHold->is_return == '1') {
+                    $lastStatus = '2';
+                }
+                else {
+                    $lastStatus = $statusReturn->last_status_trx;
+                }
                 foreach ($prdList as $prdL) {
                     $totalPrice = $prdL->unit_price * $prdL->qty_history;
                     DB::table('tr_store_prod_list')
@@ -2342,14 +2354,15 @@ class CashierController extends Controller
                 DB::table('tr_store')
                     ->where('billing_number',$noBill)
                     ->update([
-                            'status' => $statusReturn->last_status_trx, 
-                            't_bill' => $trxList->total
+                            'status' => $lastStatus, 
+                            't_bill' => $trxList->total,
+                            'is_return' => '0'
                         ]
                     );
                 DB::table('tr_store_prod_list')
                     ->where('from_payment_code',$noBill)
                     ->update([
-                        'status' => $statusReturn->last_status_trx, 
+                        'status' => $lastStatus, 
                     ]);
             }   
         }

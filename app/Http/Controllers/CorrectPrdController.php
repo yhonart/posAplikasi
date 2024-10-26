@@ -409,18 +409,7 @@ class CorrectPrdController extends Controller
                         'display'=>$display,
                     ]);
                 
-            }
-            $description = "Koreksi Barang Oleh : ".Auth::user()->name;
-            if ($t_type == 'D') {
-                $inInv = $qty;
-                $outInv = '0';
-            }
-            elseif ($t_type == "K") {
-                $inInv = '0';
-                $outInv = $qty;
-            }
-                        
-            $this->TempInventoryController->insertLapInv ($numberKoreksi, $description, $inInv, $outInv, $createdBy, $product, $prodName, $satuan, $location);
+            }            
             $msg = array('success'=>'<h4>SUCCESS</h4> Koreksi Barang berhasil dimasukkan');
         }
         else{
@@ -476,6 +465,7 @@ class CorrectPrdController extends Controller
         foreach($inv as $i){
             $invId = $i->inv_id;
             $saldo = $i->saldo;
+
             DB::table('inv_stock')
                 ->where('idinv_stock',$invId)
                 ->update([
@@ -487,6 +477,8 @@ class CorrectPrdController extends Controller
                 ->update([
                     'status'=>'3'    
                 ]);
+
+            
         }
         
         DB::table('inv_correction')
@@ -494,6 +486,8 @@ class CorrectPrdController extends Controller
             ->update([
                 'status'=>'3'    
             ]);
+        
+        
    }
    
    public function deleteKoreksi($number){
