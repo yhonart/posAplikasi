@@ -3,6 +3,15 @@
 @section('content')
 <div class="content-header">
     <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="marquee">
+                <div id="marquee">
+                    <b>Last Update : Perbaikan Load & Hold di halaman kasir !</b>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row mb-2">
         <div class="col-sm-6">
         <h1 class="m-0">Dashboard</h1>
@@ -12,7 +21,7 @@
 </div>
 
 <div class="content">
-    <div class="container-fluid">
+    <div class="container-fluid">        
         <div class="row">
             <div class="col-6 col-md-3">
                 <div class="form-group">
