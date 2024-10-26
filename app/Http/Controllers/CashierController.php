@@ -92,20 +92,41 @@ class CashierController extends Controller
         $thisDate = date("dmy");
         $dateDB = date("Y-m-d");
 
-        $countTrx = DB::table("tr_store")
+        // cek data return atau load data yang dipilih. 
+        $countReturn = DB::table('tr_store')
             ->where([
                 ['store_id', $areaID],
-                ['tr_date',$dateDB]
-                ])
-            ->count();
-            
-        if($countTrx == '0'){
-            $no = "1";
-            $pCode = "P".$thisDate."-".sprintf("%07d",$no);
+                ['is_return','1'],
+                ['status','1']
+            ]);
+        if ($countReturn == '0') {
+            # code...
+            $countTrx = DB::table("tr_store")
+                ->where([
+                    ['store_id', $areaID],
+                    ['tr_date',$dateDB]
+                    ])
+                ->count();
+                
+            if($countTrx == '0'){
+                $no = "1";
+                $pCode = "P".$thisDate."-".sprintf("%07d",$no);
+            }
+            else{
+                $no = $countTrx + 1;
+                $pCode = "P".$thisDate."-".sprintf("%07d",$no);
+            }
         }
-        else{
-            $no = $countTrx + 1;
-            $pCode = "P".$thisDate."-".sprintf("%07d",$no);
+        else {
+            // select nomor struk
+            $selectNumber = DB::table('tr_store')
+                ->select('billing_number')
+                ->where([
+                    ['status','1'],
+                    ['is_return','1']
+                ])
+                ->first();
+                $pCode = $selectNumber->billing_number;
         }
         
         // cek jumlah data delete transaksi
@@ -1015,6 +1036,7 @@ class CashierController extends Controller
 
     public function billingIden ($billingIden, $trxType){
         // CHECK DATA SEBELUMNYA ADA YANG AKTIF ATAU TIDAK 
+        $userAction = Auth::user()->name;
         $countAc = DB::table('tr_store')
             ->where('status','1')
             ->count();
@@ -1037,6 +1059,7 @@ class CashierController extends Controller
             ->where('billing_number',$billingIden)
             ->update([
                 'status'=>'1',
+                'is_return'=>'1'
             ]);
 
         DB::table('tr_store_prod_list')
