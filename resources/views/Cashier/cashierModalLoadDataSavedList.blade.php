@@ -67,15 +67,10 @@
                 type : "get",
                 url: "{{route('Cashier')}}/buttonAction/dataPenjualan/selectData/"+data+ "/"+trxType ,
                 success: function(response) {                    
-                    cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
-                    cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
-                    $('#prodNameHidden').val("").focus();
-                    $('body').removeClass('modal-open');
-                    $(".MODAL-GLOBAL").modal('hide'); 
-                    $('.modal-backdrop').remove(); 
+                    window.location.reload();
                 }
             })
-        }); 
+        });
         
         $(".btnDel").click(function(){
             let el = $(this);
