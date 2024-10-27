@@ -232,12 +232,18 @@ class CashierController extends Controller
         $billNumber = $this->getInfoNumber();
         
         $countBelanja = DB::table("tr_store_prod_list")
-            ->where("from_payment_code",$trxCode)
+            ->where([
+                ["from_payment_code",$trxCode],
+                ['status','1']
+                ])
             ->count();
             
         $nominalBelanja = DB::table('tr_store_prod_list')
             ->select(DB::raw("SUM(t_price) as billing"))
-            ->where("from_payment_code",$trxCode)
+            ->where([
+                ['from_payment_code',$trxCode],
+                ['status','1']
+                ])
             ->first();
             
         // if($countBelanja >= '1'){
@@ -2113,7 +2119,10 @@ class CashierController extends Controller
             ]);
             
         DB::table('tr_store_prod_list')
-            ->where('from_payment_code',$noBill)
+            ->where([
+                ['from_payment_code',$noBill],
+                ['is_delete','!=','1']
+                ])
             ->update([
                 'status'=>$status,
                 'updated_date'=>now()
@@ -2223,7 +2232,10 @@ class CashierController extends Controller
         $dateRecord = $trStore->created_date;
         
         $trStoreList = DB::table('trans_product_list_view')
-            ->where('from_payment_code',$noBill)
+            ->where([
+                ['from_payment_code',$noBill],
+                ['is_delete','0']
+                ])
             ->get();
             
         $companyName = DB::table('m_company')
@@ -2234,7 +2246,10 @@ class CashierController extends Controller
 
         $sumpaymentRecord = DB::table('tr_store_prod_list')
             ->select(DB::raw('SUM(t_price) as nominal'))
-            ->where('from_payment_code',$noBill)
+            ->where([
+                ['from_payment_code',$noBill],
+                ['is_delete','0']
+                ])
             ->first();
 
         $paymentRecord = DB::table('tr_payment_method as a')
@@ -2256,7 +2271,10 @@ class CashierController extends Controller
             
         $totalPayment = DB::table('tr_store_prod_list')
             ->select(DB::raw('SUM(t_price) as totalBilling'), DB::raw('COUNT(list_id) as countList'), DB::raw('SUM(disc) as sumDisc'))
-            ->where('from_payment_code',$noBill)
+            ->where([
+                ['from_payment_code',$noBill],
+                ['is_delete','0']
+                ])
             ->first();
             
         $remainKredit = DB::table('tr_kredit')
@@ -2510,15 +2528,21 @@ class CashierController extends Controller
                     );
             $trPrdList = DB::table('tr_store_prod_list')
                 ->where('from_payment_code',$noBill)
-                ->delete();
+                ->update([
+                    'status'=>'0'
+                ]);
                 
             DB::table('tr_payment_method')
                 ->where('core_id_trx',$noBill)
-                ->delete();
+                ->update([
+                    'status'=>'0'
+                ]);
                 
             DB::table('tr_payment_record')
                 ->where('trx_code',$noBill)
-                ->delete();
+                ->update([
+                    'status'=>'0'
+                ]);
         }
         
     
@@ -2562,7 +2586,9 @@ class CashierController extends Controller
             
         DB::table('tr_store_prod_list')
             ->where('from_payment_code',$noBill)
-            ->delete();
+            ->update([
+                'status'=>'0'
+            ]);
     }
     public function loadDataSaved(){
         return view ('Cashier/cashierModalLoadDataSaved');
@@ -2890,19 +2916,30 @@ class CashierController extends Controller
                             ]);
                         DB::table('tr_store_prod_list')
                             ->where('from_payment_code',$datBilling)
-                            ->delete();
+                            ->update([
+                                'status'=>'0',
+                            ]);
                         DB::table('tr_payment_record')
                             ->where('trx_code',$datBilling)
-                            ->delete();
+                            ->update([
+                                'status'=>'0'
+                            ]);
+
                         DB::table('tr_payment_method')
                             ->where('core_id_trx',$datBilling)
-                            ->delete();
+                            ->update([
+                                'status'=>'0'
+                            ]);
                         DB::table('tr_kredit_record')
                             ->where('trx_code',$datBilling)
-                            ->delete();                        
+                            ->update([
+                                'status'=>'0'
+                            ]);
                         DB::table('tr_kredit')
                             ->where('from_payment_code',$datBilling)
-                            ->delete();
+                            ->update([
+                                'status'=>'0'
+                            ]);
                         
                     }elseif($datAction == '2'){
                         $countAc = DB::table('tr_store')
@@ -2963,7 +3000,6 @@ class CashierController extends Controller
         DB::table('tr_store')
             ->where('billing_number',$idTrx)
             ->update([
-                'member_id'=>'0',    
                 't_bill'=>'0',    
                 't_item'=>'0',    
                 'status'=>'0',  
@@ -2973,7 +3009,9 @@ class CashierController extends Controller
             
         DB::table('tr_store_prod_list')
             ->where('from_payment_code',$idTrx)
-            ->delete();
+            ->update([
+                'status'=>'0'
+            ]);
     }
 
     public function changeDate(Request $reqChangeDate){

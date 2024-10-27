@@ -37,7 +37,9 @@
                     @foreach($allCondition as $aC)
                         <tr>
                             <td>{{$no++}}</td>
-                            <td>{{$aC->core_id_trx}}</td>
+                            <td>
+                                {{$aC->core_id_trx}}
+                            </td>
                             <td>{{$aC->date_trx}}</td>
                             <td>{{$aC->created_by}}</td>
                             <td>{{$aC->customer_store}}</td>
@@ -84,7 +86,11 @@
                     @foreach($allCondition as $aC)
                         <tr>
                             <td>{{$no++}}</td>
-                            <td>{{$aC->billing_number}}</td>
+                            <td>
+                                <a href="{{route('Dashboard')}}/modalLogTrx/{{$aC->billing_number}}" class="text-info font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG">
+                                    {{$aC->billing_number}}                                
+                                </a>
+                            </td>
                             <td>{{$aC->tr_date}}</td>
                             <td>{{$aC->created_by}}</td>
                             <td>{{$aC->customer_name}}</td>

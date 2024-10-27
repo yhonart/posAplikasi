@@ -137,5 +137,12 @@ class DashboardController extends Controller
         return view ('Dashboard/DashboardLoadOnClick', compact('allCondition','condition','fromDate','endDate'));
     }
 
-    
+    public function modalLogTrx ($noBill)
+    {
+        $dbSelectTrx = DB::table('tr_store_prod_list')
+            ->where('from_payment_code',$noBill)
+            ->get();
+
+        return view('Dashboard/modalDashListTrx', compact('dbSelectTrx'));
+    }    
 }
