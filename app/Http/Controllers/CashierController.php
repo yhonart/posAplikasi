@@ -97,7 +97,7 @@ class CashierController extends Controller
             ->where([
                 ['store_id', $areaID],
                 ['is_return','1'],
-                ['status','1']
+                ['status','1'],
             ])
             ->count();
 
@@ -109,14 +109,33 @@ class CashierController extends Controller
                     ['tr_date',$dateDB]
                     ])
                 ->count();
-                
-            if($countTrx == '0'){
-                $no = "1";
-                $pCode = "P".$thisDate."-".sprintf("%07d",$no);
+            // cek is_return di hari ini :
+            $countReturnToday = DB::table('tr_store')
+                ->where([
+                    ['is_return','1'],
+                    ['tr_date',$dateDB],
+                ])
+                ->count();
+
+            if ($countReturnToday == '0') {
+                if($countTrx == '0'){
+                    $no = "1";
+                    $pCode = "P".$thisDate."-".sprintf("%07d",$no);
+                }
+                else{
+                    $no = $countTrx + 1;
+                    $pCode = "P".$thisDate."-".sprintf("%07d",$no);
+                }
             }
-            else{
-                $no = $countTrx + 1;
-                $pCode = "P".$thisDate."-".sprintf("%07d",$no);
+            else {
+                $selectNumberDb = DB::table('tr_store')
+                    ->where([
+                        ['is_return','1'],
+                        ['tr_date',$dateDB],
+                    ])
+                    ->first();
+
+                $pCode = $selectNumberDb->billing_number;
             }
         }
         else {
@@ -124,8 +143,8 @@ class CashierController extends Controller
             $selectNumber = DB::table('tr_store')
                 ->select('billing_number')
                 ->where([
-                    ['status','1'],
-                    ['is_return','1']
+                    ['is_return','1'],
+                    ['tr_date',$dateDB]
                 ])
                 ->first();
                 $pCode = $selectNumber->billing_number;
@@ -2115,7 +2134,8 @@ class CashierController extends Controller
                 'ppn_nominal'=>$nominalPPN2,
                 'status'=>$status,
                 'updated_date'=>now(),
-                'is_delete'=>'0'
+                'is_delete'=>'0',
+                'is_return'=>'0'
             ]);
             
         DB::table('tr_store_prod_list')
@@ -2377,6 +2397,7 @@ class CashierController extends Controller
                             'is_return' => '0'
                         ]
                     );
+
                 DB::table('tr_store_prod_list')
                     ->where('from_payment_code',$noBill)
                     ->update([
@@ -2520,7 +2541,7 @@ class CashierController extends Controller
                     ->update([
                         
                             'status' => '0',
-                            'is_delete' =>'1',
+                            'is_return' =>'1',
                             't_bill' =>'0',
                             't_item' =>'0',
                             'member_id'=>'0'
