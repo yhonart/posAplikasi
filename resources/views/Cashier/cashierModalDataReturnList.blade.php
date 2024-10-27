@@ -22,7 +22,7 @@
 <!--    </div>-->
 <!--</div>-->
 <div class="row d-flex justify-content-center">
-    <div class="col-md-4">
+    <div class="col-lg-4">
         <div class="card border border-danger" id="cardConfirmPassword" style="display:none;">
             <div class="card-body">
                 <form class="from" id="formKonfirmAdmin">
@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-12">
                             <button type="button" class="btn btn-flat btn-warning font-weight-bold" id="batal">Batal <i class="fa-solid fa-xmark"></i></button>
-                            <button type="submit" class="btn btn-flat btn-success font-weight-bold">Lanjutkan <i class="fa-solid fa-arrow-right"></i></button>
+                            <button type="submit" class="btn btn-flat btn-success font-weight-bold">[Enter] Lanjutkan <i class="fa-solid fa-arrow-right"></i></button>
                             <p class="text-danger" id="notifDisplay"></p>
                         </div>
                     </div>

@@ -83,7 +83,7 @@ class MutasibarangController extends Controller
                 ['created_by',$userName],
                 ['status','1']
             ])
-            ->first();
+            ->first();        
         return $showNumber->number;
     }
     
@@ -126,10 +126,15 @@ class MutasibarangController extends Controller
     
     public function formEntryMutasi(){
         $number = $this->numberMutasi();
+        $userID = Auth::user()->name;
         $mLoc = DB::table('m_site')
             ->get();
+
         $counInvMoving = DB::table('inv_moving')
-            ->where('status','1')
+            ->where([
+                ['status','1'],
+                ['created_by',$userID] 
+                ])
             ->count();
             
         return view('Mutasi/formInputMutasi',compact('mLoc','number','counInvMoving'));

@@ -48,8 +48,9 @@
         </div>        
     </div>
 </div>
-@endif
+@else
 <div id="divInputProduk"></div>
+@endif
 <script>
     $( function() {
         $( "#tglMutasi" ).datepicker({

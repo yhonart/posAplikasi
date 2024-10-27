@@ -2336,14 +2336,16 @@ class CashierController extends Controller
     
     public function deleteAllTrx($noBill){
         $deleteUser = Auth::user()->name;
+
         //UPDATE STOCK
         $prdList = DB::table('tr_store_prod_list')
             ->where([
                 ['from_payment_code',$noBill],
                 ])
             ->get();
-
-        $countStatus = DB::table('tr_return_record') //Pengecekan data hasil retur dan mengembalikan status ke status sebelumnya. 
+            
+        //Check data apakah user melakukan return F4
+        $countStatus = DB::table('tr_return_record') 
             ->where([
                 ['trx_code',$noBill]    
             ])
@@ -2353,13 +2355,18 @@ class CashierController extends Controller
             ->select('is_return')
             ->where('billing_number',$noBill)
             ->first();
-
-        if($countStatus >= '1' OR $countFromHold->is_return == '1' ){ //Mengembalikan kedalam status sebelummnya
+        
+        //Jika jumlah return lebih dari 1 atau is_return dengan nilai 1
+        //Update status transaksi menjadi statu sebelumnya
+        if($countStatus >= '1' OR $countFromHold->is_return == '1' ){
             
             // Hitung nominal transaksi 
             $trxList = DB::table('tr_store_prod_list')
                 ->select(DB::raw('SUM(t_price) as total'))
-                ->where('from_payment_code',$noBill)
+                ->where([
+                    ['from_payment_code',$noBill],
+                    ['status','!=','0']
+                    ])
                 ->first();
                 
             $statusReturn = DB::table('tr_return_record')
@@ -2369,12 +2376,14 @@ class CashierController extends Controller
                 ->first();
                 
             if(!empty($statusReturn) OR $countFromHold->is_return == '1'){
+                //Jika is_return pada tabel tr_store sama dengan 1 maka kembalikan ke hold
                 if ($countFromHold->is_return == '1') {
                     $lastStatus = '2';
                 }
                 else {
                     $lastStatus = $statusReturn->last_status_trx;
                 }
+
                 foreach ($prdList as $prdL) {
                     $totalPrice = $prdL->unit_price * $prdL->qty_history;
                     DB::table('tr_store_prod_list')
@@ -2402,6 +2411,19 @@ class CashierController extends Controller
                     ->where('from_payment_code',$noBill)
                     ->update([
                         'status' => $lastStatus, 
+                    ]);
+
+                DB::table('tr_payment_record')
+                    ->where('trx_code',$noBill)
+                    ->update([
+                        'total_struk'=>$trxList->total,
+                        'total_payment'=>$trxList->total
+                    ]);
+
+                DB::table('tr_payment_method')
+                    ->where('core_id_trx',$noBill)
+                    ->update([
+                        'nominal'=>$trxList->total
                     ]);
             }   
         }
@@ -2964,10 +2986,14 @@ class CashierController extends Controller
                         
                     }elseif($datAction == '2'){
                         $countAc = DB::table('tr_store')
-                            ->where('status','1')
+                            ->where([
+                                ['status','1'],
+                                ['created_by',$actionBy]
+                                ])
                             ->count();
                             
                         if ($countAc >= '1') {
+                            //Jika ada data yang masih aktif di display user maka akan di update ke data hold
                             DB::table('tr_store')
                                 ->where('status','1')
                                 ->update([
@@ -2980,7 +3006,8 @@ class CashierController extends Controller
                                     'status'=>'2',
                                 ]);
                         } 
-                        
+
+                        //Rubah status menjadi 1
                         DB::table('tr_store')
                             ->where('billing_number',$datBilling)
                             ->update([
@@ -2999,7 +3026,7 @@ class CashierController extends Controller
                             ->update([
                                 'status'=>"0"    
                             ]);
-                    }
+                    }                    
                     // Jika 1 lakukan delete data, jika 2 lakukan show data
                     
                 $msg = array('success'=>'SUCCESS!');
@@ -3011,6 +3038,7 @@ class CashierController extends Controller
         }
         return response()->json($msg);
     }
+
     public function modalDelete ($idTrx){
         return view ('Cashier/cashierModalDeleteData',compact('idTrx'));
     }
