@@ -818,7 +818,8 @@ class CashierController extends Controller
             ])
             ->orWhere([
                 ['billing_number',$no_Struck],
-                ['status','2']
+                ['status','2'],
+                ['is_return','1']
             ])
             ->count();
 
