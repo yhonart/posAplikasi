@@ -2972,12 +2972,8 @@ class CashierController extends Controller
                             ->where('core_id_trx',$datBilling)
                             ->update([
                                 'status'=>'0'
-                            ]);
-                        DB::table('tr_kredit_record')
-                            ->where('trx_code',$datBilling)
-                            ->update([
-                                'status'=>'0'
-                            ]);
+                            ]);                            
+
                         DB::table('tr_kredit')
                             ->where('from_payment_code',$datBilling)
                             ->update([
