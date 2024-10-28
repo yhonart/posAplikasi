@@ -97,8 +97,8 @@ class CashierController extends Controller
             ->where([
                 ['store_id', $areaID],
                 ['is_return','1'],
-                ['status','1'],
             ])
+            ->whereBetween('status',['1','3'])
             ->count();
 
         if ($countReturn == '0') {
@@ -109,6 +109,7 @@ class CashierController extends Controller
                     ['tr_date',$dateDB]
                     ])
                 ->count();
+
             // cek is_return di hari ini :
             $countReturnToday = DB::table('tr_store')
                 ->where([
