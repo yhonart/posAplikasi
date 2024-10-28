@@ -2920,7 +2920,7 @@ class CashierController extends Controller
                     if($datAction == '1'){ // DELETE PERMANENTLY
                         //UPDATE STOCK
                         $trPrdList = DB::table('tr_store')
-                            ->where('from_payment_code',$datBilling)
+                            ->where('billing_number',$datBilling)
                             ->get();
 
                         // foreach ($trPrdList as $keyPrd) {
