@@ -47,7 +47,7 @@
             let el = $(this);
             let dataID = el.attr('data-id');
             $.ajax({
-                url: routeIndex + "/TableDataCustomer/DeleteTable/" + dataID,
+                url: "{{route('Customers')}}/TableDataCustomer/DeleteTable/" + dataID,
                 type: 'GET',
                 success: function (data) {   
                     window.location.reload();                
