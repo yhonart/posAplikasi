@@ -91,6 +91,7 @@ class CashierController extends Controller
         $trxActived = $this->checkProdActive();
         $thisDate = date("dmy");
         $dateDB = date("Y-m-d");
+        $username = Auth::user()->name;
 
         // cek data return atau load data yang dipilih. 
         $countReturn = DB::table('tr_store')
@@ -147,7 +148,12 @@ class CashierController extends Controller
                     ['is_return','1'],
                     ['tr_date',$dateDB]
                 ])
+                ->orWhere([
+                    ['is_return','1'],
+                    ['return_by',$username]
+                ])
                 ->first();
+                
                 $pCode = $selectNumber->billing_number;
         }
         
