@@ -23,8 +23,12 @@ class CustomersController extends Controller
     }
 
     public function PostNewCustomer (Request $reqPostCustomer){
-        
-        $addKreditLimit = str_replace(".","",$reqPostCustomer->kreditLimit);
+        if ($reqPostCustomer->kreditLimit == '') {
+            $addKreditLimit = '0';
+        }
+        else {
+            $addKreditLimit = str_replace(".","",$reqPostCustomer->kreditLimit);            
+        }
 
         if($reqPostCustomer->Customer == "" OR $reqPostCustomer->Customer==" "){
             $msg = array('warning'=>'<h5>Nama Customer harus diisi</h5>');
