@@ -35,7 +35,7 @@ class CashierController extends Controller
         return $userAreaID;
     }
 
-    // CEK JUMLAH TRANSAKSI DENGAN STATUS AKTIF DENGAN KODE 1
+    // Cek nomor dengan kondisi setelah di return
     public function checkReturnActive (){
         $areaID = $this->checkuserInfo();
         $createdName = Auth::user()->name;
@@ -57,19 +57,14 @@ class CashierController extends Controller
         $createdName = Auth::user()->name;
         $hakAkses = Auth::user()->hakakses;
         $dateTrx = date("Y-m-d");
+
         if($hakAkses == '1'){
             $countActiveDisplay = DB::table('tr_store')
                 ->where([
                     ['status',1],
                     ['store_id',$areaID],
-                    ['created_by',$createdName],
                     ['tr_date',$dateTrx]
                     ])
-                // ->orWhere([
-                //     ['status','1'],
-                //     ['store_id',$areaID],
-                //     ['return_by',$createdName]
-                //     ])
                 ->count();
         }elseif($hakAkses == '2'){
             $countActiveDisplay = DB::table('tr_store')
@@ -79,7 +74,6 @@ class CashierController extends Controller
                     ['created_by',$createdName],
                     ['tr_date',$dateTrx]
                     ])
-                
                 ->count();
         }
         return $countActiveDisplay;
@@ -93,7 +87,7 @@ class CashierController extends Controller
         $dateDB = date("Y-m-d");
         $username = Auth::user()->name;
 
-        // cek data return atau load data yang dipilih. 
+        // cek jumlah data return atau load data yang dipilih. 
         $countReturn = DB::table('tr_store')
             ->where([
                 ['store_id', $areaID],
@@ -111,14 +105,16 @@ class CashierController extends Controller
                     ])
                 ->count();
                 
-            // cek is_return di hari ini :
+            // cek delete nomor di hari ini untuk nomor tersebut bisa di pakai kembali
             $countReturnToday = DB::table('tr_store')
                 ->where([
-                    ['is_return','1'],
+                    ['is_delete','1'],
                     ['tr_date',$dateDB],
+                    ['status','0']
                 ])
                 ->count();
-
+            
+            
             if ($countReturnToday == '0') {
                 if($countTrx == '0'){
                     $no = "1";
@@ -132,28 +128,26 @@ class CashierController extends Controller
             else {
                 $selectNumberDb = DB::table('tr_store')
                     ->where([
-                        ['is_return','1'],
+                        ['is_delete','1'],
                         ['tr_date',$dateDB],
+                        ['status','0']
                     ])
                     ->first();
-
                 $pCode = $selectNumberDb->billing_number;
             }
         }
         else {
-            // select nomor struk
+            // pilih nomor struck yang nilai return dan statusnya satu. 
             $selectNumber = DB::table('tr_store')
                 ->select('billing_number')
                 ->where([
+                    ['store_id', $areaID],
                     ['is_return','1'],
-                    ['tr_date',$dateDB]
-                ])
-                ->orWhere([
-                    ['is_return','1'],
+                    ['status','1'],
                     ['return_by',$username]
                 ])
                 ->first();
-                
+
                 $pCode = $selectNumber->billing_number;
         }
         
