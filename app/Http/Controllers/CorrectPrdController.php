@@ -346,7 +346,8 @@ class CorrectPrdController extends Controller
         if($cekProduct == '0'){            
             foreach($productUnit as $inputUnit){
                 $sizeCode = $inputUnit->size_code;
-                $prodZise = $inputUnit->product_size;   
+                $prodZise = $inputUnit->product_size;
+                $lastStokPerUnit = $inputUnit->stock;
                 
                 if ($satuan == "BESAR") {
                     if ($sizeCode == '1') {
@@ -403,7 +404,7 @@ class CorrectPrdController extends Controller
                         'd_k'=>$t_type,
                         'input_qty'=>$qty,
                         'qty'=>$a,
-                        'stock'=>$lastStock,
+                        'stock'=>$lastStokPerUnit,
                         'created_by'=>$createdBy,
                         'saldo'=>$a,
                         'display'=>$display,
