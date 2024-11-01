@@ -517,7 +517,7 @@ class CorrectPrdController extends Controller
         //Insert into report_inv
         $numberCode = $number;
         $description = "Koreksi Barang Oleh ".$userName;        
-        $prodId = $productID;
+        $prodId = $prodId;
         $loc = $infoStock->site_name;
         $prodName = $infoStock->product_name;
         $createdBy = Auth::user()->name;
