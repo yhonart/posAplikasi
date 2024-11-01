@@ -92,7 +92,7 @@ class CashierController extends Controller
             ->where([
                 ['store_id', $areaID],
                 ['is_return','1'],
-                ['status','1'],
+                ['status','0'],
             ])
             ->count();
 
@@ -143,7 +143,7 @@ class CashierController extends Controller
                 ->where([
                     ['store_id', $areaID],
                     ['is_return','1'],
-                    ['status','1'],
+                    ['status','0'],
                     ['return_by',$username]
                 ])
                 ->first();
@@ -2333,7 +2333,7 @@ class CashierController extends Controller
                 ])
             ->get();
             
-        //Check data apakah user melakukan return F4
+        //Check data apakah user melakukan return dari F10
         $countStatus = DB::table('tr_return_record') 
             ->where([
                 ['trx_code',$noBill]    
