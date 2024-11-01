@@ -143,8 +143,7 @@ class CashierController extends Controller
                 ->where([
                     ['store_id', $areaID],
                     ['is_return','1'],
-                    ['status','0'],
-                    ['return_by',$username]
+                    ['status','0']
                 ])
                 ->first();
 
