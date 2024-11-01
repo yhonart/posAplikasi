@@ -495,6 +495,15 @@ class CorrectPrdController extends Controller
         $loc = $displayCorrection->location;
         $sizeCode = $displayCorrection->size_code;
 
+        if ($displayCorrection->d_k == "D") {
+            $inInv = $displayCorrection->qty - $displayCorrection->stock;
+            $outInv = '0';
+        }
+        else {
+            $inInv = '0';
+            $outInv = $displayCorrection->stock - $displayCorrection->qty;
+        }
+
         //search inv_stock berdasarkan produk dan lokasi
         $infoStock = DB::table('view_product_stock')
             ->select('stock','saldo')
@@ -504,26 +513,23 @@ class CorrectPrdController extends Controller
             ])
             ->orderBy('size_code','desc')
             ->first();
-        $qtyInv = $infoStock->stock;        
-        
+        $qtyInv = $infoStock->stock;
         //Insert into report_inv
         $numberCode = $number;
-        $description = "Koreksi Barang Oleh ".$userName;
-        $inInv = $qtyInv;
-        $outInv = '0';
+        $description = "Koreksi Barang Oleh ".$userName;        
         $prodId = $productID;
-        $loc = $pl->warehouse;
-        $prodName = $pl->product_name;
+        $loc = $infoStock->site_name;
+        $prodName = $infoStock->product_name;
         $createdBy = Auth::user()->name;
+
+        //Update into laporan inventory
         $this->TempInventoryController->insertLapInv ($numberCode, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc);
+       
         DB::table('inv_correction')
             ->where('number',$number)
             ->update([
                 'status'=>'3'    
             ]);
-        
-        
-        
    }
    
    public function deleteKoreksi($number){
