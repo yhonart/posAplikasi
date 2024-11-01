@@ -199,7 +199,7 @@ class CashierController extends Controller
                 ->where([
                     ['store_id',$area],
                     ['status','1'],
-                    ['return_by',$username],
+                    ['created_by',$username],
                     ['tr_date',$dateNow]
                 ])
                 ->first();
@@ -214,7 +214,7 @@ class CashierController extends Controller
                 ])
                 ->first();
         }
-         
+
         if(!empty($billNumbering)){
             $nomorstruk = $billNumbering->billing_number;
         }
