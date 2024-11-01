@@ -508,7 +508,7 @@ class CorrectPrdController extends Controller
         $infoStock = DB::table('view_product_stock')
             ->select('stock','saldo')
             ->where([
-                ['idm_data_stock',$prodId],
+                ['idm_data_product',$prodId],
                 ['location_id',$loc]
             ])
             ->orderBy('size_code','desc')
