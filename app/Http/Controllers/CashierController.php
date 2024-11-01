@@ -798,7 +798,7 @@ class CashierController extends Controller
         $areaID = $this->checkuserInfo();
         $createdBy = Auth::user()->name;
 
-        // Cek nomor struck ada atau tidak 
+        // Cek nomor struck ada atau tidak
         $cekStruck = DB::table('tr_store')
             ->where([
                 ['billing_number',$no_Struck],
