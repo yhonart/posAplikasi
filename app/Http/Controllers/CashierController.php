@@ -909,9 +909,18 @@ class CashierController extends Controller
     }
 
     public function updateToSave ($noBilling){
+        $sumBelanja = DB::table('tr_store_prod_list')
+            ->select(DB::raw('SUM(t_price) as totalBelanja'))
+            ->where([
+                ['from_payment_code',$noBilling],
+                ['status','1']
+                ])
+            ->first();
+        $totalBelanja = $sumBelanja->totalBelanja;
         DB::table('tr_store')
             ->where('billing_number',$noBilling)
             ->update([
+                't_bill'=>$totalBelanja,
                 'status'=>'2'
             ]);
 
