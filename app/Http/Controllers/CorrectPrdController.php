@@ -407,6 +407,7 @@ class CorrectPrdController extends Controller
                         'created_by'=>$createdBy,
                         'saldo'=>$a,
                         'display'=>$display,
+                        'size_code'=>$sizeCode
                     ]);
                 
             }            
@@ -469,7 +470,8 @@ class CorrectPrdController extends Controller
             DB::table('inv_stock')
                 ->where('idinv_stock',$invId)
                 ->update([
-                    'stock'=>$i->qty
+                    'stock'=>$i->qty,
+                    'saldo'=>$i->qty
                 ]);
                 
             DB::table('inv_list_correction')
@@ -477,15 +479,48 @@ class CorrectPrdController extends Controller
                 ->update([
                     'status'=>'3'    
                 ]);
+        }  
 
-            
-        }
+        //Select display on 
+        $displayCorrection = DB::table('inv_list_correction')
+            ->where([
+                ['display','1'],
+                ['number_correction',$number]
+                ])
+            ->orderBy('size_code','desc')
+            ->first();
+
+        $prodId = $displayCorrection->product_correcId;
+        $loc = $displayCorrection->location;
+        $sizeCode = $displayCorrection->size_code;
+
+        //search inv_stock berdasarkan produk dan lokasi
+        $infoStock = DB::table('view_product_stock')
+            ->select('stock','saldo')
+            ->where([
+                ['idm_data_stock',$prodId],
+                ['location_id',$loc]
+            ])
+            ->orderBy('size_code','desc')
+            ->first();
+        $qtyInv = $infoStock->stock;        
         
+        //Insert into report_inv
+        $numberCode = $number;
+        $description = "Koreksi Barang Oleh ".$userName;
+        $inInv = $qtyInv;
+        $outInv = '0';
+        $prodId = $productID;
+        $loc = $pl->warehouse;
+        $prodName = $pl->product_name;
+        $createdBy = Auth::user()->name;
+        $this->TempInventoryController->insertLapInv ($numberCode, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc);
         DB::table('inv_correction')
             ->where('number',$number)
             ->update([
                 'status'=>'3'    
             ]);
+        
         
         
    }

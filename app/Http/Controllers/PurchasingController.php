@@ -449,7 +449,7 @@ class PurchasingController extends Controller
             $qty = $pl->qty;
             $location = $pl->warehouse;
 
-            //UPDATE STOCK;
+            //UPDATE STOCK;            
             $updateInv = $this->TempInventoryController->tambahStock($productID, $qty, $satuan, $location);
             
             //INPUT REPORT
