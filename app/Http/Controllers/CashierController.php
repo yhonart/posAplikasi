@@ -194,41 +194,27 @@ class CashierController extends Controller
             ->count();
             
         if ($countReturnOrHold == '0') {
-            $colTable = "tr_date";
             $dateNow = date("Y-m-d");
-        }
-        else {
-            $colTable = "is_return";
-            $dateNow = '1';
-        }
-        
-        if($hakAkses == '2'){
             $billNumbering = DB::table("tr_store")
                 ->where([
-                    ['store_id',$area],
-                    ['status','1'],
-                    ['created_by',$username],
-                    [$colTable,$dateNow]
-                    ])
-                ->first();
-        }
-        elseif($hakAkses == '1'){
-            $billNumbering = DB::table("tr_store")
-                ->where([
-                    ['store_id',$area],
-                    ['status','1'],
-                    ['created_by',$username],
-                    [$colTable,$dateNow]
-                    ])
-                ->orWhere([
                     ['store_id',$area],
                     ['status','1'],
                     ['return_by',$username],
-                    [$colTable,$dateNow]
-                    ])
+                    ['tr_date',$dateNow]
+                ])
                 ->first();
         }
-            
+        else {
+            $billNumbering = DB::table("tr_store")
+                ->where([
+                    ['store_id',$area],
+                    ['status','1'],
+                    ['return_by',$username],
+                    ['is_return','1']
+                ])
+                ->first();
+        }
+         
         if(!empty($billNumbering)){
             $nomorstruk = $billNumbering->billing_number;
         }
@@ -274,6 +260,7 @@ class CashierController extends Controller
         //         ->where("billing_number",$trxCode)
         //         ->first();
         // }
+
         return view ('Cashier/cashierDisplayNominal', compact('countBelanja','nominalBelanja'));
     }
 
@@ -359,6 +346,7 @@ class CashierController extends Controller
         // return view ('Cashier/cashierProductListHarga', compact('hargaSatuan'));
         return response()->json(['error' => 'Product not found'], 404);
     }
+
     public function prdResponse($idPrd){
         // CEK CUSTOMER INFO 
         $countActive = $this->getInfoNumber(); 
@@ -668,6 +656,7 @@ class CashierController extends Controller
     }
 
     public function listTableTransaksi(){
+
         $billNumber = $this->getInfoNumber();
         
         $listTrProduct = DB::table('tr_store_prod_list as a')
@@ -690,8 +679,7 @@ class CashierController extends Controller
             ->get();
             
         $listSatuan = DB::table('m_product_unit')
-            ->get();
-        
+            ->get();        
 
         return view ('Cashier/cashierProductListTable', compact('listTrProduct','listSatuanPrd','listSatuan','stock'));
     }
