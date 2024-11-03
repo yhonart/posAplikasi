@@ -38,32 +38,30 @@
             </table>
         </div>
         <div class="col-lg-4">
-            <div class="card card-body">
-                <div class="row mb-2">
-                    <div class="col-12">
-                        <div id="displayTotal"></div>
-                    </div>
+            <div class="row mb-2">
+                <div class="col-12">
+                    <div id="displayTotal"></div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-body">
-                            <form id="formUpdateDok">
-                                <div class="form-group row">
-                                    <label class="col-md-4">Tgl. Trx</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control form-control-sm rounded-0" value="{{$docPenjualan->tr_date}}">
-                                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-body">
+                        <form id="formUpdateDok">
+                            <div class="form-group row">
+                                <label class="col-md-4">Tgl. Trx</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control form-control-sm rounded-0" value="{{$docPenjualan->tr_date}}">
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-md-4">Pelanggan</label>
-                                    <div class="col-md-8">
-                                        <select name="customer" id="customer" class="form-control form-control-sm select2-cus">
-                                            <option value="{{$docPenjualan->member_id}}">{{$docPenjualan->customer_name}}</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4">Pelanggan</label>
+                                <div class="col-md-8">
+                                    <select name="customer" id="customer" class="form-control form-control-sm select2-cus">
+                                        <option value="{{$docPenjualan->member_id}}">{{$docPenjualan->customer_name}}</option>
+                                    </select>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
