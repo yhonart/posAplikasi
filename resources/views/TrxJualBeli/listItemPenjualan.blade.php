@@ -69,5 +69,17 @@
     </div>
 </div>
 <script>
-
+    $(document).ready(function(){
+        var trxCode = "{{$docPenjualan->billing_number}}";
+        totalBelanja(trxCode);
+        function totalBelanja(trxCode){
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/buttonAction/updateTotalBeanja/"+trxCode,
+                success : function(response){
+                    $('#displayTotal').html(response);
+                }
+            });
+        }
+    });
 </script>

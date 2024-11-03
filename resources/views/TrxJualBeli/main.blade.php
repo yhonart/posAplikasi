@@ -72,8 +72,7 @@
         });
     });
 
-    $(document).ready(function() {
-        
+    $(document).ready(function() {        
         $("form#formFilteringData").submit(function(event){
             event.preventDefault();
             let valFromDate = $("#fromDate").val(),
