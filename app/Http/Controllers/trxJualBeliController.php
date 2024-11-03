@@ -52,13 +52,7 @@ class trxJualBeliController extends Controller
             ->first();
         $bilNumber = $docPenjualan->billing_number;
 
-        $sumTrxBelanja = DB::table('trans_product_list_view')
-            ->select(DB::raw('SUM(t_pay) as sumpayment'))
-            ->where([
-                ['from_payment_code',$bilNumber],
-                ['status','!=','0']
-            ])
-            ->first();
+        
 
         $itemPenjualan = DB::table('trans_product_list_view')
             ->where([
@@ -66,6 +60,19 @@ class trxJualBeliController extends Controller
                 ['status','!=','0']
             ])
             ->get();
-        return view('TrxJualBeli/listItemPenjualan', compact('itemPenjualan','id','docPenjualan','sumTrxBelanja'));
+        return view('TrxJualBeli/listItemPenjualan', compact('itemPenjualan','id','docPenjualan'));
+    }
+
+    public function totalBelanja($nomor)
+    {
+        $sumTrxBelanja = DB::table('trans_product_list_view')
+            ->select(DB::raw('SUM(t_pay) as sumpayment'))
+            ->where([
+                ['from_payment_code',$nomor],
+                ['status','!=','0']
+            ])
+            ->first();
+
+        return view('TrxJualBeli/totalBelanja', compact('sumTrxBelanja'));
     }
 }
