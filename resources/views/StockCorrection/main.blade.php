@@ -43,8 +43,9 @@
         e.preventDefault();
         let el = $(this);
         let display = el.attr("data-display");
-        
+        $("#displayNotif").fadeIn("slow");
         displayOnClick(display);
+        $("#displayNotif").fadeOut("slow");
     });
     
     function displayOnClick(display){

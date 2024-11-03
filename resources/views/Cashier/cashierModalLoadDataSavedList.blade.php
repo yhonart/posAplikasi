@@ -14,7 +14,7 @@
         3=>"badge-succes",
         4=>"badge-succes"
     );
-    $hakakses = $actionBy = Auth::user()->hakakses;
+    $hakakses = Auth::user()->hakakses;
 ?>
 <p id="notifAction"></p>
 <table class="table table-sm table-hover">
@@ -77,15 +77,19 @@
             let dataTrx = el.attr("data-trx");
             let fromDate = "{{$fromDate}}",
                 endDate = "{{$endDate}}";
-                
-            $.ajax({
-                type : "get",
-                url: "{{route('Cashier')}}/buttonAction/deleteHoldData/"+dataTrx,
-                success: function(response) {                    
-                    $("#notifAction").html("Data "+dataTrx+" berhasil dihapus !");
-                    funcLoadSuccess(fromDate, endDate);
-                }
-            })
+            alertify.confirm("Apakah anda yakin ingin menghapus transaksi ini?",
+                function(){
+                    $.ajax({
+                        type : "get",
+                        url: "{{route('Cashier')}}/buttonAction/deleteHoldData/"+dataTrx,
+                        success: function(response) {                    
+                            window.location.reload();
+                        }
+                    })
+                },
+                function(){
+                    alertify.error('Cancel');
+                }).set({title:"Notifikasi"});
         });
         
         function funcLoadSuccess(fromDate, endDate){        

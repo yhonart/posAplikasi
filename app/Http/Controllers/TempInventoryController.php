@@ -98,7 +98,7 @@ class TempInventoryController extends Controller
                 ['size_code','3'],
             ])
             ->first();
-        
+                    
         // variable data kode 3
         if(!empty($codeTiga)){
             $volTiga = $codeTiga->product_volume;

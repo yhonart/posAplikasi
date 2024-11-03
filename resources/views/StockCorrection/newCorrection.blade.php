@@ -1,4 +1,4 @@
-<div class="card card-body">
+<div class="card card-body" id="cardAddDocCorrection">
     <form class="form" id="formInputKoreksi">
         <div class="form-group row">
             <label class="label col-6 col-md-2">No. Koreksi</label>
@@ -35,6 +35,7 @@
         });
         $('#filterTanggal').datepicker("setDate",new Date());
     } );
+
     $(document).ready(function(){
         $.ajaxSetup({
             headers: {
@@ -45,6 +46,8 @@
         $("form#formInputKoreksi").submit(function(event){
             event.preventDefault();
             let display = "listInputBarang";
+            $("#cardAddDocCorrection").fadeOut("slow");
+            $("#displayNotif").fadeIn("slow");
             $.ajax({
                 url: "{{route('koreksiBarang')}}/submitFormKoreksi",
                 type: 'POST',
@@ -56,6 +59,7 @@
                 success: function (data) {
                     // $("form#formInputKoreksi")[0].reset();
                     // document.getElementById("formInputKoreksi").style.display = "none";
+                    $("#displayNotif").fadeOut("slow");
                     alertify.success('Success !');
                     viewTableInput(display);
                 }

@@ -1,4 +1,5 @@
 window.cashier_style = {
+
     load_productList:function(routeIndex,urlProductList,panelProductList){
         $.ajax({
             type:'get',
@@ -9,12 +10,12 @@ window.cashier_style = {
         });
     },
 
-    load_buttonForm:function(routeIndex,urlButtonForm,panelButtonForm){
+    load_buttonForm:function(routeIndex,urlButtonForm,panelButtonForm){           
         $.ajax({
             type:'get',
             url:routeIndex + "/" + urlButtonForm, 
             success : function(response){
-                panelButtonForm.html(response);   
+                panelButtonForm.html(response);
             }           
         });
     }

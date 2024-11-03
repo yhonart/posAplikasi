@@ -31,6 +31,7 @@
                             <label class="text-center text-danger"><i class="fa-solid fa-triangle-exclamation"></i> Konfirmasi Admin</label>
                             <input type="hidden" class="form-control form-control-sm is-warning" name="dataId" id="datId">
                             <input type="hidden" class="form-control form-control-sm is-warning" name="dataAction" id="datAction">
+                            <input type="hidden" class="form-control form-control-sm is-warning mb-2" name="toko" id="toko">
                             <input type="text" class="form-control form-control-sm is-warning mb-2" name="userName" id="userName" placeholder="Username Login">
                             <input type="password" class="form-control form-control-sm is-warning mb-2" name="passInput" id="passInput" placeholder="Password Login">
                         </div>
@@ -38,6 +39,12 @@
                             <button type="button" class="btn btn-flat btn-warning font-weight-bold" id="batal">Batal <i class="fa-solid fa-xmark"></i></button>
                             <button type="submit" class="btn btn-flat btn-success font-weight-bold">[Enter] Lanjutkan <i class="fa-solid fa-arrow-right"></i></button>
                             <p class="text-danger" id="notifDisplay"></p>
+                            <div id="spinLanjutkan" style="display: none;">
+                                <div class="spinner-grow text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                <span class="font-weight-bold">Please Wait ....!</span>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -64,7 +71,7 @@
                 @foreach($listDataNumber as $ldN)
                     <tr>
                         <td>
-                            <a href="#" class="text-info font-weight-bold CLICK-DATA-RETURN" data-id="{{$ldN->billing_number}}" data-action="2">
+                            <a href="#" class="text-info font-weight-bold CLICK-DATA-RETURN" data-id="{{$ldN->billing_number}}" data-action="2" data-toko="{{$ldN->customer_name}}">
                                 {{$ldN->billing_number}}
                             </a>
                         </td>
@@ -76,7 +83,7 @@
                         <td class="text-right">{{$ldN->method_name}}</td>
                         <td class="text-right {{$arrayBG[$ldN->status]}} font-weight-bold">{{$arrayStatus[$ldN->status]}}</td>
                         <td class="text-right">
-                            <button class="btn btn-danger BTN-DELETE btn-flat" data-id="{{$ldN->billing_number}}" data-action="1">Hapus</button>
+                            <button class="btn btn-danger BTN-DELETE btn-flat" data-id="{{$ldN->billing_number}}" data-action="1" data-toko="{{$ldN->customer_name}}">Hapus</button>
                         </td>
                     </tr>
                 @endforeach
@@ -131,11 +138,13 @@
         $(".BTN-DELETE").click(function(){
             let el = $(this),
                 dataTrx = el.attr("data-id"),
-                dataAction = el.attr("data-action");
+                dataAction = el.attr("data-action"),
+                dataToko = el.attr("data-toko");
             $("#cardConfirmPassword").show();
             $("#userName").focus();
             $("#datAction").val(dataAction);
             $("#datId").val(dataTrx);
+            $("#toko").val(dataToko);
         });
         
         $("#batal").click(function(){
@@ -158,31 +167,41 @@
         let dataAction = $("#datAction").val(),
             keyword = "{{$keyword}}",
             fromDate = "{{$fromDate}}",
-            endDate = "{{$endDate}}";
-            
-        $.ajax({
-            url: "{{route('Cashier')}}/buttonAction/unlockReturn",
-            type: 'POST',
-            data: new FormData(this),
-            async: true,
-            cache: true,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                if(data.warning){
-                    $("#notifDisplay").html(data.warning);
-                }
-                else if(data.success){
-                    if(dataAction === '2'){
-                        window.location.reload();
+            endDate = "{{$endDate}}",
+            toko = $("#toko").val();
+
+            alertify.confirm("Apakah anda yakin ingin menghapus transaksi dari toko : " + toko,
+            function(){
+                $("#spinLanjutkan").fadeIn("slow");
+                $.ajax({
+                    url: "{{route('Cashier')}}/buttonAction/unlockReturn",
+                    type: 'POST',
+                    data: new FormData(this),
+                    async: true,
+                    cache: true,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        if(data.warning){
+                            $("#notifDisplay").html(data.warning);
+                        }
+                        else if(data.success){
+                            if(dataAction === '2'){
+                                window.location.reload();
+                            }
+                            else{
+                                $("#notifDisplay").html(data.success);
+                                loadDataReturn(keyword, fromDate, endDate);
+                            }
+                        }
+                        $("#spinLanjutkan").fadeOut("slow");
                     }
-                    else{
-                        $("#notifDisplay").html(data.success);
-                        loadDataReturn(keyword, fromDate, endDate);
-                    }
-                }
-            }
-        });
+                });
+                alertify.success('Ok');
+            },
+            function(){
+                alertify.error('Cancel');
+            }).set({title:"Konfirmasi Delete Transaksi"});          
         return false;
     });
     
