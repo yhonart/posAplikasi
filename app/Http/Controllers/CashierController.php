@@ -187,8 +187,9 @@ class CashierController extends Controller
         // count transaksi data return atau data load dari data hold
         $countReturnOrHold = DB::table('tr_store')
         ->where([
-            ['status','1'],
-            ['is_return','1']
+            ['store_id', $areaID],
+            ['is_return','1'],
+            ['status','0'],
             ])
             ->count();
             
@@ -219,8 +220,7 @@ class CashierController extends Controller
         }
         else{
             $nomorstruk = "0";
-        }
-        
+        }        
         return $nomorstruk;
     }
 
