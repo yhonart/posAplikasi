@@ -75,10 +75,9 @@ class CashierController extends Controller
         } else {
             $selectNumber = DB::table('tr_store')
             ->where([
-                ['is_return', '0'],
-                ['status', '1'],
-                ['created_by', $username],
                 ['store_id', $areaID],
+                ['is_return', '1'],
+                ['status', '0'],
                 ['tr_date', $dateDB]
             ])
             ->first();
