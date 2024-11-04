@@ -36,6 +36,57 @@ class CashierController extends Controller
         return $userAreaID;
     }
 
+    // BUAT NOMOR TRANSAKSI
+    public function checkBillNumber()
+    {
+        $areaID = $this->checkuserInfo();
+        $trxActived = $this->checkProdActive();
+        $thisDate = date("dmy");
+        $dateDB = date("Y-m-d");
+        $username = Auth::user()->name;
+
+        //Cek apakah ada nomor transaksi is_return 
+        $countReturn = DB::table('tr_store')
+            ->where([
+                ['store_id', $areaID],
+                ['is_return', '1'],
+                ['status', '0'],
+                ['tr_date', $dateDB]
+            ])
+            ->count();
+        
+        // Jika tidak ada 
+        if ($countReturn == '0') {
+            # code...
+            $countTrx = DB::table("tr_store")
+                ->where([
+                    ['store_id', $areaID],
+                    ['tr_date', $dateDB]
+                ])
+                ->count();
+
+            if ($countTrx == '0') {
+                $no = "1";
+                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
+            } else {
+                $no = $countTrx + 1;
+                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
+            }
+        } else {
+            $selectNumber = DB::table('tr_store')
+            ->where([
+                ['is_return', '0'],
+                ['status', '1'],
+                ['created_by', $username],
+                ['store_id', $areaID],
+                ['tr_date', $dateDB]
+            ])
+            ->first();
+            $pCode = $selectNumber->billing_number;
+        }
+        return $pCode;
+    }
+
     // Cek nomor dengan kondisi setelah di return
     public function checkReturnActive()
     {
@@ -82,88 +133,7 @@ class CashierController extends Controller
         return $countActiveDisplay;
     }
 
-    // BUAT NOMOR TRANSAKSI
-    public function checkBillNumber()
-    {
-        $areaID = $this->checkuserInfo();
-        $trxActived = $this->checkProdActive();
-        $thisDate = date("dmy");
-        $dateDB = date("Y-m-d");
-        $username = Auth::user()->name;
-
-        // cek jumlah data return atau load data yang dipilih. 
-        $countReturn = DB::table('tr_store')
-            ->where([
-                ['store_id', $areaID],
-                ['is_return', '1'],
-                ['status', '0'],
-                ['tr_date', $dateDB]
-            ])
-            ->count();
-
-        if ($countReturn == '0') {
-            # code...
-            $countTrx = DB::table("tr_store")
-                ->where([
-                    ['store_id', $areaID],
-                    ['tr_date', $dateDB]
-                ])
-                ->count();
-
-            // cek delete nomor di hari ini untuk nomor tersebut bisa di pakai kembali
-            $countDeleteToday = DB::table('tr_store')
-                ->where([
-                    ['is_delete', '1'],
-                    ['tr_date', $dateDB],
-                    ['status', '0']
-                ])
-                ->count();
-
-
-            if ($countTrx == '0') {
-                $no = "1";
-                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
-            } else {
-                $no = $countTrx + 1;
-                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
-            }
-            // if ($countDeleteToday == '0') {
-            // } else {
-            //     $selectNumberDb = DB::table('tr_store')
-            //         ->where([
-            //             ['is_delete', '1'],
-            //             ['tr_date', $dateDB],
-            //             ['status', '0']
-            //         ])
-            //         ->first();
-            //     $pCode = $selectNumberDb->billing_number;
-            // }
-        } else {
-            //check jumlah transaksi perhari 
-            $countTrxToday = DB::table('tr_store')
-                ->where('tr_date', $dateDB)
-                ->count();
-
-            // pilih nomor struck yang nilai return dan statusnya satu. 
-            // Jika belum ada transaksi di hari ini 
-            if ($countTrxToday == '0') {
-                $no = "1";
-                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
-            } else {
-                $selectNumber = DB::table('tr_store')
-                    ->select('billing_number')
-                    ->where([
-                        ['store_id', $areaID],
-                        ['is_return', '1'],
-                        ['status', '0'],
-                        ['tr_date', $dateDB],
-                    ])
-                    ->first();
-                $pCode = $selectNumber->billing_number;
-            }
-        }
-        return $pCode;
-    }
+    
 
     public function getInfoNumber()
     {
