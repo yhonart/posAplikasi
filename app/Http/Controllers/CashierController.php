@@ -134,8 +134,6 @@ class CashierController extends Controller
         return $countActiveDisplay;
     }
 
-    
-
     public function getInfoNumber()
     {
         $username = Auth::user()->name;
@@ -2503,6 +2501,8 @@ class CashierController extends Controller
     public function tampilDataSimpan($fromDate, $endDate)
     {
         $today = date("Y-m-d");
+        $hakakses = Auth::user()->hakakses;
+        $persName = Auth::user()->name;
 
         $dataSaved = DB::table('view_trx_store');
         // if ($dateTampil == "" OR $dateTampil == "0"){
@@ -2521,7 +2521,15 @@ class CashierController extends Controller
         //     //         ['tr_date',$dateTampil]
         //     //     ]);
         // }
-        $dataSaved = $dataSaved->where("status", '2');
+        if ($hakakses == '1') {
+            $dataSaved = $dataSaved->where("status", '2');
+        }
+        else {
+            $dataSaved = $dataSaved->where([
+                ["status", '2'],
+                ['created_by',$persName]
+            ]);
+        }
         $dataSaved = $dataSaved->whereBetween("tr_date", [$fromDate, $endDate]);
         $dataSaved = $dataSaved->limit(20);
         $dataSaved = $dataSaved->get();
