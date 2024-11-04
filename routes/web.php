@@ -96,6 +96,7 @@ Route::get('piutangSupplier', [App\Http\Controllers\PurchasingController::class,
 Route::get('log_system', [App\Http\Controllers\logSystemController::class, 'logSystem'])->name('log_system');
 
 Route::get('trxJualBeli', [App\Http\Controllers\trxJualBeliController::class, 'mainTrx'])->name('trxJualBeli');
+Route::get('trxKasUmum', [App\Http\Controllers\TrxKasUmumController::class, 'mainTrx'])->name('trxKasUmum');
 
 
 include __DIR__.'/section/accounting.php';

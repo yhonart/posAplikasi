@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Hash;
 
-class trxJualBeliController extends Controller
+class TrxKasUmumController extends Controller
 {
     public function mainTrx(){
         return view('TrxJualBeli/main');
