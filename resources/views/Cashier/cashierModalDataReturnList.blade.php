@@ -169,39 +169,32 @@
             fromDate = "{{$fromDate}}",
             endDate = "{{$endDate}}",
             toko = $("#toko").val();
-
-            alertify.confirm("Apakah anda yakin ingin menghapus transaksi dari toko : " + toko,
-            function(){
-                $("#spinLanjutkan").fadeIn("slow");
-                $.ajax({
-                    url: "{{route('Cashier')}}/buttonAction/unlockReturn",
-                    type: 'POST',
-                    data: new FormData(this),
-                    async: true,
-                    cache: true,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        if(data.warning){
-                            $("#notifDisplay").html(data.warning);
-                        }
-                        else if(data.success){
-                            if(dataAction === '2'){
-                                window.location.reload();
-                            }
-                            else{
-                                $("#notifDisplay").html(data.success);
-                                loadDataReturn(keyword, fromDate, endDate);
-                            }
-                        }
-                        $("#spinLanjutkan").fadeOut("slow");
+            
+            $("#spinLanjutkan").fadeIn("slow");
+            $.ajax({
+                url: "{{route('Cashier')}}/buttonAction/unlockReturn",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if(data.warning){
+                        $("#notifDisplay").html(data.warning);
                     }
-                });
-                alertify.success('Ok');
-            },
-            function(){
-                alertify.error('Cancel');
-            }).set({title:"Konfirmasi Delete Transaksi"});          
+                    else if(data.success){
+                        if(dataAction === '2'){
+                            window.location.reload();
+                        }
+                        else{
+                            $("#notifDisplay").html(data.success);
+                            loadDataReturn(keyword, fromDate, endDate);
+                        }
+                    }
+                    $("#spinLanjutkan").fadeOut("slow");
+                }
+            }); 
         return false;
     });
     

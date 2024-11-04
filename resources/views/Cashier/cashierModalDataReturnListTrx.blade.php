@@ -53,9 +53,6 @@
         
     });
 
-    
-    
-
     function ajaxLoadDataSum(trxCode){
         $(".LOAD-SPINNER ").fadeIn('slow');
         $.ajax({
