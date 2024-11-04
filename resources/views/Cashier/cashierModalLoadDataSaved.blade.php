@@ -32,11 +32,6 @@
                         <div class="tampilDataSimpan"></div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <button class="btn btn-warning btn-sm font-weight-bold elevation-2" id="btnCloseModal"><i class="fa-solid fa-xmark font-weight-bold"></i> Close</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -81,8 +76,5 @@
                 }
             });
         }
-        $("#btnCloseModal").on('click', function(){
-            window.location.reload();
-        });
     });
 </script>

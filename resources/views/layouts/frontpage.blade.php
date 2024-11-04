@@ -41,8 +41,7 @@
     <script src="{{asset('public/js/accounting.min.js')}}"></script>
     <script src="{{asset('public/dazbuild/plugins/toastr/toastr.min.js')}}"></script>
     <script src="{{asset('public/dazbuild/plugins/alertify/alertify.min.js')}}"></script>
-    <!-- InputMask -->
-    <script src="{{asset('public/dazbuild/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+    <!-- InputMask -->    
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <script src="{{asset('public/dazbuild/plugins/highcharts/code/highcharts.js')}}"></script>
     <script src="{{asset('public/dazbuild/plugins/highcharts/code/highcharts-more.js')}}"></script>
@@ -78,6 +77,22 @@
             border-color: #0078d7; /* Change border color on focus */  
         } 
     </style>
+    <script>
+        var Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+        
+        // setTimeout(function () {
+        //     if (window.___browserSync___ === undefined && Number(localStorage.getItem('AdminLTE:Demo:MessageShowed')) < Date.now()) {
+        //       localStorage.setItem('AdminLTE:Demo:MessageShowed', (Date.now()) + (15 * 60 * 1000))
+        //       // eslint-disable-next-line no-alert
+        //       alert('Sedang dilakukan update data master stock barang dan harga ')
+        //     }
+        //  }, 1000)
+    </script>
     
 </head>
 <body class="hold-transition layout-top-nav layout-fixed">

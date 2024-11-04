@@ -41,8 +41,7 @@
     <script src="{{asset('public/js/accounting.min.js')}}"></script>
     <script src="{{asset('public/dazbuild/plugins/toastr/toastr.min.js')}}"></script>
     <script src="{{asset('public/dazbuild/plugins/alertify/alertify.min.js')}}"></script>
-    <!-- InputMask -->
-    <script src="{{asset('public/dazbuild/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+    <!-- InputMask -->    
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <script src="{{asset('public/dazbuild/plugins/highcharts/code/highcharts.js')}}"></script>
     <script src="{{asset('public/dazbuild/plugins/highcharts/code/highcharts-more.js')}}"></script>
@@ -78,7 +77,8 @@
             border-color: #0078d7; /* Change border color on focus */  
         } 
         .marquee{padding:0 20px;width:100%;background:#fff;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;-webkit-box-shadow:2px 2px 3px rgba(0,0,0,.05);-o-box-shadow:2px 2px 3px rgba(0,0,0,.05);-ms-box-shadow:2px 2px 3px rgba(0,0,0,.05);box-shadow:2px 2px 3px rgba(0,0,0,.05)}
-        #marquee{padding:10px 0;width:100%;overflow:hidden;color: #333;font-size: 14px;font-weight: 500;}
+        #marquee{padding:10px 0;width:100%;overflow:hidden;color: #333;font-size: 14px;font-weight: 500;}       
+
     </style>
 </head>
 <script>
@@ -193,7 +193,21 @@
                 </nav>
             </div>
         </aside>
-        <div class="content-wrapper">
+        <div class="content-wrapper">            
+            <div class="row bg-info text-center p-2" id="displayNotif" style="display: none;">
+                <div class="col-md-12">
+                    <div class="spinner-grow spinner-grow-sm text-warning" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>                   
+                    <div class="spinner-grow spinner-grow-sm text-warning" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>                   
+                    <div class="spinner-grow spinner-grow-sm text-warning" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>                   
+                    <span class="text-sm">PLASE WAIT ...</span>
+                </div>
+            </div>
             @yield('content')
             <div class="modal MODAL-GLOBAL" id="modal-global-large" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-xl modal-dialog-centered" role="document">

@@ -27,7 +27,7 @@ class GlobSettingController extends Controller
     
     public function newNominal(){
         $userKasir = DB::table('users')
-            ->where('hakakses','2')
+            // ->where('hakakses','2')
             ->get();
 
         return view ('globalSetting/newFormKas',compact('userKasir'));

@@ -126,12 +126,12 @@
                 url:"{{route('koreksiBarang')}}/listDataKoreksi/approvalKoreksi/"+idparam,
                 dataType: 'html',
                 success:function(response){
-                    $(".LOAD-SPINNER").fadeOut();
                     alertify
-                      .alert("Apakah Anda Yakin Ingin Melakukan Approval "+idparam+" ?", function(){
+                    .alert("Apakah Anda Yakin Ingin Melakukan Approval "+idparam+" ?", function(){
                         alertify.message(idparam+' Approved');
                         window.location.reload();
-                      }).set({title:"Approval"});
+                    }).set({title:"Approval"});
+                    $(".LOAD-SPINNER").fadeOut();
                 }
             });
         });

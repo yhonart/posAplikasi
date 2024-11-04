@@ -95,6 +95,8 @@ Route::get('piutangSupplier', [App\Http\Controllers\PurchasingController::class,
 
 Route::get('log_system', [App\Http\Controllers\logSystemController::class, 'logSystem'])->name('log_system');
 
+Route::get('trxJualBeli', [App\Http\Controllers\trxJualBeliController::class, 'mainTrx'])->name('trxJualBeli');
+
 
 include __DIR__.'/section/accounting.php';
 include __DIR__.'/section/asset.php';
@@ -124,4 +126,7 @@ include __DIR__.'/section/LapLabaRugi.php';
 
 //setup apl
 include __DIR__.'/section/globalsetting.php';
+
+//transaksi edit jual beli
+include __DIR__.'/section/trxJualBeli.php';
 

@@ -20,6 +20,15 @@
         </div>
     </div>
 
+    <div class="form-group row" id="spinnerSelectCus" style="display: none;">
+        <div class="col-md-12">
+            <div class="spinner-grow spinner-grow-sm text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span>Please Wait !</span>
+        </div>
+    </div>
+
     <div class="form-group row">
         <div class="input-group col-12">
             <input type="hidden" name="totalPayment" id="totalPayment" class=" form-control form-control-sm" value="0">
@@ -191,6 +200,7 @@
             panelButtonForm = $("#mainButton");
 
         $("#pelanggan").change(function(){
+            $("#spinnerSelectCus").fadeIn("slow");
             idPelanggan = $(this).find(":selected").val();
             $.ajax({
                 type : 'post',
@@ -198,7 +208,8 @@
                 data :  {t_Belanja:t_Belanja, pelanggan:idPelanggan, t_Bayar:t_Bayar, t_Selisih:t_Selisih, t_Item:t_Item, pengiriman:pengiriman, ppn:ppn},
                 success : function(data){                
                     cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
-                    cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);                    
+                    cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
+                    $("#spinnerSelectCus").fadeOut("slow");                    
                 }
             }); 
         });

@@ -494,6 +494,7 @@ class CorrectPrdController extends Controller
         $prodId = $displayCorrection->product_correcId;
         $loc = $displayCorrection->location;
         $sizeCode = $displayCorrection->size_code;
+        
 
         if ($displayCorrection->d_k == "D") {
             $inInv = $displayCorrection->qty - $displayCorrection->stock;
@@ -506,24 +507,49 @@ class CorrectPrdController extends Controller
 
         //search inv_stock berdasarkan produk dan lokasi
         $infoStock = DB::table('view_product_stock')
-            ->select('stock','saldo')
+            ->select('stock','saldo','site_name','product_name','product_volume')
             ->where([
                 ['idm_data_product',$prodId],
                 ['location_id',$loc]
             ])
             ->orderBy('size_code','desc')
             ->first();
+
         $qtyInv = $infoStock->stock;
         //Insert into report_inv
-        $numberCode = $number;
-        $description = "Koreksi Barang Oleh ".$userName;        
-        $prodId = $prodId;
+        $description = "Koreksi Barang Oleh ".$userName; 
         $loc = $infoStock->site_name;
         $prodName = $infoStock->product_name;
         $createdBy = Auth::user()->name;
-
+        if ($sizeCode == '1') {
+            $satuan = 'BESAR';
+        }
+        elseif ($sizeCode == '2') {
+            $satuan = "KECIL";
+        }
+        else {
+            $satuan = "KONV";
+        }
         //Update into laporan inventory
-        $this->TempInventoryController->insertLapInv ($numberCode, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc);
+        DB::table('report_inv')
+            ->insert([
+                'date_input'=>now(),
+                'number_code'=>$number,
+                'product_id'=>$prodId,
+                'product_name'=>$prodName,
+                'satuan'=>$satuan,
+                'satuan_code'=>$sizeCode,
+                'description'=>$description,
+                'inv_in'=>$inInv,
+                'inv_out'=>$outInv,
+                'saldo'=>$displayCorrection->saldo,
+                'created_by'=>$displayCorrection->created_by,
+                'location'=>$displayCorrection->location,
+                'last_saldo'=>$displayCorrection->stock,
+                'vol_prd'=>$infoStock->product_volume,
+                'actual_input'=>$displayCorrection->input_qty,
+                'status_trx'=>'4'
+            ]);
        
         DB::table('inv_correction')
             ->where('number',$number)

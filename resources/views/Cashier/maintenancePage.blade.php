@@ -8,11 +8,8 @@
             <div class="col-12 col-lg-8 pr-0">
                 @include('Global.global_spinner')
                 <div class="card">
-                    <div class="card-body p-0 table-responsive" style="height:700px;">
+                    <div class="card-body p-0 table-responsive" style="height:700px;">                        
                         <div id="mainListProduct"></div>
-                    </div>
-                    <div class="card-footer">
-                        <span><i class="fa-solid fa-circle-question text-info"></i> Ctrl+B : Dokumen Bantuan. Gunakan TAB pada keyboard untuk memindahkan field</span>
                     </div>
                 </div>
             </div>
@@ -42,10 +39,10 @@
             panelProductList = $("#mainListProduct"),
             urlButtonForm = "buttonAction",
             panelButtonForm = $("#mainButton");
+
         cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
-        cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm); 
+        cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
     });
-    
 </script>
 
 @endsection

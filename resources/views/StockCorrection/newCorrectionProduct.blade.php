@@ -220,6 +220,7 @@
         })
         
         $('#submitButton').on('click', function (e) {
+            $("#displayNotif").fadeIn("slow");
             e.preventDefault();
             let sumQty = $("#sumQty").val(),
                 sumStock = $("#sumStock").val(),
@@ -249,7 +250,7 @@
                     })
                 ;
             }
-            
+            $("#displayNotif").fadeOut("slow");
         });
     });
     
@@ -270,6 +271,7 @@
     
     function submitData(dataForm){
         let display = "listInputBarang";
+        $("#displayNotif").fadeIn("slow");
         $.ajax({
             type : 'post',
             url : "{{route('koreksiBarang')}}/listInputBarang/submitKoreksi",
@@ -277,9 +279,9 @@
             success : function(data){
                 // loadListData();
                 if(data.success){
-                    alertify.success(data.success);
-                    $("form#formKoreksiInputBarang")[0].reset();
                     viewTableInput(display);
+                    $("form#formKoreksiInputBarang")[0].reset();
+                    alertify.success(data.success);
                 }
                 else if (data.warning){
                     alertify
@@ -287,6 +289,7 @@
                         alertify.message('OK');
                     });
                 }
+                $("#displayNotif").fadeOut("slow");
             }
         });
     }

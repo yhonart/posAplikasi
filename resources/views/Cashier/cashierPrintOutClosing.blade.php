@@ -90,7 +90,7 @@
                     </tr>
                     <tr>
                         <td>Kredit</td>
-                        <td align="right">: ??? </td>
+                        <td align="right">: 0 </td>
                     </tr>
                     <tr>
                         <td colspan="2">Transfer</td>
@@ -127,7 +127,7 @@
                     </tr>
                     <tr>
                         <td>Hutang</td>
-                        <td align="right">: ???</td>
+                        <td align="right">: 0</td>
                     </tr>
                     <tr>
                         <td>Kas Kecil</td>
@@ -143,7 +143,14 @@
                     </tr>
                     <tr>
                         <td>Stor Tunai Kasir</td>
-                        <td align="right">: </td>
+                        <td align="right">
+                            <?php
+                                //penjumlahan modal + transaksi tunai
+                                $a = $mSetKas->nominal + $trxTunai->total_payment;
+                                $totalLaporan = $a;
+                            ?>
+                            : {{number_format($totalLaporan,'0',',','.')}}
+                        </td>
                     </tr>
                 </tbody>
             </table>
