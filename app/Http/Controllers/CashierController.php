@@ -142,37 +142,39 @@ class CashierController extends Controller
         $area = $this->checkuserInfo();
         $hakAkses = Auth::user()->hakakses;
         $dateDB = date("Y-m-d");
+
+        $billNumbering = DB::table("tr_store")
+            ->where([
+                ['store_id', $area],
+                ['status', '1'],
+                ['created_by', $username],
+                ['tr_date', $dateDB]
+            ])
+            ->first();
         
         // count transaksi data return atau data load dari data hold
-        $countReturnOrHold = DB::table('tr_store')
-        ->where([
-            ['store_id', $area],
-            ['is_return', '1'],
-            ['status', '0'],
-            ['tr_date', $dateDB]
-            ])
-            ->count();
+        // $countReturnOrHold = DB::table('tr_store')
+        // ->where([
+        //     ['store_id', $area],
+        //     ['is_return', '1'],
+        //     ['status', '0'],
+        //     ['tr_date', $dateDB]
+        //     ])
+        //     ->count();
 
-        if ($countReturnOrHold == '0') {
-            $dateNow = date("Y-m-d");
-            $billNumbering = DB::table("tr_store")
-                ->where([
-                    ['store_id', $area],
-                    ['status', '1'],
-                    ['created_by', $username],
-                    ['tr_date', $dateNow]
-                ])
-                ->first();
-        } else {
-            $billNumbering = DB::table("tr_store")
-                ->where([
-                    ['store_id', $area],
-                    ['status', '1'],
-                    ['return_by', $username],
-                    ['is_return', '1']
-                ])
-                ->first();
-        }
+        // if ($countReturnOrHold == '0') {
+        //     $dateNow = date("Y-m-d");
+            
+        // } else {
+        //     $billNumbering = DB::table("tr_store")
+        //         ->where([
+        //             ['store_id', $area],
+        //             ['status', '1'],
+        //             ['return_by', $username],
+        //             ['is_return', '1']
+        //         ])
+        //         ->first();
+        // }
 
         if (!empty($billNumbering)) {
             $nomorstruk = $billNumbering->billing_number;
@@ -691,11 +693,6 @@ class CashierController extends Controller
                 ['status', 1],
                 ['billing_number', $billNumber],
                 ['created_by', $createdName]
-            ])
-            ->orWhere([
-                ['status', 1],
-                ['billing_number', $billNumber],
-                ['return_by', $createdName]
             ])
             ->orderBy('tr_store_id', 'desc')
             ->first();
