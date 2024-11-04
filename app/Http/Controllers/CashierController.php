@@ -111,7 +111,7 @@ class CashierController extends Controller
                 ->count();
 
             // cek delete nomor di hari ini untuk nomor tersebut bisa di pakai kembali
-            $countReturnToday = DB::table('tr_store')
+            $countDeleteToday = DB::table('tr_store')
                 ->where([
                     ['is_delete', '1'],
                     ['tr_date', $dateDB],
@@ -120,24 +120,24 @@ class CashierController extends Controller
                 ->count();
 
 
-            if ($countReturnToday == '0') {
-                if ($countTrx == '0') {
-                    $no = "1";
-                    $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
-                } else {
-                    $no = $countTrx + 1;
-                    $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
-                }
+            if ($countTrx == '0') {
+                $no = "1";
+                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
             } else {
-                $selectNumberDb = DB::table('tr_store')
-                    ->where([
-                        ['is_delete', '1'],
-                        ['tr_date', $dateDB],
-                        ['status', '0']
-                    ])
-                    ->first();
-                $pCode = $selectNumberDb->billing_number;
+                $no = $countTrx + 1;
+                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
             }
+            // if ($countDeleteToday == '0') {
+            // } else {
+            //     $selectNumberDb = DB::table('tr_store')
+            //         ->where([
+            //             ['is_delete', '1'],
+            //             ['tr_date', $dateDB],
+            //             ['status', '0']
+            //         ])
+            //         ->first();
+            //     $pCode = $selectNumberDb->billing_number;
+            // }
         } else {
             //check jumlah transaksi perhari 
             $countTrxToday = DB::table('tr_store')
@@ -2882,7 +2882,7 @@ class CashierController extends Controller
 
             foreach ($adminCheck as $aC) {
                 if ($password == $aC->user_token) {
-                    if ($datAction == '1') { // DELETE PERMANENTLY
+                    if ($datAction == '1') { // DELETE TRANSAKSI
                         //UPDATE STOCK
                         $trPrdList = DB::table('tr_store')
                             ->where('billing_number', $datBilling)
