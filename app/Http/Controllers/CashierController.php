@@ -40,7 +40,6 @@ class CashierController extends Controller
     public function checkBillNumber()
     {
         $areaID = $this->checkuserInfo();
-        $trxActived = $this->checkProdActive();
         $thisDate = date("dmy");
         $dateDB = date("Y-m-d");
         $username = Auth::user()->name;
@@ -51,7 +50,8 @@ class CashierController extends Controller
                 ['store_id', $areaID],
                 ['is_return', '1'],
                 ['status', '0'],
-                ['tr_date', $dateDB]
+                ['tr_date', $dateDB],
+                ['return_by',$username]
             ])
             ->count();
         
@@ -78,7 +78,8 @@ class CashierController extends Controller
                 ['store_id', $areaID],
                 ['is_return', '1'],
                 ['status', '0'],
-                ['tr_date', $dateDB]
+                ['tr_date', $dateDB],
+                ['return_by',$username]
             ])
             ->first();
             $pCode = $selectNumber->billing_number;
@@ -116,7 +117,8 @@ class CashierController extends Controller
                 ->where([
                     ['status', 1],
                     ['store_id', $areaID],
-                    ['tr_date', $dateTrx]
+                    ['tr_date', $dateTrx],
+                    ['return_by',$createdName]
                 ])
                 ->count();
         } elseif ($hakAkses == '2') {
@@ -124,8 +126,8 @@ class CashierController extends Controller
                 ->where([
                     ['status', 1],
                     ['store_id', $areaID],
-                    ['created_by', $createdName],
-                    ['tr_date', $dateTrx]
+                    ['tr_date', $dateTrx],
+                    ['created_by', $createdName]
                 ])
                 ->count();
         }
@@ -726,7 +728,7 @@ class CashierController extends Controller
             ])
             ->first();
 
-        if ($checkActiveBtn >= '1') {
+        if ($countDisplay == '0') {
             return view('Cashier/cashierButtonListNotEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID', 'customerType', 'trPoint'));
         } else {
             return view('Cashier/cashierButtonListEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID'));
