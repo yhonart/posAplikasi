@@ -131,3 +131,6 @@ include __DIR__.'/section/globalsetting.php';
 //transaksi edit jual beli
 include __DIR__.'/section/trxJualBeli.php';
 
+//transaksi edit jual beli
+include __DIR__.'/section/trxKasUmum.php';
+
