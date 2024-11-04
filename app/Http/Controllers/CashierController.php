@@ -728,7 +728,7 @@ class CashierController extends Controller
             ])
             ->first();
 
-        if ($countDisplay == '0') {
+        if ($countDisplay >= '1') {
             return view('Cashier/cashierButtonListNotEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID', 'customerType', 'trPoint'));
         } else {
             return view('Cashier/cashierButtonListEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID'));
