@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Hash;
 class TrxKasUmumController extends Controller
 {
     public function mainTrx(){
-        return view('TrxJualBeli/main');
+        return view('TrxKasUmum/main');
     }
 
     public function tambahBiaya()
     {
-        return view('TrxJualBeli/modalTambahBiaya');
+        return view('TrxKasUmum/modalTambahBiaya');
     }
 }
