@@ -170,12 +170,15 @@ class CashierController extends Controller
         $username = Auth::user()->name;
         $area = $this->checkuserInfo();
         $hakAkses = Auth::user()->hakakses;
-
+        $dateDB = date("Y-m-d");
+        
         // count transaksi data return atau data load dari data hold
         $countReturnOrHold = DB::table('tr_store')
         ->where([
-            ['status','1'],
-            ['is_return','1']
+            ['store_id', $area],
+            ['is_return', '1'],
+            ['status', '0'],
+            ['tr_date', $dateDB]
             ])
             ->count();
 
