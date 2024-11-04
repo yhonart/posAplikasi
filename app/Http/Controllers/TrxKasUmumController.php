@@ -13,4 +13,9 @@ class TrxKasUmumController extends Controller
     public function mainTrx(){
         return view('TrxJualBeli/main');
     }
+
+    public function tambahBiaya()
+    {
+        return view('TrxJualBeli/modalTambahBiaya');
+    }
 }
