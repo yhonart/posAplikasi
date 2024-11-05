@@ -145,34 +145,9 @@ class CashierController extends Controller
             ->where([
                 ['store_id', $area],
                 ['status', '1'],
-                ['created_by', $username],
-                ['tr_date', $dateDB]
+                ['created_by', $username]
             ])
             ->first();
-        
-        // count transaksi data return atau data load dari data hold
-        // $countReturnOrHold = DB::table('tr_store')
-        // ->where([
-        //     ['store_id', $area],
-        //     ['is_return', '1'],
-        //     ['status', '0'],
-        //     ['tr_date', $dateDB]
-        //     ])
-        //     ->count();
-
-        // if ($countReturnOrHold == '0') {
-        //     $dateNow = date("Y-m-d");
-            
-        // } else {
-        //     $billNumbering = DB::table("tr_store")
-        //         ->where([
-        //             ['store_id', $area],
-        //             ['status', '1'],
-        //             ['return_by', $username],
-        //             ['is_return', '1']
-        //         ])
-        //         ->first();
-        // }
 
         if (!empty($billNumbering)) {
             $nomorstruk = $billNumbering->billing_number;
@@ -644,8 +619,7 @@ class CashierController extends Controller
     }
 
     public function buttonAction()
-    {
-        //$priceCode = DB::select("SHOW TABLE STATUS LIKE 'tr_store'");
+    {        
         $areaID = $this->checkuserInfo();
         $pCode = $this->checkBillNumber();
         $countDisplay = $this->checkProdActive();
@@ -659,24 +633,14 @@ class CashierController extends Controller
         } else {
             $checkActiveBtn = $countDisplay;
         }
-        // echo $countReturn;
-        // echo $checkActiveBtn;
-        //Get number billing and display active where status 1
-        $cekBillNumber = DB::table('tr_store')
-            ->select('tr_store_id', 'billing_number')
-            ->where('status', 1)
-            ->orderBy('tr_store_id', 'desc')
-            ->first();
-
-        //Variable billing number for displayed
-        // if (!empty($cekBillNumber)) {
-        //     $billNumber = $cekBillNumber->billing_number;            
-        // }
-        // else {
-        //     $billNumber = "";
-        // }  
-
-        // cek jumlah data delete transaksi
+        //cek ketersediaan nomor transaksi berdasarkan status 1 dan user creator
+        $countActiveBill = DB::table('tr_store')
+            ->where([
+                ['status','1'],
+                ['created_by',$createdName]
+            ])
+            ->count();
+        
         $members = DB::table('m_customers')
             ->where('customer_status', '1')
             ->orWhere('customer_status', '2')
