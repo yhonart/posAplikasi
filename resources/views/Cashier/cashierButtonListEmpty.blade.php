@@ -2,14 +2,22 @@
     <div class="form-group row align-items-end">
         <label for="noStruck" class="form-label col-4">No Struck</label>
         <div class="col-8">
-            <input type="text" name="noStruck" id="noStruck" class="form-control form-control-lg" value="{{$pCode}}" readonly>
+            <input type="text" name="noStruck" id="noStruck" class="form-control form-control-md" value="{{$pCode}}" readonly>
+        </div>
+    </div>
+
+    <div class="form-group row align-items-end">
+        <label for="noStruck" class="form-label col-4">Tgl. Transaksi</label>
+        <div class="col-8">
+            <input type="text" name="dateTrx" id="dateTrx" class="form-control form-control-md datetimepicker-input" >
+            <small>* Sedang di uji coba !</small>
         </div>
     </div>
 
     <div class="form-group row align-items-end">
         <label for="pelanggan" class="form-label col-4">Member [F1]</label>
         <div class="col-8">
-            <select name="pelanggan" id="pelanggan" class="form-control form-control-lg select2">
+            <select name="pelanggan" id="pelanggan" class="form-control form-control-md select2">
                 <option value="0"></option>
                 @foreach($members as $m)                    
                     <option value="{{$m->idm_customer}}">
@@ -88,6 +96,15 @@
 </form>
 <script src="{{asset('public/js/cashierButton.js')}}"></script>
 <script>
+    $(function() {
+        $( ".datetimepicker-input" ).datepicker({
+                dateFormat: 'yy-mm-dd',
+                autoclose: true,
+                todayHighlight: true,
+            });
+            // $('#cariNamaPelanggan').focus();
+            $('.datetimepicker-input').datepicker("setDate",new Date());
+    });
     var Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
