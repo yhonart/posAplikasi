@@ -36,6 +36,57 @@ class CashierController extends Controller
         return $userAreaID;
     }
 
+    // BUAT NOMOR TRANSAKSI
+    public function checkBillNumber()
+    {
+        $areaID = $this->checkuserInfo();
+        $thisDate = date("dmy");
+        $dateDB = date("Y-m-d");
+        $username = Auth::user()->name;
+
+        //Cek apakah ada nomor transaksi is_return 
+        $countReturn = DB::table('tr_store')
+            ->where([
+                ['store_id', $areaID],
+                ['is_return', '1'],
+                ['status', '0'],
+                ['tr_date', $dateDB],
+                ['return_by',$username]
+            ])
+            ->count();
+        
+        // Jika tidak ada 
+        if ($countReturn == '0') {
+            # code...
+            $countTrx = DB::table("tr_store")
+                ->where([
+                    ['store_id', $areaID],
+                    ['tr_date', $dateDB]
+                ])
+                ->count();
+
+            if ($countTrx == '0') {
+                $no = "1";
+                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
+            } else {
+                $no = $countTrx + 1;
+                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
+            }
+        } else {
+            $selectNumber = DB::table('tr_store')
+            ->where([
+                ['store_id', $areaID],
+                ['is_return', '1'],
+                ['status', '0'],
+                ['tr_date', $dateDB],
+                ['return_by',$username]
+            ])
+            ->first();
+            $pCode = $selectNumber->billing_number;
+        }
+        return $pCode;
+    }
+
     // Cek nomor dengan kondisi setelah di return
     public function checkReturnActive()
     {
@@ -66,7 +117,8 @@ class CashierController extends Controller
                 ->where([
                     ['status', 1],
                     ['store_id', $areaID],
-                    ['tr_date', $dateTrx]
+                    ['tr_date', $dateTrx],
+                    ['return_by',$createdName]
                 ])
                 ->count();
         } elseif ($hakAkses == '2') {
@@ -74,95 +126,12 @@ class CashierController extends Controller
                 ->where([
                     ['status', 1],
                     ['store_id', $areaID],
-                    ['created_by', $createdName],
-                    ['tr_date', $dateTrx]
+                    ['tr_date', $dateTrx],
+                    ['created_by', $createdName]
                 ])
                 ->count();
         }
         return $countActiveDisplay;
-    }
-
-    // BUAT NOMOR TRANSAKSI
-    public function checkBillNumber()
-    {
-        $areaID = $this->checkuserInfo();
-        $trxActived = $this->checkProdActive();
-        $thisDate = date("dmy");
-        $dateDB = date("Y-m-d");
-        $username = Auth::user()->name;
-
-        // cek jumlah data return atau load data yang dipilih. 
-        $countReturn = DB::table('tr_store')
-            ->where([
-                ['store_id', $areaID],
-                ['is_return', '1'],
-                ['status', '0'],
-                ['tr_date', $dateDB]
-            ])
-            ->count();
-
-        if ($countReturn == '0') {
-            # code...
-            $countTrx = DB::table("tr_store")
-                ->where([
-                    ['store_id', $areaID],
-                    ['tr_date', $dateDB]
-                ])
-                ->count();
-
-            // cek delete nomor di hari ini untuk nomor tersebut bisa di pakai kembali
-            $countDeleteToday = DB::table('tr_store')
-                ->where([
-                    ['is_delete', '1'],
-                    ['tr_date', $dateDB],
-                    ['status', '0']
-                ])
-                ->count();
-
-
-            if ($countTrx == '0') {
-                $no = "1";
-                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
-            } else {
-                $no = $countTrx + 1;
-                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
-            }
-            // if ($countDeleteToday == '0') {
-            // } else {
-            //     $selectNumberDb = DB::table('tr_store')
-            //         ->where([
-            //             ['is_delete', '1'],
-            //             ['tr_date', $dateDB],
-            //             ['status', '0']
-            //         ])
-            //         ->first();
-            //     $pCode = $selectNumberDb->billing_number;
-            // }
-        } else {
-            //check jumlah transaksi perhari
-            $countTrxToday = DB::table('tr_store')
-                ->where('tr_date', $dateDB)
-                ->count();
-
-            // pilih nomor struck yang nilai return dan statusnya satu. 
-            // Jika belum ada transaksi di hari ini 
-            if ($countTrxToday == '0') {
-                $no = "1";
-                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
-            } else {
-                $selectNumber = DB::table('tr_store')
-                    ->select('billing_number')
-                    ->where([
-                        ['store_id', $areaID],
-                        ['is_return', '1'],
-                        ['status', '0'],
-                        ['tr_date', $dateDB],
-                    ])
-                    ->first();
-                $pCode = $selectNumber->billing_number;
-            }
-        }
-        return $pCode;
     }
 
     public function getInfoNumber()
@@ -171,37 +140,39 @@ class CashierController extends Controller
         $area = $this->checkuserInfo();
         $hakAkses = Auth::user()->hakakses;
         $dateDB = date("Y-m-d");
+
+        $billNumbering = DB::table("tr_store")
+            ->where([
+                ['store_id', $area],
+                ['status', '1'],
+                ['created_by', $username],
+                ['tr_date', $dateDB]
+            ])
+            ->first();
         
         // count transaksi data return atau data load dari data hold
-        $countReturnOrHold = DB::table('tr_store')
-        ->where([
-            ['store_id', $area],
-            ['is_return', '1'],
-            ['status', '0'],
-            ['tr_date', $dateDB]
-            ])
-            ->count();
+        // $countReturnOrHold = DB::table('tr_store')
+        // ->where([
+        //     ['store_id', $area],
+        //     ['is_return', '1'],
+        //     ['status', '0'],
+        //     ['tr_date', $dateDB]
+        //     ])
+        //     ->count();
 
-        if ($countReturnOrHold == '0') {
-            $dateNow = date("Y-m-d");
-            $billNumbering = DB::table("tr_store")
-                ->where([
-                    ['store_id', $area],
-                    ['status', '1'],
-                    ['created_by', $username],
-                    ['tr_date', $dateNow]
-                ])
-                ->first();
-        } else {
-            $billNumbering = DB::table("tr_store")
-                ->where([
-                    ['store_id', $area],
-                    ['status', '1'],
-                    ['return_by', $username],
-                    ['is_return', '1']
-                ])
-                ->first();
-        }
+        // if ($countReturnOrHold == '0') {
+        //     $dateNow = date("Y-m-d");
+            
+        // } else {
+        //     $billNumbering = DB::table("tr_store")
+        //         ->where([
+        //             ['store_id', $area],
+        //             ['status', '1'],
+        //             ['return_by', $username],
+        //             ['is_return', '1']
+        //         ])
+        //         ->first();
+        // }
 
         if (!empty($billNumbering)) {
             $nomorstruk = $billNumbering->billing_number;
@@ -721,11 +692,6 @@ class CashierController extends Controller
                 ['billing_number', $billNumber],
                 ['created_by', $createdName]
             ])
-            ->orWhere([
-                ['status', 1],
-                ['billing_number', $billNumber],
-                ['return_by', $createdName]
-            ])
             ->orderBy('tr_store_id', 'desc')
             ->first();
 
@@ -757,7 +723,7 @@ class CashierController extends Controller
             ])
             ->first();
 
-        if ($checkActiveBtn >= '1') {
+        if ($countDisplay >= '1') {
             return view('Cashier/cashierButtonListNotEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID', 'customerType', 'trPoint'));
         } else {
             return view('Cashier/cashierButtonListEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID'));
@@ -2535,6 +2501,8 @@ class CashierController extends Controller
     public function tampilDataSimpan($fromDate, $endDate)
     {
         $today = date("Y-m-d");
+        $hakakses = Auth::user()->hakakses;
+        $persName = Auth::user()->name;
 
         $dataSaved = DB::table('view_trx_store');
         // if ($dateTampil == "" OR $dateTampil == "0"){
@@ -2553,7 +2521,15 @@ class CashierController extends Controller
         //     //         ['tr_date',$dateTampil]
         //     //     ]);
         // }
-        $dataSaved = $dataSaved->where("status", '2');
+        if ($hakakses == '1') {
+            $dataSaved = $dataSaved->where("status", '2');
+        }
+        else {
+            $dataSaved = $dataSaved->where([
+                ["status", '2'],
+                ['created_by',$persName]
+            ]);
+        }
         $dataSaved = $dataSaved->whereBetween("tr_date", [$fromDate, $endDate]);
         $dataSaved = $dataSaved->limit(20);
         $dataSaved = $dataSaved->get();
