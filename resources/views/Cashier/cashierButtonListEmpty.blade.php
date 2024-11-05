@@ -214,7 +214,8 @@
             urlProductList = "productList",
             panelProductList = $("#mainListProduct"),
             urlButtonForm = "buttonAction",
-            panelButtonForm = $("#mainButton");
+            panelButtonForm = $("#mainButton"),
+            dateTrx = $("#dateTrx").val();
 
         $("#pelanggan").change(function(){
             $("#spinnerSelectCus").fadeIn("slow");
@@ -222,7 +223,14 @@
             $.ajax({
                 type : 'post',
                 url : "{{route('Cashier')}}/buttonAction/postVariableData",
-                data :  {t_Belanja:t_Belanja, pelanggan:idPelanggan, t_Bayar:t_Bayar, t_Selisih:t_Selisih, t_Item:t_Item, pengiriman:pengiriman, ppn:ppn},
+                data :  {t_Belanja:t_Belanja, 
+                        pelanggan:idPelanggan, 
+                        t_Bayar:t_Bayar, 
+                        t_Selisih:t_Selisih, 
+                        t_Item:t_Item, 
+                        pengiriman:pengiriman, 
+                        ppn:ppn, 
+                        dateTrx:dateTrx},
                 success : function(data){                
                     cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                     cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);

@@ -735,8 +735,11 @@ class CashierController extends Controller
     }
     public function postNoBilling(Request $reqPostBill)
     {
+        $areaID = $this->checkuserInfo();
+        
+        $createdBy = Auth::user()->name;
+
         $t_Bill = "0";
-        $no_Struck = $this->checkBillNumber();
         $pelanggan = $reqPostBill->pelanggan;
         $t_Pay = "0";
         $t_Difference = "0";
@@ -744,10 +747,25 @@ class CashierController extends Controller
         $deliveryBy = $reqPostBill->pengiriman;
         $ppn = $reqPostBill->ppn;
         $t_PayReturn = $t_Pay - $t_Bill;
-        $areaID = $this->checkuserInfo();
-        $createdBy = Auth::user()->name;
 
-        // Cek nomor struck ada atau tidak
+        $dateTrx = $reqPostBill->dateTrx;
+        $dateNow = date("Y-m-d");
+
+        // cek apakah tanggal yang di masukkan sama dengan tanggal hari ini 
+        if ($dateTrx <> $dateNow) {
+            // Buat transaksi baru dengan tanggal yang sesuai yang dipilih
+            $getNumber = DB::table('tr_store')
+                ->where('tr_date',$dateTrx)
+                ->count();
+
+            $no = $getNumber + 1;
+            $no_Struck = "P" . $thisDate . "-" . sprintf("%07d", $no);
+        }
+        else {
+            $no_Struck = $this->checkBillNumber();
+        }
+
+        // Cek nomor transaksi yang sedang aktif berdasarkan nomor transaksi yang terpilih
         $cekStruck = DB::table('tr_store')
             ->where([
                 ['billing_number', $no_Struck],
@@ -756,14 +774,15 @@ class CashierController extends Controller
             ->count();
 
         if ($cekStruck == '0') {
-            $isDelete = DB::table('tr_store')
+            // Cek kembali apakah ada no transaksi yang sama dengan status return 1
+            $isReturn = DB::table('tr_store')
                 ->where([
                     ['billing_number', $no_Struck],
                     ['is_return', '1']
                 ])
                 ->count();
 
-            if ($isDelete == '0') {
+            if ($isReturn == '0') {
                 DB::table('tr_store')
                     ->insert([
                         'store_id' => $areaID,
