@@ -1,99 +1,102 @@
-<form id="FormPayment" autocomplete="off">
-    <div class="form-group row align-items-end">
-        <label for="noStruck" class="form-label col-4">No Struck</label>
-        <div class="col-8">
-            <input type="text" name="noStruck" id="noStruck" class="form-control form-control-md" value="{{$pCode}}" readonly>
-        </div>
-    </div>
-
-    <div class="form-group row align-items-end">
-        <label for="noStruck" class="form-label col-4">Tgl. Transaksi</label>
-        <div class="col-8">
-            <input type="text" name="dateTrx" id="dateTrx" class="form-control form-control-md datetimepicker-input" >
-            <small>* Sedang di uji coba !</small>
-        </div>
-    </div>
-
-    <div class="form-group row align-items-end">
-        <label for="pelanggan" class="form-label col-4">Member [F1]</label>
-        <div class="col-8">
-            <select name="pelanggan" id="pelanggan" class="form-control form-control-md select2">
-                <option value="0"></option>
-                @foreach($members as $m)                    
-                    <option value="{{$m->idm_customer}}">
-                        {{$m->customer_store}} / {{$m->address}}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-    </div>
-
-    <div class="form-group row" id="spinnerSelectCus" style="display: none;">
-        <div class="col-md-12">
-            <div class="spinner-grow spinner-grow-sm text-primary" role="status">
-                <span class="sr-only">Loading...</span>
+<div class="row mb-4">
+    <div class="col-12">
+        <form id="FormPayment" autocomplete="off">
+            <div class="form-group row align-items-end">
+                <label for="noStruck" class="form-label col-4">Tgl. Transaksi</label>
+                <div class="col-8">
+                    <input type="text" name="dateTrx" id="dateTrx" class="form-control form-control-md datetimepicker-input" >
+                </div>
             </div>
-            <span>Please Wait !</span>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <div class="input-group col-12">
-            <input type="hidden" name="totalPayment" id="totalPayment" class=" form-control form-control-sm" value="0">
-            <input type="hidden" name="tBayar" id="tBayar" class="form-control form-control-sm" value="0">
-            <input type="hidden" name="tSelisih" id="tSelisih" class="form-control form-control-sm" value="0">
-            <input type="hidden" name="tItem" id="tItem" class="form-control form-control-sm" value="0">
-            <input type="hidden" name="pengiriman" id="pengiriman" class="form-control form-control-sm" value="0">
-            <input type="hidden" name="ppn" id="ppn" class="form-control form-control-sm" value="0">
-        </div>
         
+            <div class="form-group row align-items-end">
+                <label for="noStruck" class="form-label col-4">No Struck</label>
+                <div class="col-8">
+                    <input type="text" name="noStruck" id="noStruck" class="form-control form-control-md" value="{{$pCode}}" readonly>
+                </div>
+            </div>
+        
+            <div class="form-group row align-items-end">
+                <label for="pelanggan" class="form-label col-4">Member [F1]</label>
+                <div class="col-8">
+                    <select name="pelanggan" id="pelanggan" class="form-control form-control-md select2">
+                        <option value="0"></option>
+                        @foreach($members as $m)                    
+                            <option value="{{$m->idm_customer}}">
+                                {{$m->customer_store}} / {{$m->address}}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        
+            <div class="form-group row" id="spinnerSelectCus" style="display: none;">
+                <div class="col-md-12">
+                    <div class="spinner-grow spinner-grow-sm text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <span>Please Wait !</span>
+                </div>
+            </div>
+        
+            <div class="form-group row">
+                <div class="input-group col-12">
+                    <input type="hidden" name="totalPayment" id="totalPayment" class=" form-control form-control-sm" value="0">
+                    <input type="hidden" name="tBayar" id="tBayar" class="form-control form-control-sm" value="0">
+                    <input type="hidden" name="tSelisih" id="tSelisih" class="form-control form-control-sm" value="0">
+                    <input type="hidden" name="tItem" id="tItem" class="form-control form-control-sm" value="0">
+                    <input type="hidden" name="pengiriman" id="pengiriman" class="form-control form-control-sm" value="0">
+                    <input type="hidden" name="ppn" id="ppn" class="form-control form-control-sm" value="0">
+                </div>
+                
+            </div>
+        
+            <div class="row mb-2">
+                <div class="col-4">
+                    <button type="button" class="btn bg-gradient-success elevation-2 btn-block border border-2 border-light p-2" id="btnBayar" disabled><b>[F2]</b> <br> BAYAR</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2" id="btnPembayaran"><b>[F6]</b> <br> Dt. Penjualan</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2" id="btnClear" disabled><b>[F4]</b> <br>Tutup</button>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2" id="btnPoint"><b>[F7]</b> <br> Point</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn bg-gradient-primary elevation-2 btn-block border border-2 border-light p-2" id="btnPelunasan"><b>[F9]</b> <br> Pelunasan</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn bg-gradient-danger elevation-2 btn-block border border-2 border-light p-2" id="btnReturn"><b>[F10]</b> <br> Return</button>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <button type="button" class="btn bg-gradient-indigo elevation-2 btn-block border border-2 border-light p-2" id="btnHold" disabled><b>[Ctrl+H]</b> <br> HOLD</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn bg-gradient-purple elevation-2 btn-block border border-2 border-light p-2" id="btnLoad"><b>[Ctrl+L]</b> <br> LOAD</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn bg-gradient-navy elevation-2 btn-block border border-2 border-light p-2" id="btnLogOut"><b>[Ctrl+X]</b> <br> Log-out</button>
+                </div>
+            </div>
+        </form>
+        <div class="modal MODAL-GLOBAL" id="modal-global-large" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+              <div class="modal-content MODAL-CONTENT-GLOBAL">
+                  <!-- Content will be placed here -->
+                  <!-- class default MODAL-BODY-GLOBAL -->
+              </div>
+          </div>
+        </div>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
     </div>
-
-    <div class="row mb-2">
-        <div class="col-4">
-            <button type="button" class="btn bg-gradient-success elevation-2 btn-block border border-2 border-light p-2" id="btnBayar" disabled><b>[F2]</b> <br> BAYAR</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2" id="btnPembayaran"><b>[F6]</b> <br> Dt. Penjualan</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2" id="btnClear" disabled><b>[F4]</b> <br>Tutup</button>
-        </div>
-    </div>
-    <div class="row mb-2">
-        <div class="col-4">
-            <button type="button" class="btn btn-primary elevation-2 btn-block border border-2 border-light p-2" id="btnPoint"><b>[F7]</b> <br> Point</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="btn bg-gradient-primary elevation-2 btn-block border border-2 border-light p-2" id="btnPelunasan"><b>[F9]</b> <br> Pelunasan</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="btn bg-gradient-danger elevation-2 btn-block border border-2 border-light p-2" id="btnReturn"><b>[F10]</b> <br> Return</button>
-        </div>
-    </div>
-    <div class="row mb-2">
-        <div class="col-4">
-            <button type="button" class="btn bg-gradient-indigo elevation-2 btn-block border border-2 border-light p-2" id="btnHold" disabled><b>[Ctrl+H]</b> <br> HOLD</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="btn bg-gradient-purple elevation-2 btn-block border border-2 border-light p-2" id="btnLoad"><b>[Ctrl+L]</b> <br> LOAD</button>
-        </div>
-        <div class="col-4">
-            <button type="button" class="btn bg-gradient-navy elevation-2 btn-block border border-2 border-light p-2" id="btnLogOut"><b>[Ctrl+X]</b> <br> Log-out</button>
-        </div>
-    </div>
-</form>
-<div class="modal MODAL-GLOBAL" id="modal-global-large" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-      <div class="modal-content MODAL-CONTENT-GLOBAL">
-          <!-- Content will be placed here -->
-          <!-- class default MODAL-BODY-GLOBAL -->
-      </div>
-  </div>
 </div>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-    @csrf
-</form>
 <script src="{{asset('public/js/cashierButton.js')}}"></script>
 <script>
     $(function() {
