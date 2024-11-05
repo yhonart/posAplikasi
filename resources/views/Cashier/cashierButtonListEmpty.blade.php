@@ -214,12 +214,12 @@
             urlProductList = "productList",
             panelProductList = $("#mainListProduct"),
             urlButtonForm = "buttonAction",
-            panelButtonForm = $("#mainButton"),
-            dateTrx = $("#dateTrx").val();
-
+            panelButtonForm = $("#mainButton");
+            
         $("#pelanggan").change(function(){
             $("#spinnerSelectCus").fadeIn("slow");
-            idPelanggan = $(this).find(":selected").val();
+            let idPelanggan = $(this).find(":selected").val();
+            let dateTrx = $("#dateTrx").val();
             $.ajax({
                 type : 'post',
                 url : "{{route('Cashier')}}/buttonAction/postVariableData",
