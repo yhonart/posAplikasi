@@ -1,4 +1,4 @@
-<div class="row mb-4">
+<div class="row mt-4">
     <div class="col-12">
         <form id="FormPayment" autocomplete="off">
             <div class="form-group row align-items-end">
