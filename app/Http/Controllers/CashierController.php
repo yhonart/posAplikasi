@@ -764,7 +764,7 @@ class CashierController extends Controller
                         'ppn' => $ppn,
                         'status' => '1',
                         'created_date' => now(),
-                        'tr_date' => now(),
+                        'tr_date' => $dateTrx,
                         'created_by' => $createdBy,
                     ]);
             } else {
@@ -786,7 +786,7 @@ class CashierController extends Controller
                         'ppn' => $ppn,
                         'status' => '1',
                         'created_date' => now(),
-                        'tr_date' => now(),
+                        'tr_date' => $dateTrx,
                         'is_delete' => '0',
                         'is_return' => '0'
                     ]);
