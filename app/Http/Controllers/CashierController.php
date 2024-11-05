@@ -1971,7 +1971,7 @@ class CashierController extends Controller
 
         //cek nilai pembayaran sebelumnya
         $trxLastBayar = DB::table('tr_store')
-            ->select('t_pay')
+            ->select('t_pay','tr_date')
             ->where('billing_number', $noBill)
             ->first();
 
@@ -2072,7 +2072,7 @@ class CashierController extends Controller
             DB::table('tr_payment_record')
                 ->insert([
                     'trx_code' => $noBill,
-                    'date_trx' => now(),
+                    'date_trx' => $trxLastBayar->tr_date,
                     'member_id' => $memberID,
                     'total_struk' => $tBelanja,
                     'total_payment' => $paymentRec,
@@ -2083,7 +2083,7 @@ class CashierController extends Controller
             DB::table('tr_payment_record')
                 ->where('trx_code', $noBill)
                 ->update([
-                    'date_trx' => now(),
+                    'date_trx' => $trxLastBayar->tr_date,
                     'member_id' => $memberID,
                     'total_struk' => $tBelanja,
                     'total_payment' => $paymentRec,
