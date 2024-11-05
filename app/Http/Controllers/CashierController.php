@@ -721,7 +721,10 @@ class CashierController extends Controller
             $getNumber = DB::table('tr_store')
                 ->where('tr_date',$dateTrx)
                 ->count();
-
+            $date = date("d", strtotime($dateTrx));
+            $month = date("m", strtotime($dateTrx));
+            $year = date("y", strtotime($dateTrx));
+            $thisDate = $date."".$month."".$year;
             $no = $getNumber + 1;
             $no_Struck = "P" . $thisDate . "-" . sprintf("%07d", $no);
         }
