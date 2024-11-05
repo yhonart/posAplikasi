@@ -139,7 +139,7 @@ class CashierController extends Controller
             //     $pCode = $selectNumberDb->billing_number;
             // }
         } else {
-            //check jumlah transaksi perhari 
+            //check jumlah transaksi perhari
             $countTrxToday = DB::table('tr_store')
                 ->where('tr_date', $dateDB)
                 ->count();
@@ -2504,7 +2504,6 @@ class CashierController extends Controller
                 ->where('billing_number', $noBill)
                 ->update(
                     [
-
                         'status' => '0',
                         'is_return' => '1',
                         't_bill' => '0',
@@ -2515,7 +2514,8 @@ class CashierController extends Controller
             DB::table('tr_store_prod_list')
                 ->where('from_payment_code', $noBill)
                 ->update([
-                    'status' => '0'
+                    'status' => '0',
+                    'is_delete'=> '1'
                 ]);
 
             DB::table('tr_payment_method')
