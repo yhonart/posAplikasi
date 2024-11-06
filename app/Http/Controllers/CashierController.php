@@ -422,7 +422,8 @@ class CashierController extends Controller
             ->where([
                 ['product_code', $prodName],
                 ['from_payment_code', $transNumber],
-                ['unit', $dataSatuan],                
+                ['unit', $dataSatuan],
+                ['status','1']                
             ])
             ->count();
 
