@@ -2284,14 +2284,15 @@ class CashierController extends Controller
             ])
             ->first();
             
-        if ($countFromHold->is_return == '1') {
-            $lastStatus = '2';
-        } else {
-            $lastStatus = $statusReturn->last_status_trx;
-        }
-        if ($countStatus >= '1' or $countFromHold->is_return == '1') {
+        // if ($countFromHold->is_return == '1') {
+        //     $lastStatus = '2';
+        // } else {
+        // }
+        
+        if ($countStatus >= '1') {
             // Hitung nominal transaksi 
-            if (!empty($statusReturn) or $countFromHold->is_return == '1') {
+            $lastStatus = $statusReturn->last_status_trx;
+            if (!empty($statusReturn)) {
                 //Jika is_return pada tabel tr_store sama dengan 1 maka kembalikan ke hold
                 foreach ($prdList as $prdL) {
                     $totalPrice = $prdL->unit_price * $prdL->qty_history;
