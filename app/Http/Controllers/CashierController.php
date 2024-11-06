@@ -1800,12 +1800,13 @@ class CashierController extends Controller
             }
 
             DB::table($tableName)
-                ->where($tableId, $id)
+                ->where('list_id', $id)
                 ->update([
-                    $column => $editVal,
+                    'qty' => $editVal,
                     't_price' => $totalBelanja,
                     'stock' => $upStock
                 ]);
+
         } elseif ($column == "unit") {
             //cek type member
             $typeMember = DB::table('trans_mamber_view')
