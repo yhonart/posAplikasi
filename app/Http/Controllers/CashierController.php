@@ -145,34 +145,9 @@ class CashierController extends Controller
             ->where([
                 ['store_id', $area],
                 ['status', '1'],
-                ['created_by', $username],
-                ['tr_date', $dateDB]
+                ['created_by', $username]
             ])
             ->first();
-        
-        // count transaksi data return atau data load dari data hold
-        // $countReturnOrHold = DB::table('tr_store')
-        // ->where([
-        //     ['store_id', $area],
-        //     ['is_return', '1'],
-        //     ['status', '0'],
-        //     ['tr_date', $dateDB]
-        //     ])
-        //     ->count();
-
-        // if ($countReturnOrHold == '0') {
-        //     $dateNow = date("Y-m-d");
-            
-        // } else {
-        //     $billNumbering = DB::table("tr_store")
-        //         ->where([
-        //             ['store_id', $area],
-        //             ['status', '1'],
-        //             ['return_by', $username],
-        //             ['is_return', '1']
-        //         ])
-        //         ->first();
-        // }
 
         if (!empty($billNumbering)) {
             $nomorstruk = $billNumbering->billing_number;
@@ -447,7 +422,8 @@ class CashierController extends Controller
             ->where([
                 ['product_code', $prodName],
                 ['from_payment_code', $transNumber],
-                ['unit', $dataSatuan]
+                ['unit', $dataSatuan],
+                ['status','1']                
             ])
             ->count();
 
@@ -494,6 +470,8 @@ class CashierController extends Controller
                     'm_price' => $mPrice,
                     'disc' => $disc,
                     't_price' => $updateTotalHarga,
+                    'status' => '1',
+                    'is_delete'=> '0'
                 ]);
         }
 
@@ -644,8 +622,7 @@ class CashierController extends Controller
     }
 
     public function buttonAction()
-    {
-        //$priceCode = DB::select("SHOW TABLE STATUS LIKE 'tr_store'");
+    {        
         $areaID = $this->checkuserInfo();
         $pCode = $this->checkBillNumber();
         $countDisplay = $this->checkProdActive();
@@ -659,24 +636,14 @@ class CashierController extends Controller
         } else {
             $checkActiveBtn = $countDisplay;
         }
-        // echo $countReturn;
-        // echo $checkActiveBtn;
-        //Get number billing and display active where status 1
-        $cekBillNumber = DB::table('tr_store')
-            ->select('tr_store_id', 'billing_number')
-            ->where('status', 1)
-            ->orderBy('tr_store_id', 'desc')
-            ->first();
-
-        //Variable billing number for displayed
-        // if (!empty($cekBillNumber)) {
-        //     $billNumber = $cekBillNumber->billing_number;            
-        // }
-        // else {
-        //     $billNumber = "";
-        // }  
-
-        // cek jumlah data delete transaksi
+        //cek ketersediaan nomor transaksi berdasarkan status 1 dan user creator
+        $countActiveBill = DB::table('tr_store')
+            ->where([
+                ['status','1'],
+                ['created_by',$createdName]
+            ])
+            ->count();
+        
         $members = DB::table('m_customers')
             ->where('customer_status', '1')
             ->orWhere('customer_status', '2')
@@ -723,7 +690,7 @@ class CashierController extends Controller
             ])
             ->first();
 
-        if ($countDisplay >= '1') {
+        if ($countActiveBill >= '1') {
             return view('Cashier/cashierButtonListNotEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID', 'customerType', 'trPoint'));
         } else {
             return view('Cashier/cashierButtonListEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID'));
@@ -735,8 +702,11 @@ class CashierController extends Controller
     }
     public function postNoBilling(Request $reqPostBill)
     {
+        $areaID = $this->checkuserInfo();
+        
+        $createdBy = Auth::user()->name;
+
         $t_Bill = "0";
-        $no_Struck = $this->checkBillNumber();
         $pelanggan = $reqPostBill->pelanggan;
         $t_Pay = "0";
         $t_Difference = "0";
@@ -744,10 +714,28 @@ class CashierController extends Controller
         $deliveryBy = $reqPostBill->pengiriman;
         $ppn = $reqPostBill->ppn;
         $t_PayReturn = $t_Pay - $t_Bill;
-        $areaID = $this->checkuserInfo();
-        $createdBy = Auth::user()->name;
 
-        // Cek nomor struck ada atau tidak
+        $dateTrx = $reqPostBill->dateTrx;
+        $dateNow = date("Y-m-d");
+
+        // cek apakah tanggal yang di masukkan sama dengan tanggal hari ini 
+        if ($dateTrx <> $dateNow) {
+            // Buat transaksi baru dengan tanggal yang sesuai yang dipilih
+            $getNumber = DB::table('tr_store')
+                ->where('tr_date',$dateTrx)
+                ->count();
+            $date = date("d", strtotime($dateTrx));
+            $month = date("m", strtotime($dateTrx));
+            $year = date("y", strtotime($dateTrx));
+            $thisDate = $date."".$month."".$year;
+            $no = $getNumber + 1;
+            $no_Struck = "P" . $thisDate . "-" . sprintf("%07d", $no);
+        }
+        else {
+            $no_Struck = $this->checkBillNumber();
+        }
+
+        // Cek nomor transaksi yang sedang aktif berdasarkan nomor transaksi yang terpilih
         $cekStruck = DB::table('tr_store')
             ->where([
                 ['billing_number', $no_Struck],
@@ -756,14 +744,15 @@ class CashierController extends Controller
             ->count();
 
         if ($cekStruck == '0') {
-            $isDelete = DB::table('tr_store')
+            // Cek kembali apakah ada no transaksi yang sama dengan status return 1
+            $isReturn = DB::table('tr_store')
                 ->where([
                     ['billing_number', $no_Struck],
                     ['is_return', '1']
                 ])
                 ->count();
 
-            if ($isDelete == '0') {
+            if ($isReturn == '0') {
                 DB::table('tr_store')
                     ->insert([
                         'store_id' => $areaID,
@@ -778,7 +767,7 @@ class CashierController extends Controller
                         'ppn' => $ppn,
                         'status' => '1',
                         'created_date' => now(),
-                        'tr_date' => now(),
+                        'tr_date' => $dateTrx,
                         'created_by' => $createdBy,
                     ]);
             } else {
@@ -800,7 +789,7 @@ class CashierController extends Controller
                         'ppn' => $ppn,
                         'status' => '1',
                         'created_date' => now(),
-                        'tr_date' => now(),
+                        'tr_date' => $dateTrx,
                         'is_delete' => '0',
                         'is_return' => '0'
                     ]);
@@ -1058,7 +1047,10 @@ class CashierController extends Controller
             ]);
 
         DB::table('tr_store_prod_list')
-            ->where('from_payment_code', $billingIden)
+            ->where([
+                ['from_payment_code', $billingIden],
+                ['is_delete','!=','1']
+                ])
             ->update([
                 'status' => '1',
             ]);
@@ -1809,12 +1801,13 @@ class CashierController extends Controller
             }
 
             DB::table($tableName)
-                ->where($tableId, $id)
+                ->where('list_id', $id)
                 ->update([
-                    $column => $editVal,
+                    'qty' => $editVal,
                     't_price' => $totalBelanja,
                     'stock' => $upStock
                 ]);
+
         } elseif ($column == "unit") {
             //cek type member
             $typeMember = DB::table('trans_mamber_view')
@@ -1985,7 +1978,7 @@ class CashierController extends Controller
 
         //cek nilai pembayaran sebelumnya
         $trxLastBayar = DB::table('tr_store')
-            ->select('t_pay')
+            ->select('t_pay','tr_date')
             ->where('billing_number', $noBill)
             ->first();
 
@@ -2086,7 +2079,7 @@ class CashierController extends Controller
             DB::table('tr_payment_record')
                 ->insert([
                     'trx_code' => $noBill,
-                    'date_trx' => now(),
+                    'date_trx' => $trxLastBayar->tr_date,
                     'member_id' => $memberID,
                     'total_struk' => $tBelanja,
                     'total_payment' => $paymentRec,
@@ -2097,7 +2090,7 @@ class CashierController extends Controller
             DB::table('tr_payment_record')
                 ->where('trx_code', $noBill)
                 ->update([
-                    'date_trx' => now(),
+                    'date_trx' => $trxLastBayar->tr_date,
                     'member_id' => $memberID,
                     'total_struk' => $tBelanja,
                     'total_payment' => $paymentRec,
@@ -2277,30 +2270,30 @@ class CashierController extends Controller
 
         //Jika dilakukan return dari F10 atau nilai is_return dari tr_store = 1
         //Update status transaksi menjadi statu sebelumnya
-        if ($countStatus >= '1' or $countFromHold->is_return == '1') {
+        $trxList = DB::table('tr_store_prod_list')
+            ->select(DB::raw('SUM(t_price) as total'))
+            ->where([
+                ['from_payment_code', $noBill],
+                ['status', '!=', '0']
+            ])
+            ->first();
+
+        $statusReturn = DB::table('tr_return_record')
+            ->where([
+                ['trx_code', $noBill]
+            ])
+            ->first();
+            
+        // if ($countFromHold->is_return == '1') {
+        //     $lastStatus = '2';
+        // } else {
+        // }
+        
+        if ($countStatus >= '1') {
             // Hitung nominal transaksi 
-            $trxList = DB::table('tr_store_prod_list')
-                ->select(DB::raw('SUM(t_price) as total'))
-                ->where([
-                    ['from_payment_code', $noBill],
-                    ['status', '!=', '0']
-                ])
-                ->first();
-
-            $statusReturn = DB::table('tr_return_record')
-                ->where([
-                    ['trx_code', $noBill]
-                ])
-                ->first();
-
-            if (!empty($statusReturn) or $countFromHold->is_return == '1') {
+            $lastStatus = $statusReturn->last_status_trx;
+            if (!empty($statusReturn)) {
                 //Jika is_return pada tabel tr_store sama dengan 1 maka kembalikan ke hold
-                if ($countFromHold->is_return == '1') {
-                    $lastStatus = '2';
-                } else {
-                    $lastStatus = $statusReturn->last_status_trx;
-                }
-
                 foreach ($prdList as $prdL) {
                     $totalPrice = $prdL->unit_price * $prdL->qty_history;
                     DB::table('tr_store_prod_list')
@@ -2470,18 +2463,18 @@ class CashierController extends Controller
                 ->where('billing_number', $noBill)
                 ->update(
                     [
-
                         'status' => '0',
                         'is_return' => '1',
                         't_bill' => '0',
                         't_item' => '0',
-                        'member_id' => '0'
+                        'return_by' => $deleteUser
                     ]
                 );
             DB::table('tr_store_prod_list')
                 ->where('from_payment_code', $noBill)
                 ->update([
-                    'status' => '0'
+                    'status' => '0',
+                    'is_delete'=> '1'
                 ]);
 
             DB::table('tr_payment_method')
@@ -2966,7 +2959,10 @@ class CashierController extends Controller
                             ]);
 
                         DB::table('tr_store_prod_list')
-                            ->where('from_payment_code', $datBilling)
+                            ->where([
+                                ['from_payment_code', $datBilling],
+                                ['is_delete','!=','1']
+                                ])
                             ->update([
                                 'status' => '1',
                             ]);
