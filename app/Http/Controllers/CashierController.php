@@ -2270,28 +2270,27 @@ class CashierController extends Controller
 
         //Jika dilakukan return dari F10 atau nilai is_return dari tr_store = 1
         //Update status transaksi menjadi statu sebelumnya
+        $trxList = DB::table('tr_store_prod_list')
+            ->select(DB::raw('SUM(t_price) as total'))
+            ->where([
+                ['from_payment_code', $noBill],
+                ['status', '!=', '0']
+            ])
+            ->first();
+
+        $statusReturn = DB::table('tr_return_record')
+            ->where([
+                ['trx_code', $noBill]
+            ])
+            ->first();
+            
+        if ($countFromHold->is_return == '1') {
+            $lastStatus = '2';
+        } else {
+            $lastStatus = $statusReturn->last_status_trx;
+        }
         if ($countStatus >= '1' or $countFromHold->is_return == '1') {
             // Hitung nominal transaksi 
-            $trxList = DB::table('tr_store_prod_list')
-                ->select(DB::raw('SUM(t_price) as total'))
-                ->where([
-                    ['from_payment_code', $noBill],
-                    ['status', '!=', '0']
-                ])
-                ->first();
-
-            $statusReturn = DB::table('tr_return_record')
-                ->where([
-                    ['trx_code', $noBill]
-                ])
-                ->first();
-                
-            if ($countFromHold->is_return == '1') {
-                $lastStatus = '2';
-            } else {
-                $lastStatus = $statusReturn->last_status_trx;
-            }
-
             if (!empty($statusReturn) or $countFromHold->is_return == '1') {
                 //Jika is_return pada tabel tr_store sama dengan 1 maka kembalikan ke hold
                 foreach ($prdList as $prdL) {
