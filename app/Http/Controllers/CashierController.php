@@ -2283,15 +2283,15 @@ class CashierController extends Controller
                     ['trx_code', $noBill]
                 ])
                 ->first();
+                
+            if ($countFromHold->is_return == '1') {
+                $lastStatus = '2';
+            } else {
+                $lastStatus = $statusReturn->last_status_trx;
+            }
 
             if (!empty($statusReturn) or $countFromHold->is_return == '1') {
                 //Jika is_return pada tabel tr_store sama dengan 1 maka kembalikan ke hold
-                if ($countFromHold->is_return == '1') {
-                    $lastStatus = '2';
-                } else {
-                    $lastStatus = $statusReturn->last_status_trx;
-                }
-
                 foreach ($prdList as $prdL) {
                     $totalPrice = $prdL->unit_price * $prdL->qty_history;
                     DB::table('tr_store_prod_list')
