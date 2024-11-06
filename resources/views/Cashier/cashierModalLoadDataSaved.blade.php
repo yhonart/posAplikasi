@@ -8,11 +8,6 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-12">
-                        <p><i class="fa-solid fa-circle-info"></i> Klik pada nomor transaksi untuk melakukan load transaksi.</p>
-                    </div>
-                </div>
                 <div class="row mb-2">
                     <div class="col-md-3">
                         <div class="form-group">
