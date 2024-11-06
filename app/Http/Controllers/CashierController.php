@@ -422,7 +422,7 @@ class CashierController extends Controller
             ->where([
                 ['product_code', $prodName],
                 ['from_payment_code', $transNumber],
-                ['unit', $dataSatuan]
+                ['unit', $dataSatuan],                
             ])
             ->count();
 
@@ -469,6 +469,8 @@ class CashierController extends Controller
                     'm_price' => $mPrice,
                     'disc' => $disc,
                     't_price' => $updateTotalHarga,
+                    'status' => '1',
+                    'is_delete'=> '0'
                 ]);
         }
 
