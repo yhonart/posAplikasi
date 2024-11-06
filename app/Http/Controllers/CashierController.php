@@ -2467,7 +2467,6 @@ class CashierController extends Controller
                         'is_return' => '1',
                         't_bill' => '0',
                         't_item' => '0',
-                        'member_id' => '0',
                         'return_by' => $deleteUser
                     ]
                 );
