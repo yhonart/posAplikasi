@@ -666,6 +666,11 @@ class CashierController extends Controller
                 ['billing_number', $billNumber],
                 ['created_by', $createdName]
             ])
+            ->orWhere([
+                ['status', 1],
+                ['billing_number', $billNumber],
+                ['return_by', $createdName]
+            ])
             ->orderBy('tr_store_id', 'desc')
             ->first();
 
