@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card card-indigo">
     <div class="card-header">
         <h3 class="card-title">Tambah Transaksi Biaya Operasional</h3>
     </div>
@@ -9,7 +9,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Tanggal</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control form-control-sm rounded-0" name="tanggal" id="tanggal">
+                            <input type="text" class="form-control form-control-sm rounded-0 modalDate-input" name="tanggal" id="tanggal">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -38,10 +38,16 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="label col-md-4">Nama Karyawan</label>
+                        <label class="label col-md-4">Personal</label>
                         <div class="col-md-4">
                             <select name="personal" id="personal" class="form-control form-control-sm rounded-0">
                                 <option value="0"></option>
+                                @foreach($mStaff as $ms)
+                                <option value="{{$ms->sales_code}}|{{$ms->sales_name}}">{{$ms->sales_name}}</option>
+                                @endforeach
+                                @foreach($mAdmin as $md)
+                                <option value="{{$md->id}}|{{$md->name}}"></option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -52,13 +58,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="label col-md-4">nominal</label>
+                        <label class="label col-md-4">Lampiran</label>
                         <div class="col-md-4">
-                            <input type="file" class="form-control form-control-sm rounded-0" name="lampiran" id="lampiran">
+                            <input type="file" name="productImage" id="productImage" class="form-control-file">
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-success btn-flat btn-sm font-weight-bold">Simpan</button>
+                        <button class="btn btn-success btn-flat btn-sm font-weight-bold" id="btnSimpan">Simpan</button>
+                        <button class="btn btn-warning btn-flat btn-sm font-weight-bold" id="btnClose">Batal</button>
                     </div>
                 </form>
             </div>
@@ -66,6 +73,13 @@
     </div>
 </div>
 <script>
+    $(function() {
+        $( ".modalDate-input" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+    });
     $(document).ready(function(){
         $.ajaxSetup({
             headers: {
@@ -81,6 +95,25 @@
                     $("#subKategori").html(response);
                 }
             });
+        });
+
+        $("form#formTambahBiaya").submit(function(event){
+            event.preventDefault();
+            $.ajax({
+                url: "{{route('trxKasUmum')}}/postTrxPembiayaan",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {                    
+                    global_style.hide_modal();
+                    global_style.load_table(loadSpinner,routeIndex,tableData,displayData);
+                    alertNotive.removeClass('red-alert').addClass('green-alert');
+                },                
+            });
+            return false;
         });
     });
 </script>

@@ -21,7 +21,14 @@ class TrxKasUmumController extends Controller
             ->orderBy('cat_name','asc')
             ->get();
 
-        return view('TrxKasUmum/modalTambahBiaya', compact('kasKategori'));
+        $mStaff = DB::table('m_sales')
+            ->where('sales_status','1')
+            ->get();
+        
+        $mAdmin = DB::table('users')
+            ->get();
+
+        return view('TrxKasUmum/modalTambahBiaya', compact('kasKategori','mAdmin','mStaff'));
     }
 
     public function selectKategori($kategori)
@@ -32,5 +39,10 @@ class TrxKasUmumController extends Controller
             ->get();
 
         return view('TrxKasUmum/selectOptionSubKategori', compact('selectOption'));
+    }
+
+    public function postTrxPembiayaan(Request $reqAddPembiayaan)
+    {
+        echo "OK";
     }
 }
