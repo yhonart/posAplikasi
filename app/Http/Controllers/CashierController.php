@@ -643,6 +643,13 @@ class CashierController extends Controller
                 ['created_by',$createdName]
             ])
             ->count();
+
+        $countRerun = DB::table('tr_store')
+            ->where([
+                ['status','1'],
+                ['return_by',$createdName]
+            ])
+            ->count();
         
         $members = DB::table('m_customers')
             ->where('customer_status', '1')
@@ -690,7 +697,7 @@ class CashierController extends Controller
             ])
             ->first();
 
-        if ($countActiveBill >= '1') {
+        if ($countActiveBill >= '1' OR $countRerun >= '1') {
             return view('Cashier/cashierButtonListNotEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID', 'customerType', 'trPoint'));
         } else {
             return view('Cashier/cashierButtonListEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID'));

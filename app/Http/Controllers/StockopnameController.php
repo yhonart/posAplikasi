@@ -125,6 +125,7 @@ class StockopnameController extends Controller
         $firstNumber = $this->numberSO();
         $createdBy = Auth::user()->name;
         $dateInput = date("Y-m-d");
+
         $mProduct = DB::table('m_product')
             ->orderBy('product_name','ASC')
             ->get();
@@ -132,8 +133,7 @@ class StockopnameController extends Controller
         $countOpname = DB::table('inv_stock_opname')
             ->where([
                 ['status','1'],
-                ['created_by',$createdBy],
-                ['date_input',$dateInput]
+                ['created_by',$createdBy]
             ])
             ->count();
             
