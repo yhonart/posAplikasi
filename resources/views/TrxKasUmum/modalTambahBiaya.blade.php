@@ -40,7 +40,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Personal</label>
                         <div class="col-md-4">
-                            <select name="personal" id="personal" class="form-control form-control-sm rounded-0">
+                            <select name="personal" id="personal" class="form-control form-control-sm rounded-0 select-2">
                                 <option value="0"></option>
                                 @foreach($mStaff as $ms)
                                 <option value="{{$ms->sales_code}}|{{$ms->sales_name}}">{{$ms->sales_name}} (Sales)</option>
@@ -60,7 +60,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Lampiran</label>
                         <div class="col-md-4">
-                            <input type="file" name="productImage" id="productImage" class="form-control-file">
+                            <input type="file" name="docLampiran" id="docLampiran" class="form-control-file">
                         </div>
                     </div>
                     <div class="form-group">
@@ -78,6 +78,10 @@
             dateFormat: 'yy-mm-dd',
             autoclose: true,
             todayHighlight: true,
+        });
+
+        $('.select-2').select2({
+            theme: 'bootstrap4'
         });
     });
     $(document).ready(function(){
@@ -108,9 +112,7 @@
                 contentType: false,
                 processData: false,
                 success: function (data) {                    
-                    global_style.hide_modal();
-                    global_style.load_table(loadSpinner,routeIndex,tableData,displayData);
-                    alertNotive.removeClass('red-alert').addClass('green-alert');
+                    window.location.reload();
                 },                
             });
             return false;

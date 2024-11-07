@@ -43,6 +43,48 @@ class TrxKasUmumController extends Controller
 
     public function postTrxPembiayaan(Request $reqAddPembiayaan)
     {
-        echo "OK";
+        
+        $kasDate = $reqAddPembiayaan->tanggal;
+        $kasCatid = $reqAddPembiayaan->selKategori;
+        $kasSubCatid = $reqAddPembiayaan->subKategori;
+        $description = $reqAddPembiayaan->keterangan;
+        $kasPersonal = $reqAddPembiayaan->personal;
+        $kasNominal = $reqAddPembiayaan->nominal;
+        $file = str_replace(" ","_",$reqAddPembiayaan->docLampiran);
+
+        $splitPers = explode("|",$kasPersonal);
+        $persCode = $splitPers[0];
+        $persName = $splitPers[1];
+
+        $creatorName = Auth::user()->name;
+
+        if ($file <> "") {
+            $TypeDoc = $file->getClientOriginalExtension();
+            $NameDoc = $file->getClientOriginalName();
+            $DirPublic = public_path()."/images/Upload/TrxKas/";            
+            $file->move($DirPublic, $NameDoc);
+        }
+        else {
+            $TypeDoc = "";
+            $NameDoc = "";
+            $DirPublic = "";
+        }
+
+        DB::table('tr_kas')
+            ->insert([
+                'kas_catId'=>$kasCatid,
+                'kas_subCatId'=>$kasSubCatid,
+                'kas_persCode'=>$persCode,
+                'kas_persName'=>$persName,
+                'description'=>$description,
+                'kas_date'=>$kasDate,
+                'created_date'=>now(),
+                'status'=>'1',
+                'created_by'=>$creatorName,
+                'nominal'=>$kasNominal,
+                'file_name'=>$NameDoc,
+                'file_type'=>$TypeDoc
+            ]);
+        
     }
 }
