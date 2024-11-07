@@ -147,7 +147,7 @@ class CorrectPrdController extends Controller
             ->where([
                 ['status','1'],
                 ['created_by',$createdBy],
-                ['dateInput',$dateInput]
+                // ['dateInput',$dateInput]
             ])
             ->count();
             
