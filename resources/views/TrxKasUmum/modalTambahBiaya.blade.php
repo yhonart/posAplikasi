@@ -76,7 +76,7 @@
             let kategori = $(this).find(":selected").val();
             $.ajax({
                 type : 'get',
-                url : "{{route('trxJualBeli')}}/selectKategori/" + kategori,
+                url : "{{route('trxKasUmum')}}/selectKategori/" + kategori,
                 success : function(response){  
                     $("#subKategori").html(response);
                 }
