@@ -676,7 +676,7 @@ class CashierController extends Controller
             ->where('status', '1')
             ->get();
         
-        if ($$countRerun == '0') {
+        if ($countRerun == '0') {
             $trPaymentInfo = DB::table('view_billing_action')
                 ->where([
                     ['status', 1],
