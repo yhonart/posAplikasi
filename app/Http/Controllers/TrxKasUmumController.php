@@ -59,7 +59,8 @@ class TrxKasUmumController extends Controller
         $creatorName = Auth::user()->name;
 
         if ($mFile <> "") {
-            $TypeDoc = $mFile->getClientOriginalExtension();
+            // $TypeDoc = $mFile->getClientOriginalExtension();
+            $TypeDoc = "";
             $NameDoc = $mFile->getClientOriginalName();
             $DirPublic = public_path()."/images/Upload/TrxKas/";            
             $mFile->move($DirPublic, $NameDoc);
