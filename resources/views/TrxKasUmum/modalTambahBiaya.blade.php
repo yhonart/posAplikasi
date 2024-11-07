@@ -43,10 +43,10 @@
                             <select name="personal" id="personal" class="form-control form-control-sm rounded-0">
                                 <option value="0"></option>
                                 @foreach($mStaff as $ms)
-                                <option value="{{$ms->sales_code}}|{{$ms->sales_name}}">{{$ms->sales_name}}</option>
+                                <option value="{{$ms->sales_code}}|{{$ms->sales_name}}">{{$ms->sales_name}} (Sales)</option>
                                 @endforeach
                                 @foreach($mAdmin as $md)
-                                <option value="{{$md->id}}|{{$md->name}}"></option>
+                                <option value="{{$md->id}}|{{$md->name}}">{{$md->name}}</option>
                                 @endforeach
                             </select>
                         </div>
