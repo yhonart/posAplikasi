@@ -67,6 +67,11 @@
 </div>
 <script>
     $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $("#selKategori").change(function(){
             let kategori = $(this).find(":selected").val();
             $.ajax({
