@@ -666,11 +666,6 @@ class CashierController extends Controller
                 ['billing_number', $billNumber],
                 ['created_by', $createdName]
             ])
-            ->orWhere([
-                ['status', 1],
-                ['billing_number', $billNumber],
-                ['return_by', $createdName]
-            ])
             ->orderBy('tr_store_id', 'desc')
             ->first();
 
@@ -702,7 +697,7 @@ class CashierController extends Controller
             ])
             ->first();
 
-        if ($countActiveBill >= '1' OR $countRerun >= '1') {
+        if ($countActiveBill >= '1') {
             return view('Cashier/cashierButtonListNotEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID', 'customerType', 'trPoint'));
         } else {
             return view('Cashier/cashierButtonListEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID'));
