@@ -140,14 +140,30 @@ class CashierController extends Controller
         $area = $this->checkuserInfo();
         $hakAkses = Auth::user()->hakakses;
         $dateDB = date("Y-m-d");
-
-        $billNumbering = DB::table("tr_store")
+        $countReturnNumber = DB::table('tr_store')
             ->where([
-                ['store_id', $area],
-                ['status', '1'],
-                ['created_by', $username]
+                ['status','1'],
+                ['return_by',$username],
             ])
-            ->first();
+            ->count();
+        if ($countReturnNumber == '0') {
+            $billNumbering = DB::table("tr_store")
+                ->where([
+                    ['store_id', $area],
+                    ['status', '1'],
+                    ['created_by', $username]
+                ])
+                ->first();
+        }
+        else {
+            $billNumbering = DB::table("tr_store")
+                ->where([
+                    ['store_id', $area],
+                    ['status', '1'],
+                    ['return_by', $username]
+                ])
+                ->first();
+        }
 
         if (!empty($billNumbering)) {
             $nomorstruk = $billNumbering->billing_number;
@@ -659,15 +675,27 @@ class CashierController extends Controller
         $delivery = DB::table('m_delivery')
             ->where('status', '1')
             ->get();
-
-        $trPaymentInfo = DB::table('view_billing_action')
-            ->where([
-                ['status', 1],
-                ['billing_number', $billNumber],
-                ['created_by', $createdName]
-            ])
-            ->orderBy('tr_store_id', 'desc')
-            ->first();
+        
+        if ($$countRerun == '0') {
+            $trPaymentInfo = DB::table('view_billing_action')
+                ->where([
+                    ['status', 1],
+                    ['billing_number', $billNumber],
+                    ['created_by', $createdName]
+                ])
+                ->orderBy('tr_store_id', 'desc')
+                ->first();
+        }
+        else {
+            $trPaymentInfo = DB::table('view_billing_action')
+                ->where([
+                    ['status', 1],
+                    ['billing_number', $billNumber],
+                    ['return_by', $createdName]
+                ])
+                ->orderBy('tr_store_id', 'desc')
+                ->first();
+        }
 
         if (!empty($trPaymentInfo)) {
             $customerID = $trPaymentInfo->member_id;
