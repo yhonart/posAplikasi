@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="row p-1">
             <div class="col-md-12">
-                <form class="form" id="formTambahBiaya">
+                <form class="form" id="formTambahBiaya" autocomplete="off" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label class="label col-md-4">Tanggal</label>
                         <div class="col-md-4">
