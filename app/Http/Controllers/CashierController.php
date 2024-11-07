@@ -2168,7 +2168,10 @@ class CashierController extends Controller
         $description = "Penjualan " . $cusName;
         $inInv = '0';
         $forInputLap = DB::table('trans_product_list_view')
-            ->where('from_payment_code', $noBill)
+            ->where([
+                ['from_payment_code', $noBill],
+                ['status','!=','0']
+                ])
             ->get();
 
         foreach ($forInputLap as $fil) {
