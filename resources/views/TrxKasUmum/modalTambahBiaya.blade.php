@@ -68,7 +68,7 @@
 <script>
     $(document).ready(function(){
         $("#selKategori").change(function(){
-            let kategori = $(this).find(":selected").val(),
+            let kategori = $(this).find(":selected").val();
             $.ajax({
                 type : 'get',
                 url : "{{route('trxJualBeli')}}/selectKategori/" + kategori,
