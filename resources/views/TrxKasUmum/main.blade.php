@@ -14,7 +14,7 @@
 <!-- content -->
 <div class="content mt-0">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-12">
                 <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG btn-flat font-weight-bold" href="{{route('trxKasUmum')}}/tambahBiaya">Tambah Transaksi</button>
             </div>
@@ -24,7 +24,7 @@
                 <div class="card">
                     <div class="card-body">
                         <form id="formFilteringData">
-                            <div class="row">                                
+                            <div class="row mb-2">                                
                                 <div class="col-md-3">
                                     <label for="" class="label">Dari Tgl.</label>
                                     <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" name="fromDate" id="fromDate" autocomplete="off">
