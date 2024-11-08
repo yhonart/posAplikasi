@@ -23,3 +23,5 @@ Route::get('stockOpname/listInputBarang/editDocumentOpname/{idParam}', [App\Http
 Route::post('stockOpname/saveToEditTable', [App\Http\Controllers\StockopnameController::class, 'saveToEditTable']);
 
 Route::post('stockOpname/submitUpdateStockOpname', [App\Http\Controllers\StockopnameController::class, 'submitUpdateStockOpname']);
+
+Route::get('stockOpname/listTableOpname/{fromDate}/{endDate}', [App\Http\Controllers\StockopnameController::class, 'listTableOpname']);
