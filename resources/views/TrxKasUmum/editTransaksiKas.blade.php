@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <form class="form" id="formEditKas" autocomplete="off" enctype="multipart/form-data">
-                    <input type="hidden" name="idHidden" id="idHidden" value="{{$d->idtr_kas}}">
+                    <input type="hidden" name="idHidden" id="idHidden" value="{{$editData->idtr_kas}}">
                     <div class="form-group row">
                         <label class="label col-md-4">Tanggal</label>
                         <div class="col-md-4">
@@ -61,7 +61,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Lampiran</label>
                         <div class="col-md-3">
-                            <a href="#" id="deleteLamp" class="btn btn-default border-0" data-id="{{$d->idtr_kas}}"><i class="fa-solid fa-trash-can"></i></a>
+                            <a href="#" id="deleteLamp" class="btn btn-default border-0" data-id="{{$editData->idtr_kas}}"><i class="fa-solid fa-trash-can"></i></a>
                             <a href="{{asset('public/images/Upload/TrxKas')}}/{{$editData->file_name}}" target="_blank" rel="noopener noreferrer">{{$editData->file_name}}</a>
                         </div>
                         <div class="col-md-4">
