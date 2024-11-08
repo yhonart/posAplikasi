@@ -24,10 +24,7 @@
         </div>
     </div>
 
-    <div class="card card-outline card-info table-responsive p-1">
-        <div class="card-header border-0">
-            <h3 class="card-title font-weight-bold">List Dokumen Koreksi</h3>
-        </div>
+    <div class="card card-outline card-info table-responsive p-1">        
         <div class="card-body">  
             <div class="row mt-1 mb-2">
                 <div class="col-md-3">
@@ -39,9 +36,10 @@
                     <input type="text" class="form-control form-control-sm datetimepicker-input " name="endDate" id="endDate" autocomplete="off">
                 </div>
                 <div class="col-md-3">
-                    <button type="button" class="btn btn-sm btn-info">Download Excel</button>
+                    <button type="button" class="btn btn-sm btn-success">Download Excel</button>
                 </div>
-            </div>   
+            </div> 
+            <hr>             
             <div class="row">
                 <div class="col-md-12">
                     <div id="divTableKoreksi"></div>
