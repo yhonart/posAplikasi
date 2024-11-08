@@ -100,7 +100,8 @@ $(document).ready(function(){
             dataType: 'html',
             success:function(response){
                 $(".LOAD-SPINNER").fadeOut();
-                $("#displayOnDiv").html(response);
+                $("#displayListTableKoreksi").fadeOut("slow");
+                $("#detailKoreksi").html(response);
             }
         });
     });
