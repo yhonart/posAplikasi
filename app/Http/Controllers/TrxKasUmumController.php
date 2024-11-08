@@ -94,7 +94,7 @@ class TrxKasUmumController extends Controller
         $displayByDate = DB::table('tr_kas as a');
             $displayByDate = $displayByDate->select('a.*','b.cat_name','c.subcat_name');
             $displayByDate = $displayByDate->leftJoin('m_category_kas as b','b.idm_cat_kas','=','a.kas_catId');
-            $displayByDate = $displayByDate->leftJoin('m_subcategory_kas as c','c.idm_sub ','=','a.kas_subCatId');
+            $displayByDate = $displayByDate->leftJoin('m_subcategory_kas as c','c.idm_sub','=','a.kas_subCatId');
             $displayByDate = $displayByDate->where([
                 ['a.status','1']
             ]);
