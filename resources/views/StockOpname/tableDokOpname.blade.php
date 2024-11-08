@@ -88,18 +88,21 @@
         $(".dataTable").on('click','.btnApprove', function () {
             var element = $(this);
             var  idparam = element.attr("data-opname");
-            $.ajax({
-                type:'get',
-                url:"{{route('stockOpname')}}/listDataOpname/approvalOpname/"+idparam,
-                dataType: 'html',
-                success:function(response){
-                    alertify
-                      .alert("Apakah Anda Yakin Ingin Melakukan Approval "+idparam+" ?", function(){
-                        alertify.message(idparam+' Approved');
+            alertify.confirm("Apakah anda yakin ?",
+            function(){
+                $.ajax({
+                    type:'get',
+                    url:"{{route('stockOpname')}}/listDataOpname/approvalOpname/"+idparam,
+                    dataType: 'html',
+                    success:function(response){                        
                         window.location.reload();
-                      }).set({title:"Approval"});
-                }
-            });
+                    }
+                });
+                alertify.success('Approved');
+            },
+            function(){
+                alertify.error('Cancel Approval');
+            }).set({title:"Approval"});
         });
         
         $(".dataTable").on('click','.btnEdit', function () {
