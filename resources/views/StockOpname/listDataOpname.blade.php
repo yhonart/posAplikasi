@@ -1,18 +1,3 @@
-<?php
-    $nosum = '1';
-    $araystatus = array(
-        1=>"On Process",
-        2=>"Submited",
-        3=>"Approved",
-        0=>"Deleted",
-    );
-    $textColor = array(
-        1=>"text-info",
-        2=>"text-warning",
-        3=>"text-success",
-        0=>"text-danger",
-    );
-?>
 <div class="row">
     <div class="col-12">
         <div id="detailOpname"></div>

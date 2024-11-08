@@ -13,6 +13,8 @@ class StockopnameController extends Controller
 {    
     protected $tempInv;
     protected $tempUser;
+    protected $TempInventoryController;
+    protected $TempUsersController;
     
     public function __construct(TempInventoryController $tempInv, TempUsersController $tempUser)
     {
@@ -741,7 +743,7 @@ class StockopnameController extends Controller
                 ['core_id_Product',$prdId],
                 ['size_code','2']
                 ])
-            ->first;
+            ->first();
             
         if(!empty($unitKecil)){
             $valKecil = $unitKecil->product_volume;
