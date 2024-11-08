@@ -44,7 +44,7 @@
             dateFormat: 'yy-mm-dd',
             autoclose: true,
             todayHighlight: true,
-            maxDate: minDate,
+            maxDate: date,
         });
         $('.datetimepicker-input').datepicker("setDate",new Date());
     });
