@@ -36,7 +36,9 @@
                                 <td>{{$d->description}}</td>
                                 <td>{{$d->kas_persName}}</td>
                                 <td>{{number_format($d->nominal,'0',',','.')}}</td>
-                                <td>{{$d->file_name}}</td>
+                                <td>
+                                    <a href="{{asset('public/images/Upload/TrxKas/')}}{{$d->file_name}}" target="_blank" rel="noopener noreferrer" title="{{$d->file_name}}">Lampiran</a>                                    
+                                </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-info EDIT-KAS" data-id="{{$d->idtr_kas}}"><i class="fa-solid fa-pencil"></i></button>
                                 </td>
