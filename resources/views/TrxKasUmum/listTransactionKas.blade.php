@@ -19,31 +19,31 @@
                             <th>#</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @foreach($displayByDate as $d)
+                            <tr>
+                                <td>
+                                    <?php
+                                        $dateTk = date("dmy", strtotime($d->kas_date));
+                                        $idTk = $d->idtr_kas;
+                                        $noTrx = "KAS" . $dateTk . "-" . sprintf("%07d", $idTk);
+                                    ?>
+                                    {{$noTrx}}
+                                </td>
+                                <td>{{date("d-M-Y", strtotime($d->kas_date));}}</td>
+                                <td>{{$d->cat_name}}</td>
+                                <td>{{$d->subcat_name}}</td>
+                                <td>{{$d->description}}</td>
+                                <td>{{$d->kas_persName}}</td>
+                                <td>{{number_format($d->nominal,'0',',','.')}}</td>
+                                <td>{{$d->file_name}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-info"><i class="fa-solid fa-pencil"></i></button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
-                <tbody>
-                    @foreach($displayByDate as $d)
-                        <tr>
-                            <td>
-                                <?php
-                                    $dateTk = date("dmy", strtotime($d->kas_date));
-                                    $idTk = $d->idtr_kas;
-                                    $noTrx = "KAS" . $dateTk . "-" . sprintf("%07d", $idTk);
-                                ?>
-                                {{$noTrx}}
-                            </td>
-                            <td>{{date("d-M-Y", strtotime($d->kas_date));}}</td>
-                            <td>{{$d->cat_name}}</td>
-                            <td>{{$d->subcat_name}}</td>
-                            <td>{{$d->description}}</td>
-                            <td>{{$d->kas_persName}}</td>
-                            <td>{{number_format($d->nominal,'0',',','.')}}</td>
-                            <td>{{$d->file_name}}</td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-info"><i class="fa-solid fa-pencil"></i></button>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
             </div>
         </div>
     </div>
