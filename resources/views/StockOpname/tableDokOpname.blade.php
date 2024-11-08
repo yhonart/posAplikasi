@@ -88,7 +88,7 @@
         $(".dataTable").on('click','.btnApprove', function () {
             var element = $(this);
             var  idparam = element.attr("data-opname");
-            alertify.confirm("Apakah anda yakin ?",
+            alertify.confirm("Apakah anda yakin ingin menyetujui dokumen "+idparam+" ?",
             function(){
                 $.ajax({
                     type:'get',
@@ -135,7 +135,7 @@
               },
               function(){
                 alertify.error('Cancel');
-              }).set({title:"Delete Data"});
+              }).set({title:"Delete Transaksi Opname"});
         });
     });
 </script>
