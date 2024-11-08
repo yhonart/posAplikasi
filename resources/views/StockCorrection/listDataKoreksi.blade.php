@@ -28,7 +28,28 @@
         <div class="card-header border-0">
             <h3 class="card-title font-weight-bold">List Dokumen Koreksi</h3>
         </div>
-        <div class="card-body">            
+        <div class="card-body">  
+            <div class="row mt-1 mb-2">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <label for="" class="label">Dari Tgl.</label>
+                        <input type="text" class="form-control form-control-sm datetimepicker-input " name="fromDate" id="fromDate" autocomplete="off">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="" class="label">Sd. Tgl.</label>
+                        <input type="text" class="form-control form-control-sm datetimepicker-input " name="endDate" id="endDate" autocomplete="off">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-sm btn-info">Download Excel</button>
+                    </div>
+                </div>
+            </div>   
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="divTableKoreksi"></div>
+                </div>
+            </div>     
+
             <table class="table table-sm table-valign-middle table-hover" id="tableDataKoreksi">
                 <thead>
                     <tr>
@@ -86,6 +107,13 @@
           "autoWidth": false,
           "responsive": true,
         });
+
+        $( ".datetimepicker-input" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('.datetimepicker-input').datepicker("setDate",new Date());
     });
 
     $(document).ready(function(){
