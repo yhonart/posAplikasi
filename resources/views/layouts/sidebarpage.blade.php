@@ -174,7 +174,7 @@
             </ul>
         </nav>
         
-        <aside class="main-sidebar sidebar-light-purple elevation-2">
+        <aside class="main-sidebar sidebar-light-purple elevation-1">
             <!-- Brand Logo -->
             <a href="{{route('home')}}" class="brand-link"> 
             <img src="{{asset('public/images/favicon_dazira/favicon-32x32.png')}}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">     
@@ -197,7 +197,7 @@
             </div>
         </aside>
         <div class="content-wrapper">            
-            <div class="row bg-info text-center p-2" id="displayNotif" style="display: none;">
+            <div class="row bg-light text-center p-2" id="displayNotif" style="display: none;">
                 <div class="col-md-12">
                     <div class="spinner-grow spinner-grow-sm text-warning" role="status">
                         <span class="sr-only">Loading...</span>
