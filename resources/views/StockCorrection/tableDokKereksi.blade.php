@@ -13,7 +13,7 @@
         0=>"text-danger",
     );
 ?>
-<table class="table table-sm table-valign-middle table-hover" id="tableDataKoreksi">
+<table class="table table-sm table-valign-middle table-hover">
     <thead>
         <tr>
             <th>Nomor</th>
@@ -100,8 +100,7 @@ $(document).ready(function(){
             dataType: 'html',
             success:function(response){
                 $(".LOAD-SPINNER").fadeOut();
-                $("#tableDataKoreksi").hide();
-                $("#detailKoreksi").html(response);
+                $("#displayOnDiv").html(response);
             }
         });
     });
