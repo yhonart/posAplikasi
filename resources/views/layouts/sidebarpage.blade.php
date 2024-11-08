@@ -80,7 +80,7 @@
         #marquee{padding:10px 0;width:100%;overflow:hidden;color: #333;font-size: 14px;font-weight: 500;}    
         .form-control:focus {  
             border-color: #6d28d9; /* changes border color to red */  
-            box-shadow: inset 0 1px 0 rgba(255, 0, 0, 0.25); /* optional: adjust shadow for focus state */  
+            box-shadow: inset 0 2px 0 rgba(255, 0, 0, 0.25); /* optional: adjust shadow for focus state */  
         }    
 
     </style>
