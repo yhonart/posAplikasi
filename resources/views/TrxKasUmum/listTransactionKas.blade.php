@@ -68,7 +68,13 @@
         $(".dataTable").on('click','.EDIT-KAS', function () {
             let el = $(this);
             let id = el.attr("data-id");
-            el_modal_all.modal('show').find(id_modal_content).load("{{route('trxKasUmum')}}/modalEditKas/"+id);
+            $.ajax({
+                type : 'get',
+                url : "{{route('trxKasUmum')}}/modalEditKas/"+id,
+                success : function(response){
+                    $("#actionDisplay").html(response);
+                }
+            });
         })
     })
 </script>
