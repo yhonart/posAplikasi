@@ -50,7 +50,7 @@ class TrxKasUmumController extends Controller
         $description = $reqAddPembiayaan->keterangan;
         $kasPersonal = $reqAddPembiayaan->personal;
         $kasNominal = $reqAddPembiayaan->nominal;
-        $mFile = str_replace(" ","_",$reqAddPembiayaan->docLampiran);
+        $mFile = $reqAddPembiayaan->docLampiran;
 
         $splitPers = explode("|",$kasPersonal);
         $persCode = $splitPers[0];
@@ -59,10 +59,9 @@ class TrxKasUmumController extends Controller
         $creatorName = Auth::user()->name;
 
         if ($mFile <> "") {
-            // $TypeDoc = $mFile->getClientOriginalExtension();
-            $TypeDoc = "";
+            $TypeDoc = $mFile->getClientOriginalExtension();
             $NameDoc = $mFile->getClientOriginalName();
-            $DirPublic = public_path()."/images/Upload/TrxKas/";            
+            $DirPublic = public_path()."/images/Upload/TrxKas/";
             $mFile->move($DirPublic, $NameDoc);
         }
         else {
