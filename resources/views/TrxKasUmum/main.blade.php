@@ -58,7 +58,7 @@
             autoclose: true,
             todayHighlight: true,
         });
-
+        $('.datetimepicker-input').datepicker("setDate",new Date());
     });
 
     $(document).ready(function() {

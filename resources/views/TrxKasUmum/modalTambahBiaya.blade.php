@@ -79,6 +79,7 @@
             autoclose: true,
             todayHighlight: true,
         });
+        $('.modalDate-input').datepicker("setDate",new Date());
 
         $('.select-2').select2({
             theme: 'bootstrap4',
