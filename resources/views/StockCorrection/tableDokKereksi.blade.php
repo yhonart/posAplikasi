@@ -25,27 +25,45 @@
         </tr>
     </thead>
     <tbody>
+        @if(!empty($listOnProces))
+            @foreach($listOnProces as $lp)
+                <tr>
+                    <td>{{$lp->number}}</td>
+                    <td>{{$lp->dateInput}}</td>
+                    <td>{{$lp->notes}}</td>
+                    <td>{{$lp->created_by}}</td>
+                    <td class="text-right">
+                        <span class="bg-light border border-1 border-info pl-2 pr-2 pt-1 pb-1 rounded-pill font-weight-bold text-xs">{{$araystatus[$lp->status]}}</span>
+                    </td>
+                    <td class="text-right">
+                        @if($lp->status <> '0' AND $lp->status <> '1')
+                            <button type="button" class="btn btn-sm btn-primary btnDetail " id="btnDetail" title="View Detail" data-koreksi="{{$lp->number}}"><i class="fa-solid fa-magnifying-glass"></i> Detail</button>
+                            @if($approval >= '1' AND $lp->status == '2')
+                                <button type="button" class="btn btn-sm btn-success btnApprove " title="Approve" data-koreksi="{{$lp->number}}"><i class="fa-solid fa-check"></i>Approve</button>
+                            @endif
+                            @if($approval >= '1' AND $lp->status >= '2')
+                                <!--<a class="btn btn-sm btn-info" id="btnEdit" title="Edit"><i class="fa-solid fa-pencil"></i> Edit</a>-->
+                            @endif
+                            @if($approval >= '1' AND $lp->status <= '2')
+                                <button type="button" class="btn btn-sm btn-danger btnDelete " title="Delete" data-koreksi="{{$lp->number}}"><i class="fa-solid fa-trash"></i> Delete</button>
+                            @endif
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        @endif
         @foreach($lisDatKoreksi as $ldk)
             <tr>
                 <td>{{$ldk->number}}</td>
                 <td>{{$ldk->dateInput}}</td>
                 <td>{{$ldk->notes}}</td>
                 <td>{{$ldk->created_by}}</td>
-                <td>
+                <td class="text-right">
                     <span class="bg-light border border-1 border-info pl-2 pr-2 pt-1 pb-1 rounded-pill font-weight-bold text-xs">{{$araystatus[$ldk->status]}}</span>
                 </td>
                 <td class="text-right">
                     @if($ldk->status <> '0' AND $ldk->status <> '1')
-                        <button type="button" class="btn btn-sm btn-primary btnDetail " id="btnDetail" title="View Detail" data-koreksi="{{$ldk->number}}"><i class="fa-solid fa-magnifying-glass"></i> Detail</button>
-                        @if($approval >= '1' AND $ldk->status == '2')
-                            <button type="button" class="btn btn-sm btn-success btnApprove " title="Approve" data-koreksi="{{$ldk->number}}"><i class="fa-solid fa-check"></i>Approve</button>
-                        @endif
-                        @if($approval >= '1' AND $ldk->status >= '2')
-                            <!--<a class="btn btn-sm btn-info" id="btnEdit" title="Edit"><i class="fa-solid fa-pencil"></i> Edit</a>-->
-                        @endif
-                        @if($approval >= '1' AND $ldk->status <= '2')
-                            <button type="button" class="btn btn-sm btn-danger btnDelete " title="Delete" data-koreksi="{{$ldk->number}}"><i class="fa-solid fa-trash"></i> Delete</button>
-                        @endif
+                        <button type="button" class="btn btn-sm btn-primary btnDetail " id="btnDetail" title="View Detail" data-koreksi="{{$ldk->number}}"><i class="fa-solid fa-magnifying-glass"></i> Detail</button>                        
                     @endif
                 </td>
             </tr>
