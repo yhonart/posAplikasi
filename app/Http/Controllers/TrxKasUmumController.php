@@ -107,6 +107,25 @@ class TrxKasUmumController extends Controller
 
     public function modalEditKas($id)
     {
-        echo $id;
+        $editData = DB::table('tr_kas as a')
+            ->select('a.*','b.cat_name','c.subcat_name')
+            ->leftJoin('m_category_kas as b','b.idm_cat_kas','=','a.kas_catId')
+            ->leftJoin('m_subcategory_kas as c','c.idm_sub','=','a.kas_subCatId')
+            ->where('a.idtr_kas',$id)
+            ->first();
+
+        $kasKategori = DB::table('m_category_kas')
+            ->where('status','1')
+            ->orderBy('cat_name','asc')
+            ->get();
+
+        $mStaff = DB::table('m_sales')
+            ->where('sales_status','1')
+            ->get();
+        
+        $mAdmin = DB::table('users')
+            ->get();
+
+        return view('TrxKasUmum/editTransaksiKas', compact('editData','kasKategori','mAdmin','mStaff'));
     }
 }
