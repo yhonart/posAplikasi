@@ -58,7 +58,7 @@
                 },
                 function(){
                     alertify.error('Cancel');
-                }).set('frameless', true);
+                });
         });
         
     });
