@@ -62,8 +62,8 @@
     });
 
     $(document).ready(function() {
-        let fromDate = "0",
-            endDate = "0";
+        let fromDate = $('#fromDate').val(),
+            endDate = $('#endDate').val();
 
         searchData(fromDate, endDate);
 
