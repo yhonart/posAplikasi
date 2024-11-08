@@ -1,18 +1,3 @@
-<?php
-    $nosum = '1';
-    $araystatus = array(
-        1=>"On Process",
-        2=>"Submited",
-        3=>"Approved",
-        0=>"Deleted",
-    );
-    $textColor = array(
-        1=>"text-info",
-        2=>"text-warning",
-        3=>"text-success",
-        0=>"text-danger",
-    );
-?>
 <div id="table_my_events">
     <div class="text-center LOAD-SPINNER text-sm" style="display:none;">    
         <span class="spinner-grow spinner-grow-sm" role="status"></span> Please Wait !
