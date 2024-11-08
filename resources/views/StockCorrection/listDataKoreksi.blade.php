@@ -30,18 +30,16 @@
         </div>
         <div class="card-body">  
             <div class="row mt-1 mb-2">
-                <div class="col-md-12">
-                    <div class="col-md-3">
-                        <label for="" class="label">Dari Tgl.</label>
-                        <input type="text" class="form-control form-control-sm datetimepicker-input " name="fromDate" id="fromDate" autocomplete="off">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="" class="label">Sd. Tgl.</label>
-                        <input type="text" class="form-control form-control-sm datetimepicker-input " name="endDate" id="endDate" autocomplete="off">
-                    </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-sm btn-info">Download Excel</button>
-                    </div>
+                <div class="col-md-3">
+                    <label for="" class="label">Dari Tgl.</label>
+                    <input type="text" class="form-control form-control-sm datetimepicker-input " name="fromDate" id="fromDate" autocomplete="off">
+                </div>
+                <div class="col-md-3">
+                    <label for="" class="label">Sd. Tgl.</label>
+                    <input type="text" class="form-control form-control-sm datetimepicker-input " name="endDate" id="endDate" autocomplete="off">
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-sm btn-info">Download Excel</button>
                 </div>
             </div>   
             <div class="row">
