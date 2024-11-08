@@ -17,7 +17,7 @@
                         <label class="label col-md-4">Kategori</label>
                         <div class="col-md-4">
                             <select name="selKategori" id="selKategori" class="form-control form-control-sm  select-2">
-                                <option value="{{$editData->catId}}">{{$editData->cat_name}}</option>
+                                <option value="{{$editData->kas_catId}}">{{$editData->cat_name}}</option>
                                 @foreach($kasKategori as $kk)
                                     <option value="{{$kk->idm_cat_kas}}">{{$kk->cat_name}}</option>
                                 @endforeach
