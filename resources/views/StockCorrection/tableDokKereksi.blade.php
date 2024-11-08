@@ -20,6 +20,7 @@
             <th>Tanggal</th>
             <th>Keterangan</th>
             <th>Created By</th>
+            <th>Status</th>
             <th></th>
         </tr>
     </thead>
@@ -30,6 +31,9 @@
                 <td>{{$ldk->dateInput}}</td>
                 <td>{{$ldk->notes}}</td>
                 <td>{{$ldk->created_by}}</td>
+                <td>
+                    <span class="bg-light border border-1 border-info pl-2 pr-2 pt-1 pb-1 rounded-pill font-weight-bold text-xs">{{$araystatus[$ldk->status]}}</span>
+                </td>
                 <td class="text-right">
                     @if($ldk->status <> '0' AND $ldk->status <> '1')
                         <button type="button" class="btn btn-sm btn-primary btnDetail " id="btnDetail" title="View Detail" data-koreksi="{{$ldk->number}}"><i class="fa-solid fa-magnifying-glass"></i> Detail</button>
@@ -43,9 +47,6 @@
                             <button type="button" class="btn btn-sm btn-danger btnDelete " title="Delete" data-koreksi="{{$ldk->number}}"><i class="fa-solid fa-trash"></i> Delete</button>
                         @endif
                     @endif
-                    <span class="float-right {{$textColor[$ldk->status]}} font-weight-bold pl-3">
-                        {{$araystatus[$ldk->status]}}
-                    </span>
                 </td>
             </tr>
         @endforeach
