@@ -8,11 +8,11 @@
             <div class="form-group row">
                 <label class="col-md-4">Metode Pembayaran</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm rounded-0" name="mPembayaran" id="mPembayaran" value="{{$dbMstrMethod->method_name}}">
+                    <input type="text" class="form-control form-control-sm " name="mPembayaran" id="mPembayaran" value="{{$dbMstrMethod->method_name}}">
                 </div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-sm btn-flat btn-success form-weight-bold">Simpan</button>
+                <button type="submit" class="btn btn-sm  btn-success form-weight-bold">Simpan</button>
             </div>
         </form>
     </div>

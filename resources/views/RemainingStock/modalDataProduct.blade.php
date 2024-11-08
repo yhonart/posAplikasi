@@ -30,7 +30,7 @@
                             <td>{{$vs->product_satuan}}</td>
                             <td>{{$vs->product_volume}}</td>
                             <td class="p-0">
-                                <input type="text" name="stockBarang" id="stockBarang" class="form-control form-control-sm rounded-0" value="{{$vs->stock}}" onchange="saveMasterBarang(this,'inv_stock','stock','{{$vs->idinv_stock}}','idinv_stock')">
+                                <input type="text" name="stockBarang" id="stockBarang" class="form-control form-control-sm " value="{{$vs->stock}}" onchange="saveMasterBarang(this,'inv_stock','stock','{{$vs->idinv_stock}}','idinv_stock')">
                             </td>
                             <td>{{$vs->stock_unit}}</td>
                             <td class="text-right">{{number_format($vs->product_price_order,'0',',','.')}}</td>

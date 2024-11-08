@@ -116,7 +116,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-success btn-sm btn-block font-weight-bold elevation-2 rounded-0" id="submitPenerimaan">Update Dokumen</button>
+                                    <button type="submit" class="btn btn-success btn-sm btn-block font-weight-bold elevation-2 " id="submitPenerimaan">Update Dokumen</button>
                                 </div>
                             </div>
                         </div>

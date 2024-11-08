@@ -17,7 +17,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-success mb-2 mt-1 btn-flat" data-toggle="collapse" href="#collapseSatuan" role="button" aria-expanded="false" aria-controls="collapseSatuan">
+                        <a class="btn btn-success mb-2 mt-1 " data-toggle="collapse" href="#collapseSatuan" role="button" aria-expanded="false" aria-controls="collapseSatuan">
                             <i class="fa-solid fa-filter"></i> Filtering
                         </a>
                         <div class="collapse" id="collapseSatuan">
@@ -27,13 +27,13 @@
                                         <div class="form-group row">
                                             <label class="label col-6 col-md-2">Start Tanggal</label>
                                             <div class="col-6 col-md-4">
-                                                <input type="text" name="filterTanggal" id="filterTanggal" class="form-control form-control-sm rounded-0">
+                                                <input type="text" name="filterTanggal" id="filterTanggal" class="form-control form-control-sm ">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="label col-6 col-md-2">Lokasi</label>
                                             <div class="col-6 col-md-4">
-                                                <select class="form-control form-control-sm rounded-0" name="pilihLokasi" id="pilihLokasi">
+                                                <select class="form-control form-control-sm " name="pilihLokasi" id="pilihLokasi">
                                                     <option value="0">Semua Lokasi</option>
                                                     @foreach($listofSite as $ls)
                                                     <option value="{{$ls->idm_site}}">{{$ls->site_name}}</option>
@@ -80,10 +80,10 @@
                                         
                                         <div class="form-group row">
                                             <div class="col-md-3">
-                                                <button type="submit" class="btn btn-success font-weight-bold btn-block elevation-1 btn-flat"><i class="fa-solid fa-magnifying-glass"></i> Cari</button>
+                                                <button type="submit" class="btn btn-success font-weight-bold btn-block elevation-1 "><i class="fa-solid fa-magnifying-glass"></i> Cari</button>
                                             </div>
                                             <div class="col-md-3">
-                                                <a class="btn btn-primary font-weight-bold btn-block elevation-1 btn-flat" href="#" id="reloadData"><i class="fa-solid fa-rotate-right"></i> Reload Data</a>
+                                                <a class="btn btn-primary font-weight-bold btn-block elevation-1 " href="#" id="reloadData"><i class="fa-solid fa-rotate-right"></i> Reload Data</a>
                                             </div>
                                             <!--<div class="col-md-3">-->
                                             <!--    <a class="btn btn-primary font-weight-bold btn-block elevation-1" href="#"><i class="fa-solid fa-file-excel"></i> Cetak Kartu Stock Excel</a>-->
@@ -118,7 +118,7 @@
                                     <input type="text" name="keyword" id="keyword" class="form-control form-control-sm" placeholder="Cari Nama Produk">
                                 </div>
                                 <div class="col-6 col-md-3">
-                                    <button class="btn btn-success btn-flat btn-sm" style="position:absolute; left:0%; bottom:0%" id="btnDownloadExcel"><i class="fa-solid fa-file-excel"></i> Download Excel</button>
+                                    <button class="btn btn-success  btn-sm" style="position:absolute; left:0%; bottom:0%" id="btnDownloadExcel"><i class="fa-solid fa-file-excel"></i> Download Excel</button>
                                 </div>
                             </div>
                         </div>

@@ -24,7 +24,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <select class="form-control form-control-sm rounded-0" name="changeLoc" id="changeLoc">
+                        <select class="form-control form-control-sm " name="changeLoc" id="changeLoc">
                             <option value="{{$dbUserArea->idm_site}}" readonly>{{$dbUserArea->site_name}}</option>
                             <option disabled>---</option>
                             @foreach($mSite as $ms)
@@ -35,7 +35,7 @@
                         </select>
                     </td>
                     <td>
-                        <select class="form-control form-control-sm rounded-0" name="changeRole" id="changeRole">
+                        <select class="form-control form-control-sm " name="changeRole" id="changeRole">
                             <option value="{{$dbUserAuth->hakakses}}" readonly>{{$arrayRole[$dbUserAuth->hakakses]}}</option>
                             @foreach($mGroup as $mg)
                                 @if($mg->group_code <> $dbUserAuth->hakakses)
@@ -46,7 +46,7 @@
                     </td>
                     <td>
                         @if($dbUserAuth->hakakses == '1')
-                            <select class="form-control form-control-sm rounded-0" name="changeLevel" id="changeLevel">
+                            <select class="form-control form-control-sm " name="changeLevel" id="changeLevel">
                                 <option value="{{$dbUserRole->role_code}}" readonly>{{$arrayLevel[$dbUserRole->role_code]}}</option>
                                 @foreach($mGAdmin as $mga)
                                     @if($mga->group_code <> $dbUserRole->role_code)
@@ -60,8 +60,8 @@
                         @endif
                     </td>
                     <td class="text-right">
-                        <button class="btn btn-sm btn-success btn-simpan btn-flat" data-id="{{$id}}">Simpan</button>    
-                        <button class="btn btn-sm btn-danger btn-delete btn-flat" data-id="{{$id}}">Delete</button>
+                        <button class="btn btn-sm btn-success btn-simpan " data-id="{{$id}}">Simpan</button>    
+                        <button class="btn btn-sm btn-danger btn-delete " data-id="{{$id}}">Delete</button>
                     </td>
                 </tr>
             </tbody>

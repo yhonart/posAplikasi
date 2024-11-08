@@ -43,25 +43,25 @@
                         </select>
                     </td>
                     <td class="p-0">
-                        <select name="satuan" id="satuan" class="form-control form-control-sm rounded-0">
+                        <select name="satuan" id="satuan" class="form-control form-control-sm ">
                             <option value="0">---</option>
                         </select>
                     </td>
                     
                     <td class="p-0">
-                        <input type="number" class="form-control form-control-sm rounded-0" name="inputQty" id="inputQty" placeholder="Qty" autocomplete="off">
+                        <input type="number" class="form-control form-control-sm " name="inputQty" id="inputQty" placeholder="Qty" autocomplete="off">
                     </td>
                     <td class="p-0">
-                        <input type="text" class="form-control form-control-sm rounded-0" name="inputHrgSatuan" id="inputHrgSatuan" placeholder="Harga Satuan"autocomplete="off">
+                        <input type="text" class="form-control form-control-sm " name="inputHrgSatuan" id="inputHrgSatuan" placeholder="Harga Satuan"autocomplete="off">
                     </td>
                     <td class="p-0">
-                        <input type="text" class="form-control form-control-sm rounded-0" name="inputDiscount" id="inputDiscount" placeholder="Discount" autocomplete="off">
+                        <input type="text" class="form-control form-control-sm " name="inputDiscount" id="inputDiscount" placeholder="Discount" autocomplete="off">
                     </td>
                     <td class="p-0">
-                        <input type="text" class="form-control form-control-sm rounded-0" name="inputJumlah" id="inputJumlah" placeholder="Jumlah" autocomplete="off" readonly>
+                        <input type="text" class="form-control form-control-sm " name="inputJumlah" id="inputJumlah" placeholder="Jumlah" autocomplete="off" readonly>
                     </td>
                     <td class="p-0">
-                        <select name="selectGudang" id="selectGudang" class="form-control form-control-sm rounded-0">
+                        <select name="selectGudang" id="selectGudang" class="form-control form-control-sm ">
                             <option value="0">---</option>
                             @foreach($warehouse as $wh)
                                 <option value="{{$wh->idm_site}}">{{$wh->site_name}}</option>
@@ -69,13 +69,13 @@
                         </select>
                     </td>
                     <td class="p-0">
-                        <input type="number" class="form-control form-control-sm rounded-0" name="stockAwal" id="stockAwal" readonly>
+                        <input type="number" class="form-control form-control-sm " name="stockAwal" id="stockAwal" readonly>
                     </td>
                     <td class="p-0">
-                        <input type="number" class="form-control form-control-sm rounded-0" name="stockAkhir" id="stockAkhir" placeholder="Stok Akhir" readonly>
+                        <input type="number" class="form-control form-control-sm " name="stockAkhir" id="stockAkhir" placeholder="Stok Akhir" readonly>
                     </td>
                     <td class="p-0">
-                        <button class="btn border-0 elevation-0 btn-default btn-flat" id="btnSubmit"><i class="fa-solid fa-check"></i></button>
+                        <button class="btn border-0 elevation-0 btn-default " id="btnSubmit"><i class="fa-solid fa-check"></i></button>
                     </td>
                 </tbody>
                 @endif

@@ -49,9 +49,9 @@
                         </td>
                         <td class="text-right">
                             @if($dtr->status == 4)
-                            <button type="button" class="btn btn-sm btn-info btn-flat BTN-EDIT" data-id="{{$dtr->tr_store_id}}"><i class="fa-solid fa-pencil"></i></button>
+                            <button type="button" class="btn btn-sm btn-info  BTN-EDIT" data-id="{{$dtr->tr_store_id}}"><i class="fa-solid fa-pencil"></i></button>
                             @else
-                            <button type="button" class="btn btn-sm btn-warning btn-flat BTN-DETAIL"><i class="fa-solid fa-eye"></i></button>
+                            <button type="button" class="btn btn-sm btn-warning  BTN-DETAIL"><i class="fa-solid fa-eye"></i></button>
                             @endif
                         </td>
                     </tr>

@@ -50,13 +50,13 @@ $statusDokumen = array(
                                 </td>
                                 <td class="text-right">
                                     @if($ltp->status =='2' AND $approval >= '1')
-                                    <button class="btn btn-success btn-sm btn-flat font-weight-bold BTN-APPROVE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Setujui</button>
-                                    <button class="btn btn-danger btn-sm btn-flat font-weight-bold BTN-DELETE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Hapus</button>
+                                    <button class="btn btn-success btn-sm  font-weight-bold BTN-APPROVE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Setujui</button>
+                                    <button class="btn btn-danger btn-sm  font-weight-bold BTN-DELETE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Hapus</button>
                                     @endif
                                     @if($ltp->status =='2')
-                                        <button class="btn btn-info btn-sm btn-flat font-weight-bold BTN-EDIT" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-pencil"></i> Edit</button>
+                                        <button class="btn btn-info btn-sm  font-weight-bold BTN-EDIT" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-pencil"></i> Edit</button>
                                     @endif
-                                    <button class="btn btn-primary font-weight-bold btn-sm btn-flat BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}"><i class="fa-solid fa-binoculars" ></i> Detail</button>
+                                    <button class="btn btn-primary font-weight-bold btn-sm  BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}"><i class="fa-solid fa-binoculars" ></i> Detail</button>
                                 </td>
                             </tr>
                         @endforeach

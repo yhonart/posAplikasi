@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <button type="submit" class="btn btn-success btn-sm elevation-1 btn-flat"><i class="fa-solid fa-check"></i> Simpan</button>
+                    <button type="submit" class="btn btn-success btn-sm elevation-1 "><i class="fa-solid fa-check"></i> Simpan</button>
                 </div>
             </form>
         </div>        

@@ -9,13 +9,13 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Tanggal</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control form-control-sm rounded-0 modalDate-input" name="tanggal" id="tanggal">
+                            <input type="text" class="form-control form-control-sm  modalDate-input" name="tanggal" id="tanggal">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="label col-md-4">Kategori</label>
                         <div class="col-md-4">
-                            <select name="selKategori" id="selKategori" class="form-control form-control-sm rounded-0 select-2">
+                            <select name="selKategori" id="selKategori" class="form-control form-control-sm  select-2">
                                 <option value="0">===</option>
                                 @foreach($kasKategori as $kk)
                                     <option value="{{$kk->idm_cat_kas}}">{{$kk->cat_name}}</option>
@@ -26,7 +26,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Sub-Kategori</label>
                         <div class="col-md-4">
-                            <select name="subKategori" id="subKategori" class="form-control form-control-sm rounded-0 select-2">
+                            <select name="subKategori" id="subKategori" class="form-control form-control-sm  select-2">
                                 <option value="0">===</option>
                             </select>
                         </div>
@@ -34,13 +34,13 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Keterangan</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control form-control-sm rounded-0" name="keterangan" id="keterangan">
+                            <input type="text" class="form-control form-control-sm " name="keterangan" id="keterangan">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="label col-md-4">Personal</label>
                         <div class="col-md-4">
-                            <select name="personal" id="personal" class="form-control form-control-sm rounded-0 select-2">
+                            <select name="personal" id="personal" class="form-control form-control-sm  select-2">
                                 <option value="0"></option>
                                 @foreach($mStaff as $ms)
                                 <option value="{{$ms->sales_code}}|{{$ms->sales_name}}">{{$ms->sales_name}} (Sales)</option>
@@ -54,7 +54,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">nominal</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control form-control-sm rounded-0" name="nominal" id="nominal">
+                            <input type="text" class="form-control form-control-sm " name="nominal" id="nominal">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -64,8 +64,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-success btn-flat btn-sm font-weight-bold" id="btnSimpan">Simpan</button>
-                        <button class="btn btn-warning btn-flat btn-sm font-weight-bold" id="btnClose">Batal</button>
+                        <button class="btn btn-success  btn-sm font-weight-bold" id="btnSimpan">Simpan</button>
+                        <button class="btn btn-warning  btn-sm font-weight-bold" id="btnClose">Batal</button>
                     </div>
                 </form>
             </div>

@@ -67,9 +67,9 @@
     <div class="col-12 col-md-6">
         <div class="row">
             <div class="col-12">
-                <button class="btn bg-indigo m-1 elevation-1 btn-flat" id="btnLap1"><i class="fa-solid fa-file-pdf"></i> Laporan Kasir</button>
-                <button class="btn bg-indigo m-1 elevation-1 btn-flat" id="btnLap2"><i class="fa-solid fa-file-pdf"></i> Ringkasan Laporan Kasir</button>
-                <button class="btn bg-success m-1 elevation-1 btn-flat" id="btnLapxls"><i class="fa-solid fa-file-excel"></i> Laporan Harian excel</button>
+                <button class="btn bg-indigo m-1 elevation-1 " id="btnLap1"><i class="fa-solid fa-file-pdf"></i> Laporan Kasir</button>
+                <button class="btn bg-indigo m-1 elevation-1 " id="btnLap2"><i class="fa-solid fa-file-pdf"></i> Ringkasan Laporan Kasir</button>
+                <button class="btn bg-success m-1 elevation-1 " id="btnLapxls"><i class="fa-solid fa-file-excel"></i> Laporan Harian excel</button>
             </div>
             <div class="col-12">
                 <div class="card bg-info">

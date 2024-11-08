@@ -7,7 +7,7 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">NO. Transaksi</label>
-                            <input type="text" name="noTrx" id="noTrx" class="form-control form-control-sm rounded-0" value="{{$nomor}}" readonly>
+                            <input type="text" name="noTrx" id="noTrx" class="form-control form-control-sm " value="{{$nomor}}" readonly>
                         </div>
                     </div>
                     
@@ -29,7 +29,7 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Tgl. Pengiriman</label>
-                            <input type="text" name="dateDelivery" id="dateDelivery" class="form-control form-control-sm datetimepicker-input rounded-0">
+                            <input type="text" name="dateDelivery" id="dateDelivery" class="form-control form-control-sm datetimepicker-input ">
                         </div>
                     </div>
                     
@@ -50,7 +50,7 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Tempo [Hari]</label>
-                            <input type="text" name="dayKredit" id="dayKredit" class="form-control form-control-sm rounded-0" placeholder="Abaikan Jika Menggunakan Tunai/Transfer">
+                            <input type="text" name="dayKredit" id="dayKredit" class="form-control form-control-sm " placeholder="Abaikan Jika Menggunakan Tunai/Transfer">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -64,13 +64,13 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Nomor Surat Jalan</label>
-                            <input type="text" name="noSj" id="noSj" class="form-control form-control-sm rounded-0">
+                            <input type="text" name="noSj" id="noSj" class="form-control form-control-sm ">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">No. Faktur</label>
-                            <input type="text" name="noFaktur" id="noFaktur" class="form-control form-control-sm rounded-0">
+                            <input type="text" name="noFaktur" id="noFaktur" class="form-control form-control-sm ">
                         </div>
                     </div>
                 </div>
@@ -78,19 +78,19 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Kirim Melalui</label>
-                            <input type="text" name="deliveryBy" id="deliveryBy" class="form-control form-control-sm rounded-0">
+                            <input type="text" name="deliveryBy" id="deliveryBy" class="form-control form-control-sm ">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Tgl. Faktur</label>
-                            <input type="text" name="tglFaktur" id="tglFaktur" class="form-control form-control-sm datetimepicker-input rounded-0">
+                            <input type="text" name="tglFaktur" id="tglFaktur" class="form-control form-control-sm datetimepicker-input ">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Keterangan</label>
-                            <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm rounded-0">
+                            <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm ">
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
                 <div class="col-md-6">
                     <div class="form-group row ml-2">
                         <div class="col-md-3">
-                            <input type="text" class="form-control form-control-sm rounded-0" name="nomPPN" id="nomPPN">
+                            <input type="text" class="form-control form-control-sm " name="nomPPN" id="nomPPN">
                         </div>
                         <label class="label col-md-3">%</label>
                         <div class="col-md-3">

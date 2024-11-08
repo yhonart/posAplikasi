@@ -11,9 +11,9 @@
             <div class="card-body table-responsive">
                 <div class="row mb-2">
                     <div class="col-12">
-                        <button class="btn btn-sm btn-primary rounded-0" id="displayDocument">Dokumen Opname</button>
-                        <button class="btn btn-sm btn-success rounded-0" id="saveDocument">Simpan Transaksi</button>
-                        <button class="btn btn-sm btn-danger rounded-0" id="cencelDocument">Batalkan Transaksi</button>
+                        <button class="btn btn-sm btn-primary " id="displayDocument">Dokumen Opname</button>
+                        <button class="btn btn-sm btn-success " id="saveDocument">Simpan Transaksi</button>
+                        <button class="btn btn-sm btn-danger " id="cencelDocument">Batalkan Transaksi</button>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -48,21 +48,21 @@
                                 </select>
                             </td>
                             <td class="p-0">
-                                <select class="form-control form-control-sm rounded-0" name="satuan" id="satuan">
+                                <select class="form-control form-control-sm " name="satuan" id="satuan">
                                     <option value="0" readonly>-- Satuan --</option>
                                 </select>
                             </td>
                             <td class="p-0">
-                                <input type="text" name="qty" id="qty" class="form-control form-control-sm rounded-0">
+                                <input type="text" name="qty" id="qty" class="form-control form-control-sm ">
                             </td>
                             <td class="p-0">
-                                <input type="text" name="lastStock" id="lastStock" class="form-control form-control-sm rounded-0" readonly>
+                                <input type="text" name="lastStock" id="lastStock" class="form-control form-control-sm " readonly>
                             </td>
                             <td>
-                                <input type="text" name="total" id="total" class="form-control form-control-sm rounded-0" readonly>
+                                <input type="text" name="total" id="total" class="form-control form-control-sm " readonly>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-success btn-flat btn-sm elevation-1" id="submitItem"><i class="fa-solid fa-check"></i></button>
+                                <button type="button" class="btn btn-success  btn-sm elevation-1" id="submitItem"><i class="fa-solid fa-check"></i></button>
                             </td>
                         </tr>
                     </tbody>

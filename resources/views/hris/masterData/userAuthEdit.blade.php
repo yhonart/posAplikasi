@@ -57,7 +57,7 @@
                     <input type="hidden" name="userID" value="{{$id}}">
                     <div class="form-group row">
                         <div class="col-md-4">
-                            <select class="form-control form-control-sm rounded-0" name="selectMenu" id="selectMenu">
+                            <select class="form-control form-control-sm " name="selectMenu" id="selectMenu">
                                 <option value="0" readonly>Kategori Menu</option>
                                 @foreach($selectSystem as $ss)
                                 <option value="{{$ss->idm_system}}">{{$ss->system_name}}</option>
@@ -65,12 +65,12 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-control form-control-sm rounded-0" name="subMenu" id="subMenu">
+                            <select class="form-control form-control-sm " name="subMenu" id="subMenu">
                                 <option value="0" readonly>Sub Menu</option>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <button type="submit" class="btn btn-success btn-sm btn-flat" id="submitAkses">Simpan</button>
+                            <button type="submit" class="btn btn-success btn-sm " id="submitAkses">Simpan</button>
                         </div>
                     </div>
                 </form>

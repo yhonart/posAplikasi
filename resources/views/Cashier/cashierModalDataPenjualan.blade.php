@@ -58,9 +58,9 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <button class="btn btn-success m-1 btn-flat elevation-1" id="btnLapor"><i class="fa-solid fa-shop-lock"></i> Closing Transaksi</button>
-                                <button class="btn btn-danger m-1 elevation-1 btn-flat" id="btnLap1"><i class="fa-solid fa-file-pdf"></i> Laporan Kasir</button>
-                                <button class="btn btn-danger m-1 elevation-1 btn-flat" id="btnLap2"><i class="fa-solid fa-file-pdf"></i> Ringkasan Laporan Kasir</button>
+                                <button class="btn btn-success m-1  elevation-1" id="btnLapor"><i class="fa-solid fa-shop-lock"></i> Closing Transaksi</button>
+                                <button class="btn btn-danger m-1 elevation-1 " id="btnLap1"><i class="fa-solid fa-file-pdf"></i> Laporan Kasir</button>
+                                <button class="btn btn-danger m-1 elevation-1 " id="btnLap2"><i class="fa-solid fa-file-pdf"></i> Ringkasan Laporan Kasir</button>
                             </div>
                         </div>
                     </div>

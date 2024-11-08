@@ -23,7 +23,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="" class="label">Jenis Transaksi</label>
-                                        <select name="jenisTrx" id="jenisTrx" class="form-control form-control-sm rounded-0">
+                                        <select name="jenisTrx" id="jenisTrx" class="form-control form-control-sm ">
                                             <option value="0"></option>
                                             <option value="1">Pembelian</option>
                                             <option value="2">Penjualan</option>
@@ -32,16 +32,16 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="" class="label">Dari Tgl.</label>
-                                    <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" name="fromDate" id="fromDate" autocomplete="off">
+                                    <input type="text" class="form-control form-control-sm datetimepicker-input " name="fromDate" id="fromDate" autocomplete="off">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="" class="label">Sd. Tgl.</label>
-                                    <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" name="endDate" id="endDate" autocomplete="off">
+                                    <input type="text" class="form-control form-control-sm datetimepicker-input " name="endDate" id="endDate" autocomplete="off">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-sm btn-primary btn-flat"><i class="fa-solid fa-magnifying-glass"></i> Cari</button>
+                                    <button type="submit" class="btn btn-sm btn-primary "><i class="fa-solid fa-magnifying-glass"></i> Cari</button>
                                 </div>
                             </div>
                         </form>

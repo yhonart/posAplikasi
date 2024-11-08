@@ -1,6 +1,6 @@
 <div class="row mt-2">
     <div class="col-md-6">
-        <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG btn-flat font-weight-bold mb-2" href="{{route('setPembayaran')}}/newPembayaran">Tambah Metode Pembayaran</button>
+        <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold mb-2" href="{{route('setPembayaran')}}/newPembayaran">Tambah Metode Pembayaran</button>
         <div class="card card-outline card-info">
             <div class="card-header">
                 <h3 class="card-title font-weight-bold">Metode Pembayaran</h3>
@@ -18,8 +18,8 @@
                             <tr>
                                 <td>{{$mpm->method_name}}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-info btn-flat BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('setPembayaran')}}/editMethod/{{$mpm->idm_payment_method}}"><i class="fa-solid fa-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger btn-flat DEL-METHOD" id-method="{{$mpm->idm_payment_method}}"><i class="fa-solid fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-info  BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('setPembayaran')}}/editMethod/{{$mpm->idm_payment_method}}"><i class="fa-solid fa-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger  DEL-METHOD" id-method="{{$mpm->idm_payment_method}}"><i class="fa-solid fa-trash"></i></button>
                                 </td>
                             </tr>
                         @endforeach
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="col-md-6">
-    <button class="btn btn-success BTN-OPEN-MODAL-GLOBAL-LG btn-flat font-weight-bold mb-2" href="{{route('setPembayaran')}}/newAkunBank">Tambah Akun Bank</button>
+    <button class="btn btn-success BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold mb-2" href="{{route('setPembayaran')}}/newAkunBank">Tambah Akun Bank</button>
         <div class="card card-outline card-success">
             <div class="card-header">
                 <h3 class="card-title font-weight-bold">Bank Account</h3>
@@ -53,8 +53,8 @@
                                 <td>{{$accountBank->account_number}}</td>
                                 <td>{{$accountBank->account_name}}</td>
                                 <td>
-                                    <button class="btn btn-sm BTN-OPEN-MODAL-GLOBAL-LG btn-info btn-flat" href="{{route('setPembayaran')}}/editAkun/{{$accountBank->idm_payment}}"><i class="fa-solid fa-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger btn-flat DELETE-AKUN" id-akun="{{$accountBank->idm_payment}}"><i class="fa-solid fa-trash-can"></i></button>
+                                    <button class="btn btn-sm BTN-OPEN-MODAL-GLOBAL-LG btn-info " href="{{route('setPembayaran')}}/editAkun/{{$accountBank->idm_payment}}"><i class="fa-solid fa-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger  DELETE-AKUN" id-akun="{{$accountBank->idm_payment}}"><i class="fa-solid fa-trash-can"></i></button>
                                 </td>
                             </tr>
                         @endforeach

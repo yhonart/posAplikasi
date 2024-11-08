@@ -23,14 +23,14 @@
                             <td>{{$no++}}</td>
                             <td>{{$ip->product_name}}</td>
                             <td>
-                                <input type="number" class="form-control form-control-sm rounded-0" value="{{$ip->qty}}">
+                                <input type="number" class="form-control form-control-sm " value="{{$ip->qty}}">
                             </td>
                             <td>{{$ip->unit}}</td>
                             <td>{{$ip->unit_price}}</td>
                             <td>{{$ip->disc}}</td>
                             <td>{{$ip->t_price}}</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-flat btn-default"><i class="fa-solid fa-circle-xmark text-danger"></i></button>
+                                <button type="button" class="btn btn-sm  btn-default"><i class="fa-solid fa-circle-xmark text-danger"></i></button>
                             </td>
                         </tr>
                     @endforeach
@@ -50,7 +50,7 @@
                             <div class="form-group row">
                                 <label class="col-md-4">Tgl. Trx</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control form-control-sm rounded-0" value="{{$docPenjualan->tr_date}}">
+                                    <input type="text" class="form-control form-control-sm " value="{{$docPenjualan->tr_date}}">
                                 </div>
                             </div>
                             <div class="form-group row">

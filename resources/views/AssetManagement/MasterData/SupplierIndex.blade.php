@@ -18,9 +18,9 @@
         </div>
         <div class="row mt-2">
             <div class="col-md-3">
-                <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG mb-2 btn-flat btn-block" href="{{route('Supplier')}}/AddSupliyer">Tambah Supplier</button>
-                <input type="text" name="searchSupplier" id="searchSupplier" class="form-control mb-1 rounded-0" placeholder="Cari nama supplier" autofocus>
-                <div class="card card-body rounded-0 table-responsive p-0" style="height:700px;">
+                <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG mb-2  btn-block" href="{{route('Supplier')}}/AddSupliyer">Tambah Supplier</button>
+                <input type="text" name="searchSupplier" id="searchSupplier" class="form-control mb-1 " placeholder="Cari nama supplier" autofocus>
+                <div class="card card-body  table-responsive p-0" style="height:700px;">
                     @include('Global.global_spinner')
                     <div id="displayTableSupplier"></div>
                 </div>

@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-sm btn-flat">submit</button>
+                    <button type="submit" class="btn btn-success btn-sm ">submit</button>
                 </div>
             </form>
         </div>

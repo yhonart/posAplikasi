@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-12">
-                <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG btn-flat font-weight-bold" href="{{route('trxKasUmum')}}/tambahBiaya">Tambah Transaksi</button>
+                <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('trxKasUmum')}}/tambahBiaya">Tambah Transaksi</button>
             </div>
         </div>
         <div class="row d-flex justify-content-center mb-2">
@@ -26,11 +26,11 @@
                         <div class="row mb-2">                                
                             <div class="col-md-3">
                                 <label for="" class="label">Dari Tgl.</label>
-                                <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" name="fromDate" id="fromDate" autocomplete="off">
+                                <input type="text" class="form-control form-control-sm datetimepicker-input " name="fromDate" id="fromDate" autocomplete="off">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="label">Sd. Tgl.</label>
-                                <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" name="endDate" id="endDate" autocomplete="off">
+                                <input type="text" class="form-control form-control-sm datetimepicker-input " name="endDate" id="endDate" autocomplete="off">
                             </div>
                         </div>
                     </div>

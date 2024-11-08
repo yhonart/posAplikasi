@@ -12,7 +12,7 @@
                     <div class="form-group row">
                         <label class="col-md-4">Pilih User Kasir</label>
                         <div class="col-md-4">
-                            <select class="form-control form-control-sm rounded-0" name="selectPersonil" id="selectPersonil">
+                            <select class="form-control form-control-sm " name="selectPersonil" id="selectPersonil">
                                 <option value="All">All Kasir</option>
                                 @foreach($userKasir as $uk)
                                     <option value="{{$uk->id}}">{{$uk->name}}</option>
@@ -23,11 +23,11 @@
                     <div class="form-group row">
                         <label class="col-md-4">Nominal Kas</label>
                         <div class="col-md-4">
-                            <input class="form-control form-control-sm rounded-0" name="nominalKas" id="nominalKas">
+                            <input class="form-control form-control-sm " name="nominalKas" id="nominalKas">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <button type="submit" class="btn btn-sm btn-success btn-flat">Simpan</button>
+                        <button type="submit" class="btn btn-sm btn-success ">Simpan</button>
                     </div>
                 </form>
             </div>

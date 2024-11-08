@@ -32,8 +32,8 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <button type="submit" class="btn btn-success font-weight-bold btn-flat"><i class="fa-solid fa-check"></i> Update Dokumen</button>
-            <button type="button" class="btn btn-warning font-weight-bold btn-flat" id="btnClose"><i class="fa-solid fa-circle-xmark"></i> Tutup Dokumen</button>
+            <button type="submit" class="btn btn-success font-weight-bold "><i class="fa-solid fa-check"></i> Update Dokumen</button>
+            <button type="button" class="btn btn-warning font-weight-bold " id="btnClose"><i class="fa-solid fa-circle-xmark"></i> Tutup Dokumen</button>
         </div>
     </div>
 </form>

@@ -20,7 +20,7 @@
                     <div class="col-md-12">
                         <form id="formSubmitReport">
                             <div class="form-group">
-                                <button class="btn btn-success font-weight-bold btn-sm btn-flat" id="submitButton">Simpan Perubahan Item</button>
+                                <button class="btn btn-success font-weight-bold btn-sm " id="submitButton">Simpan Perubahan Item</button>
                             </div>
                             <input type="hidden" name="sumLastStock" id="sumLastStock" value="{{$sumStockOpname->lastStock}}" readonly>
                             <input type="hidden" name="sumInputStock" id="sumInputStock" value="{{$sumStockOpname->inputStock}}" readonly>
@@ -67,18 +67,18 @@
                                             </select>
                                         </td>
                                         <td class="p-0">
-                                            <select class="form-control form-control-sm rounded-0" name="satuan" id="satuan">
+                                            <select class="form-control form-control-sm " name="satuan" id="satuan">
                                                 <option value="0">...</option>
                                             </select>
                                         </td>
                                         <td class="p-0">
-                                            <input type="number" class="form-control form-control-sm rounded-0" name="qty" id="qty">
+                                            <input type="number" class="form-control form-control-sm " name="qty" id="qty">
                                         </td>
                                         <td class="p-0">
-                                            <input type="text" class="form-control form-control-sm rounded-0" name="lastStock" id="lastStock" readonly>
+                                            <input type="text" class="form-control form-control-sm " name="lastStock" id="lastStock" readonly>
                                         </td>
                                         <td class="p-0">
-                                            <input type="text" name="total" id="total" class="form-control form-control-sm rounded-0" readonly>
+                                            <input type="text" name="total" id="total" class="form-control form-control-sm " readonly>
                                         </td>
                                         <td></td>
                                     </tr>

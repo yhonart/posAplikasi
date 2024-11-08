@@ -16,7 +16,7 @@
                     </a>
                 </td>
                 <td>
-                    <a class="SUPP-DELETE btn btn-flat btn-outline-danger btn-sm float-right" data-id="{{$supp->idm_supplier}}" href="#"><i class="fa-solid fa-trash-can"></i></a>
+                    <a class="SUPP-DELETE btn  btn-outline-danger btn-sm float-right" data-id="{{$supp->idm_supplier}}" href="#"><i class="fa-solid fa-trash-can"></i></a>
                 </td>
             </tr>
         @endforeach

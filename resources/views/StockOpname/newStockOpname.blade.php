@@ -12,19 +12,19 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="label">No. Stock Opname</label>
-                                        <input type="text" name="noStockOpname" id="noStockOpname" class="form-control form-control-sm rounded-0" value="{{$firstNumber}}" readonly>
+                                        <input type="text" name="noStockOpname" id="noStockOpname" class="form-control form-control-sm " value="{{$firstNumber}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="label">Tgl. Stok Opname</label>
-                                        <input type="text" name="filterTanggal" id="filterTanggal" class="form-control form-control-sm rounded-0">
+                                        <input type="text" name="filterTanggal" id="filterTanggal" class="form-control form-control-sm ">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="label">Lokasi Barang</label>
-                                        <select class="form-control form-control-sm rounded-0" name="pilihLokasi">
+                                        <select class="form-control form-control-sm " name="pilihLokasi">
                                             <option value="0">Semua Lokasi</option>
                                             @foreach($mSite as $ls)
                                             <option value="{{$ls->idm_site}}">{{$ls->site_name}}</option>
@@ -35,13 +35,13 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="label">Keterangan</label>
-                                        <textarea class="form-control rounded-0" rows="4" placeholder="Enter ..." name="description" id="description"></textarea>
+                                        <textarea class="form-control " rows="4" placeholder="Enter ..." name="description" id="description"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-3">
-                                    <button type="submit" class="btn btn-success font-weight-bold btn-block btn-flat" id="btnFormPenyesuaian"><i class="fa-solid fa-floppy-disk"></i> Simpan Lokasi Opname</button>
+                                    <button type="submit" class="btn btn-success font-weight-bold btn-block " id="btnFormPenyesuaian"><i class="fa-solid fa-floppy-disk"></i> Simpan Lokasi Opname</button>
                                 </div>
                             </div>
                         </form>

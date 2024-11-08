@@ -17,8 +17,8 @@
                 <td>{{$tkk->name}}</td>
                 <td>Rp. {{number_format($tkk->nominal,'0',',','.')}}</td>
                 <td class="text-right">
-                    <button type="button" class="btn btn-sm btn-info btn-flat BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('setKasKasir')}}/editKasKasir/{{$tkk->idm_kas}}">Edit</button>
-                    <button type="button" class="btn btn-sm btn-danger btn-flat DEL-KAS" data-id="{{$tkk->idm_kas}}">Delete</button>
+                    <button type="button" class="btn btn-sm btn-info  BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('setKasKasir')}}/editKasKasir/{{$tkk->idm_kas}}">Edit</button>
+                    <button type="button" class="btn btn-sm btn-danger  DEL-KAS" data-id="{{$tkk->idm_kas}}">Delete</button>
                 </td>
             </tr>
         @endforeach

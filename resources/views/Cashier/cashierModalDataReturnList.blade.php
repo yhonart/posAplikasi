@@ -36,8 +36,8 @@
                             <input type="password" class="form-control form-control-sm is-warning mb-2" name="passInput" id="passInput" placeholder="Password Login">
                         </div>
                         <div class="col-12">
-                            <button type="button" class="btn btn-flat btn-warning font-weight-bold" id="batal">Batal <i class="fa-solid fa-xmark"></i></button>
-                            <button type="submit" class="btn btn-flat btn-success font-weight-bold">[Enter] Lanjutkan <i class="fa-solid fa-arrow-right"></i></button>
+                            <button type="button" class="btn  btn-warning font-weight-bold" id="batal">Batal <i class="fa-solid fa-xmark"></i></button>
+                            <button type="submit" class="btn  btn-success font-weight-bold">[Enter] Lanjutkan <i class="fa-solid fa-arrow-right"></i></button>
                             <p class="text-danger" id="notifDisplay"></p>
                             <div id="spinLanjutkan" style="display: none;">
                                 <div class="spinner-grow text-primary" role="status">
@@ -83,7 +83,7 @@
                         <td class="text-right">{{$ldN->method_name}}</td>
                         <td class="text-right {{$arrayBG[$ldN->status]}} font-weight-bold">{{$arrayStatus[$ldN->status]}}</td>
                         <td class="text-right">
-                            <button class="btn btn-danger BTN-DELETE btn-flat" data-id="{{$ldN->billing_number}}" data-action="1" data-toko="{{$ldN->customer_name}}">Hapus</button>
+                            <button class="btn btn-danger BTN-DELETE " data-id="{{$ldN->billing_number}}" data-action="1" data-toko="{{$ldN->customer_name}}">Hapus</button>
                         </td>
                     </tr>
                 @endforeach

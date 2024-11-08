@@ -25,7 +25,7 @@
                     @endif
                 </td>
                 <td> 
-                    <button type="button" class="btn btn-sm bg-olive btn-flat font-weight-bold float-right DIS-ITEM" title="Tampilkan item" data-purchase="{{$pr->purchase_number}}"><i class="fa-solid fa-rotate-right"></i> Retur Barang</button>
+                    <button type="button" class="btn btn-sm bg-olive  font-weight-bold float-right DIS-ITEM" title="Tampilkan item" data-purchase="{{$pr->purchase_number}}"><i class="fa-solid fa-rotate-right"></i> Retur Barang</button>
                 </td>
             </tr>
         @endforeach

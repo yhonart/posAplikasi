@@ -19,8 +19,8 @@
                         <td class="font-weight-bold">CAT{{sprintf('%05d',$tc->idm_asset_category)}}</td>
                         <td>{{$tc->category_name}}</td>
                         <td class="text-right">
-                            <button class="btn btn-info btn-sm btn-flat BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('M_Category')}}/arrayCategory/editMenu/{{$tc->idm_asset_category}}"><i class="fa-solid fa-pencil"></i> Edit</button>
-                            <button class="btn btn-danger btn-sm btn-flat ITEM-ACTION" idCat="{{$tc->idm_asset_category}}" nameCat="{{$tc->category_name}}"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                            <button class="btn btn-info btn-sm  BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('M_Category')}}/arrayCategory/editMenu/{{$tc->idm_asset_category}}"><i class="fa-solid fa-pencil"></i> Edit</button>
+                            <button class="btn btn-danger btn-sm  ITEM-ACTION" idCat="{{$tc->idm_asset_category}}" nameCat="{{$tc->category_name}}"><i class="fa-solid fa-trash-can"></i> Delete</button>
                         </td>
                     </tr>
                 @endforeach

@@ -7,11 +7,11 @@ $statusBarang = array(
 <div class="row mb-2">
     <div class="col-12">
         @if($mProduct->product_status == '1')
-        <button class="btn btn-primary btn-sm btn-flat font-weight-bold" id="deleteProduct" data-id="{{$mProduct->idm_data_product}}">Hapus Barang Dari Kasir</button>
+        <button class="btn btn-primary btn-sm  font-weight-bold" id="deleteProduct" data-id="{{$mProduct->idm_data_product}}">Hapus Barang Dari Kasir</button>
         @elseif($mProduct->product_status == '0')
-        <button class="btn btn-success btn-sm btn-flat font-weight-bold" id="activeProduct" data-id="{{$mProduct->idm_data_product}}">Tambahkan Barang Ke Kasir</button>
+        <button class="btn btn-success btn-sm  font-weight-bold" id="activeProduct" data-id="{{$mProduct->idm_data_product}}">Tambahkan Barang Ke Kasir</button>
         @endif
-        <button class="btn bg-danger btn-sm btn-flat font-weight-bold" id="deletePermanent" data-id="{{$mProduct->idm_data_product}}">Hapus Permanent</button>
+        <button class="btn bg-danger btn-sm  font-weight-bold" id="deletePermanent" data-id="{{$mProduct->idm_data_product}}">Hapus Permanent</button>
         <p class="text-info font-weight-bold float-right"><i class="fa-solid fa-circle-info"></i> Gunakan ENTER untuk menyimpan data ...</p>
     </div>
 </div>
@@ -19,25 +19,25 @@ $statusBarang = array(
     <div class="form-group row mb-2">
         <label class="col-3 align-self-end">Status Barang</label>
         <div class="col-4">
-            <input type="text" name="prodCode" id="productCode" class="form-control form-control-sm font-weight-bold rounded-0" value="{{$statusBarang[$mProduct->product_status]}}" onchange="saveMasterBarang(this,'m_product','product_code','{{$mProduct->idm_data_product}}','idm_data_product','{{$id}}')" readonly>
+            <input type="text" name="prodCode" id="productCode" class="form-control form-control-sm font-weight-bold " value="{{$statusBarang[$mProduct->product_status]}}" onchange="saveMasterBarang(this,'m_product','product_code','{{$mProduct->idm_data_product}}','idm_data_product','{{$id}}')" readonly>
         </div>
     </div>
     <div class="form-group row mb-2">
         <label class="col-3 align-self-end">Kode Barang</label>
         <div class="col-4">
-            <input type="text" name="prodCode" id="productCode" class="form-control form-control-sm rounded-0" value="{{$mProduct->product_code}}" onchange="saveMasterBarang(this,'m_product','product_code','{{$mProduct->idm_data_product}}','idm_data_product','{{$id}}')" readonly>
+            <input type="text" name="prodCode" id="productCode" class="form-control form-control-sm " value="{{$mProduct->product_code}}" onchange="saveMasterBarang(this,'m_product','product_code','{{$mProduct->idm_data_product}}','idm_data_product','{{$id}}')" readonly>
         </div>
     </div>
     <div class="form-group row mb-2">
         <label class="col-3 align-self-end">Nama Barang</label>
         <div class="col-4">
-            <input type="text" name="prodCode" id="productCode" class="form-control form-control-sm rounded-0" value="{{$mProduct->product_name}}" onchange="saveMasterBarang(this,'m_product','product_name','{{$mProduct->idm_data_product}}','idm_data_product','{{$id}}')">
+            <input type="text" name="prodCode" id="productCode" class="form-control form-control-sm " value="{{$mProduct->product_name}}" onchange="saveMasterBarang(this,'m_product','product_name','{{$mProduct->idm_data_product}}','idm_data_product','{{$id}}')">
         </div>
     </div>
     <div class="form-group row mb-4">
         <label class="col-3 align-self-end">Kategori Barang</label>
         <div class="col-4">
-            <select name="productCategory" class="form-control form-control-sm rounded-0" onchange="saveMasterBarang(this,'m_product','product_category','{{$mProduct->idm_data_product}}','idm_data_product','{{$id}}')">
+            <select name="productCategory" class="form-control form-control-sm " onchange="saveMasterBarang(this,'m_product','product_category','{{$mProduct->idm_data_product}}','idm_data_product','{{$id}}')">
                 <option value="{{$mProduct->product_category}}">{{$mProduct->product_category}}</option>
                 @foreach($category as $c)
                     <option value="{{$c->category_name}}">{{$c->category_name}}</option>
@@ -49,7 +49,7 @@ $statusBarang = array(
     <div class="form-group row mb-2">
         <label class="col-3 align-self-end">Brand</label>
         <div class="col-3">
-            <select name="brand" class="form-control form-control-sm rounded-0" onchange="saveMasterBarang(this,'m_product','brand','{{$mProduct->idm_data_product}}','idm_data_product','{{$id}}')">
+            <select name="brand" class="form-control form-control-sm " onchange="saveMasterBarang(this,'m_product','brand','{{$mProduct->idm_data_product}}','idm_data_product','{{$id}}')">
                 <option value="{{$mProduct->brand}}">{{$mProduct->brand}}</option>
                 @foreach($brand as $b)
                     <option value="{{$b->manufacture_name}}">{{$b->manufacture_name}}</option>
@@ -60,11 +60,11 @@ $statusBarang = array(
     <div class="form-group row mb-2">
         <label class="col-3 align-self-end">Set Minimum Stock</label>
         <div class="col-3">
-            <input type="text" name="setMinimumStock" value="{{$mProduct->minimum_stock}}" class="form-control form-control-sm rounded-0" onchange="saveMasterBarang(this,'m_product','minimum_stock','{{$mProduct->idm_data_product}}','idm_data_product','{{$id}}')">
+            <input type="text" name="setMinimumStock" value="{{$mProduct->minimum_stock}}" class="form-control form-control-sm " onchange="saveMasterBarang(this,'m_product','minimum_stock','{{$mProduct->idm_data_product}}','idm_data_product','{{$id}}')">
         </div>
     </div>
 <!--START SATUAN -->
-<a class="btn btn-primary mb-1 mt-1 font-weight-bold btn-flat" data-toggle="collapse" href="#collapseSatuan" role="button" aria-expanded="false" aria-controls="collapseSatuan">
+<a class="btn btn-primary mb-1 mt-1 font-weight-bold " data-toggle="collapse" href="#collapseSatuan" role="button" aria-expanded="false" aria-controls="collapseSatuan">
     <i class="fa-solid fa-plus"></i> Tambah Pengaturan Satuan
 </a>
 <div class="collapse" id="collapseSatuan">
@@ -77,7 +77,7 @@ $statusBarang = array(
                         <input type="hidden" name="stock" class="form-control form-control-sm" placeholder="Stock">
                         <input type="hidden" name="prdunID" value="{{$id}}">
                         <td>
-                            <select name="addPrdSize" id="addPrdSize" class="form-control form-control-sm rounded-0">
+                            <select name="addPrdSize" id="addPrdSize" class="form-control form-control-sm ">
                                 <option value="0">Pilih Size</option>
                                 <option value="BESAR">BESAR</option>
                                 <option value="KECIL">KECIL</option>
@@ -85,7 +85,7 @@ $statusBarang = array(
                             </select>
                         </td>
                         <td>
-                            <select name="addSatuan" id="addSatuan" class="form-control form-control-sm rounded-0">
+                            <select name="addSatuan" id="addSatuan" class="form-control form-control-sm ">
                                 <option value="0">Pilih Satuan</option>
                                 @foreach($mUnit as $mU2)
                                     <option value="{{$mU2->unit_note}}">{{$mU2->unit_note}}</option>
@@ -93,13 +93,13 @@ $statusBarang = array(
                             </select>
                         </td>
                         <td>
-                            <input type="text" name="addVolumeBarang" class="form-control form-control-sm rounded-0" placeholder="Satuan Isi">
+                            <input type="text" name="addVolumeBarang" class="form-control form-control-sm " placeholder="Satuan Isi">
                         </td>
                         <td>
-                            <input type="text" name="setBarcode" class="form-control form-control-sm rounded-0" placeholder="Set Barcode">
+                            <input type="text" name="setBarcode" class="form-control form-control-sm " placeholder="Set Barcode">
                         </td>
                         <td>
-                            <button type="button" class="btn btn-info btn-sm BTN-ADD-UNIT btn-flat" id="btnAddUnit">Tambah</button>
+                            <button type="button" class="btn btn-info btn-sm BTN-ADD-UNIT " id="btnAddUnit">Tambah</button>
                         </td>
                         </form>
                     </tr>
@@ -132,7 +132,7 @@ $statusBarang = array(
                         {{$unit1->product_size}}
                     </td>
                     <td class="bg-gray">
-                        <select name="satuanBesar[]" class="form-control form-control-sm rounded-0" onchange="saveMasterBarang(this,'m_product_unit','product_satuan','{{$unit1->idm_product_satuan}}','idm_product_satuan','{{$id}}')">
+                        <select name="satuanBesar[]" class="form-control form-control-sm " onchange="saveMasterBarang(this,'m_product_unit','product_satuan','{{$unit1->idm_product_satuan}}','idm_product_satuan','{{$id}}')">
                             <option>{{$unit1->product_satuan}}</option>
                             <option style="color:red" value="DELL">Hapus Satuan Besar</option>
                             @foreach($mUnit as $mU1)
@@ -141,13 +141,13 @@ $statusBarang = array(
                         </select>
                     </td>
                     <td>
-                        <input type="text" name="volume[]" class="form-control form-control-sm rounded-0" onchange="saveMasterBarang(this,'m_product_unit','product_volume','{{$unit1->idm_product_satuan}}','idm_product_satuan','{{$id}}')" value="{{$unit1->product_volume}}" {{$setReadOnly}}>
+                        <input type="text" name="volume[]" class="form-control form-control-sm " onchange="saveMasterBarang(this,'m_product_unit','product_volume','{{$unit1->idm_product_satuan}}','idm_product_satuan','{{$id}}')" value="{{$unit1->product_volume}}" {{$setReadOnly}}>
                     </td>
                     <td>
-                       <input type="text" name="setBarcode[]" class="form-control form-control-sm rounded-0" onchange="saveMasterBarang(this,'m_product_unit','set_barcode','{{$unit1->idm_product_satuan}}','idm_product_satuan','{{$id}}')" value="{{$unit1->set_barcode}}" {{$setReadOnly}}>
+                       <input type="text" name="setBarcode[]" class="form-control form-control-sm " onchange="saveMasterBarang(this,'m_product_unit','set_barcode','{{$unit1->idm_product_satuan}}','idm_product_satuan','{{$id}}')" value="{{$unit1->set_barcode}}" {{$setReadOnly}}>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-danger btn-flat DELLUNIT" data-id="{{$unit1->idm_product_satuan}}"><i class="fa-solid fa-xmark"></i></button>
+                        <button type="button" class="btn btn-outline-danger  DELLUNIT" data-id="{{$unit1->idm_product_satuan}}"><i class="fa-solid fa-xmark"></i></button>
                     </td>
                 </tr>
             @endforeach
@@ -156,7 +156,7 @@ $statusBarang = array(
 <!--PENGATURAN HARGA BARANG -->
 <hr class="border-danger">
 <h5 class="text-info">Harga Barang</h5>
-<a class="btn btn-primary mb-1 mt-1 btn-flat font-weight-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+<a class="btn btn-primary mb-1 mt-1  font-weight-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
     <i class="fa-solid fa-plus"></i> Tambah Pengaturan Harga
 </a>
 <div class="collapse" id="collapseExample">
@@ -166,7 +166,7 @@ $statusBarang = array(
                 <tbody>
                     <tr>
                         <td>
-                            <select class="form-control form-control-sm rounded-0" name="unitHarga" id="unitHarga">
+                            <select class="form-control form-control-sm " name="unitHarga" id="unitHarga">
                                 <option value="0" readonly>Satuan</option>
                                 @foreach($mProdUnit as $mDataUnit)
                                     <option value="{{$mDataUnit->product_size}}">{{$mDataUnit->product_size}}</option>
@@ -174,20 +174,20 @@ $statusBarang = array(
                             </select>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm rounded-0" name="priceOrder" autocomplete="off" placeholder="Harga Pembelian">
+                            <input class="form-control form-control-sm " name="priceOrder" autocomplete="off" placeholder="Harga Pembelian">
                         </td>
                         <td>
-                            <input class="form-control form-control-sm rounded-0" name="priceSell" autocomplete="off" placeholder="Harga Jual">
+                            <input class="form-control form-control-sm " name="priceSell" autocomplete="off" placeholder="Harga Jual">
                         </td>
                         <td>
-                            <select class="form-control form-control-sm rounded-0" name="cosGroup" id="cosGroup">
+                            <select class="form-control form-control-sm " name="cosGroup" id="cosGroup">
                                     <option value="0" readonly>Tipe Pelangan</option>
                                 @foreach($cosGroup as $cG)
                                     <option value="{{$cG->idm_cos_group}}">{{$cG->group_name}}</option>
                                 @endforeach
                             </select>
                         </td> 
-                        <td><button type="button" class="btn btn-info btn-flat" id="btnTambahHarga">Tambah</button></td>
+                        <td><button type="button" class="btn btn-info " id="btnTambahHarga">Tambah</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -219,16 +219,16 @@ $statusBarang = array(
                         </td>
                         <td class="bg-gray">
                             @if($size->size_code == '1')
-                                <input class="form-control form-control-sm text-right EDIT-PRICE rounded-0" name="priceOrder" value="{{$size->product_price_order}}" onchange="saveMasterBarang(this,'m_product_unit','product_price_order','{{$size->idm_product_satuan}}','idm_product_satuan','{{$id}}')">
+                                <input class="form-control form-control-sm text-right EDIT-PRICE " name="priceOrder" value="{{$size->product_price_order}}" onchange="saveMasterBarang(this,'m_product_unit','product_price_order','{{$size->idm_product_satuan}}','idm_product_satuan','{{$id}}')">
                             @else
-                                <input class="form-control form-control-sm text-right rounded-0" value="{{$size->product_price_order}}" readonly>
+                                <input class="form-control form-control-sm text-right " value="{{$size->product_price_order}}" readonly>
                             @endif
                         </td>
                         @foreach($cosGroup as $cg1)
                             <td>
                                 @foreach($mPriceSell as $pSell)
                                     @if($pSell->size_product == $size->product_size AND $pSell->cos_group==$cg1->idm_cos_group)
-                                        <input class="form-control form-control-sm text-right EDIT-PRICE rounded-0" name="sell[]" value="{{$pSell->price_sell}}" onchange="saveMasterBarang(this,'m_product_price_sell','price_sell','{{$pSell->idm_price_sell}}','idm_price_sell','{{$id}}')">
+                                        <input class="form-control form-control-sm text-right EDIT-PRICE " name="sell[]" value="{{$pSell->price_sell}}" onchange="saveMasterBarang(this,'m_product_price_sell','price_sell','{{$pSell->idm_price_sell}}','idm_price_sell','{{$id}}')">
                                     @endif
                                 @endforeach
                             </td>

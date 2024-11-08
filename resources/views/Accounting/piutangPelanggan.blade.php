@@ -36,13 +36,13 @@
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">Dari Tanggal</label>
-                                    <input type="text" class="form-control datetimepicker-input rounded-0" name="dariTanggal" id="dariTanggal" autocomplete="off">
+                                    <input type="text" class="form-control datetimepicker-input " name="dariTanggal" id="dariTanggal" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">s.d Tanggal</label>
-                                    <input type="text" class="form-control datetimepicker-input rounded-0" name="sampaiTanggal" id="sampaiTanggal" autocomplete="off">
+                                    <input type="text" class="form-control datetimepicker-input " name="sampaiTanggal" id="sampaiTanggal" autocomplete="off">
                                 </div>
                             </div>
                         </div>

@@ -14,7 +14,7 @@
     <div class="container-fluid">            
         <div class="row">
             <div class="col-12">
-                <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG btn-flat font-weight-bold" href="{{route('M_Manufacture')}}/AddManufacture">Tambah Brand</button>
+                <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('M_Manufacture')}}/AddManufacture">Tambah Brand</button>
             </div>
         </div>
         <div class="row mt-2">

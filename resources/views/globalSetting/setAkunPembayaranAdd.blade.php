@@ -10,29 +10,29 @@
             <div class="form-group row">
                 <label class="col-md-4">Kode Bank`</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm rounded-0" name="kodeBank" id="kodeBank">
+                    <input type="text" class="form-control form-control-sm " name="kodeBank" id="kodeBank">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-4">Nama Bank</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm rounded-0" name="namaBank" id="namaBank">
+                    <input type="text" class="form-control form-control-sm " name="namaBank" id="namaBank">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-4">No. Rek/Akun</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm rounded-0" name="noRek" id="noRek">
+                    <input type="text" class="form-control form-control-sm " name="noRek" id="noRek">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-4">Nama Pemilik Akun</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm rounded-0" name="namaAkun" id="namaAkun">
+                    <input type="text" class="form-control form-control-sm " name="namaAkun" id="namaAkun">
                 </div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-sm btn-flat btn-success form-weight-bold">Simpan</button>
+                <button type="submit" class="btn btn-sm  btn-success form-weight-bold">Simpan</button>
             </div>
         </form>
     </div>

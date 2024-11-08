@@ -1,10 +1,10 @@
 <hr>
 <div class="row mb-2">
     <div class="col-12">
-        <a class="btn btn-default btn-flat btn-sm font-weight-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <a class="btn btn-default  btn-sm font-weight-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
             <i class="fa-solid fa-file-pen"></i> Edit Dokumen Mutasi
         </a>
-        <button type="submit" class="btn btn-default font-weight-bold btn-flat btn-sm ml-2" id="submitDataMutasi" data-number="{{$number}}"><i class="fa-solid fa-circle-check"></i> Simpan Transaksi</button>
+        <button type="submit" class="btn btn-default font-weight-bold  btn-sm ml-2" id="submitDataMutasi" data-number="{{$number}}"><i class="fa-solid fa-circle-check"></i> Simpan Transaksi</button>
 
         <input type="hidden" class="form-control form-control-sm text-right" name="sumTotalMutasi" id="sumTotalMutasi" value="{{$sumMutasi->totalMoving}}">
     </div>
@@ -44,7 +44,7 @@
                                     #
                                 </td>
                                 <td>
-                                    <select class="form-control form-control-sm rounded-0" name="mProduct" id="mProduct">
+                                    <select class="form-control form-control-sm " name="mProduct" id="mProduct">
                                         <option value="0"></option>
                                         @foreach($mProduct as $mp)
                                         <option value="{{$mp->idm_data_product}}">{{$mp->product_name}}</option>
@@ -52,21 +52,21 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select class="form-control form-control-sm rounded-0" name="satuan" id="satuan">
+                                    <select class="form-control form-control-sm " name="satuan" id="satuan">
                                         <option value="0"></option>
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control form-control-sm rounded-0" name="lastStock" id="lastStock" readonly>
+                                    <input type="number" class="form-control form-control-sm " name="lastStock" id="lastStock" readonly>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control form-control-sm rounded-0" name="qty" id="qty" autocomplete="off">
+                                    <input type="number" class="form-control form-control-sm " name="qty" id="qty" autocomplete="off">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm rounded-0" name="keterangan" id="keterangan" autocomplete="off">
+                                    <input type="text" class="form-control form-control-sm " name="keterangan" id="keterangan" autocomplete="off">
                                 </td>
                                 <td>
-                                    <button class="btn border-0 elevation-0 btn-default btn-flat" id="btnSubmit"><i class="fa-solid fa-check"></i></button>
+                                    <button class="btn border-0 elevation-0 btn-default " id="btnSubmit"><i class="fa-solid fa-check"></i></button>
                                 </td>
                             </tr>
                         </form>

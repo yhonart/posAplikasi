@@ -1,7 +1,7 @@
 <div class="card card-body table-responsive">
     <div class="row mb-2">
         <div class="col-md-4">
-            <input type="text" class="form-control rounded-0" name="keyword" id="keyword" placeholder="Cari Nomor Transaksi / Supplier" autocomplate="off">
+            <input type="text" class="form-control " name="keyword" id="keyword" placeholder="Cari Nomor Transaksi / Supplier" autocomplate="off">
         </div>
     </div>
     <div class="row">

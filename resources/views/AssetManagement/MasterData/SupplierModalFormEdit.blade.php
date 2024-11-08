@@ -11,38 +11,38 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Supplier ID</label>
                 <div class="col-md-4">
-                    <input type="text" name="Supplier" id="Supplier" class="form-control form-control-sm text-uppercase rounded-0" value="SUP{{sprintf("%07d",$id)}}" readonly>
+                    <input type="text" name="Supplier" id="Supplier" class="form-control form-control-sm text-uppercase " value="SUP{{sprintf("%07d",$id)}}" readonly>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Nama Supplier</label>
                 <div class="col-md-4">
-                    <input type="text" name="Supplier" id="Supplier" class="form-control form-control-sm text-uppercase rounded-0" value="{{$editSupplier->store_name}}">
+                    <input type="text" name="Supplier" id="Supplier" class="form-control form-control-sm text-uppercase " value="{{$editSupplier->store_name}}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Alamat</label>
                 <div class="col-md-4">
-                    <input type="text" name="Address" id="Address" class="form-control form-control-sm rounded-0" value="{{$editSupplier->address}}">
+                    <input type="text" name="Address" id="Address" class="form-control form-control-sm " value="{{$editSupplier->address}}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Kota</label>
                 <div class="col-md-4">
-                    <input type="text" name="City" id="City" class="form-control form-control-sm text-capitalize rounded-0" value="{{$editSupplier->city}}">
+                    <input type="text" name="City" id="City" class="form-control form-control-sm text-capitalize " value="{{$editSupplier->city}}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Telefone</label>                
                 <div class="col-md-4">
-                    <input type="text" name="Phone" id="Phone" class="form-control form-control-sm rounded-0" data-inputmask="'mask': ['9999-9999-9999', '+99 999-9999-9999']" data-mask value="{{$editSupplier->phone_number}}">
+                    <input type="text" name="Phone" id="Phone" class="form-control form-control-sm " data-inputmask="'mask': ['9999-9999-9999', '+99 999-9999-9999']" data-mask value="{{$editSupplier->phone_number}}">
                     <small class="text-info">Contoh +62 812-xxxx-xxxx (Gunakan kode negara +62)</small>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Admin Email</label>
                 <div class="col-md-4">
-                    <input type="email" name="Email" id="Email" class="form-control form-control-sm rounded-0" value="{{$editSupplier->email}}">
+                    <input type="email" name="Email" id="Email" class="form-control form-control-sm " value="{{$editSupplier->email}}">
                 </div>
             </div>
             <div class="form-group row">
@@ -63,7 +63,7 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Tipe Pembayaran</label>
                 <div class="col-md-4">
-                    <select name="paymentType" id="paymentType" class="form-control form-control-sm rounded-0">
+                    <select name="paymentType" id="paymentType" class="form-control form-control-sm ">
                         <option value="0" readonly>{{$editSupplier->payment_type}}</option>
                         <option value="Tunai">Tunai</option>
                         <option value="Tempo">Tempo</option>
@@ -73,7 +73,7 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Nama Sales</label>
                 <div class="col-md-4">
-                    <input type="text" name="Salesman" id="Salesman" class="form-control form-control-sm text-uppercase rounded-0" value="{{$editSupplier->salesman}}">
+                    <input type="text" name="Salesman" id="Salesman" class="form-control form-control-sm text-uppercase " value="{{$editSupplier->salesman}}">
                 </div>
             </div>
             <div class="form-group row">

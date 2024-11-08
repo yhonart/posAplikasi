@@ -10,45 +10,45 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Nama Pelanggan</label>
                 <div class="col-md-4">
-                    <input type="text" name="Customer" id="Customer" class="form-control form-control-sm text-uppercase rounded-0">
+                    <input type="text" name="Customer" id="Customer" class="form-control form-control-sm text-uppercase ">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Alamat</label>
                 <div class="col-md-4">
-                    <input type="text" name="Address" id="Address" class="form-control form-control-sm rounded-0">
+                    <input type="text" name="Address" id="Address" class="form-control form-control-sm ">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Kota</label>
                 <div class="col-md-4">
-                    <input type="text" name="City" id="City" class="form-control form-control-sm rounded-0">
+                    <input type="text" name="City" id="City" class="form-control form-control-sm ">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">PIC</label>
                 <div class="col-md-4">
-                    <input type="text" name="pic" id="pic" class="form-control form-control-sm rounded-0">
+                    <input type="text" name="pic" id="pic" class="form-control form-control-sm ">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Telefone</label>
                 <div class="col-md-4">
-                    <input type="text" name="phone" id="phone" class="form-control form-control-sm rounded-0" data-inputmask="'mask': ['9999-9999-9999', '+99 999-9999-9999']" data-mask>
+                    <input type="text" name="phone" id="phone" class="form-control form-control-sm " data-inputmask="'mask': ['9999-9999-9999', '+99 999-9999-9999']" data-mask>
                     <small class="text-danger">Contoh +62 812-xxxx-xxxx (Gunakan kode negara +62)</small>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Tanggal Member</label>
                 <div class="col-md-4">
-                    <input type="text" name="registeredDate" id="registeredDate" class="form-control form-control-sm rounded-0">
+                    <input type="text" name="registeredDate" id="registeredDate" class="form-control form-control-sm ">
                     <small class="text-danger">Gunakan format tanggal : DD:MM:YYYY, Contoh : 29-02-2022</small>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Email</label>
                 <div class="col-md-4">
-                    <input type="email" name="emailUser" id="emailUser" class="form-control form-control-sm rounded-0">
+                    <input type="email" name="emailUser" id="emailUser" class="form-control form-control-sm ">
                 </div>
             </div>
             <div class="form-group row">
@@ -69,7 +69,7 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Tipe Pembayaran</label>
                 <div class="col-md-4">
-                    <select name="paymentType" id="paymentType" class="form-control form-control-sm rounded-0">
+                    <select name="paymentType" id="paymentType" class="form-control form-control-sm ">
                         <option value="0" readonly></option>
                         <option value="Tunai">Tunai</option>
                         <option value="Tempo">Tempo</option>
@@ -79,7 +79,7 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Tipe Penjualan</label>
                 <div class="col-md-4">
-                    <select name="typePenjualan" id="typePenjualan" class="form-control form-control-sm rounded-0">
+                    <select name="typePenjualan" id="typePenjualan" class="form-control form-control-sm ">
                         @foreach($cosGroup as $cg)
                             <option value="{{$cg->idm_cos_group}}">{{$cg->group_name}}</option>                            
                         @endforeach
@@ -89,7 +89,7 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Level</label>
                 <div class="col-md-4">
-                    <select name="Level" id="Level" class="form-control form-control-sm rounded-0">
+                    <select name="Level" id="Level" class="form-control form-control-sm ">
                         <option value="0" readonly></option>
                         <option value="Gold">Gold</option>
                         <option value="Silver">Silver</option>
@@ -99,7 +99,7 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Sales</label>
                 <div class="col-md-4">
-                    <select name="Sales" id="Sales" class="form-control form-control-sm rounded-0">
+                    <select name="Sales" id="Sales" class="form-control form-control-sm ">
                         <option value="0" readonly></option>
                         @foreach($sales as $s)
                             <option value="{{$s->sales_code}}">{{$s->sales_name}}</option>
@@ -110,7 +110,7 @@
             <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Kredit Limit</label>
                 <div class="col-md-4">
-                    <input class="form-control form-control-sm rounded-0 price-text" name="kreditLimit" id="kreditLimit">
+                    <input class="form-control form-control-sm  price-text" name="kreditLimit" id="kreditLimit">
                 </div>
             </div>
             <div class="form-group">

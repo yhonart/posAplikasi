@@ -15,7 +15,7 @@
                         <td><i class="{{$hku->icon}} text-info"></i> {{$hku->system_name}}</td>
                         <td><i class="fa-regular fa-folder-open text-success"></i> {{$hku->name_menu}}</td>
                         <td><i class="fa-solid fa-user-check text-success"></i> Allow</td>
-                        <td class="text-right"><button class="btn btn-danger btn-flat btn-sm delete-menu" data-id="{{$hku->idusers_auth}}"><i class="fa-solid fa-xmark"></i></button></td>
+                        <td class="text-right"><button class="btn btn-danger  btn-sm delete-menu" data-id="{{$hku->idusers_auth}}"><i class="fa-solid fa-xmark"></i></button></td>
                     </tr>
                 @endforeach
             </tbody>

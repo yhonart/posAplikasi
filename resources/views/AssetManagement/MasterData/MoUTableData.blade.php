@@ -17,8 +17,8 @@
                 <td>{{$mou->unit_initial}}</td>
                 <td>{{$mou->unit_note}}</td>
                 <td class="text-right">
-                    <a class="btn btn-info btn-flat btn-sm BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('MoU')}}/tableMoU/EditMoU/{{$mou->idm_unit}}"><i class="fa-solid fa-pencil"></i> Edit Unit</a>                                    
-                    <a class="btn btn-info btn-flat btn-sm BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('MoU')}}/tableMoU/DeleteMoU/{{$mou->idm_unit}}"><i class="fa-solid fa-trash-can"></i> Delete Permanently</a>
+                    <a class="btn btn-info  btn-sm BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('MoU')}}/tableMoU/EditMoU/{{$mou->idm_unit}}"><i class="fa-solid fa-pencil"></i> Edit Unit</a>                                    
+                    <a class="btn btn-info  btn-sm BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('MoU')}}/tableMoU/DeleteMoU/{{$mou->idm_unit}}"><i class="fa-solid fa-trash-can"></i> Delete Permanently</a>
                 </td>
             </tr>
         @endforeach

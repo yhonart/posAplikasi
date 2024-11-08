@@ -19,7 +19,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="label">Tipe Laporan</label>
-                                <select class="form-control form-control-sm rounded-0" name="typeCetak" id="typeCetak">
+                                <select class="form-control form-control-sm " name="typeCetak" id="typeCetak">
                                     <option value="1">Ringkasan</option>      
                                     <option value="2">Detail</option>
                                 </select>
@@ -28,7 +28,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="label">Produk Item</label>
-                                <select class="form-control form-control-sm rounded-0" name="produk" id="produk">
+                                <select class="form-control form-control-sm " name="produk" id="produk">
                                     <option value="0">All Item</option>      
                                     @foreach($mProduct as $mp)
                                         <option value="{{$mp->idm_data_product}}">{{$mp->product_name}}</option>
@@ -39,22 +39,22 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="label">Dari Tanggal</label>
-                                <input type="text" class="form-control form-control-sm rounded-0 datetimepicker-input" name="fromDate" id="fromDate">
+                                <input type="text" class="form-control form-control-sm  datetimepicker-input" name="fromDate" id="fromDate">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="label">s/d Tanggal</label>
-                                <input type="text" class="form-control form-control-sm rounded-0 datetimepicker-input" name="endDate" id="endDate">
+                                <input type="text" class="form-control form-control-sm  datetimepicker-input" name="endDate" id="endDate">
                             </div>
                         </div>                            
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-sm btn-info btn-flat"><i class="fa-solid fa-filter"></i> Filter</button>
-                                <button type="button" class="btn btn-sm btn-success btn-flat" id="reportToExcel"><i class="fa-solid fa-file-excel"></i> Download Excel</button>
-                                <button type="button" class="btn btn-sm btn-danger btn-flat" id="reportToPdf"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+                                <button type="submit" class="btn btn-sm btn-info "><i class="fa-solid fa-filter"></i> Filter</button>
+                                <button type="button" class="btn btn-sm btn-success " id="reportToExcel"><i class="fa-solid fa-file-excel"></i> Download Excel</button>
+                                <button type="button" class="btn btn-sm btn-danger " id="reportToPdf"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
                             </div>
                         </div>
                     </div>

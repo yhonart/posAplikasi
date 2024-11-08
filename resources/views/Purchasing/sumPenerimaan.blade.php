@@ -2,10 +2,10 @@
     <div class="form-group row">
         <div class="col-md-3">
             <input type="hidden" name="purchaseCode" id="purchaseCode" value="{{$trxPO}}">
-            <input class="form-control form-control-sm rounded-0" name="noPO" id="noPO" placeholder="Nomor PO">
+            <input class="form-control form-control-sm " name="noPO" id="noPO" placeholder="Nomor PO">
         </div>
         <div class="col-md-2">
-            <div class="input-group input-group-sm mb-3 rounded-0">
+            <div class="input-group input-group-sm mb-3 ">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Item</span>
                 </div>
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="input-group input-group-sm mb-3 rounded-0">
+            <div class="input-group input-group-sm mb-3 ">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa-solid fa-rupiah-sign"></i></span>
                 </div>
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <button type="button" class="btn btn-flat btn-success btn-sm font-weight-bold elevation-1" id="simpanPenerimaan"><i class="fa-solid fa-cart-shopping"></i> Simpan Pembelian</button>
+            <button type="button" class="btn  btn-success btn-sm font-weight-bold elevation-1" id="simpanPenerimaan"><i class="fa-solid fa-cart-shopping"></i> Simpan Pembelian</button>
         </div>
     </div>
 </form>

@@ -18,7 +18,7 @@
         {{$selisih}}
     </td>
     <td>
-        <button type="button" class="btn btn-danger btn-sm elevation-1 rounded-0 btn-delete" data-id="{{$lBarang->idm_data_product}}"><i class="fa-solid fa-xmark"></i></button>
+        <button type="button" class="btn btn-danger btn-sm elevation-1  btn-delete" data-id="{{$lBarang->idm_data_product}}"><i class="fa-solid fa-xmark"></i></button>
     </td>
 </tr>
 @endforeach

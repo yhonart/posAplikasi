@@ -18,7 +18,7 @@
             {{$lbk->qty}}
         </td>
         <td>
-            <button type="button" class="btn btn-sm btn-danger rounded-0 elevation-1 DELETE-ITEM" data-id="{{$lbk->product_correcId}}"><i class="fa-solid fa-xmark"></i></button>
+            <button type="button" class="btn btn-sm btn-danger  elevation-1 DELETE-ITEM" data-id="{{$lbk->product_correcId}}"><i class="fa-solid fa-xmark"></i></button>
         </td>
     </tr>
 @endforeach

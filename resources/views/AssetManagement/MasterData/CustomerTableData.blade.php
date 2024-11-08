@@ -17,7 +17,7 @@
                 <tr>
                     <td>
                         <a class="text-navy DETAIL-CUS" href="#" data-index="{{$c->idm_customer}}">{{$c->customer_store}}</a>
-                        <a class="DEL-CUS btn btn-flat btn-outline-danger btn-sm float-right" href="#" data-id="{{$c->idm_customer}}" title="delete">
+                        <a class="DEL-CUS btn  btn-outline-danger btn-sm float-right" href="#" data-id="{{$c->idm_customer}}" title="delete">
                             <i class="fa-solid fa-trash-can"></i>
                         </a>
                     </td>

@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-3">
         <div class="sticky-top mb-3">
-            <div class="card card-body rounded-0 pr-1 pl-1">
+            <div class="card card-body  pr-1 pl-1">
                 <div class="row">    
                     <div class="col-12">
                         <div class="form-group">

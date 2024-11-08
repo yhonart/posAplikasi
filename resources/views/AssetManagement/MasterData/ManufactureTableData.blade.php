@@ -19,8 +19,8 @@
                         <td class="font-weight-bold">MF{{sprintf('%05d',$tm->idm_asset_manufacture)}}</td>
                         <td>{{$tm->manufacture_name}}</td>
                         <td class="text-right">
-                            <a class="btn btn-flat btn-sm btn-info font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('M_Manufacture')}}/arrayManufacture/editMenu/{{$tm->idm_asset_manufacture}}"><i class="fa-solid fa-pencil"></i> Edit</a>
-                            <a class="btn btn-flat btn-sm btn-danger ITEM-ACTION font-weight-bold" href="#" idMF="{{$tm->idm_asset_manufacture}}"><i class="fa-solid fa-trash-can"></i> Delete</a>
+                            <a class="btn  btn-sm btn-info font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('M_Manufacture')}}/arrayManufacture/editMenu/{{$tm->idm_asset_manufacture}}"><i class="fa-solid fa-pencil"></i> Edit</a>
+                            <a class="btn  btn-sm btn-danger ITEM-ACTION font-weight-bold" href="#" idMF="{{$tm->idm_asset_manufacture}}"><i class="fa-solid fa-trash-can"></i> Delete</a>
                         </td>
                     </tr>
                 @endforeach

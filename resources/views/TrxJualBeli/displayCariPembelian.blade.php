@@ -24,7 +24,7 @@
                         <td>{{number_format($dtr->sub_total,'0',',','.')}}</td>
                         <td></td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-info btn-flat"><i class="fa-solid fa-pencil"></i></button>
+                            <button type="button" class="btn btn-sm btn-info "><i class="fa-solid fa-pencil"></i></button>
                         </td>
                     </tr>
                 @endforeach

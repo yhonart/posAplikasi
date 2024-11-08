@@ -30,18 +30,18 @@
                         @endforeach
                     </select>
                 </td>
-                <td class="p-0"><input type="number" name="qty" id="qty" class="form-control rounded-0 quantity prd-input form-control-sm" autocomplete="off"></td>
+                <td class="p-0"><input type="number" name="qty" id="qty" class="form-control  quantity prd-input form-control-sm" autocomplete="off"></td>
                 <td class="p-0">
-                    <select name="satuan" id="satuan" class="form-control rounded-0 satuan prd-input form-control-sm">
+                    <select name="satuan" id="satuan" class="form-control  satuan prd-input form-control-sm">
                         <option value="0"></option>
                     </select>
                 </td>
-                <td class="p-0"><input type="text" name="hargaSatuan" id="hargaSatuan" class="form-control rounded-0 price-text prd-input form-control-sm" readonly></td>
-                <td class="p-0"><input type="text" name="disc" id="disc" class="form-control rounded-0 prd-input form-control-sm" autocomplete="off"></td>
-                <td class="p-0"><input type="text" name="jumlah" id="jumlah" class="form-control rounded-0 prd-input form-control-sm" readonly></td>
+                <td class="p-0"><input type="text" name="hargaSatuan" id="hargaSatuan" class="form-control  price-text prd-input form-control-sm" readonly></td>
+                <td class="p-0"><input type="text" name="disc" id="disc" class="form-control  prd-input form-control-sm" autocomplete="off"></td>
+                <td class="p-0"><input type="text" name="jumlah" id="jumlah" class="form-control  prd-input form-control-sm" readonly></td>
                 <td class="p-0">
-                    <input type="hidden" name="stockHidden" id="stockHidden" class="form-control rounded-0 form-control-sm" readonly>
-                    <input type="text" name="stock" id="stock" class="form-control rounded-0 prd-input form-control-sm" readonly>
+                    <input type="hidden" name="stockHidden" id="stockHidden" class="form-control  form-control-sm" readonly>
+                    <input type="text" name="stock" id="stock" class="form-control  prd-input form-control-sm" readonly>
                 </td>
                 <td></td>
             </tr>

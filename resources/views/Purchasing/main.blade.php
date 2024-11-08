@@ -17,11 +17,11 @@
             @if($checkArea <> 0)
             <div class="row mb-2">
                 <div class="col-md-6">
-                    <button class="btn bg-purple ml-1 elevation-1 font-weight-bold onclick-submenu btn-flat" data-click="dataPurchasing" id="productIn">Data Pembelian</button>
-                    <button class="btn bg-purple ml-1 elevation-1 font-weight-bold onclick-submenu btn-flat" data-click="addPurchasing" id="pr">Penerimaan Barang</button>                        
+                    <button class="btn bg-purple ml-1 elevation-1 font-weight-bold onclick-submenu " data-click="dataPurchasing" id="productIn">Data Pembelian</button>
+                    <button class="btn bg-purple ml-1 elevation-1 font-weight-bold onclick-submenu " data-click="addPurchasing" id="pr">Penerimaan Barang</button>                        
                 </div>
                 <div class="col-md-4">
-                    <select class="form-control rounded-0" name="selectTransaksi" id="selectTransaksi">
+                    <select class="form-control " name="selectTransaksi" id="selectTransaksi">
                         <option value="0" readonly>Pilih transaksi hari ini.</option>
                         <option value="1" readonly>Transaksi Baru</option>
                         @foreach($selectTrx as $st)

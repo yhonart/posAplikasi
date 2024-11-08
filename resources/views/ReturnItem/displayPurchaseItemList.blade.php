@@ -4,9 +4,9 @@ $no = '1';
 ?>
 <div class="row mb-2">
     <div class="col-md-12">
-        <button class="btn bg-gradient-purple btn-sm btn-flat" id="kembali"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
-        <button class="btn btn-default btn-sm btn-flat" id="refresh"><i class="fa-solid fa-rotate"></i> Refresh</button>
-        <!--<button class="btn bg-gradient-olive btn-sm btn-flat" id="kembali"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>-->
+        <button class="btn bg-gradient-purple btn-sm " id="kembali"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
+        <button class="btn btn-default btn-sm " id="refresh"><i class="fa-solid fa-rotate"></i> Refresh</button>
+        <!--<button class="btn bg-gradient-olive btn-sm " id="kembali"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>-->
     </div>
 </div>
 <hr>
@@ -42,30 +42,30 @@ $no = '1';
                             </select>
                         </td>
                         <td>
-                            <input type="text" class="form-control form-control-sm rounded-0" name="qtyPbl" id="qtyPbl" autocomplete="off" readonly>
+                            <input type="text" class="form-control form-control-sm " name="qtyPbl" id="qtyPbl" autocomplete="off" readonly>
                         </td>
                         <td>
-                            <select class="form-control form-control-sm rounded-0" name="satuan" id="satuan">
+                            <select class="form-control form-control-sm " name="satuan" id="satuan">
                                 <option value="0" readonly></option>
                             </select>
                         </td>
                         <td>
-                            <input type="number" class="form-control form-control-sm rounded-0" name="qtyRetur" id="qtyRetur" autocomplete="off">
+                            <input type="number" class="form-control form-control-sm " name="qtyRetur" id="qtyRetur" autocomplete="off">
                         </td>
                         <td>
-                                <input class="form-control form-control-sm rounded-0 text-right" name="hargaSatuan" id="hargaSatuan" autocomplete="off">
+                                <input class="form-control form-control-sm  text-right" name="hargaSatuan" id="hargaSatuan" autocomplete="off">
                         </td>
                         <td>
-                            <input class="form-control form-control-sm rounded-0 text-right" name="point" id="point" readonly>
+                            <input class="form-control form-control-sm  text-right" name="point" id="point" readonly>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm rounded-0 text-right" name="stock" id="stock" readonly>
+                            <input class="form-control form-control-sm  text-right" name="stock" id="stock" readonly>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm rounded-0 text-right" name="saldo" id="saldo" readonly>
+                            <input class="form-control form-control-sm  text-right" name="saldo" id="saldo" readonly>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-default btn-sm btn-flat" id="btnInsert"><i class="fa-solid fa-check"></i></button>
+                            <button type="button" class="btn btn-default btn-sm " id="btnInsert"><i class="fa-solid fa-check"></i></button>
                         </td>
                     </tr>
                 </tbody>

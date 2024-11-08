@@ -13,19 +13,19 @@
                     <div class="form-group row">
                         <label class="label col-2">Nama Lengkap</label>
                         <div class="col-4">
-                            <input type="text" class="form-control form-control-sm rounded-0" name="namaLengkap" autocomplate="off" value="{{$tbUser->name}}">
+                            <input type="text" class="form-control form-control-sm " name="namaLengkap" autocomplate="off" value="{{$tbUser->name}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="label col-2">Username</label>
                         <div class="col-4">
-                            <input type="text" class="form-control form-control-sm rounded-0" name="userName" autocomplate="off" value="{{$tbUser->username}}">
+                            <input type="text" class="form-control form-control-sm " name="userName" autocomplate="off" value="{{$tbUser->username}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="label col-2">Email</label>
                         <div class="col-4">
-                            <input type="text" class="form-control form-control-sm rounded-0" name="email" autocomplate="off" value="{{$tbUser->email}}">
+                            <input type="text" class="form-control form-control-sm " name="email" autocomplate="off" value="{{$tbUser->email}}">
                         </div>
                     </div>
                     

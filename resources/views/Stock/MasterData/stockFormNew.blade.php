@@ -46,7 +46,7 @@
                     </select>
                 </div>  
                 <div class="col-md-3">
-                    <button class="btn btn-info btn-sm BTN-OPEN-MODAL-GLOBAL-LG btn-flat font-weight-bold" href="{{route('M_Category')}}/AddCategory"><i class="fa-solid fa-plus"></i></button>
+                    <button class="btn btn-info btn-sm BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('M_Category')}}/AddCategory"><i class="fa-solid fa-plus"></i></button>
                 </div>             
             </div>
             <div class="form-group row">
@@ -60,7 +60,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG btn-sm btn-flat" href="{{route('M_Manufacture')}}/AddManufacture"><i class="fa-solid fa-plus"></i></button>
+                    <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG btn-sm " href="{{route('M_Manufacture')}}/AddManufacture"><i class="fa-solid fa-plus"></i></button>
                 </div>
             </div>
             <div class="form-group row">
@@ -83,9 +83,9 @@
                     <tr>
                         <form id="formNewUnit">
                             <input type="hidden" name="prdunID" value="{{$next_id}}">
-                            <input type="hidden" name="stock" class="form-control form-control-sm rounded-0" placeholder="Stock" value="0">
+                            <input type="hidden" name="stock" class="form-control form-control-sm " placeholder="Stock" value="0">
                             <td>
-                                <select name="addPrdSize" id="addPrdSize" class="form-control form-control-sm rounded-0">
+                                <select name="addPrdSize" id="addPrdSize" class="form-control form-control-sm ">
                                     <option value="0">Pilih Size</option>
                                     <option value="BESAR">BESAR</option>
                                     <option value="KECIL">KECIL</option>
@@ -93,7 +93,7 @@
                                 </select>
                             </td>
                             <td>
-                                <select name="addSatuan" id="addSatuan" class="form-control form-control-sm rounded-0">
+                                <select name="addSatuan" id="addSatuan" class="form-control form-control-sm ">
                                     <option value="0">Pilih Satuan</option>
                                     @foreach($unit as $mU2)
                                         <option value="{{$mU2->unit_note}}">{{$mU2->unit_note}}</option>
@@ -101,13 +101,13 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="text" name="addVolumeBarang" id="addVolumeBarang" class="form-control form-control-sm rounded-0" placeholder="Satuan Isi">
+                                <input type="text" name="addVolumeBarang" id="addVolumeBarang" class="form-control form-control-sm " placeholder="Satuan Isi">
                             </td>
                             <td>
-                                <input type="text" name="setBarcode" class="form-control form-control-sm rounded-0" placeholder="Set Barcode">
+                                <input type="text" name="setBarcode" class="form-control form-control-sm " placeholder="Set Barcode">
                             </td>
                             <td>
-                                <button type="button" class="btn btn-info btn-sm BTN-ADD-UNIT float-right btn-flat" id="btnAddUnit">Tambah</button>
+                                <button type="button" class="btn btn-info btn-sm BTN-ADD-UNIT float-right " id="btnAddUnit">Tambah</button>
                             </td>
                         </form>
                     </tr>
@@ -118,7 +118,7 @@
             
             <!--Pengaturan harga barang-->
             <p class="font-weight-bold"><span class="text-info">Pengaturan Harga Barang :</span></p>
-            <a class="btn btn-default btn-flat border-0 font-weight-bold btn-sm mb-2 mt-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn btn-default  border-0 font-weight-bold btn-sm mb-2 mt-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <i class="fa-solid fa-plus"></i> Tambah Harga Barang 
             </a>
             <div class="collapse" id="collapseExample">            
@@ -126,7 +126,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <select name="unitHarga" id="unitHarga" class="form-control form-control-sm rounded-0">
+                                <select name="unitHarga" id="unitHarga" class="form-control form-control-sm ">
                                     <option value="0">Pilih Ukuran</option>
                                     <option value="BESAR">BESAR</option>
                                     <option value="KECIL">KECIL</option>
@@ -134,20 +134,20 @@
                                 </select>
                             </td>
                             <td>
-                                <input class="form-control form-control-sm rounded-0 PRICE" name="priceOrder" autocomplete="off" placeholder="Harga Pembelian">
+                                <input class="form-control form-control-sm  PRICE" name="priceOrder" autocomplete="off" placeholder="Harga Pembelian">
                             </td>
                             <td>
-                                <input class="form-control form-control-sm rounded-0 PRICE" name="priceSell" autocomplete="off" placeholder="Harga Jual">
+                                <input class="form-control form-control-sm  PRICE" name="priceSell" autocomplete="off" placeholder="Harga Jual">
                             </td>
                             <td>
-                                <select class="form-control form-control-sm rounded-0" name="cosGroup" id="cosGroup">
+                                <select class="form-control form-control-sm " name="cosGroup" id="cosGroup">
                                         <option value="0" readonly>Tipe Pelangan</option>
                                     @foreach($listGroup as $cG)
                                         <option value="{{$cG->idm_cos_group}}">{{$cG->group_name}}</option>
                                     @endforeach
                                 </select>
                             </td> 
-                            <td><button type="button" class="btn btn-info btn-sm float-right btn-flat" id="btnTambahHarga">Tambah</button></td>
+                            <td><button type="button" class="btn btn-info btn-sm float-right " id="btnTambahHarga">Tambah</button></td>
                         </tr>
                     </tbody>
                 </table>

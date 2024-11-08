@@ -43,7 +43,7 @@
                     <div class="form-group row mb-1 d-flex align-items-center">
                         <label class="col-md-4 text-right">HUTANG SEBELUMNYA</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control form-control-lg rounded-0 font-weight-bold" name="kredit" id="kredit" value="{{$nominalKredit}}" readonly>
+                            <input type="text" class="form-control form-control-lg  font-weight-bold" name="kredit" id="kredit" value="{{$nominalKredit}}" readonly>
                         </div>
                     </div>
                     <div class="form-group row mb-1 d-flex align-items-center">
@@ -52,13 +52,13 @@
                             <?php
                                 $tPlusKredit = $totalBayar->totalBilling+$nominalKredit
                             ?>
-                            <input type="text" class="form-control form-control-lg rounded-0 font-weight-bold" name="tPlusKredit" id="tPlusKredit" value="{{$tPlusKredit}}" readonly>
+                            <input type="text" class="form-control form-control-lg  font-weight-bold" name="tPlusKredit" id="tPlusKredit" value="{{$tPlusKredit}}" readonly>
                         </div>
                     </div>
                     <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
                         <label class="col-md-4 text-right">BAYAR</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control form-control-lg rounded-0 font-weight-bold" name="tPembayaran" id="tPembayaran" value="{{$totalBayar->totalBilling}}" autocomplete="off" onClick="this.select();">
+                            <input type="text" class="form-control form-control-lg  font-weight-bold" name="tPembayaran" id="tPembayaran" value="{{$totalBayar->totalBilling}}" autocomplete="off" onClick="this.select();">
                         </div>
                     </div>
                     <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
@@ -83,16 +83,16 @@
                     <div class="form-group row mb-1 d-flex align-items-center" id="divMethod1">
                         <label class="col-md-4 text-right">Metode Pembayaran</label>
                         <div class="col-md-4">
-                            <select name="metodePembayaran1" id="metodePembayaran1" class="form-control rounded-0">
+                            <select name="metodePembayaran1" id="metodePembayaran1" class="form-control ">
                                 @foreach($paymentMethod as $pM)
                                     <option value="{{$pM->idm_payment_method}}">
                                         {{$pM->method_name}}
                                     </option>
                                 @endforeach
                             </select>
-                            <input type="text" name="cardName1" id="cardName1" class="form-control rounded-0" placeholder="Nama Bank" style="display:none;">
-                            <input type="text" name="cardNumber1" id="cardNumber1" class="form-control rounded-0" placeholder="Nomor Kartu" style="display:none;">
-                            <select name="bankAccount1" id="bankAccount1" class="form-control rounded-0" style="display:none;">
+                            <input type="text" name="cardName1" id="cardName1" class="form-control " placeholder="Nama Bank" style="display:none;">
+                            <input type="text" name="cardNumber1" id="cardNumber1" class="form-control " placeholder="Nomor Kartu" style="display:none;">
+                            <select name="bankAccount1" id="bankAccount1" class="form-control " style="display:none;">
                                 <option value="0">Pilih Nama Bank</option>
                                 @foreach($bankAccount as $bA)
                                     <option value="{{$bA->idm_payment}}">
@@ -109,13 +109,13 @@
                     <div class="form-group row mb-1 d-flex align-items-center">
                         <label class="col-4 text-right">KEMBALI/KREDIT</label>
                         <div class="col-4">
-                            <input type="text" class="form-control border border-4 border-danger rounded-0" name="nomSelisih" id="nomSelisih" value="0" readonly>
+                            <input type="text" class="form-control border border-4 border-danger " name="nomSelisih" id="nomSelisih" value="0" readonly>
                         </div>
                     </div>
                     <div class="form-group row align-items-cente">
                         <label class="col-4 text-right">Pengiriman</label>
                         <div class="col-4">
-                            <select name="pengiriman" id="pengiriman" class="form-control rounded-0">
+                            <select name="pengiriman" id="pengiriman" class="form-control ">
                                 @foreach($pengiriman as $delv)
                                     <option value="{{$delv->delivery_name}}">
                                         {{$delv->delivery_name}}
@@ -128,14 +128,14 @@
                         <label for="ppn2" class="form-label col-4 text-right">PPN</label>
                         <div class="col-2">
                             <div class="input-group">
-                                <input type="text" class="form-control rounded-0" name="ppn2" id="ppn2">
+                                <input type="text" class="form-control " name="ppn2" id="ppn2">
                                     <div class="input-group-append">
                                     <span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
                                 </div>
                             </div>            
                         </div>
                         <div class="col-2">
-                            <input type="text" class="form-control rounded-0" name="nominalPPN2" id="nominalPPN2">
+                            <input type="text" class="form-control " name="nominalPPN2" id="nominalPPN2">
                         </div>
                     </div>
                     
@@ -156,7 +156,7 @@
                                     <tr>
                                         <td class="text-right font-weight-bold">Metode Pembayaran</td>
                                         <td>
-                                            <select name="metodePembayaran" id="metodePembayaran" class="form-control rounded-0">
+                                            <select name="metodePembayaran" id="metodePembayaran" class="form-control ">
                                                 @foreach($paymentMethod as $pM)
                                                     <option value="{{$pM->idm_payment_method}}">
                                                         {{$pM->method_name}}
@@ -165,10 +165,10 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control type-account rounded-0" name="nominalBayar" id="nominalBayar" value="{{$nilaiNextBayar}}" autocomplete="off">
+                                            <input type="text" class="form-control type-account " name="nominalBayar" id="nominalBayar" value="{{$nilaiNextBayar}}" autocomplete="off">
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-info btn-flat" id="addPaymentMethod"><i class="fas fa-plus"></i></button>
+                                            <button type="button" class="btn btn-info " id="addPaymentMethod"><i class="fas fa-plus"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -176,7 +176,7 @@
                                     <tr>
                                         <td></td>
                                         <td>
-                                            <select name="bankAccount" id="bankAccount" class="form-control rounded-0" style="display:none;">
+                                            <select name="bankAccount" id="bankAccount" class="form-control " style="display:none;">
                                                 <option value="0"></option>
                                                 @foreach($bankAccount as $bA)
                                                     <option value="{{$bA->idm_payment}}">
@@ -191,7 +191,7 @@
                                     <tr>
                                         <td></td>
                                         <td>
-                                            <input type="text" name="cardName" id="cardName" class="form-control rounded-0" placeholder="Nama Bank" style="display:none;">
+                                            <input type="text" name="cardName" id="cardName" class="form-control " placeholder="Nama Bank" style="display:none;">
                                         </td>
                                         <td></td>
                                         <td></td>
@@ -199,7 +199,7 @@
                                     <tr>
                                         <td></td>
                                         <td>
-                                            <input type="text" name="cardNumber" id="cardNumber" class="form-control rounded-0" placeholder="Nomor Kartu" style="display:none;">
+                                            <input type="text" name="cardNumber" id="cardNumber" class="form-control " placeholder="Nomor Kartu" style="display:none;">
                                         </td>
                                         <td></td>
                                         <td></td>
@@ -211,7 +211,7 @@
                     <div class="form-group row">
                         <div class="col-12 col-md-3">
                             <div class="from-group">
-                                <select name="typeCetak" id="typeCetak" class="form-control rounded-0">
+                                <select name="typeCetak" id="typeCetak" class="form-control ">
                                     <option value="1">Cetak Struk</option>
                                     <option value="2">Cetak Faktur</option>
                                 </select>
@@ -221,10 +221,10 @@
                             <p id="notif-error"></p>
                         </div>
                         <div class="col-12 col-md-9">
-                            <a class="btn bg-success btn-flat font-weight-bold" id="btnSimpanTrx">
+                            <a class="btn bg-success  font-weight-bold" id="btnSimpanTrx">
                                 [Ctrl+S] Simpan & Cetak
                             </a>
-                            <a class="btn bg-primary btn-flat font-weight-bold" id="btnBatalTrx" data-dismiss="modal">
+                            <a class="btn bg-primary  font-weight-bold" id="btnBatalTrx" data-dismiss="modal">
                                 [ESC] Tutup Pembayaran
                             </a>
                             
