@@ -49,7 +49,7 @@ class TrxKasUmumController extends Controller
         $kasSubCatid = $reqAddPembiayaan->subKategori;
         $description = $reqAddPembiayaan->keterangan;
         $kasPersonal = $reqAddPembiayaan->personal;
-        $kasNominal = $reqAddPembiayaan->nominal;
+        $kasNominal = str_replace(".", "", $reqPostEdit->nominal);
         $mFile = $reqAddPembiayaan->docLampiran;
 
         $splitPers = explode("|",$kasPersonal);
@@ -127,5 +127,40 @@ class TrxKasUmumController extends Controller
             ->get();
 
         return view('TrxKasUmum/editTransaksiKas', compact('editData','kasKategori','mAdmin','mStaff'));
+    }
+
+    public function postTrxEditKas(Request $reqPostEdit)
+    {
+        $id = $reqPostEdit->idHidden;
+        $kasDate = $reqPostEdit->tanggal;
+        $kasCatid = $reqPostEdit->selKategori;
+        $kasSubCatid = $reqPostEdit->subKategori;
+        $description = $reqPostEdit->keterangan;
+        $kasPersonal = $reqPostEdit->personal;
+        $kasNominal = str_replace(".", "", $reqPostEdit->nominal);
+        $mFile = $reqPostEdit->docLampiran;
+
+        $splitPers = explode("|",$kasPersonal);
+        $persCode = $splitPers[0];
+        $persName = $splitPers[1];
+
+        $creatorName = Auth::user()->name;
+
+        DB::table('tr_kas')
+            ->where('idtr_kas',$id)
+            ->update([
+                'kas_catId'=>$kasCatid,
+                'kas_subCatId'=>$kasSubCatid,
+                'kas_persCode'=>$persCode,
+                'kas_persName'=>$persName,
+                'description'=>$description,
+                'kas_date'=>$kasDate,
+                'updated_date'=>now(),
+                'status'=>'1',
+                'created_by'=>$creatorName,
+                'nominal'=>$kasNominal,
+                'file_name'=>$NameDoc,
+                'file_type'=>$TypeDoc
+            ]);
     }
 }

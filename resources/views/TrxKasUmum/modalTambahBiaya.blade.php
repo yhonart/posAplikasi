@@ -41,7 +41,7 @@
                         <label class="label col-md-4">Personal</label>
                         <div class="col-md-4">
                             <select name="personal" id="personal" class="form-control form-control-sm  select-2">
-                                <option value="0"></option>
+                                <option value="0|0"></option>
                                 @foreach($mStaff as $ms)
                                 <option value="{{$ms->sales_code}}|{{$ms->sales_name}}">{{$ms->sales_name}} (Sales)</option>
                                 @endforeach
@@ -54,7 +54,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">nominal</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control form-control-sm " name="nominal" id="nominal">
+                            <input type="text" class="form-control form-control-sm price-text" name="nominal" id="nominal">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -83,6 +83,9 @@
         $('.select-2').select2({
             theme: 'bootstrap4',
             dropdownParent: $('#modal-global-large')
+        });
+        $('.price-text').mask('000.000.000', {
+            reverse: true
         });
     });
     $(document).ready(function(){
