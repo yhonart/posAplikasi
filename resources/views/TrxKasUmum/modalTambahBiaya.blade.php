@@ -15,7 +15,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Kategori</label>
                         <div class="col-md-4">
-                            <select name="selKategori" id="selKategori" class="form-control form-control-sm rounded-0">
+                            <select name="selKategori" id="selKategori" class="form-control form-control-sm rounded-0 select-2">
                                 <option value="0">===</option>
                                 @foreach($kasKategori as $kk)
                                     <option value="{{$kk->idm_cat_kas}}">{{$kk->cat_name}}</option>
@@ -26,7 +26,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Sub-Kategori</label>
                         <div class="col-md-4">
-                            <select name="subKategori" id="subKategori" class="form-control form-control-sm rounded-0">
+                            <select name="subKategori" id="subKategori" class="form-control form-control-sm rounded-0 select-2">
                                 <option value="0">===</option>
                             </select>
                         </div>
@@ -81,7 +81,8 @@
         });
 
         $('.select-2').select2({
-            theme: 'bootstrap4'
+            theme: 'bootstrap4',
+            dropdownParent: $('#modal-global-large')
         });
     });
     $(document).ready(function(){
