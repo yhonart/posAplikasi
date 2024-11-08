@@ -51,6 +51,7 @@
                 </td>
             </tr>
         @endforeach
+        @endif
         @foreach($lisDatKoreksi as $ldk)
             <tr>
                 <td>{{$ldk->number}}</td>
