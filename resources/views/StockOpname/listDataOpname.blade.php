@@ -38,10 +38,13 @@
 </div>
 <script>
     $(function(){
+        var date = new Date();
+        var minDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 2);
         $( ".datetimepicker-input" ).datepicker({
             dateFormat: 'yy-mm-dd',
             autoclose: true,
             todayHighlight: true,
+            minDate: minDate,
         });
         $('.datetimepicker-input').datepicker("setDate",new Date());
     });
