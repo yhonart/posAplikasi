@@ -97,6 +97,9 @@ class DashboardController extends Controller
             ->get();
             
         $totalTransaksi = DB::table('view_billing_action')
+            ->where([
+                ['is_return','!=','1']
+                ])
             ->whereBetween('tr_date',[$fromDate, $endDate])
             ->count();
             
