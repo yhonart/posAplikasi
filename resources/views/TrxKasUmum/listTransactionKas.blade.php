@@ -70,7 +70,7 @@
                 },
                 function(){
                     alertify.error('Cancel');
-                });
+                }).set('frameless', false);
         })
     })
 </script>

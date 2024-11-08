@@ -102,6 +102,10 @@
             });
         });
 
+        $("#btnClose").click(function(){
+            window.location.reload();
+        })
+
         $("form#formTambahBiaya").submit(function(event){
             event.preventDefault();
             $.ajax({
