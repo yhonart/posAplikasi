@@ -98,7 +98,7 @@ class TrxKasUmumController extends Controller
                 ['a.status','1']
             ]);
             if ($fromDate <> '0' OR $endDate <> '0') {
-                $displayByDate = $displayByDate->whereBetween("a.tr_date", [$fromDate, $endDate]);
+                $displayByDate = $displayByDate->whereBetween("a.kas_date", [$fromDate, $endDate]);
             }
             $displayByDate = $displayByDate->get();
 
