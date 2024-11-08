@@ -123,11 +123,20 @@ class CorrectPrdController extends Controller
    }
    
    public function listDataKoreksi(){
+       return view('StockCorrection/listDataKoreksi');
+   }   
+
+   public function filterByDate($fromDate, $endDate)
+   {
        $lisDatKoreksi = DB::table('inv_correction')
         ->where('status','>=','2')
-        ->paginate(10);
+        ->whereBetween("dateInput", [$fromDate, $endDate])
+        ->limit(100)
+        ->get();
+
         $approval = $this->userApproval();
-       return view('StockCorrection/listDataKoreksi', compact('lisDatKoreksi','approval'));
+        
+        return view('StockCorrection/tableDokKereksi', compact('lisDatKoreksi','approval'));
    }
    
    public function listInputBarang(){
