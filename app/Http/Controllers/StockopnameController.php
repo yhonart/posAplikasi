@@ -220,17 +220,22 @@ class StockopnameController extends Controller
        return view('StockOpname/listDataOpname');
    }
 
-   public function listTableOpname($fromDate, $endDate)
+   public function listTableOpname($fromDate, $endDate, $status)
    {
         $approval = $this->userApproval();
 
-        $summaryOpname = DB::table('inv_stock_opname as a')
-            ->leftJoin('m_site as b','a.loc_so','b.idm_site')
-            ->where('a.status','>=','2')
-            ->whereBetween('a.date_so',[$fromDate,$endDate])
-            ->orderBy('a.idinv_opname','desc')
-            ->limit(100)
-            ->get();
+        $summaryOpname = DB::table('inv_stock_opname as a');
+        $summaryOpname = $summaryOpname->leftJoin('m_site as b','a.loc_so','b.idm_site');
+        if ($fromDate=='0' OR $endDate=='0') {
+            $summaryOpname = $summaryOpname->where('a.status',$status);
+        }
+        else {
+            $summaryOpname = $summaryOpname->where('a.status',$status);            
+            $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$fromDate,$endDate]);
+        }
+        $summaryOpname = $summaryOpname->orderBy('a.idinv_opname','desc');
+        $summaryOpname = $summaryOpname->limit(100);
+        $summaryOpname = $summaryOpname->get();
             
         return view('StockOpname/tableDokOpname', compact('summaryOpname','approval'));
    }

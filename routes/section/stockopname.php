@@ -24,4 +24,4 @@ Route::post('stockOpname/saveToEditTable', [App\Http\Controllers\StockopnameCont
 
 Route::post('stockOpname/submitUpdateStockOpname', [App\Http\Controllers\StockopnameController::class, 'submitUpdateStockOpname']);
 
-Route::get('stockOpname/listTableOpname/{fromDate}/{endDate}', [App\Http\Controllers\StockopnameController::class, 'listTableOpname']);
+Route::get('stockOpname/listTableOpname/{fromDate}/{endDate}/{status}', [App\Http\Controllers\StockopnameController::class, 'listTableOpname']);
