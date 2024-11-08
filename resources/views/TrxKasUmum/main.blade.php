@@ -23,23 +23,16 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <form id="formFilteringData">
-                            <div class="row mb-2">                                
-                                <div class="col-md-3">
-                                    <label for="" class="label">Dari Tgl.</label>
-                                    <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" name="fromDate" id="fromDate" autocomplete="off">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="" class="label">Sd. Tgl.</label>
-                                    <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" name="endDate" id="endDate" autocomplete="off">
-                                </div>
+                        <div class="row mb-2">                                
+                            <div class="col-md-3">
+                                <label for="" class="label">Dari Tgl.</label>
+                                <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" name="fromDate" id="fromDate" autocomplete="off">
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-sm btn-primary btn-flat"><i class="fa-solid fa-magnifying-glass"></i> Cari</button>
-                                </div>
+                            <div class="col-md-3">
+                                <label for="" class="label">Sd. Tgl.</label>
+                                <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" name="endDate" id="endDate" autocomplete="off">
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,38 +58,47 @@
             autoclose: true,
             todayHighlight: true,
         });
+
     });
 
-    $(document).ready(function() {        
-        $("form#formFilteringData").submit(function(event){
-            event.preventDefault();
-            let valFromDate = $("#fromDate").val(),
-                valEndDate = $("#endDate").val(),
-                valJenis  = $("#jenisTrx");
-            $("#loadSpinner").fadeIn("slow");
-            $.ajax({
-                url: "{{route('trxJualBeli')}}/displayFiltering",
-                type: 'POST',
-                data: new FormData(this),
-                async: true,
-                cache: true,
-                contentType: false,
-                processData: false,
-                success: function (data) {  
-                    if (valFromDate === "" || valEndDate === "" || valJenis === "0") {
-                        alertify
-                        .alert("<h5>Lengkapi jenis transaksi, dan range tanggal untuk pencarian data</h5>"+valFromDate, function(){
-                            alertify.message('OK');
-                        }).set('frameless', true);
-                    }
-                    else{
-                        $("#actionDisplay").html(data);
-                        $("#loadSpinner").fadeOut("slow");
-                    }                  
-                },                
-            });
-            return false;
+    $(document).ready(function() {
+        let fromDate = "0",
+            endDate = "0";
+
+        searchData(fromDate, endDate);
+
+        $("#fromDate").change(function(){
+                fromDate = $('#fromDate').val(),
+                endDate = $('#endDate').val();
+
+                if(fromDate === '' || endDate === ''){
+                    fromDate = '0';
+                    endDate = '0';
+                }      
+                alert (fromDate+" "+enDate);
+                searchData(fromDate, endDate)
         });
+
+        $("#endDate").change(function(){
+                fromDate = $('#fromDate').val(),
+                endDate = $('#endDate').val();
+                if(fromDate === '' || endDate === ''){
+                    fromDate = '0';
+                    endDate = '0';
+                }  
+                alert (fromDate+" "+enDate);
+                searchData(fromDate, endDate)
+        });
+
+        function searchData(fromDate, endDate){ 
+            $.ajax({
+                type : 'get',
+                url : "{{route('trxKasUmum')}}/filterByDate/"+fromDate+"/"+endDate,
+                success : function(response){
+                    $("#actionDisplay").html(response);
+                }
+            });
+        }
     });
 </script>
 @endsection

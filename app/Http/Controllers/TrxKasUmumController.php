@@ -88,4 +88,21 @@ class TrxKasUmumController extends Controller
             ]);
         
     }
+
+    public function filterByDate($fromDate, $endDate)
+    {
+        $displayByDate = DB::table('tr_kas a');
+            $displayByDate = $displayByDate->select('a.*','b.cat_name','c.subcat_name');
+            $displayByDate = $displayByDate->leftJoin('m_category_kas b','b.idm_cat_kas','=','a.kas_catId');
+            $displayByDate = $displayByDate->leftJoin('m_subcategory_kas c','c.idm_sub ','=','a.kas_subCatId');
+            $displayByDate = $displayByDate->where([
+                ['status','1']
+            ]);
+            if ($fromDate <> '0' OR $endDate <> '0') {
+                $displayByDate = $displayByDate->whereBetween("tr_date", [$fromDate, $endDate]);
+            }
+            $displayByDate = $displayByDate->get();
+
+        return view('TrxKasUmum/listTransactionKas', compact('displayByDate'));
+    }
 }
