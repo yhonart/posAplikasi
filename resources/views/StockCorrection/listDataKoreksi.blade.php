@@ -86,7 +86,7 @@
                 type : 'get',
                 url : "{{route('koreksiBarang')}}/filterByDate/"+fromDate+"/"+endDate,
                 success : function(response){
-                    $("#actionDisplay").html(response);
+                    $("#divTableKoreksi").html(response);
                 }
             });
         }
