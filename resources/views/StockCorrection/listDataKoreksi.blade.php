@@ -1,3 +1,4 @@
+
 <div id="table_my_events">
     <div class="text-center LOAD-SPINNER text-sm" style="display:none;">    
         <span class="spinner-grow spinner-grow-sm" role="status"></span> Please Wait !
@@ -9,7 +10,7 @@
         </div>
     </div>
 
-    <div class="card table-responsive p-1" id="displayListTableKoreksi">        
+    <div class="card table-responsive p-1">        
         <div class="card-body">  
             <div class="row mt-1 mb-2">
                 <div class="col-md-3">
