@@ -55,7 +55,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">nominal</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control form-control-sm price-text" name="nominal" id="nominal" value="{{$editData->description}}">
+                            <input type="text" class="form-control form-control-sm price-text" name="nominal" id="nominal" value="{{$editData->nominal}}">
                         </div>
                     </div>
                     <div class="form-group row">

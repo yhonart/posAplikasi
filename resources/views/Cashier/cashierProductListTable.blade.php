@@ -44,14 +44,21 @@
         $('.DELETE-LIST').on('click', function(){
             let elThis = $(this),
                 data = elThis.attr("data-id");
-            $.ajax({
-                type : "get",
-                url : "{{route('Cashier')}}/buttonAction/dataPenjualan/deleteData/" + data,
-                success : function(response){
-                    cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
-                    cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
-                }
-            });
+                alertify.confirm("Apakah anda yakin ingin menghapus item ?",
+                function(){
+                    $.ajax({
+                        type : "get",
+                        url : "{{route('Cashier')}}/buttonAction/dataPenjualan/deleteData/" + data,
+                        success : function(response){
+                            cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
+                            cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
+                        }
+                    });
+                    alertify.success('Item berhasil di hapus');
+                },
+                function(){
+                    alertify.error('Cancel');
+                }).set('frameless', true);
         });
         
     });
