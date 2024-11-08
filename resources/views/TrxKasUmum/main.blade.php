@@ -75,7 +75,7 @@
                     fromDate = '0';
                     endDate = '0';
                 }      
-                alert (fromDate+" "+enDate);
+                alert (fromDate+" "+endDate);
                 searchData(fromDate, endDate)
         });
 
@@ -86,7 +86,7 @@
                     fromDate = '0';
                     endDate = '0';
                 }  
-                alert (fromDate+" "+enDate);
+                alert (fromDate+" "+endDate);
                 searchData(fromDate, endDate)
         });
 
