@@ -104,4 +104,9 @@ class TrxKasUmumController extends Controller
 
         return view('TrxKasUmum/listTransactionKas', compact('displayByDate'));
     }
+
+    public function modalEditKas($id)
+    {
+        echo $id;
+    }
 }

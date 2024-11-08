@@ -68,13 +68,7 @@
         $(".dataTable").on('click','.EDIT-KAS', function () {
             let el = $(this);
             let id = el.attr("data-id");
-                alertify.confirm("Edit Transaksi belum dapat di gunakan !.",
-                function(){                               
-                    alertify.success('Ok');
-                },
-                function(){
-                    alertify.error('Cancel');
-                }).set('frameless', false);
+            el_modal_all.modal('show').find(id_modal_content).load("{{route('trxKasUmum')}}/modalEditKas/"+id);
         })
     })
 </script>

@@ -74,8 +74,7 @@
                 if(fromDate === '' || endDate === ''){
                     fromDate = '0';
                     endDate = '0';
-                }      
-                alert (fromDate+" "+endDate);
+                }    
                 searchData(fromDate, endDate)
         });
 
@@ -86,7 +85,6 @@
                     fromDate = '0';
                     endDate = '0';
                 }  
-                alert (fromDate+" "+endDate);
                 searchData(fromDate, endDate)
         });
 
