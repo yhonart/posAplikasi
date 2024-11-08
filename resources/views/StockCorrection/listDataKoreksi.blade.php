@@ -17,11 +17,13 @@
     <div class="text-center LOAD-SPINNER text-sm" style="display:none;">    
         <span class="spinner-grow spinner-grow-sm" role="status"></span> Please Wait !
     </div>
+    
     <div class="row mb-2">
         <div class="col-12">
             <div id="detailKoreksi"></div>
         </div>
     </div>
+
     <div class="card card-outline card-info table-responsive p-1">
         <div class="card-header border-0">
             <h3 class="card-title font-weight-bold">List Dokumen Koreksi</h3>
