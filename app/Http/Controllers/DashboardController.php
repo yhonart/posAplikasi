@@ -145,7 +145,7 @@ class DashboardController extends Controller
 
     public function modalLogTrx ($noBill)
     {
-        $dbSelectTrx = DB::table('tr_store_prod_list')
+        $dbSelectTrx = DB::table('trans_product_list_view')
             ->where('from_payment_code',$noBill)
             ->get();
 
