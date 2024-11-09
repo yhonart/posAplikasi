@@ -360,7 +360,7 @@ class StockopnameController extends Controller
         $unitVol = $reqSubmit->unitVol;
         
         //Check Vol Unit 
-        
+        //Jika data produk tidak ada pada table inventory
         if($invID=="0"){
             //cari id unit
             $dbUnit = DB::table('product_list_view')
