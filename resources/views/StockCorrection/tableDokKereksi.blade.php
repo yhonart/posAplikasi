@@ -1,9 +1,9 @@
 <?php
     $nosum = '1';
     $araystatus = array(
-        1=>"On Process",
+        1=>"Proses",
         2=>"Submited",
-        3=>"Approved",
+        3=>"Disetujui",
         0=>"Deleted",
     );
     $textColor = array(

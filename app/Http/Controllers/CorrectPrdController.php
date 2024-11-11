@@ -128,17 +128,19 @@ class CorrectPrdController extends Controller
        return view('StockCorrection/listDataKoreksi');
    }   
 
-   public function filterByDate($fromDate, $endDate)
+   public function filterByDate($fromDate, $endDate, $status)
    {
         $listOnProces = DB::table('inv_correction')
             ->whereBetween("status", ['1', '2'])
             ->get();
 
-        $lisDatKoreksi = DB::table('inv_correction')
-        ->where('status','>=','2')
-        ->whereBetween("dateInput", [$fromDate, $endDate])
-        ->limit(100)
-        ->get();
+        $lisDatKoreksi = DB::table('inv_correction');
+        $lisDatKoreksi = $lisDatKoreksi->where('status',$status);
+        if ($fromDate <> '0' OR $endDate <> '0') {
+            $lisDatKoreksi = $lisDatKoreksi->whereBetween("dateInput", [$fromDate, $endDate]);
+        }
+        $lisDatKoreksi = $lisDatKoreksi->limit(100);
+        $lisDatKoreksi = $lisDatKoreksi->get();
 
         $approval = $this->userApproval();
         

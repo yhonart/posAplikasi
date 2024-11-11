@@ -21,6 +21,15 @@
                     <label for="" class="label">Sd. Tgl.</label>
                     <input type="text" class="form-control form-control-sm datetimepicker-input " name="endDate" id="endDate" autocomplete="off">
                 </div>
+                <div class="col-md-3">
+                    <label for="" class="label">Select Status</label>
+                    <select name="status" id="status" class="form-control form-control-sm">
+                        <option value="2">Submited</option>
+                        <option value="1">Proses</option>
+                        <option value="3">Disetujui</option>
+                        <option value="0">Delete</option>
+                    </select>                        
+                </div>
             </div>
             <hr>             
             <div class="row">
@@ -42,35 +51,49 @@
     });
 
     $(document).ready(function(){
-        let fromDate = $('#fromDate').val(),
-            endDate = $('#endDate').val();
+        let fromDate = '0',
+            endDate = '0',
+            status = $('#status').val();
         
         searchData(fromDate, endDate);
         $("#fromDate").change(function(){
-                fromDate = $('#fromDate').val(),
-                endDate = $('#endDate').val();
+                fromDate = $('#fromDate').val();
+                endDate = $('#endDate').val();               
+                status = $('#status').val();
 
                 if(fromDate === '' || endDate === ''){
                     fromDate = '0';
                     endDate = '0';
                 }    
-                searchData(fromDate, endDate);
+                searchData(fromDate, endDate, status);
         });
 
         $("#endDate").change(function(){
-                fromDate = $('#fromDate').val(),
-                endDate = $('#endDate').val();
+                fromDate = $('#fromDate').val();
+                endDate = $('#endDate').val();               
+                status = $('#status').val();
                 if(fromDate === '' || endDate === ''){
                     fromDate = '0';
                     endDate = '0';
                 }  
-                searchData(fromDate, endDate);
+                searchData(fromDate, endDate, status);
         });
 
-        function searchData(fromDate, endDate){ 
+        $("#status").change(function(){
+                fromDate = $('#fromDate').val();
+                endDate = $('#endDate').val();
+                status = $(this).find(":selected").val();
+                if(fromDate === '' || endDate === ''){
+                    fromDate = '0';
+                    endDate = '0';
+                }  
+                searchData(fromDate, endDate, status);
+        });
+
+        function searchData(fromDate, endDate, status){ 
             $.ajax({
                 type : 'get',
-                url : "{{route('koreksiBarang')}}/filterByDate/"+fromDate+"/"+endDate,
+                url : "{{route('koreksiBarang')}}/filterByDate/"+fromDate+"/"+endDate+"/"+status,
                 success : function(response){
                     $("#divTableKoreksi").html(response);
                 }

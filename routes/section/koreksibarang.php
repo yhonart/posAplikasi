@@ -17,7 +17,7 @@ Route::get('koreksiBarang/listDataKoreksi/detailKoreksi/{number}', [App\Http\Con
 Route::get('koreksiBarang/listDataKoreksi/deleteKoreksi/{number}', [App\Http\Controllers\CorrectPrdController::class, 'deleteKoreksi']);
 Route::get('koreksiBarang/deleteItem/{number}', [App\Http\Controllers\CorrectPrdController::class, 'deleteItem']);
 
-Route::get('koreksiBarang/filterByDate/{fromDate}/{endDate}', [App\Http\Controllers\CorrectPrdController::class, 'filterByDate']);
+Route::get('koreksiBarang/filterByDate/{fromDate}/{endDate}/{status}', [App\Http\Controllers\CorrectPrdController::class, 'filterByDate']);
 Route::post('koreksiBarang/saveToDatabase', [App\Http\Controllers\CorrectPrdController::class, 'saveToDatabase']);
 
 ?>
