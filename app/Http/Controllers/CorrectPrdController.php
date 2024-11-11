@@ -417,7 +417,7 @@ class CorrectPrdController extends Controller
         foreach($inv as $i){
             $invId = $i->inv_id;
             $saldo = $i->saldo;
-            $prdID = $i->product_correction;
+            $prdID = $i->product_correcId;
             $prdSize = $i->product_size; // BESAR-KECIL-KONV
             $location = $i->location;
 
