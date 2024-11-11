@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Hash;
 
 class CorrectPrdController extends Controller
 {    
-    protected $tempInv;   
+    protected $tempInv; 
+    protected $TempInventoryController;
+    
     public function __construct(TempInventoryController $tempInv)
     {
         $this->TempInventoryController = $tempInv;
@@ -324,6 +326,7 @@ class CorrectPrdController extends Controller
                     ['product_size',$satuan]
                 ])
                 ->first();
+
             $lastStock = $selectItem->stock;
             $invID = $selectItem->idinv_stock;
             $sizeCode = $selectItem->size_code;
@@ -341,6 +344,48 @@ class CorrectPrdController extends Controller
             elseif ($t_type == "K") {
                 $a = $stockAct - $qty;
             }
+
+            $mProduct = DB::table('m_product')                
+                ->where('idm_data_product',$product)
+                ->first();
+            $volB = $mProduct->large_unit_val;
+            $volK = $mProduct->medium_unit_val;
+            $volKonv = $mProduct->small_unit_val;
+
+            $mUnit = DB::table('m_product_unit')
+                ->select('size_code','product_volume')
+                ->where('core_id_product',$product)
+                ->orderBy('size_code','desc')
+                ->first();
+
+            $sizeCodeDesc = $mUnit->size_code;
+
+            if ($sizeCodeDesc == '1') {
+                $inputSaldo = $a;
+            }
+            elseif ($sizeCodeDesc == '2') {
+                if ($satuan == "BESAR") {
+                    $i = $a * $volB;
+                    $inputSaldo = (int)$i;
+                }
+                elseif ($satuan == "KECIL") {
+                    $inputSaldo = $a;
+                }
+            }
+            elseif ($sizeCodeDesc == '3') {
+                if ($satuan == "BESAR") {
+                    $i = $a * $volKonv;
+                    $inputSaldo = (int)$i;
+                }
+                elseif ($satuan == "KECIL") {
+                    $i = $a * $volK;
+                    $inputSaldo = (int)$i;
+                }
+                elseif ($satuan == "KONV") {
+                    $inputSaldo = $a;
+                }
+            }
+
             $display = '1';
             DB::table('inv_list_correction')
                 ->insert([
@@ -353,7 +398,7 @@ class CorrectPrdController extends Controller
                     'qty'=>$a,
                     'stock'=>$stockAct,
                     'created_by'=>$createdBy,
-                    'saldo'=>$a,
+                    'saldo'=>$inputSaldo,
                     'display'=>$display,
                     'size_code'=>$sizeCode
                 ]);    
