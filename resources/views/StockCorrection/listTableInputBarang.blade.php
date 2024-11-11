@@ -47,6 +47,7 @@
     });
 
     function saveToDatabase(editableObj,tablename,column,id,ideqm,idprd) {
+        let loadDisplay = "listInputBarang";
         $(editableObj).css("background","#FFF url({{asset('public/images/loadericon.gif')}}) no-repeat right");
         $.ajax({
             url: "{{route('koreksiBarang')}}/saveToDatabase",
@@ -55,7 +56,17 @@
             success: function(data){
                 $(editableObj).css("background","#FDFDFD");
                 alertify.success('Data Berhasil Dirubah');
-                loadDisplay(loadDiv);
+                loadDisplay(display);
+            }
+        });
+    }
+    
+    function loadDisplay(display){
+        $.ajax({
+            type : 'get',
+            url : "{{route('koreksiBarang')}}/"+display,
+            success : function(response){
+                $('#displayOnDiv').html(response);
             }
         });
     }
