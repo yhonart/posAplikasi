@@ -485,7 +485,7 @@ class CorrectPrdController extends Controller
                     ->update([
                         'stock'=>$a,
                         'saldo'=>$a,
-                        'updated_date'=>$a
+                        'updated_date'=>now()
                     ]);
             }
             // update status menjadi 3                
