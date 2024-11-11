@@ -305,7 +305,8 @@ class CorrectPrdController extends Controller
         $tPerbaikan = $reqSubmit->tPerbaikan;
         $createdBy = Auth::user()->name;
         
-        $cekProduct = DB::table('inv_list_correction')
+        //cek ketersediaan item pada list item koreksi. 
+        $countItem = DB::table('inv_list_correction')
         ->where([
                 ['number_correction',$numberKoreksi],
                 ['inv_id',$invID],
@@ -314,117 +315,34 @@ class CorrectPrdController extends Controller
             ])
         ->count();
 
-        $productUnit = DB::table('product_list_view as a')
-                ->select('a.*','b.location_id','b.stock','b.idinv_stock')
-                ->leftJoin('inv_stock as b','a.idm_product_satuan','b.product_id')
-                ->where([
-                    ['a.core_id_product',$product],
-                    ['a.product_volume','!=','0'],
-                    ['a.product_satuan','!=',''],
-                    ['b.location_id',$location]
-                    ])
-                ->get();
-                
-        $volKonversi = DB::table('product_list_view') //mengambil data konversi
-                ->where('core_id_product',$product)
-                ->orderBy('size_code','desc')
-                ->first();
-                
-        $valKecil = DB::table('m_product_unit')
-                ->select('product_volume')
-                ->where([
-                    ['core_id_product',$product],
-                    ['size_code','2']
-                    ])
-                ->first();
-
-        $vol = $volKonversi->product_volume;
-        if(!empty($valKecil)){
-            $volkodedua = $valKecil->product_volume;
-        }
-        else{
-            $volkodedua = $vol;
-        }
-
-        $mProduk = DB::table('m_product')
-            ->where('idm_data_product',$product)
-            ->first();
-
-        $volBesar = $mProduk->large_unit_val;    
-        $volKecil = $mProduk->medium_unit_val;    
-        $volKonv = $mProduk->small_unit_val;
-        $prodName = $mProduk->product_name;
-
         // Jalankan update apabila tidak ada jumlah data produk yang sama.
-        if($cekProduct == '0'){            
-            foreach($productUnit as $inputUnit){
-                $sizeCode = $inputUnit->size_code;
-                $prodZise = $inputUnit->product_size;
-                $lastStokPerUnit = $inputUnit->stock;
+        if($countItem == '0'){   
+            $selectItem = DB::table('view_product_stock')
+                ->where([
+                    ['idm_data_product',$product],
+                    ['location_id',$location],
+                    ['product_size',$satuan]
+                ])
+                ->first();
                 
-                if ($satuan == "BESAR") {
-                    if ($sizeCode == '1') {
-                        $a = $tPerbaikan;
-                        $display = '1';
-                    }
-                    elseif ($sizeCode == '2') {
-                        $a = $tPerbaikan * $volBesar;
-                        $display = '0';
-                    }
-                    elseif ($sizeCode == '3') {
-                        $a = $tPerbaikan * $volKonv;
-                        $display = '0';
-                    }
-                }
-                elseif ($satuan == "KECIL") {
-                    if ($sizeCode == '1') {
-                        $a1 = $tPerbaikan / $volBesar;
-                        $a = (int)$a1;
-                        $display = '0';
-                    }
-                    elseif ($sizeCode == '2') {
-                        $a = $tPerbaikan;
-                        $display = '1';
-                    }
-                    elseif ($sizeCode == '3') {
-                        $a = $tPerbaikan * $volKecil;
-                        $display = '0';
-                    }
-                }
-                elseif ($satuan == "KONV") {
-                    if ($sizeCode == '1') {
-                        $a1 = $tPerbaikan / $volKonv;
-                        $a = (int)$a1;
-                        $display = '0';
-                    }
-                    elseif ($sizeCode == '2') {
-                        $a1 = $tPerbaikan / $volKecil;
-                        $a = (int)$a1;
-                        $display = '0';
-                    }
-                    elseif ($sizeCode == '3') {
-                        $a = $tPerbaikan;
-                        $display = '1';
-                    }
-                }
+            $invID = $selectItem->idinv_stock;
 
-                DB::table('inv_list_correction')
-                    ->insert([
-                        'number_correction'=>$numberKoreksi, 
-                        'inv_id'=>$inputUnit->idinv_stock,
-                        'product_correcId'=>$product,
-                        'location'=>$location,
-                        'd_k'=>$t_type,
-                        'input_qty'=>$qty,
-                        'qty'=>$a,
-                        'stock'=>$lastStokPerUnit,
-                        'created_by'=>$createdBy,
-                        'saldo'=>$a,
-                        'display'=>$display,
-                        'size_code'=>$sizeCode
-                    ]);
-                
-            }            
+            DB::table('inv_list_correction')
+                ->insert([
+                    'number_correction'=>$numberKoreksi, 
+                    'inv_id'=>$invID,
+                    'product_correcId'=>$product,
+                    'location'=>$location,
+                    'd_k'=>$t_type,
+                    'input_qty'=>$qty,
+                    'qty'=>$a,
+                    'stock'=>$lastStokPerUnit,
+                    'created_by'=>$createdBy,
+                    'saldo'=>$a,
+                    'display'=>$display,
+                    'size_code'=>$sizeCode
+                ]);    
+
             $msg = array('success'=>'<h4>SUCCESS</h4> Koreksi Barang berhasil dimasukkan');
         }
         else{
@@ -605,5 +523,38 @@ class CorrectPrdController extends Controller
       DB::table('inv_list_correction')
         ->where('product_correcId',$number)
         ->delete();
+   }
+
+   public function saveToDatabase(Request $autoSaveTable)
+   {
+        $table = $autoSaveTable->tableName;
+        $colom = $autoSaveTable->column;
+        $editVal = $autoSaveTable->editVal;
+        $id = $autoSaveTable->id;
+        $colId = $autoSaveTable->tableId;
+
+        // select list koreksi by id 
+        $selectOne = DB::table('inv_list_correction')
+            ->where('idinv_list',$id)
+            ->first();
+
+        $dk = $selectOne->d_k;
+        $stock = $selectOne->stock;        
+
+        if ($dk == "D") {
+            $updateQty = $stock + $editVal;
+        }
+        elseif ($dk == "K") {
+            $updateQty = $stock - $editVal;
+        }
+
+        DB::table('inv_list_correction')
+            ->where($colId,$id)
+            ->update([
+                'input_qty'=>$editVal,
+                'qty'=>$updateQty,
+                'stock'=>$stock,
+                'saldo'=>$updateQty
+            ]);
    }
 }
