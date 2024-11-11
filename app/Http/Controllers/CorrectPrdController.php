@@ -553,52 +553,42 @@ class CorrectPrdController extends Controller
                 ->orderBy('size_code','desc')
                 ->first();
 
-            $sizeCodeDesc = $mUnit->size_code;            
-
-            if ($i->d_k == "D") {
-                $inInv = $i->qty - $i->stock;
-                $outInv = '0';
-            }
-            else {
-                $inInv = '0';
-                $outInv = $i->stock - $i->qty;
-            }
+            $sizeCodeDesc = $mUnit->size_code;  
 
             if ($sizeCodeDesc == '1') {
-                $valInInv = $inInv;
-                $valOutInv = $outInv;
+                $ls = $i->stock;
             }
             elseif ($sizeCodeDesc == '2') {
                 if ($satuan == "BESAR") {
-                    $iIn = $inInv * $volB;
-                    $iOut = $outInv * $volB;
-                    $valInInv = (int)$iIn;
-                    $valOutInv = (int)$iOut;
+                    $ls1 = $i->stock * $volB;
+                    $ls = (int)$ls1;
                 }
                 elseif ($satuan == "KECIL") {
-                    $valInInv = $inInv;
-                    $valOutInv = $outInv;
+                    $ls = $i->stock;
                 }
             }
             elseif ($sizeCodeDesc == '3') {
                 if ($satuan == "BESAR") {
-                    $iIn = $inInv * $volKonv;
-                    $iOut = $outInv * $volKonv;
-                    $valInInv = (int)$iIn;
-                    $valOutInv = (int)$iOut;
+                    $ls1 = $i->stock * $volKonv;
+                    $ls = (int)$ls1;
                 }
                 elseif ($satuan == "KECIL") {
-                    $iIn = $inInv * $volK;
-                    $iOut = $outInv * $volK;
-                    $valInInv = (int)$iIn;
-                    $valOutInv = (int)$iOut;
+                    $ls1 = $i->stock * $volK;
+                    $ls = (int)$ls1;
                 }
                 elseif ($satuan == "KONV") {
-                    $valInInv = $inInv;
-                    $valOutInv = $outInv;
+                    $ls = $i->stock;
                 }
             }
 
+            if ($i->d_k == "D") {
+                $inInv = $i->saldo - $ls;
+                $outInv = '0';
+            }
+            else {
+                $inInv = '0';
+                $outInv = $ls - $i->saldo;
+            }
             
             // Insert into laporan
             DB::table('report_inv')
@@ -610,8 +600,8 @@ class CorrectPrdController extends Controller
                 'satuan'=>$satuan,
                 'satuan_code'=>$sizeCode,
                 'description'=>$description,
-                'inv_in'=>$valInInv,
-                'inv_out'=>$valOutInv,
+                'inv_in'=>$inInv,
+                'inv_out'=>$outInv,
                 'saldo'=>$saldo,
                 'created_by'=>$i->created_by,
                 'location'=>$i->location,
