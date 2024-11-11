@@ -108,7 +108,7 @@ class MutasibarangController extends Controller
     }
     
     public function tableDataMutasi(){       
-        
+        $userArea = $this->checkuserInfo();
         $mloc = DB::table('m_site')
             ->where('idm_site',$userArea)
             ->first();
