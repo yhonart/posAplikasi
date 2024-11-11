@@ -494,9 +494,54 @@ class CorrectPrdController extends Controller
                 ->update([
                     'status'=>'3'    
                 ]);
-        }  
+            // End Update Stock.
+            
+            //Start Insert to laporan inventory
+            //Select size_code with ordering desc.
+            $descSizeCode = DB::table('m_product_unit')
+                ->where('core_id_product',$prdID)
+                ->orderBy('size_code','desc')
+                ->first();
 
-        //Select display on 
+            $sizeCode2 = $descSizeCode->size_code;
+
+            if ($sizeCode2 == '1') {
+                $lapQty = $saldo;
+            }
+            elseif ($sizeCode2 == '2') {
+                if ($prdSize == "BESAR") {
+                    $hitung1 = $saldo * $volB;
+                    $lapQty = (int)$hitung1;
+                }
+                elseif ($prdSize == "KECIL") {
+                    $lapQty = $saldo;
+                }
+            }
+            elseif ($sizeCode2 == '3') {
+                if ($prdSize == "BESAR") {
+                    $hitung1 = $saldo*$volKonv;
+                    $lapQty = (int)$hitung1;
+                }
+                elseif ($prdSize == "KECIL") {
+                    $lapQty = $saldo;
+                }
+                elseif ($prdSize == "KONV") {
+                    $lapQty = $saldo;
+                }
+                $lapQty = $saldo * $volKonv;
+            }
+            //end insert to laporan inventory
+
+            if ($i->d_k == "D") {
+                $inInv = $i->qty - $i->stock;
+                $outInv = '0';
+            }
+            else{
+                $inInv = '0';
+                $outInv = $i->stock - $i->qty;
+            }
+        } 
+
         $displayCorrection = DB::table('inv_list_correction')
             ->where([
                 ['display','1'],
