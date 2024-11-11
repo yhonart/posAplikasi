@@ -543,7 +543,7 @@ class CorrectPrdController extends Controller
             // End Update Stock.
             
             $prodName = $mProduct->product_name;
-            $satuan = $i->product_satuan;
+            $satuan = $i->product_size;
             $sizeCode = $i->size_code;
             $description = "Koreksi Barang Oleh ".$userName;
             
