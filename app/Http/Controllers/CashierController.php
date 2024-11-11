@@ -1129,10 +1129,8 @@ class CashierController extends Controller
         $prodID = $listData->product_code;
         $qty = $listData->qty;
         $unit = $listData->unit;
-        $paymentCode = $listData->from_payment_code;
-        $tPrice = $listData->t_price;
 
-        // Cari kode unit pada m_product_unit
+        // cari stok terakhir pada table view stok inventori
         $prodUnit = DB::table('view_product_stock')
             ->select('product_size', 'saldo', 'stock_out', 'stock')
             ->where([
@@ -1142,10 +1140,10 @@ class CashierController extends Controller
             ->first();
 
         $satuan = $prodUnit->product_size;
-        $sumQty = $prodUnit->stock + $qty;
-        $stockOut = $prodUnit->stock_out - $qty;
+        $sumQty = $prodUnit->stock + $qty; //penjumlahan qty dengan stok terakhir pada table stok
+        $stockOut = $prodUnit->stock_out - $qty; //pengurangan qty yang keluar
 
-        //UPDATE STOCK
+        //Query get prd list view dan stok berdasarkan produk id 
         $productUnit = DB::table('product_list_view as a')
             ->select('a.*', 'b.location_id', 'b.stock', 'b.idinv_stock')
             ->leftJoin('inv_stock as b', 'a.idm_product_satuan', 'b.product_id')
@@ -1178,20 +1176,29 @@ class CashierController extends Controller
             $volkodedua = $vol;
         }
 
+        $mProduct = DB::table('m_product')
+            ->where('idm_data_product',$prodID)
+            ->first();
+
+        $volB = $mProduct->large_unit_val;
+        $volK = $mProduct->medium_unit_val;
+        $volkonv = $mProduct->small_unit_val;
+
         foreach ($productUnit as $p) {
             $sizeCode = $p->size_code;
             $prodZise = $p->product_size;
             $vol2 = $p->product_volume;
-            // IF untuk memasukkan data stock besar
+
+            // Jika size code 1
             if ($sizeCode == '1') {
                 if ($satuan == "BESAR") {
                     $c = $sumQty;
                 } elseif ($satuan == "KECIL") {
-                    $c1 = $qty / $vol2;
-                    $c = $p->stock + (int)$c1;
+                    $c1 = $sumQty / $volB;
+                    $c = (int)$c1;
                 } elseif ($satuan == "KONV") {
-                    $c1 = $qty / $vol;
-                    $c = $p->stock + (int)$c1;
+                    $c1 = $sumQty * $volK;
+                    $c = (int)$c1;
                 }
             } elseif ($sizeCode == '2') {
                 if ($satuan == "BESAR") {

@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/n1578925/public_html/posapps.dazira.id/
+    - export DEPLOYPATH=/home/n1578925/public_html/pos-app.dazira.id/
     - /bin/cp -R app $DEPLOYPATH
     - /bin/cp -R bootstrap $DEPLOYPATH
     - /bin/cp -R config $DEPLOYPATH
