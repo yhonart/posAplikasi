@@ -324,9 +324,16 @@ class CorrectPrdController extends Controller
                     ['product_size',$satuan]
                 ])
                 ->first();
-                
+            $lastStock = $selectItem->stock;
             $invID = $selectItem->idinv_stock;
-
+            $sizeCode = $selectItem->size_code;
+            if ($t_type == "D") {
+                $a = $lastStock + $qty;
+            }
+            elseif ($t_type == "K") {
+                $a = $lastStock - $qty;
+            }
+            $display = '1';
             DB::table('inv_list_correction')
                 ->insert([
                     'number_correction'=>$numberKoreksi, 
@@ -336,7 +343,7 @@ class CorrectPrdController extends Controller
                     'd_k'=>$t_type,
                     'input_qty'=>$qty,
                     'qty'=>$a,
-                    'stock'=>$lastStokPerUnit,
+                    'stock'=>$lastStock,
                     'created_by'=>$createdBy,
                     'saldo'=>$a,
                     'display'=>$display,
