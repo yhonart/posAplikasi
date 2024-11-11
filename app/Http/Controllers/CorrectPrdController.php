@@ -453,7 +453,7 @@ class CorrectPrdController extends Controller
        
        //get item koreksi
         $inv = DB::table('inv_list_correction as a')
-            ->select('a.*','b.product_size')
+            ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume')
             ->leftJoin('view_product_stock as b','b.idinv_stock','=','a.inv_id')
             ->where('a.number_correction',$number)
             ->get();
@@ -541,119 +541,85 @@ class CorrectPrdController extends Controller
                 ]);
             // End Update Stock.
             
-            //Start Insert to laporan inventory
-            //Select size_code with ordering desc.
-            $descSizeCode = DB::table('m_product_unit')
+            $prodName = $mProduct->product_name;
+            $satuan = $i->product_satuan;
+            $sizeCode = $i->size_code;
+            $description = "Koreksi Barang Oleh ".$userName;
+            
+            $mUnit = DB::table('m_product_unit')
+                ->select('size_code','product_volume')
                 ->where('core_id_product',$prdID)
                 ->orderBy('size_code','desc')
                 ->first();
 
-            $sizeCode2 = $descSizeCode->size_code;
-
-            if ($sizeCode2 == '1') {
-                $lapQty = $saldo;
-            }
-            elseif ($sizeCode2 == '2') {
-                if ($prdSize == "BESAR") {
-                    $hitung1 = $saldo * $volB;
-                    $lapQty = (int)$hitung1;
-                }
-                elseif ($prdSize == "KECIL") {
-                    $lapQty = $saldo;
-                }
-            }
-            elseif ($sizeCode2 == '3') {
-                if ($prdSize == "BESAR") {
-                    $hitung1 = $saldo*$volKonv;
-                    $lapQty = (int)$hitung1;
-                }
-                elseif ($prdSize == "KECIL") {
-                    $lapQty = $saldo;
-                }
-                elseif ($prdSize == "KONV") {
-                    $lapQty = $saldo;
-                }
-                $lapQty = $saldo * $volKonv;
-            }
-            //end insert to laporan inventory
+            $sizeCodeDesc = $mUnit->size_code;            
 
             if ($i->d_k == "D") {
                 $inInv = $i->qty - $i->stock;
                 $outInv = '0';
             }
-            else{
+            else {
                 $inInv = '0';
                 $outInv = $i->stock - $i->qty;
             }
-        } 
 
-        $displayCorrection = DB::table('inv_list_correction')
-            ->where([
-                ['display','1'],
-                ['number_correction',$number]
-                ])
-            ->orderBy('size_code','desc')
-            ->first();
+            if ($sizeCodeDesc == '1') {
+                $valInInv = $inInv;
+                $valOutInv = $outInv;
+            }
+            elseif ($sizeCodeDesc == '2') {
+                if ($satuan == "BESAR") {
+                    $iIn = $inInv * $volB;
+                    $iOut = $outInv * $volB;
+                    $valInInv = (int)$iIn;
+                    $valOutInv = (int)$iOut;
+                }
+                elseif ($satuan == "KECIL") {
+                    $valInInv = $inInv;
+                    $valOutInv = $outInv;
+                }
+            }
+            elseif ($sizeCodeDesc == '3') {
+                if ($satuan == "BESAR") {
+                    $iIn = $inInv * $volKonv;
+                    $iOut = $outInv * $volKonv;
+                    $valInInv = (int)$iIn;
+                    $valOutInv = (int)$iOut;
+                }
+                elseif ($satuan == "KECIL") {
+                    $iIn = $inInv * $volK;
+                    $iOut = $outInv * $volK;
+                    $valInInv = (int)$iIn;
+                    $valOutInv = (int)$iOut;
+                }
+                elseif ($satuan == "KONV") {
+                    $valInInv = $inInv;
+                    $valOutInv = $outInv;
+                }
+            }
 
-        $prodId = $displayCorrection->product_correcId;
-        $loc = $displayCorrection->location;
-        $sizeCode = $displayCorrection->size_code;
-        
-
-        if ($displayCorrection->d_k == "D") {
-            $inInv = $displayCorrection->qty - $displayCorrection->stock;
-            $outInv = '0';
-        }
-        else {
-            $inInv = '0';
-            $outInv = $displayCorrection->stock - $displayCorrection->qty;
-        }
-
-        //search inv_stock berdasarkan produk dan lokasi
-        $infoStock = DB::table('view_product_stock')
-            ->select('stock','saldo','site_name','product_name','product_volume')
-            ->where([
-                ['idm_data_product',$prodId],
-                ['location_id',$loc]
-            ])
-            ->orderBy('size_code','desc')
-            ->first();
-
-        $qtyInv = $infoStock->stock;
-        //Insert into report_inv
-        $description = "Koreksi Barang Oleh ".$userName; 
-        $loc = $infoStock->site_name;
-        $prodName = $infoStock->product_name;
-        $createdBy = Auth::user()->name;
-        if ($sizeCode == '1') {
-            $satuan = 'BESAR';
-        }
-        elseif ($sizeCode == '2') {
-            $satuan = "KECIL";
-        }
-        else {
-            $satuan = "KONV";
-        }
-        //Update into laporan inventory
-        DB::table('report_inv')
+            
+            // Insert into laporan
+            DB::table('report_inv')
             ->insert([
                 'date_input'=>now(),
                 'number_code'=>$number,
-                'product_id'=>$prodId,
+                'product_id'=>$prdID,
                 'product_name'=>$prodName,
                 'satuan'=>$satuan,
                 'satuan_code'=>$sizeCode,
                 'description'=>$description,
-                'inv_in'=>$inInv,
-                'inv_out'=>$outInv,
-                'saldo'=>$displayCorrection->saldo,
-                'created_by'=>$displayCorrection->created_by,
-                'location'=>$displayCorrection->location,
-                'last_saldo'=>$displayCorrection->stock,
-                'vol_prd'=>$infoStock->product_volume,
-                'actual_input'=>$displayCorrection->input_qty,
+                'inv_in'=>$valInInv,
+                'inv_out'=>$valOutInv,
+                'saldo'=>$saldo,
+                'created_by'=>$i->created_by,
+                'location'=>$i->location,
+                'last_saldo'=>$i->stock,
+                'vol_prd'=>$i->product_volume,
+                'actual_input'=>$i->input_qty,
                 'status_trx'=>'4'
-            ]);
+            ]);            
+        } 
        
         DB::table('inv_correction')
             ->where('number',$number)
