@@ -462,6 +462,7 @@ class CorrectPrdController extends Controller
         foreach($inv as $i){
             $invId = $i->inv_id;
             $saldo = $i->saldo;
+            $qty = $i->qty;
             $prdID = $i->product_correcId;
             $prdSize = $i->product_size; // BESAR-KECIL-KONV
             $location = $i->location;
@@ -482,41 +483,41 @@ class CorrectPrdController extends Controller
             foreach ($selectUnit as $unit) {                
                 if ($prdSize == "BESAR") { // Jika yang di input adalah data size besar
                     if ($unit->product_size == "BESAR") {
-                        $a = $saldo;
+                        $a = $qty;
                     }
                     elseif ($unit->product_size == "KECIL") {
-                        $a1 = $saldo * $volB;
+                        $a1 = $qty * $volB;
                         $a = (int)$a1;
                     }
                     elseif ($unit->product_size == "KONV") {
-                        $a1 = $saldo * $volKonv;
+                        $a1 = $qty * $volKonv;
                         $a = (int)$a1;
                     }
                 }
                 elseif ($prdSize == "KECIL") { // Jika yang di input adalah data size kecil
                     if ($unit->product_size == "BESAR") {
-                        $a1 = $saldo/$volB;
+                        $a1 = $qty/$volB;
                         $a = (int)$a1;
                     }
                     elseif ($unit->product_size == "KECIL") {
-                        $a = $saldo;
+                        $a = $qty;
                     }
                     elseif ($unit->product_size == "KONV") {
-                        $a1 = $saldo * $volK;
+                        $a1 = $qty * $volK;
                         $a = (int)$a1;
                     }
                 }
                 elseif ($prdSize == "KONV") { // Jika yang di input adalah data KONV
                     if ($unit->product_size == "BESAR") {
-                        $a1 = $saldo/$volKonv;
+                        $a1 = $qty/$volKonv;
                         $a = (int)$a1;
                     }
                     elseif ($unit->product_size == "KECIL") {
-                        $a1 = $saldo/$volK;
+                        $a1 = $qty/$volK;
                         $a = (int)$a1;
                     }
                     elseif ($unit->product_size == "KONV") {
-                        $a = $saldo;
+                        $a = $qty;
                     }
                 }
 
