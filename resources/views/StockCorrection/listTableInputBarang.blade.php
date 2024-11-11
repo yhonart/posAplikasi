@@ -47,7 +47,7 @@
     });
 
     function saveToDatabase(editableObj,tablename,column,id,ideqm,idprd) {
-        let loadDisplay = "listInputBarang";
+        let display = "listInputBarang";
         $(editableObj).css("background","#FFF url({{asset('public/images/loadericon.gif')}}) no-repeat right");
         $.ajax({
             url: "{{route('koreksiBarang')}}/saveToDatabase",
@@ -60,7 +60,7 @@
             }
         });
     }
-    
+
     function loadDisplay(display){
         $.ajax({
             type : 'get',

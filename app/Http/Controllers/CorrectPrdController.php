@@ -406,21 +406,89 @@ class CorrectPrdController extends Controller
    public function approvalKoreksi($number){
        $userName = Auth::user()->name;
        
-       $inv = DB::table('inv_list_correction')
-        ->where('number_correction',$number)
-        ->get();
+       //get item koreksi
+        $inv = DB::table('inv_list_correction as a')
+            ->select('a.*','b.product_size')
+            ->leftJoin('view_product_stock as b','b.idinv_stock','=','a.inv_id')
+            ->where('a.number_correction',$number)
+            ->get();
         
+        // update stock di table inv_stock
         foreach($inv as $i){
             $invId = $i->inv_id;
             $saldo = $i->saldo;
+            $prdID = $i->product_correction;
+            $prdSize = $i->product_size; // BESAR-KECIL-KONV
+            $location = $i->location;
 
-            DB::table('inv_stock')
-                ->where('idinv_stock',$invId)
-                ->update([
-                    'stock'=>$i->qty,
-                    'saldo'=>$i->qty
-                ]);
-                
+            //select Product by product id
+            $selectUnit = DB::table('m_product_unit')
+                ->where('core_id_product',$prdID)
+                ->get();
+
+            $mProduct = DB::table('m_product')
+                ->where('idm_data_product',$prdID)
+                ->first();
+
+            $volB = $mProduct->large_unit_val;
+            $volK = $mProduct->medium_unit_val;
+            $volKonv = $mProduct->small_unit_val;
+
+            foreach ($selectUnit as $unit) {                
+                if ($prdSize == "BESAR") { // Jika yang di input adalah data size besar
+                    if ($unit->product_size == "BESAR") {
+                        $a = $saldo;
+                    }
+                    elseif ($unit->product_size == "KECIL") {
+                        $a1 = $saldo * $volB;
+                        $a = (int)$a1;
+                    }
+                    elseif ($unit->product_size == "KONV") {
+                        $a1 = $saldo * $volKonv;
+                        $a = (int)$a1;
+                    }
+                }
+                elseif ($prdSize == "KECIL") { // Jika yang di input adalah data size kecil
+                    if ($unit->product_size == "BESAR") {
+                        $a1 = $saldo/$volB;
+                        $a = (int)$a1;
+                    }
+                    elseif ($unit->product_size == "KECIL") {
+                        $a = $saldo;
+                    }
+                    elseif ($unit->product_size == "KONV") {
+                        $a1 = $saldo * $volK;
+                        $a = (int)$a1;
+                    }
+                }
+                elseif ($prdSize == "KONV") { // Jika yang di input adalah data KONV
+                    if ($unit->product_size == "BESAR") {
+                        $a1 = $saldo/$volKonv;
+                        $a = (int)$a1;
+                    }
+                    elseif ($unit->product_size == "KECIL") {
+                        $a1 = $saldo/$volK;
+                        $a = (int)$a1;
+                    }
+                    elseif ($unit->product_size == "KONV") {
+                        $a = $saldo;
+                    }
+                }
+
+                //Update to stock
+                $idProduct_Unit = $unit->idm_product_satuan;
+                DB::table('inv_stock')
+                    ->where([
+                        ['product_id',$idProduct_Unit],
+                        ['location_id',$location]
+                    ])
+                    ->update([
+                        'stock'=>$a,
+                        'saldo'=>$a,
+                        'updated_date'=>$a
+                    ]);
+            }
+            // update status menjadi 3                
             DB::table('inv_list_correction')
                 ->where('number_correction',$number)
                 ->update([
