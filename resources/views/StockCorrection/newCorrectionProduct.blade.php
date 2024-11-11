@@ -1,7 +1,7 @@
 <?php
     $selisih = '';
 ?>
-<div class="card card-body p-0 table-responsive">
+<div class="card card-body p-1 table-responsive">
     <div class="row mb-2">
         <div class="col-md-12">
             <form id="formSubmitReportKoreksi">
@@ -15,10 +15,10 @@
                     <input type="hidden" class="form-control form-control-sm" name="t_item" id="t_item" value="{{$sumKoreksi->countKrs}}" readonly>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-default font-weight-bold pl-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <button class="btn btn-default font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         <i class="fa-solid fa-file"></i> Dokumen Koreksi Barang
                     </button>
-                    <button type="submit" class="btn btn-default font-weight-bold pl-2 " id="submitButton"><i class="fa-solid fa-floppy-disk text-success"></i> Simpan Perubahan</button>
+                    <button type="submit" class="btn btn-default font-weight-bold" id="submitButton"><i class="fa-solid fa-floppy-disk text-success"></i> Simpan Perubahan</button>
                 </div>
             </form>
             <div class="collapse" id="collapseExample">
