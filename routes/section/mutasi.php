@@ -23,5 +23,6 @@ Route::get('mutasi/listSatuan/satuan/{idmProduct}', [App\Http\Controllers\Mutasi
 Route::get('mutasi/manualBook', function () {
     return view('Mutasi/manualBook');
 });
+Route::get('mutasi/tableDokMutasi/{fromDate}/{endDate}/{status}', [App\Http\Controllers\MutasibarangController::class, 'tableDokMutasi']);
 
 

@@ -107,23 +107,31 @@ class MutasibarangController extends Controller
         return view('Mutasi/main');
     }
     
-    public function tableDataMutasi(){
-        $tableMoving = DB::table('inv_moving')
-            ->where('status','>=','2')
-            ->orderBy('idinv_moving','desc')
-            ->limit(100)
-            ->get();
-            
-        $approval = $this->userApproval();
+    public function tableDataMutasi(){       
         $userArea = $this->checkuserInfo();
-        
         $mloc = DB::table('m_site')
             ->where('idm_site',$userArea)
             ->first();
             
-        return view('Mutasi/listDataMutasi',compact('tableMoving','approval','userArea','mloc'));
+        return view('Mutasi/listDataMutasi',compact('mloc'));
     }
     
+    public function tableDokMutasi($fromDate, $endDate, $status)
+    {
+        $approval = $this->userApproval();
+        $userArea = $this->checkuserInfo();
+
+        $tableMoving = DB::table('inv_moving');
+        $tableMoving=$tableMoving->where('status',$status);
+        if ($fromDate<>'0' OR $endDate<>'0') {
+            $tableMoving=$tableMoving->whereBetween('date_moving',['$fromDate','$endDate']);
+        }
+        $tableMoving=$tableMoving->orderBy('idinv_moving','desc');
+        $tableMoving=$tableMoving->limit(100);
+        $tableMoving=$tableMoving->get();
+
+        return view('Mutasi/tableDokMutasi',compact('tableMoving','approval','userArea'));
+    }
     public function formEntryMutasi(){
         $number = $this->numberMutasi();
         $userID = Auth::user()->name;
