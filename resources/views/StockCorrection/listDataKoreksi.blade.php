@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="" class="label">Select Status</label>
-                    <select name="status" id="status" class="form-control form-control-sm">
+                    <select name="status" id="status" class="form-control form-control-sm">                        
                         <option value="2">Submited</option>
                         <option value="1">Proses</option>
                         <option value="3">Disetujui</option>
@@ -53,7 +53,7 @@
     $(document).ready(function(){
         let fromDate = '0',
             endDate = '0',
-            status = $('#status').val();
+            status = '11';
         
         searchData(fromDate, endDate);
         $("#fromDate").change(function(){
