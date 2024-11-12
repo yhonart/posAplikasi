@@ -347,17 +347,19 @@ class StockopnameController extends Controller
    }
    
     public function submitOpname (Request $reqSubmit){
+        $noOpname = $reqSubmit->noOpname;        
         $product = $reqSubmit->product;
         $satuan = $reqSubmit->satuan;
-        $lastStock = $reqSubmit->lastStock;
         $qty = $reqSubmit->qty;
+        $lastStock = $reqSubmit->lastStock;
         $total = $reqSubmit->total;
-        $noOpname = $reqSubmit->noOpname;
+
         $invID = $reqSubmit->invID;
         $location = $reqSubmit->location;
-        $createdBy = Auth::user()->name;
         $unitID = $reqSubmit->unitID;
         $unitVol = $reqSubmit->unitVol;
+
+        $createdBy = Auth::user()->name;
         
         //Check Vol Unit 
         //Jika data produk tidak ada pada table inventory
@@ -406,9 +408,11 @@ class StockopnameController extends Controller
                             'sto_number'=>$noOpname, 
                             'inv_id'=>$Lastid,
                             'product_id'=>$inputUnit->idm_data_product,
-                            'last_stock'=>$inputUnit->stock,
-                            'input_stock'=>$qty,
                             'product_size'=>$inputUnit->product_satuan,
+                            'last_stock'=>$inputUnit->stock,
+                            'input_qty'=>$qty,
+                            'selisih'=>$total,
+                            'saldo_konv'=>$qty,
                             'created_by'=>$createdBy,
                             'unit_volume'=>$inputUnit->product_volume,
                             'status'=>'1',
@@ -424,7 +428,8 @@ class StockopnameController extends Controller
             }
         }
         else{
-            $cekProduct = DB::table('inv_list_opname') //cek produk yang ada di dalam db stock opname
+            //Cek apakah item sudah ada atau belum
+            $cekProduct = DB::table('inv_list_opname')
             ->where([
                     ['sto_number',$noOpname],
                     ['inv_id',$invID],
@@ -433,118 +438,65 @@ class StockopnameController extends Controller
                 ])
             ->count();
             
-            // start hitung produk
-            $productUnit = DB::table('product_list_view as a')
-                ->select('a.*','b.location_id','b.stock','b.idinv_stock')
-                ->leftJoin('inv_stock as b','a.idm_product_satuan','b.product_id')
-                ->where([
-                    ['a.core_id_product',$product],
-                    ['a.product_volume','!=','0'],
-                    ['a.product_satuan','!=',''],
-                    ['b.location_id',$location]
-                    ])
-                ->get();
-                
-            $volKonversi = DB::table('product_list_view') //mengambil data konversi
+            // Hitung saldo konversi
+            $mUnit = DB::table('m_product_unit')
+                ->select('size_code','product_volume','product_satuan')
                 ->where('core_id_product',$product)
                 ->orderBy('size_code','desc')
                 ->first();
-                
-            $vol = $volKonversi->product_volume;
-            $valKecil = DB::table('m_product_unit')
-                ->select('product_volume')
-                ->where([
-                    ['core_id_product',$product],
-                    ['size_code','2']
-                    ])
-                ->first();
-            if(!empty($valKecil)){
-                $volkodedua = $valKecil->product_volume;
-            }
-            else{
-                $volkodedua = $vol;
-            }
-            $mProduk = DB::table('m_product')
+            $sizeCodeDesc = $mUnit->size_code;
+
+            $mProduct = DB::table('m_product')                
                 ->where('idm_data_product',$product)
                 ->first();
+            $volB = $mProduct->large_unit_val;
+            $volK = $mProduct->medium_unit_val;
+            $volKonv = $mProduct->small_unit_val;
 
-            $volBesar = $mProduk->large_unit_val;    
-            $volKecil = $mProduk->medium_unit_val;    
-            $volKonv = $mProduk->small_unit_val;
-            $prodName = $mProduk->product_name;
+            if ($sizeCodeDesc == '1') {
+                $inputSaldo = $qty;
+            }
+            elseif ($sizeCodeDesc == '2') {
+                if ($satuan == "BESAR") {
+                    $i = $qty * $volB;
+                    $inputSaldo = (int)$i;
+                }
+                elseif ($satuan == "KECIL") {
+                    $inputSaldo = $qty;
+                }
+            }
+            elseif ($sizeCodeDesc == '3') {
+                if ($satuan == "BESAR") {
+                    $i = $qty * $volKonv;
+                    $inputSaldo = (int)$i;
+                }
+                elseif ($satuan == "KECIL") {
+                    $i = $qty * $volK;
+                    $inputSaldo = (int)$i;
+                }
+                elseif ($satuan == "KONV") {
+                    $inputSaldo = $qty;
+                }
+            }
+            
+            $display = '1';
 
             if($cekProduct == '0' AND $qty <> ''){
-                
-                foreach($productUnit as $inputUnit){
-                    
-                    $sizeCode = $inputUnit->size_code;
-                    $prodZise = $inputUnit->product_size;
-                    
-                    // IF untuk memasukkan data stock besar
-                    if ($satuan == "BESAR") {
-                        if ($sizeCode == '1') {
-                            $a = $qty;
-                            $display = '1';
-                        }
-                        elseif ($sizeCode == '2') {
-                            $a = $qty * $volBesar;
-                            $display = '0';
-                        }
-                        elseif ($sizeCode == '3') {
-                            $a = $qty * $volKonv;
-                            $display = '0';
-                        }
-                    }
-                    elseif ($satuan == "KECIL") {
-                        if ($sizeCode == '1') {
-                            $a1 = $qty / $volBesar;
-                            $a = (int)$a1;
-                            $display = '0';
-                        }
-                        elseif ($sizeCode == '2') {
-                            $a = $qty;
-                            $display = '1';
-                        }
-                        elseif ($sizeCode == '3') {
-                            $a = $qty * $volKecil;
-                            $display = '0';
-                        }
-                    }
-                    elseif ($satuan == "KONV") {
-                        if ($sizeCode == '1') {
-                            $a1 = $qty / $volKonv;
-                            $a = (int)$a1;
-                            $display = '0';
-                        }
-                        elseif ($sizeCode == '2') {
-                            $a1 = $qty / $volKecil;
-                            $a = (int)$a1;
-                            $display = '0';
-                        }
-                        elseif ($sizeCode == '3') {
-                            $a = $qty;
-                            $display = '1';
-                        }
-                    }
-                    if($inputUnit->stock <> ''){
-                        DB::table('inv_list_opname')
-                            ->insert([
-                                'sto_number'=>$noOpname, 
-                                'inv_id'=>$inputUnit->idinv_stock,
-                                'product_id'=>$inputUnit->idm_data_product,
-                                'last_stock'=>$inputUnit->stock,
-                                'input_stock'=>$a,
-                                'input_stock2'=>$a,
-                                'product_size'=>$inputUnit->product_satuan,
-                                'unit_volume'=>$inputUnit->product_volume,
-                                'created_by'=>$createdBy,
-                                'status'=>'1',
-                                'display'=>$display
-                            ]);
-                    }
-                    
-                    
-                }
+                DB::table('inv_list_opname')
+                    ->insert([
+                        'sto_number'=>$noOpname, 
+                        'inv_id'=>$invID,
+                        'product_id'=>$product,
+                        'product_size'=>$satuan,
+                        'last_stock'=>$lastStock,
+                        'input_qty'=>$qty,
+                        'selisih'=>$total,
+                        'saldo_konv'=>$inputSaldo,
+                        'unit_volume'=>$unitVol,
+                        'created_by'=>$createdBy,
+                        'status'=>'1',
+                        'display'=>$display
+                    ]);               
                 
                 $msg = array('success'=>'<h4>SUCCESS</h4> Produk berhasil dimasukkan! ');
             }
