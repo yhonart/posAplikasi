@@ -133,7 +133,7 @@ class CorrectPrdController extends Controller
         $listOnProces = DB::table('inv_correction')
             ->whereBetween("status", ['1', '2'])
             ->get();
-
+        echo $status;
         $lisDatKoreksi = DB::table('inv_correction');
         $lisDatKoreksi = $lisDatKoreksi->where('status',$status);
         if ($status == '11') {
