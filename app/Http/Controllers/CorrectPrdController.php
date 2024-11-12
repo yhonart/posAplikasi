@@ -136,11 +136,8 @@ class CorrectPrdController extends Controller
         echo $status;
         $lisDatKoreksi = DB::table('inv_correction');
         $lisDatKoreksi = $lisDatKoreksi->where('status',$status);
-        if ($status == '11') {
-            $lisDatKoreksi = $lisDatKoreksi->whereBetween('status',[2,3]);
-        }
-        else {
-            $lisDatKoreksi = $lisDatKoreksi->where('status',$status);            
+        if ($status <> '11') {
+            $lisDatKoreksi = $lisDatKoreksi->where('status',$status);
         }
         if ($fromDate <> '0' OR $endDate <> '0') {
             $lisDatKoreksi = $lisDatKoreksi->whereBetween("dateInput", [$fromDate, $endDate]);
