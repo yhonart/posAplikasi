@@ -155,7 +155,7 @@ class StockopnameController extends Controller
             ->first();
             $opnameNumber = $dataOpname->number_so;
             $sumStockOpname = DB::table('inv_list_opname')
-                ->select(DB::raw('SUM(last_stock) as lastStock'), DB::raw('SUM(input_stock) as inputStock'))
+                ->select(DB::raw('SUM(last_stock) as lastStock'), DB::raw('SUM(input_qty) as inputStock'))
                 ->where([
                     ['sto_number',$opnameNumber]
                 ])
@@ -257,7 +257,7 @@ class StockopnameController extends Controller
             ->get();
             
         $sumDetailOpname = DB::table('inv_list_opname')
-            ->select(DB::raw('SUM(last_stock) as lastStock'), DB::raw('SUM(input_stock) as inputStock'))
+            ->select(DB::raw('SUM(last_stock) as lastStock'), DB::raw('SUM(input_qty) as inputStock'))
             ->where([
                 ['sto_number',$opnameCode]
             ])
@@ -562,7 +562,7 @@ class StockopnameController extends Controller
         ->where('number_so',$noOpname)
         ->update([
             't_last_stock'=>$sumLastStock,  
-            't_input_stock'=>$sumInputStock,  
+            't_input_qty'=>$sumInputStock,  
             'selisih'=>$selisih,  
             'note_submit'=>$note,  
             'status'=>'2',  
@@ -597,14 +597,14 @@ class StockopnameController extends Controller
             $msg = array('warning'=>'ERROR!, Tidak ada product yang dimasukkan');
         }else{
             foreach($listOpname as $lop){
-                //$updateStock = $lop->last_stock + $lop->input_stock;
+                //$updateStock = $lop->last_stock + $lop->input_qty;
                 
                 DB::table('inv_stock')
                     ->where('idinv_stock',$lop->inv_id)
                     ->update([
-                        'stock'=>$lop->input_stock2,
-                        'stock_unit'=>$lop->input_stock,
-                        'saldo'=>$lop->input_stock2,
+                        'stock'=>$lop->input_qty2,
+                        'stock_unit'=>$lop->input_qty,
+                        'saldo'=>$lop->input_qty2,
                     ]);
             }
             DB::table('inv_stock_opname')
@@ -650,13 +650,13 @@ class StockopnameController extends Controller
             ->get();
             
         $listOpname = DB::table('inv_list_opname as a')
-            ->select('a.id_list','a.inv_id','a.product_id','a.last_stock','a.input_stock','a.input_stock2','a.unit_volume','a.status','b.*')
+            ->select('a.id_list','a.inv_id','a.product_id','a.last_stock','a.input_qty','a.input_qty2','a.unit_volume','a.status','b.*')
             ->leftJoin('view_product_stock as b', 'a.inv_id','=','b.idinv_stock')
             ->where('a.sto_number',$idparam)
             ->get();
             
         $sumStockOpname = DB::table('inv_list_opname')
-                ->select(DB::raw('SUM(last_stock) as lastStock'), DB::raw('SUM(input_stock) as inputStock'))
+                ->select(DB::raw('SUM(last_stock) as lastStock'), DB::raw('SUM(input_qty) as inputStock'))
                 ->where([
                     ['sto_number',$idparam]
                 ])
