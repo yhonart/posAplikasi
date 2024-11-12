@@ -135,7 +135,7 @@ class CorrectPrdController extends Controller
             ->get();
         echo $status;
         $lisDatKoreksi = DB::table('inv_correction');
-        if ($status <> '11') {
+        if ($status == '11') {
             $lisDatKoreksi = $lisDatKoreksi->whereBetween('status',[2,3]);
         }
         else {
