@@ -332,19 +332,12 @@ class CorrectPrdController extends Controller
             $lastStock = $selectItem->stock;
             $invID = $selectItem->idinv_stock;
             $sizeCode = $selectItem->size_code;
-            
-            if ($lastStock <= '0') {
-                $stockAct = '0';
-            }
-            else {
-                $stockAct = $qty;
-            } 
 
             if ($t_type == "D") {
-                $a = $stockAct + $qty;
+                $a = $lastStock + $qty;
             }
             elseif ($t_type == "K") {
-                $a = $stockAct - $qty;
+                $a = $lastStock - $qty;
             }
 
             $mProduct = DB::table('m_product')                
@@ -398,7 +391,7 @@ class CorrectPrdController extends Controller
                     'd_k'=>$t_type,
                     'input_qty'=>$qty,
                     'qty'=>$a,
-                    'stock'=>$stockAct,
+                    'stock'=>$lastStock,
                     'created_by'=>$createdBy,
                     'saldo'=>$inputSaldo,
                     'display'=>$display,

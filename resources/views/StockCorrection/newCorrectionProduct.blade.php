@@ -185,20 +185,10 @@
             }
             
             if (t_type === 'D'){
-                if (lastStockVal <= 0) {
-                    $("#tPerbaikan").val(parseFloat(qty));
-                }
-                else{
-                    $("#tPerbaikan").val(parseFloat(qty) + parseFloat(lastStockVal));
-                }
+                $("#tPerbaikan").val(parseFloat(qty) + parseFloat(lastStockVal));
             }
-            else if (t_type === 'K'){
-                if (lastStockVal <= 0) {
-                    $("#tPerbaikan").val(parseFloat(qty));                    
-                }
-                else{
-                    $("#tPerbaikan").val(parseFloat(lastStockVal) - parseFloat(qty));
-                }
+            else if (t_type === 'K'){                
+                $("#tPerbaikan").val(parseFloat(lastStockVal) - parseFloat(qty));
             }
 
             $("#addItemKorek").removeClass('btn-default');
