@@ -55,7 +55,8 @@
             endDate = '0',
             status = '11';
         
-        searchData(fromDate, endDate);
+        searchData(fromDate, endDate, status);
+        
         $("#fromDate").change(function(){
                 fromDate = $('#fromDate').val();
                 endDate = $('#endDate').val();               
