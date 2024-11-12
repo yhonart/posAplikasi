@@ -578,16 +578,16 @@ class StockopnameController extends Controller
    public function approvalOpname ($idOpname){
     //   echo $idOpname;
         //   Update Stock
-        $listOpname = DB::table('inv_list_opname')
+        $updateBy = Auth::user()->name;
+
+        $listOpname = DB::table('inv_list_opname')            
             ->where('sto_number',$idOpname)
-            ->get();
-            
+            ->get();            
         $locOpname = DB::table('inv_stock_opname')
             ->select('loc_so')
             ->where('number_so',$idOpname)
-            ->first();
-            
-        $updateBy = Auth::user()->name;
+            ->first(); 
+        $location = $locOpname->loc_so;          
         
         $countBarang = DB::table('inv_list_opname')
             ->where('sto_number',$idOpname)
@@ -597,8 +597,80 @@ class StockopnameController extends Controller
             $msg = array('warning'=>'ERROR!, Tidak ada product yang dimasukkan');
         }else{
             foreach($listOpname as $lop){
-                //$updateStock = $lop->last_stock + $lop->input_qty;
-                
+                $opmSize = $lop->product_size;
+                $opmQty = $lop->input_qty;
+                $opmSaldo = $lop->saldo_konv;
+                $opmProduct = $lop->product_id;    
+                $opmLastStock = $lop->last_stock;
+                $opmVol = $lop->unit_volume;
+
+                $selectUnit = DB::table('m_product_unit')
+                    ->where('core_id_product',$opmProduct)
+                    ->get();
+
+                $mProduct = DB::table('m_product')
+                    ->where('idm_data_product',$opmProduct)
+                    ->first();
+
+                $volB = $mProduct->large_unit_val;
+                $volK = $mProduct->medium_unit_val;
+                $volKonv = $mProduct->small_unit_val;
+                $prodName = $mProduct->product_name;
+
+                foreach ($selectUnit as $unit) {                
+                    if ($opmSize == "BESAR") { // Jika yang di input adalah data size besar
+                        if ($unit->product_size == "BESAR") {
+                            $a = $opmQty;
+                        }
+                        elseif ($unit->product_size == "KECIL") {
+                            $a1 = $opmQty * $volB;
+                            $a = (int)$a1;
+                        }
+                        elseif ($unit->product_size == "KONV") {
+                            $a1 = $opmQty * $volKonv;
+                            $a = (int)$a1;
+                        }
+                    }
+                    elseif ($opmSize == "KECIL") { // Jika yang di input adalah data size kecil
+                        if ($unit->product_size == "BESAR") {
+                            $a1 = $opmQty/$volB;
+                            $a = (int)$a1;
+                        }
+                        elseif ($unit->product_size == "KECIL") {
+                            $a = $opmQty;
+                        }
+                        elseif ($unit->product_size == "KONV") {
+                            $a1 = $opmQty * $volK;
+                            $a = (int)$a1;
+                        }
+                    }
+                    elseif ($opmSize == "KONV") { // Jika yang di input adalah data KONV
+                        if ($unit->product_size == "BESAR") {
+                            $a1 = $opmQty/$volKonv;
+                            $a = (int)$a1;
+                        }
+                        elseif ($unit->product_size == "KECIL") {
+                            $a1 = $opmQty/$volK;
+                            $a = (int)$a1;
+                        }
+                        elseif ($unit->product_size == "KONV") {
+                            $a = $opmQty;
+                        }
+                    }    
+                    //Update to stock
+                    $idProduct_Unit = $unit->idm_product_satuan;
+                    DB::table('inv_stock')
+                        ->where([
+                            ['product_id',$idProduct_Unit],
+                            ['location_id',$location]
+                        ])
+                        ->update([
+                            'stock'=>$a,
+                            'saldo'=>$a,
+                            'updated_date'=>now()
+                        ]);
+                }
+
                 DB::table('inv_stock')
                     ->where('idinv_stock',$lop->inv_id)
                     ->update([
@@ -606,6 +678,33 @@ class StockopnameController extends Controller
                         'stock_unit'=>$lop->input_qty,
                         'saldo'=>$lop->input_qty2,
                     ]);
+                $mUnitLap = DB::table('m_product_unit')
+                    ->where([
+                        ['core_id_product',$opmProduct],
+                        ['product_size',$opmSize]
+                    ])
+                    ->first();
+                $description = "Stock Opname Oleh ".$updateBy;
+                // Insert into laporan
+                DB::table('report_inv')
+                ->insert([
+                    'date_input'=>now(),
+                    'number_code'=>$idOpname,
+                    'product_id'=>$opmProduct,
+                    'product_name'=>$prodName,
+                    'satuan'=>$mUnitLap->product_satuan,
+                    'satuan_code'=>$mUnitLap->size_code,
+                    'description'=>$description,
+                    'inv_in'=>$opmQty,
+                    'inv_out'=>'0',
+                    'saldo'=>$opmSaldo,
+                    'created_by'=>$updateBy,
+                    'location'=>$location,
+                    'last_saldo'=>$opmLastStock,
+                    'vol_prd'=>$opmVol,
+                    'actual_input'=>$opmQty,
+                    'status_trx'=>'4'
+                ]); 
             }
             DB::table('inv_stock_opname')
                 ->where('number_so',$idOpname)
