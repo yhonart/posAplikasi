@@ -4,7 +4,7 @@
 <hr>
 <div class="row mt-2">
     <div class="col-12">
-        <div class="card card-body table-responsive" style="height: 300px;">
+        <div class="card card-body table-responsive" style="height: 600px;">
             <div class="row mb-2">
                 <div class="col-md-12">
                 <button class="btn btn-sm bg-light border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -38,7 +38,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-sm table-valign-middle table-bordered">
+                    <table class="table table-sm table-valign-middle table-bordered table-hover">
                         <thead class="bg-gradient-purple">
                             <tr>
                                 <th>No</th>
