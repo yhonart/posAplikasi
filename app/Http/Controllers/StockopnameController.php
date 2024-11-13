@@ -552,21 +552,18 @@ class StockopnameController extends Controller
    }
    
    public function submitOpnameReport (Request $reportOpname){
-       $sumLastStock = $reportOpname->sumLastStock;
        $sumInputStock = $reportOpname->sumInputStock;
-       $selisih = $reportOpname->selisih;
        $note = $reportOpname->note;
        $noOpname = $reportOpname->noOpname;
        
        DB::table('inv_stock_opname')
         ->where('number_so',$noOpname)
         ->update([
-            't_last_stock'=>$sumLastStock,  
             't_input_qty'=>$sumInputStock,  
-            'selisih'=>$selisih,  
             'note_submit'=>$note,  
             'status'=>'2',  
         ]);
+
        DB::table('inv_list_opname')
         ->where('sto_number',$noOpname)
         ->update([

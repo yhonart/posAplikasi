@@ -190,7 +190,7 @@
                 }).set({title:"ALERT !"});
             }
             else{
-                alertify.prompt("Masukkaan catatan bila perlu [OPTIONAL]", "",
+                alertify.prompt("Masukkaan catatan bila ada [OPTIONAL]", "",
                     function(evt, value ){
                         alertify.success('Ok: ' + value);
                         $.ajax({
