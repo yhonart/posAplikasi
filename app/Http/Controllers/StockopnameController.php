@@ -671,10 +671,10 @@ class StockopnameController extends Controller
                             'updated_date'=>now()
                         ]);
                 }
-                
+
                 $mUnit = DB::table('m_product_unit')
                     ->select('size_code','product_volume')
-                    ->where('core_id_product',$prdID)
+                    ->where('core_id_product',$opmProduct)
                     ->orderBy('size_code','desc')
                     ->first();
 
