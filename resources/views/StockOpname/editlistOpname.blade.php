@@ -4,38 +4,32 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-md-12">
-                        <a href="#" class="font-weight-bold" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Dokumen Opname
+                        <a href="#" class="btn btn-sm border-0 bg-light font-weight-bold" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa-regular fa-file"></i> Edit Dokumen
+                        </a>
+                        <a href="#" class="btn btn-sm border-0 bg-light font-weight-bold" id="submitButton">
+                            <i class="fa-regular fa-floppy-disk"></i> Simpan Perubahan
                         </a>
                     </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-12">
                         <div class="collapse" id="collapseExample">
-                            <div id="editDocumentOpname"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-md-12">
-                        <form id="formSubmitReport">
-                            <div class="form-group">
-                                <button class="btn btn-success font-weight-bold btn-sm " id="submitButton">Simpan Perubahan Item</button>
-                            </div>
                             <input type="hidden" name="sumLastStock" id="sumLastStock" value="{{$sumStockOpname->lastStock}}" readonly>
                             <input type="hidden" name="sumInputStock" id="sumInputStock" value="{{$sumStockOpname->inputStock}}" readonly>
                             <?php
                                 $selisih = $sumStockOpname->inputStock - $sumStockOpname->lastStock;
                             ?>
                             <input type="hidden" name="selisih" id="selisih" value="{{$selisih}}">
-                        </form>
+                            <div id="editDocumentOpname"></div>
+                        </div>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-12">
                         <div class="table-reponsive" style="height:700px">
-                            <table class="table table-sm" id="tableEditList">
+                            <table class="table table-sm table-bordered" id="tableEditList">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -53,13 +47,13 @@
                                     <tr>
                                         <td>
                                             <input type="hidden" name="numberOpname" id="numberOpname" value="{{$idparam}}">
-                                            <input type="hidden" class="form-control form-control-sm" name="invID" id="invID">
-                                            <input type="hidden" class="form-control form-control-sm" name="unitID" id="unitID">
-                                            <input type="hidden" class="form-control form-control-sm" name="unitVol" id="unitVol">
-                                            <input type="hidden" class="form-control form-control-sm" name="location" id="location" value="{{$docOpname->loc_so}}">                                            
+                                            <input type="hidden" class="form-control" name="invID" id="invID">
+                                            <input type="hidden" class="form-control" name="unitID" id="unitID">
+                                            <input type="hidden" class="form-control" name="unitVol" id="unitVol">
+                                            <input type="hidden" class="form-control" name="location" id="location" value="{{$docOpname->loc_so}}">                                            
                                         </td>
                                         <td class="p-0">
-                                            <select class="form-control form-control-sm" name="addProduct" id="addProduct">
+                                            <select class="form-control" name="addProduct" id="addProduct">
                                                 <option value="0">...</option>
                                                 @foreach($mProduct as $mp)
                                                 <option value="{{$mp->idm_data_product}}">{{$mp->product_name}}</option>
@@ -67,18 +61,18 @@
                                             </select>
                                         </td>
                                         <td class="p-0">
-                                            <select class="form-control form-control-sm " name="satuan" id="satuan">
+                                            <select class="form-control " name="satuan" id="satuan">
                                                 <option value="0">...</option>
                                             </select>
                                         </td>
                                         <td class="p-0">
-                                            <input type="number" class="form-control form-control-sm " name="qty" id="qty">
+                                            <input type="number" class="form-control " name="qty" id="qty">
                                         </td>
                                         <td class="p-0">
-                                            <input type="text" class="form-control form-control-sm " name="lastStock" id="lastStock" readonly>
+                                            <input type="text" class="form-control " name="lastStock" id="lastStock" readonly>
                                         </td>
                                         <td class="p-0">
-                                            <input type="text" name="total" id="total" class="form-control form-control-sm " readonly>
+                                            <input type="text" name="total" id="total" class="form-control " readonly>
                                         </td>
                                         <td></td>
                                     </tr>
