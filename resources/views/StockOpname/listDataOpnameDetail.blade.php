@@ -1,13 +1,9 @@
 <?php
     $noDetail = '1';
 ?>
-<button class="btn btn-primary btn-sm elevation-1" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Detail Keterangan
+<button class="btn btn-sm bg-light border-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <i class="fa-regular fa-file"></i> Dokumen Transaksi
 </button>
-<button class="btn btn-warning btn-sm elevation-1" type="button" id="btn-reload">
-    <i class="fa-solid fa-circle-xmark"></i> Close
-</button>
-
 <div class="row mt-2">
     <div class="col-12">
         <div class="collapse" id="collapseExample">
@@ -36,7 +32,7 @@
 
 <div class="row mt-2">
     <div class="col-12">
-        <div class="card card-body p-0 table-responsive" style="height: 300px;">
+        <div class="card card-body table-responsive" style="height: 300px;">
             <table class="table table-sm table-head-fixed text-nowrap">
                 <thead>
                     <tr>
@@ -67,6 +63,7 @@
                         <td>Total</td>
                         <td>{{$sumDetailOpname->lastStock}}</td>
                         <td>{{$sumDetailOpname->inputStock}}</td>
+                        <td></td>
                     </tr>
                 </tfoot>
             </table>
