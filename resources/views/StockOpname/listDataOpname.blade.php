@@ -52,7 +52,7 @@
     $(document).ready(function(){
         let fromDate = '0',
             endDate = '0',
-            status = $('#status').val();
+            status = '11';
         
         searchData(fromDate, endDate, status);
         $("#fromDate").change(function(){
