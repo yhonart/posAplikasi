@@ -45,6 +45,7 @@
                         <th>Satuan</th>
                         <th>Stok Awal</th>
                         <th>Stok Akhir</th>
+                        <th>Selisih</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,7 +55,8 @@
                             <td>{{$listPrd->product_name}}</td>
                             <td>{{$listPrd->product_satuan}}</td>
                             <td>{{$listPrd->last_stock}}</td>
-                            <td>{{$listPrd->input_stock2}}</td>
+                            <td>{{$listPrd->input_qty}}</td>
+                            <td>{{$listPrd->selisih}}</td>
                         </tr>
                     @endforeach
                 </tbody>
