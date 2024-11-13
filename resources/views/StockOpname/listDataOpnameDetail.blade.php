@@ -2,72 +2,78 @@
     $noDetail = '1';
 ?>
 <hr>
-<button class="btn btn-sm bg-light border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    <i class="fa-regular fa-file"></i> Dokumen Transaksi
-</button>
-<div class="row mt-2">
-    <div class="col-12">
-        <div class="collapse" id="collapseExample">
-              <div class="card card-body">
-                  <dl class="row mb-1">
-                      <dt class="col-4">No Stock Opname</dt>
-                      <dd class="col-4">{{$detailOpname->number_so}}</dd>
-                  </dl>
-                  <dl class="row mb-1">
-                      <dt class="col-4">Tanggal</dt>
-                      <dd class="col-4">{{$detailOpname->date_so}}</dd>
-                  </dl>
-                  <dl class="row mb-1">
-                      <dt class="col-4">Lokasi Barang</dt>
-                      <dd class="col-4">{{$detailOpname->site_name}}</dd>
-                  </dl>
-                  <dl class="row mb-1">
-                      <dt class="col-4">Keterangan</dt>
-                      <dd class="col-4">{{$detailOpname->description}}</dd>
-                  </dl>
-              </div>
-        </div>
-    </div>
-</div>
-
-
 <div class="row mt-2">
     <div class="col-12">
         <div class="card card-body table-responsive" style="height: 300px;">
-            <table class="table table-sm table-valign-middle table-bordered">
-                <thead class="bg-gradient-purple">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Barang</th>
-                        <th>Satuan</th>
-                        <th>Stok Awal</th>
-                        <th>Stok Akhir</th>
-                        <th>Selisih</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($detailProductLs as $listPrd)
-                        <tr>
-                            <td>{{$noDetail++}}</td>
-                            <td>{{$listPrd->product_name}}</td>
-                            <td>{{$listPrd->product_satuan}}</td>
-                            <td>{{$listPrd->last_stock}}</td>
-                            <td>{{$listPrd->input_qty}}</td>
-                            <td>{{$listPrd->selisih}}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-                <tfoot class="bg-info font-weight-bold">
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>Total</td>
-                        <td>{{$sumDetailOpname->lastStock}}</td>
-                        <td>{{$sumDetailOpname->inputStock}}</td>
-                        <td></td>
-                    </tr>
-                </tfoot>
-            </table>
+            <div class="row mb-2">
+                <div class="col-md-12">
+                <button class="btn btn-sm bg-light border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="fa-regular fa-file"></i> Dokumen Transaksi
+                </button>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                <dl class="row mb-1">
+                                    <dt class="col-4">No Stock Opname</dt>
+                                    <dd class="col-4">{{$detailOpname->number_so}}</dd>
+                                </dl>
+                                <dl class="row mb-1">
+                                    <dt class="col-4">Tanggal</dt>
+                                    <dd class="col-4">{{$detailOpname->date_so}}</dd>
+                                </dl>
+                                <dl class="row mb-1">
+                                    <dt class="col-4">Lokasi Barang</dt>
+                                    <dd class="col-4">{{$detailOpname->site_name}}</dd>
+                                </dl>
+                                <dl class="row mb-1">
+                                    <dt class="col-4">Keterangan</dt>
+                                    <dd class="col-4">{{$detailOpname->description}}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-sm table-valign-middle table-bordered">
+                        <thead class="bg-gradient-purple">
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Barang</th>
+                                <th>Satuan</th>
+                                <th>Stok Awal</th>
+                                <th>Stok Akhir</th>
+                                <th>Selisih</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($detailProductLs as $listPrd)
+                                <tr>
+                                    <td>{{$noDetail++}}</td>
+                                    <td>{{$listPrd->product_name}}</td>
+                                    <td>{{$listPrd->product_satuan}}</td>
+                                    <td>{{$listPrd->last_stock}}</td>
+                                    <td>{{$listPrd->input_qty}}</td>
+                                    <td>{{$listPrd->selisih}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot class="bg-info font-weight-bold">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td>{{$sumDetailOpname->lastStock}}</td>
+                                <td>{{$sumDetailOpname->inputStock}}</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
