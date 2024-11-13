@@ -681,28 +681,28 @@ class StockopnameController extends Controller
 
                 $sizeCodeDesc = $mUnit->size_code; 
                 if ($sizeCodeDesc == '1') {
-                    $lOpm = $i->stock;
+                    $lOpm = $opmQty;
                 }
                 elseif ($sizeCodeDesc == '2') {
                     if ($opmSize == "BESAR") {
-                        $lOpm1 = $i->stock * $volB;
+                        $lOpm1 = $opmQty * $volB;
                         $lOpm = (int)$lOpm1;
                     }
                     elseif ($opmSize == "KECIL") {
-                        $lOpm = $i->stock;
+                        $lOpm = $opmQty;
                     }
                 }
                 elseif ($sizeCodeDesc == '3') {
                     if ($opmSize == "BESAR") {
-                        $lOpm1 = $i->stock * $volKonv;
+                        $lOpm1 = $opmQty * $volKonv;
                         $lOpm = (int)$lOpm1;
                     }
                     elseif ($opmSize == "KECIL") {
-                        $lOpm1 = $i->stock * $volK;
+                        $lOpm1 = $opmQty * $volK;
                         $lOpm = (int)$lOpm1;
                     }
                     elseif ($opmSize == "KONV") {
-                        $lOpm = $i->stock;
+                        $lOpm = $opmQty;
                     }
                 }
 
@@ -717,9 +717,9 @@ class StockopnameController extends Controller
                     'satuan'=>$mUnitLap->product_satuan,
                     'satuan_code'=>$mUnitLap->size_code,
                     'description'=>$description,
-                    'inv_in'=>$opmQty,
+                    'inv_in'=>$lOpm,
                     'inv_out'=>'0',
-                    'saldo'=>$lOpm,
+                    'saldo'=>$opmSaldo,
                     'created_by'=>$updateBy,
                     'location'=>$location,
                     'last_saldo'=>$opmLastStock,
