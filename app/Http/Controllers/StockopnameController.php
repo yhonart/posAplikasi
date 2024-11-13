@@ -671,15 +671,7 @@ class StockopnameController extends Controller
                             'updated_date'=>now()
                         ]);
                 }
-
-                DB::table('inv_stock')
-                    ->where('idinv_stock',$lop->inv_id)
-                    ->update([
-                        'stock'=>$lop->input_qty2,
-                        'stock_unit'=>$lop->input_qty,
-                        'saldo'=>$lop->input_qty2,
-                    ]);
-
+                
                 $mUnit = DB::table('m_product_unit')
                     ->select('size_code','product_volume')
                     ->where('core_id_product',$prdID)
