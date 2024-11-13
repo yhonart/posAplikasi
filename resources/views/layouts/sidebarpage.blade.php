@@ -79,7 +79,8 @@
         .marquee{padding:0 20px;width:100%;background:#fff;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;-webkit-box-shadow:2px 2px 3px rgba(0,0,0,.05);-o-box-shadow:2px 2px 3px rgba(0,0,0,.05);-ms-box-shadow:2px 2px 3px rgba(0,0,0,.05);box-shadow:2px 2px 3px rgba(0,0,0,.05)}
         #marquee{padding:10px 0;width:100%;overflow:hidden;color: #333;font-size: 14px;font-weight: 500;}    
         .form-control:focus {  
-            border-color: #6d28d9; /* changes border color to red */              
+            border-color: #6d28d9; /* changes border color to red */   
+            border-width: 3px;            
         }    
 
     </style>
