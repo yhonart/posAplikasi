@@ -684,24 +684,24 @@ class StockopnameController extends Controller
                     $lOpm = $i->stock;
                 }
                 elseif ($sizeCodeDesc == '2') {
-                    if ($satuan == "BESAR") {
+                    if ($opmSize == "BESAR") {
                         $lOpm1 = $i->stock * $volB;
                         $lOpm = (int)$lOpm1;
                     }
-                    elseif ($satuan == "KECIL") {
+                    elseif ($opmSize == "KECIL") {
                         $lOpm = $i->stock;
                     }
                 }
                 elseif ($sizeCodeDesc == '3') {
-                    if ($satuan == "BESAR") {
+                    if ($opmSize == "BESAR") {
                         $lOpm1 = $i->stock * $volKonv;
                         $lOpm = (int)$lOpm1;
                     }
-                    elseif ($satuan == "KECIL") {
+                    elseif ($opmSize == "KECIL") {
                         $lOpm1 = $i->stock * $volK;
                         $lOpm = (int)$lOpm1;
                     }
-                    elseif ($satuan == "KONV") {
+                    elseif ($opmSize == "KONV") {
                         $lOpm = $i->stock;
                     }
                 }
