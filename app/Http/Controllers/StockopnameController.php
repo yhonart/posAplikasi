@@ -577,13 +577,17 @@ class StockopnameController extends Controller
         //   Update Stock
         $updateBy = Auth::user()->name;
 
-        $listOpname = DB::table('inv_list_opname')            
+        $listOpname = DB::table('inv_list_opname as a')            
+            ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume')
+            ->leftJoin('view_product_stock as b', 'b.idinv_stock','=','a.inv_id')
             ->where('sto_number',$idOpname)
-            ->get();            
+            ->get();    
+
         $locOpname = DB::table('inv_stock_opname')
             ->select('loc_so')
             ->where('number_so',$idOpname)
             ->first(); 
+
         $location = $locOpname->loc_so;          
         
         $countBarang = DB::table('inv_list_opname')
@@ -675,12 +679,40 @@ class StockopnameController extends Controller
                         'stock_unit'=>$lop->input_qty,
                         'saldo'=>$lop->input_qty2,
                     ]);
-                $mUnitLap = DB::table('m_product_unit')
-                    ->where([
-                        ['core_id_product',$opmProduct],
-                        ['product_size',$opmSize]
-                    ])
+
+                $mUnit = DB::table('m_product_unit')
+                    ->select('size_code','product_volume')
+                    ->where('core_id_product',$prdID)
+                    ->orderBy('size_code','desc')
                     ->first();
+
+                $sizeCodeDesc = $mUnit->size_code; 
+                if ($sizeCodeDesc == '1') {
+                    $lOpm = $i->stock;
+                }
+                elseif ($sizeCodeDesc == '2') {
+                    if ($satuan == "BESAR") {
+                        $lOpm1 = $i->stock * $volB;
+                        $lOpm = (int)$lOpm1;
+                    }
+                    elseif ($satuan == "KECIL") {
+                        $lOpm = $i->stock;
+                    }
+                }
+                elseif ($sizeCodeDesc == '3') {
+                    if ($satuan == "BESAR") {
+                        $lOpm1 = $i->stock * $volKonv;
+                        $lOpm = (int)$lOpm1;
+                    }
+                    elseif ($satuan == "KECIL") {
+                        $lOpm1 = $i->stock * $volK;
+                        $lOpm = (int)$lOpm1;
+                    }
+                    elseif ($satuan == "KONV") {
+                        $lOpm = $i->stock;
+                    }
+                }
+
                 $description = "Stock Opname Oleh ".$updateBy;
                 // Insert into laporan
                 DB::table('report_inv')
@@ -694,7 +726,7 @@ class StockopnameController extends Controller
                     'description'=>$description,
                     'inv_in'=>$opmQty,
                     'inv_out'=>'0',
-                    'saldo'=>$opmSaldo,
+                    'saldo'=>$lOpm,
                     'created_by'=>$updateBy,
                     'location'=>$location,
                     'last_saldo'=>$opmLastStock,
@@ -703,6 +735,7 @@ class StockopnameController extends Controller
                     'status_trx'=>'4'
                 ]); 
             }
+            
             DB::table('inv_stock_opname')
                 ->where('number_so',$idOpname)
                 ->update([
