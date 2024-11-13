@@ -670,6 +670,7 @@ class StockopnameController extends Controller
                             'saldo'=>$a,
                             'updated_date'=>now()
                         ]);
+                    echo $a;
                 }
 
                 $mUnit = DB::table('m_product_unit')
