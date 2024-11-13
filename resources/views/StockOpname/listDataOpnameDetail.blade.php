@@ -34,7 +34,7 @@
 <div class="row mt-2">
     <div class="col-12">
         <div class="card card-body table-responsive" style="height: 300px;">
-            <table class="table table-sm table-head-fixed text-nowrap table-bordered">
+            <table class="table table-sm table-valign-middle table-bordered">
                 <thead class="bg-gradient-purple">
                     <tr>
                         <th>No</th>
