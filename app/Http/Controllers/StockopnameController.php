@@ -735,7 +735,7 @@ class StockopnameController extends Controller
                     'status_trx'=>'4'
                 ]); 
             }
-            
+
             DB::table('inv_stock_opname')
                 ->where('number_so',$idOpname)
                 ->update([
@@ -779,7 +779,7 @@ class StockopnameController extends Controller
             ->get();
             
         $listOpname = DB::table('inv_list_opname as a')
-            ->select('a.id_list','a.inv_id','a.product_id','a.last_stock','a.input_qty','a.input_qty2','a.unit_volume','a.status','b.*')
+            ->select('a.id_list','a.inv_id','a.product_id','a.last_stock','a.input_qty','a.selisih','a.unit_volume','a.status','b.*')
             ->leftJoin('view_product_stock as b', 'a.inv_id','=','b.idinv_stock')
             ->where('a.sto_number',$idparam)
             ->get();

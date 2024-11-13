@@ -1,7 +1,8 @@
 <?php
     $noDetail = '1';
 ?>
-<button class="btn btn-sm bg-light border-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+<hr>
+<button class="btn btn-sm bg-light border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     <i class="fa-regular fa-file"></i> Dokumen Transaksi
 </button>
 <div class="row mt-2">
