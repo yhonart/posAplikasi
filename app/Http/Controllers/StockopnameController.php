@@ -559,7 +559,7 @@ class StockopnameController extends Controller
        DB::table('inv_stock_opname')
         ->where('number_so',$noOpname)
         ->update([
-            't_input_qty'=>$sumInputStock,  
+            't_input_stock'=>$sumInputStock,  
             'note_submit'=>$note,  
             'status'=>'2',  
         ]);
