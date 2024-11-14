@@ -169,6 +169,8 @@ class MutasibarangController extends Controller
 
     public function formEntryMutasi(){
         $number = $this->numberMutasi();
+        $countActive = $this->countNumberActive();
+        $numberAct = $this->showNumberActive();
         $userID = Auth::user()->name;
 
         $mLoc = DB::table('m_site')
@@ -181,11 +183,24 @@ class MutasibarangController extends Controller
                 ])
             ->count();
 
+        $mProduct = DB::table('m_product')
+            ->orderBy('product_name','asc')
+            ->get();
+
+        $tbMutasiL = DB::table('inv_moving')
+            ->where('number',$numberAct)
+            ->first();
+
+        $sumMutasi = DB::table('inv_moving_list')
+            ->select(DB::raw('SUM(stock_taken) as totalMoving'))
+            ->where('mutasi_code',$numberAct)
+            ->first();
+
         if ($counInvMoving == '0') {
             return view('Mutasi/formInputMutasi',compact('mLoc','number','counInvMoving'));
         }
         else {
-            $this->getTableInputProduct();
+            return view('Mutasi/formInputBarangMutasi',compact('countActive','mProduct','numberAct','tbMutasiL','sumMutasi','mLoc'));
         }
             
     }
