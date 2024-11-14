@@ -138,45 +138,7 @@ class MutasibarangController extends Controller
 
         return view('Mutasi/tableDokMutasi',compact('tableMoving','approval','userArea'));
     }
-    public function formEntryMutasi(){
-        $number = $this->numberMutasi();
-        $userID = Auth::user()->name;
 
-        $mLoc = DB::table('m_site')
-            ->get();
-
-        $counInvMoving = DB::table('inv_moving')
-            ->where([
-                ['status','1'],
-                ['created_by',$userID] 
-                ])
-            ->count();
-            
-        return view('Mutasi/formInputMutasi',compact('mLoc','number','counInvMoving'));
-    }
-    
-    public function submitMutasi(Request $reqPostMutasi){
-        $number = $reqPostMutasi->number;
-        $tglMutasi = $reqPostMutasi->tglMutasi;
-        $fromLoc = $reqPostMutasi->fromLoc;
-        $toLoc = $reqPostMutasi->toLoc;
-        $description = $reqPostMutasi->description;
-        $userID = Auth::user()->name;
-        $thisPeriode = date('my');
-        
-        DB::table('inv_moving')
-            ->insert([
-                'number'=>$number,    
-                'date_moving'=>$tglMutasi,    
-                'from_loc'=>$fromLoc,    
-                'to_loc'=>$toLoc,    
-                'notes'=>$description,    
-                'created_by'=>$userID,
-                'periode'=>$thisPeriode,
-                'status'=>'1',
-            ]);
-    }
-    
     public function getTableInputProduct (){
         $countActive = $this->countNumberActive();
         $number = $this->showNumberActive();
@@ -203,6 +165,51 @@ class MutasibarangController extends Controller
             ->first();
             
         return view('Mutasi/formInputBarangMutasi',compact('countActive','mProduct','number','tbMutasiL','sumMutasi','mLoc'));
+    }
+
+    public function formEntryMutasi(){
+        $number = $this->numberMutasi();
+        $userID = Auth::user()->name;
+
+        $mLoc = DB::table('m_site')
+            ->get();
+
+        $counInvMoving = DB::table('inv_moving')
+            ->where([
+                ['status','1'],
+                ['created_by',$userID] 
+                ])
+            ->count();
+
+        if ($counInvMoving == '0') {
+            return view('Mutasi/formInputMutasi',compact('mLoc','number','counInvMoving'));
+        }
+        else {
+            $this->getTableInputProduct();
+        }
+            
+    }
+    
+    public function submitMutasi(Request $reqPostMutasi){
+        $number = $reqPostMutasi->number;
+        $tglMutasi = $reqPostMutasi->tglMutasi;
+        $fromLoc = $reqPostMutasi->fromLoc;
+        $toLoc = $reqPostMutasi->toLoc;
+        $description = $reqPostMutasi->description;
+        $userID = Auth::user()->name;
+        $thisPeriode = date('my');
+        
+        DB::table('inv_moving')
+            ->insert([
+                'number'=>$number,    
+                'date_moving'=>$tglMutasi,    
+                'from_loc'=>$fromLoc,    
+                'to_loc'=>$toLoc,    
+                'notes'=>$description,    
+                'created_by'=>$userID,
+                'periode'=>$thisPeriode,
+                'status'=>'1',
+            ]);
     }
     
     public function entryStock($satuanVal, $productVal, $warehouse){

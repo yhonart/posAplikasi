@@ -50,11 +50,6 @@
 </div>
 @else
 <div id="divInputProduk"></div>
-<script>
-    $(function(){
-        viewTableInput();
-    })
-</script>
 @endif
 <script>
     $( function() {
@@ -72,6 +67,8 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        
+        viewTableInput();
         
         $("form#formEntryMutasi").submit(function(event){
             event.preventDefault();
@@ -95,13 +92,11 @@
     
     function viewTableInput() {
         $(".LOAD-SPINNER").fadeIn("slow");
-        var routeLoad = "formEntryMutasi";
         $.ajax({
             type : 'get',
-            url : "{{route('mutasi')}}/"+routeLoad,
+            url : "{{route('mutasi')}}/formEntryMutasi/getTableInputProduct",
             success : function(response){
-                $(".LOAD-SPINNER").fadeOut("slow");
-                $('#displayMutasi').html(response);
+                $('#divInputProduk').html(response);
             }
         });
     }  
