@@ -233,7 +233,7 @@ class MutasibarangController extends Controller
             ->where([
                 ['idm_data_product',$productVal],
                 ['product_size',$satuanVal],
-                ['site_name',$warehouse],
+                ['location_id',$warehouse],
                 ])
             ->first();
             
