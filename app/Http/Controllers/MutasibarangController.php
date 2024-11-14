@@ -182,7 +182,8 @@ class MutasibarangController extends Controller
     public function getTableInputProduct (){
         $countActive = $this->countNumberActive();
         $number = $this->showNumberActive();
-        
+        $location = '0';
+
         $mProduct = DB::table('m_product')
             ->orderBy('product_name','asc')
             ->get();
@@ -190,11 +191,13 @@ class MutasibarangController extends Controller
         $tbMutasiL = DB::table('inv_moving')
             ->where('number',$number)
             ->first();
-            
+        
         $mLoc = DB::table('m_site')
             ->get();
             
-        $location = $tbMutasiL->from_loc;
+        if (!empty($tbMutasiL)) {
+            $location = $tbMutasiL->from_loc;
+        }    
             
         $sumMutasi = DB::table('inv_moving_list')
             ->select(DB::raw('SUM(stock_taken) as totalMoving'))
