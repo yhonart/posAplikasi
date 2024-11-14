@@ -13,6 +13,7 @@
         <tr>
             <th>No.</th>
             <th>No. Mutasi</th>
+            <th>Tgl. Mutasi</th>
             <th>Lokasi Asal</th>
             <th>Lokasi Tujuan</th>
             <th>User Input</th>
@@ -25,6 +26,7 @@
             <tr>
                 <td>{{$noMutasi++}}</td>
                 <td>{{$tm->number}}</td>
+                <td>{{$tm->date_moving}}</td>
                 <td class="bg-success font-weight-bold">
                     {{$tm->from_loc}}
                 </td>

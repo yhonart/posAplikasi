@@ -1,15 +1,15 @@
 
-<div id="table_my_events">
-    <div class="text-center LOAD-SPINNER text-sm" style="display:none;">    
-        <span class="spinner-grow spinner-grow-sm" role="status"></span> Please Wait !
-    </div>
-    
-    <div class="row mb-2">
-        <div class="col-12">
-            <div id="detailKoreksi"></div>
-        </div>
-    </div>
+<div class="text-center LOAD-SPINNER text-sm" style="display:none;">    
+    <span class="spinner-grow spinner-grow-sm" role="status"></span> Please Wait !
+</div>
 
+<div class="row mb-2">
+    <div class="col-12">
+        <div id="detailKoreksi"></div>
+    </div>
+</div>
+
+<div id="divTabelDataKoreksi">
     <div class="card table-responsive p-1">        
         <div class="card-body">  
             <div class="row mt-1 mb-2">

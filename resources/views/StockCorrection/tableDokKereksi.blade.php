@@ -65,6 +65,7 @@ $(function(){
           "responsive": true,
         });
 });
+
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {
@@ -74,6 +75,7 @@ $(document).ready(function(){
     
     $(".dataTable").on('click','.btnDetail', function () {
         $(".LOAD-SPINNER").fadeIn();
+        $("#divTabelDataKoreksi").fadeOut();
         var element = $(this);
         var  idparam = element.attr("data-koreksi");
         $.ajax({
@@ -90,6 +92,7 @@ $(document).ready(function(){
     
     $(".dataTable").on('click','.btnApprove', function () {
         $(".LOAD-SPINNER").fadeIn();
+        $("#divTabelDataKoreksi").fadeOut();
         var element = $(this);
         var  idparam = element.attr("data-koreksi");
         $.ajax({
