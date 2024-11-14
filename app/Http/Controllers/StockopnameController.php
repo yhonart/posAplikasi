@@ -226,12 +226,8 @@ class StockopnameController extends Controller
 
         $summaryOpname = DB::table('inv_stock_opname as a');
         $summaryOpname = $summaryOpname->leftJoin('m_site as b','a.loc_so','b.idm_site');
-        if ($status <> '11') {
-            $summaryOpname = $summaryOpname->where('a.status',$status);
-        }
-        else {
-            $summaryOpname = $summaryOpname->whereBetween('a.status',['2','3']);
-        }
+        $summaryOpname = $summaryOpname->where('a.status',$status);
+        
         if ($fromDate <> '0' OR $endDate <> '0') {
             $summaryOpname = $summaryOpname->where('a.status',$status);            
             $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$fromDate,$endDate]);
