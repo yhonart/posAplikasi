@@ -451,7 +451,7 @@ class MutasibarangController extends Controller
         $productSatuan = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product',$productId],
-                ['site_name',$location->from_loc]
+                ['location_id',$location->from_loc]
                 ])
             ->orderBy('size_code','desc')
             ->get();
