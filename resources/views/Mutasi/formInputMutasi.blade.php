@@ -91,11 +91,14 @@
     });
     
     function viewTableInput() {
+        $(".LOAD-SPINNER").fadeIn("slow");
+        var routeLoad = "formEntryMutasi";
         $.ajax({
             type : 'get',
-            url : "{{route('mutasi')}}/formEntryMutasi/getTableInputProduct",
+            url : "{{route('mutasi')}}/"+routeLoad,
             success : function(response){
-                $('#divInputProduk').html(response);
+                $(".LOAD-SPINNER").fadeOut("slow");
+                $('#displayMutasi').html(response);
             }
         });
     }  

@@ -151,8 +151,6 @@ class MutasibarangController extends Controller
                 ['created_by',$userID] 
                 ])
             ->count();
-
-        echo $counInvMoving;
             
         return view('Mutasi/formInputMutasi',compact('mLoc','number','counInvMoving'));
     }
@@ -194,7 +192,7 @@ class MutasibarangController extends Controller
         
         $mLoc = DB::table('m_site')
             ->get();
-            
+
         if (!empty($tbMutasiL)) {
             $location = $tbMutasiL->from_loc;
         }    
