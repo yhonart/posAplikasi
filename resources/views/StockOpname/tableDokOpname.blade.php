@@ -75,6 +75,7 @@
         $(".dataTable").on('click','.btnDetail', function () {
             var element = $(this);
             var  idparam = element.attr("data-opname");
+            $("#divTableOpname").fadeOut();
             $.ajax({
                 type:'get',
                 url:"{{route('stockOpname')}}/listDataOpname/detailOpname/"+idparam,
@@ -108,6 +109,7 @@
         $(".dataTable").on('click','.btnEdit', function () {
             var element = $(this);
             var  idparam = element.attr("data-opname");
+            $("#divTableOpname").fadeOut();
             $.ajax({
                 type:'get',
                 url:"{{route('stockOpname')}}/listDataOpname/editOpname/"+idparam,

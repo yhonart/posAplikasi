@@ -678,7 +678,8 @@ class StockopnameController extends Controller
                     ->orderBy('size_code','desc')
                     ->first();
 
-                $sizeCodeDesc = $mUnit->size_code; 
+                $sizeCodeDesc = $mUnit->size_code;
+                 
                 if ($sizeCodeDesc == '1') {
                     $lOpm = $opmQty;
                 }

@@ -83,8 +83,14 @@ class MutasibarangController extends Controller
                 ['created_by',$userName],
                 ['status','1']
             ])
-            ->first();        
-        return $showNumber->number;
+            ->first();
+        if (!empty($showNumber)) {
+            $showNo = $showNumber->number;
+        }
+        else {
+            $showNo = '0';
+        }
+        return $showNo;
     }
     
     public function userApproval (){

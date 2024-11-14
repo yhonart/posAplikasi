@@ -391,8 +391,8 @@ class TempInventoryController extends Controller
         
     }
     public function penguranganItem ($productID, $qty, $size, $loc){
-        // Qty yang dimasukkan adalah quantity yang sudah dikurangi, sehingga tidak ada proses pengurangan lagi
-        
+        //idm_data_product, qty input pengurangan, BESAR-KECIL-KONV, location ID;
+            
         // variable nol
         $sizeK = '0';
         $valK = '0';
@@ -601,5 +601,26 @@ class TempInventoryController extends Controller
                         ]);
         }
         return $updateInv;
+    }
+
+    public function insertIntoLapInv ($prdID, $qty)
+    {
+        $mUnit = DB::table('m_product_unit')
+                ->select('size_code','product_volume')
+                ->where('core_id_product',$prdID)
+                ->orderBy('size_code','desc')
+                ->first();
+
+        $sizeCodeDesc = $mUnit->size_code;
+
+        $mProduct = DB::table('m_product')
+                ->where('idm_data_product',$prdID)
+                ->first();
+
+            $volB = $mProduct->large_unit_val;
+            $volK = $mProduct->medium_unit_val;
+            $volKonv = $mProduct->small_unit_val;
+        
+        
     }
 }
