@@ -1,4 +1,3 @@
-@if($counInvMoving == '0')
 <div class="row">
     <div class="col-12">
         <div class="card card-body" id="cardNewForm">
@@ -48,9 +47,7 @@
         </div>        
     </div>
 </div>
-@else
-<div id="divInputProduk"></div>
-@endif
+
 <script>
     $( function() {
         $( "#tglMutasi" ).datepicker({
@@ -68,8 +65,7 @@
             }
         });
         
-        viewTableInput();
-        
+        viewTableInput();        
         $("form#formEntryMutasi").submit(function(event){
             event.preventDefault();
             $.ajax({
@@ -91,12 +87,14 @@
     });
     
     function viewTableInput() {
+        let routeLoad = "formEntryMutasi";        
         $(".LOAD-SPINNER").fadeIn("slow");
         $.ajax({
             type : 'get',
-            url : "{{route('mutasi')}}/formEntryMutasi/getTableInputProduct",
+            url : "{{route('mutasi')}}/"+routeLoad,
             success : function(response){
-                $('#divInputProduk').html(response);
+                $(".LOAD-SPINNER").fadeOut("slow");
+                $('#displayMutasi').html(response);
             }
         });
     }  
