@@ -11,9 +11,9 @@
             <div class="card-body table-responsive">
                 <div class="row mb-2">
                     <div class="col-12">
-                        <button class="btn btn-sm btn-default " id="displayDocument"><i class="fa-regular fa-file"></i> Dokumen Opname</button>
-                        <button class="btn btn-sm btn-default " id="saveDocument"><i class="fa-regular fa-floppy-disk"></i> Simpan Transaksi</button>
-                        <button class="btn btn-sm btn-default " id="cencelDocument"><i class="fa-solid fa-xmark"></i> Batalkan Transaksi</button>
+                        <button class="btn btn-sm bg-light font-weight-bold border-0" id="displayDocument"><i class="fa-solid fa-file-pen"></i> Dokumen Opname Barang</button>
+                        <button class="btn btn-sm bg-light font-weight-bold border-0" id="saveDocument"><i class="fa-regular fa-floppy-disk"></i> Simpan Transaksi</button>
+                        <button class="btn btn-sm bg-light font-weight-bold border-0" id="cencelDocument"><i class="fa-solid fa-xmark"></i> Batalkan Transaksi</button>
                     </div>
                 </div>
                 <div class="row mb-2">

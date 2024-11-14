@@ -20,7 +20,7 @@
                         <select class="form-control form-control-sm" name="fromLoc" id="fromLoc">
                             <option value="0" readonly></option>
                             @foreach($mLoc as $ms1)
-                                <option value="{{$ms1->site_name}}">{{$ms1->site_name}}</option>
+                                <option value="{{$ms1->idm_site}}">{{$ms1->site_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -29,7 +29,7 @@
                         <select class="form-control form-control-sm" name="toLoc" id="toLoc">
                             <option value="0" readonly></option>
                             @foreach($mLoc as $ms2)
-                                <option value="{{$ms2->site_name}}">{{$ms2->site_name}}</option>
+                                <option value="{{$ms2->idm_site}}">{{$ms2->site_name}}</option>
                             @endforeach
                         </select>
                     </div>

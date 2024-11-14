@@ -15,10 +15,10 @@
                     <input type="hidden" class="form-control form-control-sm" name="t_item" id="t_item" value="{{$sumKoreksi->countKrs}}" readonly>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-default font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        <i class="fa-solid fa-file"></i> Dokumen Koreksi Barang
+                    <button class="btn bg-light border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fa-solid fa-file-pen"></i> Dokumen Koreksi
                     </button>
-                    <button type="submit" class="btn btn-default font-weight-bold" id="submitButton"><i class="fa-solid fa-floppy-disk text-success"></i> Simpan Perubahan</button>
+                    <button type="submit" class="btn bg-light border-0 font-weight-bold" id="submitButton"><i class="fa-solid fa-floppy-disk text-success"></i> Simpan Perubahan</button>
                 </div>
             </form>
             <div class="collapse" id="collapseExample">
