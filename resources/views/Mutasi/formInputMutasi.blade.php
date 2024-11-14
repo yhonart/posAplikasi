@@ -64,8 +64,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        
-        viewTableInput();        
+               
         $("form#formEntryMutasi").submit(function(event){
             event.preventDefault();
             $.ajax({
