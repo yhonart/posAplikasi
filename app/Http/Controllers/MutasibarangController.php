@@ -141,6 +141,7 @@ class MutasibarangController extends Controller
     public function formEntryMutasi(){
         $number = $this->numberMutasi();
         $userID = Auth::user()->name;
+
         $mLoc = DB::table('m_site')
             ->get();
 
@@ -150,6 +151,8 @@ class MutasibarangController extends Controller
                 ['created_by',$userID] 
                 ])
             ->count();
+
+        echo $counInvMoving;
             
         return view('Mutasi/formInputMutasi',compact('mLoc','number','counInvMoving'));
     }
