@@ -50,6 +50,11 @@
 </div>
 @else
 <div id="divInputProduk"></div>
+<script>
+    $(function(){
+        viewTableInput();
+    })
+</script>
 @endif
 <script>
     $( function() {
@@ -67,8 +72,6 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        
-        viewTableInput();
         
         $("form#formEntryMutasi").submit(function(event){
             event.preventDefault();
