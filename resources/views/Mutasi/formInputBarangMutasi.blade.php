@@ -38,7 +38,7 @@
                         <form id="formInputMutasiBarang">
                             <tr>
                                 <td class="text-center">
-                                    <input type="hidden" name="numberMutasi" id="numberMutasi" value="{{$number}}">
+                                    <input type="hidden" name="numberMutasi" id="numberMutasi" value="{{$numberAct}}">
                                     <input type="hidden" class="form-control form-control-sm" name="invID" id="invID">
                                     <input type="hidden" class="form-control form-control-sm" name="warehouse" id="warehouse" value="{{$tbMutasiL->from_loc}}">
                                     #
@@ -90,7 +90,7 @@
         });
         $("#mProduct").focus();
         loadListData();
-        let idparam = "{{$number}}";
+        let idparam = "{{$numberAct}}";
         $.ajax({
             type : 'get',
             url : "{{route('mutasi')}}/formEntryMutasi/editDocMutasi/" + idparam,
