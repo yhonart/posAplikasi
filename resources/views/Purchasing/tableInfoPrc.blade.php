@@ -1,4 +1,4 @@
-<div class="row" id="cardInfoPembelian">
+<div class="row" id="cardInfoPembelian" style="display:none;">
     <div class="col-12 col-md-3">
         <div class="card card-warning card-outline">
             <div class="card-header">
@@ -127,7 +127,7 @@
             autoclose: true,
             todayHighlight: true,
         });
-        
+
         $('.datetimepicker-input').datepicker("setDate",new Date());
 
         let appData = "tablePenerimaan",
