@@ -268,22 +268,22 @@ class MutasibarangController extends Controller
 
         //Hitung saldo berdasarkan nilai konversi. 
         //Cari nilai konversi
-        $mUnit = DB::table('m_product_unit')
-                ->select('size_code','product_volume')
-                ->where('core_id_product',$mProduct)
-                ->orderBy('size_code','desc')
-                ->first();
+        // $mUnit = DB::table('m_product_unit')
+        //         ->select('size_code','product_volume')
+        //         ->where('core_id_product',$mProduct)
+        //         ->orderBy('size_code','desc')
+        //         ->first();
 
-        $sizeCodeDesc = $mUnit->size_code;
-        $stockAsalBarang = $lastStock - $qty;
+        // $sizeCodeDesc = $mUnit->size_code;
+        // $stockAsalBarang = $lastStock - $qty;
 
-        $mProduct = DB::table('m_product')
-                    ->where('idm_data_product',$mProduct)
-                    ->first();
+        // $mProduct = DB::table('m_product')
+        //             ->where('idm_data_product',$mProduct)
+        //             ->first();
 
-                $volB = $mProduct->large_unit_val;
-                $volK = $mProduct->medium_unit_val;
-                $volKonv = $mProduct->small_unit_val;
+        //         $volB = $mProduct->large_unit_val;
+        //         $volK = $mProduct->medium_unit_val;
+        //         $volKonv = $mProduct->small_unit_val;
 
         //Hitung total dari asal barang
         // if ($sizeCodeDesc == '1') {
@@ -313,24 +313,24 @@ class MutasibarangController extends Controller
         // }
 
         //Hitung tambah saldo tujuan barang.
-        $tujuanMoving = DB::table('inv_moving')
-            ->select('to_loc')
-            ->where('number',$numberMutasi)
-            ->first();
+        // $tujuanMoving = DB::table('inv_moving')
+        //     ->select('to_loc')
+        //     ->where('number',$numberMutasi)
+        //     ->first();
 
-        //Cari konv stock pada tabel inventori
-        $invLocStock = DB::table('view_product_stock')
-            ->select('stock')
-            ->where([
-                ['idm_data_product',$mProduct],
-                ['location_id',$tujuanMoving->to_loc],
-                ['product_size',$satuan]
-            ])
-            ->orderBy('size_code','desc')
-            ->first();
+        // //Cari konv stock pada tabel inventori
+        // $invLocStock = DB::table('view_product_stock')
+        //     ->select('stock')
+        //     ->where([
+        //         ['idm_data_product',$mProduct],
+        //         ['location_id',$tujuanMoving->to_loc],
+        //         ['product_size',$satuan]
+        //     ])
+        //     ->orderBy('size_code','desc')
+        //     ->first();
 
-        $stockTujuanBarang = $invLocStock->stock;
-        $saldo = $stockTujuanBarang + $qty;
+        // $stockTujuanBarang = $invLocStock->stock;
+        // $saldo = $stockTujuanBarang + $qty;
 
         // if ($sizeCodeDesc == '1') {
         //     $saldoTujuanBarang = $saldo;
