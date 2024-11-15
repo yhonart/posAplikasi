@@ -365,9 +365,7 @@ class MutasibarangController extends Controller
                 'satuan'=>$satuan,   
                 'last_stock'=>$lastStock,   
                 'stock_taken'=>$qty,   
-                'notes'=>$keterangan, 
-                'from_loc_saldo'=>$saldoAsalBarang,
-                'destination_loc_saldo'=>$saldoTujuanBarang
+                'notes'=>$keterangan,
             ]);
     }
     
