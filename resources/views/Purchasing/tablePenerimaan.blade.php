@@ -10,9 +10,8 @@ $statusDokumen = array(
     <div class="col-12">
         <div class="card">
             <div class="card-body p-0">
-
-                <table class="table table-sm table-valign-middle table-hover text-nowrap table-bordered bg-light elevation-1">
-                    <thead class="bg-gradient-purple">
+                <table class="table table-sm table-valign-middle table-hover text-nowrap table-bordered bg-light elevation-1" id="tableListPembelian">
+                    <thead>
                         <tr>
                             <th>Tgl. Penerimaan</th>
                             <th>Nomor</th>
@@ -68,6 +67,17 @@ $statusDokumen = array(
 </div>
 
 <script>
+    $(function(){
+        $('#tableListPembelian').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
+    });
     $(document).ready(function(){
         $('.BTN-EDIT').on('click', function (e) {
             e.preventDefault();
