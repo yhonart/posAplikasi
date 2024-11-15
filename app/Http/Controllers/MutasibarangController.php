@@ -278,7 +278,7 @@ class MutasibarangController extends Controller
         $stockAsalBarang = $lastStock - $qty;
 
         $masterProduct = DB::table('m_product')
-                    ->where('idm_data_product',$masterProduct)
+                    ->where('idm_data_product',$mProduct)
                     ->first();
 
                 $volB = $masterProduct->large_unit_val;
