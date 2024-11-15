@@ -286,31 +286,31 @@ class MutasibarangController extends Controller
                 $volKonv = $mProduct->small_unit_val;
 
         //Hitung total dari asal barang
-        if ($sizeCodeDesc == '1') {
-            $saldoAsalBarang = $stockAsalBarang;
-        }
-        elseif ($sizeCodeDesc == '2') {
-            if ($satuan == "BESAR") {
-                $saldoAsalBarang1 = $stockAsalBarang * $volB;
-                $saldoAsalBarang = (int)$saldoAsalBarang1;
-            }
-            elseif ($satuan == "KECIL") {
-                $saldoAsalBarang = $stockAsalBarang;
-            }
-        }
-        elseif ($sizeCodeDesc == '3') {
-            if ($satuan == "BESAR") {
-                $saldoAsalBarang1 = $stockAsalBarang * $volKonv;
-                $saldoAsalBarang = (int)$saldoAsalBarang1;
-            }
-            elseif ($satuan == "KECIL") {
-                $saldoAsalBarang1 = $stockAsalBarang * $volK;
-                $saldoAsalBarang = (int)$saldoAsalBarang1;
-            }
-            elseif ($satuan == "KONV") {
-                $saldoAsalBarang = $stockAsalBarang;
-            }
-        }
+        // if ($sizeCodeDesc == '1') {
+        //     $saldoAsalBarang = $stockAsalBarang;
+        // }
+        // elseif ($sizeCodeDesc == '2') {
+        //     if ($satuan == "BESAR") {
+        //         $saldoAsalBarang1 = $stockAsalBarang * $volB;
+        //         $saldoAsalBarang = (int)$saldoAsalBarang1;
+        //     }
+        //     elseif ($satuan == "KECIL") {
+        //         $saldoAsalBarang = $stockAsalBarang;
+        //     }
+        // }
+        // elseif ($sizeCodeDesc == '3') {
+        //     if ($satuan == "BESAR") {
+        //         $saldoAsalBarang1 = $stockAsalBarang * $volKonv;
+        //         $saldoAsalBarang = (int)$saldoAsalBarang1;
+        //     }
+        //     elseif ($satuan == "KECIL") {
+        //         $saldoAsalBarang1 = $stockAsalBarang * $volK;
+        //         $saldoAsalBarang = (int)$saldoAsalBarang1;
+        //     }
+        //     elseif ($satuan == "KONV") {
+        //         $saldoAsalBarang = $stockAsalBarang;
+        //     }
+        // }
 
         //Hitung tambah saldo tujuan barang.
         $tujuanMoving = DB::table('inv_moving')
@@ -332,31 +332,31 @@ class MutasibarangController extends Controller
         $stockTujuanBarang = $invLocStock->stock;
         $saldo = $stockTujuanBarang + $qty;
 
-        if ($sizeCodeDesc == '1') {
-            $saldoTujuanBarang = $saldo;
-        }
-        elseif ($sizeCodeDesc == '2') {
-            if ($satuan == "BESAR") {
-                $saldoTujuanBarang1 = $saldo * $volB;
-                $saldoTujuanBarang = (int)$saldoTujuanBarang1;
-            }
-            elseif ($satuan == "KECIL") {
-                $saldoTujuanBarang = $saldo;
-            }
-        }
-        elseif ($sizeCodeDesc == '3') {
-            if ($satuan == "BESAR") {
-                $saldoTujuanBarang1 = $saldo * $volKonv;
-                $saldoTujuanBarang = (int)$saldoTujuanBarang1;
-            }
-            elseif ($satuan == "KECIL") {
-                $saldoTujuanBarang1 = $saldo * $volK;
-                $saldoTujuanBarang = (int)$saldoTujuanBarang1;
-            }
-            elseif ($satuan == "KONV") {
-                $saldoTujuanBarang = $saldo;
-            }
-        }
+        // if ($sizeCodeDesc == '1') {
+        //     $saldoTujuanBarang = $saldo;
+        // }
+        // elseif ($sizeCodeDesc == '2') {
+        //     if ($satuan == "BESAR") {
+        //         $saldoTujuanBarang1 = $saldo * $volB;
+        //         $saldoTujuanBarang = (int)$saldoTujuanBarang1;
+        //     }
+        //     elseif ($satuan == "KECIL") {
+        //         $saldoTujuanBarang = $saldo;
+        //     }
+        // }
+        // elseif ($sizeCodeDesc == '3') {
+        //     if ($satuan == "BESAR") {
+        //         $saldoTujuanBarang1 = $saldo * $volKonv;
+        //         $saldoTujuanBarang = (int)$saldoTujuanBarang1;
+        //     }
+        //     elseif ($satuan == "KECIL") {
+        //         $saldoTujuanBarang1 = $saldo * $volK;
+        //         $saldoTujuanBarang = (int)$saldoTujuanBarang1;
+        //     }
+        //     elseif ($satuan == "KONV") {
+        //         $saldoTujuanBarang = $saldo;
+        //     }
+        // }
         DB::table('inv_moving_list')
             ->insert([
                 'mutasi_code'=>$numberMutasi,   
@@ -365,7 +365,9 @@ class MutasibarangController extends Controller
                 'satuan'=>$satuan,   
                 'last_stock'=>$lastStock,   
                 'stock_taken'=>$qty,   
-                'notes'=>$keterangan,
+                'notes'=>$keterangan, 
+                // 'from_loc_saldo'=>$saldoAsalBarang,
+                // 'destination_loc_saldo'=>$saldoTujuanBarang
             ]);
     }
     
