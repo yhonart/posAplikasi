@@ -569,7 +569,6 @@ class MutasibarangController extends Controller
                         ['product_id',$productID],
                         ['location',$fromLoc]
                     ])
-                    ->groupBy('product_id')
                     ->orderBy('idr_inv','desc')
                     ->first();
 
@@ -611,7 +610,6 @@ class MutasibarangController extends Controller
                         ['product_id',$productID],
                         ['location',$toLoc]
                     ])
-                    ->groupBy('product_id')
                     ->orderBy('idr_inv','desc')
                     ->first();
                 
