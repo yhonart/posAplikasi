@@ -488,11 +488,11 @@ class MutasibarangController extends Controller
         $fromLoc = $docMutasi->from_loc;
         
         $mToLoc = DB::table('m_site')
-            ->where('idm_site',$toLocation)
+            ->where('idm_site',$toLoc)
             ->first();
             
         $mFromLoc = DB::table('m_site')
-            ->where('idm_site',$fromLocation)
+            ->where('idm_site',$fromLoc)
             ->first();
         
         $fromLocName = $mFromLoc->site_name;    
@@ -554,7 +554,7 @@ class MutasibarangController extends Controller
             
             $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
             $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
-            
+
             if ($asalBarang <> '') {                
                 $saldoBarang = $asalBarang;
                 $itemIn = '0';
