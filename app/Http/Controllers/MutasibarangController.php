@@ -268,14 +268,14 @@ class MutasibarangController extends Controller
 
         //Hitung saldo berdasarkan nilai konversi. 
         //Cari nilai konversi
-        // $mUnit = DB::table('m_product_unit')
-        //         ->select('size_code','product_volume')
-        //         ->where('core_id_product',$mProduct)
-        //         ->orderBy('size_code','desc')
-        //         ->first();
+        $mUnit = DB::table('m_product_unit')
+                ->select('size_code','product_volume')
+                ->where('core_id_product',$mProduct)
+                ->orderBy('size_code','desc')
+                ->first();
 
-        // $sizeCodeDesc = $mUnit->size_code;
-        // $stockAsalBarang = $lastStock - $qty;
+        $sizeCodeDesc = $mUnit->size_code;
+        $stockAsalBarang = $lastStock - $qty;
 
         // $mProduct = DB::table('m_product')
         //             ->where('idm_data_product',$mProduct)
