@@ -554,8 +554,8 @@ class MutasibarangController extends Controller
                 }
             }
             
-            // $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
-            // $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
+            $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
+            $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
 
             if ($asalBarang <> '') {                
                 $saldoBarang = $asalBarang;
@@ -602,7 +602,7 @@ class MutasibarangController extends Controller
                         'inv_out'=>$itemOut,
                         'saldo'=>$saldoBarang,
                         'created_by'=>$updateBy,
-                        'location'=>$fromLoc,
+                        'location'=>$toLoc,
                         'last_saldo'=>$invLastStock,
                         'vol_prd'=>$sizeCode,
                         'actual_input'=>$takenStock,
