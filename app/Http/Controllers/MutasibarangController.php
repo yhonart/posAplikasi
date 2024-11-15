@@ -583,7 +583,7 @@ class MutasibarangController extends Controller
                         'status_trx'=>'4'
                     ]); 
             }
-            elseif ($tujuanBarang <> '') {
+            if ($tujuanBarang <> '') {
                 $saldoBarang = $tujuanBarang;  
                 $itemIn = $qtyMoving;
                 $itemOut = '0';        
