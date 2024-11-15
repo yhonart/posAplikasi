@@ -127,6 +127,8 @@
             autoclose: true,
             todayHighlight: true,
         });
+        
+        $('.datetimepicker-input').datepicker("setDate",new Date());
 
         let appData = "tablePenerimaan",
             status = "2",
