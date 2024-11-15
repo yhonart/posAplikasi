@@ -474,6 +474,7 @@ class MutasibarangController extends Controller
    }
    
    public function pickup($idParam){
+        $updateBy = Auth::user()->name;
         $listProduk = DB::table('inv_moving_list as a')
             ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume','b.product_name')
             ->leftJoin('view_product_stock as b', 'b.idinv_stock','=','a.inv_id')
@@ -508,6 +509,7 @@ class MutasibarangController extends Controller
             $tujuanBarang = $lp->destination_loc_saldo;
             $penguranganStock = $lastStock - $takenStock;
             $prodName = $lp->product_name;
+            $sizeCode = $lp->size_code;
 
             $mProduct = DB::table('m_product')
                     ->where('idm_data_product',$productID)
@@ -552,19 +554,20 @@ class MutasibarangController extends Controller
                 }
             }
             
-            $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
-            $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
+            // $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
+            // $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
 
             if ($asalBarang <> '') {                
                 $saldoBarang = $asalBarang;
                 $itemIn = '0';
                 $itemOut = $qtyMoving ;
+                $invLastStock = $asalBarang + $qtyMoving;
 
                 DB::table('report_inv')
                     ->insert([
                         'date_input'=>now(),
                         'number_code'=>$idParam,
-                        'product_id'=>$opmProduct,
+                        'product_id'=>$productID,
                         'product_name'=>$prodName,
                         'satuan'=>$satuan,
                         'satuan_code'=>$lp->size_code,
@@ -573,10 +576,10 @@ class MutasibarangController extends Controller
                         'inv_out'=>$itemOut,
                         'saldo'=>$saldoBarang,
                         'created_by'=>$updateBy,
-                        'location'=>$location,
-                        'last_saldo'=>$opmLastStock,
-                        'vol_prd'=>$opmVol,
-                        'actual_input'=>$opmQty,
+                        'location'=>$fromLoc,
+                        'last_saldo'=>$invLastStock,
+                        'vol_prd'=>$sizeCode,
+                        'actual_input'=>$takenStock,
                         'status_trx'=>'4'
                     ]); 
             }
@@ -584,12 +587,13 @@ class MutasibarangController extends Controller
                 $saldoBarang = $tujuanBarang;  
                 $itemIn = $qtyMoving;
                 $itemOut = '0';        
+                $invLastStock = $asalBarang - $qtyMoving;
 
                 DB::table('report_inv')
                     ->insert([
                         'date_input'=>now(),
                         'number_code'=>$idOpname,
-                        'product_id'=>$opmProduct,
+                        'product_id'=>$productID,
                         'product_name'=>$prodName,
                         'satuan'=>$lop->product_satuan,
                         'satuan_code'=>$lop->size_code,
@@ -598,10 +602,10 @@ class MutasibarangController extends Controller
                         'inv_out'=>$itemOut,
                         'saldo'=>$saldoBarang,
                         'created_by'=>$updateBy,
-                        'location'=>$location,
-                        'last_saldo'=>$opmLastStock,
-                        'vol_prd'=>$opmVol,
-                        'actual_input'=>$opmQty,
+                        'location'=>$toLoc,
+                        'last_saldo'=>$invLastStock,
+                        'vol_prd'=>$sizeCode,
+                        'actual_input'=>$takenStock,
                         'status_trx'=>'4'
                     ]); 
             }
