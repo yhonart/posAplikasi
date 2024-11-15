@@ -599,8 +599,8 @@ class MutasibarangController extends Controller
                 }
 
             }
-            if ($tujuanBarang <> '') {
-                $saldoBarang = $tujuanBarang;  
+
+            if ($tujuanBarang <> '') {                
                 $itemIn = $qtyMoving;
                 $itemOut = '0';        
                 $invLastStock = $asalBarang - $qtyMoving;
@@ -615,7 +615,7 @@ class MutasibarangController extends Controller
                     ->orderBy('idr_inv','desc')
                     ->first();
                 
-                $saldoBarang = $selectLastSaldo->saldo + $asalBarang;
+                $saldoBarang = $selectLastSaldo->saldo + $tujuanBarang;
                 DB::table('report_inv')
                     ->insert([
                         'date_input'=>now(),
