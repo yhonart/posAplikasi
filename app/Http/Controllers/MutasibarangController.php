@@ -592,7 +592,7 @@ class MutasibarangController extends Controller
                 DB::table('report_inv')
                     ->insert([
                         'date_input'=>now(),
-                        'number_code'=>$idOpname,
+                        'number_code'=>$idParam,
                         'product_id'=>$productID,
                         'product_name'=>$prodName,
                         'satuan'=>$lop->product_satuan,
