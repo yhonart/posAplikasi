@@ -86,17 +86,6 @@
 <div class="row mb-2" id="filteringData">
     <div class="col-md-3">
         <div class="form-group">
-            <label for="status" class="label">Status Dok.</label>
-            <select name="status" id="status" class="form-control form-control-sm">
-                <option value="2">Permohonan Persetujuan</option>
-                <option value="1">Sedang Proses</option>
-                <option value="0">Dihapus</option>
-                <option value="3">Disetujui</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
             <label for="fromDate" class="label">Dari Tanggal</label>
             <input type="text" class="form-control form-control-sm datetimepicker-input" name="fromDate" id="fromDate" value="0">
         </div>
@@ -105,6 +94,17 @@
         <div class="form-group">
             <label for="fromDate" class="label">S.d Tanggal</label>
             <input type="text" class="form-control form-control-sm datetimepicker-input" name="endDate" id="endDate" value="0">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="status" class="label">Status Dok.</label>
+            <select name="status" id="status" class="form-control form-control-sm">
+                <option value="2">Permohonan Persetujuan</option>
+                <option value="1">Sedang Proses</option>
+                <option value="0">Dihapus</option>
+                <option value="3">Disetujui</option>
+            </select>
         </div>
     </div>
 </div>
