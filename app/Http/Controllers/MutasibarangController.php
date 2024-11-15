@@ -554,34 +554,50 @@ class MutasibarangController extends Controller
                 }
             }
             
-            $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
-            $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
-
-            if ($asalBarang <> '') {                
-                $saldoBarang = $asalBarang;
+            // $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
+            // $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
+            
+            //Cek saldo di laporan inventory yang terakhir sebelum dilakukan approval
+            if ($asalBarang <> '') {        
                 $itemIn = '0';
                 $itemOut = $qtyMoving ;
                 $invLastStock = $asalBarang + $qtyMoving;
 
-                DB::table('report_inv')
-                    ->insert([
-                        'date_input'=>now(),
-                        'number_code'=>$idParam,
-                        'product_id'=>$productID,
-                        'product_name'=>$prodName,
-                        'satuan'=>$satuan,
-                        'satuan_code'=>$lp->size_code,
-                        'description'=>$description,
-                        'inv_in'=>$itemIn,
-                        'inv_out'=>$itemOut,
-                        'saldo'=>$saldoBarang,
-                        'created_by'=>$updateBy,
-                        'location'=>$fromLoc,
-                        'last_saldo'=>$invLastStock,
-                        'vol_prd'=>$sizeCode,
-                        'actual_input'=>$takenStock,
-                        'status_trx'=>'4'
-                    ]); 
+                $selectLastSaldo = DB::table('report_inv')
+                    ->select('saldo')
+                    ->where([
+                        ['product_id',$productID],
+                        ['location',$fromLoc]
+                    ])
+                    ->groupBy('product_id')
+                    ->orderBy('idr_inv','desc')
+                    ->first();
+
+                $saldoBarang = $selectLastSaldo->saldo + $asalBarang;
+                
+                foreach ($selectLastSaldo as $ls) {
+                    $inputSaldo = $ls->$qtyMoving - $qtyMoving;
+                    DB::table('report_inv')
+                        ->insert([
+                            'date_input'=>now(),
+                            'number_code'=>$idParam,
+                            'product_id'=>$productID,
+                            'product_name'=>$prodName,
+                            'satuan'=>$satuan,
+                            'satuan_code'=>$lp->size_code,
+                            'description'=>$description,
+                            'inv_in'=>$itemIn,
+                            'inv_out'=>$itemOut,
+                            'saldo'=>$saldoBarang,
+                            'created_by'=>$updateBy,
+                            'location'=>$fromLoc,
+                            'last_saldo'=>$invLastStock,
+                            'vol_prd'=>$sizeCode,
+                            'actual_input'=>$takenStock,
+                            'status_trx'=>'4'
+                        ]);
+                }
+
             }
             if ($tujuanBarang <> '') {
                 $saldoBarang = $tujuanBarang;  
@@ -589,6 +605,17 @@ class MutasibarangController extends Controller
                 $itemOut = '0';        
                 $invLastStock = $asalBarang - $qtyMoving;
 
+                $selectLastSaldo = DB::table('report_inv')
+                    ->select('saldo')
+                    ->where([
+                        ['product_id',$productID],
+                        ['location',$toLoc]
+                    ])
+                    ->groupBy('product_id')
+                    ->orderBy('idr_inv','desc')
+                    ->first();
+                
+                $saldoBarang = $selectLastSaldo->saldo + $asalBarang;
                 DB::table('report_inv')
                     ->insert([
                         'date_input'=>now(),
