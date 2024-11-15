@@ -530,24 +530,24 @@ class MutasibarangController extends Controller
                 $qtyMoving = $takenStock;
             }
             elseif ($sizeCodeDesc == '2') {
-                if ($opmSize == "BESAR") {
+                if ($satuan == "BESAR") {
                     $qtyMoving1 = $takenStock * $volB;
                     $qtyMoving = (int)$qtyMoving1;
                 }
-                elseif ($opmSize == "KECIL") {
+                elseif ($satuan == "KECIL") {
                     $qtyMoving = $takenStock;
                 }
             }
             elseif ($sizeCodeDesc == '3') {
-                if ($opmSize == "BESAR") {
+                if ($satuan == "BESAR") {
                     $qtyMoving1 = $takenStock * $volKonv;
                     $qtyMoving = (int)$qtyMoving1;
                 }
-                elseif ($opmSize == "KECIL") {
+                elseif ($satuan == "KECIL") {
                     $qtyMoving1 = $takenStock * $volK;
                     $qtyMoving = (int)$qtyMoving1;
                 }
-                elseif ($opmSize == "KONV") {
+                elseif ($satuan == "KONV") {
                     $qtyMoving = $takenStock;
                 }
             }
