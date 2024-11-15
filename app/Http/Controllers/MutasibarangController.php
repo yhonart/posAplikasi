@@ -277,13 +277,13 @@ class MutasibarangController extends Controller
         $sizeCodeDesc = $mUnit->size_code;
         $stockAsalBarang = $lastStock - $qty;
 
-        // $mProduct = DB::table('m_product')
-        //             ->where('idm_data_product',$mProduct)
-        //             ->first();
+        $mProduct = DB::table('m_product')
+                    ->where('idm_data_product',$mProduct)
+                    ->first();
 
-        //         $volB = $mProduct->large_unit_val;
-        //         $volK = $mProduct->medium_unit_val;
-        //         $volKonv = $mProduct->small_unit_val;
+                $volB = $mProduct->large_unit_val;
+                $volK = $mProduct->medium_unit_val;
+                $volKonv = $mProduct->small_unit_val;
 
         //Hitung total dari asal barang
         // if ($sizeCodeDesc == '1') {
