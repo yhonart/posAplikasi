@@ -558,7 +558,8 @@ class MutasibarangController extends Controller
             // $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
             
             //Cek saldo di laporan inventory yang terakhir sebelum dilakukan approval
-            if ($asalBarang <> '') {        
+            if ($asalBarang <> '') { 
+                $saldoBarang = $asalBarang;
                 $itemIn = '0';
                 $itemOut = $qtyMoving ;
                 $invLastStock = $asalBarang + $qtyMoving;
@@ -571,8 +572,6 @@ class MutasibarangController extends Controller
                     ])
                     ->orderBy('idr_inv','desc')
                     ->first();
-
-                $saldoBarang = $selectLastSaldo->saldo + $asalBarang;
                 
                 foreach ($selectLastSaldo as $ls) {
                     $inputSaldo = $ls->$qtyMoving - $qtyMoving;
@@ -599,7 +598,8 @@ class MutasibarangController extends Controller
 
             }
 
-            if ($tujuanBarang <> '') {                
+            if ($tujuanBarang <> '') { 
+                $saldoBarang = $tujuanBarang;               
                 $itemIn = $qtyMoving;
                 $itemOut = '0';        
                 $invLastStock = $asalBarang - $qtyMoving;
@@ -612,8 +612,7 @@ class MutasibarangController extends Controller
                     ])
                     ->orderBy('idr_inv','desc')
                     ->first();
-                
-                $saldoBarang = $selectLastSaldo->saldo + $tujuanBarang;
+                    
                 DB::table('report_inv')
                     ->insert([
                         'date_input'=>now(),
