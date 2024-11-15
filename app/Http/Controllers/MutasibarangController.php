@@ -474,38 +474,137 @@ class MutasibarangController extends Controller
    }
    
    public function pickup($idParam){
-        $listProduk = DB::table('inv_moving_list')
-            ->where('mutasi_code',$idParam)
+        $listProduk = DB::table('inv_moving_list as a')
+            ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume','b.product_name')
+            ->leftJoin('view_product_stock as b', 'b.idinv_stock','=','a.inv_id')
+            ->where('a.mutasi_code',$idParam)
             ->get();
             
         $docMutasi = DB::table('inv_moving')
             ->where('number',$idParam)
             ->first();
             
-        $toLocation = $docMutasi->to_loc;
-        $fromLocation = $docMutasi->from_loc;
+        $toLoc = $docMutasi->to_loc;
+        $fromLoc = $docMutasi->from_loc;
         
         $mToLoc = DB::table('m_site')
-            ->where('site_name',$toLocation)
+            ->where('idm_site',$toLocation)
             ->first();
             
         $mFromLoc = DB::table('m_site')
-            ->where('site_name',$fromLocation)
+            ->where('idm_site',$fromLocation)
             ->first();
-            
-        $toLoc = $mToLoc->idm_site;
-        $fromLoc = $mFromLoc->idm_site;
         
+        $fromLocName = $mFromLoc->site_name;    
+        $toLocName = $mToLoc->site_name;    
+        $description = "Moving Dari ".$fromLocName." ke ".$toLocName;
+
         foreach($listProduk as $lp){
             $productID = $lp->product_id;
             $satuan = $lp->satuan;
             $lastStock = $lp->last_stock;
             $takenStock = $lp->stock_taken;
+            $asalBarang = $lp->from_loc_saldo;
+            $tujuanBarang = $lp->destination_loc_saldo;
             $penguranganStock = $lastStock - $takenStock;
+            $prodName = $lp->product_name;
+
+            $mProduct = DB::table('m_product')
+                    ->where('idm_data_product',$productID)
+                    ->first();
+
+                $volB = $mProduct->large_unit_val;
+                $volK = $mProduct->medium_unit_val;
+                $volKonv = $mProduct->small_unit_val;
+                $prodName = $mProduct->product_name;
+
+            $mUnit = DB::table('m_product_unit')
+                ->select('size_code','product_volume')
+                ->where('core_id_product',$productID)
+                ->orderBy('size_code','desc')
+                ->first();
+
+            $sizeCodeDesc = $mUnit->size_code;
+
+            if ($sizeCodeDesc == '1') {
+                $qtyMoving = $takenStock;
+            }
+            elseif ($sizeCodeDesc == '2') {
+                if ($opmSize == "BESAR") {
+                    $qtyMoving1 = $takenStock * $volB;
+                    $qtyMoving = (int)$qtyMoving1;
+                }
+                elseif ($opmSize == "KECIL") {
+                    $qtyMoving = $takenStock;
+                }
+            }
+            elseif ($sizeCodeDesc == '3') {
+                if ($opmSize == "BESAR") {
+                    $qtyMoving1 = $takenStock * $volKonv;
+                    $qtyMoving = (int)$qtyMoving1;
+                }
+                elseif ($opmSize == "KECIL") {
+                    $qtyMoving1 = $takenStock * $volK;
+                    $qtyMoving = (int)$qtyMoving1;
+                }
+                elseif ($opmSize == "KONV") {
+                    $qtyMoving = $takenStock;
+                }
+            }
             
             $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
             $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
             
+            if ($asalBarang <> '') {                
+                $saldoBarang = $asalBarang;
+                $itemIn = '0';
+                $itemOut = $qtyMoving ;
+
+                DB::table('report_inv')
+                    ->insert([
+                        'date_input'=>now(),
+                        'number_code'=>$idParam,
+                        'product_id'=>$opmProduct,
+                        'product_name'=>$prodName,
+                        'satuan'=>$satuan,
+                        'satuan_code'=>$lp->size_code,
+                        'description'=>$description,
+                        'inv_in'=>$itemIn,
+                        'inv_out'=>$itemOut,
+                        'saldo'=>$saldoBarang,
+                        'created_by'=>$updateBy,
+                        'location'=>$location,
+                        'last_saldo'=>$opmLastStock,
+                        'vol_prd'=>$opmVol,
+                        'actual_input'=>$opmQty,
+                        'status_trx'=>'4'
+                    ]); 
+            }
+            elseif ($tujuanBarang <> '') {
+                $saldoBarang = $tujuanBarang;  
+                $itemIn = $qtyMoving;
+                $itemOut = '0';        
+
+                DB::table('report_inv')
+                    ->insert([
+                        'date_input'=>now(),
+                        'number_code'=>$idOpname,
+                        'product_id'=>$opmProduct,
+                        'product_name'=>$prodName,
+                        'satuan'=>$lop->product_satuan,
+                        'satuan_code'=>$lop->size_code,
+                        'description'=>$description,
+                        'inv_in'=>$itemIn,
+                        'inv_out'=>$itemOut,
+                        'saldo'=>$saldoBarang,
+                        'created_by'=>$updateBy,
+                        'location'=>$location,
+                        'last_saldo'=>$opmLastStock,
+                        'vol_prd'=>$opmVol,
+                        'actual_input'=>$opmQty,
+                        'status_trx'=>'4'
+                    ]); 
+            }
         }
         
         DB::table('inv_moving')

@@ -579,7 +579,7 @@ class StockopnameController extends Controller
         $listOpname = DB::table('inv_list_opname as a')            
             ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume')
             ->leftJoin('view_product_stock as b', 'b.idinv_stock','=','a.inv_id')
-            ->where('sto_number',$idOpname)
+            ->where('a.sto_number',$idOpname)
             ->get();    
 
         $locOpname = DB::table('inv_stock_opname')
@@ -679,7 +679,7 @@ class StockopnameController extends Controller
                     ->first();
 
                 $sizeCodeDesc = $mUnit->size_code;
-                 
+
                 if ($sizeCodeDesc == '1') {
                     $lOpm = $opmQty;
                 }
