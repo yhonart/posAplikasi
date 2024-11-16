@@ -47,7 +47,7 @@ class StockopnameController extends Controller
             // cek jumlah data pada tanggal yang sama 
             $countData = DB::table('inv_stock_opname')
                 ->where([
-                    ['date_input',$date]
+                    ['periode',$thisPeriode]
                     ])
                 ->count();
                 
@@ -181,16 +181,41 @@ class StockopnameController extends Controller
         $pilihLokasi = $reqForm->pilihLokasi;
         $description = $reqForm->description;
         $thisPeriode = date('mY');
+        $today = date("Y-m-d");
         $createdBy = Auth::user()->name;
-           
+        $dateNumber = date('dmy');
+
+        if ($filterTanggal == $today) {
+            $thisNumber = $noStockOpname;
+        }
+        else {
+            $countNumberOpname = DB::table('inv_stock_opname')
+                ->where([
+                    ['status','!=','0'],
+                    ['date_so',$filterTanggal]
+                ])
+                ->count();
+            if ($countNumberOpname == '0') {
+                $no = '1';
+                $thisNumber = "STP-".$dateNumber."-".sprintf("%07d",$no);
+            }
+            else {
+                $no = $countNumberOpname + 1;
+                $thisNumber = "STP-".$dateNumber."-".sprintf("%07d",$no);                
+            }
+        }
+        
         $cekDelNumber = DB::table('inv_stock_opname')
-            ->where('number_so',$noStockOpname)
+            ->where([
+                ['number_so',$thisNumber],
+                ['status','0']
+                ])
             ->count();
             
         if($cekDelNumber == '0'){
             DB::table('inv_stock_opname')
                 ->insert([
-                    'number_so'=>$noStockOpname,
+                    'number_so'=>$thisNumber,
                     'periode'=>$thisPeriode,
                     'date_so'=>$filterTanggal,
                     'loc_so'=>$pilihLokasi,
@@ -201,7 +226,7 @@ class StockopnameController extends Controller
         }
         else{
             DB::table('inv_stock_opname')
-                ->where('number_so',$noStockOpname)
+                ->where('number_so',$thisNumber)
                 ->update([
                     'periode'=>$thisPeriode,
                     'date_so'=>$filterTanggal,
