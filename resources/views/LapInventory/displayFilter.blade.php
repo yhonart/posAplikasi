@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
+                    <?php                    
                         if ($codeDisplay == '1' AND !empty($dataSaldoAwal)) {
                             echo "<tr>";
                                 echo "<td>".$dataSaldoAwal->date_input."</td>";
@@ -69,18 +69,3 @@
         </div>
     </div>
 </div>
-<script>
-    $(function(){
-        $('#tableDisplayLap').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": true,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false,
-          "responsive": true,
-          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        });
-        
-    })
-</script>
