@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-3">
-                                    <button type="submit" class="btn btn-success font-weight-bold btn-block " id="btnFormPenyesuaian"><i class="fa-solid fa-floppy-disk"></i> Simpan Lokasi Opname</button>
+                                    <button type="submit" class="btn btn-success font-weight-bold btn-block " id="btnFormPenyesuaian"><i class="fa-solid fa-floppy-disk"></i> Simpan Dokumen</button>
                                 </div>
                             </div>
                         </form>

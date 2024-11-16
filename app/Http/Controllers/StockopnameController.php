@@ -192,9 +192,10 @@ class StockopnameController extends Controller
             $countNumberOpname = DB::table('inv_stock_opname')
                 ->where([
                     ['status','!=','0'],
-                    ['date_so',$filterTanggal]
+                    ['periode',$filterTanggal]
                 ])
                 ->count();
+                
             if ($countNumberOpname == '0') {
                 $no = '1';
                 $thisNumber = "STP-".$dateNumber."-".sprintf("%07d",$no);
