@@ -70,6 +70,7 @@ class LapInventoryController extends Controller
             }
             $dataReportInv = $dataReportInv->where('status_trx','4');
             $dataReportInv = $dataReportInv->whereBetween('date_input',[$fromDate, $endDate]);
+            $dataReportInv = $dataReportInv->orderBy('date_input','asc');
             $dataReportInv = $dataReportInv->get();
 
         $dataSaldoAwal = DB::table('report_inv');
@@ -95,6 +96,7 @@ class LapInventoryController extends Controller
     }
 
     public function downloadKartuStock($produk, $fromDate, $endDate, $lokasi){
+        
         $dataReportInv = DB::table('report_inv');
             if($produk <> '0'){
                 $dataReportInv = $dataReportInv->where('product_id',$produk);
