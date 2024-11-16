@@ -229,7 +229,7 @@ class StockopnameController extends Controller
             DB::table('inv_stock_opname')
                 ->where('number_so',$thisNumber)
                 ->update([
-                    'periode'=>$thisPeriode,
+                    'periode'=>$thisNumber,
                     'date_so'=>$filterTanggal,
                     'loc_so'=>$pilihLokasi,
                     'description'=>$description,
