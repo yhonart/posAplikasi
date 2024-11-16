@@ -68,6 +68,7 @@ class LapInventoryController extends Controller
             if($lokasi <> '0'){
                 $dataReportInv = $dataReportInv->where('location',$lokasi);
             }
+            $dataReportInv = $dataReportInv->where('status_trx','4');
             $dataReportInv = $dataReportInv->whereBetween('date_input',[$fromDate, $endDate]);
             $dataReportInv = $dataReportInv->get();
 
@@ -78,6 +79,7 @@ class LapInventoryController extends Controller
             if($lokasi <> '0'){
                 $dataSaldoAwal = $dataSaldoAwal->where('location',$lokasi);
             }
+            $dataSaldoAwal = $dataSaldoAwal->where('status_trx','4');
             $dataSaldoAwal = $dataSaldoAwal->whereBetween('date_input',[$fromDate, $endDate]);
             $dataSaldoAwal = $dataSaldoAwal->orderBy('idr_inv','asc');
             $dataSaldoAwal = $dataSaldoAwal->first();
