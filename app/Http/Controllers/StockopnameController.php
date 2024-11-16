@@ -180,7 +180,7 @@ class StockopnameController extends Controller
         $filterTanggal = $reqForm->filterTanggal;
         $pilihLokasi = $reqForm->pilihLokasi;
         $description = $reqForm->description;
-        $thisPeriode = date('mY');
+        $thisPeriode = date('mY', strtotime($filterTanggal));
         $today = date("Y-m-d");
         $createdBy = Auth::user()->name;
         $dateNumber = date('dmy');
@@ -192,10 +192,10 @@ class StockopnameController extends Controller
             $countNumberOpname = DB::table('inv_stock_opname')
                 ->where([
                     ['status','!=','0'],
-                    ['periode',$filterTanggal]
+                    ['periode',$thisPeriode]
                 ])
                 ->count();
-                
+
             if ($countNumberOpname == '0') {
                 $no = '1';
                 $thisNumber = "STP-".$dateNumber."-".sprintf("%07d",$no);
