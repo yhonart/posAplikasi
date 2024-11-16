@@ -59,10 +59,12 @@
 
 <script>
     $( function() {
+        var date = new Date();
         $( "#filterTanggal" ).datepicker({
             dateFormat: 'yy-mm-dd',
             autoclose: true,
             todayHighlight: true,
+            maxDate: date,
         });
         $('#filterTanggal').datepicker("setDate",new Date());
         disInputBarang();
