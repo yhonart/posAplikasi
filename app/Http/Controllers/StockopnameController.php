@@ -183,7 +183,7 @@ class StockopnameController extends Controller
         $thisPeriode = date('mY', strtotime($filterTanggal));
         $today = date("Y-m-d");
         $createdBy = Auth::user()->name;
-        $dateNumber = date('dmy');
+        $dateNumber = date('dmy',strtotime($filterTanggal));
 
         if ($filterTanggal == $today) {
             $thisNumber = $noStockOpname;
