@@ -609,11 +609,12 @@ class StockopnameController extends Controller
             ->get();    
 
         $locOpname = DB::table('inv_stock_opname')
-            ->select('loc_so')
+            ->select('loc_so','date_so')
             ->where('number_so',$idOpname)
             ->first(); 
 
-        $location = $locOpname->loc_so;          
+        $location = $locOpname->loc_so; 
+        $dateInput = $locOpname->date_so;         
         
         $countBarang = DB::table('inv_list_opname')
             ->where('sto_number',$idOpname)
@@ -729,6 +730,25 @@ class StockopnameController extends Controller
                     }
                     elseif ($opmSize == "KONV") {
                         $lOpm = $opmQty;
+                    }
+                }
+
+                //get saldo laporan inventory
+                $getLapInv = DB::table('report_inv')
+                    ->select('idr_inv','saldo')
+                    ->where('date_input','>',$dateInput)
+                    ->get();
+                $today = date("Y-m-d");
+                
+                if ($dateInput < $today) {
+                    foreach ($getLapInv as $gL) {
+                        $tambahSaldo = $gL->saldo + $lOpm;
+                        $reportID = $gL->idr_inv;
+                        DB::table('report_inv')
+                            ->where('idr_inv',$reportID)
+                            ->update([
+                                'saldo'=>$tambahSaldo
+                            ]);
                     }
                 }
 
