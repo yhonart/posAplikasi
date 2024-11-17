@@ -375,27 +375,28 @@
             window.location.reload();
         });
         
-        let billPembayaran = "{{$noBill}}";
-        
+        let billPembayaran = "{{$noBill}}",
+            valBelanja = "{{$totalBayar->totalBilling}}",
+            valHutang = "{{$nominalKredit}}",
+            totalHutang = parseInt(valBelanja) + parseInt(valHutang),
+            kreditLimit = "{{$dataBilling->kredit_limit}}";
+
         $("#btnSimpanTrx").click(function(){
             event.preventDefault();
-                let typeCetak = $("#typeCetak").val();
-                let urlPrint = "{{route('Cashier')}}/buttonAction/printTemplateCashier/"+billPembayaran+"/"+typeCetak;
-                let data_form = new FormData(document.getElementById("formPembayaran"));
-                $.ajax({
-                    url: "{{route('Cashier')}}/buttonAction/postDataPembayaran",
-                    type: 'post',
-                    data: data_form,
-                    async: true,
-                    cache: true,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        $(".LOAD-SPINNER").fadeOut('slow');
-                        window.open(urlPrint,'_blank');
-                        window.location.reload();
-                    }
-                });
+            let typeCetak = $("#typeCetak").val();
+            if (totalHutang > kreditLimit && kreditLimit !== '0') {
+                alertify.confirm("Hutang Customer Sudah Melewati Limit!" + 
+                "Klik 'OK' - Untuk melanjutkan, atau Klik 'Cancel' untuk tindakan lebih lanjut.",
+                function(){
+                    inputPembayaran(billPembayaran, typeCetak);
+                },
+                function(){
+                    alertify.error('Transaksi Di Batalkan.');
+                }).set({title:"Konfirmasi Transaksi"});
+            }
+            else {
+                inputPembayaran(billPembayaran, typeCetak);
+            }
         })
         
         $("#btnBatalTrx").click(function(){
@@ -408,22 +409,7 @@
             if (event.ctrlKey && event.key === 's') { // Cetak
                 event.preventDefault();
                 let typeCetak = $("#typeCetak").val();
-                let urlPrint = "{{route('Cashier')}}/buttonAction/printTemplateCashier/"+billPembayaran+"/"+typeCetak;
-                let data_form = new FormData(document.getElementById("formPembayaran"));
-                $.ajax({
-                    url: "{{route('Cashier')}}/buttonAction/postDataPembayaran",
-                    type: 'post',
-                    data: data_form,
-                    async: true,
-                    cache: true,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        $(".LOAD-SPINNER").fadeOut('slow');
-                        window.open(urlPrint,'_blank');
-                        window.location.reload();
-                    }
-                });
+                inputPembayaran(billPembayaran, typeCetak);
             }
             
             if (event.keyCode === 27) {
@@ -439,6 +425,26 @@
                 success : function(response){
                     $(".LOAD-SPINNER").fadeOut();
                     $("#divDataPelunasan").html(response);
+                }
+            });
+        }
+
+        function inputPembayaran(billPembayaran, typeCetak)
+        {
+            let urlPrint = "{{route('Cashier')}}/buttonAction/printTemplateCashier/"+billPembayaran+"/"+typeCetak;
+            let data_form = new FormData(document.getElementById("formPembayaran"));
+            $.ajax({
+                url: "{{route('Cashier')}}/buttonAction/postDataPembayaran",
+                type: 'post',
+                data: data_form,
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $(".LOAD-SPINNER").fadeOut('slow');
+                    window.open(urlPrint,'_blank');
+                    window.location.reload();
                 }
             });
         }

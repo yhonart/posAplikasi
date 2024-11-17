@@ -93,6 +93,13 @@
         //     }
         //  }, 1000)
     </script>
+    <script type="text/javascript">
+    //override defaults
+    alertify.defaults.transition = "slide";
+    alertify.defaults.theme.ok = "btn btn-primary";
+    alertify.defaults.theme.cancel = "btn btn-danger";
+    alertify.defaults.theme.input = "form-control";
+    </script>
     
 </head>
 <body class="hold-transition layout-top-nav layout-fixed">
