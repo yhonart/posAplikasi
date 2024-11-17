@@ -1,32 +1,35 @@
 @extends('layouts.sidebarpage')
 
 @section('content')
-<section class="content-header">
+<?php
+    $arrayHakAkses = array(
+        0=>"Tidak Ada Akses",
+        1=>"Super Admin",
+        2=>"Admin",
+        3=>"Sales"
+    );
+?>
+<div class="content-header">
     <div class="container-fluid">
+    <!-- <div class="row">
+        <div class="col-12">
+            <div class="marquee">
+                <div id="marquee">
+                    <b>Last Update : Perbaikan Load & Hold di halaman kasir !</b>
+                </div>
+            </div>
+        </div>
+    </div> -->
     <div class="row mb-2">
         <div class="col-sm-6">
-        <h1>Profile</h1>
-        </div>
-        <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active text-info">User Profile</li>
-        </ol>
-        </div>
-    </div>
+        <h1 class="m-0">Home</h1>
+        </div><!-- /.col -->
+    </div><!-- /.row -->
     </div><!-- /.container-fluid -->
-</section>
+</div>
 
 <div class="content">
-    <div class="container-fluid">
-        <?php
-            $arrayHakAkses = array(
-                0=>"Tidak Ada Akses",
-                1=>"Super Admin",
-                2=>"Admin",
-                3=>"Sales"
-            );
-        ?>
+    <div class="container-fluid">        
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
