@@ -83,9 +83,23 @@ class HomeController extends Controller
     {
         $role = Auth::user()->hakakses;
         $checkArea = $this->checkuserInfo(); 
+        $userID = Auth::user()->id;
+
+        $dbUser = DB::table('users_role as a')
+            ->select('a.*','b.name','b.email')
+            ->leftJoin('users as b', 'a.user_id','=','b.id')
+            ->where('a.user_id',$userID)
+            ->first();
+            
+        $userRoles = $dbUser->role_code;
         
         if($role == '1'){
-            return view('Dashboard/DashboardTransaksi');
+            if ($userRoles == '1') {
+                return view('Dashboard/DashboardTransaksi');
+            }
+            else {
+                return view('Dashboard/WelcomeHome', compact('dbUser'));
+            }
         }
         elseif($role == '2'){
             return view('Cashier/maintenancePage', compact('checkArea'));
