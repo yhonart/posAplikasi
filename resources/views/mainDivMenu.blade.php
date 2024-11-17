@@ -44,6 +44,19 @@
         @endif
     @endforeach
 @else
+    @foreach($mainMenu as $mm)
+        @if($mm->type_menu <> '1')
+            <li class="nav-item">
+                <a href="{{route($mm->link_url)}}" class="nav-link bg-purple bg-gradient" target="_blank">
+                    <i class="{{$mm->icon}}"></i>
+                    <p>
+                        {{$mm->system_name}}
+                    </p>
+                </a>
+            </li>        
+        @endif
+    @endforeach
+    <hr>
     @foreach($subMenu as $sm)
         <li class="nav-item">
             <a href="{{route($sm->data_menu)}}" class="nav-link">
