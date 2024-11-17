@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {    
     // CEK INFORMASI USER TERKAIT AREA KERJA YANG TERDAFTAR PADA SISTEM
     public function checkuserInfo (){
-        $userID = Auth::user()->id;
+        $userID = Auth::user()->id;        
         $cekUserArea = DB::table('users_area AS a')
             ->select('a.area_id','b.site_code','b.site_name')
             ->leftJoin('m_site AS b','a.area_id','=','b.idm_site')
@@ -29,7 +29,13 @@ class DashboardController extends Controller
     
     public function mainDashboard (){
         $datenow = date("Y-m-d");
-        
+        $hakAkses = Auth::user()->hakakses;
+        $userID = Auth::user()->id;
+
+        $dbUser = DB::table('users')
+            ->where('id',$userID)
+            ->first();
+
         $countPenjualan = DB::table('tr_store')
             ->where([
                 ['tr_date',$datenow]
@@ -56,8 +62,13 @@ class DashboardController extends Controller
                 ['status','4']
                 ])
             ->count();
+        if ($hakAkses == '1') {
+            return view ('Dashboard/DashboardTransaksi', compact('countPenjualan','countProcess','countKredit','countcompleted'));
+        }
+        else {
+            return view('Dashboard/WelcomeHome', compact('dbUser'));
+        }
             
-        return view ('Dashboard/DashboardTransaksi', compact('countPenjualan','countProcess','countKredit','countcompleted'));
     }
     
     public function lodaDataTransaksi ($fromDate, $endDate){
