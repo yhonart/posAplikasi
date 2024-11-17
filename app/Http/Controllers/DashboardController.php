@@ -68,7 +68,7 @@ class DashboardController extends Controller
                 ])
             ->count();
         if ($userRole == '1') {
-            return view ('Dashboard/DashboardTransaksi', compact('countPenjualan','countProcess','countKredit','countcompleted'));
+            return view ('Dashboard/DashboardTransaksi', compact('countPenjualan','countProcess','countKredit','countcompleted','dbUser'));
         }
         else {
             return view('Dashboard/WelcomeHome', compact('dbUser'));
