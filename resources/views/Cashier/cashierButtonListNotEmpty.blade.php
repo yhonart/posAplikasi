@@ -45,11 +45,16 @@
             <dt class="col-md-4">Limit Hutang :</dt>
             <dd class="col-md-8">: 
                 @if(!empty($nomKredit))
-                <i class="fa-solid fa-rupiah-sign"></i> {{number_format($nomKredit->nom_kredit,'0',',','.')}}
+                    @if($nomKredit->nom_kredit < $customerType->kredit_limit)
+                        <i class="fa-solid fa-rupiah-sign"></i> {{number_format($nomKredit->nom_kredit,'0',',','.')}}
+                        @else
+                        <i class="fa-solid fa-rupiah-sign"></i>
+                        <span class="text-danger font-weight-bold">{{number_format($nomKredit->nom_kredit,'0',',','.')}}</span>
+                    @endif
                 @else
                 <i class="fa-solid fa-rupiah-sign"></i> 0
                 @endif
-                /<b><i class="fa-solid fa-rupiah-sign"></i> {{number_format($customerType->kredit_limit,'0',',','.')}}</b></dd>
+                / <b><i class="fa-solid fa-rupiah-sign"></i> {{number_format($customerType->kredit_limit,'0',',','.')}}</b></dd>
         </dl>  
         <hr>
         

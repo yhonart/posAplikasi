@@ -726,8 +726,9 @@ class CashierController extends Controller
             ->first();
 
         $nomKredit = DB::table('tr_kredit')
-                ->where('from_member_id',$customerID)
-                ->first();
+            ->select(DB::raw('SUM(nom_kredit) as nom_kredit'))
+            ->where('from_member_id',$customerID)
+            ->first();
 
         if ($countActiveBill >= '1' OR $countRerun >= '1') {
             return view('Cashier/cashierButtonListNotEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID', 'customerType', 'trPoint','nomKredit'));
@@ -2072,6 +2073,7 @@ class CashierController extends Controller
                     ['from_member_id', $memberID]
                 ])
                 ->count();
+                
             $kreditPlus = $kredit + $absSelisih;
             DB::table('tr_kredit')
                 ->insert([
