@@ -384,7 +384,7 @@
         $("#btnSimpanTrx").click(function(){
             event.preventDefault();
             let typeCetak = $("#typeCetak").val();
-            alert(kreditLimit);
+            //alert(kreditLimit);
             if (totalHutang > kreditLimit && kreditLimit !== '0') {
                 alertify.confirm("Hutang Customer Sudah Melewati Limit!" + 
                 "Klik 'OK' - Untuk melanjutkan, atau Klik 'Cancel' untuk tindakan lebih lanjut.",
