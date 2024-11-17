@@ -39,8 +39,8 @@ class DashboardController extends Controller
             ->first();
 
         $userRole = $dbUser->role_code;
-        echo $userRole;
-        
+        echo "Role : ".$userRole;
+
         $countPenjualan = DB::table('tr_store')
             ->where([
                 ['tr_date',$datenow]
