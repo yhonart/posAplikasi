@@ -389,14 +389,14 @@
                 alertify.confirm("Hutang Customer Sudah Melewati Limit!" + 
                 "Klik 'OK' - Untuk melanjutkan, atau Klik 'Cancel' untuk tindakan lebih lanjut.",
                 function(){
-                    //inputPembayaran(billPembayaran, typeCetak);
+                    inputPembayaran(billPembayaran, typeCetak);
                 },
                 function(){
                     alertify.error('Transaksi Di Batalkan.');
                 }).set({title:"Konfirmasi Transaksi"});
             }
             else {
-                //inputPembayaran(billPembayaran, typeCetak);
+                inputPembayaran(billPembayaran, typeCetak);
             }
         })
         
