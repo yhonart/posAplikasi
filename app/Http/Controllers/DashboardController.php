@@ -32,8 +32,10 @@ class DashboardController extends Controller
         $hakAkses = Auth::user()->hakakses;
         $userID = Auth::user()->id;
 
-        $dbUser = DB::table('users')
-            ->where('id',$userID)
+        $dbUser = DB::table('users_role as a')
+            ->select('a.*','b.name','b.email')
+            ->leftJoin('users as b', 'a.user_id','=','b.id')
+            ->where('a.user_id',$userID)
             ->first();
 
         $countPenjualan = DB::table('tr_store')
