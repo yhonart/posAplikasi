@@ -37,6 +37,7 @@ class DashboardController extends Controller
             ->leftJoin('users as b', 'a.user_id','=','b.id')
             ->where('a.user_id',$userID)
             ->first();
+        $userRole = $dbUser->role_code;
 
         $countPenjualan = DB::table('tr_store')
             ->where([
@@ -64,7 +65,7 @@ class DashboardController extends Controller
                 ['status','4']
                 ])
             ->count();
-        if ($hakAkses == '1') {
+        if ($userRole == '1') {
             return view ('Dashboard/DashboardTransaksi', compact('countPenjualan','countProcess','countKredit','countcompleted'));
         }
         else {
