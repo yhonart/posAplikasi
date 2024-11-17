@@ -42,6 +42,8 @@
                     echo "0";
                 ?>                
             </dd>
+            <dt class="col-md-4">Limit Hutang :</dt>
+            <dd class="col-md-8">: {{number_format($nomKredit->nom_kredit,'0',',','.')}}/<b>{{number_format($customerType->kredit_limit,'0',',','.')}}</b></dd>
         </dl>  
         <hr>
         

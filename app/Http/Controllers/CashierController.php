@@ -704,7 +704,7 @@ class CashierController extends Controller
         }
 
         $customerType = DB::table('m_customers as a')
-            ->select('a.customer_type', 'b.group_name')
+            ->select('a.customer_type', 'b.group_name','a.kredit_limit')
             ->leftJoin('m_cos_group as b', 'a.customer_type', '=', 'b.idm_cos_group')
             ->where('a.idm_customer', $customerID)
             ->first();
@@ -725,8 +725,12 @@ class CashierController extends Controller
             ])
             ->first();
 
+        $nomKredit = DB::table('tr_kredit')
+                ->where('from_member_id',$customerID)
+                ->first();
+
         if ($countActiveBill >= '1' OR $countRerun >= '1') {
-            return view('Cashier/cashierButtonListNotEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID', 'customerType', 'trPoint'));
+            return view('Cashier/cashierButtonListNotEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID', 'customerType', 'trPoint','nomKredit'));
         } else {
             return view('Cashier/cashierButtonListEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID'));
         }
