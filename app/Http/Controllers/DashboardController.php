@@ -37,8 +37,10 @@ class DashboardController extends Controller
             ->leftJoin('users as b', 'a.user_id','=','b.id')
             ->where('a.user_id',$userID)
             ->first();
+
         $userRole = $dbUser->role_code;
         echo $userRole;
+        
         $countPenjualan = DB::table('tr_store')
             ->where([
                 ['tr_date',$datenow]
