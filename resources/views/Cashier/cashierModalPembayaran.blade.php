@@ -380,6 +380,11 @@
             valHutang = "{{$nominalKredit}}",
             totalHutang = parseInt(valBelanja) + parseInt(valHutang),
             kreditLimit = "{{$dataBilling->kredit_limit}}";
+        
+        $("#btnBatalTrx").click(function(){
+            event.preventDefault();
+            window.location.reload();
+        })
 
         $("#btnSimpanTrx").click(function(){
             event.preventDefault();
@@ -400,17 +405,24 @@
             }
         })
         
-        $("#btnBatalTrx").click(function(){
-            event.preventDefault();
-            window.location.reload();
-        })
-        
         document.addEventListener('keydown', function(event) {
             
             if (event.ctrlKey && event.key === 's') { // Cetak
                 event.preventDefault();
                 let typeCetak = $("#typeCetak").val();
-                inputPembayaran(billPembayaran, typeCetak);
+                if (totalHutang > kreditLimit && kreditLimit !== '0') {
+                    alertify.confirm("Hutang Customer Sudah Melewati Limit!" + 
+                    "Klik 'OK' - Untuk melanjutkan, atau Klik 'Cancel' untuk tindakan lebih lanjut.",
+                    function(){
+                        inputPembayaran(billPembayaran, typeCetak);
+                    },
+                    function(){
+                        alertify.error('Transaksi Di Batalkan.');
+                    }).set({title:"Konfirmasi Transaksi"});
+                }
+                else {
+                    inputPembayaran(billPembayaran, typeCetak);
+                }
             }
             
             if (event.keyCode === 27) {
