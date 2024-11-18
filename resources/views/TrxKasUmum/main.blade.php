@@ -33,6 +33,12 @@
                                 <input type="text" class="form-control form-control-sm datetimepicker-input " name="endDate" id="endDate" autocomplete="off">
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-success btn-sm download-laporan" id="downloadExcel" export-type="excel"><i class="fa-solid fa-file-excel"></i> Download Excel</button>
+                                <button type="button" class="btn btn-danger btn-sm download-laporan" id="downloadPdf" export-type="pdf"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,6 +92,18 @@
                     endDate = '0';
                 }  
                 searchData(fromDate, endDate)
+        });
+
+        $('.download-laporan').on('click', function (e) {
+            e.preventDefault();
+            let exportType = $(this).attr('export-type');
+            fromDate = $('#fromDate').val(),
+            endDate = $('#endDate').val();
+            if(fromDate === '' || endDate === ''){
+                fromDate = '0';
+                endDate = '0';
+            }  
+            window.open("{{route('trxKasUmum')}}/exportData/"+exportType+"/"+fromDate+"/"+endDate,"_blank");            
         });
 
         function searchData(fromDate, endDate){ 
