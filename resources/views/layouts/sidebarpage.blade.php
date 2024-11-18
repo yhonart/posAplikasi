@@ -112,7 +112,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{url('/')}}" class="nav-link"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+                    <a href="{{route('home')}}" class="nav-link"><i class="fa-solid fa-gauge"></i> Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a class="nav-link" href="{{ route('logout') }}"
