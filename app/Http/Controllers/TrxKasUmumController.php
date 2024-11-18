@@ -154,7 +154,12 @@ class TrxKasUmumController extends Controller
         $mAdmin = DB::table('users')
             ->get();
 
-        return view('TrxKasUmum/editTransaksiKas', compact('editData','kasKategori','mAdmin','mStaff'));
+        $selectSubKategori = DB::table('m_subcategory_kas')
+            ->where('from_cat_id',$kategori)
+            ->orderBy('subcat_name','asc')
+            ->get();
+
+        return view('TrxKasUmum/editTransaksiKas', compact('editData','kasKategori','mAdmin','mStaff','selectSubKategori'));
     }
 
     public function postTrxEditKas(Request $reqPostEdit)

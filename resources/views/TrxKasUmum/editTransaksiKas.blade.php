@@ -19,7 +19,9 @@
                             <select name="selEditKategori" id="selEditKategori" class="form-control form-control-sm select-2">
                                 <option value="{{$editData->kas_catId}}">{{$editData->cat_name}}</option>
                                 @foreach($kasKategori as $kk)
+                                    @if($kk->idm_cat_kas<>$editData->kas_catId)
                                     <option value="{{$kk->idm_cat_kas}}">{{$kk->cat_name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -29,6 +31,11 @@
                         <div class="col-md-4">
                             <select name="subEditKategori" id="subEditKategori" class="form-control form-control-sm select-2">
                                 <option value="{{$editData->kas_subCatId}}">{{$editData->subcat_name}}</option>
+                                @foreach($selectSubKategori as $subKat)
+                                    @if($subKat->idm_sub <> $editData->kas_subCatId)
+                                    <option value="{{$subKat->idm_sub}}">{{$subKat->subcat_name}}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -101,17 +108,6 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        });
-
-        $("#selKategori").change(function(){
-            let kategori = $(this).find(":selected").val();
-            $.ajax({
-                type : 'get',
-                url : "{{route('trxKasUmum')}}/selectKategori/" + kategori,
-                success : function(response){  
-                    $("#subKategori").html(response);
-                }
-            });
         });
 
         $("#btnClose").click(function(){
