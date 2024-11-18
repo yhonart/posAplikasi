@@ -53,7 +53,7 @@ class TrxKasUmumController extends Controller
         $kasSubCatid = $reqAddPembiayaan->subKategori;
         $description = $reqAddPembiayaan->keterangan;
         $kasPersonal = $reqAddPembiayaan->personal;
-        $kasNominal = str_replace(".", "", $reqPostEdit->nominal);
+        $kasNominal = str_replace(".", "", $reqAddPembiayaan->nominal);
         $mFile = $reqAddPembiayaan->docLampiran;
 
         $splitPers = explode("|",$kasPersonal);
