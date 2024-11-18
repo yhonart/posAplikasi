@@ -155,7 +155,6 @@ class TrxKasUmumController extends Controller
             ->get();
 
         $selectSubKategori = DB::table('m_subcategory_kas')
-            ->where('from_cat_id',$kategori)
             ->orderBy('subcat_name','asc')
             ->get();
 
