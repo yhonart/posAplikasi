@@ -142,7 +142,7 @@
             },
             function(){
                 alertify.error('Cancel');
-            });
+            }).set({title:"Update"});
             return false;
         });
     });
