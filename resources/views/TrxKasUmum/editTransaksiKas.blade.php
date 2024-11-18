@@ -61,8 +61,10 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Lampiran</label>
                         <div class="col-md-3">
-                            <a href="#" id="deleteLamp" class="btn btn-default border-0" data-id="{{$editData->idtr_kas}}"><i class="fa-solid fa-trash-can"></i></a>
-                            <a href="{{asset('public/images/Upload/TrxKas')}}/{{$editData->file_name}}" target="_blank" rel="noopener noreferrer">{{$editData->file_name}}</a>
+                            @if($editData->file_name <> "")
+                                <a href="#" id="deleteLamp" class="btn btn-default border-0" data-id="{{$editData->idtr_kas}}"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="{{asset('public/images/Upload/TrxKas')}}/{{$editData->file_name}}" target="_blank" rel="noopener noreferrer">{{$editData->file_name}}</a>
+                            @endif
                         </div>
                         <div class="col-md-4">
                             <input type="file" name="docLampiran" id="docLampiran" class="form-control-file">
@@ -123,17 +125,23 @@
 
         $("form#formEditKas").submit(function(event){
             event.preventDefault();
-            $.ajax({
-                url: "{{route('trxKasUmum')}}/postTrxEditKas",
-                type: 'POST',
-                data: new FormData(this),
-                async: true,
-                cache: true,
-                contentType: false,
-                processData: false,
-                success: function (data) {                    
-                    window.location.reload();
-                },                
+            alertify.confirm("Apakah anda yakin ingin melakukan update dokumen ini ?",
+            function(){
+                $.ajax({
+                    url: "{{route('trxKasUmum')}}/postTrxEditKas",
+                    type: 'POST',
+                    data: new FormData(this),
+                    async: true,
+                    cache: true,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {                    
+                        window.location.reload();
+                    },                
+                });
+            },
+            function(){
+                alertify.error('Cancel');
             });
             return false;
         });

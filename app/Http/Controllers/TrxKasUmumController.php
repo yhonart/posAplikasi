@@ -172,7 +172,18 @@ class TrxKasUmumController extends Controller
         $persCode = $splitPers[0];
         $persName = $splitPers[1];
 
+        $TypeDoc = "";
+        $NameDoc = "";
+        $DirPublic = "";
+
         $creatorName = Auth::user()->name;
+        
+        if ($mFile <> "") {
+            $TypeDoc = $mFile->getClientOriginalExtension();
+            $NameDoc = $mFile->getClientOriginalName();
+            $DirPublic = public_path()."/images/Upload/TrxKas/";
+            $mFile->move($DirPublic, $NameDoc);
+        }
 
         DB::table('tr_kas')
             ->where('idtr_kas',$id)
