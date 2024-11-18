@@ -16,7 +16,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Kategori</label>
                         <div class="col-md-4">
-                            <select name="selKategori" id="selKategori" class="form-control form-control-sm  select-2">
+                            <select name="selEditKategori" id="selEditKategori" class="form-control form-control-sm select-2">
                                 <option value="{{$editData->kas_catId}}">{{$editData->cat_name}}</option>
                                 @foreach($kasKategori as $kk)
                                     <option value="{{$kk->idm_cat_kas}}">{{$kk->cat_name}}</option>
@@ -27,7 +27,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Sub-Kategori</label>
                         <div class="col-md-4">
-                            <select name="subKategori" id="subKategori" class="form-control form-control-sm  select-2">
+                            <select name="subEditKategori" id="subEditKategori" class="form-control form-control-sm select-2">
                                 <option value="{{$editData->kas_subCatId}}">{{$editData->subcat_name}}</option>
                             </select>
                         </div>
@@ -41,7 +41,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Personal</label>
                         <div class="col-md-4">
-                            <select name="personal" id="personal" class="form-control form-control-sm  select-2">
+                            <select name="personal" id="personal" class="form-control form-control-sm select-2">
                                 <option value="{{$editData->kas_persCode}}|{{$editData->kas_persName}}">{{$editData->kas_persName}}</option>
                                 @foreach($mStaff as $ms)
                                 <option value="{{$ms->sales_code}}|{{$ms->sales_name}}">{{$ms->sales_name}} (Sales)</option>

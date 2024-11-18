@@ -161,8 +161,8 @@ class TrxKasUmumController extends Controller
     {
         $id = $reqPostEdit->idHidden;
         $kasDate = $reqPostEdit->tanggal;
-        $kasCatid = $reqPostEdit->selKategori;
-        $kasSubCatid = $reqPostEdit->subKategori;
+        $kasCatid = $reqPostEdit->selEditKategori;
+        $kasSubCatid = $reqPostEdit->subEditKategori;
         $description = $reqPostEdit->keterangan;
         $kasPersonal = $reqPostEdit->personal;
         $kasNominal = str_replace(".", "", $reqPostEdit->nominal);
