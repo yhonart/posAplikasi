@@ -90,7 +90,7 @@
                 <td>{{$d->subcat_name}}</td>
                 <td>{{$d->description}}</td>
                 <td>{{$d->kas_persName}}</td>
-                <td>{{number_format($d->nominal,'0',',','.')}}</td>
+                <td>{{$d->nominal}}</td>
                 <td>
                     @if($d->file_name <> '')
                         <a href="{{asset('public/images/Upload/TrxKas')}}/{{$d->file_name}}" target="_blank" rel="noopener noreferrer" title="{{$d->file_name}}">Lampiran</a>                                    
