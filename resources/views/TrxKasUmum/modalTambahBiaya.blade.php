@@ -27,7 +27,7 @@
                         <label class="label col-md-4">Sub-Kategori</label>
                         <div class="col-md-4">
                             <select name="subKategori" id="subKategori" class="form-control form-control-sm  select-2">
-                                <option value="0">===</option>
+                                <option value="0"></option>
                             </select>
                         </div>
                     </div>
