@@ -15,7 +15,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Kategori</label>
                         <div class="col-md-4">
-                            <select name="selKategori" id="selKategori" class="form-control form-control-sm  select-2">
+                            <select name="selKategori" id="selKategori" class="form-control form-control-sm select-2">
                                 <option value="0">===</option>
                                 @foreach($kasKategori as $kk)
                                     <option value="{{$kk->idm_cat_kas}}">{{$kk->cat_name}}</option>
@@ -26,8 +26,11 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Sub-Kategori</label>
                         <div class="col-md-4">
-                            <select name="subKategori" id="subCategory" class="form-control form-control-sm  select-2">
+                            <select name="subKategori" id="subCategory" class="form-control form-control-sm select-2">
                                 <option value="0"></option>
+                                @foreach($selectOption as $so)
+                                    <option value="{{$so->idm_sub}}">{{$so->subcat_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -94,17 +97,7 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        });
-        $("#selKategori").change(function(){
-            let kategori = $(this).find(":selected").val();
-            $.ajax({
-                type : 'get',
-                url : "{{route('trxKasUmum')}}/selectKategori/" + kategori,
-                success : function(response){  
-                    $("#subCategory").html(response);
-                }
-            });
-        });
+        });       
 
         $("#btnClose").click(function(){
             window.location.reload();

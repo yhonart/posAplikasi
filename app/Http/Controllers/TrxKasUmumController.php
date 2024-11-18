@@ -28,7 +28,11 @@ class TrxKasUmumController extends Controller
         $mAdmin = DB::table('users')
             ->get();
 
-        return view('TrxKasUmum/modalTambahBiaya', compact('kasKategori','mAdmin','mStaff'));
+        $selectOption = DB::table('m_subcategory_kas')
+            ->orderBy('subcat_name','asc')
+            ->get();
+
+        return view('TrxKasUmum/modalTambahBiaya', compact('kasKategori','mAdmin','mStaff','selectOption'));
     }
 
     public function selectKategori($kategori)
