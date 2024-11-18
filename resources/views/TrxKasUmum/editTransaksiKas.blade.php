@@ -120,12 +120,13 @@
 
         $("form#formEditKas").submit(function(event){
             event.preventDefault();
+            let data_form = new FormData(this);
             alertify.confirm("Apakah anda yakin ingin melakukan update dokumen ini ?",
             function(){
                 $.ajax({
                     url: "{{route('trxKasUmum')}}/postTrxEditKas",
                     type: 'POST',
-                    data: new FormData(this),
+                    data: data_form,
                     async: true,
                     cache: true,
                     contentType: false,

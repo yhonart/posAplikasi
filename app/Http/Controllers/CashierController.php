@@ -1134,6 +1134,7 @@ class CashierController extends Controller
         $prodID = $listData->product_code;
         $qty = $listData->qty;
         $unit = $listData->unit;
+        $docNumber = $listData->from_payment_code;
 
         // cari stok terakhir pada table view stok inventori
         $prodUnit = DB::table('view_product_stock')
@@ -1245,6 +1246,17 @@ class CashierController extends Controller
                 'is_delete' => '1',
                 'delete_by' => $deleteBy,
                 'delete_date' => now()
+            ]);
+
+        //Update log transaksi menjadi 0
+        DB::table('report_inv')
+            ->where([
+                ['number_code',$docNumber],
+                ['product_id',$prodID],
+                ['satuan',$unit]
+            ])
+            ->update([
+                'status_trx'=>'0'
             ]);
     }
 
