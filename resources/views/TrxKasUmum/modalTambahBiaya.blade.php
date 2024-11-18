@@ -26,7 +26,7 @@
                     <div class="form-group row">
                         <label class="label col-md-4">Sub-Kategori</label>
                         <div class="col-md-4">
-                            <select name="subKategori" id="subKategori" class="form-control form-control-sm  select-2">
+                            <select name="subKategori" id="subCategory" class="form-control form-control-sm  select-2">
                                 <option value="0"></option>
                             </select>
                         </div>
@@ -101,7 +101,7 @@
                 type : 'get',
                 url : "{{route('trxKasUmum')}}/selectKategori/" + kategori,
                 success : function(response){  
-                    $("#subKategori").html(response);
+                    $("#subCategory").html(response);
                 }
             });
         });
