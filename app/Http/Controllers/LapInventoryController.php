@@ -135,9 +135,13 @@ class LapInventoryController extends Controller
     }
     
     public function getFilter($prdID){
-        
+        $today = date("Y-m-d");
+
         $dataReportInv = DB::table('report_inv')
-            ->where('status_trx','4')
+            ->where([
+                ['status_trx','4'],
+                ['date_input',$today]
+                ])
             ->orderBy('idr_inv','desc')
             ->get();
 
