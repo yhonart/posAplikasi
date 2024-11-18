@@ -1,22 +1,18 @@
-<?php 
-    header("Content-type: application/vnd-ms-excel");
-    header("Content-Disposition: attachment; filename=ReportTransaksiKas.xls");
-    $no = '1';
-?>
 <link rel="stylesheet" href="{{asset('public/dazbuild/dist/css/adminlte.min.css')}}">
 <script src="{{asset('public/dazbuild/dist/js/adminlte.min.js')}}"></script>
 <style>
     .styled-table {
         border-collapse: collapse;
         margin: 25px 0;
-        font-size: 12;
+        font-size: 6;
         font-family: sans-serif;
         min-width: 400px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
         border: 1px solid #dee2e6;
     }.styled-table-2 tbody tr th,
     .styled-table thead tr {
-        background-color: #ffffff;
+        background-color: #17a2b8;
+        color: #ffffff;
         text-align: left;
     }
     .styled-table th,
@@ -50,18 +46,14 @@
         font-size : 7;
     }
     .grand-total {
-        font-size : 8;
+        font-size : 7;
     }
 </style>
-<table class="styled-table" width="100%" border="1">
-    <thead class="text-center">
-        <tr>
-            <th colspan="9"><h5><b>REKAP BIAYA TOKO</b></h5></th>
-        </tr>
-        <tr>
-            <th colspan="9"><b>PT. BERKAH SENTOSA LITANI HARAPAN</b></th>
-        </tr>
-    </thead>
+<div class="judul">
+    <h5><b>REKAP BIAYA TOKO</b></h5>
+    <span><b>PT. BERKAH SENTOSA LITANI HARAPAN</b></span>
+</div>
+<table class="styled-table text-nowrap table-valign-middle" width="100%">
     <thead>
         <tr>
             <th>No. Trx</th>
