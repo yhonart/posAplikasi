@@ -391,14 +391,10 @@
             let typeCetak = $("#typeCetak").val();
             //alert(kreditLimit);
             if (totalHutang > kreditLimit && kreditLimit !== '0') {
-                alertify.confirm("Hutang Customer Sudah Melewati Limit!" + 
-                "Klik 'OK' - Untuk melanjutkan, atau Klik 'Cancel' untuk tindakan lebih lanjut.",
-                function(){
-                    inputPembayaran(billPembayaran, typeCetak);
-                },
-                function(){
-                    alertify.error('Transaksi Di Batalkan.');
-                }).set({title:"Konfirmasi Transaksi"});
+                alertify
+                .alert("Hutang Customer Sudah Melewati Limit !", function(){
+                    alertify.message('OK');
+                });
             }
             else {
                 inputPembayaran(billPembayaran, typeCetak);
