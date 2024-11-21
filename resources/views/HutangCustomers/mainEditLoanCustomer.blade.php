@@ -69,7 +69,6 @@
         </div>
     </div>
 </div>
-@endsection
 <script>
     $(function() {
         $( ".datetimepicker-input" ).datepicker({
@@ -146,3 +145,4 @@
         });
     }
 </script>
+@endsection
