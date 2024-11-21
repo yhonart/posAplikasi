@@ -379,7 +379,9 @@
             valBelanja = "{{$totalBayar->totalBilling}}",
             valHutang = "{{$nominalKredit}}",
             totalHutang = parseInt(valBelanja) + parseInt(valHutang),
-            kreditLimit = "{{$dataBilling->kredit_limit}}";
+            kreditLimit = "{{$dataBilling->kredit_limit}}",
+            totalPembayaran = $("#tPembayaran").val();
+        let replaceTotalPembayaran = totalPembayaran.replace(/\./g, "");
         
         $("#btnBatalTrx").click(function(){
             event.preventDefault();
@@ -390,7 +392,7 @@
             event.preventDefault();
             let typeCetak = $("#typeCetak").val();
             //alert(kreditLimit);
-            if (totalHutang > kreditLimit && kreditLimit !== '0') {
+            if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja) {
                 alertify
                 .alert("Hutang Customer Sudah Melewati Limit !", function(){
                     alertify.message('Transaksi di batalkan.');
@@ -406,15 +408,11 @@
             if (event.ctrlKey && event.key === 's') { // Cetak
                 event.preventDefault();
                 let typeCetak = $("#typeCetak").val();
-                if (totalHutang > kreditLimit && kreditLimit !== '0') {
-                    alertify.confirm("Hutang Customer Sudah Melewati Limit!" + 
-                    "Klik 'OK' - Untuk melanjutkan, atau Klik 'Cancel' untuk tindakan lebih lanjut.",
-                    function(){
-                        inputPembayaran(billPembayaran, typeCetak);
-                    },
-                    function(){
-                        alertify.error('Transaksi Di Batalkan.');
-                    }).set({title:"Konfirmasi Transaksi"});
+                if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja) {
+                    alertify
+                    .alert("Hutang Customer Sudah Melewati Limit !", function(){
+                        alertify.message('Transaksi di batalkan.');
+                    }).set({title:"Konfirmasi Limit Hutang"});
                 }
                 else {
                     inputPembayaran(billPembayaran, typeCetak);
