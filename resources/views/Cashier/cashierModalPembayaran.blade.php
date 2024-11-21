@@ -398,10 +398,10 @@
                     alertify.message('Transaksi di batalkan.');
                 }).set({title:"Konfirmasi Limit Hutang"});
             }
-            // else {
-            //     inputPembayaran(billPembayaran, typeCetak);
-            // }
-            alert(replaceTotalPembayaran+"-"+valBelanja);
+            else {
+                inputPembayaran(billPembayaran, typeCetak);
+            }
+            // alert(replaceTotalPembayaran+"-"+valBelanja);
         })
         
         document.addEventListener('keydown', function(event) {
@@ -411,17 +411,17 @@
                 let typeCetak = $("#typeCetak").val(),
                     totalPembayaran = $("#tPembayaran").val();
                 let replaceTotalPembayaran = totalPembayaran.replace(/\./g, "");
-                
+
                 if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja) {
                     alertify
                     .alert("Hutang Customer Sudah Melewati Limit !", function(){
                         alertify.message('Transaksi di batalkan.');
                     }).set({title:"Konfirmasi Limit Hutang"});
                 }
-                // else {
-                //     inputPembayaran(billPembayaran, typeCetak);
-                // }
-                alert(replaceTotalPembayaran+"-"+valBelanja);
+                else {
+                    inputPembayaran(billPembayaran, typeCetak);
+                }
+                // alert(replaceTotalPembayaran+"-"+valBelanja);
             }
             
             if (event.keyCode === 27) {
