@@ -33,8 +33,9 @@
                                         <option value="3">Edit Limit Hutang</option>
                                     </select>
                                 </div>
-                            </div>                    
-                            <div class="col-12 col-md-3">
+                            </div>   
+
+                            <div class="col-6 col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">Cari</label>
                                     <select class="form-control form-control-sm" id="cariNamaPelanggan" class="form-control form-control-sm select-pelanggan">
@@ -45,12 +46,14 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">Dari Tanggal</label>
                                     <input type="text" class="form-control datetimepicker-input  form-control-sm" name="dariTanggal" id="dariTanggal">
                                 </div>
                             </div>
+                            
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">s.d Tanggal</label>
