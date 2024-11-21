@@ -38,7 +38,7 @@
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">Cari</label>
-                                    <select class="form-control form-control-sm" id="cariNamaPelanggan" class="form-control form-control-sm select-pelanggan">
+                                    <select class="form-control form-control-sm select-pelanggan" id="cariNamaPelanggan" class="form-control ">
                                         <option value="0" readonly>Nama Pelanggan</option>
                                         @foreach($dbMCustomer as $dcs)
                                         <option value="{{$dcs->idm_customer }}">{{$dcs->customer_store}}</option>
@@ -50,10 +50,10 @@
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">Dari Tanggal</label>
-                                    <input type="text" class="form-control datetimepicker-input  form-control-sm" name="dariTanggal" id="dariTanggal">
+                                    <input type="text" class="form-control datetimepicker-input form-control-sm" name="dariTanggal" id="dariTanggal">
                                 </div>
                             </div>
-                            
+
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">s.d Tanggal</label>
@@ -83,7 +83,6 @@
         $('.datetimepicker-input').datepicker("setDate",new Date());
         $('#cariNamaPelanggan').select2({
             theme: 'bootstrap4',
-            dropdownParent: $('#modal-global-large')
         });
         dataPinjaman();
     });
@@ -97,18 +96,30 @@
         
         $("#cariNamaPelanggan").change(function(){
             let keyWord = $(this).find(":selected").val();
-            fromDate = $('#dariTanggal').val(),
-            endDate = $('#sampaiTanggal').val(),
-            
+                fromDate = $('#dariTanggal').val(),
+                endDate = $('#sampaiTanggal').val(),
+                valAction = $("actionCode").val();
+
             searchData(keyWord, fromDate, endDate, valAction);
-        })
+        });
         
+        $("#actionCode").change(function(){
+            let valAction = $(this).find(":selected").val();
+                fromDate = $('#dariTanggal').val(),
+                endDate = $('#sampaiTanggal').val(),
+                keyWord = $("#cariNamaPelanggan").find(":selected").val(); 
+                if(keyWord == ''){
+                    keyWord = '0';
+                }  
+            searchData(keyWord, fromDate, endDate, valAction);
+        });
         
         $("#dariTanggal").change(function(){
             let fromDate = $('#dariTanggal').val(),
                 endDate = $('#sampaiTanggal').val(),
                 valAction = $("#actionCode").val(),
                 keyWord = $("#cariNamaPelanggan").find(":selected").val();
+
                 if(keyWord == ''){
                     keyWord = '0';
                 }                

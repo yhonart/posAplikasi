@@ -1347,8 +1347,8 @@ class CashierController extends Controller
             ->select(DB::raw('DISTINCT(payment_number)'))
             ->where('member_id', $keyword)
             ->get();
-        if ($keyword == '0') {
-            return view('Cashier/cashierModalDataPelunasanSummary', compact('datPinjaman'));
+        if ($valAction == '1') {
+            return view('Cashier/cashierModalDataPelunasanList', compact('dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman'));
         }
         elseif ($valAction == '2') {
             return view("HutangCustomers/UnlockCustomerLoan");
@@ -1356,7 +1356,7 @@ class CashierController extends Controller
         elseif ($valAction == '3') {
             return view("HutangCustomers/EditLimitCustomer");
         } else {
-            return view('Cashier/cashierModalDataPelunasanList', compact('dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman'));
+            return view('Cashier/cashierModalDataPelunasanSummary', compact('datPinjaman'));
         }
     }
 
