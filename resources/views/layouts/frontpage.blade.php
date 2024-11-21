@@ -66,6 +66,8 @@
         [class^='select2'] {
           border-radius: 0px !important;
           font-size: 15px;
+          border-color: #6d28d9; /* changes border color to red */   
+          border-width: 3px;  
         }
         
         button:hover {  
