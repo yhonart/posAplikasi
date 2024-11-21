@@ -29,7 +29,7 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Tgl. Pengiriman</label>
-                            <input type="text" name="dateDelivery" id="dateDelivery" class="form-control form-control-sm datetimepicker-input ">
+                            <input type="text" name="dateDelivery" id="dateDelivery" class="form-control form-control-sm datetimepicker-input " autocomplete="off">
                         </div>
                     </div>
                     
@@ -50,7 +50,7 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Tempo [Hari]</label>
-                            <input type="text" name="dayKredit" id="dayKredit" class="form-control form-control-sm " placeholder="Abaikan Jika Menggunakan Tunai/Transfer">
+                            <input type="text" name="dayKredit" id="dayKredit" class="form-control form-control-sm " placeholder="Abaikan Jika Menggunakan Tunai/Transfer" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -64,13 +64,13 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Nomor Surat Jalan</label>
-                            <input type="text" name="noSj" id="noSj" class="form-control form-control-sm ">
+                            <input type="text" name="noSj" id="noSj" class="form-control form-control-sm " autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">No. Faktur</label>
-                            <input type="text" name="noFaktur" id="noFaktur" class="form-control form-control-sm ">
+                            <input type="text" name="noFaktur" id="noFaktur" class="form-control form-control-sm " autocomplete="off">
                         </div>
                     </div>
                 </div>
@@ -78,19 +78,19 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Kirim Melalui</label>
-                            <input type="text" name="deliveryBy" id="deliveryBy" class="form-control form-control-sm ">
+                            <input type="text" name="deliveryBy" id="deliveryBy" class="form-control form-control-sm " autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Tgl. Faktur</label>
-                            <input type="text" name="tglFaktur" id="tglFaktur" class="form-control form-control-sm datetimepicker-input ">
+                            <input type="text" name="tglFaktur" id="tglFaktur" class="form-control form-control-sm datetimepicker-input " autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Keterangan</label>
-                            <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm ">
+                            <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm " autocomplete="off">
                         </div>
                     </div>
                 </div>
