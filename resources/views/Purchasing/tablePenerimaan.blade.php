@@ -9,7 +9,7 @@ $statusDokumen = array(
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-body p-0">
+            <div class="card-body p-2">
                 <table class="table table-sm table-valign-middle table-hover text-nowrap table-bordered bg-light elevation-1" id="tableListPembelian">
                     <thead>
                         <tr>

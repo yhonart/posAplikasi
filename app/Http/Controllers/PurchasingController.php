@@ -461,8 +461,20 @@ class PurchasingController extends Controller
             $loc = $pl->warehouse;
             $prodName = $pl->product_name;
             $createdBy = Auth::user()->name;
-            $this->TempInventoryController->insertLapInv ($numberCode, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc);
+            
+            $mProduct = DB::table('m_product')
+                ->where('idm_data_product',$productID)
+                ->first();
+
+            $volB = $mProduct->large_unit_val;
+            $volK = $mProduct->medium_unit_val;
+            $volKonv = $mProduct->small_unit_val;
+            $prodName = $pl->product_name;
+            $satuan = $pl->size;
+            $sizeCode = 
+
         }
+
         $sumPembelian = DB::table('purchase_list_order')
             ->select(DB::raw('SUM(total_price) as sumPrice'), DB::raw('COUNT(product_id) as jumlahProduk'))
             ->where('purchase_number',$dataEdit)

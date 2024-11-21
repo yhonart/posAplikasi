@@ -76,6 +76,11 @@
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Customize your box shadow */  
             border-color: #0078d7; /* Change border color on focus */  
         } 
+        .form-control:focus {  
+            border-color: #6d28d9; /* changes border color to red */   
+            border-width: 3px;            
+        }   
+        
     </style>
     <script>
         var Toast = Swal.mixin({

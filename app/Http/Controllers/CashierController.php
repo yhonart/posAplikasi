@@ -36,21 +36,21 @@ class CashierController extends Controller
         return $userAreaID;
     }
 
-    // BUAT NOMOR TRANSAKSI
+    // Buat nomor transaksi baru.
     public function checkBillNumber()
     {
         $areaID = $this->checkuserInfo();
         $thisDate = date("dmy");
-        $dateDB = date("Y-m-d");
+        $toDay = date("Y-m-d");
         $username = Auth::user()->name;
 
-        //Cek apakah ada nomor transaksi is_return 
+        //Cek apakah ada nomor transaksi dari proses F4
         $countReturn = DB::table('tr_store')
             ->where([
                 ['store_id', $areaID],
                 ['is_return', '1'],
                 ['status', '0'],
-                ['tr_date', $dateDB],
+                ['tr_date', $toDay],
                 ['return_by',$username]
             ])
             ->count();
@@ -61,7 +61,7 @@ class CashierController extends Controller
             $countTrx = DB::table("tr_store")
                 ->where([
                     ['store_id', $areaID],
-                    ['tr_date', $dateDB]
+                    ['tr_date', $toDay]
                 ])
                 ->count();
 
@@ -78,7 +78,7 @@ class CashierController extends Controller
                 ['store_id', $areaID],
                 ['is_return', '1'],
                 ['status', '0'],
-                ['tr_date', $dateDB],
+                ['tr_date', $toDay],
                 ['return_by',$username]
             ])
             ->first();
@@ -105,7 +105,8 @@ class CashierController extends Controller
         return $countReturn;
     }
 
-    public function checkProdActive()
+    // Cek nomor transaksi yang aktif
+    public function checkTrxActive()
     {
         $areaID = $this->checkuserInfo();
         $createdName = Auth::user()->name;
@@ -641,7 +642,7 @@ class CashierController extends Controller
     {        
         $areaID = $this->checkuserInfo();
         $pCode = $this->checkBillNumber();
-        $countDisplay = $this->checkProdActive();
+        $countDisplay = $this->checkTrxActive();
         $countReturn = $this->checkReturnActive();
         $billNumber = $this->getInfoNumber();
         $createdName = Auth::user()->name;
@@ -2870,7 +2871,7 @@ class CashierController extends Controller
         $userName = $reqUnlock->userName;
         $password = $reqUnlock->passInput;
         $actionBy = Auth::user()->name;
-        $countActiveDisplay = $this->checkProdActive();
+        $countActiveDisplay = $this->checkTrxActive();
 
         $countAkun = DB::table('admin_token as a')
             ->leftJoin('users as b', 'b.id', '=', 'a.user_id')
