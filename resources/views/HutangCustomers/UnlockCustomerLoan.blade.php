@@ -12,9 +12,11 @@
             <tr>
                 <td>{{$cslt->customer_code}}</td>
                 <td>{{$cslt->customer_store}}</td>
-                <td class="text-right">
-                    {{number_format($cslt->kredit_limit,'0',',','.')}}
-                    <button type="button" id="editLimit" class="btn btn-sm btn-default border-0"><i class="fa-solid fa-file-pen"></i></button>
+                <td>
+                    <i class="fa-solid fa-rupiah-sign float-left"></i>
+                    <a href="#" class="text-info font-weight-bold float-right">
+                        {{number_format($cslt->kredit_limit,'0',',','.')}} <i class="fa-solid fa-file-pen"></i>
+                    </a>
                 </td>
                 <td>
                 <div class="form-group">
