@@ -398,9 +398,10 @@
                     alertify.message('Transaksi di batalkan.');
                 }).set({title:"Konfirmasi Limit Hutang"});
             }
-            else {
-                inputPembayaran(billPembayaran, typeCetak);
-            }
+            // else {
+            //     inputPembayaran(billPembayaran, typeCetak);
+            // }
+            alert(replaceTotalPembayaran+"-"+valBelanja);
         })
         
         document.addEventListener('keydown', function(event) {
@@ -414,9 +415,10 @@
                         alertify.message('Transaksi di batalkan.');
                     }).set({title:"Konfirmasi Limit Hutang"});
                 }
-                else {
-                    inputPembayaran(billPembayaran, typeCetak);
-                }
+                // else {
+                //     inputPembayaran(billPembayaran, typeCetak);
+                // }
+                alert(replaceTotalPembayaran+"-"+valBelanja);
             }
             
             if (event.keyCode === 27) {
