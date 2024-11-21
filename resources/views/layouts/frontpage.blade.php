@@ -63,10 +63,10 @@
     <script src="{{asset('public/dazbuild/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
     <script src="{{asset('public/dazbuild/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
     <style>
-        [class^='select2'] {
+        /* [class^='select2'] {
           border-radius: 0px !important;
           font-size: 15px; 
-        }
+        } */
         
         button:hover {  
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);  /* Enhanced shadow on hover */
