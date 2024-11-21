@@ -1,4 +1,4 @@
-<table class="table table-valign-middle table-sm">
+<table class="table table-valign-middle table-sm table-bordered">
     <thead class="bg-gradient-purple font-weight-bold">
         <tr>
             <td>Kode Pelanggan</td>
@@ -14,7 +14,7 @@
                 <td>{{$cslt->customer_store}}</td>
                 <td class="text-right">
                     {{number_format($cslt->kredit_limit,'0',',','.')}}
-                    <button type="button" id="editLimit" class="btn btn-sm btn-default border-0"><i class="fa-solid fa-file-pen"></i></button>
+                    <button type="button" id="editLimit" class="btn btn-sm btn-default border-0"><i class="fa-solid fa-file-pen text-info"></i></button>
                 </td>
                 <td>
                 <div class="form-group">
