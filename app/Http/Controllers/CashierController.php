@@ -1351,7 +1351,12 @@ class CashierController extends Controller
             return view('Cashier/cashierModalDataPelunasanList', compact('dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman'));
         }
         elseif ($valAction == '2') {
-            return view("HutangCustomers/UnlockCustomerLoan");
+            $customerListTrx = DB::table('m_customers');
+            if ($keyword <> '0') {
+                $customerListTrx = $customerListTrx->where('idm_customer',$keyword);
+            }
+            $customerListTrx = $customerListTrx->get();
+            return view("HutangCustomers/UnlockCustomerLoan", compact('customerListTrx'));
         }
         elseif ($valAction == '3') {
             return view("HutangCustomers/EditLimitCustomer");

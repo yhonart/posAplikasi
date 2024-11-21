@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-md-8 col-12">          
-                <h1 class="m-0">Laporan Inventory</h1>
+                <h1 class="m-0">Control Panel Pinjaman Pelanggan</h1>
             </div>          
         </div>
     </div>
@@ -14,13 +14,7 @@
     <div class="container-fluid">
         <div class="row p-1">
             <div class="col-12">
-                <div class="card card-purple">
-                    <div class="card-header border-0">
-                        <h3 class="card-title font-weight-bold">Data Pinjaman & Pelunasan</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
-                        </div>
-                    </div>
+                <div class="card card-purple">                    
                     <div class="card-body">                
                         <div class="row">
                             <div class="col-6 col-md-3">
@@ -29,8 +23,7 @@
                                     <select name="actionCode" id="actionCode" class="form-control form-control-sm">
                                         <option value="0">Pilih Proses </option>
                                         <option value="1">Pembayaran Hutan</option>
-                                        <option value="2">Open Transaksi Hutang</option>
-                                        <option value="3">Edit Limit Hutang</option>
+                                        <option value="2">Edit & Open Trx Hutang</option>
                                     </select>
                                 </div>
                             </div>   
