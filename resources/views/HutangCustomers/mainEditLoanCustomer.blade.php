@@ -7,12 +7,16 @@
                     <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-            <div class="card-body">
-                <p class="text-muted">*Pilih nama pelanggan untuk input pembayaran kredit</p>
+            <div class="card-body">                
                 <div class="row">
                     <div class="col-6 col-md-3">
                         <div class="form-group">
-                            <input type="hidden" name="actionCode" id="actionCode" value="1">
+                           <select name="actionCode" id="actionCode" class="from-control form-control-sm">
+                            <option value="0">Pilih Proses </option>
+                            <option value="1">Pembayaran Hutan</option>
+                            <option value="2">Open Transaksi Hutang</option>
+                            <option value="3">Edit Limit Hutang</option>
+                           </select>
                         </div>
                     </div>                    
                     <div class="col-12 col-md-3">

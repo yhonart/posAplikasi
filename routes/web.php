@@ -97,6 +97,7 @@ Route::get('log_system', [App\Http\Controllers\logSystemController::class, 'logS
 
 Route::get('trxJualBeli', [App\Http\Controllers\trxJualBeliController::class, 'mainTrx'])->name('trxJualBeli');
 Route::get('trxKasUmum', [App\Http\Controllers\TrxKasUmumController::class, 'mainTrx'])->name('trxKasUmum');
+Route::get('adminPiutangPelanggan', [App\Http\Controllers\LoanMaintenanceController::class, 'mainAdmin'])->name('adminPiutangPelanggan');
 
 
 include __DIR__.'/section/accounting.php';

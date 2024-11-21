@@ -1300,7 +1300,7 @@ class CashierController extends Controller
         return view('Cashier/cashierModalDataPelunasan', compact('dbMCustomer'));
     }
 
-    public function funcDataPelunasan($keyword, $fromDate, $endDate)
+    public function funcDataPelunasan($keyword, $fromDate, $endDate, $valAction)
     {
         // echo $keyword."/".$fromDate."/".$endDate;
         $fields = ['from_payment_code', 'customer_store'];
@@ -1349,6 +1349,12 @@ class CashierController extends Controller
             ->get();
         if ($keyword == '0') {
             return view('Cashier/cashierModalDataPelunasanSummary', compact('datPinjaman'));
+        }
+        elseif ($valAction == '2') {
+            return view("HutangCustomers/UnlockCustomerLoan");
+        }
+        elseif ($valAction == '3') {
+            return view("HutangCustomers/EditLimitCustomer");
         } else {
             return view('Cashier/cashierModalDataPelunasanList', compact('dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman'));
         }
