@@ -379,9 +379,7 @@
             valBelanja = "{{$totalBayar->totalBilling}}",
             valHutang = "{{$nominalKredit}}",
             totalHutang = parseInt(valBelanja) + parseInt(valHutang),
-            kreditLimit = "{{$dataBilling->kredit_limit}}",
-            totalPembayaran = $("#tPembayaran").val();
-        let replaceTotalPembayaran = totalPembayaran.replace(/\./g, "");
+            kreditLimit = "{{$dataBilling->kredit_limit}}";
         
         $("#btnBatalTrx").click(function(){
             event.preventDefault();
@@ -390,7 +388,9 @@
 
         $("#btnSimpanTrx").click(function(){
             event.preventDefault();
-            let typeCetak = $("#typeCetak").val();
+            let typeCetak = $("#typeCetak").val(),
+                totalPembayaran = $("#tPembayaran").val();
+            let replaceTotalPembayaran = totalPembayaran.replace(/\./g, "");
             //alert(kreditLimit);
             if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja) {
                 alertify
@@ -408,7 +408,10 @@
             
             if (event.ctrlKey && event.key === 's') { // Cetak
                 event.preventDefault();
-                let typeCetak = $("#typeCetak").val();
+                let typeCetak = $("#typeCetak").val(),
+                    totalPembayaran = $("#tPembayaran").val();
+                let replaceTotalPembayaran = totalPembayaran.replace(/\./g, "");
+                
                 if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja) {
                     alertify
                     .alert("Hutang Customer Sudah Melewati Limit !", function(){
