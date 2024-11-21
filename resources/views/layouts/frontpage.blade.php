@@ -65,9 +65,7 @@
     <style>
         [class^='select2'] {
           border-radius: 0px !important;
-          font-size: 15px;
-          border-color: #6d28d9; /* changes border color to red */   
-          border-width: 3px;  
+          font-size: 15px; 
         }
         
         button:hover {  
@@ -82,7 +80,11 @@
             border-color: #6d28d9; /* changes border color to red */   
             border-width: 3px;            
         }   
-        
+        .select2-container *:focus {
+            /* outline: none; */
+            border-color: #6d28d9; /* changes border color to red */   
+            border-width: 3px; 
+        }
     </style>
     <script>
         var Toast = Swal.mixin({
