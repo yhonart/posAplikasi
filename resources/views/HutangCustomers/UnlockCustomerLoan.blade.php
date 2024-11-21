@@ -19,8 +19,8 @@
                 <td>
                 <div class="form-group">
                     <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="customSwitch1"> 
-                      <label class="custom-control-label" for="customSwitch1">Toggle this custom switch element</label>                     
+                      <input type="checkbox" class="custom-control-input unlock-trx" id="customSwitch{{$cslt->idm_customer}}"> 
+                      <label class="custom-control-label" for="customSwitch1">Lock/Unlock</label>                     
                     </div>
                 </div>
                 </td>
