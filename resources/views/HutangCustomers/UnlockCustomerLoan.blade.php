@@ -1,5 +1,5 @@
 <table class="table table-valign-middle table-sm">
-    <thead>
+    <thead class="bg-gradient-purple font-weight-bold">
         <tr>
             <td>Kode Pelanggan</td>
             <td>Nama Pelanggan</td>
