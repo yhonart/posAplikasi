@@ -226,6 +226,7 @@
         <script>  
             $(function(){
                 $("#ajaxClientName").load("{{route('home')}}/storeName");
+                bsCustomFileInput.init();
             })                      
             $(document).ready(function(){
                 $.ajaxSetup({
