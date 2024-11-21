@@ -10,13 +10,9 @@
             <div class="card-body">
                 <p class="text-muted">*Pilih nama pelanggan untuk input pembayaran kredit</p>
                 <div class="row">
-                    <div class="col-6 col-md-3">
-                        <div class="form-group">
-                            <input type="hidden" name="actionCode" id="actionCode" value="1">
-                        </div>
-                    </div>                    
                     <div class="col-12 col-md-3">
                         <div class="form-group">
+                            <input type="hidden" name="actionCode" id="actionCode" value="1">
                             <label class="form-label">Cari</label>
                             <select class="form-control form-control-sm" id="cariNamaPelanggan" class="form-control form-control-sm select-pelanggan">
                                 <option value="0" readonly>Nama Pelanggan</option>
@@ -29,13 +25,13 @@
                     <div class="col-6 col-md-3">
                         <div class="form-group">
                             <label class="form-label">Dari Tanggal</label>
-                            <input type="text" class="form-control datetimepicker-input  from-control-sm" name="dariTanggal" id="dariTanggal">
+                            <input type="text" class="form-control form-control-sm datetimepicker-input" name="dariTanggal" id="dariTanggal">
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div class="form-group">
                             <label class="form-label">s.d Tanggal</label>
-                            <input type="text" class="form-control datetimepicker-input roundedd-0 form-control-sm" name="sampaiTanggal" id="sampaiTanggal">
+                            <input type="text" class="form-control form-control-sm datetimepicker-input roundedd-0" name="sampaiTanggal" id="sampaiTanggal">
                         </div>
                     </div>
                 </div>
