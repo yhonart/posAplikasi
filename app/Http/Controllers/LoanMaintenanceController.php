@@ -33,6 +33,6 @@ class LoanMaintenanceController extends Controller
         $dbMCustomer = DB::table('m_customers')
             ->get();
 
-        return view('HutangCustomers/MainEditLoanCustomer', compact('dbMCustomer'));
+        return view('HutangCustomers/mainEditLoanCustomer', compact('dbMCustomer'));
     }
 }
