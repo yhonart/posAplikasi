@@ -32,4 +32,8 @@ class MasterDataKategoriKasController extends Controller
     public function mainCatgoryController () {
         return view('AssetManagement/MasterData/KasKategori');
     }
+
+    public function addKategori(){
+        return view('AssetManagement/MasterData/KasKategoriModalAdd');
+    }
 }
