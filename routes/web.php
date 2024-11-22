@@ -99,6 +99,7 @@ Route::get('trxJualBeli', [App\Http\Controllers\trxJualBeliController::class, 'm
 Route::get('trxKasUmum', [App\Http\Controllers\TrxKasUmumController::class, 'mainTrx'])->name('trxKasUmum');
 Route::get('adminPiutangPelanggan', [App\Http\Controllers\LoanMaintenanceController::class, 'mainAdmin'])->name('adminPiutangPelanggan');
 
+Route::get('kasKategori', [App\Http\Controllers\MasterDataKategoriKasController::class, 'mainCatgoryController'])->name('kasKategori');
 
 include __DIR__.'/section/accounting.php';
 include __DIR__.'/section/asset.php';
@@ -134,4 +135,7 @@ include __DIR__.'/section/trxJualBeli.php';
 
 //transaksi edit jual beli
 include __DIR__.'/section/trxKasUmum.php';
+
+// Master Data Kategori Kas
+include __DIR__.'/section/kasKategori.php';
 
