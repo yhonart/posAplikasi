@@ -1356,7 +1356,14 @@ class CashierController extends Controller
                 $customerListTrx = $customerListTrx->where('idm_customer',$keyword);
             }
             $customerListTrx = $customerListTrx->get();
-            return view("HutangCustomers/UnlockCustomerLoan", compact('customerListTrx'));
+
+            $totalHutang2 = DB::table('view_customer_kredit');
+            $totalHutang2 = $totalHutang2->select(DB::raw('SUM(nom_kredit) as kredit'));
+            if ($keyword <> '0') {
+                $totalHutang2 = $totalHutang2->where('from_member_id', $keyword);
+            }
+            $totalHutang2 = $totalHutang2->get();
+            return view("HutangCustomers/UnlockCustomerLoan", compact('customerListTrx','totalHutang2'));
         }
         elseif ($valAction == '3') {
             return view("HutangCustomers/EditLimitCustomer");
