@@ -82,6 +82,12 @@
             @endif
         </div>
     </div>
+@else
+<div class="callout callout-info">
+    <h5>Info</h5>
+
+    <p>Silahkan pilih nama pelanggan.</p>
+</div>
 @endif
 <table class="table table-sm table-hover text-xs table-valign-middle">
     <thead class="bg-gradient-purple">
