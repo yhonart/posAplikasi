@@ -19,19 +19,22 @@
                     </a>
                 </td>
                 <td>
-                <div class="form-group">
-                    @if($cslt->loan_lock == '0')
-                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                      <input type="checkbox" class="custom-control-input CHANGE_RESERVE" id="customSwitch{{$cslt->idm_customer}}" value="{{$cslt->idm_customer}}" checked> 
-                      <label class="custom-control-label" for="customSwitch{{$cslt->idm_customer}}">Lock/Unlock</label>                     
-                    </div>
-                    @else
-                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                      <input type="checkbox" class="custom-control-input CHANGE_RESERVE" id="customSwitch{{$cslt->idm_customer}}"> 
-                      <label class="custom-control-label" for="customSwitch{{$cslt->idm_customer}}">Lock/Unlock</label>                     
-                    </div>
-                    @endif
-                </div>
+                    <?php
+                        if ($cslt->loan_lock == '0') {
+                            $checked = "";
+                        }
+                        else {
+                            $checked = "checked";
+                        }
+                    ?>
+                    <form class="CHANGE_RESERVE">
+                        <div class="form-group">
+                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                <input type="checkbox" class="custom-control-input change-status" id="customSwitch{{$cslt->idm_customer}}" {{$checked}}> 
+                                <label class="custom-control-label" for="customSwitch{{$cslt->idm_customer}}">Lock/Unlock</label>                     
+                            </div>
+                        </div>
+                    </form>
                 </td>
             </tr>            
         @endforeach
