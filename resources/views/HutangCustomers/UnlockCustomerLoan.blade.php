@@ -23,7 +23,7 @@
                     @foreach($totalHutang2 as $th2)
                         <i class="fa-solid fa-rupiah-sign float-left"></i>
                         @if($th2->from_member_id == $cslt->idm_customer)
-                            <span class="text-danger float-right">{{number_format($kredit,'0',',','.')}}</span>
+                            <span class="text-danger float-right">{{number_format($th2->kredit,'0',',','.')}}</span>
                         @endif
                     @endforeach
                 </td>
