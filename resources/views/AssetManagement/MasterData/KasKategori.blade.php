@@ -14,15 +14,20 @@
     <div class="container-fluid">            
         <div class="row">
             <div class="col-md-6">
-                <div class="card card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('kasKategori')}}/addKategori">Tambah Kategori</button>
-                        </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Main Kategori</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="displayTableCategory"></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('kasKategori')}}/addKategori">Tambah Kategori</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="displayTableCategory"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
