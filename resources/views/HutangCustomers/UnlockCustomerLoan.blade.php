@@ -56,11 +56,7 @@
         if ($(this).is(':checked')) {
             var id_asset = $(this).val();
             var data_reserve = {id_asset:id_asset,reservable:1};
-            $.ajax({
-                url: "{{route('packing_control')}}/posting_start_stop",
-                type: 'post',
-                data: data_reserve,
-            });
+            
         } else {
             var id_asset = $(this).val();
             var data_reserve = {id_asset:id_asset,reservable:0};
