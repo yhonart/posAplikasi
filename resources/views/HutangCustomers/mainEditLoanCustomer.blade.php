@@ -18,9 +18,9 @@
                     <div class="card-body">                
                         <div class="row">
                             <div class="col-6 col-md-3">
-                                <label class="form-label">Jenis Proses</label>
+                                <label class="form-label">Jenis Panel Proses</label>
                                 <div class="form-group">
-                                    <select name="actionCode" id="actionCode" class="form-control form-control-sm">
+                                    <select name="actionCode" id="actionCode" class="form-control">
                                         <option value="0">Pilih Proses </option>
                                         <option value="1">Pembayaran Hutan</option>
                                         <option value="2">Edit & Open Trx Hutang</option>
@@ -30,8 +30,8 @@
 
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
-                                    <label class="form-label">Cari</label>
-                                    <select class="form-control form-control-sm select-pelanggan" id="cariNamaPelanggan" class="form-control ">
+                                    <label class="form-label">Cari Nama Pelanggan</label>
+                                    <select class="form-control select-pelanggan" id="cariNamaPelanggan" class="form-control ">
                                         <option value="0" readonly>Nama Pelanggan</option>
                                         @foreach($dbMCustomer as $dcs)
                                         <option value="{{$dcs->idm_customer }}">{{$dcs->customer_store}}</option>
@@ -43,14 +43,14 @@
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">Dari Tanggal</label>
-                                    <input type="text" class="form-control datetimepicker-input form-control-sm" name="dariTanggal" id="dariTanggal">
+                                    <input type="text" class="form-control datetimepicker-input" name="dariTanggal" id="dariTanggal">
                                 </div>
                             </div>
 
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">s.d Tanggal</label>
-                                    <input type="text" class="form-control datetimepicker-input roundedd-0 form-control-sm" name="sampaiTanggal" id="sampaiTanggal">
+                                    <input type="text" class="form-control datetimepicker-input roundedd-0" name="sampaiTanggal" id="sampaiTanggal">
                                 </div>
                             </div>
                         </div>
