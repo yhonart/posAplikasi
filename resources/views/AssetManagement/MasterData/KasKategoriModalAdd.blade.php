@@ -16,6 +16,7 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-sm btn-success font-weight-bold">Simpan</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </form>
                     </div>
