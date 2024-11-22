@@ -1358,7 +1358,7 @@ class CashierController extends Controller
             $customerListTrx = $customerListTrx->get();
 
             $totalHutang2 = DB::table('view_customer_kredit');
-            $totalHutang2 = $totalHutang2->select(DB::raw('SUM(nom_kredit) as kredit'));
+            $totalHutang2 = $totalHutang2->select(DB::raw('SUM(nom_kredit) as kredit'), 'from_member_id');
             if ($keyword <> '0') {
                 $totalHutang2 = $totalHutang2->where('from_member_id', $keyword);
             }
