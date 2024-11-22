@@ -1,4 +1,3 @@
-{{$keyword}}
 @if($keyword <> 0)
     <div class="card border border-info">
         <div class="card-body">

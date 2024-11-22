@@ -91,7 +91,7 @@
             let keyWord = $(this).find(":selected").val();
                 fromDate = $('#dariTanggal').val(),
                 endDate = $('#sampaiTanggal').val(),
-                valAction = $("actionCode").val();
+                valAction = $("#actionCode").val();
 
             searchData(keyWord, fromDate, endDate, valAction);
         });
