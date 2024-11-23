@@ -11,7 +11,7 @@
 
     $noSub = '1';
 ?>
-<table class="table table-sm table-valign-middle table-bordered table-hover text-nowrap text-sm">
+<table class="table table-sm table-valign-middle table-bordered table-hover text-sm">
     <thead>
         <tr>
             <th>No</th>
