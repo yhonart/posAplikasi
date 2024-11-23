@@ -16,7 +16,7 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-sm btn-success font-weight-bold">Simpan</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-sm btn-warning font-weight-bold" data-dismiss="modal">Close</button>
                             </div>
                         </form>
                     </div>
@@ -25,3 +25,34 @@
         </div>
     </div>
 </div>
+<script>
+    $(Document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $("form#FormNewCategory").submit(function(event){
+            event.preventDefault();
+            $.ajax({
+                url: "{{route('kasKategori')}}/addKategori/postKategori",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {                    
+                    if (data.warning) {
+                        alertify.error('data.warning');
+                    }
+                    else{
+                        window.location.reload();
+                    }
+                },                
+            });
+            return false;
+        });
+    })
+</script>

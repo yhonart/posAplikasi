@@ -40,4 +40,31 @@ class MasterDataKategoriKasController extends Controller
     public function addSubKategori(){
         return view('AssetManagement/MasterData/KasSubKategoriModalAdd');
     }
+
+    public function postKategori(Request $reqPostKategori){
+        $namaKategori = $reqPostKategori->namaKategori;
+        $userName = Auth::user()->name;
+
+        if ($namaKategori=="" OR $namaKategori==" ") {
+            $msg = array('warning' => 'Anda belum memasukkan nama kategori'); 
+        }
+        else {
+            DB::table('m_category_kas')
+                ->insert([
+                    'cat_name'=>$namaKategori,
+                    'status'=>'1'
+                ]);
+
+            $msg = array('success' => 'Master data berhasil dimasukkan.'); 
+        }
+        return response()->json($msg);
+    }
+
+    public function listTableKategori(){
+        
+        $loadTable = DB::table('m_category_kas')
+            ->get();
+        
+        return view('AssetManagement/MasterData/KasKategoriMainTable', compact('loadTable'));
+    }
 }
