@@ -1483,6 +1483,7 @@ class CashierController extends Controller
                 'nom_payed' => $updatePayed,
                 'nom_kredit' => $updateKredit
             ]);
+            
         if ($codeTrx == '1') {
             DB::table('tr_kredit_record')
                 ->insert([
