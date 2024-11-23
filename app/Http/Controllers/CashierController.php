@@ -1332,7 +1332,11 @@ class CashierController extends Controller
         $dataPinjaman = $dataPinjaman->get();
         $datPinjaman = $dataPinjaman;
         $accountCode = DB::table('account_code')
+            ->where('account_type','3')
             ->get();
+        $accountPenjualan = DB::table('account_code')
+            ->where('account_type','1')
+            ->first();
 
         $customerName = DB::table('m_customers')
             ->where('idm_customer', $keyword)
@@ -1348,7 +1352,7 @@ class CashierController extends Controller
             ->where('member_id', $keyword)
             ->get();
         if ($valAction == '1') {
-            return view('Cashier/cashierModalDataPelunasanList', compact('dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman'));
+            return view('Cashier/cashierModalDataPelunasanList', compact('dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman','accountPenjualan'));
         }
         elseif ($valAction == '2') {
             $customerListTrx = DB::table('m_customers');
@@ -1446,6 +1450,8 @@ class CashierController extends Controller
                     'status' => '2',
                 ]);
         }
+
+        //Cek transaksi kredit sesuai idpelanggan        
     }
 
     public function actionDataPinjaman(Request $reqAction)

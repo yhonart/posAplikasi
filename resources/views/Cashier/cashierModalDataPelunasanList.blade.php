@@ -10,6 +10,7 @@
                 <input type="hidden" name="periode" value="{{$periode}}">
                 <input type="hidden" name="numbering" value="{{$numbering}}">
                 <input type="hidden" name="idPelanggan" value="{{$keyword}}">
+                <input type="hidden" name="accountCode" value="{{$accountPenjualan->account_code}}">
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="form-group row">

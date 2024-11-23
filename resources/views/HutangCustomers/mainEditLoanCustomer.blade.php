@@ -22,8 +22,9 @@
                                 <div class="form-group">
                                     <select name="actionCode" id="actionCode" class="form-control">
                                         <option value="0">Pilih Proses </option>
-                                        <option value="1">Pembayaran Hutan</option>
-                                        <option value="2">Edit & Open Trx Hutang</option>
+                                        <option value="1">Pembayaran Hutang</option>
+                                        <option value="3">Histori Pembayaran</option>
+                                        <option value="2">Edit & Open Limit Hutang</option>
                                     </select>
                                 </div>
                             </div>   
