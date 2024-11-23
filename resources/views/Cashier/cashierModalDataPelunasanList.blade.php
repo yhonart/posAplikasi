@@ -142,7 +142,7 @@
                         @if($dP->nom_payed == $dP->nominal)
                             <span class="text-success font-weight-bold">LUNAS</span>
                         @else
-                            <input type="text" class="form-control form-control-sm form-control-border editInput keterangan" name="keteranganHtg" id="keteranganHtg" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','2')" placeholder="Sisa Piutang {{number_format($dP->nom_kredit)}}">
+                            <input type="text" class="form-control form-control-sm form-control-border editInput keterangan" name="keteranganHtg" id="keteranganHtg" placeholder="Sisa Piutang {{number_format($dP->nom_kredit)}}" readonly>
                         @endif
                     </td>
                 </tr>
@@ -219,7 +219,7 @@
             type: "POST",
             data:'tablename='+tablename+'&column='+column+'&editval='+editableObj.value+'&id='+id+'&idKredit='+idKredit+'&codeTrx='+codeTrx+'&keyWord='+keyWord+'&numbering='+numberingPembayaran,
             success: function(data){
-                loadDataPelunasan(keyWord, fromDate, endDate);
+                loadDataPelunasan(keyWord, fromDate, endDate, actionType);
             }
         });
     }

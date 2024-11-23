@@ -1476,14 +1476,11 @@ class CashierController extends Controller
         $nomPayed = $cekValKredit->nom_payed;
         $updateKredit = $nomKredit - $editVal;
         $updatePayed = $nomPayed + $editVal;
-
-        DB::table($tableDB)
-            ->where($kreditID, $rowID)
-            ->update([
-                'nom_payed' => $updatePayed,
-                'nom_kredit' => $updateKredit
-            ]);
-            
+        
+        // NOTED :
+        // $codeTrx = 1 (Edit nominal bayar);
+        // $codeTrx = 2 (Edit keterangan);
+        
         if ($codeTrx == '1') {
             DB::table('tr_kredit_record')
                 ->insert([
@@ -1506,6 +1503,14 @@ class CashierController extends Controller
                     'status' => '1',
                 ]);
         }
+        
+        // update table tr_kredit
+        DB::table($tableDB)
+            ->where($kreditID, $rowID)
+            ->update([
+                'nom_payed' => $updatePayed,
+                'nom_kredit' => $updateKredit
+            ]); 
     }
     public function modalDataReturn()
     {
