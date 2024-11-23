@@ -1,3 +1,4 @@
+<hr>
 @if($keyword <> 0)
     @if($countDataPinjaman == '0')
         <p class="border border-danger p-3 rounded-lg font-weight-bold text-danger bg-light">Tidak ada data pinjaman untuk pelanggan ini !</p>
