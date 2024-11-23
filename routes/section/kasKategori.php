@@ -6,4 +6,5 @@ Route::post('kasKategori/addKategori/postKategori', [App\Http\Controllers\Master
 
 Route::get('kasKategori/listTableSubKategori', [App\Http\Controllers\MasterDataKategoriKasController::class, 'listTableSubKategori']);
 Route::get('kasKategori/addSubKategori', [App\Http\Controllers\MasterDataKategoriKasController::class, 'addSubKategori']);
+Route::post('kasKategori/addSubKategori/postSubKategori', [App\Http\Controllers\MasterDataKategoriKasController::class, 'postSubKategori']);
 ?>

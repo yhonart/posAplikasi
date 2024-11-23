@@ -7,7 +7,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <form id="formAddKategoriKas">
+                        <form id="formAddSubKategori">
                             <div class="form-group row">
                                 <label for="" class="label col-md-3">Nama Sub Kategori</label>
                                 <div class="col-md-4">
@@ -28,10 +28,13 @@
                             <div class="form-group row">
                                 <label for="" class="label col-md-3">Memerlukan Dokumen Penunjang</label>
                                 <div class="col-md-4">
-                                    <select name="kategori" id="kategori" class="form-control form-control-sm">
+                                    <select name="lampiran" id="lampiran" class="form-control form-control-sm">
                                         <option value="1">Ya</option>
                                         <option value="0">Tidak</option>
                                     </select>
+                                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <i class="fa-solid fa-circle-question"></i>
+                                    </a>                                 
                                 </div>
                             </div>
                             <div class="form-group">
@@ -39,6 +42,11 @@
                                 <button type="button" class="btn btn-sm btn-warning font-weight-bold" data-dismiss="modal">Close</button>
                             </div>
                         </form>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                            Dokumen memmbutuhkan lampiran pendukung atau tidak. Jika <b>"Ya"</b> maka ketika input dokumen wajib melampirkan dokumen pendukung lainnya, jika <b>"Tidak"</b> maka tidak perlu melampirkan dokumen pendukung.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,10 +61,10 @@
             }
         });
 
-        $("form#FormNewCategory").submit(function(event){
+        $("form#formAddSubKategori").submit(function(event){
             event.preventDefault();
             $.ajax({
-                url: "{{route('kasKategori')}}/addKategori/postKategori",
+                url: "{{route('kasKategori')}}/addSubKategori/postSubKategori",
                 type: 'POST',
                 data: new FormData(this),
                 async: true,

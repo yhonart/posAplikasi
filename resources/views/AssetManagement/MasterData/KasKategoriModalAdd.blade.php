@@ -33,7 +33,7 @@
             }
         });
 
-        $("form#FormNewCategory").submit(function(event){
+        $("form#formAddKategoriKas").submit(function(event){
             event.preventDefault();
             $.ajax({
                 url: "{{route('kasKategori')}}/addKategori/postKategori",

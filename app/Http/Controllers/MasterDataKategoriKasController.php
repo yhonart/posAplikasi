@@ -79,4 +79,27 @@ class MasterDataKategoriKasController extends Controller
 
         return view('AssetManagement/MasterData/KasSubKategoriTable', compact('loadSubKategori'));
     }
+
+    public function postSubKategori(Request $reqSubkategori){
+        $subCategoryName = $reqSubkategori->namaSubKategori;
+        $kategori = $reqSubkategori->kategori;
+        $lampiran = $reqSubkategori->lampiran;
+
+        if ($subCategoryName == "") {
+            $msg = array('warning' => 'Anda belum memasukkan nama sub kategori.'); 
+        }
+        elseif ($kategori == "0") {
+            $msg = array('warning' => 'Anda belum memasukkan group kategori.'); 
+        }
+        else {
+            DB::table('m_subcategory_kas')
+                ->insert([
+                    'from_cat_id'=>$kategori,
+                    'subcat_name'=>$subCategoryName,
+                    'lampiran'=>$lampiran
+                ]);
+            $msg = array('success' => 'Data subkategori berhasil ditambahkan.'); 
+        }
+        return response()->json($msg);
+    }
 }
