@@ -1,5 +1,6 @@
 <?php
     $hitungBayar = '0';
+    $numberRow = '1';
 ?>
 <table width="100%" border="1">
     <thead>
@@ -18,7 +19,11 @@
                 <td>{{$h->nom_payed}}</td>
                 <td>
                     <?php
+                        $disrow = $numberRow++;
                         $hitungBayar = $h->nom_kredit - $nominalBayar;
+                        if ($disrow > 1) {
+                            $hitungBayar = $hitungBayar - $h->nom_kredit;
+                        }
                     ?>
                     {{$hitungBayar}}
                 </td>
