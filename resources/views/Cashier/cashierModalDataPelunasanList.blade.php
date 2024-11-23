@@ -51,7 +51,7 @@
                 <div class="form-group row">
                     <label class="label col-4">Total Hutang</label>
                     <div class="col-8">
-                        <input class="form-control form-control-sm price-tag" nama="nominalKredit" id="nominalKredit" value="{{$totalHutang->kredit}}">
+                        <input class="form-control form-control-sm price-tag" nama="nominalKredit" id="nominalKredit" placeholder="{{$totalHutang->kredit}}" readonly>
                     </div>
                 </div>
                 <!--<div class="form-group row">-->
@@ -152,6 +152,7 @@
     <p>Silahkan pilih nama pelanggan.</p>
 </div>
 @endif
+
 <script>
     $(document).ready(function(){  
         $('.price-tag').mask('000.000.000', {reverse: true});
@@ -203,6 +204,7 @@
         let keyWord = "{{$keyword}}",
             fromDate = "{{$fromDate}}",
             endDate = "{{$endDate}}",
+            actionType = '1',
             numberingPembayaran = $("input[name=numbering]").val();
             if (keyWord === ''){
                 keyWord = '0';
@@ -218,10 +220,10 @@
         });
     }
     
-    function loadDataPelunasan(keyWord, fromDate, endDate){        
+    function loadDataPelunasan(keyWord, fromDate, endDate, actionType){        
         $.ajax({
             type : 'get',
-            url : "{{route('Cashier')}}/buttonAction/dataPelunasan/funcData/"+keyWord+"/"+fromDate+"/"+endDate,
+            url : "{{route('Cashier')}}/buttonAction/dataPelunasan/funcData/"+keyWord+"/"+fromDate+"/"+endDate+"/"+actionType,
             success : function(response){
                 $("#divDataPelunasan").html(response);
             }
