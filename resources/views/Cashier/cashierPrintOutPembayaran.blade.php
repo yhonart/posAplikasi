@@ -80,11 +80,17 @@
                     <tr>
                         <td>Hutang Sebelumnya</td>
                         <td>:</td>
-                        @if($countBilling >= '1')
-                            <td class="txt-right" align="right">{{number_format($remainKredit->kredit,0,',','.')}}</td>
-                        @else
-                            <td class="txt-right" align="right">0</td>
-                        @endif
+                        <td class="txt-right" align="right">
+                            <?php
+                                if($countBilling >= '1'){
+                                    $lastKredit = $remainKredit->kredit;
+                                }
+                                else{
+                                    $lastKredit = '0';
+                                }
+                            ?>
+                            {{number_format($lastKredit,0,',','.')}}
+                        </td>
                     </tr>
                     <tr>
                         <td>Tunai</td>
@@ -114,11 +120,9 @@
                     <tr>
                         <td>Saldo Hutang</td>
                         <td>:</td>
-                        @if($countBilling >= '1')
-                            <td class="txt-right" align="right">{{number_format($cekBon->kredit,0,',','.')}}</td>
-                        @else
-                            <td class="txt-right" align="right">0</td>
-                        @endif
+                        <td class="txt-right" align="right">
+                            {{number_format($cekBon->kredit,0,',','.')}}
+                        </td>
                     </tr>
                     <tr>
                         <td>Saldo Poin</td>

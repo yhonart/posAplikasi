@@ -18,7 +18,10 @@
                                 <label for="" class="label col-md-3">Kategori</label>
                                 <div class="col-md-4">
                                     <select name="kategori" id="kategori" class="form-control form-control-sm">
-                                        <option value="0">Select Kategori</option>
+                                        <option value="0">Pilih Dari Kategori</option>
+                                        @foreach($kategori as $k)
+                                            <option value="{{$k->idm_cat_kas}}">{{$k->cat_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -42,3 +45,34 @@
         </div>
     </div>
 </div>
+<script>
+    $(Document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $("form#FormNewCategory").submit(function(event){
+            event.preventDefault();
+            $.ajax({
+                url: "{{route('kasKategori')}}/addKategori/postKategori",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {                    
+                    if (data.warning) {
+                        alertify.error('data.warning');
+                    }
+                    else{
+                        window.location.reload();
+                    }
+                },                
+            });
+            return false;
+        });
+    })
+</script>

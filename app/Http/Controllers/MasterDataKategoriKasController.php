@@ -38,7 +38,11 @@ class MasterDataKategoriKasController extends Controller
     }
     
     public function addSubKategori(){
-        return view('AssetManagement/MasterData/KasSubKategoriModalAdd');
+        $kategori = DB::table('m_category_kas')
+            ->where('status','1')
+            ->get();
+
+        return view('AssetManagement/MasterData/KasSubKategoriModalAdd', compact('kategori'));
     }
 
     public function postKategori(Request $reqPostKategori){
