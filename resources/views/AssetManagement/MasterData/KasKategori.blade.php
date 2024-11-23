@@ -54,5 +54,22 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(function(){
+        $.ajax({
+            type : 'get',
+            url : "{{route('kasKategori')}}/listTableKategori",
+            success : function(response){
+                $("#displayTableCategory").html(response);
+            }
+        });
+        $.ajax({
+            type : 'get',
+            url : "{{route('kasKategori')}}/listTableSubKategori",
+            success : function(response){
+                $("#displayTableSubCategory").html(response);
+            }
+        });
+    })
+</script>
 @endsection
