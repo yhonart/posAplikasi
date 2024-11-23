@@ -9,7 +9,6 @@
             <th>Nominal</th>
             <th>Dibayar</th>
             <th>Sisa Hutang</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -23,19 +22,7 @@
                         $hitungBayar = $h->nom_kredit - $nominalBayar;
                     ?>
                     {{$hitungBayar}}
-                </td>
-                <td>
-                    <?php
-                        if ($hitungBayar < '0') {
-                            foreach ($hutang as $h1) {
-                                if ($h1->idtr_kredit <> $h->idtr_kredit) {
-                                    $hutangKedua = $h1->nom_kredit - $hutang;
-                                    echo $hutangKedua;
-                                }
-                            }
-                        }
-                    ?>
-                </td>
+                </td>                
             </tr>
         @endforeach
     </tbody>
