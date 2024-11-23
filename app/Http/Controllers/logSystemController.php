@@ -9,7 +9,7 @@ class logSystemController extends Controller
 {
     public function logSystem()
     {
-        $idPelanggan = '1651';
+        $idPelanggan = '1649';
         $nominalBayar = '12000000';
         $hutang = DB::table('tr_kredit')
             ->where('from_member_id',$idPelanggan)
