@@ -31,10 +31,12 @@
                                     <select name="lampiran" id="lampiran" class="form-control form-control-sm">
                                         <option value="1">Ya</option>
                                         <option value="0">Tidak</option>
-                                    </select>
-                                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    </select>                                                                     
+                                </div>
+                                <div class="col-md-4">
+                                    <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                         <i class="fa-solid fa-circle-question"></i>
-                                    </a>                                 
+                                    </a>
                                 </div>
                             </div>
                             <div class="form-group">
