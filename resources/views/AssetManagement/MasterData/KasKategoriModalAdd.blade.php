@@ -45,7 +45,7 @@
                 processData: false,
                 success: function (data) {                    
                     if (data.warning) {
-                        alertify.error('data.warning');
+                        alertify.error(data.warning);
                     }
                     else{
                         window.location.reload();
