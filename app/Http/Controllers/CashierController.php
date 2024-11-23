@@ -1502,6 +1502,7 @@ class CashierController extends Controller
                     'numbering' => $numbering,
                     'debit' => $editVal,
                     'kredit' => $editVal,
+                    'status' => '1',
                 ]);
         }
     }
