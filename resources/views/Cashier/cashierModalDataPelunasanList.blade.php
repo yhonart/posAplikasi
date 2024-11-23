@@ -51,20 +51,24 @@
                 <div class="form-group row">
                     <label class="label col-4">Total Hutang</label>
                     <div class="col-8">
-                        <input class="form-control form-control-sm price-tag" nama="nominalKredit" id="nominalKredit" placeholder="{{$totalHutang->kredit}}" readonly>
+                        <input class="form-control form-control-sm price-tag from-weight-bold" nama="nominalKredit" id="nominalKredit" value="{{number_format($totalHutang->kredit,0,',','.'}}" readonly>
                     </div>
                 </div>
-                <!--<div class="form-group row">-->
-                <!--    <label class="label col-4">Nominal Bayar</label>-->
-                <!--    <div class="col-8">-->
-                <!--        <input class="form-control form-control-sm price-tag" nama="nominalBayar" id="nominalBayar">-->
-                <!--    </div>-->
-                <!--</div>-->
+                <div class="form-group row">
+                   <label class="label col-4">Nominal Bayar</label>
+                   <div class="col-8">
+                       <input class="form-control form-control-sm price-tag" nama="nominalBayar" id="nominalBayar">
+                   </div>
+                </div>
                 <div class="form-group row">
                     <div class="col-12">
                         <button type="submit" class="btn btn-success" id="btnSimpan"><i class="fa-regular fa-floppy-disk"></i> Simpan</button>
                     </div>
-                </div>
+                </div>                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <div class="form-group row">
                     <div class="col-12 col-md-4">
                         <label>Cetak Voucher</label>
