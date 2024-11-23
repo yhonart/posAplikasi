@@ -19,7 +19,7 @@
                         <h3 class="card-title">Main Kategori</h3>
                     </div>
                     <div class="card-body">
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-md-12">
                                 <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('kasKategori')}}/addKategori">Tambah Kategori</button>
                             </div>
@@ -38,7 +38,7 @@
                         <h3 class="card-title">Sub Kategori</h3>
                     </div>
                     <div class="card-body">
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-md-12">
                                 <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('kasKategori')}}/addSubKategori">Tambah Sub Kategori</button>
                             </div>
