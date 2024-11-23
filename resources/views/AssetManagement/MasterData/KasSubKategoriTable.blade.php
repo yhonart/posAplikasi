@@ -11,7 +11,7 @@
 
     $noSub = '1';
 ?>
-<table class="table table-sm table-valign-middle table-bordered table-hover">
+<table class="table table-sm table-valign-middle table-bordered table-hover text-nowrap text-sm">
     <thead>
         <tr>
             <th>No</th>
@@ -29,7 +29,9 @@
                 <td>{{$lsk->subcat_name}}</td>
                 <td>{{$lsk->cat_name}}</td>
                 <td>
-                    {{$lampiran[$lsk->lampiran]}}
+                    <span class="bordered border-1 border-info rounded-pill p-2">
+                        {{$lampiran[$lsk->lampiran]}}
+                    </span>
                 </td>
                 <td>
                     {{$status2[$lsk->status]}}
