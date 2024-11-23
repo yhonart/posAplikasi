@@ -86,7 +86,7 @@
                                     $lastKredit = $remainKredit->kredit;
                                 }
                                 else{
-                                    $lastKredit = '0';
+                                    $lastKredit = $cekBon->kredit;
                                 }
                             ?>
                             {{number_format($lastKredit,0,',','.')}}
