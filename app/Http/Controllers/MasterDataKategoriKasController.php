@@ -46,7 +46,7 @@ class MasterDataKategoriKasController extends Controller
     }
 
     public function postKategori(Request $reqPostKategori){
-        $namaKategori = $reqPostKategori->namaKategori;
+        $namaKategori = strtoupper($reqPostKategori->namaKategori);
         $userName = Auth::user()->name;
 
         if ($namaKategori=="" OR $namaKategori==" ") {
@@ -81,8 +81,8 @@ class MasterDataKategoriKasController extends Controller
     }
 
     public function postSubKategori(Request $reqSubkategori){
-        $subCategoryName = $reqSubkategori->namaSubKategori;
-        $kategori = $reqSubkategori->kategori;
+        $subCategoryName = strtoupper($reqSubkategori->namaSubKategori);
+        $kategori = strtoupper($reqSubkategori->kategori);
         $lampiran = $reqSubkategori->lampiran;
 
         if ($subCategoryName == "") {
