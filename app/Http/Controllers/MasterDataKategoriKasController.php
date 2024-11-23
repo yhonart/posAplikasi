@@ -61,10 +61,18 @@ class MasterDataKategoriKasController extends Controller
     }
 
     public function listTableKategori(){
-        
+
         $loadTable = DB::table('m_category_kas')
             ->get();
         
         return view('AssetManagement/MasterData/KasKategoriMainTable', compact('loadTable'));
+    }
+
+    public function listTableSubKategori(){
+        $loadSubKategori = DB::table('m_subcategory_kas as a')
+            ->leftJoin('m_category_kas as b', 'a.from_cat_id','=','b.idm_cat_kas')
+            ->get();
+
+        return view('AssetManagement/MasterData/KasSubKategoriTable', compact('loadSubKategori'));
     }
 }

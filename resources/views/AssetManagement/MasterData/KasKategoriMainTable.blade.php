@@ -1,7 +1,7 @@
 <?php
     $noK = '1';
 ?>
-<table class="table table-sm table-valign-middle table-bordered">
+<table class="table table-sm table-valign-middle table-bordered table-hover">
     <thead class="font-weight-bold">
         <tr>
             <td>No.</td>
