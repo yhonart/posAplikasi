@@ -25,7 +25,7 @@
                             $hitungBayar = $hitungBayar - $h->nom_kredit;
                         }
                     ?>
-                    {{$hitungBayar}}
+                    {{$disrow}} - {{$hitungBayar}}
                 </td>
             </tr>
         @endforeach
