@@ -80,6 +80,72 @@
                     </div>
                 </div>
             </form>
+            
+            <table class="table table-sm table-hover text-xs table-valign-middle">
+                <thead class="bg-gradient-purple">
+                    <tr>
+                        <th></th>
+                        <th>Nama Pelanggan</th>
+                        <th>No. Faktur</th>
+                        <th>Tgl. Faktur</th>
+                        <th>Tgl. Jatuh Tempo</th>
+                        <th>Kredit</th>
+                        <th>Di Bayar</th>
+                        <th>Pembayaran</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody id="userData">
+                    @foreach($dataPinjaman as $dP)
+                        <tr id="{{$dP->idtr_kredit}}">
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-info btn-sm BTN-PRINT border-light" data-id="{{$dP->idtr_kredit}}"><i class="fa-solid fa-print"></i></button>
+                                    <button class="btn btn-info btn-sm BTN-DETAIL border-light" data-id="{{$dP->idtr_kredit}}">Detail</button>
+                                </div>
+                            </td>
+                            <td>
+                                {{$dP->customer_store}}
+                            </td>
+                            <td>{{$dP->from_payment_code}}</td>
+                            <td>{{$dP->created_at}}</td>
+                            <td>
+                                <?php
+                                    $createdDate = $dP->created_at;
+                                    $doDate = date('Y-m-d', strtotime($createdDate.'+1 month'));;
+                                ?>
+                                {{$doDate}}
+                            </td>
+                            <td>
+                                <input type="hidden" name="nominalFaktur[]" id="nominalFaktur{{$dP->idtr_kredit}}" value="{{$dP->nom_kredit}}">
+                                <input type="text" name="selisihBayar" id="selisihBayar" value="{{number_format($dP->nominal,'0',',','.')}}" class="form-control form-control-sm form-control-border editInput nominal-selisih font-weight-bold" readonly>
+                            </td>
+                            <td>
+                                @if($dP->nom_payed == $dP->nominal)
+                                    {{number_format($dP->nom_payed,'0',',','.')}}
+                                @else
+                                <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">
+                                @endif
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="checkHutang" value="{{$dP->idtr_kredit}}">
+                                    <label class="form-check-label"></label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                @if($dP->nom_payed == $dP->nominal)
+                                    <span class="text-success font-weight-bold">LUNAS</span>
+                                @else
+                                    <input type="text" class="form-control form-control-sm form-control-border editInput keterangan" name="keteranganHtg" id="keteranganHtg" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','2')" placeholder="Sisa Piutang {{number_format($dP->nom_kredit)}}">
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
             @endif
         </div>
     </div>
@@ -90,72 +156,6 @@
     <p>Silahkan pilih nama pelanggan.</p>
 </div>
 @endif
-<table class="table table-sm table-hover text-xs table-valign-middle">
-    <thead class="bg-gradient-purple">
-        <tr>
-            <th></th>
-            <th>Nama Pelanggan</th>
-            <th>No. Faktur</th>
-            <th>Tgl. Faktur</th>
-            <th>Tgl. Jatuh Tempo</th>
-            <th>Kredit</th>
-            <th>Di Bayar</th>
-            <th>Pembayaran</th>
-            <th>Keterangan</th>
-        </tr>
-    </thead>
-    <tbody id="userData">
-        @foreach($dataPinjaman as $dP)
-            <tr id="{{$dP->idtr_kredit}}">
-                <td>
-                    <div class="btn-group">
-                        <button class="btn btn-info btn-sm BTN-PRINT border-light" data-id="{{$dP->idtr_kredit}}"><i class="fa-solid fa-print"></i></button>
-                        <button class="btn btn-info btn-sm BTN-DETAIL border-light" data-id="{{$dP->idtr_kredit}}">Detail</button>
-                    </div>
-                </td>
-                <td>
-                    {{$dP->customer_store}}
-                </td>
-                <td>{{$dP->from_payment_code}}</td>
-                <td>{{$dP->created_at}}</td>
-                <td>
-                    <?php
-                        $createdDate = $dP->created_at;
-                        $doDate = date('Y-m-d', strtotime($createdDate.'+1 month'));;
-                    ?>
-                    {{$doDate}}
-                </td>
-                <td>
-                    <input type="hidden" name="nominalFaktur[]" id="nominalFaktur{{$dP->idtr_kredit}}" value="{{$dP->nom_kredit}}">
-                    <input type="text" name="selisihBayar" id="selisihBayar" value="{{number_format($dP->nominal,'0',',','.')}}" class="form-control form-control-sm form-control-border editInput nominal-selisih font-weight-bold" readonly>
-                </td>
-                <td>
-                    @if($dP->nom_payed == $dP->nominal)
-                        {{number_format($dP->nom_payed,'0',',','.')}}
-                    @else
-                    <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">
-                    @endif
-                </td>
-                <td>
-                    <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="checkHutang" value="{{$dP->idtr_kredit}}">
-                          <label class="form-check-label"></label>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    @if($dP->nom_payed == $dP->nominal)
-                        <span class="text-success font-weight-bold">LUNAS</span>
-                    @else
-                        <input type="text" class="form-control form-control-sm form-control-border editInput keterangan" name="keteranganHtg" id="keteranganHtg" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','2')" placeholder="Sisa Piutang {{number_format($dP->nom_kredit)}}">
-                    @endif
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-
 <script>
     $(document).ready(function(){  
         $('.price-tag').mask('000.000.000', {reverse: true});
