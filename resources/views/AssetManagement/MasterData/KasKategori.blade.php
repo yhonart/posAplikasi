@@ -15,8 +15,8 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Main Kategori</h3>
+                    <div class="card-header border-0">
+                        <h3 class="card-title fonnt-weight-bold">Main Kategori</h3>
                     </div>
                     <div class="card-body table-responsive" style="height: 500px;">
                         <div class="row mb-2">
@@ -34,8 +34,8 @@
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Sub Kategori</h3>
+                    <div class="card-header border-0">
+                        <h3 class="card-title font-weight-bold">Sub Kategori</h3>
                     </div>
                     <div class="card-body table-responsive" style="height: 500px;">
                         <div class="row mb-2">
