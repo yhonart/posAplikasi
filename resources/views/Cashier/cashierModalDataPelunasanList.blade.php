@@ -51,7 +51,7 @@
                 <div class="form-group row">
                     <label class="label col-4">Total Hutang</label>
                     <div class="col-8">
-                        <input class="form-control form-control-sm price-tag from-weight-bold" nama="nominalKredit" id="nominalKredit" value="{{number_format($totalHutang->kredit,0,',','.'}}" readonly>
+                        <input class="form-control form-control-sm price-tag from-weight-bold" nama="nominalKredit" id="nominalKredit" value="{{$totalHutang->kredit}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
