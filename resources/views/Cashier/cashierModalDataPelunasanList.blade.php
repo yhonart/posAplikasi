@@ -57,7 +57,7 @@
                 <div class="form-group row">
                    <label class="label col-4">Nominal Bayar</label>
                    <div class="col-8">
-                       <input class="form-control form-control-sm price-tag" nama="nominalBayar" id="nominalBayar" value="{{$sumPayed->}}" readonly>
+                       <input class="form-control form-control-sm price-tag" nama="nominalBayar" id="nominalBayar" value="{{$sumPayed->sumpayed}}" readonly>
                    </div>
                 </div>
                 <div class="form-group row">
