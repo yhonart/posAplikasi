@@ -1359,7 +1359,7 @@ class CashierController extends Controller
                 ->where([
                     ['from_member_id',$keyword],
                     ['status','1']
-                ])`
+                ])
                 ->first();
             return view('Cashier/cashierModalDataPelunasanList', compact('dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman','accountPenjualan','sumPayed'));
         }
