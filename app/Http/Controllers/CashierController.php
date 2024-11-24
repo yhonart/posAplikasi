@@ -1422,8 +1422,8 @@ class CashierController extends Controller
         $pelanggan = $reqPostPelunasan->pelanggan;
         $keterangan = $reqPostPelunasan->keterangan;
         $kodeAkun = $reqPostPelunasan->kodeAkun;
-        $nominalKredit = $reqPostPelunasan->nominalKredit;
-        $nominalBayar = $reqPostPelunasan->nominalBayar;
+        $nominalKredit = str_replace(".","",$reqPostPelunasan->nominalKredit);
+        $nominalBayar = str_replace(".","",$reqPostPelunasan->nominalBayar);
         $nomorBukti = $reqPostPelunasan->nomorBukti;
         $accountCode = $reqPostPelunasan->accountCode;
         
@@ -1442,7 +1442,8 @@ class CashierController extends Controller
                 'kredit'=>$nominalBayar,
                 'created_by'=>$userCretor,
                 'created_at'=>now(),
-                'status'=>'1'
+                'status'=>'1',
+                'total_kredit'=>$nominalKredit
             ]);
 
         //Cek transaksi kredit sesuai idpelanggan        
