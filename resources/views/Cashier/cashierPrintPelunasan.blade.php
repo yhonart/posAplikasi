@@ -151,11 +151,11 @@
                 <br>
                 PIUTANG PELANGGAN
             </td>
-            <td style="text-align: left;">
+            <td style="text-align: right;">
                 {{number_format($listVoucher->debit,'0',',','.')}}
                 <br>
             </td>
-            <td style="text-align: left;">
+            <td style="text-align: right;">
                 <br>
                 {{number_format($listVoucher->kredit,'0',',','.')}}
             </td>
@@ -163,8 +163,8 @@
         <tr>
             <td></td>
             <td> <b>TOTAL</b> </td>
-            <td>{{number_format($listVoucher->debit,'0',',','.')}}</td>
-            <td>{{number_format($listVoucher->kredit,'0',',','.')}}</td>
+            <td><b>{{number_format($listVoucher->debit,'0',',','.')}}</b></td>
+            <td><b>{{number_format($listVoucher->kredit,'0',',','.')}}</b></td>
         </tr>
     </tbody>
 </table>
