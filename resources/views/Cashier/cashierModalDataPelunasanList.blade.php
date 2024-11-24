@@ -1,9 +1,7 @@
 <hr>
 @if($keyword <> 0)
     @if($countDataPinjaman == '0')
-        <p class="border border-danger p-3 rounded-lg font-weight-bold text-danger bg-light">Tidak ada data pinjaman untuk pelanggan ini !</p>
-    @elseif($totalHutang->kredit == '0')
-        <p class="border border-success p-3 rounded-lg font-weight-bold text-success bg-light">Kredit Lunas !</p>
+        <p class="border border-danger p-3 rounded-lg font-weight-bold text-danger bg-light">Tidak ada data pinjaman untuk pelanggan ini !</p>    
     @else
     <form id="formPiutangPelanggan">
         <input type="hidden" name="periode" value="{{$periode}}">
