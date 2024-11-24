@@ -157,7 +157,7 @@
         </tr>
     </tbody>
 </table>
-<h5>Terbilang : {{terbilang($listVoucher->debit)}}</h5>
+<h5>Terbilang : <?php echo terbilang($listVoucher->debit); ?></h5>
 <table class="table table-bordered">
     <thead style="text-align: center;">
         <tr>
