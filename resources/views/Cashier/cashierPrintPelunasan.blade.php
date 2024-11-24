@@ -69,7 +69,9 @@
     $grndTotalBelanja = '0';
 ?>
 <div class="judul">
+    @if(!empty($namaToko))
     <h3><b>{{$namaToko->company_name}}</b></h3>
+    @endif
     <p>Nomor : {{$listVoucher->payment_number}}</p>
     <p>Tanggal : {{$listVoucher->created_at}}</p>
     <p>Terima Dari : {{$listVoucher->customer_store}}</p>
