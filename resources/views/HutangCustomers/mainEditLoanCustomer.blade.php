@@ -57,7 +57,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div id="reloadDisplay" style="display: none;">
-                                    <div class="spinner-grow text-dark" role="status">
+                                    <div class="spinner-grow text-dark spinner-grow-sm" role="status">
                                         <span class="sr-only">Loading...</span>
                                     </div>
                                     <span>Please Wait ....</span>
