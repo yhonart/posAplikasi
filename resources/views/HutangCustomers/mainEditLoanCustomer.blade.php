@@ -12,20 +12,13 @@
 </div>
 <div class="content mt-0">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <button class="btn bg-olive btn-sm elevation-1 font-weight-bold onclick-submenu " data-click="1">Pembayaran</button>
-                <button class="btn bg-lightblue btn-sm elevation-1 font-weight-bold onclick-submenu " data-click="2">Edit & Open Limit</button>
-                <button class="btn bg-primary btn-sm elevation-1 font-weight-bold onclick-submenu " data-click="3">Histori Pembayaran</button>
-            </div>
-        </div>
         <div class="row p-1">
             <div class="col-12">
                 <div class="card">                    
                     <div class="card-body">                
                         <div class="row">
                             <div class="col-6 col-md-3">
-                                <label class="form-label">Jenis Panel Proses</label>
+                                <label class="form-label">Panel</label>
                                 <div class="form-group">
                                     <select name="actionCode" id="actionCode" class="form-control">
                                         <option value="0">Pilih Proses </option>
