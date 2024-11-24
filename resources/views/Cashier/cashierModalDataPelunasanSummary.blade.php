@@ -30,7 +30,7 @@
                 @php
                     $grandTotalKredit += $dpn->nominal; 
                     $grandTotalBayar += $dpn->nom_payed; 
-                    $grandSaldoKredit += $dpn->nom_payed; 
+                    $grandSaldoKredit += $dpn->nom_kredit; 
                 @endphp
             @endforeach
         </tbody>
