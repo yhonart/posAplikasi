@@ -67,6 +67,43 @@
     $totalBelanjaTunai = '0';
     $totalBelanjaTransfer = '0';
     $grndTotalBelanja = '0';
+
+    function penyebut($nilai) {
+		$nilai = abs($nilai);
+		$huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
+		$temp = "";
+		if ($nilai < 12) {
+			$temp = " ". $huruf[$nilai];
+		} else if ($nilai <20) {
+			$temp = penyebut($nilai - 10). " belas";
+		} else if ($nilai < 100) {
+			$temp = penyebut($nilai/10)." puluh". penyebut($nilai % 10);
+		} else if ($nilai < 200) {
+			$temp = " seratus" . penyebut($nilai - 100);
+		} else if ($nilai < 1000) {
+			$temp = penyebut($nilai/100) . " ratus" . penyebut($nilai % 100);
+		} else if ($nilai < 2000) {
+			$temp = " seribu" . penyebut($nilai - 1000);
+		} else if ($nilai < 1000000) {
+			$temp = penyebut($nilai/1000) . " ribu" . penyebut($nilai % 1000);
+		} else if ($nilai < 1000000000) {
+			$temp = penyebut($nilai/1000000) . " juta" . penyebut($nilai % 1000000);
+		} else if ($nilai < 1000000000000) {
+			$temp = penyebut($nilai/1000000000) . " milyar" . penyebut(fmod($nilai,1000000000));
+		} else if ($nilai < 1000000000000000) {
+			$temp = penyebut($nilai/1000000000000) . " trilyun" . penyebut(fmod($nilai,1000000000000));
+		}     
+		return $temp;
+
+        function terbilang($nilai) {
+            if($nilai<0) {
+                $hasil = "minus ". trim(penyebut($nilai));
+            } else {
+                $hasil = trim(penyebut($nilai));
+            }     		
+            return $hasil;
+        }
+	}
 ?>
 <div class="judul">
     @if(!empty($namaToko))
@@ -87,16 +124,42 @@
     </thead>
     <tbody>
         <tr>
-            <td style="height:5%"><p></p><p></p>{{$listVoucher->account_code}}</td>
-            <td><p></p><p></p>{{$listVoucher->account_name}}</td>
-            <td><p></p><p></p>{{number_format($listVoucher->debit,'0',',','.')}}</td>
-            <td><p></p><p></p>{{number_format($listVoucher->kredit,'0',',','.')}}</td>
+            <td style="height:5%">
+                <p></p>
+                <p>{{$listVoucher->account_code}}</p>
+                <p>{{$listVoucher->no_kredit}}</p>
+                <p></p>
+            </td>
+            <td>
+                <p></p>
+                <p>{{$listVoucher->account_name}}</p>
+                <p>PIUTANG PELANGGAN</p>
+                <p></p>
+            </td>
+            <td>
+                <p></p>
+                <p>{{number_format($listVoucher->debit,'0',',','.')}}</p>
+                <p></p>
+                <p></p>
+            </td>
+            <td>
+                <p></p>
+                <p></p>
+                <p>{{number_format($listVoucher->kredit,'0',',','.')}}</p>
+                <p></p>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td> <b>TOTAL</b> </td>
+            <td>{{number_format($listVoucher->debit,'0',',','.')}}</td>
+            <td>{{number_format($listVoucher->kredit,'0',',','.')}}</td>
         </tr>
     </tbody>
 </table>
-<h5>Terbilang : </h5>
+<h5>Terbilang : {{terbilang($listVoucher->debit)}}</h5>
 <table class="table table-bordered">
-    <thead>
+    <thead style="text-align: center;">
         <tr>
             <th>Dibuat Oleh</th>
             <th>Diperiksa/Diketahui</th>
@@ -104,9 +167,9 @@
             <th>Diterima Dari</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody style="text-align: center;">
         <tr>
-            <td style="height:5%">
+            <td style="height:5%;">
                 <p></p>
                 <p></p>
                 <p></p>
