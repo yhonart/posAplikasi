@@ -1379,7 +1379,8 @@ class CashierController extends Controller
             return view("HutangCustomers/UnlockCustomerLoan", compact('customerListTrx','totalHutang2'));
         }
         elseif ($valAction == '3') {
-            $listPembayaranCustomer = DB::table('tr_pembayaran_kredit')
+            $listPembayaranCustomer = DB::table('tr_pembayaran_kredit as a')
+                ->leftJoin('m_customers as b','a.member_id','=','b.idm_customer')
                 ->where('member_id', $keyword)
                 ->get();
 

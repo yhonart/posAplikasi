@@ -3,6 +3,7 @@
         <tr>
             <th>Kode Pembayaran</th>
             <th>Tgl. Pembayaran</th>
+            <th>Total Kredit</th>
             <th>Nominal Pembayaran</th>
             <th>Nama Pelanggan</th>
             <th>#</th>
@@ -13,8 +14,9 @@
             <tr>
                 <td>{{$lpc->payment_number}}</td>
                 <td>{{$lpc->date_payment}}</td>
-                <td>{{$lpc->debit}}</td>
-                <td></td>
+                <td class="text-right">{{number_format($lpc->total_kredit,'0',',','.')}}</td>
+                <td class="text-right">{{number_format($lpc->debit,'0',',','.')}}</td>
+                <td>{{$lpc->customer_store}}</td>
                 <td></td>
             </tr>
         @endforeach
