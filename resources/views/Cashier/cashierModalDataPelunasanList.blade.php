@@ -51,13 +51,13 @@
                 <div class="form-group row">
                     <label class="label col-4">Total Hutang</label>
                     <div class="col-8">
-                        <input class="form-control form-control-sm price-tag from-weight-bold" nama="nominalKredit" id="nominalKredit" value="{{$totalHutang->kredit}}" readonly>
+                        <input class="form-control form-control-sm price-tag from-weight-bold" name="nominalKredit" id="nominalKredit" value="{{$totalHutang->kredit}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
                    <label class="label col-4">Nominal Bayar</label>
                    <div class="col-8">
-                       <input class="form-control form-control-sm price-tag" nama="nominalBayar" id="nominalBayar" value="{{$sumPayed->sumpayed}}" readonly>
+                       <input class="form-control form-control-sm price-tag" name="nominalBayar" id="nominalBayar" value="{{$sumPayed->sumpayed}}" readonly>
                    </div>
                 </div>
                 <div class="form-group row">

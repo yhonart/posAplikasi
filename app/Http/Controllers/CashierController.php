@@ -1422,8 +1422,8 @@ class CashierController extends Controller
         $pelanggan = $reqPostPelunasan->pelanggan;
         $keterangan = $reqPostPelunasan->keterangan;
         $kodeAkun = $reqPostPelunasan->kodeAkun;
-        $nominalKredit = str_replace(".","",$reqPostPelunasan->nominalKredit);
-        $nominalBayar = str_replace(".","",$reqPostPelunasan->nominalBayar);
+        $nominalKredit = str_replace(".", "", $reqPostPelunasan->nominalKredit);
+        $nominalBayar = str_replace(".", "", $reqPostPelunasan->nominalBayar);
         $nomorBukti = $reqPostPelunasan->nomorBukti;
         $accountCode = $reqPostPelunasan->accountCode;
         
