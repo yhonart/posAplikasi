@@ -105,7 +105,7 @@
         return $hasil;
     }
 ?>
-<table>
+<table cellpadding="0" cellspacing="0" style="width:100%">
     <tr>
         <td colspan="2">
             @if(!empty($namaToko))
