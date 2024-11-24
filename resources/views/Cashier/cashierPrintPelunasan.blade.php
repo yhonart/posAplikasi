@@ -124,30 +124,21 @@
     </thead>
     <tbody>
         <tr>
-            <td style="height:5%">
-                <p></p>
+            <td>
                 <p>{{$listVoucher->account_code}}</p>
                 <p>{{$listVoucher->no_kredit}}</p>
-                <p></p>
             </td>
             <td>
-                <p></p>
                 <p>{{$listVoucher->account_name}}</p>
                 <p>PIUTANG PELANGGAN</p>
-                <p></p>
             </td>
             <td>
-                <p></p>
                 <p>{{number_format($listVoucher->debit,'0',',','.')}}</p>
                 <p></p>
-                <p></p>
             </td>
             <td>
                 <p></p>
-                <p></p>
-                <p></p>
                 <p>{{number_format($listVoucher->kredit,'0',',','.')}}</p>
-                <p></p>
             </td>
         </tr>
         <tr>
