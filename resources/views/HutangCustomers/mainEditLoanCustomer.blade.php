@@ -18,7 +18,7 @@
                     <div class="card-body">                
                         <div class="row">
                             <div class="col-6 col-md-3">
-                                <label class="form-label">Panel</label>
+                                <label class="form-label">Panel Pembayaran</label>
                                 <div class="form-group">
                                     <select name="actionCode" id="actionCode" class="form-control">
                                         <option value="0">Pilih Proses </option>
@@ -28,7 +28,6 @@
                                     </select>
                                 </div>
                             </div>   
-
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">Cari Nama Pelanggan</label>

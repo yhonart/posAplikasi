@@ -1379,7 +1379,11 @@ class CashierController extends Controller
             return view("HutangCustomers/UnlockCustomerLoan", compact('customerListTrx','totalHutang2'));
         }
         elseif ($valAction == '3') {
-            return view("HutangCustomers/EditLimitCustomer");
+            $listPembayaranCustomer = DB::table('tr_pembayaran_kredit')
+                ->where('member_id', $keyword)
+                ->get();
+
+            return view("HutangCustomers/loanHistory", compact('listPembayaranCustomer'));
         } else {
             return view('Cashier/cashierModalDataPelunasanSummary', compact('datPinjaman'));
         }
@@ -1498,18 +1502,7 @@ class CashierController extends Controller
                     'member_id' => $cekValKredit->from_member_id,
                     'total_struk' => $cekValKredit->nominal,
                     'total_payment' => $editVal,
-                ]);
-        }
-
-        //update ke record pembayaran
-        if ($editVal <> "" or $editVal <> "0") {
-            DB::table('tr_pembayaran_kredit')
-                ->insert([
-                    'periode' => $periode,
-                    'numbering' => $numbering,
-                    'debit' => $editVal,
-                    'kredit' => $editVal,
-                    'status' => '1',
+                    'status'=>'1'
                 ]);
         }
 
@@ -1518,7 +1511,7 @@ class CashierController extends Controller
             ->where($kreditID, $rowID)
             ->update([
                 'nom_payed' => $updatePayed,
-                'nom_kredit' => $updateKredit
+                'nom_kredit' => $updateKredit,
             ]); 
     }
     public function modalDataReturn()
