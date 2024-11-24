@@ -1382,6 +1382,7 @@ class CashierController extends Controller
             $listPembayaranCustomer = DB::table('tr_pembayaran_kredit as a')
                 ->leftJoin('m_customers as b','a.member_id','=','b.idm_customer')
                 ->where('member_id', $keyword)
+                ->orderBy('idtr_payment','desc')
                 ->get();
 
             return view("HutangCustomers/loanHistory", compact('listPembayaranCustomer'));
