@@ -1354,10 +1354,10 @@ class CashierController extends Controller
             ->get();
             
         if ($valAction == '1') {
-            $sumPayed = DB::table('tr_kredit')
-                ->select(DB::raw('SUM(nom_payed) as sumpayed'))
+            $sumPayed = DB::table('tr_kredit_record')
+                ->select(DB::raw('SUM(total_payment) as sumpayed'))
                 ->where([
-                    ['from_member_id',$keyword],
+                    ['member_id',$keyword],
                     ['status','1']
                 ])
                 ->first();
@@ -1414,6 +1414,7 @@ class CashierController extends Controller
 
     public function postPelunasan(Request $reqPostPelunasan)
     {
+        $userCretor = Auth::user()->name;
         $periode = $reqPostPelunasan->periode;
         $idPelanggan = $reqPostPelunasan->idPelanggan;
         $numbering = $reqPostPelunasan->numbering;
@@ -1422,47 +1423,27 @@ class CashierController extends Controller
         $keterangan = $reqPostPelunasan->keterangan;
         $kodeAkun = $reqPostPelunasan->kodeAkun;
         $nominalKredit = $reqPostPelunasan->nominalKredit;
+        $nominalBayar = $reqPostPelunasan->nominalBayar;
         $nomorBukti = $reqPostPelunasan->nomorBukti;
+        $accountCode = $reqPostPelunasan->accountCode;
+        
         $createdBy = Auth::user()->name;
 
-        $countNumber = DB::table('tr_pembayaran_kredit')
-            ->where([
-                ['periode', $periode],
-                ['numbering', $numbering]
-            ])
-            ->count();
-
-        if ($countNumber == '0') {
-            DB::table('tr_pembayaran_kredit')
-                ->insert([
-                    'periode' => $periode,
-                    'numbering' => $numbering,
-                    'payment_number' => $nomorBukti,
-                    'date_payment' => $tglBukti,
-                    'member_id' => $idPelanggan,
-                    'no_perkiraan' => $idPelanggan,
-                    'no_kredit' => '1121',
-                    'created_by' => $createdBy,
-                    'updated_at' => now(),
-                    'status' => '2',
-                ]);
-        } else {
-            DB::table('tr_pembayaran_kredit')
-                ->where([
-                    ['periode', $periode],
-                    ['numbering', $numbering]
-                ])
-                ->update([
-                    'payment_number' => $nomorBukti,
-                    'date_payment' => $tglBukti,
-                    'member_id' => $idPelanggan,
-                    'no_perkiraan' => $idPelanggan,
-                    'no_kredit' => '1121',
-                    'created_by' => $createdBy,
-                    'updated_at' => now(),
-                    'status' => '2',
-                ]);
-        }
+        DB::table('tr_pembayaran_kredit')
+            ->insert([
+                'payment_number'=>$nomorBukti,
+                'periode'=>$periode,
+                'numbering'=>$numbering,
+                'date_payment'=>$tglBukti,
+                'member_id'=>$idPelanggan,
+                'no_perkiraan'=>$kodeAkun,
+                'no_kredit'=>$accountCode,
+                'debit'=>$nominalBayar,
+                'kredit'=>$nominalBayar,
+                'created_by'=>$userCretor,
+                'created_at'=>now(),
+                'status'=>'1'
+            ]);
 
         //Cek transaksi kredit sesuai idpelanggan        
     }

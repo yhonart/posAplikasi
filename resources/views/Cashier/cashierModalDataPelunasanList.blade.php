@@ -63,6 +63,7 @@
                 <div class="form-group row">
                     <div class="col-12">
                         <button type="submit" class="btn btn-success" id="btnSimpan"><i class="fa-regular fa-floppy-disk"></i> Simpan</button>
+                        <button type="button" class="btn btn-success" id="cetakVoucher" style="display: none;"><i class="fa-regular fa-floppy-disk"></i> Cetak Voucher</button>
                     </div>
                 </div>                
             </div>
@@ -198,7 +199,9 @@
                 processData: false,
                 success: function (data) {
                     alertify.success("Success!");
-                    loadDataPelunasan(keyWord, fromDate, endDate);
+                    $("#btnSimpan").fadeOut("slow");
+                    $("#cetakVoucher").fadeIn("slow");
+                    //loadDataPelunasan(keyWord, fromDate, endDate);
                 }
             });
             return false;
