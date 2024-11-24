@@ -1443,7 +1443,7 @@ class CashierController extends Controller
                 'kredit'=>$nominalBayar,
                 'created_by'=>$userCretor,
                 'created_at'=>now(),
-                'status'=>'1',
+                'status'=>'2',
                 'total_kredit'=>$nominalKredit
             ]);
 

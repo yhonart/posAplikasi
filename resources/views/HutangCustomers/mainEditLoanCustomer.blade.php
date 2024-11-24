@@ -56,6 +56,12 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
+                                <div id="reloadDisplay" style="display: none;">
+                                    <div class="spinner-grow text-dark" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <span>Please Wait ....</span>
+                                </div>
                                 <div id="divDataPelunasan"></div>
                             </div>
                         </div>
@@ -133,10 +139,12 @@
         
 
         function searchData(keyWord, fromDate, endDate, valAction){  
+            $("#reloadDisplay").fadeIn("slow");
             $.ajax({
                 type : 'get',
                 url : "{{route('Cashier')}}/buttonAction/dataPelunasan/funcData/"+keyWord+"/"+fromDate+"/"+endDate+"/"+valAction,
                 success : function(response){
+                    $("#reloadDisplay").fadeOut("slow");
                     $("#divDataPelunasan").html(response);
                 }
             });
