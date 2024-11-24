@@ -14,18 +14,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <nav class="navbar navbar-expand navbar-light">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="dropdown" href="#">
-                                Pembayaran
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <button class="btn bg-olive btn-sm elevation-1 font-weight-bold onclick-submenu " data-click="1">Pembayaran</button>
+                <button class="btn bg-lightblue btn-sm elevation-1 font-weight-bold onclick-submenu " data-click="2">Edit & Open Limit</button>
+                <button class="btn bg-primary btn-sm elevation-1 font-weight-bold onclick-submenu " data-click="3">Histori Pembayaran</button>
             </div>
         </div>
-
         <div class="row p-1">
             <div class="col-12">
                 <div class="card">                    
