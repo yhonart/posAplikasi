@@ -94,16 +94,16 @@
 			$temp = penyebut($nilai/1000000000000) . " trilyun" . penyebut(fmod($nilai,1000000000000));
 		}     
 		return $temp;
-
-        function terbilang($nilai) {
-            if($nilai<0) {
-                $hasil = "minus ". trim(penyebut($nilai));
-            } else {
-                $hasil = trim(penyebut($nilai));
-            }     		
-            return $hasil;
-        }
 	}
+
+    function terbilang($nilai) {
+        if($nilai<0) {
+            $hasil = "minus ". trim(penyebut($nilai));
+        } else {
+            $hasil = trim(penyebut($nilai));
+        }     		
+        return $hasil;
+    }
 ?>
 <div class="judul">
     @if(!empty($namaToko))
