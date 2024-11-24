@@ -145,6 +145,7 @@
             <td>
                 <p></p>
                 <p></p>
+                <p></p>
                 <p>{{number_format($listVoucher->kredit,'0',',','.')}}</p>
                 <p></p>
             </td>
