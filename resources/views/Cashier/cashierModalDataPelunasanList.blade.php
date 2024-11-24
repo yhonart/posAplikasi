@@ -15,25 +15,25 @@
                 <div class="form-group row">
                     <label class="label col-4">No. Bukti</label>
                     <div class="col-8">
-                        <input class="form-control form-control-sm" nama="nomorBukti" id="nomorBukti" value="PBT-{{$periode}}-{{sprintf("%07d",$numbering)}}">
+                        <input class="form-control form-control-sm" name="nomorBukti" id="nomorBukti" value="PBT-{{$periode}}-{{sprintf("%07d",$numbering)}}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="label col-4">Tgl. Bukti</label>
                     <div class="col-8">
-                        <input class="form-control form-control-sm" nama="tglBukti" id="tglBukti">
+                        <input class="form-control form-control-sm" name="tglBukti" id="tglBukti">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="label col-4">Pelanggan</label>
                     <div class="col-8">
-                        <input class="form-control form-control-sm" nama="pelanggan" id="pelanggan" value="{{$customerName->customer_store}}" readonly>
+                        <input class="form-control form-control-sm" name="pelanggan" id="pelanggan" value="{{$customerName->customer_store}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="label col-4">Keterangan</label>
                     <div class="col-8">
-                        <input class="form-control form-control-sm" nama="keterangan" id="keterangan">
+                        <input class="form-control form-control-sm" name="keterangan" id="keterangan">
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                 <div class="form-group row">
                     <div class="col-12">
                         <button type="submit" class="btn btn-success" id="btnSimpan"><i class="fa-regular fa-floppy-disk"></i> Simpan</button>
-                        <button type="button" class="btn btn-success" id="cetakVoucher" style="display: none;"><i class="fa-regular fa-floppy-disk"></i> Cetak Voucher</button>
+                        <button type="button" class="btn btn-primary" id="cetakVoucher" style="display: none;"><i class="fa-solid fa-print"></i> Cetak Voucher</button>
                     </div>
                 </div>                
             </div>
@@ -168,12 +168,13 @@
             todayHighlight: true,
         });
         $('#tglBukti').datepicker("setDate",new Date());
-        
-        $("#noVoucher").change(function(){ 
-            let voucherNumber = $(this).find(":selected").val();
+
+        $("#cetakVoucher").click(function(){
+            let voucherNumber = $("#nomorBukti").val();
             let urlPrint = "{{route('Cashier')}}/dataPelunasan/printPelunasan/"+voucherNumber;
             window.open(urlPrint,'_blank');
         });
+        
         var elements = document.getElementsByTagName('tr');
         for (var i = 0; i < elements.length; i++) {
         
