@@ -1330,6 +1330,7 @@ class CashierController extends Controller
             $dataPinjaman = $dataPinjaman->whereBetween('created_at', [$fromDate, $endDate]);
         }
         $dataPinjaman = $dataPinjaman->get();
+
         $datPinjaman = $dataPinjaman;
         $accountCode = DB::table('account_code')
             ->where('account_type','3')
@@ -1351,8 +1352,16 @@ class CashierController extends Controller
             ->select(DB::raw('DISTINCT(payment_number)'))
             ->where('member_id', $keyword)
             ->get();
+            
         if ($valAction == '1') {
-            return view('Cashier/cashierModalDataPelunasanList', compact('dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman','accountPenjualan'));
+            $sumPayed = DB::table('tr_kredit')
+                ->select(DB::raw('SUM(nom_payed) as sumpayed'))
+                ->where([
+                    ['from_member_id',$keyword],
+                    ['status','1']
+                ])
+                ->first();
+            return view('Cashier/cashierModalDataPelunasanList', compact('dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman','accountPenjualan','sumPayed'));
         }
         elseif ($valAction == '2') {
             $customerListTrx = DB::table('m_customers');
@@ -1503,7 +1512,7 @@ class CashierController extends Controller
                     'status' => '1',
                 ]);
         }
-        
+
         // update table tr_kredit
         DB::table($tableDB)
             ->where($kreditID, $rowID)

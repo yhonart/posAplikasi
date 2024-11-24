@@ -12,9 +12,23 @@
 </div>
 <div class="content mt-0">
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand navbar-light">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                Pembayaran
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
         <div class="row p-1">
             <div class="col-12">
-                <div class="card card-purple">                    
+                <div class="card">                    
                     <div class="card-body">                
                         <div class="row">
                             <div class="col-6 col-md-3">

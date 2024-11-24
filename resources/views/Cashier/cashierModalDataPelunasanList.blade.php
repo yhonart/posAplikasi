@@ -57,7 +57,7 @@
                 <div class="form-group row">
                    <label class="label col-4">Nominal Bayar</label>
                    <div class="col-8">
-                       <input class="form-control form-control-sm price-tag" nama="nominalBayar" id="nominalBayar">
+                       <input class="form-control form-control-sm price-tag" nama="nominalBayar" id="nominalBayar" value="{{$sumPayed}}" readonly>
                    </div>
                 </div>
                 <div class="form-group row">
@@ -66,24 +66,25 @@
                     </div>
                 </div>                
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group row">
-                    <div class="col-12 col-md-4">
-                        <label>Cetak Voucher</label>
-                        <select class="form-control form-control-sm" name="noVoucher" id="noVoucher">
-                            <option value="0" readonly>Pilih No Pembayaran</option>
-                            @foreach($listStruk as $lS)
-                            <option value="{{$lS->payment_number}}">{{$lS->payment_number}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+        </div>        
+    </form>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group row">
+                <div class="col-12 col-md-4">
+                    <label>Cetak Voucher</label>
+                    <select class="form-control form-control-sm" name="noVoucher" id="noVoucher">
+                        <option value="0" readonly>Pilih No Pembayaran</option>
+                        @foreach($listStruk as $lS)
+                        <option value="{{$lS->payment_number}}">{{$lS->payment_number}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>
-    </form>
-    
+    </div>
+    <hr>    
     <table class="table table-sm table-hover text-xs table-valign-middle">
         <thead class="bg-gradient-purple">
             <tr>
@@ -127,7 +128,7 @@
                         @if($dP->nom_payed == $dP->nominal)
                             {{number_format($dP->nom_payed,'0',',','.')}}
                         @else
-                        <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">
+                            <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">
                         @endif
                     </td>
                     <td>
