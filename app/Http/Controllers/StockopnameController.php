@@ -548,8 +548,7 @@ class StockopnameController extends Controller
             $listBarang = DB::table('inv_list_opname as a')
                 ->join('view_product_stock as b','a.inv_id','=','b.idinv_stock')
                 ->where([
-                    ['a.sto_number',$noOpname],
-                    ['a.display','1']
+                    ['a.sto_number',$noOpname]
                 ])
                 ->get();
         }
@@ -558,8 +557,7 @@ class StockopnameController extends Controller
                 ->join('view_product_stock as b','a.inv_id','=','b.idinv_stock')
                 ->where([
                     ['a.sto_number',$noOpname],    
-                    ['a.created_by',$createdBy],
-                    ['a.display','1']
+                    ['a.created_by',$createdBy]
                 ])
                 ->get();
             
