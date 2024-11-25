@@ -752,8 +752,8 @@ class StockopnameController extends Controller
                                 'saldo'=>$tambahSaldo
                             ]);
                     }
+                    echo "date input = ".strtotime($dateInput)."<".strtotime($today)." ";
                 }
-                echo "date input = ".strtotime($dateInput)."<".strtotime($today)." ";
                 $description = "Stock Opname Oleh ".$updateBy;
                 // Insert into laporan                
                 // DB::table('report_inv')
