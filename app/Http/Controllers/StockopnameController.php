@@ -753,41 +753,41 @@ class StockopnameController extends Controller
                             ]);
                     }
                 }
-
+                echo $dateInput ."<". $today;
                 $description = "Stock Opname Oleh ".$updateBy;
                 // Insert into laporan                
-                DB::table('report_inv')
-                ->insert([
-                    'date_input'=>$dateInput,
-                    'number_code'=>$idOpname,
-                    'product_id'=>$opmProduct,
-                    'product_name'=>$prodName,
-                    'satuan'=>$lop->product_satuan,
-                    'satuan_code'=>$lop->size_code,
-                    'description'=>$description,
-                    'inv_in'=>$lOpm,
-                    'inv_out'=>'0',
-                    'saldo'=>$opmSaldo,
-                    'created_by'=>$updateBy,
-                    'location'=>$location,
-                    'last_saldo'=>$opmLastStock,
-                    'vol_prd'=>$opmVol,
-                    'actual_input'=>$opmQty,
-                    'status_trx'=>'4'
-                ]); 
+                // DB::table('report_inv')
+                // ->insert([
+                //     'date_input'=>$dateInput,
+                //     'number_code'=>$idOpname,
+                //     'product_id'=>$opmProduct,
+                //     'product_name'=>$prodName,
+                //     'satuan'=>$lop->product_satuan,
+                //     'satuan_code'=>$lop->size_code,
+                //     'description'=>$description,
+                //     'inv_in'=>$lOpm,
+                //     'inv_out'=>'0',
+                //     'saldo'=>$opmSaldo,
+                //     'created_by'=>$updateBy,
+                //     'location'=>$location,
+                //     'last_saldo'=>$opmLastStock,
+                //     'vol_prd'=>$opmVol,
+                //     'actual_input'=>$opmQty,
+                //     'status_trx'=>'4'
+                // ]); 
             }
 
-            DB::table('inv_stock_opname')
-                ->where('number_so',$idOpname)
-                ->update([
-                    'status'=>'3'    
-                ]);
+            // DB::table('inv_stock_opname')
+            //     ->where('number_so',$idOpname)
+            //     ->update([
+            //         'status'=>'3'    
+            //     ]);
                 
-            DB::table('inv_list_opname')
-                ->where('sto_number',$idOpname)
-                ->update([
-                    'status'=>'3'    
-                ]);
+            // DB::table('inv_list_opname')
+            //     ->where('sto_number',$idOpname)
+            //     ->update([
+            //         'status'=>'3'    
+            //     ]);
         }
         $msg = array('success'=>'SUCCESS, Data Berhasil Disimpan ');
         return response()->json($msg);
