@@ -752,7 +752,7 @@ class StockopnameController extends Controller
                         DB::table('report_inv')
                             ->where('idr_inv',$reportID)
                             ->update([
-                                'saldo'=>'2'
+                                'saldo'=>$tambahSaldo
                             ]);
 
                         echo "date input = ".strtotime($dateInput)."<".strtotime($today)."=".$tambahSaldo." - ".$reportID;
