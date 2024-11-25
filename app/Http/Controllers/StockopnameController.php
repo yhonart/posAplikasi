@@ -693,7 +693,7 @@ class StockopnameController extends Controller
                             'saldo'=>$a,
                             'updated_date'=>now()
                         ]);
-                    echo $opmProduct."/".$idProduct_Unit."/".$a."<br>";
+                    // echo $opmProduct."/".$idProduct_Unit."/".$a."<br>";
                 }
 
                 $mUnit = DB::table('m_product_unit')
@@ -751,8 +751,8 @@ class StockopnameController extends Controller
                             ->update([
                                 'saldo'=>$tambahSaldo
                             ]);
+                        echo "date input = ".strtotime($dateInput)."<".strtotime($today)."=".$tambahSaldo." - ".$reportID;
                     }
-                    echo "date input = ".strtotime($dateInput)."<".strtotime($today)." ";
                 }
                 $description = "Stock Opname Oleh ".$updateBy;
                 // Insert into laporan                
