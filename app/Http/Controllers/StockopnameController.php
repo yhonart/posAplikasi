@@ -276,8 +276,7 @@ class StockopnameController extends Controller
         $detailProductLs = DB::table('inv_list_opname as a')
             ->leftJoin('view_product_stock as b','a.inv_id','=','b.idinv_stock')
             ->where([
-                ['a.sto_number',$opnameCode],
-                ['a.display','1']
+                ['a.sto_number',$opnameCode]
                 ])
             ->get();
             
