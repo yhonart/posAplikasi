@@ -84,6 +84,7 @@ class LapInventoryController extends Controller
             $dataSaldoAwal = $dataSaldoAwal->where('status_trx','4');
             $dataSaldoAwal = $dataSaldoAwal->whereBetween('date_input',[$fromDate, $endDate]);
             $dataSaldoAwal = $dataSaldoAwal->orderBy('date_input','asc');
+            $dataSaldoAwal = $dataSaldoAwal->orderBy('number_code','asc');
             $dataSaldoAwal = $dataSaldoAwal->first();
 
         $mProduct = DB::table('m_product')
