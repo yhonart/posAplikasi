@@ -733,7 +733,10 @@ class StockopnameController extends Controller
                 //get saldo laporan inventory
                 $getLapInv = DB::table('report_inv')
                     ->select('idr_inv','saldo','inv_in','inv_out')
-                    ->where('date_input','>',$dateInput)
+                    ->where([
+                        ['date_input','>',$dateInput],
+                        ['location',$location]
+                        ])
                     ->get();
                 $today = date("Y-m-d");
                 
@@ -749,8 +752,9 @@ class StockopnameController extends Controller
                         DB::table('report_inv')
                             ->where('idr_inv',$reportID)
                             ->update([
-                                'saldo'=>$tambahSaldo
+                                'saldo'=>'2'
                             ]);
+
                         echo "date input = ".strtotime($dateInput)."<".strtotime($today)."=".$tambahSaldo." - ".$reportID;
                     }
                 }
