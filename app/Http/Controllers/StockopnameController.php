@@ -753,7 +753,7 @@ class StockopnameController extends Controller
                             ]);
                     }
                 }
-                echo $dateInput ."<". $today."<br> Date";
+                echo "date input".$dateInput ."<". $today."<br> Date ";
                 $description = "Stock Opname Oleh ".$updateBy;
                 // Insert into laporan                
                 // DB::table('report_inv')
