@@ -732,14 +732,19 @@ class StockopnameController extends Controller
 
                 //get saldo laporan inventory
                 $getLapInv = DB::table('report_inv')
-                    ->select('idr_inv','saldo')
+                    ->select('idr_inv','saldo','inv_in','inv_out')
                     ->where('date_input','>',$dateInput)
                     ->get();
                 $today = date("Y-m-d");
                 
                 if ($dateInput < $today) {
                     foreach ($getLapInv as $gL) {
-                        $tambahSaldo = $gL->saldo + $lOpm;
+                        if ($gL->inv_in == '0') {
+                            $tambahSaldo = $lOpm - $gL->inv_out;                            
+                        }
+                        else {
+                            $tambahSaldo = $lOpm + $gL->inv_in;                            
+                        }
                         $reportID = $gL->idr_inv;
                         DB::table('report_inv')
                             ->where('idr_inv',$reportID)
