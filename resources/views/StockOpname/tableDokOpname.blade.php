@@ -96,7 +96,7 @@
                     url:"{{route('stockOpname')}}/listDataOpname/approvalOpname/"+idparam,
                     dataType: 'html',
                     success:function(response){                        
-                        window.location.reload();
+                        // window.location.reload();
                     }
                 });
                 alertify.success('Approved');
