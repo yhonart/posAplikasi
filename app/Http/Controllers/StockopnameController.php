@@ -738,7 +738,7 @@ class StockopnameController extends Controller
                 $today = date("Y-m-d");
                 
                 if ($dateInput < $today) {
-                    foreach ($getLapInv as $gL) {
+                    foreach ($getLapInv as $gL) {                        
                         if ($gL->inv_in == '0') {
                             $tambahSaldo = $lOpm - $gL->inv_out;                            
                         }
@@ -755,7 +755,7 @@ class StockopnameController extends Controller
                 }
 
                 $description = "Stock Opname Oleh ".$updateBy;
-                // Insert into laporan
+                // Insert into laporan                
                 DB::table('report_inv')
                 ->insert([
                     'date_input'=>$dateInput,
