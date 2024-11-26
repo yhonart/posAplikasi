@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-12">
                                 <div id="reloadDisplay" style="display: none;">
                                     <div class="spinner-grow text-dark spinner-grow-sm" role="status">
@@ -63,6 +63,11 @@
                                     <span>Please Wait ....</span>
                                 </div>
                                 <div id="divDataPelunasan"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="{{asset('public/Document/ManualBookPembayaranHutang.pdf')}}" class="btn bg-light border-0" target="_blank">Dokumentasi Penggunaan.</a>
                             </div>
                         </div>
                     </div>

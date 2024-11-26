@@ -471,7 +471,7 @@ class PurchasingController extends Controller
             $volKonv = $mProduct->small_unit_val;
             $prodName = $pl->product_name;
             $satuan = $pl->size;
-            $sizeCode = 
+            // $sizeCode = 
 
         }
 
