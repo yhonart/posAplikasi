@@ -740,24 +740,24 @@ class StockopnameController extends Controller
                     ->get();
                 $today = date("Y-m-d");
                 
-                if ($dateInput < $today) {
-                    foreach ($getLapInv as $gL) {                        
-                        if ($gL->inv_in == '0') {
-                            $tambahSaldo = $lOpm - $gL->inv_out;                            
-                        }
-                        else {
-                            $tambahSaldo = $lOpm + $gL->inv_in;                            
-                        }
-                        $reportID = $gL->idr_inv;
-                        DB::table('report_inv')
-                            ->where('idr_inv',$reportID)
-                            ->update([
-                                'saldo'=>$tambahSaldo
-                            ]);
+                // if ($dateInput < $today) {
+                //     foreach ($getLapInv as $gL) {                        
+                //         if ($gL->inv_in == '0') {
+                //             $tambahSaldo = $lOpm - $gL->inv_out;                            
+                //         }
+                //         else {
+                //             $tambahSaldo = $lOpm + $gL->inv_in;                            
+                //         }
+                //         $reportID = $gL->idr_inv;
+                //         DB::table('report_inv')
+                //             ->where('idr_inv',$reportID)
+                //             ->update([
+                //                 'saldo'=>$tambahSaldo
+                //             ]);
 
-                        // echo "date input = ".strtotime($dateInput)."<".strtotime($today)."=".$tambahSaldo." - ".$reportID;
-                    }
-                }
+                //     }
+                // }
+                    // echo "date input = ".strtotime($dateInput)."<".strtotime($today)."=".$tambahSaldo." - ".$reportID;
                 $description = "Stock Opname Oleh ".$updateBy;
                 // Insert into laporan                
                 DB::table('report_inv')
