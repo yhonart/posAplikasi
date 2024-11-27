@@ -415,7 +415,7 @@
                 if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja) {
                     alertify
                     .alert("Hutang Customer Sudah Melewati Limit !", function(){
-                        alertify.message('Transaksi di batalkan.');
+                        window.location.reload();
                     }).set({title:"Konfirmasi Limit Hutang"});
                 }
                 else {

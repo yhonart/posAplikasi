@@ -267,14 +267,45 @@ class TempInventoryController extends Controller
             $actualInput = '0';
             $statusTrx = '0';
         }
+        // cek ketersediaan nomor
+        $countReport = DB::table('report_inv')
+            ->where([
+                ['number_code', $numberCode],
+                ['product_id', $prodId],
+                ['satuan', $findSatuan->product_satuan]
+            ])
+            ->count();
 
-        $inserReport = DB::table('report_inv')
-            ->insert([
-                'date_input'=>now(),
-                'number_code'=>$numberCode,
-                'product_id'=>$prodId,
+        if ($countReport=='0') {
+            $inserReport = DB::table('report_inv')
+                ->insert([
+                    'date_input'=>now(),
+                    'number_code'=>$numberCode,
+                    'product_id'=>$prodId,
+                    'product_name'=>$prodName,
+                    'satuan'=>$findSatuan->product_satuan,
+                    'satuan_code'=>$findDescSatuan->size_code,
+                    'description'=>$description,
+                    'inv_in'=>$inputValIn,
+                    'inv_out'=>$inputValOut,
+                    'saldo'=>$findStock->stock,
+                    'created_by'=>$createdBy,
+                    'location'=>$loc,
+                    'last_saldo'=>$lastSaldo,
+                    'vol_prd'=>$inputValVol,
+                    'actual_input'=>$actualInput,
+                    'status_trx'=>$statusTrx
+                    ]);
+        }
+        else {
+            $inserReport = DB::table('report_inv')
+            ->where([
+                ['number_code', $numberCode],
+                ['product_id', $prodId],
+                ['satuan', $findSatuan->product_satuan]
+            ])
+            ->update([
                 'product_name'=>$prodName,
-                'satuan'=>$findSatuan->product_satuan,
                 'satuan_code'=>$findDescSatuan->size_code,
                 'description'=>$description,
                 'inv_in'=>$inputValIn,
@@ -286,7 +317,8 @@ class TempInventoryController extends Controller
                 'vol_prd'=>$inputValVol,
                 'actual_input'=>$actualInput,
                 'status_trx'=>$statusTrx
-                ]);
+            ]);
+        }
         return $inserReport;
     }
     
