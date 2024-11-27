@@ -2091,6 +2091,20 @@ class CashierController extends Controller
         if ($tPembayaran >= $tBelanja) {
             $status = "4";
             $mBayar = $methodPembayaran;
+        }
+        elseif ($tplusKredit >= $tPembayaran){
+            $status = "4";
+            $mBayar = $methodPembayaran;
+
+            //Cek ketersediaan hutang by customer
+            $cekHutang = DB::table('tr_kredit')
+                ->where([
+                    ['from_member_id',$memberID],
+                    ['nom_kredit','!=','0']
+                ])
+                ->get();
+            
+            
         } elseif ($record >= '1') {
             $lastPayment = $dataPembayaran->lastBayar;
             $status = "4";
@@ -2186,7 +2200,7 @@ class CashierController extends Controller
                 ]);
         }
 
-        //PAYMENT METHOD
+        //PAYMENT METHOD        
         //Cek count pembayaran
         $countMethod = DB::table('tr_payment_method')
             ->where('core_id_trx', $noBill)
