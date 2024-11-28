@@ -2027,11 +2027,10 @@ class CashierController extends Controller
         $record = $dataPembayaran->record;
         $updateBy = Auth::user()->name;
         $checkBoxPoint = $dataPembayaran->pointBelanja;
+        $lunasiHutang = $dataPembayaran->lunasiHutang;
         $memberID = $dataPembayaran->memberID;
         $nilaiPoint = '0';
-        $kreditPlusBelanja = $kredit + $tBelanja;
-
-        
+        $kreditPlusBelanja = $kredit + $tBelanja;        
 
         if (isset($checkBoxPoint)) {
             $tPembayaran = $fieldBayar + $checkBoxPoint;
@@ -2053,49 +2052,7 @@ class CashierController extends Controller
             $tPembayaran = $fieldBayar;
         }
 
-        $checkList = $dataPembayaran->radioMethod;
-        $methodPembayaran = $dataPembayaran->metodePembayaran1;
-        $bankAccount = $dataPembayaran->bankAccount1;
-        $accountCusNumber = $dataPembayaran->cardNumber1;
-        $accountCusName = $dataPembayaran->cardName1;
-
-
-        $pengiriman = $dataPembayaran->pengiriman;
-        $ppn2 = $dataPembayaran->ppn2;
-        $nominalPPN2 = str_replace(".", "", $dataPembayaran->nominalPPN2);
-        $tKredit = $tBelanja - $tPembayaran;
-
-        //cek nilai pembayaran sebelumnya
-        $trxLastBayar = DB::table('tr_store')
-            ->select('t_pay','tr_date')
-            ->where('billing_number', $noBill)
-            ->first();
-
-        if ($trxLastBayar->t_pay > $tPembayaran) {
-            $nilaiPoint = $trxLastBayar->t_pay - $tPembayaran;
-            DB::table('tr_member_point')
-                ->insert([
-                    'core_member_id' => $memberID,
-                    'point' => $nilaiPoint,
-                    'status' => '1'
-                ]);
-        }
-
-        if ($tPembayaran == '') {
-            $tPembayaran = '0';
-        }
-        // foreach($metodePembayaran as $m =>$keyMethod){
-        //     $cekPaymentMethod = DB::table('m_payment_method')
-        //         ->where('idm_payment_method',$keyMethod)
-        //         ->get();
-        //     $nameMethod = $cekPaymentMethod->category;
-        // }
-        echo $tPembayaran .">=". $kreditPlusBelanja;       
-        
-        if ($tPembayaran >= $kreditPlusBelanja){
-            $status = "4";
-            $mBayar = $methodPembayaran;
-
+        if (isset($lunasiHutang)) {
             //Cek ketersediaan hutang by customer
             $cekHutang = DB::table('tr_kredit')
                 ->where([
@@ -2149,9 +2106,53 @@ class CashierController extends Controller
                         'status'=>'2',
                         'total_kredit'=>$totKredit
                     ]);
-            }  
+            }
+            $tPembayaran = $fieldBayar-$kredit;
         }
-        elseif ($tPembayaran >= $tBelanja) {
+        else {
+            $tPembayaran = $fieldBayar;
+        }
+
+        $checkList = $dataPembayaran->radioMethod;
+        $methodPembayaran = $dataPembayaran->metodePembayaran1;
+        $bankAccount = $dataPembayaran->bankAccount1;
+        $accountCusNumber = $dataPembayaran->cardNumber1;
+        $accountCusName = $dataPembayaran->cardName1;
+
+
+        $pengiriman = $dataPembayaran->pengiriman;
+        $ppn2 = $dataPembayaran->ppn2;
+        $nominalPPN2 = str_replace(".", "", $dataPembayaran->nominalPPN2);
+        $tKredit = $tBelanja - $tPembayaran;
+
+        //cek nilai pembayaran sebelumnya
+        $trxLastBayar = DB::table('tr_store')
+            ->select('t_pay','tr_date')
+            ->where('billing_number', $noBill)
+            ->first();
+
+        if ($trxLastBayar->t_pay > $tPembayaran) {
+            $nilaiPoint = $trxLastBayar->t_pay - $tPembayaran;
+            DB::table('tr_member_point')
+                ->insert([
+                    'core_member_id' => $memberID,
+                    'point' => $nilaiPoint,
+                    'status' => '1'
+                ]);
+        }
+
+        if ($tPembayaran == '') {
+            $tPembayaran = '0';
+        }
+        // foreach($metodePembayaran as $m =>$keyMethod){
+        //     $cekPaymentMethod = DB::table('m_payment_method')
+        //         ->where('idm_payment_method',$keyMethod)
+        //         ->get();
+        //     $nameMethod = $cekPaymentMethod->category;
+        // }
+        echo $tPembayaran .">=". $kreditPlusBelanja; 
+        
+        if ($tPembayaran >= $tBelanja) {
             $status = "4";
             $mBayar = $methodPembayaran;
         } elseif ($record >= '1') {

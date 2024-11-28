@@ -404,7 +404,7 @@
             event.preventDefault();
             window.location.reload();
         })
-
+        var checkBoxLunas = document.getElementById("lunasiHutang");
         $("#btnSimpanTrx").click(function(){
             event.preventDefault();
             let typeCetak = $("#typeCetak").val(),
@@ -425,10 +425,14 @@
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Untuk pembayaran kurang dari nominal : Rp. "+tKredit+", gunakan menu PELUNASAN [F9] untuk pembayaran secara partial. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
             }
+            else if (replaceTotalPembayaran >= replaceKredit && replaceKredit !== '0' && checkBoxLunas.checked == false) {
+                $(".notive-display").fadeIn();
+                $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
+            }
             else {
-                // inputPembayaran(billPembayaran, typeCetak);
+                inputPembayaran(billPembayaran, typeCetak);
             }            
-            alert(replaceTotalPembayaran+"<"+replaceKredit+";"+replaceTotalPembayaran+">"+tBelanja);
+            //alert(replaceTotalPembayaran+"<"+replaceKredit+";"+replaceTotalPembayaran+">"+tBelanja);
         })
         
         document.addEventListener('keydown', function(event) {
@@ -455,10 +459,14 @@
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Pembayaran hutang tidak boleh kurang dari nominal hutang sebelumnya : Rp. "+tKredit+". Transaksi pembayaran hutang tanpa pelunasan dapat dilakukan secara parsial di menu PELUNASAN [F9]. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
                 }
-                else {
-                    // inputPembayaran(billPembayaran, typeCetak);
+                else if (replaceTotalPembayaran >= replaceKredit && replaceKredit !== '0' && checkBoxLunas.checked == false) {
+                    $(".notive-display").fadeIn();
+                    $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
                 }
-                alert(replaceTotalPembayaran+"<"+replaceKredit+";"+replaceTotalPembayaran+">"+replacetBayar);
+                else {
+                    inputPembayaran(billPembayaran, typeCetak);
+                }
+                //alert(replaceTotalPembayaran+"<"+replaceKredit+";"+replaceTotalPembayaran+">"+replacetBayar);
             }
             
             if (event.keyCode === 27) {
@@ -490,15 +498,13 @@
                 cache: true,
                 contentType: false,
                 processData: false,
-                success: function (data) {
-                    
+                success: function (data) {                    
                     $(".LOAD-SPINNER").fadeOut('slow');
                     window.open(urlPrint,'_blank');
                     window.location.reload();
                 }
             });
         }
-        
     });
     function myFunctionChecked() {
       var checkBox = document.getElementById("radioMethod");
