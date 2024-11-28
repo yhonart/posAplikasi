@@ -2142,7 +2142,7 @@ class CashierController extends Controller
                         'date_payment'=>now(),
                         'member_id'=>$memberID,
                         'no_perkiraan'=>'1',
-                        'no_kredit'=>$noPerkiraan->account_name,
+                        'no_kredit'=>$noPerkiraan->account_code,
                         'debit'=>$nomKredit,
                         'kredit'=>$nomKredit,
                         'created_by'=>$updateBy,
