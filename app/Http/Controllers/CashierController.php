@@ -2031,6 +2031,8 @@ class CashierController extends Controller
         $nilaiPoint = '0';
         $kreditPlusBelanja = $kredit + $tBelanja;
 
+        echo $tPembayaran .">=". $kreditPlusBelanja;
+        
         if (isset($checkBoxPoint)) {
             $tPembayaran = $fieldBayar + $checkBoxPoint;
             DB::table('tr_member_point')

@@ -408,7 +408,7 @@
             let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
                 replaceKredit = tKredit.replace(/\./g, "");
             //alert(kreditLimit);
-            
+
             if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja) {
                 alertify
                 .alert("Hutang Customer Sudah Melewati Limit !", function(){
@@ -417,7 +417,7 @@
             }
             else if (replaceTotalPembayaran < cosKreditPlusBill && replaceTotalPembayaran > tBelanja) {
                 $(".notive-display").fadeIn();
-                $("#notiveDisplay").html("Pembayaran hutang tidak boleh kurang dari nominal : Rp. "+tKredit+". Transaksi pembayaran hutang tanpa pelunasan dapat dilakukan secara parsial di menu PELUNASAN [F9]. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
+                $("#notiveDisplay").html("Untuk pembayaran kurang dari nominal : Rp. "+tKredit+", gunakan menu PELUNASAN [F9] untuk pembayaran secara partial. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
             }
             else {
                 inputPembayaran(billPembayaran, typeCetak);
@@ -473,7 +473,7 @@
 
         function inputPembayaran(billPembayaran, typeCetak)
         {
-            let urlPrint = "{{route('Cashier')}}/buttonAction/printTemplateCashier/"+billPembayaran+"/"+typeCetak;
+            // let urlPrint = "{{route('Cashier')}}/buttonAction/printTemplateCashier/"+billPembayaran+"/"+typeCetak;
             let data_form = new FormData(document.getElementById("formPembayaran"));
             $.ajax({
                 url: "{{route('Cashier')}}/buttonAction/postDataPembayaran",
@@ -486,8 +486,8 @@
                 success: function (data) {
                     
                     $(".LOAD-SPINNER").fadeOut('slow');
-                    window.open(urlPrint,'_blank');
-                    window.location.reload();
+                    // window.open(urlPrint,'_blank');
+                    // window.location.reload();
                 }
             });
         }
