@@ -473,7 +473,7 @@
 
         function inputPembayaran(billPembayaran, typeCetak)
         {
-            // let urlPrint = "{{route('Cashier')}}/buttonAction/printTemplateCashier/"+billPembayaran+"/"+typeCetak;
+            let urlPrint = "{{route('Cashier')}}/buttonAction/printTemplateCashier/"+billPembayaran+"/"+typeCetak;
             let data_form = new FormData(document.getElementById("formPembayaran"));
             $.ajax({
                 url: "{{route('Cashier')}}/buttonAction/postDataPembayaran",
@@ -486,8 +486,8 @@
                 success: function (data) {
                     
                     $(".LOAD-SPINNER").fadeOut('slow');
-                    // window.open(urlPrint,'_blank');
-                    // window.location.reload();
+                    window.open(urlPrint,'_blank');
+                    window.location.reload();
                 }
             });
         }

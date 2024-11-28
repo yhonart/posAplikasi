@@ -2090,13 +2090,9 @@ class CashierController extends Controller
         //         ->get();
         //     $nameMethod = $cekPaymentMethod->category;
         // }
-        echo $tPembayaran .">=". $kreditPlusBelanja;
+        echo $tPembayaran .">=". $kreditPlusBelanja;       
         
-        if ($tPembayaran >= $tBelanja) {
-            $status = "4";
-            $mBayar = $methodPembayaran;
-        }
-        elseif ($tPembayaran >= $kreditPlusBelanja){
+        if ($tPembayaran >= $kreditPlusBelanja){
             $status = "4";
             $mBayar = $methodPembayaran;
 
@@ -2153,7 +2149,11 @@ class CashierController extends Controller
                         'status'=>'2',
                         'total_kredit'=>$totKredit
                     ]);
-            }     
+            }  
+        }
+        elseif ($tPembayaran >= $tBelanja) {
+            $status = "4";
+            $mBayar = $methodPembayaran;
         } elseif ($record >= '1') {
             $lastPayment = $dataPembayaran->lastBayar;
             $status = "4";
