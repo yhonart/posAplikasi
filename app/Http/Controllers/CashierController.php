@@ -2150,10 +2150,7 @@ class CashierController extends Controller
                         'status'=>'2',
                         'total_kredit'=>$totKredit
                     ]);
-            }
-        }elseif ($tPembayaran < $kreditPlusBelanja AND $tPembayaran > $tBelanja) {
-            $msg = array('warning' => 'Nominal pembayaran kredit tidak sesuai.
-                Untuk melakukan pembayaran kredit secara partial, dapat digunakan pada menu Pelunasan [F9]');            
+            }     
         } elseif ($record >= '1') {
             $lastPayment = $dataPembayaran->lastBayar;
             $status = "4";
