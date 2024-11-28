@@ -54,11 +54,13 @@
                             <div class="form-group row mb-1 d-flex align-items-center">
                                 <label class="col-md-4 text-right">HUTANG SEBELUMNYA</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control form-control-lg  font-weight-bold" name="kredit" id="kredit" value="{{$nominalKredit}}" readonly>
+                                    <input type="text" class="form-control form-control-lg font-weight-bold" name="kredit" id="kredit" value="{{$nominalKredit}}" readonly>
                                 </div>
-                                <div class="col-md-4 pr-4">
-                                    <input class="custom-control-input" type="checkbox" id="lunasiHutang" name="lunasiHutang" value="1">
-                                    <label for="lunasiHutang" class="custom-control-label text-muted">Lunasi Hutang</label>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="custom-control-input" type="checkbox" id="lunasiHutang" name="lunasiHutang" value="1">
+                                        <label for="lunasiHutang" class="custom-control-label text-muted">Lunasi Hutang</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-1 d-flex align-items-center">
