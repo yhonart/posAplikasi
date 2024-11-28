@@ -2031,8 +2031,8 @@ class CashierController extends Controller
         $nilaiPoint = '0';
         $kreditPlusBelanja = $kredit + $tBelanja;
 
-        echo $tPembayaran .">=". $kreditPlusBelanja;
         
+
         if (isset($checkBoxPoint)) {
             $tPembayaran = $fieldBayar + $checkBoxPoint;
             DB::table('tr_member_point')
@@ -2090,213 +2090,214 @@ class CashierController extends Controller
         //         ->get();
         //     $nameMethod = $cekPaymentMethod->category;
         // }
+        echo $tPembayaran .">=". $kreditPlusBelanja;
 
-        if ($tPembayaran >= $tBelanja) {
-            $status = "4";
-            $mBayar = $methodPembayaran;
-        }
-        elseif ($tPembayaran >= $kreditPlusBelanja){
-            $status = "4";
-            $mBayar = $methodPembayaran;
+        // if ($tPembayaran >= $tBelanja) {
+        //     $status = "4";
+        //     $mBayar = $methodPembayaran;
+        // }
+        // elseif ($tPembayaran >= $kreditPlusBelanja){
+        //     $status = "4";
+        //     $mBayar = $methodPembayaran;
 
-            //Cek ketersediaan hutang by customer
-            $cekHutang = DB::table('tr_kredit')
-                ->where([
-                    ['from_member_id',$memberID],
-                    ['nom_kredit','!=','0']
-                ])
-                ->get();
+        //     //Cek ketersediaan hutang by customer
+        //     $cekHutang = DB::table('tr_kredit')
+        //         ->where([
+        //             ['from_member_id',$memberID],
+        //             ['nom_kredit','!=','0']
+        //         ])
+        //         ->get();
 
-            $noPerkiraan = DB::table('account_code')
-                    ->where('account_type','1')
-                    ->first();
+        //     $noPerkiraan = DB::table('account_code')
+        //             ->where('account_type','1')
+        //             ->first();
 
-            foreach ($cekHutang as $ch) {
-                $nomKredit = $ch->nom_kredit;
-                $idTrKredit = $ch->idtr_kredit;
-                $noTrx = $ch->from_payment_code;
-                $totKredit = $ch->nominal;
-                $datePeriode = date("Ym");
+        //     foreach ($cekHutang as $ch) {
+        //         $nomKredit = $ch->nom_kredit;
+        //         $idTrKredit = $ch->idtr_kredit;
+        //         $noTrx = $ch->from_payment_code;
+        //         $totKredit = $ch->nominal;
+        //         $datePeriode = date("Ym");
 
-                DB::table('tr_kredit')
-                    ->where([
-                        ['idtr_kredit',$idTrKredit],
-                        ['nom_kredit','!=','0']
-                    ])
-                    ->update([
-                        'nom_kredit'=>'0',
-                        'nom_payed'=>$nomKredit
-                    ]);
+        //         DB::table('tr_kredit')
+        //             ->where([
+        //                 ['idtr_kredit',$idTrKredit],
+        //                 ['nom_kredit','!=','0']
+        //             ])
+        //             ->update([
+        //                 'nom_kredit'=>'0',
+        //                 'nom_payed'=>$nomKredit
+        //             ]);
 
-                DB::table('tr_kredit_record')
-                    ->insert([
-                        'trx_code'=>$noTrx,
-                        'date_trx'=>now(),
-                        'member_id'=>$memberID,
-                        'total_struk'=>$nomKredit,
-                        'total_payment'=>$nomKredit,
-                        'status'=>'2'
-                    ]);
+        //         DB::table('tr_kredit_record')
+        //             ->insert([
+        //                 'trx_code'=>$noTrx,
+        //                 'date_trx'=>now(),
+        //                 'member_id'=>$memberID,
+        //                 'total_struk'=>$nomKredit,
+        //                 'total_payment'=>$nomKredit,
+        //                 'status'=>'2'
+        //             ]);
 
-                DB::table('tr_pembayaran_kredit')
-                    ->insert([
-                        'payment_number'=>$noTrx,
-                        'periode'=>$datePeriode,
-                        'date_payment'=>now(),
-                        'member_id'=>$memberID,
-                        'no_perkiraan'=>'1',
-                        'no_kredit'=>$noPerkiraan->account_name,
-                        'debit'=>$nomKredit,
-                        'kredit'=>$nomKredit,
-                        'created_by'=>$updateBy,
-                        'status'=>'2',
-                        'total_kredit'=>$totKredit
-                    ]);
-            }     
-        } elseif ($record >= '1') {
-            $lastPayment = $dataPembayaran->lastBayar;
-            $status = "4";
-            $mBayar = '8';
-            DB::table('tr_return_record')
-                ->insert([
-                    'trx_code' => $noBill,
-                    'last_payment' => $lastPayment,
-                    'new_payment' => $tBelanja,
-                    'return_date' => now(),
-                    'update_by' => $updateBy
-                ]);
-        } elseif ($tPembayaran < $tBelanja and $record == '0') {
-            //Cek data pinjaman member
-            $status = "3";
-            $mBayar = '8';
-            $countKredit = DB::table('tr_kredit')
-                ->where([
-                    ['from_member_id', $memberID]
-                ])
-                ->count();
+        //         DB::table('tr_pembayaran_kredit')
+        //             ->insert([
+        //                 'payment_number'=>$noTrx,
+        //                 'periode'=>$datePeriode,
+        //                 'date_payment'=>now(),
+        //                 'member_id'=>$memberID,
+        //                 'no_perkiraan'=>'1',
+        //                 'no_kredit'=>$noPerkiraan->account_name,
+        //                 'debit'=>$nomKredit,
+        //                 'kredit'=>$nomKredit,
+        //                 'created_by'=>$updateBy,
+        //                 'status'=>'2',
+        //                 'total_kredit'=>$totKredit
+        //             ]);
+        //     }     
+        // } elseif ($record >= '1') {
+        //     $lastPayment = $dataPembayaran->lastBayar;
+        //     $status = "4";
+        //     $mBayar = '8';
+        //     DB::table('tr_return_record')
+        //         ->insert([
+        //             'trx_code' => $noBill,
+        //             'last_payment' => $lastPayment,
+        //             'new_payment' => $tBelanja,
+        //             'return_date' => now(),
+        //             'update_by' => $updateBy
+        //         ]);
+        // } elseif ($tPembayaran < $tBelanja and $record == '0') {
+        //     //Cek data pinjaman member
+        //     $status = "3";
+        //     $mBayar = '8';
+        //     $countKredit = DB::table('tr_kredit')
+        //         ->where([
+        //             ['from_member_id', $memberID]
+        //         ])
+        //         ->count();
                 
-            $kreditPlus = $kredit + $absSelisih;
-            DB::table('tr_kredit')
-                ->insert([
-                    'from_payment_code' => $noBill,
-                    'from_member_id' => $memberID,
-                    'nominal' => $tBelanja,
-                    'nom_payed' => $tPembayaran,
-                    'nom_kredit' => $absSelisih,
-                    'nom_last_kredit' => $kredit,
-                    'status' => '1',
-                    'created_at' => now()
-                ]);
-        } else {
-            $status = "2";
-        }
+        //     $kreditPlus = $kredit + $absSelisih;
+        //     DB::table('tr_kredit')
+        //         ->insert([
+        //             'from_payment_code' => $noBill,
+        //             'from_member_id' => $memberID,
+        //             'nominal' => $tBelanja,
+        //             'nom_payed' => $tPembayaran,
+        //             'nom_kredit' => $absSelisih,
+        //             'nom_last_kredit' => $kredit,
+        //             'status' => '1',
+        //             'created_at' => now()
+        //         ]);
+        // } else {
+        //     $status = "2";
+        // }
 
-        DB::table('tr_store')
-            ->where('billing_number', $noBill)
-            ->update([
-                't_bill' => $tBelanja,
-                't_pay' => $tPembayaran,
-                'tr_delivery' => $pengiriman,
-                'ppn' => $ppn2,
-                'ppn_nominal' => $nominalPPN2,
-                'status' => $status,
-                'updated_date' => now(),
-                'is_delete' => '0',
-                'is_return' => '0'
-            ]);
+        // DB::table('tr_store')
+        //     ->where('billing_number', $noBill)
+        //     ->update([
+        //         't_bill' => $tBelanja,
+        //         't_pay' => $tPembayaran,
+        //         'tr_delivery' => $pengiriman,
+        //         'ppn' => $ppn2,
+        //         'ppn_nominal' => $nominalPPN2,
+        //         'status' => $status,
+        //         'updated_date' => now(),
+        //         'is_delete' => '0',
+        //         'is_return' => '0'
+        //     ]);
 
-        DB::table('tr_store_prod_list')
-            ->where([
-                ['from_payment_code', $noBill],
-                ['is_delete', '!=', '1']
-            ])
-            ->update([
-                'status' => $status,
-                'updated_date' => now()
-            ]);
+        // DB::table('tr_store_prod_list')
+        //     ->where([
+        //         ['from_payment_code', $noBill],
+        //         ['is_delete', '!=', '1']
+        //     ])
+        //     ->update([
+        //         'status' => $status,
+        //         'updated_date' => now()
+        //     ]);
 
-        // //INSERT RECORD TRANSAKSI
-        if ($tPembayaran >= $tBelanja) {
-            $paymentRec = $tBelanja;
-        } elseif ($tPembayaran <= $tBelanja) {
-            $paymentRec = $tPembayaran;
-        } else {
-            $paymentRec = '0';
-        }
+        // // //INSERT RECORD TRANSAKSI
+        // if ($tPembayaran >= $tBelanja) {
+        //     $paymentRec = $tBelanja;
+        // } elseif ($tPembayaran <= $tBelanja) {
+        //     $paymentRec = $tPembayaran;
+        // } else {
+        //     $paymentRec = '0';
+        // }
 
-        if ($record == '0') {
-            DB::table('tr_payment_record')
-                ->insert([
-                    'trx_code' => $noBill,
-                    'date_trx' => $trxLastBayar->tr_date,
-                    'member_id' => $memberID,
-                    'total_struk' => $tBelanja,
-                    'total_payment' => $paymentRec,
-                    'trx_method' => $mBayar,
-                    'status' => '4'
-                ]);
-        } else {
-            DB::table('tr_payment_record')
-                ->where('trx_code', $noBill)
-                ->update([
-                    'date_trx' => $trxLastBayar->tr_date,
-                    'member_id' => $memberID,
-                    'total_struk' => $tBelanja,
-                    'total_payment' => $paymentRec,
-                    'trx_method' => $mBayar,
-                    'status' => '4'
-                ]);
-        }
+        // if ($record == '0') {
+        //     DB::table('tr_payment_record')
+        //         ->insert([
+        //             'trx_code' => $noBill,
+        //             'date_trx' => $trxLastBayar->tr_date,
+        //             'member_id' => $memberID,
+        //             'total_struk' => $tBelanja,
+        //             'total_payment' => $paymentRec,
+        //             'trx_method' => $mBayar,
+        //             'status' => '4'
+        //         ]);
+        // } else {
+        //     DB::table('tr_payment_record')
+        //         ->where('trx_code', $noBill)
+        //         ->update([
+        //             'date_trx' => $trxLastBayar->tr_date,
+        //             'member_id' => $memberID,
+        //             'total_struk' => $tBelanja,
+        //             'total_payment' => $paymentRec,
+        //             'trx_method' => $mBayar,
+        //             'status' => '4'
+        //         ]);
+        // }
 
-        //PAYMENT METHOD        
-        //Cek count pembayaran
-        $countMethod = DB::table('tr_payment_method')
-            ->where('core_id_trx', $noBill)
-            ->count();
+        // //PAYMENT METHOD        
+        // //Cek count pembayaran
+        // $countMethod = DB::table('tr_payment_method')
+        //     ->where('core_id_trx', $noBill)
+        //     ->count();
 
-        if (!isset($checkList)) {
-            if ($countMethod == '0') {
-                DB::table('tr_payment_method')
-                    ->insert([
-                        'core_id_trx' => $noBill,
-                        'method_name' => $mBayar,
-                        'bank_transfer' => $bankAccount,
-                        'nominal' => $tBelanja,
-                        'status' => '1',
-                        'card_cus_account' => $accountCusName,
-                        'card_cus_number' => $accountCusNumber
-                    ]);
-            } else {
-                DB::table('tr_payment_method')
-                    ->where('core_id_trx', $noBill)
-                    ->update([
-                        'method_name' => $mBayar,
-                        'bank_transfer' => $bankAccount,
-                        'nominal' => $tBelanja,
-                        'status' => '1',
-                        'card_cus_account' => $accountCusName,
-                        'card_cus_number' => $accountCusNumber
-                    ]);
-            }
-        }
-        $description = "Penjualan " . $cusName;
-        $inInv = '0';
-        $forInputLap = DB::table('trans_product_list_view')
-            ->where([
-                ['from_payment_code', $noBill],
-                ['status','!=','0']
-                ])
-            ->get();
+        // if (!isset($checkList)) {
+        //     if ($countMethod == '0') {
+        //         DB::table('tr_payment_method')
+        //             ->insert([
+        //                 'core_id_trx' => $noBill,
+        //                 'method_name' => $mBayar,
+        //                 'bank_transfer' => $bankAccount,
+        //                 'nominal' => $tBelanja,
+        //                 'status' => '1',
+        //                 'card_cus_account' => $accountCusName,
+        //                 'card_cus_number' => $accountCusNumber
+        //             ]);
+        //     } else {
+        //         DB::table('tr_payment_method')
+        //             ->where('core_id_trx', $noBill)
+        //             ->update([
+        //                 'method_name' => $mBayar,
+        //                 'bank_transfer' => $bankAccount,
+        //                 'nominal' => $tBelanja,
+        //                 'status' => '1',
+        //                 'card_cus_account' => $accountCusName,
+        //                 'card_cus_number' => $accountCusNumber
+        //             ]);
+        //     }
+        // }
+        // $description = "Penjualan " . $cusName;
+        // $inInv = '0';
+        // $forInputLap = DB::table('trans_product_list_view')
+        //     ->where([
+        //         ['from_payment_code', $noBill],
+        //         ['status','!=','0']
+        //         ])
+        //     ->get();
 
-        foreach ($forInputLap as $fil) {
-            $outInv = $fil->qty;
-            $createdBy = $updateBy;
-            $prodId = $fil->product_code;
-            $prodName = $fil->product_name;
-            $satuan = $fil->satuan;
-            $loc = "3";
-            $this->TempInventoryController->insertLapInv($noBill, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc);
-        }
+        // foreach ($forInputLap as $fil) {
+        //     $outInv = $fil->qty;
+        //     $createdBy = $updateBy;
+        //     $prodId = $fil->product_code;
+        //     $prodName = $fil->product_name;
+        //     $satuan = $fil->satuan;
+        //     $loc = "3";
+        //     $this->TempInventoryController->insertLapInv($noBill, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc);
+        // }
     }
 
     public function printTemplateCashier($noBill, $typeCetak)
