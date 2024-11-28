@@ -419,9 +419,9 @@
                 $("#notiveDisplay").html("Pembayaran hutang tidak boleh kurang dari nominal : Rp. "+cosKreditPlusBill+". Transaksi pembayaran hutang tanpa pelunasan dapat dilakukan secara parsial di menu PELUNASAN [F9]. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
             }
             else {
-                inputPembayaran(billPembayaran, typeCetak);
+                // inputPembayaran(billPembayaran, typeCetak);
             }
-            // alert(replaceTotalPembayaran+"-"+valBelanja);
+            alert(replaceTotalPembayaran+"<"+cosKreditPlusBill+";"+replaceTotalPembayaran+">"+tBelanja);
         })
         
         document.addEventListener('keydown', function(event) {
@@ -448,9 +448,9 @@
                     $("#notiveDisplay").html("Pembayaran hutang tidak boleh kurang dari nominal : Rp. "+cosKreditPlusBill+". Transaksi pembayaran hutang tanpa pelunasan dapat dilakukan secara parsial di menu PELUNASAN [F9]. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
                 }
                 else {
-                    inputPembayaran(billPembayaran, typeCetak);
+                    // inputPembayaran(billPembayaran, typeCetak);
                 }
-                // alert(replaceTotalPembayaran+"-"+valBelanja);
+                alert(replaceTotalPembayaran+"<"+cosKreditPlusBill+";"+replaceTotalPembayaran+">"+tBelanja);
             }
             
             if (event.keyCode === 27) {
