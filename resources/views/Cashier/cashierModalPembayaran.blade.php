@@ -57,7 +57,7 @@
                                     <input type="text" class="form-control form-control-lg  font-weight-bold" name="kredit" id="kredit" value="{{$nominalKredit}}" readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <input class="custom-control-input" type="checkbox" id="lunasiHutang" name="lunasiHutang" value="1" onclick="myFunctionLunasiHutang()">
+                                    <input class="custom-control-input pl-2" type="checkbox" id="lunasiHutang" name="lunasiHutang" value="1">
                                     <label for="lunasiHutang" class="custom-control-label text-muted">Lunasi Hutang</label>
                                 </div>
                             </div>
@@ -419,13 +419,13 @@
                     alertify.message('Transaksi di batalkan.');
                 }).set({title:"Konfirmasi Limit Hutang"});
             }
-            else if (replaceTotalPembayaran < replaceKredit && replaceTotalPembayaran > tBelanja) {
+            else if (replaceTotalPembayaran < replaceKredit) {
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Untuk pembayaran kurang dari nominal : Rp. "+tKredit+", gunakan menu PELUNASAN [F9] untuk pembayaran secara partial. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
             }
             else {
                 // inputPembayaran(billPembayaran, typeCetak);
-            }
+            }            
             alert(replaceTotalPembayaran+"<"+cosKreditPlusBill+";"+replaceTotalPembayaran+">"+tBelanja);
         })
         
