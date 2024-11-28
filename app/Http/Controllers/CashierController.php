@@ -2029,6 +2029,7 @@ class CashierController extends Controller
         $checkBoxPoint = $dataPembayaran->pointBelanja;
         $memberID = $dataPembayaran->memberID;
         $nilaiPoint = '0';
+        $kreditPlusBelanja = $kredit + $tBelanja;
 
         if (isset($checkBoxPoint)) {
             $tPembayaran = $fieldBayar + $checkBoxPoint;
@@ -2092,7 +2093,7 @@ class CashierController extends Controller
             $status = "4";
             $mBayar = $methodPembayaran;
         }
-        elseif ($tPembayaran >= $tplusKredit){
+        elseif ($tPembayaran >= $kreditPlusBelanja){
             $status = "4";
             $mBayar = $methodPembayaran;
 
@@ -2150,7 +2151,7 @@ class CashierController extends Controller
                         'total_kredit'=>$totKredit
                     ]);
             }
-        }elseif ($tPembayaran < $tplusKredit AND $tPembayaran > $tBelanja) {
+        }elseif ($tPembayaran < $kreditPlusBelanja AND $tPembayaran > $tBelanja) {
             $msg = array('warning' => 'Nominal pembayaran kredit tidak sesuai.
                 Untuk melakukan pembayaran kredit secara partial, dapat digunakan pada menu Pelunasan [F9]');            
         } elseif ($record >= '1') {
