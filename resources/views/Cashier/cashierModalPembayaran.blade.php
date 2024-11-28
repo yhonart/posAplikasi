@@ -57,7 +57,7 @@
                                     <input type="text" class="form-control form-control-lg  font-weight-bold" name="kredit" id="kredit" value="{{$nominalKredit}}" readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <input class="custom-control-input pl-2" type="checkbox" id="lunasiHutang" name="lunasiHutang" value="1">
+                                    <input class="custom-control-input pl-4 pr-4" type="checkbox" id="lunasiHutang" name="lunasiHutang" value="1">
                                     <label for="lunasiHutang" class="custom-control-label text-muted">Lunasi Hutang</label>
                                 </div>
                             </div>
