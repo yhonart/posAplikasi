@@ -26,7 +26,7 @@
             <div class="card-body">
                 <div class="row mb-1">
                     <div class="col-md-12">
-                        <span class="notive-display bg-danger p-2 rounded rounded-2 elevation-2 font-weight-bold" id="notiveDisplay" style="display:none;"></span>
+                        <p class="notive-display bg-danger p-2 rounded rounded-2 elevation-2 font-weight-bold" id="notiveDisplay" style="display:none;"></p>
                     </div>
                 </div>                
                 <!--<p class="bg-danger p-4">PROSES PEMBAYARAN SEDANG DALAM PERBAIKAN, MOHON UNTUK TIDAK MELAKUKAN TRANSAKSI !</p>-->
@@ -421,7 +421,7 @@
             else {
                 // inputPembayaran(billPembayaran, typeCetak);
             }
-            alert(replaceTotalPembayaran+"<"+cosKreditPlusBill+";"+replaceTotalPembayaran+">"+tBelanja);
+            //alert(replaceTotalPembayaran+"<"+cosKreditPlusBill+";"+replaceTotalPembayaran+">"+tBelanja);
         })
         
         document.addEventListener('keydown', function(event) {
