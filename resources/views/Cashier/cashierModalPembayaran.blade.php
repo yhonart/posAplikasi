@@ -466,7 +466,7 @@
                 else {
                     inputPembayaran(billPembayaran, typeCetak);
                 }
-                alert(replaceTotalPembayaran+"<"+replaceKredit+";"+checkBoxLunas);
+                alert(replaceTotalPembayaran+">="+replaceKredit+";"+checkBoxLunas.checked);
             }
             
             if (event.keyCode === 27) {
