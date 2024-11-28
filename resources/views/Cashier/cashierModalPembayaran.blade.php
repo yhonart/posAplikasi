@@ -426,7 +426,7 @@
             else {
                 // inputPembayaran(billPembayaran, typeCetak);
             }            
-            alert(replaceTotalPembayaran+"<"+cosKreditPlusBill+";"+replaceTotalPembayaran+">"+tBelanja);
+            alert(replaceTotalPembayaran+"<"+replaceKredit+";"+replaceTotalPembayaran+">"+tBelanja);
         })
         
         document.addEventListener('keydown', function(event) {
@@ -449,14 +449,14 @@
                         window.location.reload();
                     }).set({title:"Konfirmasi Limit Hutang"});
                 }
-                else if (replaceTotalPembayaran < cosKreditPlusBill && replaceTotalPembayaran > replacetBayar) {
+                else if (replaceTotalPembayaran < replaceKredit) {
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Pembayaran hutang tidak boleh kurang dari nominal hutang sebelumnya : Rp. "+tKredit+". Transaksi pembayaran hutang tanpa pelunasan dapat dilakukan secara parsial di menu PELUNASAN [F9]. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
                 }
                 else {
                     // inputPembayaran(billPembayaran, typeCetak);
                 }
-                alert(replaceTotalPembayaran+"<"+cosKreditPlusBill+";"+replaceTotalPembayaran+">"+replacetBayar);
+                alert(replaceTotalPembayaran+"<"+replaceKredit+";"+replaceTotalPembayaran+">"+replacetBayar);
             }
             
             if (event.keyCode === 27) {
