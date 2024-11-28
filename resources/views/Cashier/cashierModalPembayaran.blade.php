@@ -24,213 +24,226 @@
             </div>
             
             <div class="card-body">
+                <div class="row mb-1">
+                    <div class="col-md-12">
+                        <span class="notive-display bg-danger p-2 rounded rounded-2 elevation-2 font-weight-bold" id="notiveDisplay" style="display:none;"></span>
+                    </div>
+                </div>                
                 <!--<p class="bg-danger p-4">PROSES PEMBAYARAN SEDANG DALAM PERBAIKAN, MOHON UNTUK TIDAK MELAKUKAN TRANSAKSI !</p>-->
-                <p style="display:none;">'dataBilling','noBill','paymentMethod','tBayar','tBill'</p>
-                <h1 class="bg-light p-4 elevation-1"><small>Total Belanja </small><span class="float-right"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($totalBayar->totalBilling,0,',','.')}}</span></h1>
-                <form id="formPembayaran">
-                    <input type="hidden" name="billPembayaran" id="billPembayaran" value="{{$noBill}}">
-                    <input type="hidden" name="memberID" id="memberID" value="{{$dataBilling->member_id}}">
-                    <input type="hidden" name="record" id="record" value="{{$cekRecord}}">
-                    <input type="hidden" name="cusName" id="cusName" value="{{$dataBilling->customer_name}}">
-                    <input type="hidden" name="tItem" id="tItem" value="{{$dataBilling->customer_name}}">
-                    @if($cekRecord=='0')
-                        <input type="hidden" name="lastBayar" id="lastBayar" value="0">
-                    @else
-                        <input type="hidden" name="lastBayar" id="lastBayar" value="{{$cekTotalBayar->total_struk}}">
-                    @endif
-                    <input type="hidden" name="tBelanja" id="tBelanja" value="{{$totalBayar->totalBilling}}">
-                    
-                    <div class="form-group row mb-1 d-flex align-items-center">
-                        <label class="col-md-4 text-right">HUTANG SEBELUMNYA</label>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control form-control-lg  font-weight-bold" name="kredit" id="kredit" value="{{$nominalKredit}}" readonly>
-                        </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p style="display:none;">'dataBilling','noBill','paymentMethod','tBayar','tBill'</p>
+                        <h1 class="bg-light p-4 elevation-1"><small>Total Belanja </small><span class="float-right"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($totalBayar->totalBilling,0,',','.')}}</span></h1>
                     </div>
-                    <div class="form-group row mb-1 d-flex align-items-center">
-                        <label class="col-md-4 text-right">TOTAL YANG HARUS DIBAYAR</label>
-                        <div class="col-md-4">
-                            <?php
-                                $tPlusKredit = $totalBayar->totalBilling+$nominalKredit
-                            ?>
-                            <input type="text" class="form-control form-control-lg  font-weight-bold" name="tPlusKredit" id="tPlusKredit" value="{{$tPlusKredit}}" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
-                        <label class="col-md-4 text-right">BAYAR</label>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control form-control-lg  font-weight-bold" name="tPembayaran" id="tPembayaran" value="{{$totalBayar->totalBilling}}" autocomplete="off" onClick="this.select();">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
-                        <label class="col-md-4 text-right">Point Belanja</label>
-                        <div class="col-md-4">
-                            <div class="custom-control custom-checkbox">
-                                <?php
-                                    if ($pointMember->point <> '') {
-                                        $pointPlg = $pointMember->point;
-                                    }
-                                    else {
-                                        $pointPlg = '0';                                        
-                                    }
-                                ?>
-                                <input class="custom-control-input" type="checkbox" id="pointBelanja" name="pointBelanja" value="{{$pointPlg}}" onclick="myFunctionAddPoint()">
-                                <label for="pointBelanja" class="custom-control-label text-muted">Point yang bisa digunakan : Rp. {{$pointPlg}},-</label>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="form-group row mb-1 d-flex align-items-center" id="divMethod1">
-                        <label class="col-md-4 text-right">Metode Pembayaran</label>
-                        <div class="col-md-4">
-                            <select name="metodePembayaran1" id="metodePembayaran1" class="form-control ">
-                                @foreach($paymentMethod as $pM)
-                                    <option value="{{$pM->idm_payment_method}}">
-                                        {{$pM->method_name}}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <input type="text" name="cardName1" id="cardName1" class="form-control " placeholder="Nama Bank" style="display:none;">
-                            <input type="text" name="cardNumber1" id="cardNumber1" class="form-control " placeholder="Nomor Kartu" style="display:none;">
-                            <select name="bankAccount1" id="bankAccount1" class="form-control " style="display:none;">
-                                <option value="0">Pilih Nama Bank</option>
-                                @foreach($bankAccount as $bA)
-                                    <option value="{{$bA->idm_payment}}">
-                                        {{$bA->bank_name}} - {{$bA->account_number}} a.n {{$bA->account_name}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <small class="text-danger">! Abaikan jika  menggunakan 2 metode pembayaran / pembayaran 0 atau kredit</small>
-                        </div>
-                    </div>
-                    @include('Global.global_spinner')
-                    <div class="form-group row mb-1 d-flex align-items-center">
-                        <label class="col-4 text-right">KEMBALI/KREDIT</label>
-                        <div class="col-4">
-                            <input type="text" class="form-control border border-4 border-danger " name="nomSelisih" id="nomSelisih" value="0" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group row align-items-cente">
-                        <label class="col-4 text-right">Pengiriman</label>
-                        <div class="col-4">
-                            <select name="pengiriman" id="pengiriman" class="form-control ">
-                                @foreach($pengiriman as $delv)
-                                    <option value="{{$delv->delivery_name}}">
-                                        {{$delv->delivery_name}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row align-items-center mb-4">
-                        <label for="ppn2" class="form-label col-4 text-right">PPN</label>
-                        <div class="col-2">
-                            <div class="input-group">
-                                <input type="text" class="form-control " name="ppn2" id="ppn2">
-                                    <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
-                                </div>
-                            </div>            
-                        </div>
-                        <div class="col-2">
-                            <input type="text" class="form-control " name="nominalPPN2" id="nominalPPN2">
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" name="radioMethod" id="radioMethod" value="1" onclick="myFunctionChecked()">
-                                <label class="form-check-label">Metode Pembayaran Lebih Dari 2</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-12">
-                            <table class="table table-sm table-borderless" id="tableMethod" style="display:none;">
-                                <tbody id="recordMethod"></tbody>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-right font-weight-bold">Metode Pembayaran</td>
-                                        <td>
-                                            <select name="metodePembayaran" id="metodePembayaran" class="form-control ">
-                                                @foreach($paymentMethod as $pM)
-                                                    <option value="{{$pM->idm_payment_method}}">
-                                                        {{$pM->method_name}}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control type-account " name="nominalBayar" id="nominalBayar" value="{{$nilaiNextBayar}}" autocomplete="off">
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-info " id="addPaymentMethod"><i class="fas fa-plus"></i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td>
-                                            <select name="bankAccount" id="bankAccount" class="form-control " style="display:none;">
-                                                <option value="0"></option>
-                                                @foreach($bankAccount as $bA)
-                                                    <option value="{{$bA->idm_payment}}">
-                                                        {{$bA->bank_name}} - {{$bA->account_number}} a.n {{$bA->account_name}}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>
-                                            <input type="text" name="cardName" id="cardName" class="form-control " placeholder="Nama Bank" style="display:none;">
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>
-                                            <input type="text" name="cardNumber" id="cardNumber" class="form-control " placeholder="Nomor Kartu" style="display:none;">
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12 col-md-3">
-                            <div class="from-group">
-                                <select name="typeCetak" id="typeCetak" class="form-control ">
-                                    <option value="1">Cetak Struk</option>
-                                    <option value="2">Cetak Faktur</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <p id="notif-error"></p>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <a class="btn bg-success  font-weight-bold" id="btnSimpanTrx">
-                                [Ctrl+S] Simpan & Cetak
-                            </a>
-                            <a class="btn bg-primary  font-weight-bold" id="btnBatalTrx" data-dismiss="modal">
-                                [ESC] Tutup Pembayaran
-                            </a>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form id="formPembayaran">
+                            <input type="hidden" name="billPembayaran" id="billPembayaran" value="{{$noBill}}">
+                            <input type="hidden" name="memberID" id="memberID" value="{{$dataBilling->member_id}}">
+                            <input type="hidden" name="record" id="record" value="{{$cekRecord}}">
+                            <input type="hidden" name="cusName" id="cusName" value="{{$dataBilling->customer_name}}">
+                            <input type="hidden" name="tItem" id="tItem" value="{{$dataBilling->customer_name}}">
+                            @if($cekRecord=='0')
+                                <input type="hidden" name="lastBayar" id="lastBayar" value="0">
+                            @else
+                                <input type="hidden" name="lastBayar" id="lastBayar" value="{{$cekTotalBayar->total_struk}}">
+                            @endif
+                            <input type="hidden" name="tBelanja" id="tBelanja" value="{{$totalBayar->totalBilling}}">
                             
-                        </div>
+                            <div class="form-group row mb-1 d-flex align-items-center">
+                                <label class="col-md-4 text-right">HUTANG SEBELUMNYA</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control form-control-lg  font-weight-bold" name="kredit" id="kredit" value="{{$nominalKredit}}" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-1 d-flex align-items-center">
+                                <label class="col-md-4 text-right">TOTAL YANG HARUS DIBAYAR</label>
+                                <div class="col-md-4">
+                                    <?php
+                                        $tPlusKredit = $totalBayar->totalBilling+$nominalKredit
+                                    ?>
+                                    <input type="text" class="form-control form-control-lg  font-weight-bold" name="tPlusKredit" id="tPlusKredit" value="{{$tPlusKredit}}" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
+                                <label class="col-md-4 text-right">BAYAR</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control form-control-lg  font-weight-bold" name="tPembayaran" id="tPembayaran" value="{{$totalBayar->totalBilling}}" autocomplete="off" onClick="this.select();">
+                                </div>
+                            </div>
+                            <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
+                                <label class="col-md-4 text-right">Point Belanja</label>
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-checkbox">
+                                        <?php
+                                            if ($pointMember->point <> '') {
+                                                $pointPlg = $pointMember->point;
+                                            }
+                                            else {
+                                                $pointPlg = '0';                                        
+                                            }
+                                        ?>
+                                        <input class="custom-control-input" type="checkbox" id="pointBelanja" name="pointBelanja" value="{{$pointPlg}}" onclick="myFunctionAddPoint()">
+                                        <label for="pointBelanja" class="custom-control-label text-muted">Point yang bisa digunakan : Rp. {{$pointPlg}},-</label>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group row mb-1 d-flex align-items-center" id="divMethod1">
+                                <label class="col-md-4 text-right">Metode Pembayaran</label>
+                                <div class="col-md-4">
+                                    <select name="metodePembayaran1" id="metodePembayaran1" class="form-control ">
+                                        @foreach($paymentMethod as $pM)
+                                            <option value="{{$pM->idm_payment_method}}">
+                                                {{$pM->method_name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <input type="text" name="cardName1" id="cardName1" class="form-control " placeholder="Nama Bank" style="display:none;">
+                                    <input type="text" name="cardNumber1" id="cardNumber1" class="form-control " placeholder="Nomor Kartu" style="display:none;">
+                                    <select name="bankAccount1" id="bankAccount1" class="form-control " style="display:none;">
+                                        <option value="0">Pilih Nama Bank</option>
+                                        @foreach($bankAccount as $bA)
+                                            <option value="{{$bA->idm_payment}}">
+                                                {{$bA->bank_name}} - {{$bA->account_number}} a.n {{$bA->account_name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <small class="text-danger">! Abaikan jika  menggunakan 2 metode pembayaran / pembayaran 0 atau kredit</small>
+                                </div>
+                            </div>
+                            @include('Global.global_spinner')
+                            <div class="form-group row mb-1 d-flex align-items-center">
+                                <label class="col-4 text-right">KEMBALI/KREDIT</label>
+                                <div class="col-4">
+                                    <input type="text" class="form-control border border-4 border-danger " name="nomSelisih" id="nomSelisih" value="0" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-cente">
+                                <label class="col-4 text-right">Pengiriman</label>
+                                <div class="col-4">
+                                    <select name="pengiriman" id="pengiriman" class="form-control ">
+                                        @foreach($pengiriman as $delv)
+                                            <option value="{{$delv->delivery_name}}">
+                                                {{$delv->delivery_name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center mb-4">
+                                <label for="ppn2" class="form-label col-4 text-right">PPN</label>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control " name="ppn2" id="ppn2">
+                                            <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
+                                        </div>
+                                    </div>            
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" class="form-control " name="nominalPPN2" id="nominalPPN2">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="radioMethod" id="radioMethod" value="1" onclick="myFunctionChecked()">
+                                        <label class="form-check-label">Metode Pembayaran Lebih Dari 2</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-sm table-borderless" id="tableMethod" style="display:none;">
+                                        <tbody id="recordMethod"></tbody>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-right font-weight-bold">Metode Pembayaran</td>
+                                                <td>
+                                                    <select name="metodePembayaran" id="metodePembayaran" class="form-control ">
+                                                        @foreach($paymentMethod as $pM)
+                                                            <option value="{{$pM->idm_payment_method}}">
+                                                                {{$pM->method_name}}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control type-account " name="nominalBayar" id="nominalBayar" value="{{$nilaiNextBayar}}" autocomplete="off">
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info " id="addPaymentMethod"><i class="fas fa-plus"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <select name="bankAccount" id="bankAccount" class="form-control " style="display:none;">
+                                                        <option value="0"></option>
+                                                        @foreach($bankAccount as $bA)
+                                                            <option value="{{$bA->idm_payment}}">
+                                                                {{$bA->bank_name}} - {{$bA->account_number}} a.n {{$bA->account_name}}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <input type="text" name="cardName" id="cardName" class="form-control " placeholder="Nama Bank" style="display:none;">
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <input type="text" name="cardNumber" id="cardNumber" class="form-control " placeholder="Nomor Kartu" style="display:none;">
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12 col-md-3">
+                                    <div class="from-group">
+                                        <select name="typeCetak" id="typeCetak" class="form-control ">
+                                            <option value="1">Cetak Struk</option>
+                                            <option value="2">Cetak Faktur</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p id="notif-error"></p>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <a class="btn bg-success  font-weight-bold" id="btnSimpanTrx">
+                                        [Ctrl+S] Simpan & Cetak
+                                    </a>
+                                    <a class="btn bg-primary  font-weight-bold" id="btnBatalTrx" data-dismiss="modal">
+                                        [ESC] Tutup Pembayaran
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -454,9 +467,15 @@
                 contentType: false,
                 processData: false,
                 success: function (data) {
-                    $(".LOAD-SPINNER").fadeOut('slow');
-                    window.open(urlPrint,'_blank');
-                    window.location.reload();
+                    if (data.warning) {
+                        $(".notive-display").fadeIn();
+                        $("#notiveDisplay").html(data.warning);
+                    }
+                    else{
+                        $(".LOAD-SPINNER").fadeOut('slow');
+                        window.open(urlPrint,'_blank');
+                        window.location.reload();
+                    }
                 }
             });
         }

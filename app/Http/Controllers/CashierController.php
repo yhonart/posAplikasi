@@ -2092,7 +2092,7 @@ class CashierController extends Controller
             $status = "4";
             $mBayar = $methodPembayaran;
         }
-        elseif ($tplusKredit >= $tPembayaran){
+        elseif ($tPembayaran >= $tplusKredit){
             $status = "4";
             $mBayar = $methodPembayaran;
 
@@ -2103,8 +2103,56 @@ class CashierController extends Controller
                     ['nom_kredit','!=','0']
                 ])
                 ->get();
-            
-            
+
+            $noPerkiraan = DB::table('account_code')
+                    ->where('account_type','1')
+                    ->first();
+
+            foreach ($cekHutang as $ch) {
+                $nomKredit = $ch->nom_kredit;
+                $idTrKredit = $ch->idtr_kredit;
+                $noTrx = $ch->from_payment_code;
+                $totKredit = $ch->nominal;
+                $datePeriode = date("Ym");
+
+                DB::table('tr_kredit')
+                    ->where([
+                        ['idtr_kredit',$idTrKredit],
+                        ['nom_kredit','!=','0']
+                    ])
+                    ->update([
+                        'nom_kredit'=>'0',
+                        'nom_payed'=>$nomKredit
+                    ]);
+
+                DB::table('tr_kredit_record')
+                    ->insert([
+                        'trx_code'=>$noTrx,
+                        'date_trx'=>now(),
+                        'member_id'=>$memberID,
+                        'total_struk'=>$nomKredit,
+                        'total_payment'=>$nomKredit,
+                        'status'=>'2'
+                    ]);
+
+                DB::table('tr_pembayaran_kredit')
+                    ->insert([
+                        'payment_number'=>$noTrx,
+                        'periode'=>$datePeriode,
+                        'date_payment'=>now(),
+                        'member_id'=>$memberID,
+                        'no_perkiraan'=>'1',
+                        'no_kredit'=>$noPerkiraan->account_name,
+                        'debit'=>$nomKredit,
+                        'kredit'=>$nomKredit,
+                        'created_by'=>$updateBy,
+                        'status'=>'2',
+                        'total_kredit'=>$totKredit
+                    ]);
+            }
+        }elseif ($tPembayaran < $tplusKredit AND $tPembayaran > $tBelanja) {
+            $msg = array('warning' => 'Nominal pembayaran kredit tidak sesuai.
+                Untuk melakukan pembayaran kredit secara partial, dapat digunakan pada menu Pelunasan [F9]');            
         } elseif ($record >= '1') {
             $lastPayment = $dataPembayaran->lastBayar;
             $status = "4";
