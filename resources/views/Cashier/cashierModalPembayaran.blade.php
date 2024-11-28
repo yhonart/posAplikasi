@@ -435,7 +435,7 @@
                 let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
                     replaceKredit = tKredit.replace(/\./g, "");
 
-                let cosKreditPlusBill = tBelanja + replaceKredit;
+                let cosKreditPlusBill = parseInt(tBelanja) + parseInt(replaceKredit);
 
                 if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja) {
                     alertify
