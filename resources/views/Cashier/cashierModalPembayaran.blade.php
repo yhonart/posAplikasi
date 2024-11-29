@@ -454,9 +454,6 @@
         let billPembayaran = "{{$noBill}}",
             valBelanja = "{{$totalBayar->totalBilling}}",
             valHutang = "{{$nominalKredit}}",
-            valBayarTunai = $("#tPembayaran").val(),
-            valPengurangan = valBelanja - valBayarTunai
-            totalHutang = parseInt(valHutang) + parseInt(valPengurangan),
             kreditLimit = "{{$dataBilling->kredit_limit}}";
         
         $("#btnBatalTrx").click(function(){
@@ -473,6 +470,9 @@
             let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
                 replaceKredit = tKredit.replace(/\./g, "");
             //alert(kreditLimit);
+
+            let penguranganTunai = parseInt(tBelanja) - parseInt(replaceTotalPembayaran),
+                totalHutang = parseInt(tKredit) + parseInt(penguranganTunai);
 
             if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
                 alertify
@@ -498,15 +498,16 @@
             if (event.ctrlKey && event.key === 's') { // Cetak
                 event.preventDefault();
                 let typeCetak = $("#typeCetak").val(),
-                totalPembayaran = $("#tPembayaran").val(),
-                tBelanja = $("#tBelanja").val(),
-                tKredit = $("#kredit").val();
+                    totalPembayaran = $("#tPembayaran").val(),
+                    tBelanja = $("#tBelanja").val(),
+                    tKredit = $("#kredit").val();
                 let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
-                replaceKredit = tKredit.replace(/\./g, ""),
-                replacetBayar = tKredit.replace(/\./g, "");
+                    replaceKredit = tKredit.replace(/\./g, "");
+
+                let penguranganTunai = parseInt(tBelanja) - parseInt(replaceTotalPembayaran),
+                totalHutang = parseInt(tKredit) + parseInt(penguranganTunai);
                 
-                let cosKreditPlusBill = parseInt(replacetBayar) + parseInt(replaceKredit);
-                alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + valPengurangan + " / " + replaceTotalPembayaran + " / " + valHutang);
+                alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + penguranganTunai + " / " + replaceTotalPembayaran + " / " + replaceKredit);
 
                 if (parseInt(totalHutang) > parseInt(kreditLimit) && parseInt(kreditLimit) !== '0' && parseInt(replaceTotalPembayaran) < parseInt(valBelanja) && checkBoxLunas.checked == false) {
                     alertify
