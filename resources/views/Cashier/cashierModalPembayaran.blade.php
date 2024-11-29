@@ -276,7 +276,7 @@
         if (navigator.clipboard && window.isSecureContext) {
             // navigator clipboard api method'
             el_this.html("Copied! " + textToCopy);
-            timer = setTimeout(function(){el_this.html('<i class="far fa-copy"></i> Copied!');}, 500);
+            timer = setTimeout(function(){el_this.html('<i class="far fa-copy"></i> Copied!');}, 500);            
             return navigator.clipboard.writeText(textToCopy);
         } else {
             // text area method
@@ -299,7 +299,6 @@
                 textArea.remove();
             });
         }
-        $("#tPembayaran").val(textToCopy);
     })
 
     // function copyFunction() {
