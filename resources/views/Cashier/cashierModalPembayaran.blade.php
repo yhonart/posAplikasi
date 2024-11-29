@@ -299,6 +299,7 @@
                 textArea.remove();
             });
         }
+        $("#tPembayaran").val(textToCopy);
     })
 
     // function copyFunction() {
