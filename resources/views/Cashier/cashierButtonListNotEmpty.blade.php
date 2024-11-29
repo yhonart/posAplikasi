@@ -172,10 +172,6 @@
         el_modal_all.on('hidden.bs.modal', function () {
             $(this).find(id_modal_content).html('');
         });
-        el_modal_all.on('show', function () {
-            backdrop: 'static',  
-            keyboard: false
-        });
         
         const url_cashier = "{{route('Cashier')}}";
         var trxCode = "{{$trPaymentInfo->billing_number}}";
