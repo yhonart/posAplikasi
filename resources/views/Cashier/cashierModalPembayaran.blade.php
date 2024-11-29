@@ -82,7 +82,7 @@
                                 </div>
                             </div>
                             <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
-                                <label class="col-md-4 text-right">Point Belanja</label>
+                                <label class="col-md-4 text-right">POINT BELANJA</label>
                                 <div class="col-md-4">
                                     <div class="custom-control custom-checkbox">
                                         <?php
@@ -101,7 +101,7 @@
                             </div>
                             <hr>
                             <div class="form-group row mb-1 d-flex align-items-center" id="divMethod1">
-                                <label class="col-md-4 text-right">Metode Pembayaran</label>
+                                <label class="col-md-4 text-right">METODE PEMBAYARAN</label>
                                 <div class="col-md-4">
                                     <select name="metodePembayaran1" id="metodePembayaran1" class="form-control ">
                                         @foreach($paymentMethod as $pM)
@@ -113,7 +113,7 @@
                                     <input type="text" name="cardName1" id="cardName1" class="form-control " placeholder="Nama Bank" style="display:none;">
                                     <input type="text" name="cardNumber1" id="cardNumber1" class="form-control " placeholder="Nomor Kartu" style="display:none;">
                                     <select name="bankAccount1" id="bankAccount1" class="form-control " style="display:none;">
-                                        <option value="0">Pilih Nama Bank</option>
+                                        <option value="0">NAMA BANK</option>
                                         @foreach($bankAccount as $bA)
                                             <option value="{{$bA->idm_payment}}">
                                                 {{$bA->bank_name}} - {{$bA->account_number}} a.n {{$bA->account_name}}
@@ -133,7 +133,7 @@
                                 </div>
                             </div>
                             <div class="form-group row align-items-cente">
-                                <label class="col-4 text-right">Pengiriman</label>
+                                <label class="col-4 text-right">PENGIRIMAN</label>
                                 <div class="col-4">
                                     <select name="pengiriman" id="pengiriman" class="form-control ">
                                         @foreach($pengiriman as $delv)
