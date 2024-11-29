@@ -505,7 +505,7 @@
                     replaceKredit = tKredit.replace(/\./g, "");
 
                 let penguranganTunai = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
-                totalHutang = parseInt(tKredit) + parseInt(penguranganTunai);
+                totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai);
                 
                 alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + penguranganTunai + " / " + replaceTotalPembayaran + " / " + replaceKredit);
 
