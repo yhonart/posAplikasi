@@ -497,7 +497,7 @@
         document.addEventListener('keydown', function(event) {
             if (event.ctrlKey && event.key === 's') { // Cetak
                 event.preventDefault();
-                alert (totalHutang+">"+kreditLimit);
+                alert (totalHutang+">"+kreditLimit+" / "+valBelanja);
                 let typeCetak = $("#typeCetak").val(),
                     totalPembayaran = $("#tPembayaran").val(),
                     tBelanja = $("#tBelanja").val(),
