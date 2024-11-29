@@ -112,7 +112,7 @@
     </div>
 </div>
 
-<div class="modal MODAL-GLOBAL" id="modal-global-large" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal MODAL-GLOBAL" id="modal-global-large" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop='static'>
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
       <div class="modal-content MODAL-CONTENT-GLOBAL">
           <!-- Content will be placed here -->
