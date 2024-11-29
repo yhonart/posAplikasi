@@ -128,11 +128,7 @@
     $(function(){
         $("#pelanggan").select2({
             width: 'resolve'
-        });
-        $('#modal-global-large').modal({  
-            backdrop: 'static',  
-            keyboard: false // Optional: prevents closing the modal with the keyboard  
-        });  
+        });          
     })
     $(document).ready(function(){
         $.ajaxSetup({
@@ -203,6 +199,10 @@
             var t_Bayar = $("#tBayar").val(),
                 Bayar = t_Bayar.replace(/\./g, "");
                 el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/modalPembayaran/"+no_Struck+"/"+hidden_tBelanja+"/"+Bayar);
+                el_modal_large.modal({
+                    backdrop: 'static',  
+                    keyboard: false
+                });
         });
         $("#btnPenjualan").click(function(){
             event.preventDefault();
