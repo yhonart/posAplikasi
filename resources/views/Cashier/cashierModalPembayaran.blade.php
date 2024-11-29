@@ -508,7 +508,7 @@
 
                 let cosKreditPlusBill = parseInt(replacetBayar) + parseInt(replaceKredit);
 
-                if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
+                if (parseInt(totalHutang) > parseInt(kreditLimit) && parseInt(kreditLimit) !== '0' && parseInt(replaceTotalPembayaran) < parseInt(valBelanja) && checkBoxLunas.checked == false) {
                     alertify
                     .alert("Hutang Customer Sudah Melewati Limit ! " + totalHutang, function(){
                         window.location.reload();
