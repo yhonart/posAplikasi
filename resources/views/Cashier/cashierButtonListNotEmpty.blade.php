@@ -172,6 +172,10 @@
         el_modal_all.on('hidden.bs.modal', function () {
             $(this).find(id_modal_content).html('');
         });
+        el_modal_all.on('show', function () {
+            backdrop: 'static',  
+            keyboard: false
+        });
         
         const url_cashier = "{{route('Cashier')}}";
         var trxCode = "{{$trPaymentInfo->billing_number}}";
@@ -199,10 +203,7 @@
             var t_Bayar = $("#tBayar").val(),
                 Bayar = t_Bayar.replace(/\./g, "");
                 el_modal_large.modal('show').find(id_modal_content).load(url_cashier + "/buttonAction/modalPembayaran/"+no_Struck+"/"+hidden_tBelanja+"/"+Bayar);
-                el_modal_large.modal({
-                    backdrop: 'static',  
-                    keyboard: false
-                });
+                
         });
         $("#btnPenjualan").click(function(){
             event.preventDefault();
