@@ -275,8 +275,8 @@
         // navigator clipboard api needs a secure context (https)
         if (navigator.clipboard && window.isSecureContext) {
             // navigator clipboard api method'
-            el_this.html("Copied!");
-            timer = setTimeout(function(){el_this.html('<i class="far fa-copy"></i>');}, 500);
+            el_this.html("Copied! " + textToCopy);
+            timer = setTimeout(function(){el_this.html('<i class="far fa-copy"></i> Copied!');}, 500);
             return navigator.clipboard.writeText(textToCopy);
         } else {
             // text area method
