@@ -271,10 +271,12 @@
         const textToCopy = document.getElementById('tPlusKredit').value;  
         navigator.clipboard.writeText(textToCopy)  
             .then(() => {  
-                alert('Nominal berhasil di copy');  
+                $(".notive-display").fadeIn();
+                $("#notiveDisplay").html("Nominal berhasil tercopy. : "+textToCopy); 
             })  
             .catch(err => {  
-                console.error('Error copying text: ', err);  
+                $(".notive-display").fadeIn();
+                $("#notiveDisplay").html("Error copying text. : "+err); 
             });  
     });  
 
