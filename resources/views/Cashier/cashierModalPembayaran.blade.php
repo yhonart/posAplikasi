@@ -508,7 +508,7 @@
 
                 if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
                     alertify
-                    .alert("Hutang Customer Sudah Melewati Limit !", function(){
+                    .alert("Hutang Customer Sudah Melewati Limit ! " + totalHutang, function(){
                         window.location.reload();
                     }).set({title:"Konfirmasi Limit Hutang"});
                 }
