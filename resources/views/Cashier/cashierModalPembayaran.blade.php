@@ -72,7 +72,7 @@
                                     <input type="text" class="form-control form-control-lg  font-weight-bold" name="tPlusKredit" id="tPlusKredit" value="{{$tPlusKredit}}" readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <button onclick="copyFunction()" class="btn btn-default btn-sm"><i class="fa-solid fa-copy"></i> Copy Nominal</button>
+                                    <button class="btn btn-default btn-sm" id="copyButton"><i class="fa-solid fa-copy"></i> Copy Nominal</button>
                                 </div>
                             </div>
                             <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
@@ -257,6 +257,7 @@
         </div>
     </div>
 </div>
+
 <script>
 
     $(function () {
@@ -266,18 +267,25 @@
         
     });
 
-    function copyFunction() {
-        // Get the text field
-        var textField = document.getElementById("tPlusKredit");
-        textField.innerText = text;
-        document.body.appendChild(textField);
-        textField.select();
-        textField.focus(); //SET FOCUS on the TEXTFIELD
-        document.execCommand('copy');
-        textField.remove();
-        console.log('Copied Nominal ' + text); 
-        ajax-error.focus(); //SET FOCUS BACK to MODAL
-    }
+    document.getElementById('copyButton').addEventListener('click', function() {  
+        const textToCopy = document.getElementById('tPlusKredit').value;  
+        navigator.clipboard.writeText(textToCopy)  
+            .then(() => {  
+                alert('Nominal berhasil di copy');  
+            })  
+            .catch(err => {  
+                console.error('Error copying text: ', err);  
+            });  
+    });  
+
+    // function copyFunction() {
+    //     // Get the text field
+    //     var copyText = document.getElementById("tPlusKredit");
+    //     copyText.select();
+    //     copyText.setSelectionRange(0, 99999);
+    //     navigator.clipboard.writeText(copyText.value);
+    //     alert("Copied Nominal: " + copyText.value);
+    // }
     
     function myFunctionAddPoint() {
         var checkBox = document.getElementById("pointBelanja");
