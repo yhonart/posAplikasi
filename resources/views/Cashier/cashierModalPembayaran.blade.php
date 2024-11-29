@@ -487,9 +487,9 @@
                 $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
             }
             else {
-                inputPembayaran(billPembayaran, typeCetak);
+                // inputPembayaran(billPembayaran, typeCetak);
             }            
-            //alert(replaceTotalPembayaran+"<"+replaceKredit+";"+replaceTotalPembayaran+">"+tBelanja);
+            alert(replaceTotalPembayaran+"<"+replaceKredit+";"+replaceTotalPembayaran+">"+tBelanja);
         })
         
         document.addEventListener('keydown', function(event) {
@@ -521,9 +521,9 @@
                     $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
                 }
                 else {
-                    inputPembayaran(billPembayaran, typeCetak);
+                    // inputPembayaran(billPembayaran, typeCetak);
                 }
-                // alert(replaceTotalPembayaran+">="+replaceKredit+";"+checkBoxLunas.checked);
+                alert(replaceTotalPembayaran+">="+replaceKredit+";"+checkBoxLunas.checked);
             }
             
             if (event.keyCode === 27) {
