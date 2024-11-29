@@ -495,9 +495,9 @@
         })
         
         document.addEventListener('keydown', function(event) {
-            alert (valPengurangan);
             if (event.ctrlKey && event.key === 's') { // Cetak
                 event.preventDefault();
+                alert (valPengurangan);
                 let typeCetak = $("#typeCetak").val(),
                     totalPembayaran = $("#tPembayaran").val(),
                     tBelanja = $("#tBelanja").val(),
