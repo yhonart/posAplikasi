@@ -471,8 +471,8 @@
                 replaceKredit = tKredit.replace(/\./g, "");
             //alert(kreditLimit);
 
-            let penguranganTunai = parseInt(tBelanja) - parseInt(replaceTotalPembayaran),
-                totalHutang = parseInt(tKredit) + parseInt(penguranganTunai);
+            let penguranganTunai = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
+                totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai);
 
             if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
                 alertify
@@ -489,9 +489,9 @@
                 $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
             }
             else {
-                // inputPembayaran(billPembayaran, typeCetak);
+                inputPembayaran(billPembayaran, typeCetak);
             }            
-            alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja);
+            // alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja);
         })
         
         document.addEventListener('keydown', function(event) {
@@ -507,7 +507,7 @@
                 let penguranganTunai = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
                 totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai);
                 
-                alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + penguranganTunai + " / " + replaceTotalPembayaran + " / " + replaceKredit);
+                // alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + penguranganTunai + " / " + replaceTotalPembayaran + " / " + replaceKredit);
 
                 if (parseInt(totalHutang) > parseInt(kreditLimit) && parseInt(kreditLimit) !== '0' && parseInt(replaceTotalPembayaran) < parseInt(valBelanja) && checkBoxLunas.checked == false) {
                     alertify
@@ -524,9 +524,9 @@
                     $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
                 }
                 else {
-                    // inputPembayaran(billPembayaran, typeCetak);
+                    inputPembayaran(billPembayaran, typeCetak);
                 }
-                alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja);
+                // alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja);
             }
             
             if (event.keyCode === 27) {
