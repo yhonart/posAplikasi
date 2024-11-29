@@ -454,7 +454,9 @@
         let billPembayaran = "{{$noBill}}",
             valBelanja = "{{$totalBayar->totalBilling}}",
             valHutang = "{{$nominalKredit}}",
-            totalHutang = parseInt(valBelanja) + parseInt(valHutang),
+            valBayarTunai = $("#tPembayaran").val(),
+            valPengurangan = valBelanja - valBayarTunai
+            totalHutang = parseInt(valBelanja) + parseInt(valPengurangan),
             kreditLimit = "{{$dataBilling->kredit_limit}}";
         
         $("#btnBatalTrx").click(function(){
