@@ -268,14 +268,15 @@
 
     function copyFunction() {
         // Get the text field
-        var copyText = document.getElementById("tPlusKredit");
-        // Select the text field
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); // For mobile devices
-        // Copy the text inside the text field
-        navigator.clipboard.writeText(copyText.value);
-        // Alert the copied text
-        alert("Copied Nominal: " + copyText.value);
+        var textField = document.getElementById("tPlusKredit");
+        textField.innerText = text;
+        document.body.appendChild(textField);
+        textField.select();
+        textField.focus(); //SET FOCUS on the TEXTFIELD
+        document.execCommand('copy');
+        textField.remove();
+        console.log('Copied Nominal ' + text); 
+        ajax-error.focus(); //SET FOCUS BACK to MODAL
     }
     
     function myFunctionAddPoint() {
