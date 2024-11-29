@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-check">
-                                        <input class="custom-control-input" type="checkbox" id="lunasiHutang" name="lunasiHutang" value="1">
+                                        <input class="form-check-input" type="checkbox" id="lunasiHutang" name="lunasiHutang" value="1">
                                         <label for="lunasiHutang" class="custom-control-label text-muted">Lunasi Hutang</label>
                                     </div>
                                 </div>
@@ -472,7 +472,7 @@
                 replaceKredit = tKredit.replace(/\./g, "");
             //alert(kreditLimit);
 
-            if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja) {
+            if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
                 alertify
                 .alert("Hutang Customer Sudah Melewati Limit !", function(){
                     alertify.message('Transaksi di batalkan.');
@@ -506,7 +506,7 @@
 
                 let cosKreditPlusBill = parseInt(replacetBayar) + parseInt(replaceKredit);
 
-                if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja) {
+                if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
                     alertify
                     .alert("Hutang Customer Sudah Melewati Limit !", function(){
                         window.location.reload();
