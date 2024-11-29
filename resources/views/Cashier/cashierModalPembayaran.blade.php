@@ -497,16 +497,16 @@
         document.addEventListener('keydown', function(event) {
             if (event.ctrlKey && event.key === 's') { // Cetak
                 event.preventDefault();
-                alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + valPengurangan + " / " + valPembayaran + " / " + valHutang);
                 let typeCetak = $("#typeCetak").val(),
-                    totalPembayaran = $("#tPembayaran").val(),
-                    tBelanja = $("#tBelanja").val(),
-                    tKredit = $("#kredit").val();
+                totalPembayaran = $("#tPembayaran").val(),
+                tBelanja = $("#tBelanja").val(),
+                tKredit = $("#kredit").val();
                 let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
-                    replaceKredit = tKredit.replace(/\./g, ""),
-                    replacetBayar = tKredit.replace(/\./g, "");
-
+                replaceKredit = tKredit.replace(/\./g, ""),
+                replacetBayar = tKredit.replace(/\./g, "");
+                
                 let cosKreditPlusBill = parseInt(replacetBayar) + parseInt(replaceKredit);
+                alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + valPengurangan + " / " + replaceTotalPembayaran + " / " + valHutang);
 
                 if (parseInt(totalHutang) > parseInt(kreditLimit) && parseInt(kreditLimit) !== '0' && parseInt(replaceTotalPembayaran) < parseInt(valBelanja) && checkBoxLunas.checked == false) {
                     alertify
