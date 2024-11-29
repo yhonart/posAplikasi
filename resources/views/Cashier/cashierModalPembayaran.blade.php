@@ -425,7 +425,7 @@
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Untuk pembayaran kurang dari nominal : Rp. "+tKredit+", gunakan menu PELUNASAN [F9] untuk pembayaran secara partial. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
             }
-            else if (replaceTotalPembayaran >= replaceKredit && replaceKredit !== '0' && checkBoxLunas.checked == false) {
+            else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && replaceKredit !== '0' && checkBoxLunas.checked == false) {
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
             }
@@ -466,7 +466,7 @@
                 else {
                     inputPembayaran(billPembayaran, typeCetak);
                 }
-                alert(replaceTotalPembayaran+">="+replaceKredit+";"+checkBoxLunas.checked);
+                // alert(replaceTotalPembayaran+">="+replaceKredit+";"+checkBoxLunas.checked);
             }
             
             if (event.keyCode === 27) {
