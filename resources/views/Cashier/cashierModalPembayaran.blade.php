@@ -72,7 +72,7 @@
                                     <input type="text" class="form-control form-control-lg  font-weight-bold" name="tPlusKredit" id="tPlusKredit" value="{{$tPlusKredit}}" readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <button class="btn btn-default btn-sm" id="copyButton"><i class="fa-solid fa-copy"></i> Copy Nominal</button>
+                                    <button class="btn btn-default btn-sm copy_nominal" id="copyButton" data-id="{{$tPlusKredit}}"><i class="fa-solid fa-copy"></i> Copy Nominal</button>
                                 </div>
                             </div>
                             <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
@@ -267,19 +267,39 @@
         
     });
 
-    document.getElementById('copyButton').addEventListener('click', function() {  
-        const textToCopy = document.getElementById('tPlusKredit').value;  
-        navigator.clipboard.writeText(textToCopy)  
-            .then(() => {  
-                $(".notive-display").fadeIn();
-                $("#notiveDisplay").html("Nominal berhasil tercopy. : "+textToCopy); 
-            })  
-            .catch(err => {  
-                $(".notive-display").fadeIn();
-                $("#notiveDisplay").html("Error copying text. : "+err); 
-            });  
-        document.getElementById('modal-global-large').focus(); 
-    });  
+    $(document).on('click','.copy_nominal',function(e){
+        e.preventDefault();
+        let timer = null;
+        let el_this = $(this);
+        let textToCopy = $(this).attr('data-id');
+        // navigator clipboard api needs a secure context (https)
+        if (navigator.clipboard && window.isSecureContext) {
+            // navigator clipboard api method'
+            el_this.html("Copied!");
+            timer = setTimeout(function(){el_this.html('<i class="far fa-copy"></i>');}, 500);
+            return navigator.clipboard.writeText(textToCopy);
+        } else {
+            // text area method
+            let textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            // make the textarea out of viewport
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            el_this.html("Copied!");
+            timer = setTimeout(function(){el_this.html('<i class="far fa-copy"></i>');}, 500);
+
+            return new Promise((res, rej) => {
+                // here the magic happens
+                document.execCommand('copy') ? res() : rej();
+                textArea.remove();
+            });
+        }
+    })
 
     // function copyFunction() {
     //     // Get the text field
