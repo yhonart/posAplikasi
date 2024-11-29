@@ -71,6 +71,9 @@
                                     ?>
                                     <input type="text" class="form-control form-control-lg  font-weight-bold" name="tPlusKredit" id="tPlusKredit" value="{{$tPlusKredit}}" readonly>
                                 </div>
+                                <div class="col-md-4">
+                                    <button onclick="copyFunction()" class="btn btn-default btn-sm"><i class="fa-solid fa-copy"></i> Copy Nominal</button>
+                                </div>
                             </div>
                             <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
                                 <label class="col-md-4 text-right">BAYAR</label>
@@ -262,6 +265,18 @@
         $("#tPembayaran").focus().select();
         
     });
+
+    function copyFunction() {
+        // Get the text field
+        var copyText = document.getElementById("tPlusKredit");
+        // Select the text field
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.value);
+        // Alert the copied text
+        alert("Copied Nominal: " + copyText.value);
+    }
     
     function myFunctionAddPoint() {
         var checkBox = document.getElementById("pointBelanja");
