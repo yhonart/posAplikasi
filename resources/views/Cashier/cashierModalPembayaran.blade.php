@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="lunasiHutang" name="lunasiHutang" value="1">
+                                        <input type="checkbox" class="form-check-input" id="lunasiHutang" name="lunasiHutang" value="1">
                                         <label for="lunasiHutang" class="custom-control-label text-muted">Lunasi Hutang</label>
                                     </div>
                                 </div>
