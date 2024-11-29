@@ -278,6 +278,7 @@
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Error copying text. : "+err); 
             });  
+        document.getElementById('modal-global-large').focus(); 
     });  
 
     // function copyFunction() {
