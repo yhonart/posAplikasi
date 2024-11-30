@@ -67,10 +67,11 @@ $statusDokumen = array(
 </div>
 
 <script>
-    $(function(){
-        
+    $(function(){        
         $("#tableListPembelian").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
