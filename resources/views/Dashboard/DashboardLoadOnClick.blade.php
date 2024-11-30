@@ -153,7 +153,12 @@
             "lengthChange": false, 
             "autoWidth": false,
             "dom": 'Bfrtip',
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": [
+                {
+                    extends: 'excelHtml5',
+                    title: 'Export Dashboard'
+                },
+                "copy", "csv", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
 </script>
