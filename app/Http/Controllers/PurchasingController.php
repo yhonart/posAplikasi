@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class PurchasingController extends Controller
 {
     protected $tempInv;
-    protected $tempUser;    
+    protected $tempUser;  
+    protected $TempInventoryController;
+    protected $TempUsersController;
+
     public function __construct(TempInventoryController $tempInv, TempUsersController $tempUser)
     {
         $this->TempInventoryController = $tempInv;
@@ -309,6 +312,11 @@ class PurchasingController extends Controller
                 ['product_size',$satuanVal]
             ])
             ->first();
+        $supplierIden = DB::table('purchase_order as a')
+            ->select('a.supplier_id','b.store_name')
+            ->leftJoin('m_supplier as b','a.supplier_id','=','b.idm_supplier')
+            ->where('purchase_number',$poVal)
+            ->first();
             
         $satuanUnit = $satuan->product_satuan;
         
@@ -328,6 +336,13 @@ class PurchasingController extends Controller
                 'stock_awal'=>$stockAwal,
                 'stock_akhir'=>$stockAkhir,
                 'date_input'=>now()
+            ]);
+
+        DB::table('supplier_item')
+            ->insert([
+                'supplier_id'=>$supplierIden->supplier_id,
+                'supplier_name'=>$supplierIden->store_name,
+                'item_id'=>$prdVal,
             ]);
             
         return back();
