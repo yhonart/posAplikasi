@@ -19,7 +19,7 @@ $statusDokumen = array(
                             <th>Total Belanja</th>
                             <th>Pembayaran</th>
                             <th>Status</th>
-                            <th></th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
