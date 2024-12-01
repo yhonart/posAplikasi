@@ -486,7 +486,41 @@ class PurchasingController extends Controller
             $volKonv = $mProduct->small_unit_val;
             $prodName = $pl->product_name;
             $satuan = $pl->size;
-            // $sizeCode = 
+            $selectSizeCode = DB::table('m_product_unit')
+                ->where([
+                    ['core_id_product', $productID],
+                    ['product_size',$satuan]
+                ])
+                ->first();
+            $sizeCode = $selectSizeCode->size_code;
+            $selectLastStock = DB::table('inv_stock')
+                ->where([
+                    ['product_id',$selectSizeCode->idm_product_satuan],
+                    ['location_id',$loc]
+                ])
+                ->first();
+            $saldo = $inInv + $selectLastStock->saldo;
+            $volPrd = $selectSizeCode->product_volume;
+
+            //Query insert into report
+            DB::table('report_inv')
+                ->insert([
+                    'date_input'=>now(),
+                    'number_code'=>$numberCode,
+                    'product_id'=>$productID,
+                    'product_name'=>$prodName,
+                    'satuan'=>$satuan,
+                    'satuan_code'=>$sizeCode,
+                    'description'=>$description,
+                    'inv_in'=>$inInv,
+                    'inv_out'=>$outInv,
+                    'saldo'=>$saldo,
+                    'created_by'=>$createdBy,
+                    'location'=>$loc,
+                    'vol_prd'=>$volPrd,
+                    'last_saldo'=>$pl->stock_awal,
+                    'actual_input'=>$pl->qty
+                ]);
 
         }
 
