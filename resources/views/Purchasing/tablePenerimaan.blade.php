@@ -77,7 +77,7 @@ $statusDokumen = array(
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
     $(document).ready(function(){
-        $('.BTN-EDIT').on('click', function (e) {
+        $(".dataTable").on('click','.BTN-EDIT', function () {
             e.preventDefault();
             $(".LOAD-SPINNER").fadeIn();
             let dataEdit = $(this).attr('data-number');
@@ -91,7 +91,7 @@ $statusDokumen = array(
             });
         });
         
-        $('.BTN-APPROVE').on('click', function (e) {
+        $(".dataTable").on('click','.BTN-APPROVE', function () {
             e.preventDefault();
             let dataEdit = $(this).attr('data-number');
             alertify.confirm("Apakah anda yakin ingin menyetuji transaksi ini ?",
@@ -109,7 +109,7 @@ $statusDokumen = array(
             }).set({title:"Konfirmasi Persetujuan Transaksi"});
         });
 
-        $('.BTN-DELETE').on('click', function (e) {
+        $(".dataTable").on('click','.BTN-DELETE', function () {
             e.preventDefault();
             let dataEdit = $(this).attr('data-number');
             alertify.confirm("Apakah anda yakin ingin menghapus transaksi pembelian ini ?",
@@ -127,7 +127,7 @@ $statusDokumen = array(
             }).set({title:"Konfirmasi Penghapusan Transaksi"});
         });
         
-        $('.BTN-DETAIL').on('click', function (e) {
+        $(".dataTable").on('click','.BTN-DETAIL', function () {
             e.preventDefault();
             alertify
               .alert("Oppss, Menu ini belum tersedia !.", function(){
