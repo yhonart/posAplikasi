@@ -460,7 +460,9 @@
             event.preventDefault();
             window.location.reload();
         })
-        var checkBoxLunas = document.getElementById("lunasiHutang");
+        var checkBoxLunas = document.getElementById("lunasiHutang"),
+            selisih = "{{$nilaiNextBayar}}";
+        var checkBox2 = document.getElementById("radioMethod");
         $("#btnSimpanTrx").click(function(){
             event.preventDefault();
             let typeCetak = $("#typeCetak").val(),
@@ -487,6 +489,10 @@
             else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && replaceKredit !== '0' && checkBoxLunas.checked == false) {
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
+            }
+            else if (checkBox2.checked == true && selisih !== '0') {
+                $(".notive-display").fadeIn();
+                $("#notiveDisplay").html("2 Metode pembayaran belum terpenuhi. Masih kurang : "+selisih+" klik plus (+) untuk melengkapi pembayaran.");
             }
             else {
                 inputPembayaran(billPembayaran, typeCetak);
