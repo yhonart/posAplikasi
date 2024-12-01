@@ -519,7 +519,8 @@ class PurchasingController extends Controller
                     'location'=>$loc,
                     'vol_prd'=>$volPrd,
                     'last_saldo'=>$pl->stock_awal,
-                    'actual_input'=>$pl->qty
+                    'actual_input'=>$pl->qty,
+                    'status_trx'=>'4'
                 ]);
 
         }
