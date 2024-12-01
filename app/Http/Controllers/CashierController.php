@@ -2917,7 +2917,11 @@ class CashierController extends Controller
             ->whereBetween('a.date', [$fromDate, $endDate])
             ->get();
 
-        return view('Report/cashierRecapExcel', compact('prdTrx', 'tempTPrice'));
+        $cosGroup = DB::table('m_cos_group')
+            ->where('group_status','1')
+            ->get();
+
+        return view('Report/cashierRecapExcel', compact('prdTrx', 'tempTPrice','cosGroup'));
     }
 
     public function clickListProduk($dataTrx, $trxType)

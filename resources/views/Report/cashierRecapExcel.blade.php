@@ -97,8 +97,14 @@
                 <td>{{$ptrx->customer_code}}</td>
                 <td>{{$ptrx->customer_name}}</td>
                 <td>{{$ptrx->address}}</td>
-                <td></td>
-                <td></td>
+                <td>{{$ptrx->phone_number}}</td>
+                <td>
+                    @foreach($cosGroup as $cg)
+                        @if($cg->idm_cos_group == $ptrx->customer_type)
+                            {{$cg->group_name}}
+                        @endif
+                    @endforeach
+                </td>
                 <td>{{$ptrx->unit}}</td>
                 <td>{{$ptrx->qty}}</td>
                 <td>{{$ptrx->unit_price}}</td>
