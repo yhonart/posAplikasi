@@ -11,7 +11,7 @@
     foreach($cekPayMethod as $cekPay){
         $nominal += $cekPay->nominal;
     }
-    $nilaiNextBayar = $totalBayar->totalBilling-$nominal;
+    $nilaiNextBayar = (int)$totalBayar->totalBilling - (int)$nominal;
 ?>
 <div class="row p-1">
     <div class="col-12">
