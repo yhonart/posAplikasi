@@ -113,7 +113,7 @@
 </div>
 
 <div class="modal MODAL-GLOBAL fade" id="modal-global-large" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+  <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content MODAL-CONTENT-GLOBAL">
           <!-- Content will be placed here -->
           <!-- class default MODAL-BODY-GLOBAL -->
