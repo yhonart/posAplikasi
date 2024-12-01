@@ -469,10 +469,7 @@ class PurchasingController extends Controller
             
             //INPUT REPORT
             $numberCode = $dataEdit;
-            $description = "Pembelian ".$idDataReport->store_name;
-            $inInv = $qty;
-            $outInv = '0';
-            $prodId = $productID;
+            $description = "Pembelian ".$idDataReport->store_name;            
             $loc = $pl->warehouse;
             $prodName = $pl->product_name;
             $createdBy = Auth::user()->name;
@@ -493,6 +490,43 @@ class PurchasingController extends Controller
                 ])
                 ->first();
             $sizeCode = $selectSizeCode->size_code;
+
+            $mUnit = DB::table('m_product_unit')
+                ->select('size_code','product_volume')
+                ->where('core_id_product',$productID)
+                ->orderBy('size_code','desc')
+                ->first();
+
+            $sizeCodeDesc = $mUnit->size_code; 
+            
+            if ($sizeCodeDesc == '1') {
+                $ls = $pl->qty;
+            }
+            elseif ($sizeCodeDesc == '2') {
+                if ($satuan == "BESAR") {
+                    $ls1 = $pl->qty * $volB;
+                    $ls = (int)$ls1;
+                }
+                elseif ($satuan == "KECIL") {
+                    $ls = $pl->qty;
+                }
+            }
+            elseif ($sizeCodeDesc == '3') {
+                if ($satuan == "BESAR") {
+                    $ls1 = $pl->qty * $volKonv;
+                    $ls = (int)$ls1;
+                }
+                elseif ($satuan == "KECIL") {
+                    $ls1 = $pl->qty * $volK;
+                    $ls = (int)$ls1;
+                }
+                elseif ($satuan == "KONV") {
+                    $ls = $pl->qty;
+                }
+            }
+            $inInv = $ls;
+            $outInv = '0';
+
             $selectLastStock = DB::table('inv_stock')
                 ->where([
                     ['product_id',$selectSizeCode->idm_product_satuan],
