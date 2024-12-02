@@ -53,7 +53,7 @@
                                 ?>
                             </td>
                             <td class="text-right">                                
-                                <select name="changesStatus" id="changesStatus" class="form-control form-control-sm">
+                                <select name="changesStatus" id="changesStatus{{$hisTrx->list_id}}" class="form-control form-control-sm change-status">
                                     <option value="0|0" readonly>{{$arayStatus[$hisTrx->status]}}</option>
                                     <option value="4|{{$hisTrx->list_id}}">Berhasil {{$hisTrx->list_id}}</option>
                                     <option value="0|{{$hisTrx->list_id}}">Batalkan</option>
@@ -73,10 +73,9 @@
 </div>
 <script>
     $(document).ready(function(){
-        $("#changesStatus").change(function(){
+        $(".change-status").change(function(){
             var changeStatus = $(this).find(":selected").val(),
                 trxCode = "{{$noBill}}";
-            alert(changeStatus);
             $.ajax({
                 type : 'post',
                 url : "{{route('Dashboard')}}/loadDataTransaksi/postChangesStatus",
