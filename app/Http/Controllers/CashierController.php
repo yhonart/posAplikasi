@@ -2896,6 +2896,7 @@ class CashierController extends Controller
             ->whereBetween('date_trx', [$fromDate, $endDate])
             ->first();
 
+        
 
         $pdf = PDF::loadview('Report/cashierRecapReport', compact('fromDate', 'endDate', 'tableReport', 'trStore', 'bankTransaction', 'creditRecord', 'tableReportTunai'))->setPaper("A4", 'portrait');
         return $pdf->stream();
@@ -2905,6 +2906,7 @@ class CashierController extends Controller
     {
         $prdTrx = DB::table('trans_product_list_view as a')
             ->leftJoin('view_billing_action as c', 'a.from_payment_code', '=', 'c.billing_number')
+            ->leftJoin('m_payment_method as b','c.trx_method','=','b.idm_payment_method')
             ->where('a.status', '>=', '3')
             ->whereBetween('a.date', [$fromDate, $endDate])
             ->get();
@@ -2932,7 +2934,7 @@ class CashierController extends Controller
             ->get();
 
         $Supplier = DB::table('supplier_item')
-            ->get();
+            ->get();        
 
         return view('Report/cashierRecapExcel', compact('prdTrx', 'tempTPrice','cosGroup','paymentMethod','countPerTrx','Supplier'));
     }

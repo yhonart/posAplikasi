@@ -57,7 +57,7 @@
 <?php
     $sumHrgSatuan = '0';
     $sumJumlah = '0';
-    $iNumber = '0';
+    $iNumber = '0';    
 ?>
 <table class="styled-table" width="100%" border="1">
     <thead class="text-center">
@@ -78,14 +78,12 @@
             <th>Jumlah</th>
             <th>Pembayaran 1</th>
             <th>Pembayaran 2</th>
-            <th>Pembayaran 3</th>
             <th>Tempo</th>
             <th>Kasir</th>
             <th>Pengirim</th>
             <th>Transaksi</th>
             <th>Status 1</th>
             <th>Status 2</th>
-            <th>Status 3</th>
             <th>Supplier</th>
             <th>Kategori</th>
         </tr>
@@ -113,8 +111,15 @@
                 <td>{{$ptrx->unit_price}}</td>
                 <td>{{$ptrx->disc}}</td>
                 <td>{{$ptrx->t_price}}</td>
-                <td></td>
-                <td></td>
+                <td>
+                    @foreach($countPerTrx as $cPtx)
+                        @if($cPtx->core_id_trx == $ptrx->billing_number)
+                            @if($cPtx->countTrx == '1')
+                                {{$ptrx->method_name}}
+                            @endif
+                        @endif
+                    @endforeach
+                </td>
                 <td></td>
                 <td></td>
                 <td>{{$ptrx->created_by}}</td>
