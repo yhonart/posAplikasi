@@ -1,11 +1,9 @@
 <?php 
-    // header("Content-type: application/vnd-ms-excel");
-    // header("Content-Disposition: attachment; filename=ReportHarian.xls");
+    header("Content-type: application/vnd-ms-excel");
+    header("Content-Disposition: attachment; filename=ReportHarian.xls");
     $no = '1';
 ?>
-<link rel="stylesheet" href="{{asset('public/dazbuild/dist/css/adminlte.min.css')}}">
-<script src="{{asset('public/dazbuild/dist/js/adminlte.min.js')}}"></script>
-<style>
+<!-- <style>
     .styled-table {
         border-collapse: collapse;
         margin: 25px 0;
@@ -53,14 +51,14 @@
     .grand-total {
         font-size : 8;
     }
-</style>
+</style> -->
 <?php
     $sumHrgSatuan = '0';
     $sumJumlah = '0';
     $iNumber = '0';    
 ?>
-<table class="styled-table" width="100%" border="1">
-    <thead class="text-center">
+<table width="100%" border="1">
+    <thead>
         <tr>
             <th>Tanggal</th>
             <th>No.Trx</th>
