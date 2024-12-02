@@ -57,7 +57,7 @@
 <?php
     $sumHrgSatuan = '0';
     $sumJumlah = '0';
-    $iNumber = '1';
+    $iNumber = '0';
 ?>
 <table class="styled-table" width="100%" border="1">
     <thead class="text-center">
@@ -121,7 +121,6 @@
                             @endphp
                             <td>{{$iNumber}}</td>
                         @endif
-                    <td></td>
                     @endif
                 @endforeach
                 <td>{{$ptrx->created_by}}</td>
