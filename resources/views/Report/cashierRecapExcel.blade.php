@@ -115,18 +115,37 @@
                 <td>{{$ptrx->t_price}}</td>
                 @foreach($paymentMethod as $pm)
                     @if($pm->core_id_trx == $ptrx->billing_number)
-                        @if($pm->method_name <> '8')
-                            @foreach($countPerTrx as $countPtrx)
-                                @if($countPtrx->core_id_trx == $pm->core_id_trx)
-                                    @if($countPtrx->countTrx == '1')
-                                        <td>{{$pm->nominal}}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    @endif
+                        @foreach($countPerTrx as $countPtrx)
+                            @if($countPtrx->core_id_trx == $pm->core_id_trx)
+                                @if($countPtrx->countTrx == '1')
+                                    <td>{{$pm->nominal}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        @if($pm->method_name == '8')
+                                            {{$pm->nominal}}
+                                        @endif
+                                    </td>
                                 @endif
-                            @endforeach
-                        @endif
+                                @if($countPtrx->countTrx == '2')
+                                    <td>{{$pm->nominal}}</td>
+                                    <td></td>
+                                    <td>
+                                        @if($pm->method_name == '8')
+                                            {{$pm->nominal}}
+                                        @endif
+                                    </td>
+                                @endif
+                                @if($countPtrx->countTrx == '3')
+                                    <td>{{$pm->nominal}}</td>
+                                    <td>
+                                        @if($pm->method_name == '8')
+                                            {{$pm->nominal}}
+                                        @endif
+                                    </td>
+                                @endif
+                            @endif
+                        @endforeach                        
                     @endif
                 @endforeach
                 <td>{{$ptrx->created_by}}</td>
