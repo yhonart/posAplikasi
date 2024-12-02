@@ -2910,7 +2910,7 @@ class CashierController extends Controller
                 ['a.status', '>=', '3'],
                 ['c.status','>=','3']
                 ])
-            ->whereBetween('a.date', [$fromDate, $endDate])
+            ->whereBetween('c.tr_date', [$fromDate, $endDate])
             ->get();
 
         $tempTPrice = DB::table('trans_product_list_view as a')
