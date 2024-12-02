@@ -2921,7 +2921,11 @@ class CashierController extends Controller
             ->where('group_status','1')
             ->get();
 
-        return view('Report/cashierRecapExcel', compact('prdTrx', 'tempTPrice','cosGroup'));
+        $paymentMethod = DB::table('tr_payment_method')
+            ->where('status','1')
+            ->get();
+
+        return view('Report/cashierRecapExcel', compact('prdTrx', 'tempTPrice','cosGroup','paymentMethod'));
     }
 
     public function clickListProduk($dataTrx, $trxType)

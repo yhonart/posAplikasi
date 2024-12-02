@@ -57,6 +57,7 @@
 <?php
     $sumHrgSatuan = '0';
     $sumJumlah = '0';
+    $iNumber = '1';
 ?>
 <table class="styled-table" width="100%" border="1">
     <thead class="text-center">
@@ -77,12 +78,14 @@
             <th>Jumlah</th>
             <th>Pembayaran 1</th>
             <th>Pembayaran 2</th>
+            <th>Pembayaran 3</th>
             <th>Tempo</th>
             <th>Kasir</th>
             <th>Pengirim</th>
             <th>Transaksi</th>
             <th>Status 1</th>
             <th>Status 2</th>
+            <th>Status 3</th>
             <th>Supplier</th>
             <th>Kategori</th>
         </tr>
@@ -99,7 +102,7 @@
                 <td>{{$ptrx->address}}</td>
                 <td>{{$ptrx->phone_number}}</td>
                 <td>
-                    @foreach($cosGroup as $cg)
+                    @foreach($cosGroup as $cg)                        
                         @if($cg->idm_cos_group == $ptrx->customer_type)
                             {{$cg->group_name}}
                         @endif
@@ -110,9 +113,17 @@
                 <td>{{$ptrx->unit_price}}</td>
                 <td>{{$ptrx->disc}}</td>
                 <td>{{$ptrx->t_price}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                @foreach($paymentMethod as $pm)
+                    @if($pm->core_id_trx == $ptrx->billing_number)
+                        @if($pm->method_name <> '8')
+                            @php
+                                $iNumber++
+                            @endphp
+                            <td>{{$iNumber}}</td>
+                        @endif
+                    <td></td>
+                    @endif
+                @endforeach
                 <td>{{$ptrx->created_by}}</td>
                 <td>{{$ptrx->tr_delivery}}</td>
                 <td></td>
