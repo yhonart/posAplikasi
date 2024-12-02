@@ -113,47 +113,22 @@
                 <td>{{$ptrx->unit_price}}</td>
                 <td>{{$ptrx->disc}}</td>
                 <td>{{$ptrx->t_price}}</td>
-                @foreach($paymentMethod as $pm)
-                    @if($pm->core_id_trx == $ptrx->billing_number)
-                        @foreach($countPerTrx as $countPtrx)
-                            @if($countPtrx->core_id_trx == $pm->core_id_trx)
-                                @if($countPtrx->countTrx == '1')
-                                    <td>{{$pm->nominal}}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        @if($pm->method_name == '8')
-                                            {{$pm->nominal}}
-                                        @endif
-                                    </td>
-                                @endif
-                                @if($countPtrx->countTrx == '2')
-                                    <td>{{$pm->nominal}}</td>
-                                    <td></td>
-                                    <td>
-                                        @if($pm->method_name == '8')
-                                            {{$pm->nominal}}
-                                        @endif
-                                    </td>
-                                @endif
-                                @if($countPtrx->countTrx == '3')
-                                    <td>{{$pm->nominal}}</td>
-                                    <td>
-                                        @if($pm->method_name == '8')
-                                            {{$pm->nominal}}
-                                        @endif
-                                    </td>
-                                @endif
-                            @endif
-                        @endforeach                        
-                    @endif
-                @endforeach
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>{{$ptrx->created_by}}</td>
                 <td>{{$ptrx->tr_delivery}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td>
+                    @foreach($Supplier as $sup)
+                        @if($sup->item_id == $ptrx->idm_data_product)
+                            {{$sup->supplier_name}}
+                        @endif
+                    @endforeach
+                </td>
                 <td></td>
             </tr>
             <?php

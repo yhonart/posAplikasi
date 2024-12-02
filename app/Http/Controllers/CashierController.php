@@ -2931,7 +2931,11 @@ class CashierController extends Controller
             ->groupBy('core_id_trx')
             ->get();
 
-        return view('Report/cashierRecapExcel', compact('prdTrx', 'tempTPrice','cosGroup','paymentMethod','countPerTrx'));
+        $Supplier = DB::table('supplier_item')
+            ->groupBy('item_id')        
+            ->get();
+
+        return view('Report/cashierRecapExcel', compact('prdTrx', 'tempTPrice','cosGroup','paymentMethod','countPerTrx','Supplier'));
     }
 
     public function clickListProduk($dataTrx, $trxType)
