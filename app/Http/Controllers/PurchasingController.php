@@ -533,7 +533,7 @@ class PurchasingController extends Controller
                     ['location_id',$loc]
                 ])
                 ->first();
-                
+
             $saldo = $inInv + $selectLastStock->saldo;
             $volPrd = $selectSizeCode->product_volume;
 
@@ -881,7 +881,10 @@ class PurchasingController extends Controller
     }
 
     public function piutangSupplier (){
-        return view ('Purchasing/PurchaseOrder/mainPiutangSupplier');
+        $mSupplier = DB::table('m_supplier')
+            ->get();
+
+        return view ('Purchasing/PurchaseOrder/mainPiutangSupplier', compact('mSupplier'));
     }
     
 }
