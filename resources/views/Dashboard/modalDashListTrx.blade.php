@@ -31,7 +31,6 @@
                         <th>Disc</th>
                         <th>Jumlah</th>
                         <th>Status</th>
-                        <th>Change Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,14 +52,9 @@
                                     $total += $hisTrx->t_price;
                                 ?>
                             </td>
-                            <td class="text-right">
-                                <span class="bg-light border border-1 border-info pl-2 pr-2 pt-1 pb-1 rounded-pill font-weight-bold text-xs">
-                                    {{$arayStatus[$hisTrx->status]}}
-                                </span>
-                            </td>
-                            <td>
-                                <select name="changesStatus" id="changesStatus" class="from-control form-control-sm">
-                                    <option value="0|0" readonly></option>
+                            <td class="text-right">                                
+                                <select name="changesStatus" id="changesStatus" class="form-control form-control-sm">
+                                    <option value="0|0" readonly>{{$arayStatus[$hisTrx->status]}}</option>
                                     <option value="4|{{$hisTrx->list_id}}">Berhasil</option>
                                     <option value="0|{{$hisTrx->list_id}}">Batalkan</option>
                                 </select>
