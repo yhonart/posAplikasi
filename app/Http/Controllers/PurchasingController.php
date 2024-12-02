@@ -533,6 +533,7 @@ class PurchasingController extends Controller
                     ['location_id',$loc]
                 ])
                 ->first();
+                
             $saldo = $inInv + $selectLastStock->saldo;
             $volPrd = $selectSizeCode->product_volume;
 

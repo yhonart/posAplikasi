@@ -81,7 +81,15 @@
         .form-control:focus {  
             border-color: #6d28d9; /* changes border color to red */   
             border-width: 3px;            
-        }    
+        }   
+        .buttons-print {
+            background-color: #e5e7eb;
+            color: #374151;
+        }
+        .buttons-excel {
+            background-color: #e5e7eb;
+            color: #374151;
+        } 
 
     </style>
 </head>
