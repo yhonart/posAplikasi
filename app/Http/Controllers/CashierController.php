@@ -2906,7 +2906,10 @@ class CashierController extends Controller
     {
         $prdTrx = DB::table('trans_product_list_view as a')
             ->leftJoin('view_billing_action as c', 'a.from_payment_code', '=', 'c.billing_number')
-            ->where('a.status', '>=', '3')
+            ->where([
+                ['a.status', '>=', '3'],
+                ['c.status','>=','3']
+                ])
             ->whereBetween('a.date', [$fromDate, $endDate])
             ->get();
 
