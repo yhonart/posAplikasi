@@ -76,7 +76,7 @@
         $("#changesStatus").change(function(){
             var changeStatus = $(this).find(":selected").val(),
                 trxCode = "{{$noBill}}";
-                
+            alert(changeStatus);
             $.ajax({
                 type : 'post',
                 url : "{{route('Dashboard')}}/loadDataTransaksi/postChangesStatus",
