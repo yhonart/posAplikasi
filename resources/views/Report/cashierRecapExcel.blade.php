@@ -123,7 +123,11 @@
                 <td></td>
                 <td></td>
                 <td>
-                    
+                    @foreach($Supplier as $sup)
+                        @if($sup->item_id == $ptrx->product_code)
+                            {{$sup->supplier_name}}
+                        @endif
+                    @endforeach
                 </td>
                 <td></td>
             </tr>

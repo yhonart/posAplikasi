@@ -2932,6 +2932,7 @@ class CashierController extends Controller
             ->get();
 
         $Supplier = DB::table('supplier_item')
+            ->groupBy('item_id')
             ->get();
 
         return view('Report/cashierRecapExcel', compact('prdTrx', 'tempTPrice','cosGroup','paymentMethod','countPerTrx','Supplier'));
