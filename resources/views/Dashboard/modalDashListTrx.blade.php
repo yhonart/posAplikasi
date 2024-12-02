@@ -1,11 +1,11 @@
 <?php
     $no = '1';
     $arayStatus = array(
-        0=>"Batal",
+        0=>"Trs.Batal",
         1=>"Dlm. Proses",
         2=>"Hold",
         3=>"Kredit",
-        4=>"Berhasil",
+        4=>"Trs.Sukses",
     );
     $arayColor = array(
         0=>"border-danger",
@@ -54,7 +54,7 @@
                                 ?>
                             </td>
                             <td class="text-right">
-                                <span class="border p-2 rounded-pill {{$arayColor[$hisTrx->status]}}">
+                                <span class="border p-1 rounded-pill {{$arayColor[$hisTrx->status]}}">
                                     {{$arayStatus[$hisTrx->status]}}
                                 </span>
                             </td>
