@@ -1,11 +1,18 @@
 <?php
     $no = '1';
     $arayStatus = array(
-        0=>"Trs. Batal",
+        0=>"Batal",
         1=>"Dlm. Proses",
         2=>"Hold",
         3=>"Kredit",
-        4=>"Trs. Sukses",
+        4=>"Berhasil",
+    );
+    $arayColor = array(
+        0=>"border-danger",
+        1=>"border-info",
+        2=>"border-warning",
+        3=>"border-primary",
+        4=>"border-success",
     );
     $total = '0';
 ?>
@@ -24,6 +31,7 @@
                         <th>Disc</th>
                         <th>Jumlah</th>
                         <th>Status</th>
+                        <th>Change Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,6 +58,13 @@
                                     {{$arayStatus[$hisTrx->status]}}
                                 </span>
                             </td>
+                            <td>
+                                <select name="changesStatus" id="changesStatus" class="from-control form-control-sm">
+                                    <option value="0|0" readonly></option>
+                                    <option value="4|{{$hisTrx->list_id}}">Berhasil</option>
+                                    <option value="0|{{$hisTrx->list_id}}">Batalkan</option>
+                                </select>
+                            </td>
                         </tr>
                     @endforeach
                         <tr>
@@ -62,3 +77,20 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $("#changesStatus").change(function(){
+            var changeStatus = $(this).find(":selected").val(),
+                trxCode = "{{$noBill}}";
+                
+            $.ajax({
+                type : 'post',
+                url : "{{route('Dashboard')}}/loadDataTransaksi/postChangesStatus",
+                data :  {changeStatus:changeStatus, trxCode:trxCode},
+                success : function(data){                
+                    alertify.success('Status Berhasil Dirubah');                    
+                }
+            }); 
+        });
+    });
+</script>

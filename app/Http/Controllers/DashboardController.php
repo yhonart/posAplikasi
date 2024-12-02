@@ -165,6 +165,32 @@ class DashboardController extends Controller
             ->where('from_payment_code',$noBill)
             ->get();
 
-        return view('Dashboard/modalDashListTrx', compact('dbSelectTrx'));
+        return view('Dashboard/modalDashListTrx', compact('dbSelectTrx','noBill'));
     }    
+    
+    public function postChangesStatus (Request $reqPostChanges)
+    {
+        $statusChange = $reqPostChanges->changeStatus;
+        $splitChange = explode("|",$statusChange);
+        $status = $splitChange[0];
+        $id = $splitChange[1];
+        $trxCode = $reqPostChanges->trxCode;
+
+        if ($status == '4') {
+            DB::table('tr_store_prod_list')
+                ->where('list_id',$id)
+                ->update([
+                    'status'=>$status,
+                    'is_delete'=>'0'
+                ]);
+        }
+        else {
+            DB::table('tr_store_prod_list')
+                ->where('list_id',$id)
+                ->update([
+                    'status'=>$status,
+                    'is_delete'=>'1'
+                ]);
+        }
+    }
 }

@@ -50,6 +50,7 @@ Route::get('TransProduct', [App\Http\Controllers\TransactionController::class, '
 Route::get('Cashier', [App\Http\Controllers\CashierController::class, 'mainCashier'])->name('Cashier');
 Route::get('Delivery', [App\Http\Controllers\DeliveryController::class, 'mainDelivery'])->name('Delivery');
 Route::post('Dashboard/loadDataTransaksi/postOnClick', [App\Http\Controllers\DashboardController::class, 'onClickDetail']);
+Route::post('Dashboard/loadDataTransaksi/postChangesStatus', [App\Http\Controllers\DashboardController::class, 'postChangesStatus']);
 
 Route::get('UnderMaintenance', [App\Http\Controllers\HomeController::class, 'UnderMaintenance'])->name('UnderMaintenance');
 
