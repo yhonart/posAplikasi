@@ -53,7 +53,11 @@
                                     $total += $hisTrx->t_price;
                                 ?>
                             </td>
-                            <td>{{$arayStatus[$hisTrx->status]}}</td>
+                            <td class="text-right">
+                                <span class="border p-2 rounded-pill {{$arayColor[$hisTrx->status]}}">
+                                    {{$arayStatus[$hisTrx->status]}}
+                                </span>
+                            </td>
                             <td class="text-right">                                
                                 <select name="changesStatus" id="changesStatus{{$hisTrx->list_id}}" class="form-control form-control-sm change-status">
                                     <option value="0|0">Change</option>
