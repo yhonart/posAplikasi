@@ -3,14 +3,15 @@
   --animate-delay: 0.9s;
 }
 
-@font-face {
-    font-family: "Poppins", sans-serif;
-    font-style: normal;
-    font-size: small;
-    font-weight: 400;
-    src: url(/public/font/Poppins/Poppins-Light.ttf) format('woff2');
+body {
+    @font-face {
+        font-family: "Poppins", sans-serif;
+        font-style: normal;
+        font-size: small;
+        font-weight: 400;
+        src: url(/public/font/Poppins/Poppins-Light.ttf) format('woff2');
+    }
 }
-
 .el-zoom {
     transition: transform .8s ease;
 }
