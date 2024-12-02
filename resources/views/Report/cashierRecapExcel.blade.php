@@ -115,7 +115,11 @@
                     @foreach($countPerTrx as $cPtx)
                         @if($cPtx->core_id_trx == $ptrx->billing_number)
                             @if($cPtx->countTrx == '1')
-                                {{$ptrx->method_name}}
+                                @foreach($paymentMethod as $payM)
+                                    @if($payM->core_id_trx == $ptrx->billing_number)
+                                        {{$payM->method_name}}
+                                    @endif
+                                @endforeach
                             @endif
                         @endif
                     @endforeach

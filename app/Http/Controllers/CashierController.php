@@ -2906,7 +2906,6 @@ class CashierController extends Controller
     {
         $prdTrx = DB::table('trans_product_list_view as a')
             ->leftJoin('view_billing_action as c', 'a.from_payment_code', '=', 'c.billing_number')
-            ->leftJoin('m_payment_method as b','c.trx_method','=','b.idm_payment_method')
             ->where('a.status', '>=', '3')
             ->whereBetween('a.date', [$fromDate, $endDate])
             ->get();
@@ -2923,8 +2922,10 @@ class CashierController extends Controller
             ->where('group_status','1')
             ->get();
 
-        $paymentMethod = DB::table('tr_payment_method')
-            ->where('status','1')
+        $paymentMethod = DB::table('tr_payment_method as a')
+            ->select('a.core_id_trx','b.method_name','a.nominal','b.idm_payment_method')
+            ->leftJoin('m_payment_method as b','a.method_name','=','b.idm_payment_method')
+            ->where('a.status','1')
             ->get();
         
         $countPerTrx = DB::table('tr_payment_method')
