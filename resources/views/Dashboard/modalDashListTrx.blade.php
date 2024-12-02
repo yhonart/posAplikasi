@@ -54,7 +54,7 @@
                             </td>
                             <td class="text-right">                                
                                 <select name="changesStatus" id="changesStatus{{$hisTrx->list_id}}" class="form-control form-control-sm change-status">
-                                    <option value="0|0" disabled>{{$arayStatus[$hisTrx->status]}}</option>
+                                    <option value="0|0" disabled>{{$arayStatus[$hisTrx->status]}} {{$hisTrx->status}}</option>
                                     <option value="4|{{$hisTrx->list_id}}">Berhasil</option>
                                     <option value="0|{{$hisTrx->list_id}}">Batalkan</option>
                                 </select>
