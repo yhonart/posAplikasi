@@ -83,12 +83,24 @@
             border-width: 3px;            
         }   
         .buttons-print {
-            background-color: #e5e7eb;
-            color: #374151;
+            background-color: #f1f5f9;
+            color: #0f172a;
         }
         .buttons-excel {
-            background-color: #e5e7eb;
-            color: #374151;
+            background-color: #f1f5f9;
+            color: #0f172a;
+        } 
+        .buttons-copy {
+            background-color: #f1f5f9;
+            color: #0f172a;
+        } 
+        .buttons-csv {
+            background-color: #f1f5f9;
+            color: #0f172a;
+        } 
+        .buttons-print {
+            background-color: #f1f5f9;
+            color: #0f172a;
         } 
 
     </style>

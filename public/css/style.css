@@ -3,7 +3,7 @@
   --animate-delay: 0.9s;
 }
 
-body {
+@font-face {
     font-family: "Poppins", sans-serif;
     font-style: normal;
     font-size: small;
