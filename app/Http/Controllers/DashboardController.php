@@ -175,7 +175,7 @@ class DashboardController extends Controller
         $status = $splitChange[0];
         $id = $splitChange[1];
         $trxCode = $reqPostChanges->trxCode;
-
+        echo $id;
         if ($status == '4') {
             DB::table('tr_store_prod_list')
                 ->where('list_id',$id)
