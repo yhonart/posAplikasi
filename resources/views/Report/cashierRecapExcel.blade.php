@@ -1,6 +1,6 @@
 <?php 
-    // header("Content-type: application/vnd-ms-excel");
-    // header("Content-Disposition: attachment; filename=ReportHarian.xls");
+    header("Content-type: application/vnd-ms-excel");
+    header("Content-Disposition: attachment; filename=ReportHarian.xls");
     $no = '1';
 ?>
 <?php
