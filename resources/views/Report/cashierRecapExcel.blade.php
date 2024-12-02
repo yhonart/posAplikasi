@@ -123,11 +123,7 @@
                 <td></td>
                 <td></td>
                 <td>
-                    @foreach($Supplier as $sup)
-                        @if($sup->item_id == $ptrx->idm_data_product)
-                            {{$sup->supplier_name}}
-                        @endif
-                    @endforeach
+                    
                 </td>
                 <td></td>
             </tr>
