@@ -126,6 +126,8 @@
                     @foreach($Supplier as $sup)
                         @if($sup->item_id == $ptrx->product_code)
                             {{$sup->supplier_name}}
+                        @else
+                            "NOT SET"
                         @endif
                     @endforeach
                 </td>
