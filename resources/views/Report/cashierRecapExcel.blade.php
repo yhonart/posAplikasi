@@ -116,10 +116,16 @@
                 @foreach($paymentMethod as $pm)
                     @if($pm->core_id_trx == $ptrx->billing_number)
                         @if($pm->method_name <> '8')
-                            @php
-                                $iNumber++
-                            @endphp
-                            <td>{{$iNumber}}</td>
+                            @foreach($countPerTrx as $countPtrx)
+                                @if($countPtrx->core_id_trx == $pm->core_id_trx)
+                                    @if($countPtrx->countTrx == '1')
+                                        <td>{{$pm->nominal}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    @endif
+                                @endif
+                            @endforeach
                         @endif
                     @endif
                 @endforeach

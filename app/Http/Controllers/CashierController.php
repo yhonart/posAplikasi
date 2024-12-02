@@ -2924,8 +2924,13 @@ class CashierController extends Controller
         $paymentMethod = DB::table('tr_payment_method')
             ->where('status','1')
             ->get();
+        
+        $countPerTrx = DB::table('tr_payment_method')
+            ->select('core_id_trx', DB::raw('count(core_id_trx) as countTrx'))
+            ->groupBy('core_id_trx')
+            ->get();
 
-        return view('Report/cashierRecapExcel', compact('prdTrx', 'tempTPrice','cosGroup','paymentMethod'));
+        return view('Report/cashierRecapExcel', compact('prdTrx', 'tempTPrice','cosGroup','paymentMethod','countPerTrx'));
     }
 
     public function clickListProduk($dataTrx, $trxType)
