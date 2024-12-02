@@ -39,7 +39,6 @@
                     <div class="form-group">
                         <label for="">Status</label>
                         <select name="status" id="status" class="form-control form-control-sm">
-                            <option value="0">====</option>
                             <option value="0">Outstanding</option>
                             <option value="0">Lunas</option>
                         </select>

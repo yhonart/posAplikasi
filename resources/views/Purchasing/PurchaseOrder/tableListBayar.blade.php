@@ -1,6 +1,6 @@
 <div class="card card-body table-responsive p-0">
     <table class="table table-sm table-align-middle text-nowrap table-hover table-bordered">
-        <thead class="bg-gray">
+        <thead class="gradient-purple">
             <tr>
                 <th>Nomor</th>
                 <th>Tgl. Penerimaan</th>
@@ -8,6 +8,7 @@
                 <th>Supplier</th>
                 <th>Nominal</th>
                 <th>Bayar</th>
+                <th>Keterangan</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,13 @@
                     </td>
                     <td>
                         <input type="text" class="form-control form-control-sm form-control-border price-tag" name="pay" id="pay" autocomplete="off" onchange="saveChangePembayaran(this,'purchase_kredit_payment','kredit_pay','{{$tPayment->purchase_number}}','nomor')">    
+                    </td>
+                    <td>
+                        @foreach($payed as $p)
+                            @if($p->nomor == $tPayment->purchase_number)
+                                <span class="text-muted">Di bayar : {{number_format($p->kreditPayed,'0',',','.')}}</span>
+                            @endif
+                        @endforeach
                     </td>
                 </tr>
             @endforeach
