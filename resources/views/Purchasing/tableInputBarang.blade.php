@@ -1,9 +1,4 @@
 <hr>
-<div class="row">
-    <div class="col-md-6">
-        <p class="font-weight-bold text-muted"><i class="fa-solid fa-circle-info"></i> Nomor Dokumen : {{$statusPurchase->purchase_number}} || Supplier : {{$statusPurchase->store_name}}</p>
-    </div>
-</div>
 <div class="row mb-1">
     <div class="col-12">
         <div id="tableSum"></div>
