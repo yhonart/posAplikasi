@@ -1,7 +1,7 @@
 <div class="row mt-2 mb-2">
     <div class="col-md-12">
         <span class="text-muted font-weight-bold">No. Dokumen : {{$editPurchase->purchase_number}} || Supplier : {{$editPurchase->store_name}}</span>
-        <a class="text-info" data-toggle="collapse" data-target="#formCollapsePembelian" aria-expanded="false" aria-controls="formCollapsePembelian" href="#"><i class="fa-solid fa-file-pen"></i> Edit Dokumen</a>
+        <a class="text-info pl-3" data-toggle="collapse" data-target="#formCollapsePembelian" aria-expanded="false" aria-controls="formCollapsePembelian" href="#"><i class="fa-solid fa-file-pen"></i> Edit Dokumen</a>
     </div>
 </div>
 <div class="row">

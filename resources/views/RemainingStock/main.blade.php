@@ -5,8 +5,15 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-        <h1 class="m-0">Kontrol Persediaan/<small>Control Stock</small></h1>
+            <h1 class="m-0">Stock Control</h1>
         </div><!-- /.col -->
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item text-muted">Home</li>
+                <li class="breadcrumb-item text-muted">Inventory</li>
+                <li class="breadcrumb-item text-info active">Stock Control</li>
+            </ol>
+        </div>
     </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
