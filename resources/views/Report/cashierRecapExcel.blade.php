@@ -61,7 +61,7 @@
                 <td>{{$ptrx->disc}}</td>
                 <td>{{$ptrx->t_price}}</td>
                 @foreach($countPerTrx as $coTrx)
-                    @if($coTrx->countTrx == '1')
+                    @if($coTrx->countTrx == '1' AND $coTrx->core_id_trx == $ptrx->billing_number)
                         <td>TUNAI</td>
                         <td></td>
                     @endif
