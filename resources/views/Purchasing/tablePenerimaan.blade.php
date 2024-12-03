@@ -120,7 +120,8 @@ $statusDokumen = array(
                     type : 'get',
                     url : "{{route('Purchasing')}}/tablePenerimaan/btnDelete/"+dataEdit,
                     success : function(response){
-                        window.location.reload();
+                        // window.location.reload();
+                        loadDisplay();
                     }
                 });
             },
@@ -136,5 +137,20 @@ $statusDokumen = array(
                 alertify.message('OK');
               });
         });
+
+        function loadDisplay(){
+            let fromDate = "{{$fromDate}}",
+                endDate = "{{$endDate}}",
+                status = "{{$status}}";
+
+            $.ajax({
+                type : 'get',
+                url : "{{route('Purchasing')}}/tablePenerimaan/"+status+"/"+fromDate+"/"+endDate,
+                success : function(response){
+                    $('#custom-purchase-data').html(response);
+                }
+            });
+        }
+
     });
 </script>

@@ -408,7 +408,7 @@ class PurchasingController extends Controller
             $listTablePem = $listTablePem->orderBy('id_purchase','desc');
             $listTablePem = $listTablePem->get();
             
-        return view ('Purchasing/tablePenerimaan', compact('listTablePem','approval'));
+        return view ('Purchasing/tablePenerimaan', compact('listTablePem','approval','status','fromDate','endDate'));
     }
 
     //Purchase Dashboard
@@ -584,11 +584,15 @@ class PurchasingController extends Controller
     public function btnDelete ($dataDelete){
         DB::table('purchase_order')
             ->where('purchase_number',$dataDelete)
-            ->delete();
+            ->update([
+                'status'=>'0'
+            ]);
 
         DB::table('purchase_list_order')
             ->where('purchase_number',$dataDelete)
-            ->delete();
+            ->update([ 
+                'status'=>'0'
+            ]);
     }
     
     public function Bayar (){
