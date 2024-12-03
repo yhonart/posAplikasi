@@ -533,49 +533,69 @@ class CashierController extends Controller
             ])
             ->first();
 
+        $stock1 = $codeSatu->stock;
+        $vol1 = $codeSatu->product_volume;
+
+        if (!empty($codeDua)) {
+            $stock2 = $codeDua->stock;
+            $vol2 = $codeDua->product_volume;
+        }
+        else {
+            $stock2 = $stock1;
+            $vol2 = $vol1;            
+        }
+
+        if (!empty($codeTiga)) {
+            $stock3 = $codeTiga->stock;
+            $vol3 = $codeTiga->product_volume;
+        }
+        else {
+            $stock2 = $stock2;
+            $vol2 = $vol2;            
+        }
+
         foreach ($dataStock as $ds) {
             if ($prodSatuan == "BESAR") { // Jika yang dimasukkan adalah satuan Besar
                 if ($ds->size_code == '1') { // Jika kode dalam list 1
                     $a = $ds->stock - $prodQty;
                 } elseif ($ds->size_code == '2') {
-                    if (empty($codeTiga)) {
-                        $a1 = $prodQty * $codeSatu->product_volume;
-                        $a = $ds->stock - $a1;
-                    } else {
-                        $a1 = $ds->product_volume * $prodQty;
-                        $a = $ds->stock - $a1;
-                    }
+                    $a1 = $prodQty * $vol1;
+                    $a = $ds->stock - $a1;
                 } elseif ($ds->size_code == '3') {
                     $a1 = $ds->product_volume * $prodQty;
                     $a = $ds->stock - $a1;
                 }
             } elseif ($prodSatuan == "KECIL") { // Jika yang idmasukkan adalah satuan kecil
                 if ($ds->size_code == '1') { // Jika kode dalam list 1
-                    $a1 = $codeDua->stock / $codeDua->product_volume;
-                    $b1 = $prodQty / $codeDua->product_volume;
-                    $a2 = $a1 - $b1;
+                    $a1 = $stock1 * $vol1;
+                    $a2 = $a1 - $prodQty;
                     $a3 = $a2 / $codeSatu->product_volume;
-                    if (empty($codeTiga)) {
-                        $a = (int)$a3;
-                    } else {
-                        $a = (int)$a2;
-                    }
+                    $a = (int)$a3;                    
+                    // $a1 = $codeDua->stock / $codeDua->product_volume;
+                    // $b1 = $prodQty / $codeDua->product_volume;
+                    // $a2 = $a1 - $b1;
+                    // $a3 = $a2 / $codeSatu->product_volume;
+                    // if (empty($codeTiga)) {
+                    //     $a = (int)$a3;
+                    // } else {
+                    //     $a = (int)$a2;
+                    // }
                 } elseif ($ds->size_code == '2') {
                     $a1 = $ds->stock - $prodQty;
                     $a = (int)$a1;
                 } elseif ($ds->size_code == '3') {
-                    $a1 = $prodQty * $codeDua->product_volume;
-                    $a2 = $codeTiga->stock - $a1;
+                    $a1 = $prodQty * $vol2;
+                    $a2 = $stock3 - $a1;
                     $a = (int)$a2;
                 }
             } elseif ($prodSatuan == "KONV") {
-                $ab = $codeTiga->stock - $prodQty;
+                $ab = $stock3 - $prodQty;
 
                 if ($ds->size_code == '1') { // Jika kode dalam list 1
-                    $a1 = $ab / $codeTiga->product_volume;
+                    $a1 = $ab / $vol3;
                     $a = (int)$a1;
                 } elseif ($ds->size_code == '2') {
-                    $a1 = $ab / $codeDua->product_volume;
+                    $a1 = $ab / $vol2;
                     $a = (int)$a1;
                 } elseif ($ds->size_code == '3') {
                     $a = $ds->stock - $prodQty;
