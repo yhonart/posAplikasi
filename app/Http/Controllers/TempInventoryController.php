@@ -125,15 +125,30 @@ class TempInventoryController extends Controller
             if($satuan == "BESAR"){
                 // Jika data yang di loop adalah 1
                 if($ds->size_code == '1'){
-                    $a = $ds->stock + $qty;
+                    if ($ds->stock <= '0') {
+                        $a = $qty;
+                    }
+                    else {
+                        $a = $ds->stock + $qty;                        
+                    }
                 }
                 elseif($ds->size_code == '2'){
                     $a1 = (int)$volSatu * $qty; // qty yang dimasukkan dikalikan terlebih dahulu dengan volume 1
-                    $a = $ds->stock + $a1;
+                    if ($ds->stock <= '0') {
+                        $a = $a1;
+                    }
+                    else {
+                        $a = $ds->stock + $a1;                        
+                    }
                 }
                 elseif($ds->size_code == '3'){
                     $a1 = $ds->product_volume * $qty; // qty yang dimasukkan dikalikan terlebih dahulu dengan volume 3
-                    $a = $ds->stock + $a1;
+                    if ($ds->stock <= '0') {
+                        $a = $a1;
+                    }
+                    else {
+                        $a = $ds->stock + $a1;
+                    }
                 }
             }
             elseif($satuan == "KECIL"){
