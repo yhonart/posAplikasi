@@ -49,8 +49,10 @@ $statusDokumen = array(
                                 </td>
                                 <td class="text-right">
                                     @if($ltp->status =='2' AND $approval >= '1')
-                                    <button class="btn btn-success btn-sm  font-weight-bold BTN-APPROVE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Setujui</button>
-                                    <button class="btn btn-danger btn-sm  font-weight-bold BTN-DELETE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Hapus</button>
+                                        <button class="btn btn-success btn-sm  font-weight-bold BTN-APPROVE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Approve</button>
+                                    @endif
+                                    @if($approval >= '1')
+                                        <button class="btn btn-danger btn-sm  font-weight-bold BTN-DELETE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Delete</button>
                                     @endif
                                     @if($ltp->status =='2')
                                         <button class="btn btn-info btn-sm  font-weight-bold BTN-EDIT" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-pencil"></i> Edit</button>
@@ -112,7 +114,7 @@ $statusDokumen = array(
         $(".dataTable").on('click','.BTN-DELETE', function (e) {
             e.preventDefault();
             let dataEdit = $(this).attr('data-number');
-            alertify.confirm("Apakah anda yakin ingin menghapus transaksi pembelian ini ?",
+            alertify.confirm("Apakah anda yakin ingin menghapus transaksi " + dataEdit + " ?",
             function(){
                 $.ajax({
                     type : 'get',
@@ -124,7 +126,7 @@ $statusDokumen = array(
             },
             function(){
                 alertify.error('Penghapusan data dibatalkan');
-            }).set({title:"Konfirmasi Penghapusan Transaksi"});
+            }).set({title:"Konfirmasi Delete Transaksi"});
         });
         
         $(".dataTable").on('click','.BTN-DETAIL', function (e) {
