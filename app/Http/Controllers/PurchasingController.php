@@ -52,8 +52,7 @@ class PurchasingController extends Controller
             $numberByDate = DB::table('purchase_order')
                 ->select('purchase_number')
                 ->where([
-                        ['purchase_date',$date],
-                        ['status','>=','1']
+                        ['purchase_date',$date]
                     ])
                 ->count();
                 
