@@ -60,10 +60,12 @@
                 <td>{{$ptrx->unit_price}}</td>
                 <td>{{$ptrx->disc}}</td>
                 <td>{{$ptrx->t_price}}</td>
-                <td>
-                    
-                </td>
-                <td></td>
+                @foreach($countPerTrx as $coTrx)
+                    @if($coTrx->countTrx == '1')
+                        <td>{{$coTrx->method_name}}</td>
+                        <td></td>
+                    @endif
+                @endforeach
                 <td></td>
                 <td>{{$ptrx->created_by}}</td>
                 <td>{{$ptrx->tr_delivery}}</td>
