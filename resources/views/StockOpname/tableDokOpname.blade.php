@@ -13,7 +13,7 @@
         0=>"text-danger",
     );
 ?>
-<table class="table table-sm table-valign-middle table-hover table-striped" id="listDocOpname">
+<table class="table table-sm table-valign-middle table-hover text-nowrap table-bordered" id="listDocOpname">
     <thead>
         <tr>
             <th>No.</th>
@@ -55,15 +55,13 @@
 </table>
 <script>
     $(function(){
-        $('#listDocOpname').DataTable({
-          "paging": true,
-          "lengthChange": true,
-          "searching": true,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false,
-          "responsive": true,
-        });
+        $("#listDocOpname").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
     $(document).ready(function(){
         $.ajaxSetup({

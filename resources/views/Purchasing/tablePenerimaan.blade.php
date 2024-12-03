@@ -9,8 +9,8 @@ $statusDokumen = array(
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-body p-2">
-                <table class="table table-sm table-valign-middle table-hover text-nowrap table-bordered bg-light elevation-1" id="tableListPembelian">
+            <div class="card-body p-2 table-responsive" style="height:700px;">
+                <table class="table table-sm table-valign-middle table-hover text-nowrap table-bordered" id="tableListPembelian">
                     <thead>
                         <tr>
                             <th>Tgl. Penerimaan</th>

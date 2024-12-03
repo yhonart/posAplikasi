@@ -2,15 +2,22 @@
 @section('content')
 
     <!-- Header -->
-        <div class="content-header bg-light mb-2">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-md-8 col-12">          
-                        <h1 class="m-0"><small>Transaksi</small> Pembelian</h1>
-                    </div>          
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Pembelian</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item text-muted">Home</li>
+                        <li class="breadcrumb-item text-muted">Pembelian</li>
+                        <li class="breadcrumb-item text-info active">Transaksi Pembelian</li>
+                    </ol>
                 </div>
-            </div>
-        </div>
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
     <!-- content -->
     <div class="content mt-0">
         <div class="container-fluid">
