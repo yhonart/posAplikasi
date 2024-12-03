@@ -62,7 +62,7 @@
                 <td>{{$ptrx->t_price}}</td>
                 @foreach($countPerTrx as $coTrx)
                     @if($coTrx->countTrx == '1')
-                        <td>{{$coTrx->method_name}}</td>
+                        <td>TUNAI</td>
                         <td></td>
                     @endif
                 @endforeach

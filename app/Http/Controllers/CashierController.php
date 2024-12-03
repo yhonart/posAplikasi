@@ -2952,8 +2952,7 @@ class CashierController extends Controller
             ->get();
         
         $countPerTrx = DB::table('tr_payment_method as a')
-            ->select('a.core_id_trx', DB::raw('count(a.core_id_trx) as countTrx'),'b.method_name')
-            ->leftJoin('m_payment_method as b','a.method_name','=','b.idm_payment_method')
+            ->select('a.core_id_trx', DB::raw('count(a.core_id_trx) as countTrx'))            
             ->where('a.method_name','!=','8')
             ->groupBy('a.core_id_trx')
             ->get();
