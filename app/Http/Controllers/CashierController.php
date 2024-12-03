@@ -2952,10 +2952,10 @@ class CashierController extends Controller
             ->get();
         
         $countPerTrx = DB::table('tr_payment_method')
-            ->select('core_id_trx', DB::raw('count(core_id_trx) as countTrx'),'b.method_name')
+            ->select('a.core_id_trx', DB::raw('count(a.core_id_trx) as countTrx'),'b.method_name')
             ->leftJoin('m_payment_method as b','a.method_name','=','b.idm_payment_method')
-            ->where('method_name','!=','8')
-            ->groupBy('core_id_trx')
+            ->where('a.method_name','!=','8')
+            ->groupBy('a.core_id_trx')
             ->get();
 
         $Supplier = DB::table('supplier_item')
