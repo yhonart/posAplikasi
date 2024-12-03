@@ -769,6 +769,7 @@ class PurchasingController extends Controller
                     ['location_id',$loc]
                     ])
                 ->first();
+
             // cek harga satuan 
             $dbHrg = DB::table('product_list_view')
                 ->where([
@@ -781,7 +782,12 @@ class PurchasingController extends Controller
             $satuanHrg = $dbHrg->product_price_order;
             
             //hitung stock akhir 
-            $stockAkhir = $qty + $stock;
+            if ($stock <= '0') {
+                $stockAkhir = $qty;
+            }
+            else {
+                $stockAkhir = $qty + $stock;
+            }
             
             //hitung harga
             $harga = $satuanHrg * $qty;
