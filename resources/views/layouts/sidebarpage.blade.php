@@ -81,7 +81,37 @@
         .form-control:focus {  
             border-color: #6d28d9; /* changes border color to red */   
             border-width: 3px;            
-        }    
+        }   
+        .buttons-print {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-color: #e2e8f0;
+        }
+        .buttons-excel {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-color: #e2e8f0;
+        } 
+        .buttons-copy {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-color: #e2e8f0;
+        } 
+        .buttons-csv {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-color: #e2e8f0;
+        } 
+        .buttons-pdf {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-color: #e2e8f0;
+        } 
+        .buttons-colvis {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-color: #e2e8f0;
+        } 
 
     </style>
 </head>

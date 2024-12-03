@@ -533,6 +533,7 @@ class PurchasingController extends Controller
                     ['location_id',$loc]
                 ])
                 ->first();
+
             $saldo = $inInv + $selectLastStock->saldo;
             $volPrd = $selectSizeCode->product_volume;
 
@@ -597,8 +598,13 @@ class PurchasingController extends Controller
                 ['payment_status','1']
                 ])
             ->get();
+
+        $payed = DB::table('purchase_kredit_payment')
+            ->select(DB::raw('SUM(kredit_pay) as kreditPayed'),'nomor','idp_pay')
+            ->groupBy('nomor')
+            ->get();
             
-        return view ('Purchasing/PurchaseOrder/tableListBayar', compact('tbPurchase'));
+        return view ('Purchasing/PurchaseOrder/tableListBayar', compact('tbPurchase','payed'));
     }
     
     public function payPost(Request $reqPost){
@@ -682,6 +688,8 @@ class PurchasingController extends Controller
             ->get();
             
         $paymentKredit = DB::table('purchase_kredit_payment')
+            ->select(DB::raw('SUM(kredit_pay) as payed', 'nomor','idp_pay'))
+            ->groupBy('nomor')
             ->get();
             
         return view ('Purchasing/PurchaseOrder/tableListBayarHutang', compact('tbPurchase','paymentKredit'));
@@ -880,7 +888,10 @@ class PurchasingController extends Controller
     }
 
     public function piutangSupplier (){
-        return view ('Purchasing/PurchaseOrder/mainPiutangSupplier');
+        $mSupplier = DB::table('m_supplier')
+            ->get();
+
+        return view ('Purchasing/PurchaseOrder/mainPiutangSupplier', compact('mSupplier'));
     }
     
 }

@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-md-8 col-12">          
-                <h1 class="m-0">Control Panel Pinjaman Pelanggan</h1>
+                <h1 class="m-0">Piutang Pelanggan</h1>
             </div>          
         </div>
     </div>

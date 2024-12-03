@@ -28,7 +28,7 @@
                     <td class="text-right">
                         @foreach($paymentKredit as $pKred)
                             @if($pKred->nomor == $tPayment->purchase_number)
-                                {{number_format($pKred->kredit_pay,'0',',','.')}}
+                                {{number_format($pKred->payed,'0',',','.')}}
                             @endif
                         @endforeach
                     </td>
