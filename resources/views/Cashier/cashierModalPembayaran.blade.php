@@ -477,7 +477,7 @@
 
             let penguranganTunai = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
                 totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai),
-                totalHarusDibayar = perseint(replacetBelanja) + parseInt(replacetBelanja);
+                totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replacetBelanja);
 
             if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
                 alertify
@@ -516,7 +516,7 @@
 
                 let penguranganTunai = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
                 totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai),
-                totalHarusDibayar = perseint(replacetBelanja) + parseInt(replacetBelanja);
+                totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replacetBelanja);
                 
                 // alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + penguranganTunai + " / " + replaceTotalPembayaran + " / " + replaceKredit);
 
