@@ -105,7 +105,7 @@
                                 <div class="col-md-4">
                                     <select name="metodePembayaran1" id="metodePembayaran1" class="form-control ">
                                         @foreach($paymentMethod as $pM)
-                                            <option value="{{$pM->idm_payment_method}}">
+                                            <option value="{{$pM->idm_payment_method}}|{{$pM->method_name}}">
                                                 {{$pM->method_name}}
                                             </option>
                                         @endforeach
@@ -113,9 +113,9 @@
                                     <input type="text" name="cardName1" id="cardName1" class="form-control " placeholder="Nama Bank" style="display:none;">
                                     <input type="text" name="cardNumber1" id="cardNumber1" class="form-control " placeholder="Nomor Kartu" style="display:none;">
                                     <select name="bankAccount1" id="bankAccount1" class="form-control " style="display:none;">
-                                        <option value="0">NAMA BANK</option>
+                                        <option value="0|0">NAMA BANK</option>
                                         @foreach($bankAccount as $bA)
-                                            <option value="{{$bA->idm_payment}}">
+                                            <option value="{{$bA->idm_payment}}|{{$bA->bank_name}}">
                                                 {{$bA->bank_name}} - {{$bA->account_number}} a.n {{$bA->account_name}}
                                             </option>
                                         @endforeach

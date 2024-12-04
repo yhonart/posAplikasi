@@ -1998,6 +1998,28 @@ class CashierController extends Controller
         $billNumber = $reqMethod->billNumber;
         $totalBelanja = str_replace(".", "", $reqMethod->totalBelanja);
 
+        $countPayment = DB::table('tr_payment_method')
+            ->where('core_id_trx', $billNumber)
+            ->count();
+
+        $paymentMethod = DB::table('m_payment_method')
+            ->where('idm_payment_method',$methodName)
+            ->first();
+        
+        if ($countPayment == '0') {
+            DB::table('tr_store')
+                ->where('billing_number', $billNumber)
+                ->update([
+                    'payment1'=>$paymentMethod->method_name,
+                ]);
+        }
+        else {
+            DB::table('tr_store')
+                ->where('billing_number', $billNumber)
+                ->update([
+                    'payment2'=>$paymentMethod->method_name,
+                ]);
+        }
 
         $ceknominalinput = DB::table('tr_payment_method')
             ->select(DB::raw('SUM(nominal) as nominal'))
@@ -2050,7 +2072,21 @@ class CashierController extends Controller
         $lunasiHutang = $dataPembayaran->lunasiHutang;
         $memberID = $dataPembayaran->memberID;
         $nilaiPoint = '0';
-        $kreditPlusBelanja = $kredit + $tBelanja;        
+        $kreditPlusBelanja = $kredit + $tBelanja;
+        $checkList = $dataPembayaran->radioMethod;
+        $getPembayaran = explode("|", $dataPembayaran->metodePembayaran1);
+        $methodPembayaran = $getPembayaran[0];
+        $namePembayaran = $getPembayaran[1];
+        $getBankAccount = explode("|", $dataPembayaran->bankAccount1);
+        $bankAccount = $getBankAccount[0];
+        $bankAccountName = $getBankAccount[1];
+        $accountCusNumber = $dataPembayaran->cardNumber1;
+        $accountCusName = $dataPembayaran->cardName1;
+
+        $description = "";
+        $transaction = "";
+        $status1 = "";
+        $status2 = "";
 
         if (isset($checkBoxPoint)) {
             $tPembayaran = $fieldBayar + $checkBoxPoint;
@@ -2133,13 +2169,6 @@ class CashierController extends Controller
             $tPembayaran = $fieldBayar;
         }
 
-        $checkList = $dataPembayaran->radioMethod;
-        $methodPembayaran = $dataPembayaran->metodePembayaran1;
-        $bankAccount = $dataPembayaran->bankAccount1;
-        $accountCusNumber = $dataPembayaran->cardNumber1;
-        $accountCusName = $dataPembayaran->cardName1;
-
-
         $pengiriman = $dataPembayaran->pengiriman;
         $ppn2 = $dataPembayaran->ppn2;
         $nominalPPN2 = str_replace(".", "", $dataPembayaran->nominalPPN2);
@@ -2151,6 +2180,7 @@ class CashierController extends Controller
             ->where('billing_number', $noBill)
             ->first();
 
+        // Jika dilakukan return pembayaran 
         if ($trxLastBayar->t_pay > $tPembayaran) {
             $nilaiPoint = $trxLastBayar->t_pay - $tPembayaran;
             DB::table('tr_member_point')
@@ -2171,14 +2201,33 @@ class CashierController extends Controller
         //     $nameMethod = $cekPaymentMethod->category;
         // }
         echo $tPembayaran .">=". $kreditPlusBelanja; 
-        
+
+        //Cek count pembayaran
+        $countMethod = DB::table('tr_payment_method')
+            ->where('core_id_trx', $noBill)
+            ->count();
+
+        //Transaksi TUNAI
         if ($tPembayaran >= $tBelanja) {
             $status = "4";
-            $mBayar = $methodPembayaran;
-        } elseif ($record >= '1') {
+            $mBayar = $methodPembayaran; 
+            
+            if ($countMethod == '0') {
+                DB::table('tr_store')
+                ->where('billing_number', $noBill)
+                ->update([
+                    'payment1'=>$namePembayaran,
+                    'description'=>$bankAccountName,
+                    'transaction'=>"Sale",                    
+                ]);
+            }
+        } 
+        //Transaksi return/edit transaksi setelah pembayaran
+        elseif ($record >= '1') {
             $lastPayment = $dataPembayaran->lastBayar;
             $status = "4";
             $mBayar = '8';
+            $returnBy = "Return By ".$updateBy;
             DB::table('tr_return_record')
                 ->insert([
                     'trx_code' => $noBill,
@@ -2187,10 +2236,25 @@ class CashierController extends Controller
                     'return_date' => now(),
                     'update_by' => $updateBy
                 ]);
-        } elseif ($tPembayaran < $tBelanja and $record == '0') {
+
+            if ($countMethod == '0') {
+                DB::table('tr_store')
+                ->where('billing_number', $noBill)
+                ->update([
+                    'payment1'=>$namePembayaran,
+                    'description'=>$bankAccountName,
+                    'transaction'=>"Sale",
+                    'status1'=>$returnBy,
+                    'status2'=>$returnBy,
+                ]);
+            }
+        } 
+        //Transaksi Hutang
+        elseif ($tPembayaran < $tBelanja and $record == '0') {
             //Cek data pinjaman member
             $status = "3";
             $mBayar = '8';
+            $kreditDesc = "Kredit 7 hari";
             $countKredit = DB::table('tr_kredit')
                 ->where([
                     ['from_member_id', $memberID]
@@ -2209,6 +2273,18 @@ class CashierController extends Controller
                     'status' => '1',
                     'created_at' => now()
                 ]);
+
+            if ($countMethod == '0') {
+                DB::table('tr_store')
+                ->where('billing_number', $noBill)
+                ->update([
+                    'payment1'=>$namePembayaran,
+                    'description'=>$kreditDesc,
+                    'transaction'=>"Sale",
+                    'status1'=>$returnBy,
+                    'status2'=>$returnBy,
+                ]);
+            }
         } else {
             $status = "2";
         }
@@ -2270,12 +2346,7 @@ class CashierController extends Controller
                 ]);
         }
 
-        //PAYMENT METHOD        
-        //Cek count pembayaran
-        $countMethod = DB::table('tr_payment_method')
-            ->where('core_id_trx', $noBill)
-            ->count();
-
+        //PAYMENT METHOD
         if (!isset($checkList)) {
             if ($countMethod == '0') {
                 DB::table('tr_payment_method')
