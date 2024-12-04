@@ -1,6 +1,6 @@
 <?php 
-    // header("Content-type: application/vnd-ms-excel");
-    // header("Content-Disposition: attachment; filename=ReportHarian.xls");
+    header("Content-type: application/vnd-ms-excel");
+    header("Content-Disposition: attachment; filename=ReportHarian.xls");
     $no = '1';
 ?>
 <?php
@@ -94,7 +94,7 @@
                 <td> <b>{{$sumHrgSatuan}}</b> </td>
                 <td></td>
                 <td> <b>{{$sumJumlah}}</b> </td>
-                <td colspan="9"></td>
+                <td colspan="10"></td>
             </tr>
     </tbody>
 </table>
