@@ -6,7 +6,12 @@
 <?php
     $sumHrgSatuan = '0';
     $sumJumlah = '0';
-    $iNumber = '0';    
+    $iNumber = '0';  
+    $arrLevel = array(
+        0=>"Not Set",
+        1=>"Gold",
+        2=>"Silver",
+    );  
 ?>
 <table width="100%" border="1">
     <thead>
@@ -60,18 +65,14 @@
                 <td>{{$ptrx->unit_price}}</td>
                 <td>{{$ptrx->disc}}</td>
                 <td>{{$ptrx->t_price}}</td>
-                @foreach($countPerTrx as $coTrx)
-                    @if($coTrx->countTrx == '1' AND $coTrx->core_id_trx == $ptrx->billing_number)
-                        <td>TUNAI</td>
-                        <td></td>
-                    @endif
-                @endforeach
-                <td></td>
+                <td>{{$ptrx->payment1}}</td>
+                <td>{{$ptrx->payment2}}</td>
+                <td>{{$ptrx->description}}</td>
                 <td>{{$ptrx->created_by}}</td>
                 <td>{{$ptrx->tr_delivery}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{$ptrx->transaction}}</td>
+                <td>{{$ptrx->status1}}</td>
+                <td>{{$ptrx->status2}}</td>                
                 <td>
                     @foreach($Supplier as $sup)
                         @if($sup->item_id == $ptrx->product_code)
@@ -79,7 +80,9 @@
                         @endif
                     @endforeach
                 </td>
-                <td></td>
+                <td>
+                    {{$arrLevel[$ptrx->level]}}
+                </td>
             </tr>
             <?php
                 $sumHrgSatuan += $ptrx->unit_price;
