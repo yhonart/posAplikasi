@@ -495,9 +495,9 @@
             //     $("#notiveDisplay").html("2 Metode pembayaran belum terpenuhi. Masih kurang : "+selisih+" klik plus (+) untuk melengkapi pembayaran.");
             // }
             else {
-                inputPembayaran(billPembayaran, typeCetak);
+                //inputPembayaran(billPembayaran, typeCetak);
             }            
-            // alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja);
+            alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja);
         })
         
         document.addEventListener('keydown', function(event) {
@@ -530,9 +530,9 @@
                     $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
                 }
                 else {
-                    inputPembayaran(billPembayaran, typeCetak);
+                    //inputPembayaran(billPembayaran, typeCetak);
                 }
-                // alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja);
+                alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja);
             }
             
             if (event.keyCode === 27) {
