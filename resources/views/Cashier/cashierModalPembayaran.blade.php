@@ -185,7 +185,7 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control type-account " name="nominalBayar" id="nominalBayar" value="" autocomplete="off">
+                                                    <input type="text" class="form-control type-account " name="nominalBayar" id="nominalBayar" autocomplete="off">
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-info " id="addPaymentMethod"><i class="fas fa-plus"></i></button>
