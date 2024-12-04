@@ -66,7 +66,7 @@
                             <td>{{$aC->customer_store}}</td>
                             <td>{{$aC->bankTransfer}}</td>
                             <td>{{number_format($aC->total_struk,'0',',','.')}}</td>
-                            <td>{{number_format($aC->total_payment,'0',',','.')}}</td>
+                            <td>{{number_format($aC->nominal,'0',',','.')}}</td>
                             <td>{{$aC->bank_name}}</td>
                             <td></td>
                         </tr>
