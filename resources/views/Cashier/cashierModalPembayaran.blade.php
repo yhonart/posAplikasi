@@ -486,7 +486,7 @@
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Untuk pembayaran kurang dari nominal : Rp. "+tKredit+", gunakan menu PELUNASAN [F9] untuk pembayaran secara partial. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
             }
-            else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && replaceKredit !== '0' && checkBoxLunas.checked == false) {
+            else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && parseInt(replaceTotalPembayaran) >= totalHutang && replaceKredit !== '0' && checkBoxLunas.checked == false) {
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
             }
@@ -525,7 +525,7 @@
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Pembayaran hutang tidak boleh kurang dari nominal hutang sebelumnya : Rp. "+tKredit+". Transaksi pembayaran hutang tanpa pelunasan dapat dilakukan secara parsial di menu PELUNASAN [F9]. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
                 }
-                else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && replaceKredit !== '0' && checkBoxLunas.checked == false) {
+                else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && parseInt(replaceTotalPembayaran) >= totalHutang && replaceKredit !== '0' && checkBoxLunas.checked == false) {
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
                 }
