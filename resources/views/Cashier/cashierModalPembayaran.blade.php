@@ -466,15 +466,18 @@
         $("#btnSimpanTrx").click(function(){
             event.preventDefault();
             let typeCetak = $("#typeCetak").val(),
-                totalPembayaran = $("#tPembayaran").val(),
-                tBelanja = $("#tBelanja").val(),
-                tKredit = $("#kredit").val();
+                    totalPembayaran = $("#tPembayaran").val(),
+                    tBelanja = $("#tBelanja").val(),
+                    tKredit = $("#kredit").val();
+
             let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
-                replaceKredit = tKredit.replace(/\./g, "");
+                    replaceKredit = tKredit.replace(/\./g, ""),
+                    replacetBelanja = tBelanja.replace(/\./g, "");
             //alert(kreditLimit);
 
             let penguranganTunai = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
-                totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai);
+                totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai),
+                totalHarusDibayar = perseint(replacetBelanja) + parseInt(replacetBelanja);
 
             if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
                 alertify
@@ -486,7 +489,7 @@
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Untuk pembayaran kurang dari nominal : Rp. "+tKredit+", gunakan menu PELUNASAN [F9] untuk pembayaran secara partial. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
             }
-            else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && parseInt(replaceTotalPembayaran) >= totalHutang && replaceKredit !== '0' && checkBoxLunas.checked == false) {
+            else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && parseInt(replaceTotalPembayaran) >= totalHarusDibayar && replaceKredit !== '0' && checkBoxLunas.checked == false) {
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
             }
@@ -497,7 +500,7 @@
             else {
                 //inputPembayaran(billPembayaran, typeCetak);
             }            
-            alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja);
+            alert(replaceTotalPembayaran+">="+replaceKredit+";"+totalHarusDibayar);
         })
         
         document.addEventListener('keydown', function(event) {
@@ -508,10 +511,12 @@
                     tBelanja = $("#tBelanja").val(),
                     tKredit = $("#kredit").val();
                 let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
-                    replaceKredit = tKredit.replace(/\./g, "");
+                    replaceKredit = tKredit.replace(/\./g, ""),
+                    replacetBelanja = tBelanja.replace(/\./g, "");
 
                 let penguranganTunai = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
-                totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai);
+                totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai),
+                totalHarusDibayar = perseint(replacetBelanja) + parseInt(replacetBelanja);
                 
                 // alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + penguranganTunai + " / " + replaceTotalPembayaran + " / " + replaceKredit);
 
@@ -525,14 +530,14 @@
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Pembayaran hutang tidak boleh kurang dari nominal hutang sebelumnya : Rp. "+tKredit+". Transaksi pembayaran hutang tanpa pelunasan dapat dilakukan secara parsial di menu PELUNASAN [F9]. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
                 }
-                else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && parseInt(replaceTotalPembayaran) >= totalHutang && replaceKredit !== '0' && checkBoxLunas.checked == false) {
+                else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && parseInt(replaceTotalPembayaran) >= totalHarusDibayar && replaceKredit !== '0' && checkBoxLunas.checked == false) {
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
                 }
                 else {
                     //inputPembayaran(billPembayaran, typeCetak);
                 }
-                alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja);
+                alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja+";"+totalHarusDibayar);
             }
             
             if (event.keyCode === 27) {
