@@ -1,6 +1,6 @@
 <?php 
-    header("Content-type: application/vnd-ms-excel");
-    header("Content-Disposition: attachment; filename=ReportHarian.xls");
+    // header("Content-type: application/vnd-ms-excel");
+    // header("Content-Disposition: attachment; filename=ReportHarian.xls");
     $no = '1';
 ?>
 <?php
@@ -60,10 +60,12 @@
                 <td>{{$ptrx->unit_price}}</td>
                 <td>{{$ptrx->disc}}</td>
                 <td>{{$ptrx->t_price}}</td>
-                <td>
-                    
-                </td>
-                <td></td>
+                @foreach($countPerTrx as $coTrx)
+                    @if($coTrx->countTrx == '1' AND $coTrx->core_id_trx == $ptrx->billing_number)
+                        <td>TUNAI</td>
+                        <td></td>
+                    @endif
+                @endforeach
                 <td></td>
                 <td>{{$ptrx->created_by}}</td>
                 <td>{{$ptrx->tr_delivery}}</td>

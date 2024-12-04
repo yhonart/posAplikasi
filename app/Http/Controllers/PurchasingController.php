@@ -463,8 +463,7 @@ class PurchasingController extends Controller
             $qty = $pl->qty;
             $location = $pl->warehouse;
 
-            //UPDATE STOCK;            
-            $updateInv = $this->TempInventoryController->tambahStock($productID, $qty, $satuan, $location);
+            
             
             //INPUT REPORT
             $numberCode = $dataEdit;
@@ -557,6 +556,8 @@ class PurchasingController extends Controller
                     'status_trx'=>'4'
                 ]);
 
+            //UPDATE STOCK;            
+            $updateInv = $this->TempInventoryController->tambahStock($productID, $qty, $satuan, $location);
         }
 
         $sumPembelian = DB::table('purchase_list_order')
