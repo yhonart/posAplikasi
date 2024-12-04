@@ -185,7 +185,7 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control type-account " name="nominalBayar" id="nominalBayar" value="{{$nilaiNextBayar}}" autocomplete="off">
+                                                    <input type="text" class="form-control type-account " name="nominalBayar" id="nominalBayar" value="" autocomplete="off">
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-info " id="addPaymentMethod"><i class="fas fa-plus"></i></button>
@@ -490,10 +490,10 @@
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
             }
-            else if (checkBox2.checked == true && selisih !== '0') {
-                $(".notive-display").fadeIn();
-                $("#notiveDisplay").html("2 Metode pembayaran belum terpenuhi. Masih kurang : "+selisih+" klik plus (+) untuk melengkapi pembayaran.");
-            }
+            // else if (checkBox2.checked == true && selisih !== '0') {
+            //     $(".notive-display").fadeIn();
+            //     $("#notiveDisplay").html("2 Metode pembayaran belum terpenuhi. Masih kurang : "+selisih+" klik plus (+) untuk melengkapi pembayaran.");
+            // }
             else {
                 inputPembayaran(billPembayaran, typeCetak);
             }            
