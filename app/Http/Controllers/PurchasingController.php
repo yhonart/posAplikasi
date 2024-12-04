@@ -460,10 +460,8 @@ class PurchasingController extends Controller
         foreach($dblp as $pl){
             $productID = $pl->product_id;
             $satuan = $pl->size;
-            $qty = $pl->qty;
+            $qty = $pl->stock_akhir;
             $location = $pl->warehouse;
-
-            
             
             //INPUT REPORT
             $numberCode = $dataEdit;
@@ -498,28 +496,28 @@ class PurchasingController extends Controller
             $sizeCodeDesc = $mUnit->size_code; 
             
             if ($sizeCodeDesc == '1') {
-                $ls = $pl->qty;
+                $ls = $qty;
             }
             elseif ($sizeCodeDesc == '2') {
                 if ($satuan == "BESAR") {
-                    $ls1 = $pl->qty * $volB;
+                    $ls1 = $qty * $volB;
                     $ls = (int)$ls1;
                 }
                 elseif ($satuan == "KECIL") {
-                    $ls = $pl->qty;
+                    $ls = $qty;
                 }
             }
             elseif ($sizeCodeDesc == '3') {
                 if ($satuan == "BESAR") {
-                    $ls1 = $pl->qty * $volKonv;
+                    $ls1 = $qty * $volKonv;
                     $ls = (int)$ls1;
                 }
                 elseif ($satuan == "KECIL") {
-                    $ls1 = $pl->qty * $volK;
+                    $ls1 = $qty * $volK;
                     $ls = (int)$ls1;
                 }
                 elseif ($satuan == "KONV") {
-                    $ls = $pl->qty;
+                    $ls = $qty;
                 }
             }
             $inInv = $ls;
@@ -532,7 +530,7 @@ class PurchasingController extends Controller
                 ])
                 ->first();
 
-            $saldo = $inInv + $selectLastStock->saldo;
+            $saldo = $inInv + $selectLastStock->stock;
             $volPrd = $selectSizeCode->product_volume;
 
             //Query insert into report
@@ -543,7 +541,7 @@ class PurchasingController extends Controller
                     'product_id'=>$productID,
                     'product_name'=>$prodName,
                     'satuan'=>$satuan,
-                    'satuan_code'=>$sizeCode,
+                    'satuan_code'=>$sizeCodeDesc,
                     'description'=>$description,
                     'inv_in'=>$inInv,
                     'inv_out'=>$outInv,
