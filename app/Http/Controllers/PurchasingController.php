@@ -560,7 +560,7 @@ class PurchasingController extends Controller
                 ]);
 
             //UPDATE STOCK;            
-            $updateInv = $this->TempInventoryController->tambahStock($productID, $qty, $satuan, $location);
+            $updateInv = $this->TempInventoryController->tambahStock($productID, $qtyInput, $satuan, $location);
         }
 
         $sumPembelian = DB::table('purchase_list_order')
