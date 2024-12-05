@@ -476,8 +476,10 @@ class MutasibarangController extends Controller
    
    public function pickup($idParam){
         $updateBy = Auth::user()->name;
+
+        // get list data berdasarkan asal barang
         $listProduk = DB::table('inv_moving_list as a')
-            ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume','b.product_name')
+            ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume','b.product_name','b.stock')
             ->leftJoin('view_product_stock as b', 'b.idinv_stock','=','a.inv_id')
             ->where('a.mutasi_code',$idParam)
             ->get();
@@ -489,6 +491,7 @@ class MutasibarangController extends Controller
         $toLoc = $docMutasi->to_loc;
         $fromLoc = $docMutasi->from_loc;
         
+        //Untuk membuat description
         $mToLoc = DB::table('m_site')
             ->where('idm_site',$toLoc)
             ->first();
@@ -500,15 +503,16 @@ class MutasibarangController extends Controller
         $fromLocName = $mFromLoc->site_name;    
         $toLocName = $mToLoc->site_name;    
         $description = "Moving Dari ".$fromLocName." ke ".$toLocName;
+        //End create Description
 
         foreach($listProduk as $lp){
             $productID = $lp->product_id;
-            $satuan = $lp->satuan;
-            $lastStock = $lp->last_stock;
-            $takenStock = $lp->stock_taken;
+            $satuan = $lp->satuan; //BESAR,KECIL,KONV
+            $lastStock = $lp->stock; //Aktual stok dari table stok
+            $takenStock = $lp->stock_taken; //Stok diambil
             $asalBarang = $lp->from_loc_saldo;
-            $tujuanBarang = $lp->destination_loc_saldo;
-            $penguranganStock = $lastStock - $takenStock;
+            $tujuanBarang = $lp->destination_loc_saldo;            
+            $penguranganStock = $lastStock - $takenStock; // Untuk dilakukan update ke stok asal barang
             $prodName = $lp->product_name;
             $sizeCode = $lp->size_code;
 
@@ -516,10 +520,10 @@ class MutasibarangController extends Controller
                     ->where('idm_data_product',$productID)
                     ->first();
 
-                $volB = $mProduct->large_unit_val;
-                $volK = $mProduct->medium_unit_val;
-                $volKonv = $mProduct->small_unit_val;
-                $prodName = $mProduct->product_name;
+            $volB = $mProduct->large_unit_val;
+            $volK = $mProduct->medium_unit_val;
+            $volKonv = $mProduct->small_unit_val;
+            $prodName = $mProduct->product_name;
 
             $mUnit = DB::table('m_product_unit')
                 ->select('size_code','product_volume')
@@ -636,18 +640,17 @@ class MutasibarangController extends Controller
             }
         }
         
-        DB::table('inv_moving')
-            ->where('number',$idParam)
-            ->update([
-                'status'=>'4'    
-            ]);
+        // DB::table('inv_moving')
+        //     ->where('number',$idParam)
+        //     ->update([
+        //         'status'=>'4'    
+        //     ]);
         
-        DB::table('inv_moving_list')
-            ->where('mutasi_code',$idParam)
-            ->update([
-                'status'=>'4'    
-            ]);
-        
+        // DB::table('inv_moving_list')
+        //     ->where('mutasi_code',$idParam)
+        //     ->update([
+        //         'status'=>'4'    
+        //     ]);        
    }
    
    public function editMutasi ($idparam){
