@@ -71,7 +71,6 @@ class LapInventoryController extends Controller
             $dataReportInv = $dataReportInv->where('status_trx','4');
             $dataReportInv = $dataReportInv->whereBetween('date_input',[$fromDate, $endDate]);
             $dataReportInv = $dataReportInv->orderBy('idr_inv','asc');
-            $dataReportInv = $dataReportInv->orderBy('number_code','asc');
             $dataReportInv = $dataReportInv->get();
 
         $dataSaldoAwal = DB::table('report_inv');
@@ -84,7 +83,6 @@ class LapInventoryController extends Controller
             $dataSaldoAwal = $dataSaldoAwal->where('status_trx','4');
             $dataSaldoAwal = $dataSaldoAwal->whereBetween('date_input',[$fromDate, $endDate]);
             $dataSaldoAwal = $dataSaldoAwal->orderBy('idr_inv','asc');
-            $dataSaldoAwal = $dataSaldoAwal->orderBy('number_code','asc');
             $dataSaldoAwal = $dataSaldoAwal->first();
 
         $mProduct = DB::table('m_product')
