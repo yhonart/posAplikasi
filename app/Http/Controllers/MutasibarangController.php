@@ -137,7 +137,10 @@ class MutasibarangController extends Controller
         $tableMoving=$tableMoving->limit(100);
         $tableMoving=$tableMoving->get();
 
-        return view('Mutasi/tableDokMutasi',compact('tableMoving','approval','userArea'));
+        $mSites = DB::table('m_site')
+            ->get();
+
+        return view('Mutasi/tableDokMutasi',compact('tableMoving','approval','userArea','mSites'));
     }
 
     public function getTableInputProduct (){

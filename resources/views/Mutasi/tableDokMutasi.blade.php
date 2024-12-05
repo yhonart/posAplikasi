@@ -28,10 +28,18 @@
                 <td>{{$tm->number}}</td>
                 <td>{{$tm->date_moving}}</td>
                 <td class="bg-success font-weight-bold">
-                    {{$tm->from_loc}}
+                    @foreach($mSites as $ms1)
+                        @if($ms1->idm_site == $tm->from_loc)
+                            {{$ms1->site_name}}
+                        @endif
+                    @endforeach
                 </td>
                 <td class="bg-warning font-weight-bold">
-                    {{$tm->to_loc}}
+                    @foreach($mSites as $ms2)
+                        @if($ms2->idm_site == $tm->to_loc)
+                            {{$ms2->site_name}}
+                        @endif
+                    @endforeach
                 </td>
                 <td>{{$tm->created_by}}</td>
                 <td class="text-right">
@@ -66,15 +74,13 @@
 
 <script>
     $(function(){
-        $('#tableDokMutasi').DataTable({
-          "paging": true,
-          "lengthChange": true,
-          "searching": true,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false,
-          "responsive": true,
-        });
+        $("#tableDokMutasi").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
     $(document).ready(function(){
         $.ajaxSetup({
