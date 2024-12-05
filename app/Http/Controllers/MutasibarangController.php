@@ -479,7 +479,7 @@ class MutasibarangController extends Controller
 
         // get list data berdasarkan asal barang
         $listProduk = DB::table('inv_moving_list as a')
-            ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume','b.product_name','b.stock')
+            ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume','b.product_name','b.stock','b.location_id')
             ->leftJoin('view_product_stock as b', 'b.idinv_stock','=','a.inv_id')
             ->where('a.mutasi_code',$idParam)
             ->get();
@@ -515,6 +515,7 @@ class MutasibarangController extends Controller
             $penguranganStock = $lastStock - $takenStock; // Untuk dilakukan update ke stok asal barang
             $prodName = $lp->product_name;
             $sizeCode = $lp->size_code;
+            $locAsalBarang = $lp->location_id;
 
             $mProduct = DB::table('m_product')
                     ->where('idm_data_product',$productID)
@@ -563,61 +564,11 @@ class MutasibarangController extends Controller
             // $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
             
             //Cek saldo di laporan inventory yang terakhir sebelum dilakukan approval
-            if ($asalBarang <> '') { 
-                $saldoBarang = $asalBarang;
+            if ($fromLoc == $locAsalBarang) {
                 $itemIn = '0';
-                $itemOut = $qtyMoving ;
-                $invLastStock = $asalBarang + $qtyMoving;
+                $itemOut = $qtyMoving;
+                $reportSaldo = $lastStock - $qtyMoving;
 
-                $selectLastSaldo = DB::table('report_inv')
-                    ->select('saldo')
-                    ->where([
-                        ['product_id',$productID],
-                        ['location',$fromLoc]
-                    ])
-                    ->orderBy('idr_inv','desc')
-                    ->first();
-                
-                foreach ($selectLastSaldo as $ls) {
-                    $inputSaldo = $ls->$qtyMoving - $qtyMoving;
-                    DB::table('report_inv')
-                        ->insert([
-                            'date_input'=>now(),
-                            'number_code'=>$idParam,
-                            'product_id'=>$productID,
-                            'product_name'=>$prodName,
-                            'satuan'=>$satuan,
-                            'satuan_code'=>$lp->size_code,
-                            'description'=>$description,
-                            'inv_in'=>$itemIn,
-                            'inv_out'=>$itemOut,
-                            'saldo'=>$saldoBarang,
-                            'created_by'=>$updateBy,
-                            'location'=>$fromLoc,
-                            'last_saldo'=>$invLastStock,
-                            'vol_prd'=>$sizeCode,
-                            'actual_input'=>$takenStock,
-                            'status_trx'=>'4'
-                        ]);
-                }
-
-            }
-
-            if ($tujuanBarang <> '') { 
-                $saldoBarang = $tujuanBarang;               
-                $itemIn = $qtyMoving;
-                $itemOut = '0';        
-                $invLastStock = $asalBarang - $qtyMoving;
-
-                $selectLastSaldo = DB::table('report_inv')
-                    ->select('saldo')
-                    ->where([
-                        ['product_id',$productID],
-                        ['location',$toLoc]
-                    ])
-                    ->orderBy('idr_inv','desc')
-                    ->first();
-                    
                 DB::table('report_inv')
                     ->insert([
                         'date_input'=>now(),
@@ -629,14 +580,49 @@ class MutasibarangController extends Controller
                         'description'=>$description,
                         'inv_in'=>$itemIn,
                         'inv_out'=>$itemOut,
-                        'saldo'=>$saldoBarang,
+                        'saldo'=>$reportSaldo,
                         'created_by'=>$updateBy,
-                        'location'=>$toLoc,
+                        'location'=>$fromLoc,
                         'last_saldo'=>$invLastStock,
                         'vol_prd'=>$sizeCode,
                         'actual_input'=>$takenStock,
                         'status_trx'=>'4'
-                    ]); 
+                    ]);
+            }
+            else {
+                $itemIn = $qtyMoving;
+                $itemOut = '0';
+                
+                $destinationStock = DB::table('view_product_stock')
+                    ->select('stock')
+                    ->where([
+                        ['idm_data_product',$productID],
+                        ['location_id',$toLoc]
+                    ])
+                    ->orderBy('size_code','desc')
+                    ->first();
+
+                $reportSaldo = $destinationStock->stock + $qtyMoving;
+
+                DB::table('report_inv')
+                    ->insert([
+                        'date_input'=>now(),
+                        'number_code'=>$idParam,
+                        'product_id'=>$productID,
+                        'product_name'=>$prodName,
+                        'satuan'=>$satuan,
+                        'satuan_code'=>$lp->size_code,
+                        'description'=>$description,
+                        'inv_in'=>$itemIn,
+                        'inv_out'=>$itemOut,
+                        'saldo'=>$reportSaldo,
+                        'created_by'=>$updateBy,
+                        'location'=>$fromLoc,
+                        'last_saldo'=>$invLastStock,
+                        'vol_prd'=>$sizeCode,
+                        'actual_input'=>$takenStock,
+                        'status_trx'=>'4'
+                    ]);
             }
         }
         
