@@ -600,7 +600,7 @@ class StockopnameController extends Controller
         $updateBy = Auth::user()->name;
 
         $listOpname = DB::table('inv_list_opname as a')            
-            ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume')
+            ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume','b.stock')
             ->leftJoin('view_product_stock as b', 'b.idinv_stock','=','a.inv_id')
             ->where('a.sto_number',$idOpname)
             ->get();    
@@ -621,12 +621,13 @@ class StockopnameController extends Controller
             $msg = array('warning'=>'ERROR!, Tidak ada product yang dimasukkan');
         }else{
             foreach($listOpname as $lop){
-                $opmSize = $lop->product_size;
-                $opmQty = $lop->input_qty;
+                $opmSize = $lop->product_size; // Besar, Kecil, Konv
+                $opmQty = $lop->input_qty; // Qty yang di input
                 $opmSaldo = $lop->saldo_konv;
                 $opmProduct = $lop->product_id;    
-                $opmLastStock = $lop->last_stock;
+                $readyStock = $lop->stock;
                 $opmVol = $lop->unit_volume;
+                $selisih = $lop->selisih;
 
                 $selectUnit = DB::table('m_product_unit')
                     ->where('core_id_product',$opmProduct)
@@ -641,7 +642,7 @@ class StockopnameController extends Controller
                 $volKonv = $mProduct->small_unit_val;
                 $prodName = $mProduct->product_name;
 
-                foreach ($selectUnit as $unit) {                
+                foreach ($selectUnit as $unit) {   
                     if ($opmSize == "BESAR") { // Jika yang di input adalah data size besar
                         if ($unit->product_size == "BESAR") {
                             $a = $opmQty;
@@ -696,37 +697,38 @@ class StockopnameController extends Controller
                     // echo $opmProduct."/".$idProduct_Unit."/".$a."<br>";
                 }
 
-                $mUnit = DB::table('m_product_unit')
-                    ->select('size_code','product_volume')
+                $mUnit = DB::table('view_product_stock')
+                    ->select('size_code','product_volume','stock')
                     ->where('core_id_product',$opmProduct)
                     ->orderBy('size_code','desc')
                     ->first();
 
                 $sizeCodeDesc = $mUnit->size_code;
+                $stockDesc = $mUnit->stock;
 
                 if ($sizeCodeDesc == '1') {
-                    $lOpm = $opmQty;
+                    $lOpm = abs($selisih);                    
                 }
                 elseif ($sizeCodeDesc == '2') {
                     if ($opmSize == "BESAR") {
-                        $lOpm1 = $opmQty * $volB;
+                        $lOpm1 = abs($selisih) * $volB;
                         $lOpm = (int)$lOpm1;
                     }
                     elseif ($opmSize == "KECIL") {
-                        $lOpm = $opmQty;
+                        $lOpm = abs($selisih);
                     }
                 }
                 elseif ($sizeCodeDesc == '3') {
                     if ($opmSize == "BESAR") {
-                        $lOpm1 = $opmQty * $volKonv;
+                        $lOpm1 = abs($selisih) * $volKonv;
                         $lOpm = (int)$lOpm1;
                     }
                     elseif ($opmSize == "KECIL") {
-                        $lOpm1 = $opmQty * $volK;
+                        $lOpm1 = abs($selisih) * $volK;
                         $lOpm = (int)$lOpm1;
                     }
                     elseif ($opmSize == "KONV") {
-                        $lOpm = $opmQty;
+                        $lOpm = abs($selisih);
                     }
                 }
 
@@ -738,26 +740,19 @@ class StockopnameController extends Controller
                         ['location',$location]
                         ])
                     ->get();
-                $today = date("Y-m-d");
-                
-                // if ($dateInput < $today) {
-                //     foreach ($getLapInv as $gL) {                        
-                //         if ($gL->inv_in == '0') {
-                //             $tambahSaldo = $lOpm - $gL->inv_out;                            
-                //         }
-                //         else {
-                //             $tambahSaldo = $lOpm + $gL->inv_in;                            
-                //         }
-                //         $reportID = $gL->idr_inv;
-                //         DB::table('report_inv')
-                //             ->where('idr_inv',$reportID)
-                //             ->update([
-                //                 'saldo'=>$tambahSaldo
-                //             ]);
 
-                //     }
-                // }
-                    // echo "date input = ".strtotime($dateInput)."<".strtotime($today)."=".$tambahSaldo." - ".$reportID;
+                $today = date("Y-m-d");
+                if ($selisih < '0') {
+                    $invIn = '0';
+                    $invOut = $lOpm;
+                    $reportSaldo = $stockDesc - $invOut;
+                }
+                else {
+                    $invIn = $lOpm;
+                    $invOut = '0';
+                    $reportSaldo = $stockDesc + $invIn;
+                }
+
                 $description = "Stock Opname Oleh ".$updateBy;
                 // Insert into laporan                
                 DB::table('report_inv')
@@ -769,12 +764,12 @@ class StockopnameController extends Controller
                     'satuan'=>$lop->product_satuan,
                     'satuan_code'=>$lop->size_code,
                     'description'=>$description,
-                    'inv_in'=>$lOpm,
-                    'inv_out'=>'0',
-                    'saldo'=>$lOpm,
+                    'inv_in'=>$invIn,
+                    'inv_out'=>$invOut,
+                    'saldo'=>$reportSaldo,
                     'created_by'=>$updateBy,
                     'location'=>$location,
-                    'last_saldo'=>$opmLastStock,
+                    'last_saldo'=>$readyStock,
                     'vol_prd'=>$opmVol,
                     'actual_input'=>$opmQty,
                     'status_trx'=>'4'
@@ -798,6 +793,7 @@ class StockopnameController extends Controller
     }
     
     public function deleteDataOpname ($idOpname){
+        $updateBy = Auth::user()->name;
         DB::table('inv_stock_opname')
             ->where('number_so',$idOpname)
             ->update([
@@ -806,7 +802,10 @@ class StockopnameController extends Controller
             
         DB::table('inv_list_opname')
             ->where('sto_number',$idOpname)
-            ->delete();
+            ->update([
+                'status'=>'0',
+                'updated_by'=>$updateBy
+            ]);
     }
     
     public function deleteBarang($idparam){
