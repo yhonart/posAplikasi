@@ -536,27 +536,36 @@ class MutasibarangController extends Controller
 
             if ($sizeCodeDesc == '1') {
                 $qtyMoving = $takenStock;
+                $qtyLastStock = $lastStock;
             }
             elseif ($sizeCodeDesc == '2') {
                 if ($satuan == "BESAR") {
                     $qtyMoving1 = $takenStock * $volB;
                     $qtyMoving = (int)$qtyMoving1;
+                    $qtyLastStock1 = $lastStock * $volB;
+                    $qtyLastStock = (int)$qtyLastStock1;
                 }
                 elseif ($satuan == "KECIL") {
                     $qtyMoving = $takenStock;
+                    $qtyLastStock = $lastStock;
                 }
             }
             elseif ($sizeCodeDesc == '3') {
                 if ($satuan == "BESAR") {
                     $qtyMoving1 = $takenStock * $volKonv;
                     $qtyMoving = (int)$qtyMoving1;
+                    $qtyLastStock1 = $lastStock * $volKonv;
+                    $qtyLastStock = (int)$qtyLastStock1;
                 }
                 elseif ($satuan == "KECIL") {
                     $qtyMoving1 = $takenStock * $volK;
                     $qtyMoving = (int)$qtyMoving1;
+                    $qtyLastStock1 = $lastStock * $volK;
+                    $qtyLastStock = (int)$qtyLastStock1;
                 }
                 elseif ($satuan == "KONV") {
                     $qtyMoving = $takenStock;
+                    $qtyLastStock = $lastStock;
                 }
             }
             
@@ -567,7 +576,7 @@ class MutasibarangController extends Controller
             if ($fromLoc == $locAsalBarang) {
                 $itemIn = '0';
                 $itemOut = $qtyMoving;
-                $reportSaldo = $lastStock - $qtyMoving;
+                $reportSaldo = $qtyLastStock - $qtyMoving;
 
                 DB::table('report_inv')
                     ->insert([
@@ -589,7 +598,8 @@ class MutasibarangController extends Controller
                         'status_trx'=>'4'
                     ]);
             }
-            else {
+
+            if ($fromLoc <> $locAsalBarang) {
                 $itemIn = $qtyMoving;
                 $itemOut = '0';
                 
