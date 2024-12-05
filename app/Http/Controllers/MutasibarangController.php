@@ -415,7 +415,7 @@ class MutasibarangController extends Controller
 
         $listMutasi = DB::table('inv_moving_list as a')
             ->select('a.*','b.product_name','b.product_satuan')
-            ->leftJoin('view_product_stock as b', 'a.inv_id','=','b.idm_data_product')
+            ->leftJoin('view_product_stock as b', 'a.inv_id','=','b.idinv_stock')
             ->where('a.mutasi_code',$idParam)
             ->get();
 
