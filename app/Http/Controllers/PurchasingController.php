@@ -462,7 +462,8 @@ class PurchasingController extends Controller
             $satuan = $pl->size;
             $qty = $pl->stock_akhir;
             $location = $pl->warehouse;
-            
+            $qtyInput = $pl->qty;
+
             //INPUT REPORT
             $numberCode = $dataEdit;
             $description = "Pembelian ".$idDataReport->store_name;            
@@ -479,12 +480,14 @@ class PurchasingController extends Controller
             $volKonv = $mProduct->small_unit_val;
             $prodName = $pl->product_name;
             $satuan = $pl->size;
+
             $selectSizeCode = DB::table('m_product_unit')
                 ->where([
                     ['core_id_product', $productID],
                     ['product_size',$satuan]
                 ])
                 ->first();
+
             $sizeCode = $selectSizeCode->size_code;
 
             $mUnit = DB::table('m_product_unit')
@@ -496,30 +499,31 @@ class PurchasingController extends Controller
             $sizeCodeDesc = $mUnit->size_code; 
             
             if ($sizeCodeDesc == '1') {
-                $ls = $qty;
+                $ls = $qtyInput;
             }
             elseif ($sizeCodeDesc == '2') {
                 if ($satuan == "BESAR") {
-                    $ls1 = $qty * $volB;
+                    $ls1 = $qtyInput * $volB;
                     $ls = (int)$ls1;
                 }
                 elseif ($satuan == "KECIL") {
-                    $ls = $qty;
+                    $ls = $qtyInput;
                 }
             }
             elseif ($sizeCodeDesc == '3') {
                 if ($satuan == "BESAR") {
-                    $ls1 = $qty * $volKonv;
+                    $ls1 = $qtyInput * $volKonv;
                     $ls = (int)$ls1;
                 }
                 elseif ($satuan == "KECIL") {
-                    $ls1 = $qty * $volK;
+                    $ls1 = $qtyInput * $volK;
                     $ls = (int)$ls1;
                 }
                 elseif ($satuan == "KONV") {
-                    $ls = $qty;
+                    $ls = $qtyInput;
                 }
             }
+
             $inInv = $ls;
             $outInv = '0';
 
