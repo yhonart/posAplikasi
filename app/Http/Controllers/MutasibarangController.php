@@ -583,7 +583,7 @@ class MutasibarangController extends Controller
                         'saldo'=>$reportSaldo,
                         'created_by'=>$updateBy,
                         'location'=>$fromLoc,
-                        'last_saldo'=>$invLastStock,
+                        'last_saldo'=>$lastStock,
                         'vol_prd'=>$sizeCode,
                         'actual_input'=>$takenStock,
                         'status_trx'=>'4'
@@ -618,7 +618,7 @@ class MutasibarangController extends Controller
                         'saldo'=>$reportSaldo,
                         'created_by'=>$updateBy,
                         'location'=>$fromLoc,
-                        'last_saldo'=>$invLastStock,
+                        'last_saldo'=>$destinationStock->stock,
                         'vol_prd'=>$sizeCode,
                         'actual_input'=>$takenStock,
                         'status_trx'=>'4'
