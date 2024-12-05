@@ -491,7 +491,7 @@ class PurchasingController extends Controller
             $sizeCode = $selectSizeCode->size_code;
 
             $mUnit = DB::table('m_product_unit')
-                ->select('size_code','product_volume')
+                ->select('size_code','product_volume','idm_product_satuan')
                 ->where('core_id_product',$productID)
                 ->orderBy('size_code','desc')
                 ->first();
