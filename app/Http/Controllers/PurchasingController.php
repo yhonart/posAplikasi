@@ -527,9 +527,10 @@ class PurchasingController extends Controller
             $inInv = $ls;
             $outInv = '0';
 
+
             $selectLastStock = DB::table('inv_stock')
                 ->where([
-                    ['product_id',$selectSizeCode->idm_product_satuan],
+                    ['product_id',$mUnit->idm_product_satuan],
                     ['location_id',$loc]
                 ])
                 ->first();
