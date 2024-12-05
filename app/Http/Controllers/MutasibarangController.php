@@ -410,17 +410,15 @@ class MutasibarangController extends Controller
         $tbMutasi = DB::table('inv_moving')
             ->where('number',$idParam)
             ->first();
+
         $locationID = $tbMutasi->from_loc;
+
         $listMutasi = DB::table('inv_moving_list as a')
             ->select('a.*','b.product_name','b.product_satuan')
-            ->leftJoin('view_product_stock as b', function($join){
-                $join->on('a.inv_id','=','b.idinv_stock');
-            })
-            ->where([
-                ['a.mutasi_code',$idParam],
-                ['b.site_name',$locationID]
-                ])
+            ->leftJoin('view_product_stock as b', 'a.inv_id','=','b.idm_data_product')
+            ->where('a.mutasi_code',$idParam)
             ->get();
+
         $userArea = $this->checkuserInfo();
         $mlocDetail = DB::table('m_site')
             ->where('idm_site',$userArea)

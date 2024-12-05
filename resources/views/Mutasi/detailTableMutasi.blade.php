@@ -4,7 +4,7 @@
             <div class="row mb-2">
                 <div class="col-12 col-md-6">
                     <button class="btn btn-default mb-2 border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        <i class="fa-solid fa-file-lines"></i> Dokumen Mutasi
+                        <i class="fa-solid fa-file-lines"></i> <span class="text-info">Dokumen Mutasi</span>
                     </button>
                     <div class="collapse" id="collapseExample">
                         <div id="divDisplayDokumen"></div>
