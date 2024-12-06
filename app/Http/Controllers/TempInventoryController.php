@@ -650,24 +650,84 @@ class TempInventoryController extends Controller
         return $updateInv;
     }
 
-    public function insertIntoLapInv ($prdID, $qty)
+    public function reportBarangMasuk($productID, $invID, $satuan, $location, $qty, $description, $noTrx, $userName)
     {
+        //Perhitungan Konversi
+        $invStock = DB::table('view_product_stock')
+            ->select(DB::raw('DISTINCT(idm_data_product) as prodid', 'stock'))
+            ->where([
+                ['core_id_product',$productID],
+                ['location_id',$location]
+            ])
+            ->orderBy('size_code','desc')
+            ->first();
+        
+        $mProduct = DB::table('m_product')
+            ->where('idm_data_product',$productID)
+            ->first();
+
+        $volB = $mProduct->large_unit_val;
+        $volK = $mProduct->medium_unit_val;
+        $volKonv = $mProduct->small_unit_val;
+        $prodName = $mProduct->product_name;
+
         $mUnit = DB::table('m_product_unit')
-                ->select('size_code','product_volume')
-                ->where('core_id_product',$prdID)
-                ->orderBy('size_code','desc')
-                ->first();
+            ->select('size_code','product_volume')
+            ->where('core_id_product',$productID)
+            ->orderBy('size_code','desc')
+            ->first();
 
         $sizeCodeDesc = $mUnit->size_code;
 
-        $mProduct = DB::table('m_product')
-                ->where('idm_data_product',$prdID)
-                ->first();
+        if ($sizeCodeDesc == '1') {
+            $qtyReport = $qty;
+        }
+        elseif ($sizeCodeDesc == '2') {
+            if ($satuan == "BESAR") {
+                $qtyReport1 = $qty * $volB;
+                $qtyReport = (int)$qtyReport1;
+            }
+            elseif ($satuan == "KECIL") {
+                $qtyReport = $qty;
+            }
+        }
+        elseif ($sizeCodeDesc == '3') {
+            if ($satuan == "BESAR") {
+                $qtyReport1 = $qty * $volKonv;
+                $qtyReport = (int)$qtyReport1;
+            }
+            elseif ($satuan == "KECIL") {
+                $qtyReport1 = $qty * $volK;
+                $qtyReport = (int)$qtyReport1;
+            }
+            elseif ($satuan == "KONV") {
+                $qtyReport = $qty;
+            }
+        }
 
-            $volB = $mProduct->large_unit_val;
-            $volK = $mProduct->medium_unit_val;
-            $volKonv = $mProduct->small_unit_val;
-        
-        
+        $invIn = $qtyReport;
+        $invOut = '0';
+        $saldo = $invStock->stock + $invIn;
+
+        DB::table('report_inv')
+            ->insert([
+                'date_input'=>now(),
+                'number_code'=>$noTrx,
+                'product_id'=>$productID,
+                'product_name'=>$prodName,
+                'satuan'=>$satuan,
+                'satuan_code'=>$sizeCodeDesc,
+                'description'=>$description,
+                'inv_in'=>$invIn,
+                'inv_out'=>$invOut,
+                'saldo'=>$saldo,
+                'created_by'=>$userName,
+                'location'=>$location,
+                'last_saldo'=>$invStock->stock,
+                'vol_prd'=>'0',
+                'actual_input'=>$qty,
+                'status_trx'=>'4'
+            ]);
+
     }
 }
