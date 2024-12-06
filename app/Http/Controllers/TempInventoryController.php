@@ -654,14 +654,14 @@ class TempInventoryController extends Controller
     {
         //Perhitungan Konversi
         $invStock = DB::table('view_product_stock')
-            ->select(DB::raw('DISTINCT(idm_data_product) as prodid', 'stock'))
+            ->select(DB::raw('DISTINCT(idm_data_product) as prodid'),'stock')
             ->where([
                 ['core_id_product',$productID],
                 ['location_id',$location]
             ])
             ->orderBy('size_code','desc')
             ->first();
-        echo $productID."-".$location."-".$invStock->prodid;
+        
         $mProduct = DB::table('m_product')
             ->where('idm_data_product',$productID)
             ->first();
