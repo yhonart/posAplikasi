@@ -661,7 +661,7 @@ class TempInventoryController extends Controller
             ])
             ->orderBy('size_code','desc')
             ->first();
-        
+        echo $productID."-".$location."-".$invStock->prodid;
         $mProduct = DB::table('m_product')
             ->where('idm_data_product',$productID)
             ->first();
