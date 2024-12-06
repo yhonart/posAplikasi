@@ -516,7 +516,7 @@ class MutasibarangController extends Controller
             $prodName = $lp->product_name;
             $sizeCode = $lp->size_code;
             $locAsalBarang = $lp->location_id;
-            $invId = $lp->idinv_stock;
+            $invID = $lp->idinv_stock;
 
             $mProduct = DB::table('m_product')
                     ->where('idm_data_product',$productID)
