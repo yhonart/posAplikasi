@@ -1176,9 +1176,10 @@ class CashierController extends Controller
             ->where([
                 ['core_id_product', $prodID],
                 ['product_volume','!=','0'],
-                ['product_satuan','!=','0'],
+                ['product_satuan','!=',''],
                 ['location_id','3']
-            ]);
+            ])
+            ->get();
 
         // $productUnit = DB::table('product_list_view as a')
         //     ->select('a.*', 'b.location_id', 'b.stock', 'b.idinv_stock')
