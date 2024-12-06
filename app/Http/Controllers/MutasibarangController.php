@@ -574,46 +574,46 @@ class MutasibarangController extends Controller
             // $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
             
             //Cek saldo di laporan inventory yang terakhir sebelum dilakukan approval
-            // if ($fromLoc == $locAsalBarang) {
-            //     $itemIn = '0';
-            //     $itemOut = $qtyMoving;
-            //     $reportSaldo = $qtyLastStock - $qtyMoving;
+            if ($fromLoc == $locAsalBarang) {
+                $itemIn = '0';
+                $itemOut = $qtyMoving;
+                $reportSaldo = $qtyLastStock - $qtyMoving;
 
-            //     DB::table('report_inv')
-            //         ->insert([
-            //             'date_input'=>now(),
-            //             'number_code'=>$idParam,
-            //             'product_id'=>$productID,
-            //             'product_name'=>$prodName,
-            //             'satuan'=>$satuan,
-            //             'satuan_code'=>$lp->size_code,
-            //             'description'=>$description,
-            //             'inv_in'=>$itemIn,
-            //             'inv_out'=>$itemOut,
-            //             'saldo'=>$reportSaldo,
-            //             'created_by'=>$updateBy,
-            //             'location'=>$fromLoc,
-            //             'last_saldo'=>$lastStock,
-            //             'vol_prd'=>$sizeCode,
-            //             'actual_input'=>$takenStock,
-            //             'status_trx'=>'4'
-            //         ]);
-            // }
+                DB::table('report_inv')
+                    ->insert([
+                        'date_input'=>now(),
+                        'number_code'=>$idParam,
+                        'product_id'=>$productID,
+                        'product_name'=>$prodName,
+                        'satuan'=>$satuan,
+                        'satuan_code'=>$lp->size_code,
+                        'description'=>$description,
+                        'inv_in'=>$itemIn,
+                        'inv_out'=>$itemOut,
+                        'saldo'=>$reportSaldo,
+                        'created_by'=>$updateBy,
+                        'location'=>$fromLoc,
+                        'last_saldo'=>$lastStock,
+                        'vol_prd'=>$sizeCode,
+                        'actual_input'=>$takenStock,
+                        'status_trx'=>'4'
+                    ]);
+            }
 
             $this->TempInventoryController->reportBarangMasuk ($productID, $invID, $satuan, $toLoc, $takenStock, $description, $idParam, $updateBy);
         }
         
-        // DB::table('inv_moving')
-        //     ->where('number',$idParam)
-        //     ->update([
-        //         'status'=>'4'    
-        //     ]);
+        DB::table('inv_moving')
+            ->where('number',$idParam)
+            ->update([
+                'status'=>'4'    
+            ]);
         
-        // DB::table('inv_moving_list')
-        //     ->where('mutasi_code',$idParam)
-        //     ->update([
-        //         'status'=>'4'    
-        //     ]);        
+        DB::table('inv_moving_list')
+            ->where('mutasi_code',$idParam)
+            ->update([
+                'status'=>'4'    
+            ]);        
    }
    
    public function editMutasi ($idparam){
