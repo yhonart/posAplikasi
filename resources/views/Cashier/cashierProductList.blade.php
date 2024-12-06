@@ -356,15 +356,6 @@
             success : function(data){                  
                 loadTableData();
                 totalBelanja(billCode);
-                // $('#prodNameHidden').val(null).focus();
-                // $("#qty").val(null);            
-                // $("#hargaSatuan").val(null);           
-                // $("#disc").val(null);           
-                // $("#jumlah").val(null);           
-                // $("#stockHidden").val(null);           
-                // $("#stock").val(null);           
-                // $("#satuan").val(null);       
-                // $("#prodName").val("").focus();
                 cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
             }
         });

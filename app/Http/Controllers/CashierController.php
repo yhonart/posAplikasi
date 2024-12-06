@@ -1146,7 +1146,7 @@ class CashierController extends Controller
 
         // Ambil data dari transaksi barang sesuai dengan ID;
         $listData = DB::table('tr_store_prod_list')
-            ->select('from_payment_code', 'product_code', 'qty', 'unit', 't_price')
+            ->select('from_payment_code', 'product_code', 'qty', 'unit', 't_price','satuan')
             ->where('list_id', $data)
             ->first();
 
@@ -1154,7 +1154,8 @@ class CashierController extends Controller
 
         $prodID = $listData->product_code;
         $qty = $listData->qty;
-        $unit = $listData->unit;
+        $unit = $listData->unit; //Dus, Pack, Bungkus, etc...
+        $satuan = $listData->satuan; //Besar, Kecil, Konv
         $docNumber = $listData->from_payment_code;
 
         // cari stok terakhir pada table view stok inventori
@@ -1162,25 +1163,33 @@ class CashierController extends Controller
             ->select('product_size', 'saldo', 'stock_out', 'stock')
             ->where([
                 ['core_id_product', $prodID],
-                ['product_satuan', $unit]
+                ['product_size', $satuan],
+                ['location_id','3']
             ])
             ->first();
 
-        $satuan = $prodUnit->product_size;
         $sumQty = $prodUnit->stock + $qty; //penjumlahan qty dengan stok terakhir pada table stok
         $stockOut = $prodUnit->stock_out - $qty; //pengurangan qty yang keluar
 
         //Query get prd list view dan stok berdasarkan produk id 
-        $productUnit = DB::table('product_list_view as a')
-            ->select('a.*', 'b.location_id', 'b.stock', 'b.idinv_stock')
-            ->leftJoin('inv_stock as b', 'a.idm_product_satuan', 'b.product_id')
+        $productUnit = DB::table('view_product_stock')
             ->where([
-                ['a.core_id_product', $prodID],
-                ['a.product_volume', '!=', '0'],
-                ['a.product_satuan', '!=', ''],
-                ['b.location_id', '3']
-            ])
-            ->get();
+                ['core_id_product', $prodID],
+                ['product_volume','!=','0'],
+                ['product_satuan','!=','0'],
+                ['location_id','3']
+            ]);
+
+        // $productUnit = DB::table('product_list_view as a')
+        //     ->select('a.*', 'b.location_id', 'b.stock', 'b.idinv_stock')
+        //     ->leftJoin('inv_stock as b', 'a.idm_product_satuan', 'b.product_id')
+        //     ->where([
+        //         ['a.core_id_product', $prodID],
+        //         ['a.product_volume', '!=', '0'],
+        //         ['a.product_satuan', '!=', ''],
+        //         ['b.location_id', '3']
+        //     ])
+        //     ->get();
 
         $volKonversi = DB::table('product_list_view') //mengambil data konversi
             ->where('core_id_product', $prodID)
@@ -1209,7 +1218,7 @@ class CashierController extends Controller
 
         $volB = $mProduct->large_unit_val;
         $volK = $mProduct->medium_unit_val;
-        $volkonv = $mProduct->small_unit_val;
+        $volKONV = $mProduct->small_unit_val;
 
         foreach ($productUnit as $p) {
             $sizeCode = $p->size_code;
@@ -1217,37 +1226,48 @@ class CashierController extends Controller
             $vol2 = $p->product_volume;
 
             // Jika size code 1
-            if ($sizeCode == '1') {
-                if ($satuan == "BESAR") {
+            if ($satuan == "BESAR") {
+                if ($sizeCode == '1') {
                     $c = $sumQty;
-                } elseif ($satuan == "KECIL") {
+                }
+                elseif ($sizeCode == '2') {
+                    $c1 = $sumQty * $volB;
+                    $c = (int)$c1;
+                }
+                elseif ($sizeCode == '3') {
+                    $c1 = $sumQty * $vol3;
+                    $c = (int)$c1;
+                }
+            }
+            elseif ($satuan == "KECIL") {
+                
+                if ($sizeCode == '1') {
                     $c1 = $sumQty / $volB;
                     $c = (int)$c1;
-                } elseif ($satuan == "KONV") {
+                }
+                elseif ($sizeCode == '2') {
+                    $c = $sumQty;
+                }
+                elseif ($sizeCode == '3') {
                     $c1 = $sumQty * $volK;
                     $c = (int)$c1;
                 }
-            } elseif ($sizeCode == '2') {
-                if ($satuan == "BESAR") {
-                    $c1 = $qty * $vol2;
-                    $c = $p->stock + (int)$c1;
-                } elseif ($satuan == "KECIL") {
-                    $c = $sumQty;
-                } elseif ($satuan == "KONV") {
-                    $c1 = $qty / $vol2;
-                    $c = $p->stock + (int)$c1;
+            }
+            elseif ($satuan == "KONV") {
+                
+                if ($sizeCode == '1') {
+                    $c1 = $sumQty / $volKONV;
+                    $c = (int)$c1;
                 }
-            } elseif ($sizeCode == '3') {
-                if ($satuan == "BESAR") {
-                    $c1 = $qty * $vol2;
-                    $c = $p->stock + (int)$c1;
-                } elseif ($satuan == "KECIL") {
-                    $c1 = $qty * $volkodedua;
-                    $c = $p->stock + (int)$c1;
-                } elseif ($satuan == "KONV") {
+                elseif ($sizeCode == '2') {
+                    $c1 = $sumQty / $volK;
+                    $c = (int)$c1;
+                }
+                elseif ($sizeCode == '3') {
                     $c = $sumQty;
                 }
             }
+            
             DB::table('inv_stock')
                 ->where([
                     ['idinv_stock', $p->idinv_stock]
