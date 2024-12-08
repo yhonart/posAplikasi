@@ -383,43 +383,50 @@ class TempInventoryController extends Controller
         
         foreach($inventory as $i){
             
+            if ($i->stock <= '0') {
+                $sysStock = '0';
+            }
+            else {
+                $sysStock = $i->stock;
+            }
+
             if($size == "BESAR"){
                 if($i->size_code == '1'){
-                    $a = $i->stock + $qty;
+                    $a = $sysStock + $qty;
                 }
                 elseif($i->size_code == '2'){
                     $a1 = $qty * $invB;
-                    $a = $i->stock + $a1;
+                    $a = $sysStock + $a1;
                 }
                 elseif($i->size_code == '3'){
                     $a1 = $qty * $volKonv;
-                    $a = $i->stock + $a1;
+                    $a = $sysStock + $a1;
                 }
             }
             elseif($size == "KECIL"){
                 if($i->size_code == '1'){
                     $a1 = $qty / $invB;
-                    $a = $i->stock + (int)$a1;
+                    $a = $sysStock + (int)$a1;
                 }
                 elseif($i->size_code == '2'){
-                    $a = $i->stock + $qty;
+                    $a = $sysStock + $qty;
                 }
                 elseif($i->size_code == '3'){
                     $a1 = $qty * $invK;
-                    $a = $i->stock + $a1;
+                    $a = $sysStock + $a1;
                 }
             }
             elseif($size == "KONV"){
                 if($i->size_code == '1'){
                     $a1 = $qty / $volKonv;
-                    $a = $i->stock + (int)$a1;
+                    $a = $sysStock + (int)$a1;
                 }
                 elseif($i->size_code == '2'){
                     $a1 = $qty / $invK;
-                    $a = $i->stock + (int)$a1;
+                    $a = $sysStock + (int)$a1;
                 }
                 elseif($i->size_code == '3'){
-                    $a = $i->stock + $qty;
+                    $a = $sysStock + $qty;
                 }
             }
             // echo $i->idinv_stock."=".$a."<br>";
