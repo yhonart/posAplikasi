@@ -127,7 +127,7 @@ class MutasibarangController extends Controller
     {
         $approval = $this->userApproval();
         $userArea = $this->checkuserInfo();
-        echo $status;
+        echo $fromDate."/".$endDate;
         $tableMoving = DB::table('inv_moving');
         $tableMoving=$tableMoving->where('status',$status);
         if ($fromDate<>'0' OR $endDate<>'0') {
