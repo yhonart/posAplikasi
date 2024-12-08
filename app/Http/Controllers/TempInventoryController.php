@@ -339,9 +339,7 @@ class TempInventoryController extends Controller
     
     public function penambahanItem ($productID, $qty, $size, $loc){
         // variable nol
-        $sizeK = '0';
         $invK = '0';
-        $sizeKonv = '0';
         $volKonv = '0';
         
         // Cari data inventory
@@ -358,7 +356,7 @@ class TempInventoryController extends Controller
                 ['size_code','1']
                 ])
             ->first();
-        $sizeB = $invBesar->size_code;
+
         $invB = (int)$invBesar->product_volume;
         
         $invKecil = DB::table('m_product_unit')
@@ -367,8 +365,8 @@ class TempInventoryController extends Controller
                 ['size_code','2']
                 ])
             ->first();
+
         if(!empty($invKecil)) {
-            $sizeK = $invKecil->size_code;
             $invK = (int)$invKecil->product_volume;
         }  
         
@@ -380,7 +378,6 @@ class TempInventoryController extends Controller
             ->first();
             
         if(!empty($invKonv)) {
-            $sizeKonv = $invKonv->size_code;
             $volKonv = (int)$invKonv->product_volume;
         } 
         
