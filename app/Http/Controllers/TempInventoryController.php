@@ -382,7 +382,7 @@ class TempInventoryController extends Controller
         } 
         
         foreach($inventory as $i){
-            
+
             if ($i->stock <= '0') {
                 $sysStock = '0';
             }
@@ -711,7 +711,8 @@ class TempInventoryController extends Controller
 
         $invIn = $qtyReport;
         $invOut = '0';
-        $saldo = $invStock->stock + $invIn;
+        $lastStock = (int)$invStock->stock;
+        $saldo = $lastStock + $invIn;
 
         DB::table('report_inv')
             ->insert([
@@ -727,7 +728,7 @@ class TempInventoryController extends Controller
                 'saldo'=>$saldo,
                 'created_by'=>$userName,
                 'location'=>$location,
-                'last_saldo'=>$invStock->stock,
+                'last_saldo'=>$lastStock,
                 'vol_prd'=>'0',
                 'actual_input'=>$qty,
                 'status_trx'=>'4'
