@@ -403,7 +403,7 @@ class CashierController extends Controller
     {
         $transNumber = $reqPostProd->transNumber;
         $createdBy = $reqPostProd->createdBy;
-        $prodName = $reqPostProd->prodNameHidden;
+        $prodId = $reqPostProd->prodNameHidden;
         $prodQty = $reqPostProd->qty;
         $prodSatuan = $reqPostProd->satuan;
         $hargaSatuan = str_replace(".", "", $reqPostProd->hargaSatuan);
@@ -421,11 +421,12 @@ class CashierController extends Controller
         $tBill = $trStore->t_bill + $intJumlah;
         $tItem = $trStore->t_item + 1;
         $memberType = $trStore->customer_type;
+        $customerName = $trStore->customer_store;
 
         // CHECK SATUAN 
         $satuanSell = DB::table('m_product_unit')
             ->where([
-                ['core_id_product', $prodName],
+                ['core_id_product', $prodId],
                 ['product_size', $prodSatuan]
             ])
             ->first();
@@ -437,7 +438,7 @@ class CashierController extends Controller
         // hitung jumlah produk yang ada list produk yang sama 
         $countProduct = DB::table('tr_store_prod_list')
             ->where([
-                ['product_code', $prodName],
+                ['product_code', $prodId],
                 ['from_payment_code', $transNumber],
                 ['unit', $dataSatuan],
                 ['status','1']                
@@ -449,7 +450,7 @@ class CashierController extends Controller
             DB::table('tr_store_prod_list')
                 ->updateorInsert([
                     'from_payment_code' => $transNumber,
-                    'product_code' => $prodName,
+                    'product_code' => $prodId,
                     'qty' => $prodQty,
                     'unit' => $dataSatuan,
                     'satuan' => $prodSatuan,
@@ -468,7 +469,7 @@ class CashierController extends Controller
                 ->select('qty', 'unit', 'unit_price', 'disc', 't_price')
                 ->where([
                     ['from_payment_code', $transNumber],
-                    ['product_code', $prodName]
+                    ['product_code', $prodId]
                 ])
                 ->first();
             $updateQty = $cekDataQty->qty + $prodQty;
@@ -477,7 +478,7 @@ class CashierController extends Controller
             DB::table('tr_store_prod_list')
                 ->where([
                     ['from_payment_code', $transNumber],
-                    ['product_code', $prodName]
+                    ['product_code', $prodId]
                 ])
                 ->update([
                     'qty' => $updateQty,
@@ -491,8 +492,8 @@ class CashierController extends Controller
                     'is_delete'=> '0'
                 ]);
         }
-
-        // UPDATE BILLING
+        
+        // Update total billing & total item
         DB::table('tr_store')
             ->where('billing_number', $transNumber)
             ->update([
@@ -500,10 +501,16 @@ class CashierController extends Controller
                 't_item' => $tItem,
             ]);
 
-        // UPDATE STOCK        
+        // Insert into laporan
+        $location = '3';
+        $description = "Penjualan ".$customerName;
+
+        $this->TempInventoryController->reportBarangKeluar($prodId, $prodSatuan, $location, $prodQty, $description, $transNumber, $createdBy);        
+
+        // Start Update Stock        
         $dataStock = DB::table('view_product_stock')
             ->where([
-                ['idm_data_product', $prodName],
+                ['idm_data_product', $prodId],
                 ['location_id', '3']
             ])
             ->get();
@@ -511,7 +518,7 @@ class CashierController extends Controller
         // Cek volume by kode size 2
         $codeSatu = DB::table('view_product_stock')
             ->where([
-                ['idm_data_product', $prodName],
+                ['idm_data_product', $prodId],
                 ['location_id', '3'],
                 ['size_code', '1'],
             ])
@@ -519,7 +526,7 @@ class CashierController extends Controller
 
         $codeDua = DB::table('view_product_stock')
             ->where([
-                ['idm_data_product', $prodName],
+                ['idm_data_product', $prodId],
                 ['location_id', '3'],
                 ['size_code', '2'],
             ])
@@ -527,7 +534,7 @@ class CashierController extends Controller
 
         $codeTiga = DB::table('view_product_stock')
             ->where([
-                ['idm_data_product', $prodName],
+                ['idm_data_product', $prodId],
                 ['location_id', '3'],
                 ['size_code', '3'],
             ])
@@ -615,7 +622,7 @@ class CashierController extends Controller
         DB::table('tr_temp_prod')
             ->where([
                 ['bill_number', $transNumber],
-                ['product_id', $prodName]
+                ['product_id', $prodId]
             ])
             ->update([
                 'status' => '2'
@@ -2393,23 +2400,6 @@ class CashierController extends Controller
                         'card_cus_number' => $accountCusNumber
                     ]);
             }
-        }
-        $description = "Penjualan " . $cusName;
-        $inInv = '0';
-        $forInputLap = DB::table('trans_product_list_view')
-            ->where([
-                ['from_payment_code', $noBill],
-                ['status','!=','0']
-                ])
-            ->get();
-
-        foreach ($forInputLap as $fil) {
-            $outQty = $fil->qty;
-            $prodId = $fil->product_code;
-            $satuan = $fil->satuan;
-            $location = "3";
-            
-            $this->TempInventoryController->reportBarangKeluar($prodId, $satuan, $location, $outQty, $description, $noBill, $updateBy);
         }        
     }
 
