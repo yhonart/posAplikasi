@@ -127,11 +127,10 @@ class MutasibarangController extends Controller
     {
         $approval = $this->userApproval();
         $userArea = $this->checkuserInfo();
-        echo $fromDate."/".$endDate;
         $tableMoving = DB::table('inv_moving');
         $tableMoving=$tableMoving->where('status',$status);
         if ($fromDate<>'0' OR $endDate<>'0') {
-            $tableMoving=$tableMoving->whereBetween('date_moving',['$fromDate','$endDate']);
+            $tableMoving=$tableMoving->whereBetween('date_moving',[$fromDate,$endDate]);
         }
         $tableMoving=$tableMoving->orderBy('idinv_moving','desc');
         $tableMoving=$tableMoving->limit(100);

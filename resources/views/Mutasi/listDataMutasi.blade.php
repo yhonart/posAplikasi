@@ -23,8 +23,7 @@
                             <select name="status" id="status" class="form-control form-control-sm">
                                 <option value="2">Submited</option>
                                 <option value="1">Proses</option>
-                                <option value="3">Disetujui</option>
-                                <option value="4">Barang Diterima</option>
+                                <option value="4">Disetujui</option>
                                 <option value="0">Delete</option>
                             </select>                        
                         </div>
@@ -99,7 +98,6 @@
         });
 
         function searchData(fromDate, endDate, status){ 
-            alert(fromDate);
             $.ajax({
                 type : 'get',
                 url : "{{route('mutasi')}}/tableDokMutasi/"+fromDate+"/"+endDate+"/"+status,
