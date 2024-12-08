@@ -1236,7 +1236,7 @@ class CashierController extends Controller
                     $c = (int)$c1;
                 }
                 elseif ($sizeCode == '3') {
-                    $c1 = $sumQty * $vol3;
+                    $c1 = $sumQty * $volKONV;
                     $c = (int)$c1;
                 }
             }
@@ -2276,6 +2276,7 @@ class CashierController extends Controller
             $status = "3";
             $mBayar = '8';
             $kreditDesc = "Kredit 7 hari";
+            $returnBy = "Return By ".$updateBy;
             $countKredit = DB::table('tr_kredit')
                 ->where([
                     ['from_member_id', $memberID]
@@ -2403,14 +2404,13 @@ class CashierController extends Controller
             ->get();
 
         foreach ($forInputLap as $fil) {
-            $outInv = $fil->qty;
-            $createdBy = $updateBy;
+            $outQty = $fil->qty;
             $prodId = $fil->product_code;
-            $prodName = $fil->product_name;
             $satuan = $fil->satuan;
-            $loc = "3";
-            $this->TempInventoryController->insertLapInv($noBill, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc);
-        }
+            $location = "3";
+            
+            $this->TempInventoryController->reportBarangKeluar($prodId, $satuan, $location, $outQty, $description, $noBill, $updateBy);
+        }        
     }
 
     public function printTemplateCashier($noBill, $typeCetak)
