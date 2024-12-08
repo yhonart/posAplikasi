@@ -1188,17 +1188,6 @@ class CashierController extends Controller
             ])
             ->get();
 
-        // $productUnit = DB::table('product_list_view as a')
-        //     ->select('a.*', 'b.location_id', 'b.stock', 'b.idinv_stock')
-        //     ->leftJoin('inv_stock as b', 'a.idm_product_satuan', 'b.product_id')
-        //     ->where([
-        //         ['a.core_id_product', $prodID],
-        //         ['a.product_volume', '!=', '0'],
-        //         ['a.product_satuan', '!=', ''],
-        //         ['b.location_id', '3']
-        //     ])
-        //     ->get();
-
         $volKonversi = DB::table('product_list_view') //mengambil data konversi
             ->where('core_id_product', $prodID)
             ->orderBy('size_code', 'desc')
@@ -1302,7 +1291,7 @@ class CashierController extends Controller
             ->where([
                 ['number_code',$docNumber],
                 ['product_id',$prodID],
-                ['satuan',$unit]
+                ['satuan',$satuan]
             ])
             ->update([
                 'status_trx'=>'0'
