@@ -99,7 +99,7 @@
         });
 
         function searchData(fromDate, endDate, status){ 
-            alert(status);
+            alert(fromDate);
             $.ajax({
                 type : 'get',
                 url : "{{route('mutasi')}}/tableDokMutasi/"+fromDate+"/"+endDate+"/"+status,
