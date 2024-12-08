@@ -130,9 +130,9 @@ class MutasibarangController extends Controller
         echo $status;
         $tableMoving = DB::table('inv_moving');
         $tableMoving=$tableMoving->where('status',$status);
-        if ($fromDate<>'0' OR $endDate<>'0') {
-            $tableMoving=$tableMoving->whereBetween('date_moving',['$fromDate','$endDate']);
-        }
+        // if ($fromDate<>'0' OR $endDate<>'0') {
+        //     $tableMoving=$tableMoving->whereBetween('date_moving',['$fromDate','$endDate']);
+        // }
         $tableMoving=$tableMoving->orderBy('idinv_moving','desc');
         $tableMoving=$tableMoving->limit(100);
         $tableMoving=$tableMoving->get();
