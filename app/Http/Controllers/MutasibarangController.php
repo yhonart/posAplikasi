@@ -570,8 +570,8 @@ class MutasibarangController extends Controller
                 }
             }
             
-            // $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
-            // $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
+            $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
+            $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
             
             //Cek saldo di laporan inventory yang terakhir sebelum dilakukan approval
             if ($fromLoc == $locAsalBarang) {
