@@ -713,7 +713,7 @@ class TempInventoryController extends Controller
         $invOut = '0';
         $lastStock = (int)$invStock->stock;
         $saldo = $lastStock + $invIn;
-        echo $lastStock;
+        echo $lastStock."==".$saldo;
 
         // DB::table('report_inv')
         //     ->insert([
