@@ -2389,7 +2389,17 @@ class CashierController extends Controller
                         'card_cus_number' => $accountCusNumber
                     ]);
             }
-        }        
+        }   
+        
+        DB::table('report_inv')
+            ->where([
+                ['number_code',$noBill],
+                ['status_trx','2']
+            ])
+            ->update([
+                'status_trx'=>'4'
+            ]);
+
     }
 
     public function printTemplateCashier($noBill, $typeCetak)
