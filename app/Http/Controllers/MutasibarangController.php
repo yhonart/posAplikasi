@@ -602,17 +602,17 @@ class MutasibarangController extends Controller
             $this->TempInventoryController->reportBarangMasuk ($productID, $invID, $satuan, $toLoc, $takenStock, $description, $idParam, $updateBy);
         }
         
-        DB::table('inv_moving')
-            ->where('number',$idParam)
-            ->update([
-                'status'=>'4'    
-            ]);
+        // DB::table('inv_moving')
+        //     ->where('number',$idParam)
+        //     ->update([
+        //         'status'=>'4'    
+        //     ]);
         
-        DB::table('inv_moving_list')
-            ->where('mutasi_code',$idParam)
-            ->update([
-                'status'=>'4'    
-            ]);        
+        // DB::table('inv_moving_list')
+        //     ->where('mutasi_code',$idParam)
+        //     ->update([
+        //         'status'=>'4'    
+        //     ]);        
    }
    
    public function editMutasi ($idparam){
