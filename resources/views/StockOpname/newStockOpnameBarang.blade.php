@@ -142,7 +142,7 @@
             let lastStockVal = $("#lastStock").val(),
                 qty = $("#qty").val();
             
-            if (typeof qty == "undefined" || typeof qty == "0") {
+            if (typeof qty == "undefined") {
                 return
             }
             $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));
