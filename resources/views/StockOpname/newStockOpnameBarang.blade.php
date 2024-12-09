@@ -183,30 +183,22 @@
             let sumInputStock = $("#sumInputStock").val(),
                 noOpname = $("#numberOpname").val();
                 
-            if(sumInputStock === '0' || sumInputStock === ''){
-                alertify
-                .alert("Tidak ada data barang yang dimasukkan, mohon periksa kembali.", function(){
-                    alertify.message('OK');
-                }).set({title:"ALERT !"});
-            }
-            else{
-                alertify.prompt("Masukkaan catatan bila ada [OPTIONAL]", "",
-                    function(evt, value ){
-                        alertify.success('Ok: ' + value);
-                        $.ajax({
-                            type : 'post',
-                            url : "{{route('stockOpname')}}/listInputBarang/submitOpnameReport",
-                            data :  {sumInputStock:sumInputStock,note:value,noOpname:noOpname},
-                            success : function(data){
-                                window.location.reload();
-                            }
-                        });
-                    },
-                    function(){
-                        alertify.error('Cancel');
-                    }).set({title:"Submit Laporan"})
-                ;
-            }
+            alertify.prompt("Masukkaan catatan bila ada [OPTIONAL]", "",
+                function(evt, value ){
+                    alertify.success('Ok: ' + value);
+                    $.ajax({
+                        type : 'post',
+                        url : "{{route('stockOpname')}}/listInputBarang/submitOpnameReport",
+                        data :  {sumInputStock:sumInputStock,note:value,noOpname:noOpname},
+                        success : function(data){
+                            window.location.reload();
+                        }
+                    });
+                },
+                function(){
+                    alertify.error('Cancel');
+                }).set({title:"Simpan Transaksi"})
+            ;
         });
         
         $('#displayDocument').on('click', function (e){
