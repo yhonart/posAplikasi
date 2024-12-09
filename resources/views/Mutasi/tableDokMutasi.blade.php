@@ -48,19 +48,19 @@
                 <td class="text-right">
                     @if($tm->status <> '0')
                         @if($approval >= '1' AND $tm->status == '2')
-                            <button type="button" class="btn btn-sm btn-success btnApprove font-weight-bold" title="Kirim Barang" data-opname="{{$tm->number}}"><i class="fa-solid fa-check"></i> Approve</button>
+                            <button type="button" class="btn btn-sm btn-success btnApprove font-weight-bold" id="btnApprove{{$tm->idinv_moving}}" title="Kirim Barang" data-opname="{{$tm->number}}" data-id="{{$tm->idinv_moving}}"><i class="fa-solid fa-check"></i> Approve</button>
                         @endif
                         
-                        <button type="button" class="btn btn-sm btn-primary btnDetail font-weight-bold" id="btnDetail" title="View Detail" data-opname="{{$tm->number}}"><i class="fa-solid fa-magnifying-glass"></i> Detail</button>
+                        <button type="button" class="btn btn-sm btn-primary btnDetail font-weight-bold" id="btnDetail" title="View Detail" data-opname="{{$tm->number}}" data-id="{{$tm->idinv_moving}}"><i class="fa-solid fa-magnifying-glass"></i> Detail</button>
                         
                         @if($tm->status == '2' AND $approval == '0')
-                            <button type="button" class="btn btn-sm btn-info btnEdit  font-weight-bold" id="btnEdit" title="Edit" data-opname="{{$tm->number}}"><i class="fa-solid fa-pencil"></i> Edit</button>
+                            <button type="button" class="btn btn-sm btn-info btnEdit  font-weight-bold" id="btnEdit" title="Edit" data-opname="{{$tm->number}}" data-id="{{$tm->idinv_moving}}"><i class="fa-solid fa-pencil"></i> Edit</button>
                         @elseif($tm->status >= '2' AND $approval >= '1')
-                            <button type="button" class="btn btn-sm btn-info btnEdit  font-weight-bold" id="btnEdit" title="Edit" data-opname="{{$tm->number}}"><i class="fa-solid fa-pencil"></i> Edit</button>
+                            <button type="button" class="btn btn-sm btn-info btnEdit  font-weight-bold" id="btnEdit" title="Edit" data-opname="{{$tm->number}}" data-id="{{$tm->idinv_moving}}"><i class="fa-solid fa-pencil"></i> Edit</button>
                         @endif
                         
                         @if($tm->status >= '1' AND $tm->status <= '2')
-                        <button type="button" class="btn btn-sm btn-danger btnDelete  font-weight-bold" title="Delete" data-opname="{{$tm->number}}"><i class="fa-solid fa-trash"></i> Batalkan</button>
+                        <button type="button" class="btn btn-sm btn-danger btnDelete  font-weight-bold" title="Delete" data-opname="{{$tm->number}}" data-id="{{$tm->idinv_moving}}"><i class="fa-solid fa-trash"></i> Batalkan</button>
                         @endif
                         
                     @else
@@ -92,6 +92,8 @@
         $(".dataTable").on('click','.btnApprove', function () {
             var element = $(this);
             var idparam = element.attr("data-opname");
+            var dataID = element.attr("data-id");
+            $(this).closest("tr").find("#btnApprove"+dataID).animate({ opacity: "hide" }, "slow");
             alertify.confirm("Apakah anda yakin dengan data item yang di mutasi ?",
               function(){
                     $.ajax({
