@@ -569,8 +569,7 @@ class MutasibarangController extends Controller
                 }
             }
             
-            $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
-            $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
+            
             
             //Cek saldo di laporan inventory yang terakhir sebelum dilakukan approval
             if ($fromLoc == $locAsalBarang) {
@@ -600,19 +599,23 @@ class MutasibarangController extends Controller
             }
 
             $this->TempInventoryController->reportBarangMasuk ($productID, $invID, $satuan, $toLoc, $takenStock, $description, $idParam, $updateBy);
+
+            //Update Stock
+            $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
+            $this->TempInventoryController->penambahanItem ($productID, $takenStock, $satuan, $toLoc);
         }
         
-        // DB::table('inv_moving')
-        //     ->where('number',$idParam)
-        //     ->update([
-        //         'status'=>'4'    
-        //     ]);
+        DB::table('inv_moving')
+            ->where('number',$idParam)
+            ->update([
+                'status'=>'4'    
+            ]);
         
-        // DB::table('inv_moving_list')
-        //     ->where('mutasi_code',$idParam)
-        //     ->update([
-        //         'status'=>'4'    
-        //     ]);        
+        DB::table('inv_moving_list')
+            ->where('mutasi_code',$idParam)
+            ->update([
+                'status'=>'4'    
+            ]);        
    }
    
    public function editMutasi ($idparam){
