@@ -155,7 +155,7 @@
                     url:"{{route('mutasi')}}/tableDataMutasi/deleteMutasi/"+idparam,
                     dataType: 'html',
                     success:function(response){
-                      window.location.reload();
+                    //   window.location.reload();
                     }
                 });
               },
