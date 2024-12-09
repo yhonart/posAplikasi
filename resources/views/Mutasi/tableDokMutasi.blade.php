@@ -101,7 +101,7 @@
                         url:"{{route('mutasi')}}/tableDataMutasi/pickup/"+idparam,
                         dataType: 'html',
                         success:function(response){
-                            // window.location.reload();
+                            window.location.reload();
                         }
                     });
                 alertify.success('Ok');
