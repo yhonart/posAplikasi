@@ -668,8 +668,8 @@ class TempInventoryController extends Controller
         
         $mProduct = DB::table('m_product')
             ->where('idm_data_product',$productID)
-            ->first();
-
+            ->first();       
+        
         $volB = $mProduct->large_unit_val;
         $volK = $mProduct->medium_unit_val;
         $volKonv = $mProduct->small_unit_val;
@@ -713,26 +713,27 @@ class TempInventoryController extends Controller
         $invOut = '0';
         $lastStock = (int)$invStock->stock;
         $saldo = $lastStock + $invIn;
+        echo $lastStock;
 
-        DB::table('report_inv')
-            ->insert([
-                'date_input'=>now(),
-                'number_code'=>$noTrx,
-                'product_id'=>$productID,
-                'product_name'=>$prodName,
-                'satuan'=>$satuan,
-                'satuan_code'=>$sizeCodeDesc,
-                'description'=>$description,
-                'inv_in'=>$invIn,
-                'inv_out'=>$invOut,
-                'saldo'=>$saldo,
-                'created_by'=>$userName,
-                'location'=>$location,
-                'last_saldo'=>$lastStock,
-                'vol_prd'=>'0',
-                'actual_input'=>$qty,
-                'status_trx'=>'4'
-            ]);
+        // DB::table('report_inv')
+        //     ->insert([
+        //         'date_input'=>now(),
+        //         'number_code'=>$noTrx,
+        //         'product_id'=>$productID,
+        //         'product_name'=>$prodName,
+        //         'satuan'=>$satuan,
+        //         'satuan_code'=>$sizeCodeDesc,
+        //         'description'=>$description,
+        //         'inv_in'=>$invIn,
+        //         'inv_out'=>$invOut,
+        //         'saldo'=>$saldo,
+        //         'created_by'=>$userName,
+        //         'location'=>$location,
+        //         'last_saldo'=>$lastStock,
+        //         'vol_prd'=>'0',
+        //         'actual_input'=>$qty,
+        //         'status_trx'=>'4'
+        //     ]);
 
     }
 
