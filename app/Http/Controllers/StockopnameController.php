@@ -691,12 +691,12 @@ class StockopnameController extends Controller
                 if ($selisih < '0') {
                     $invIn = '0';
                     $invOut = $lOpm;
-                    $reportSaldo = $stockDesc - $invOut;
+                    $reportSaldo = $readyStock - $invOut;
                 }
                 else {
                     $invIn = $lOpm;
                     $invOut = '0';
-                    $reportSaldo = $stockDesc + $invIn;
+                    $reportSaldo = $readyStock + $invIn;
                 }
 
                 $description = "Stock Opname Oleh ".$updateBy;
