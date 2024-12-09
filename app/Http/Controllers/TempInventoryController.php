@@ -719,27 +719,27 @@ class TempInventoryController extends Controller
         else {
             $inputSaldo = $saldo;
         }
-        echo $lastStock."==".$saldo."-".$inputSaldo."//";
+        // echo $lastStock."==".$saldo."-".$inputSaldo."//";
 
-        // DB::table('report_inv')
-        //     ->insert([
-        //         'date_input'=>now(),
-        //         'number_code'=>$noTrx,
-        //         'product_id'=>$productID,
-        //         'product_name'=>$prodName,
-        //         'satuan'=>$satuan,
-        //         'satuan_code'=>$sizeCodeDesc,
-        //         'description'=>$description,
-        //         'inv_in'=>$invIn,
-        //         'inv_out'=>$invOut,
-        //         'saldo'=>$inputSaldo,
-        //         'created_by'=>$userName,
-        //         'location'=>$location,
-        //         'last_saldo'=>$lastStock,
-        //         'vol_prd'=>'0',
-        //         'actual_input'=>$qty,
-        //         'status_trx'=>'4'
-        //     ]);
+        DB::table('report_inv')
+            ->insert([
+                'date_input'=>now(),
+                'number_code'=>$noTrx,
+                'product_id'=>$productID,
+                'product_name'=>$prodName,
+                'satuan'=>$satuan,
+                'satuan_code'=>$sizeCodeDesc,
+                'description'=>$description,
+                'inv_in'=>$invIn,
+                'inv_out'=>$invOut,
+                'saldo'=>$inputSaldo,
+                'created_by'=>$userName,
+                'location'=>$location,
+                'last_saldo'=>$lastStock,
+                'vol_prd'=>'0',
+                'actual_input'=>$qty,
+                'status_trx'=>'4'
+            ]);
 
     }
 
