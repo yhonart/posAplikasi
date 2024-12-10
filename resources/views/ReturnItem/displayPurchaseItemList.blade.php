@@ -4,8 +4,8 @@ $no = '1';
 ?>
 <div class="row mb-2">
     <div class="col-md-12">
-        <button class="btn bg-gradient-purple btn-sm " id="kembali"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
-        <button class="btn btn-default btn-sm " id="refresh"><i class="fa-solid fa-rotate"></i> Refresh</button>
+        <button class="btn btn-success btn-sm " id="kembali"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
+        <button class="btn btn-outline-success btn-sm " id="refresh"><i class="fa-solid fa-rotate"></i> Refresh</button>
         <!--<button class="btn bg-gradient-olive btn-sm " id="kembali"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>-->
     </div>
 </div>
@@ -13,8 +13,8 @@ $no = '1';
 <div class="row">
     <div class="col-md-12">
         <div class="card card-body table-responsive p-0" style="height:700px">
-            <table class="table table-hover table-valign-middle table-sm table-bordered" id="listTableItem">
-                <thead class="bg-gradient-purple">
+            <table class="table table-sm table-valign-middle table-hover table-bordered" id="listTableItem">
+                <thead class="bg-gray">
                     <tr>
                         <th>Nama Barang</th>
                         <th>Qty. Beli</th>

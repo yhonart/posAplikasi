@@ -76,6 +76,7 @@ class ReturnItemController extends Controller
     }
     
     public function displayItemList ($numberpo){
+        
         $itemList = DB::table('view_purchase_lo as a')
             ->where('a.purchase_number',$numberpo)
             ->orderBy('a.product_name','asc')
