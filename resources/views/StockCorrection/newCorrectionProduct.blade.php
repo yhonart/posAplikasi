@@ -52,8 +52,8 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-sm table-hover table-valign-middle text-nowrap">
-                <thead>
+            <table class="table table-bordered table-sm table-hover table-valign-middle text-nowrap">
+                <thead class="bg-gray">
                     <tr>
                         <th>No</th>
                         <th width="30%">Nama Barang</th>
