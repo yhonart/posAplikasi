@@ -1,10 +1,11 @@
 <hr>
 <div class="row mb-2">
     <div class="col-12">
-        <a class="btn btn-sm btn-default  font-weight-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            <i class="fa-solid fa-circle-info"></i> Dokumen Mutasi
+        <a class="btn btn-sm btn-default font-weight-bold border-0" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <i class="fa-solid fa-file-pen"></i> <span class="text-info">Edit Dokumen</span> Edit Dokumen Mutasi
         </a>
-        <button type="submit" class="btn btn-sm btn-default font-weight-bold " id="submitDataMutasi" data-number="{{$tbMutasi->number}}"><i class="fa-solid fa-circle-check"></i> Simpan Perubahan</button>
+        <button type="submit" class="btn btn-sm btn-default font-weight-bold border-0" id="submitDataMutasi" data-number="{{$tbMutasi->number}}">
+            <i class="fa-solid fa-circle-check"></i> <span class="text-success">Simpan Perubahan</span></button>
     </div>
 </div>
 <div class="row">
