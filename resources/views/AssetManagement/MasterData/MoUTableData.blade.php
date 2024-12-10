@@ -1,7 +1,7 @@
 @php
     $no = 1;
 @endphp
-<table class="table table-striped table-valign-middle table-sm" id="tableMou">
+<table class="table table-striped table-valign-middle table-sm" id="tableDataMou">
     <thead class="bg-purple text-center">
         <tr>
             <th>No.</th>
@@ -26,7 +26,7 @@
 </table>
 <script>
     $(function () {
-        $('#tableMou').DataTable({
+        $('#tableDataMou').DataTable({
           "paging": true,
           "lengthChange": true,
           "searching": true,
