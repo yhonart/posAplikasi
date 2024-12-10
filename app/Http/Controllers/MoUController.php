@@ -63,4 +63,11 @@ class MoUController extends Controller
             ]);
         
     }
+
+    public function DeleteMoU($id)
+    {
+        DB::table('m_unit')
+            ->where('idm_unit',$id)
+            ->delete();
+    }
 }
