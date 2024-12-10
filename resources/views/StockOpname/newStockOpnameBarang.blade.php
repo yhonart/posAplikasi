@@ -12,7 +12,7 @@
                 <div class="row mb-2">
                     <div class="col-12">
                         <button class="btn btn-sm btn-light font-weight-bold" id="displayDocument"><i class="fa-solid fa-file-pen text-info"></i> <span class="text-succes">Dokumen Opname Barang</span></button>
-                        <button class="btn btn-sm btn-outline-info font-weight-bold" id="saveDocument"><i class="fa-regular fa-floppy-disk"></i> Simpan Transaksi</button>
+                        <button class="btn btn-sm btn-outline-success border-0 font-weight-bold" id="saveDocument"><i class="fa-regular fa-floppy-disk"></i> Simpan Transaksi</button>
                         <button class="btn btn-sm btn-light font-weight-bold" id="cencelDocument"><i class="fa-solid fa-xmark text-danger"></i> Batalkan Transaksi</button>
                     </div>
                 </div>
