@@ -2272,7 +2272,7 @@ class CashierController extends Controller
             $status = "3";
             $mBayar = '8';
             $kreditDesc = "Kredit 7 hari";
-            $returnBy = "Return By ".$updateBy;
+            $returnBy = "";
             $countKredit = DB::table('tr_kredit')
                 ->where([
                     ['from_member_id', $memberID]
