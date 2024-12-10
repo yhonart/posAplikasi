@@ -8,14 +8,18 @@
             <div class="card-body table-responsive p-2">
                 <div class="row mb-2">
                     <div class="col-12">
-                        <button class="btn btn-sm btn-outline-info border-0 font-weight-bold pl-4" id="displayDocument"><i class="fa-solid fa-file-pen"></i> Dokumen Opname Barang</button>
+                        <button class="btn btn-sm btn-outline-info border-0 font-weight-bold pl-4" data-toggle="collapse" href="#collapseDocOpname" role="button" aria-expanded="false" aria-controls="collapseDocOpname"><i class="fa-solid fa-file-pen"></i> Dokumen Opname Barang</button>
                         <button class="btn btn-sm btn-outline-success border-0 font-weight-bold pl-4" id="saveDocument"><i class="fa-regular fa-floppy-disk"></i> Simpan Transaksi</button>
-                        <button class="btn btn-sm btn-outline-danger border-0 font-weight-bold pl-4" id="cencelDocument"><i class="fa-solid fa-xmark"></i> Batalkan Transaksi</button>
+                        <button class="btn btn-sm btn-outline-danger border-0 font-weight-bold pl-4" id="cencelDocument" data-doc="{{$opnameNumber}}"><i class="fa-solid fa-xmark"></i> Batalkan Transaksi</button>
                     </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-12">
-                        <div id="displayDivDocument"></div>
+                        <div class="collapse" id="collapseDocOpname">
+                            <div class="card card-body">
+                                <div id="displayDivDocument"></div>                               
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <table class="table table-sm table-valign-middle table-hover table-bordered">
@@ -88,9 +92,9 @@
             type : 'get',
             url : "{{route('stockOpname')}}/listInputBarang/editDocumentOpname/" + paramId,
             success : function(response){     
-                $("#editDocumentOpname").html(response).focus();
+                $("#displayDivDocument").html(response).focus();
             }
-        });
+        });        
     })
     
     $(document).ready(function(){
@@ -161,14 +165,19 @@
             var  idparam = element.attr("data-doc");
             alertify.confirm("Apakah anda yakin ingin membatalkan transaksi ini ?",
             function(){
-                alertify.success('Ok');
+                alertify.success('Transaksi Dibatalkan');
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('stockOpname')}}/listInputBarang/cancelTrx/"+idparam,
+                    success : function(data){
+                        window.location.reload();
+                    }
+                });
             },
             function(){
                 alertify.error('Cancel');
             });
-
-
-        });
+        }).set({title:"Transaksi Dibatalkan."});
 
         $("#submitItem").on('click', function (e){
             e.preventDefault();
@@ -198,18 +207,6 @@
                 }).set({title:"Simpan Transaksi"})
             ;
         });
-        
-        $('#displayDocument').on('click', function (e){
-            e.preventDefault();
-            let docNumber = $("#numberOpname").val();
-            $.ajax({
-                type : 'get',
-                url : "{{route('stockOpname')}}/listInputBarang/editDocumentOpname/"+docNumber,
-                success : function(response){
-                    $("#displayDivDocument").html(response);
-                }
-            });
-        })
     });
     
     function addActivityItem() {

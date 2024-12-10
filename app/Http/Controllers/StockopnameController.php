@@ -883,4 +883,19 @@ class StockopnameController extends Controller
         }
         
     }
+
+    public function cancelTrx($trxNumber)
+    {
+        DB::table('inv_stock_opname')
+            ->where('number_so',$trxNumber)
+            ->update([
+                'status'=>'0'
+            ]);
+
+        DB::table('inv_list_opname')
+            ->where('sto_number',$trxNumber)
+            ->update([
+                'status'=>'0'
+            ]);
+    }
 }

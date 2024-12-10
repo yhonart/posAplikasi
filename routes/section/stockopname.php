@@ -10,6 +10,7 @@ Route::get('stockOpname/listDataOpname/editOpname/{idOpname}', [App\Http\Control
 Route::get('stockOpname/disInputBarang', [App\Http\Controllers\StockopnameController::class, 'disInputBarang']);
 
 Route::get('stockOpname/listInputBarang', [App\Http\Controllers\StockopnameController::class, 'listInputBarang']);
+Route::get('stockOpname/listInputBarang/cancelTrx/{trxNumber}', [App\Http\Controllers\StockopnameController::class, 'cancelTrx']);
 Route::post('stockOpname/listInputBarang/submitBarang', [App\Http\Controllers\StockopnameController::class, 'submitBarang']);
 Route::get('stockOpname/listInputBarang/satuan/{productID}', [App\Http\Controllers\StockopnameController::class, 'satuan']);
 Route::get('stockOpname/listInputBarang/lastQty/{satuan}/{productID}/{location}', [App\Http\Controllers\StockopnameController::class, 'lastQty']);
