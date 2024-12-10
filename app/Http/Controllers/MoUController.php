@@ -59,7 +59,7 @@ class MoUController extends Controller
             ->where('idm_unit',$id)
             ->update([
                 'unit_initial'=>$unitKat,
-                'unit_code'=>$unitName
+                'unit_note'=>$unitName
             ]);
         
     }
