@@ -1,3 +1,6 @@
+<?php
+    $stockAkhir = '0';
+?>
 <div class="row">
     <div class="col-12">
         <div class="card card-body border border-info">
@@ -34,7 +37,10 @@
                             <td>{{$lm->last_stock}}</td>
                             <td>{{$lm->stock_taken}}</td>
                             <td>
-                                $stockAkhir = $lm->last_stock + $lm->stock_taken;
+                                <?php
+                                    $stockAkhir = $lm->last_stock + $lm->stock_taken;
+                                    echo $stockAkhir;
+                                ?>
                             </td>
                             <td>{{$lm->notes}}</td>
                         </tr>
