@@ -1,5 +1,5 @@
-<table class="table table-bordered">
-    <thead class="bg-purple">
+<table class="table table-sm table-valign-middle table-hover table-bordered" id="detailPembelianBarang">
+    <thead class="bg-gray">
         <tr>
             <th>Nama Barang</th>
             <th>Satuan</th>
@@ -26,3 +26,15 @@
         @endforeach
     </tbody>
 </table>
+<script>
+    $(function(){        
+        $("#tableDetailKoreksi").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "paging": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>

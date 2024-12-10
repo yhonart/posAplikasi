@@ -27,18 +27,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="row mb-2">
-                    <div class="col-12">
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#detailBelanja" aria-expanded="false" aria-controls="detailBelanja">Detail</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="collapse multi-collapse" id="detailBelanja">
-                          <div class="card card-body table-response">
-                            @include('Purchasing.Modal.ModalPurchasingDetailBarang')
-                          </div>
-                        </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        @include('Purchasing.Modal.ModalPurchasingDetailBarang')                        
                     </div>
                 </div>
             </div>

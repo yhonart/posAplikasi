@@ -10,8 +10,8 @@ $statusDokumen = array(
     <div class="col-12">
         <div class="card">
             <div class="card-body p-2 table-responsive" style="height:700px;">
-                <table class="table table-sm table-valign-middle table-hover text-nowrap table-bordered" id="tableListPembelian">
-                    <thead>
+                <table class="table table-sm table-valign-middle table-hover table-bordered" id="tableListPembelian">
+                    <thead class="bg-gray">
                         <tr>
                             <th>Tgl. Penerimaan</th>
                             <th>Nomor</th>
