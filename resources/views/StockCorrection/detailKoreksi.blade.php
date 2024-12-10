@@ -7,7 +7,7 @@ $arayDK = array(
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-body p-1 table-responsive">
+        <div class="card card-body p-2 table-responsive">
             <div class="row mb-2">
                 <div class="col-md-12">                    
                     <button class="btn btn-default btn-sm font-weight-bold border-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -37,8 +37,8 @@ $arayDK = array(
             </div>
             <div class="row">
                 <div class="col-12">
-                    <table class="table table-sm table-valign-middle table-bordered">
-                        <thead class="bg-gradient-purple">
+                    <table class="table table-sm table-valign-middle table-hover table-bordered" id="tableDetailKoreksi">
+                        <thead class="bg-gray">
                             <tr>
                                 <th>Nama Barang</th>
                                 <th>Lokasi</th>
@@ -73,7 +73,16 @@ $arayDK = array(
         e.preventDefault();
         viewListTableKoreksi();
     });
-    
+    $(function(){        
+        $("#tableDetailStokOpname").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "paging": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
     function viewListTableKoreksi(){
         $.ajax({
             type : 'get',
