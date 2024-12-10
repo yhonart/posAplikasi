@@ -28,7 +28,7 @@
 </table>
 <script>
     $(function(){        
-        $("#tableDetailKoreksi").DataTable({
+        $("#detailPembelianBarang").DataTable({
             "responsive": true, 
             "lengthChange": false, 
             "autoWidth": false,
