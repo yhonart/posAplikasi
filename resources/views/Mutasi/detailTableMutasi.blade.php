@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-sm table-valign-middle table-hover" id="tableDetailItemMutasi">
+            <table class="table table-sm table-valign-middle table-hover table-bordered" id="tableDetailItemMutasi">
                 <thead>
                     <tr>
                         <th>Nama Barang</th>

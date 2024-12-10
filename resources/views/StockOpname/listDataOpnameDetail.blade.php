@@ -38,12 +38,13 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-sm table-valign-middle table-hover" id="tableDetailStokOpname">
+                    <table class="table table-sm table-valign-middle table-hover table-bordered" id="tableDetailStokOpname">
                         <thead class="bg-gray">
                             <tr>
                                 <th>No</th>
                                 <th>Nama Barang</th>
                                 <th>Satuan</th>
+                                <th>Qty. Opname</th>
                                 <th>Stok Awal</th>
                                 <th>Stok Akhir</th>
                                 <th>Selisih</th>
@@ -55,13 +56,14 @@
                                     <td>{{$noDetail++}}</td>
                                     <td>{{$listPrd->product_name}}</td>
                                     <td>{{$listPrd->product_satuan}}</td>
+                                    <td>{{$listPrd->input_qty}}</td>
                                     <td>{{$listPrd->last_stock}}</td>
                                     <td>{{$listPrd->input_qty}}</td>
                                     <td>{{$listPrd->selisih}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
-                        <tfoot class="bg-info font-weight-bold">
+                        <tfoot class="bg-light font-weight-bold">
                             <tr>
                                 <td></td>
                                 <td></td>
