@@ -71,6 +71,7 @@
                                 <td>{{$sumDetailOpname->lastStock}}</td>
                                 <td>{{$sumDetailOpname->inputStock}}</td>
                                 <td></td>
+                                <td></td>
                             </tr>
                         </tfoot>
                     </table>

@@ -8,7 +8,7 @@
         4=>"Barang Di Terima"
     );
 ?>
-<table class="table table-sm table-valign-middle table-hover text-nowrap" id="tableDokMutasi">
+<table class="table table-sm table-valign-middle table-hover table-bordered" id="tableDokMutasi">
     <thead>
         <tr>
             <th>No.</th>
