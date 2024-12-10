@@ -5,7 +5,7 @@
     <thead class="bg-gray">
         <tr>
             <th>No.</th>
-            <th>Inisial</th>
+            <th>Kategori</th>
             <th>Satuan</th>
             <th><i class="fa-solid fa-bars"></i></th>
         </tr>
@@ -16,7 +16,7 @@
                 <td class="text-center">{{$no++}}</td>
                 <td>{{$mou->unit_initial}}</td>
                 <td>{{$mou->unit_note}}</td>
-                <td class="text-right">
+                <td class="text-right">                    
                     <button class="btn btn-info btn-sm BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('MoU')}}/tableMoU/EditMoU/{{$mou->idm_unit}}"><i class="fa-solid fa-pencil"></i> Edit</button>
                     <button class="btn btn-danger btn-sm DELETE-BTN" data-id="{{$mou->idm_unit}}" data-unit="{{$mou->unit_note}}"><i class="fa-solid fa-trash-can"></i> Hapus</button>
                 </td>

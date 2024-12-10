@@ -39,4 +39,28 @@ class MoUController extends Controller
         }
         return response()->json($msg);
     }
+
+    public function editMOU($id)
+    {
+        $editMOU = DB::table('m_unit')
+            ->where('idm_unit',$id)
+            ->first();
+
+        return view ('AssetManagement/MasterData/MoUModalFormEdit',compact('editMOU'));
+    }
+
+    public function PostEditMoU(Request $reqPostEdit)
+    {
+        $id = $reqPostEdit->satuanID;
+        $unitKat = $reqPostEdit->editInitial;
+        $unitName = $reqPostEdit->editUnitName;
+
+        DB::table('m_unit')
+            ->where('idm_unit',$id)
+            ->update([
+                ['unit_initial',$unitKat],
+                ['unit_code',$unitName]
+            ]);
+        
+    }
 }
