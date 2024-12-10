@@ -28,7 +28,7 @@
             <select class="form-control form-control-sm" name="toLoc" id="toLoc">
                 <option value="{{$tbMutasi->to_loc}}" readonly>{{$tujuanBarang->site_name}}</option>
                 @foreach($mLoc as $ms2)
-                    @if($ms1->idm_site <> $tbMutasi->to_loc)
+                    @if($ms2->idm_site <> $tbMutasi->to_loc)
                         <option value="{{$ms2->idm_site}}">{{$ms2->site_name}}</option>
                     @endif
                 @endforeach
