@@ -13,7 +13,7 @@
         0=>"text-danger",
     );
 ?>
-<table class="table table-sm table-valign-middle table-hover table-bordered" id="listDocOpname">
+<table class="table table-valign-middle table-hover table-bordered" id="listDocOpname">
     <thead class="bg-gray">
         <tr>
             <th>No.</th>
