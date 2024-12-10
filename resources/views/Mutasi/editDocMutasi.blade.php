@@ -15,18 +15,22 @@
         <label class="label col-md-3">Lokasi Asal</label>
         <div class="col-md-3">
             <select class="form-control form-control-sm" name="fromLoc" id="fromLoc">
-                <option value="{{$tbMutasi->from_loc}}" readonly>{{$tbMutasi->from_loc}}</option>
+                <option value="{{$tbMutasi->from_loc}}" readonly>{{$asalBarang->site_name}}</option>
                 @foreach($mLoc as $ms1)
-                    <option value="{{$ms1->site_name}}">{{$ms1->site_name}}</option>
+                    @if($ms1->idm_site <> $tbMutasi->from_loc)
+                        <option value="{{$ms1->idm_site}}">{{$ms1->site_name}}</option>
+                    @endif
                 @endforeach
             </select>
         </div>
         <label class="label col-md-3">Lokasi Tujuan</label>
         <div class="col-md-3">
             <select class="form-control form-control-sm" name="toLoc" id="toLoc">
-                <option value="{{$tbMutasi->to_loc}}" readonly>{{$tbMutasi->to_loc}}</option>
+                <option value="{{$tbMutasi->to_loc}}" readonly>{{$tujuanBarang->site_name}}</option>
                 @foreach($mLoc as $ms2)
-                    <option value="{{$ms2->site_name}}">{{$ms2->site_name}}</option>
+                    @if($ms1->idm_site <> $tbMutasi->to_loc)
+                        <option value="{{$ms2->idm_site}}">{{$ms2->site_name}}</option>
+                    @endif
                 @endforeach
             </select>
         </div>

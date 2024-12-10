@@ -433,10 +433,23 @@ class MutasibarangController extends Controller
             ->where('number',$idParam)
             ->first();
         
+        $asalBarang = DB::table('inv_moving as a')
+            ->select('a.from_loc','b.site_name')
+            ->leftJoin('m_site as b','a.from_loc','=','b.idm_site')
+            ->where('a.number',$idParam)
+            ->first();
+
+        $tujuanBarang = DB::table('inv_moving as a')
+            ->select('a.to_loc','b.site_name')
+            ->leftJoin('m_site as b','a.from_loc','=','b.idm_site')
+            ->where('a.number',$idParam)
+            ->first();
+        
+        
         $mLoc = DB::table('m_site')
             ->get();
             
-        return view('Mutasi/editDocMutasi',compact('tbMutasi','mLoc'));
+        return view('Mutasi/editDocMutasi',compact('tbMutasi','mLoc','asalBarang','tujuanBarang'));
     }
     
     public function satuan($productId){
