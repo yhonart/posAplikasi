@@ -60,17 +60,17 @@
                 $("#divDisplayDokumen").html(response);
             }
         });
-        $(function(){        
-            $("#tableDetailItemMutasi").DataTable({
-                "responsive": true, 
-                "lengthChange": false, 
-                "autoWidth": false,
-                "dom": 'Bfrtip',
-                "paging": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        });
     })
+    $(function(){        
+        $("#tableDetailItemMutasi").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "paging": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
     $(document).ready(function(){
         $.ajaxSetup({
             headers: {

@@ -8,7 +8,7 @@
             <div class="row mb-2">
                 <div class="col-md-12">
                 <button class="btn btn-sm bg-light border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    <i class="fa-regular fa-file"></i> Dokumen Transaksi
+                    <i class="fa-regular fa-file"></i> <span class="text-info">Dokumen Transaksi</span>
                 </button>
                 <div class="row mt-2">
                     <div class="col-12">
@@ -38,7 +38,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-sm table-valign-middle table-bordered table-hover">
+                    <table class="table table-sm table-valign-middle table-bordered table-hover" id="tableDetailStokOpname">
                         <thead class="bg-gradient-purple">
                             <tr>
                                 <th>No</th>
@@ -81,5 +81,15 @@
     $('#btn-reload').on('click', function () {
         window.location.reload();
         //$("#cardDetail").fadeOut('slow');
+    });
+    $(function(){        
+        $("#tableDetailStokOpname").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "paging": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
 </script>
