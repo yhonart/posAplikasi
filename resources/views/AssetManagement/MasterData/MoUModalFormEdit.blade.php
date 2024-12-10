@@ -12,7 +12,7 @@
                 <label for="MoUInitial" class="form-label col-md-4 text-right">Kategori Satuan</label>
                 <div class="col-md-4">
                     <select name="editInitial" id="editInitial" class="form-control form-control-sm">
-                        <option value="0" readonly>{{$editMOU->unit_initail}}</option>
+                        <option value="0" readonly>{{$editMOU->unit_initial}}</option>
                         <option value="Besar">Besar</option>
                         <option value="Kecil">Kecil</option>
                         <option value="Terkecil">Terkecil</option>
