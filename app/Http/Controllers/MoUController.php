@@ -58,8 +58,8 @@ class MoUController extends Controller
         DB::table('m_unit')
             ->where('idm_unit',$id)
             ->update([
-                ['unit_initial',$unitKat],
-                ['unit_code',$unitName]
+                'unit_initial'=>$unitKat,
+                'unit_code'=>$unitName
             ]);
         
     }
