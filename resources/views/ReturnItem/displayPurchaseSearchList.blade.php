@@ -45,7 +45,7 @@
     });
 
     $(document).ready(function(){
-        $('.DIS-ITEM').on('click', function(e){
+        $(".dataTable").on('click','.DIS-ITEM', function () {
             e.preventDefault();
             let el = $(this),
                 purchaseNumber = el.attr('data-purchase');
