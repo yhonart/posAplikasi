@@ -406,11 +406,11 @@ class MutasibarangController extends Controller
     }
     
     public function detailMutasi($idParam){
-        $tbMutasi = DB::table('inv_moving')
+        $docMutasi = DB::table('inv_moving')
             ->where('number',$idParam)
             ->first();
 
-        $locationID = $tbMutasi->from_loc;
+        $locationID = $docMutasi->from_loc;
 
         $listMutasi = DB::table('inv_moving_list as a')
             ->select('a.*','b.product_name','b.product_satuan')
@@ -422,8 +422,20 @@ class MutasibarangController extends Controller
         $mlocDetail = DB::table('m_site')
             ->where('idm_site',$userArea)
             ->first();
+
+        $asalBarang = DB::table('inv_moving as a')
+            ->select('a.from_loc','b.site_name')
+            ->leftJoin('m_site as b','a.from_loc','=','b.idm_site')
+            ->where('a.number',$idParam)
+            ->first();
+
+        $tujuanBarang = DB::table('inv_moving as a')
+            ->select('a.to_loc','b.site_name')
+            ->leftJoin('m_site as b','a.from_loc','=','b.idm_site')
+            ->where('a.number',$idParam)
+            ->first();
             
-        return view('Mutasi/detailTableMutasi',compact('tbMutasi','listMutasi','idParam','mlocDetail'));
+        return view('Mutasi/detailTableMutasi',compact('docMutasi','listMutasi','idParam','mlocDetail','asalBarang','tujuanBarang'));
     }
     
     public function editDocMutasi ($idParam){

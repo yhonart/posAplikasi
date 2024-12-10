@@ -11,14 +11,17 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-sm table-valign-middle table-hover">
+            <table class="table table-sm table-valign-middle table-hover" id="tableDetailItemMutasi">
                 <thead>
                     <tr>
                         <th>Nama Barang</th>
                         <th>Satuan</th>
-                        <th>Stock</th>
+                        <th>Asal Barang</th>
+                        <th>Tujuan Barang</th>
+                        <th>Stok Awal <br> <small>Tujuan Barang</small></th>
                         <th>Jml. Mutasi</th>
-                        <th>Keterangan</th>
+                        <th>Stok Akhir <br> <small>Tujuan Barang</small></th>
+                        <th>Catatan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,8 +29,13 @@
                         <tr>
                             <td>{{$lm->product_name}}</td>
                             <td>{{$lm->product_satuan}}</td>
+                            <td>{{$asalBarang->site_name}}</td>
+                            <td>{{$tujuanBarang->site_name}}</td>
                             <td>{{$lm->last_stock}}</td>
                             <td>{{$lm->stock_taken}}</td>
+                            <td>
+                                $stockAkhir = $lm->last_stock + $lm->stock_taken;
+                            </td>
                             <td>{{$lm->notes}}</td>
                         </tr>
                     @endforeach
@@ -45,6 +53,16 @@
             success : function(response){     
                 $("#divDisplayDokumen").html(response);
             }
+        });
+        $(function(){        
+            $("#tableDetailItemMutasi").DataTable({
+                "responsive": true, 
+                "lengthChange": false, 
+                "autoWidth": false,
+                "dom": 'Bfrtip',
+                "paging": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     })
     $(document).ready(function(){
