@@ -1,4 +1,4 @@
-<table class="table table-sm table-valign-middle table-hover table-bordered" id="detailPembelianBarang">
+<table class="table table-sm table-valign-middle table-hover " id="detailPembelianBarang">
     <thead class="bg-gray">
         <tr>
             <th>Nama Barang</th>

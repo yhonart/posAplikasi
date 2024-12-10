@@ -13,7 +13,7 @@ $no = '1';
 <div class="row">
     <div class="col-md-12">
         <div class="card card-body table-responsive p-0" style="height:700px">
-            <table class="table table-sm table-valign-middle table-hover table-bordered" id="listTableItem">
+            <table class="table table-sm table-valign-middle table-hover " id="listTableItem">
                 <thead class="bg-gray">
                     <tr>
                         <th>Nama Barang</th>

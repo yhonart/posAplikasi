@@ -13,7 +13,7 @@
         0=>"text-danger",
     );
 ?>
-<table class="table table-sm table-valign-middle table-hover table-bordered" id="tableDataKoreksi">
+<table class="table table-sm table-valign-middle table-hover " id="tableDataKoreksi">
     <thead class="bg-gray">
         <tr>
             <th>Nomor</th>

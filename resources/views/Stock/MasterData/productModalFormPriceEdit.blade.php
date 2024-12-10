@@ -8,7 +8,7 @@
     <div class="card-body"> 
         <div class="row">
             <div class="col-12">
-                <table class="table table-hover table-valign-middle table-bordered table-sm">
+                <table class="table table-hover table-valign-middle  table-sm">
                     <thead>
                         <tr>
                             <th colspan="7" class="bg-info">Edit Pengaturan Pembelian </th>
@@ -61,7 +61,7 @@
                         </tr>
                     </tbody>          
                 </table>
-                <table class="table table-hover table-valign-middle table-bordered table-sm">
+                <table class="table table-hover table-valign-middle  table-sm">
                     <thead>
                         <tr>
                             <th colspan="5" class="bg-info">Edit Pengaturan Penjualan </th>

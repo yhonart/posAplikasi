@@ -1,5 +1,5 @@
 <div class="card card-body table-responsive p-0">
-    <table class="table table-sm table-align-middle text-nowrap table-hover table-bordered">
+    <table class="table table-sm table-align-middle text-nowrap table-hover ">
         <thead class="bg-gray">
             <tr>
                 <th>Nomor</th>

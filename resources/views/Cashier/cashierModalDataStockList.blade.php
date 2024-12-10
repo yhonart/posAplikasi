@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-sm table-hover table-bordered">
+    <table class="table table-sm table-hover ">
         <thead class="bg-indigo">
             <tr>
                 <td>Nama Produk</td>

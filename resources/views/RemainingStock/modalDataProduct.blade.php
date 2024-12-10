@@ -1,7 +1,7 @@
 <div class="card card-body table-responsive">
     <div class="row">
         <div class="col-12">
-            <table class="tabale table-sm table-bordered table-striped table-valign-middle text-nowrap" width="100%">
+            <table class="tabale table-sm  table-striped table-valign-middle text-nowrap" width="100%">
                 <thead class="bg-gray">
                     <tr>
                         <th>Kode Barang</th>

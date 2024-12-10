@@ -37,7 +37,7 @@ $arayDK = array(
             </div>
             <div class="row">
                 <div class="col-12">
-                    <table class="table table-sm table-valign-middle table-hover table-bordered" id="tableDetailKoreksi">
+                    <table class="table table-sm table-valign-middle table-hover " id="tableDetailKoreksi">
                         <thead class="bg-gray">
                             <tr>
                                 <th>Nama Barang</th>

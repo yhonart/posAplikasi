@@ -25,7 +25,7 @@
 @else
     <div class="card card-body table-responsive">
         <table class="table table-sm table-valign-middle table-hover" id="dataTablePenjualan">
-            <thead class="bg-gradient-purple">
+            <thead class="bg-gray">
                 <tr>
                     <th>Nomor</th>
                     <th>Pelanggan</th>

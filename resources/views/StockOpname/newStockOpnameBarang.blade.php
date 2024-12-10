@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-sm table-valign-middle table-hover table-bordered">
+                <table class="table table-sm table-valign-middle table-hover ">
                     <thead class="bg-gray">
                         <tr>
                             <th> # </th>

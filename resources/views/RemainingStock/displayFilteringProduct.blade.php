@@ -4,7 +4,7 @@
 ?>
 <div id="loadPaginate">
     <div id="example1_wrapper"></div>
-    <table class="table table-bordered table-striped table-valign-middle table-sm text-nowrap table-hover">
+    <table class="table  table-striped table-valign-middle table-sm text-nowrap table-hover">
         <thead class="bg-purple">
             <tr>
                 <th>Nama Barang</th>

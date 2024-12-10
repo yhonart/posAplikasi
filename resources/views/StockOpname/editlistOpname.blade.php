@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-reponsive" style="height:700px">
-                            <table class="table table-sm table-bordered" id="tableEditList">
+                            <table class="table table-sm " id="tableEditList">
                                 <thead>
                                     <tr>
                                         <th></th>

@@ -77,7 +77,7 @@
                     <button type="button" class="btn bg-gradient-indigo elevation-2 btn-block border border-2 border-light p-2" id="btnHold" disabled><b>[Ctrl+H]</b> <br> HOLD</button>
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn bg-gradient-purple elevation-2 btn-block border border-2 border-light p-2" id="btnLoad"><b>[Ctrl+L]</b> <br> LOAD</button>
+                    <button type="button" class="btn bg-gray elevation-2 btn-block border border-2 border-light p-2" id="btnLoad"><b>[Ctrl+L]</b> <br> LOAD</button>
                 </div>
                 <div class="col-4">
                     <button type="button" class="btn bg-gradient-navy elevation-2 btn-block border border-2 border-light p-2" id="btnLogOut"><b>[Ctrl+X]</b> <br> Log-out</button>

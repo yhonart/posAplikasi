@@ -75,7 +75,7 @@
         </tr>
     </tbody>
 </table>
-<table class="table table-sm text-xs table-bordered border-2">
+<table class="table table-sm text-xs  border-2">
     <thead style="white-space: nowrap;" class="bg-gray">
         <tr>
             <th>Tanggal </th>

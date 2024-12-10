@@ -12,7 +12,7 @@
     
     <div class="row">
         <div class="col-12 table-responsive">
-            <table class="table table-sm table-striped table-hover table-valign-middle text-xs table-bordered" id="tableTransaksi">
+            <table class="table table-sm table-striped table-hover table-valign-middle text-xs " id="tableTransaksi">
                 <thead>
                     <tr>
                         <th>No</th>            

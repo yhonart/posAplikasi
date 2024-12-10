@@ -2,7 +2,7 @@
     $no = 1;
 @endphp
 <table class="table table-valign-middle table-hover text-xs table-sm" id="tableSupplier">
-    <thead class="text-center bg-gradient-purple">
+    <thead class="text-center bg-gray">
         <tr>
             <th colspan="6">Klik pada nama supplier untuk menampilkan data</th>
         </tr>

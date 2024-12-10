@@ -1,5 +1,5 @@
 
-<table class="table table-sm table-valign-middle table-hover table-bordered" id="dokTableRetur">
+<table class="table table-sm table-valign-middle table-hover " id="dokTableRetur">
     <thead class="bg-gray">
         <tr>
             <th>No. Pembelian</th>
