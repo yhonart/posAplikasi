@@ -21,8 +21,8 @@
                         <div id="displayDivDocument"></div>
                     </div>
                 </div>
-                <table class="table table-valign-middle table-hover table-bordered table-sm">
-                    <thead class="bg-indigo border border-info">
+                <table class="table table-sm table-valign-middle table-hover table-bordered">
+                    <thead class="bg-gray">
                         <tr>
                             <th></th>
                             <th width="30%">Nama Barang</th>
