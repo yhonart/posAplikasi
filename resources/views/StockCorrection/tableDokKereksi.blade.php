@@ -54,79 +54,77 @@
 </table>
 
 <script>
-$(function(){
-    $('#tableDataKoreksi').DataTable({
-          "paging": true,
-          "lengthChange": true,
-          "searching": true,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false,
-          "responsive": true,
-        });
-});
-
-$(document).ready(function(){
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+    $(function(){        
+        $("#tableDataKoreksi").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "paging": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
-    
-    $(".dataTable").on('click','.btnDetail', function () {
-        $(".LOAD-SPINNER").fadeIn();
-        $("#divTabelDataKoreksi").fadeOut();
-        var element = $(this);
-        var  idparam = element.attr("data-koreksi");
-        $.ajax({
-            type:'get',
-            url:"{{route('koreksiBarang')}}/listDataKoreksi/detailKoreksi/"+idparam,
-            dataType: 'html',
-            success:function(response){
-                $(".LOAD-SPINNER").fadeOut();
-                $("#tableDataKoreksi").hide();
-                $("#detailKoreksi").html(response);
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-    });
-    
-    $(".dataTable").on('click','.btnApprove', function () {
-        $(".LOAD-SPINNER").fadeIn();
-        $("#divTabelDataKoreksi").fadeOut();
-        var element = $(this);
-        var  idparam = element.attr("data-koreksi");
-        $.ajax({
-            type:'get',
-            url:"{{route('koreksiBarang')}}/listDataKoreksi/approvalKoreksi/"+idparam,
-            dataType: 'html',
-            success:function(response){
-                alertify
-                .alert("Apakah Anda Yakin Ingin Melakukan Approval "+idparam+" ?", function(){
-                    alertify.message(idparam+' Approved');
-                    window.location.reload();
-                }).set({title:"Approval"});
-                $(".LOAD-SPINNER").fadeOut();
-            }
-        });
-    });
-    
-    $(".dataTable").on('click','.btnDelete', function () {
-        var element = $(this);
-        var  idparam = element.attr("data-koreksi");
-        alertify.confirm("Apakah anda yakin ingin menghapus transaksi ini?.",
-            function(){
+        
+        $(".dataTable").on('click','.btnDetail', function () {
+            $(".LOAD-SPINNER").fadeIn();
+            $("#divTabelDataKoreksi").fadeOut();
+            var element = $(this);
+            var  idparam = element.attr("data-koreksi");
             $.ajax({
                 type:'get',
-                url:"{{route('koreksiBarang')}}/listDataKoreksi/deleteKoreksi/"+idparam,
+                url:"{{route('koreksiBarang')}}/listDataKoreksi/detailKoreksi/"+idparam,
                 dataType: 'html',
                 success:function(response){
-                    window.location.reload();
+                    $(".LOAD-SPINNER").fadeOut();
+                    $("#tableDataKoreksi").hide();
+                    $("#detailKoreksi").html(response);
                 }
             });
-            },
-            function(){
-            alertify.error('Cancel');
-            }).set({title:"Delete Data"});
+        });
+        
+        $(".dataTable").on('click','.btnApprove', function () {
+            $(".LOAD-SPINNER").fadeIn();
+            $("#divTabelDataKoreksi").fadeOut();
+            var element = $(this);
+            var  idparam = element.attr("data-koreksi");
+            $.ajax({
+                type:'get',
+                url:"{{route('koreksiBarang')}}/listDataKoreksi/approvalKoreksi/"+idparam,
+                dataType: 'html',
+                success:function(response){
+                    alertify
+                    .alert("Apakah Anda Yakin Ingin Melakukan Approval "+idparam+" ?", function(){
+                        alertify.message(idparam+' Approved');
+                        window.location.reload();
+                    }).set({title:"Approval"});
+                    $(".LOAD-SPINNER").fadeOut();
+                }
+            });
+        });
+        
+        $(".dataTable").on('click','.btnDelete', function () {
+            var element = $(this);
+            var  idparam = element.attr("data-koreksi");
+            alertify.confirm("Apakah anda yakin ingin menghapus transaksi ini?.",
+                function(){
+                $.ajax({
+                    type:'get',
+                    url:"{{route('koreksiBarang')}}/listDataKoreksi/deleteKoreksi/"+idparam,
+                    dataType: 'html',
+                    success:function(response){
+                        window.location.reload();
+                    }
+                });
+                },
+                function(){
+                alertify.error('Cancel');
+                }).set({title:"Delete Data"});
+        });
     });
-});
 </script>

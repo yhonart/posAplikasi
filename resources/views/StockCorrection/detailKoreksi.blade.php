@@ -74,7 +74,7 @@ $arayDK = array(
         viewListTableKoreksi();
     });
     $(function(){        
-        $("#tableDetailStokOpname").DataTable({
+        $("#tableDetailKoreksi").DataTable({
             "responsive": true, 
             "lengthChange": false, 
             "autoWidth": false,
