@@ -50,17 +50,29 @@
         series: [{
             name: 'Penjualan',
             data: [
-                @foreach($penjualan as $ySeriesData1)
-                    {{$ySeriesData1->totalPayment}},
-                @endforeach
+                <?php
+                    for ($i=1; $i <= 12 ; $i++) { 
+                        foreach ($penjualan as $ySeriesData1) {
+                            if ($i == $ySeriesData1->displayPeriode) {
+                                echo $ySeriesData1->totalPayment.",";
+                            }
+                        }
+                    }
+                ?>
             ]
         }, 
         {
             name: 'Pembelian',
             data: [
-                @foreach($pembelian as $ySeriesData2)
-                    {{$ySeriesData2->totalPayment}},
-                @endforeach
+                <?php
+                    for ($i=1; $i <= 12 ; $i++) { 
+                        foreach ($pembelian as $ySeriesData2) {
+                            if ($i == $ySeriesData2->displayPeriode) {
+                                echo $ySeriesData2->totalPayment.",";
+                            }
+                        }
+                    }
+                ?>
             ]
         }],
 

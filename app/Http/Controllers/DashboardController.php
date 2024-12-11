@@ -125,13 +125,13 @@ class DashboardController extends Controller
         $thisPeriode = date("m-Y");
 
         $penjualan = DB::table('tr_payment_record')
-            ->select(DB::raw('SUBSTRING(date_trx,1,7) as displayPeriode'), DB::raw('SUM(total_payment) as totalPayment'))
+            ->select(DB::raw('SUBSTRING(date_trx,6,2) as displayPeriode'), DB::raw('SUM(total_payment) as totalPayment'))
             ->where(DB::raw('SUBSTRING(date_trx,1,4)'),$year)
             ->groupBy(DB::raw('SUBSTRING(date_trx,1,7)'))
             ->get();
 
         $pembelian = DB::table('purchase_order')
-            ->select(DB::raw('SUBSTRING(purchase_date,1,7) as displayPeriode'), DB::raw('SUM(sub_total) as totalPayment'))
+            ->select(DB::raw('SUBSTRING(purchase_date,6,2) as displayPeriode'), DB::raw('SUM(sub_total) as totalPayment'))
             ->where(DB::raw('SUBSTRING(purchase_date,1,4)'),$year)
             ->groupBy(DB::raw('SUBSTRING(purchase_date,1,7)'))
             ->get();
