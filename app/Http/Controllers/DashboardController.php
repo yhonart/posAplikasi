@@ -125,7 +125,7 @@ class DashboardController extends Controller
         $thisPeriode = date("m-Y");
 
         $garpPenjualan = DB::table('tr_payment_record')
-            ->select(DB::raw('SUM(total_payment) as totalPayment'), 'date_trx',DB::raw('DATE_FORMAT(date_trx,"%m-%Y") as periodeData'))
+            ->select(DB::raw('DATE_FORMAT(date_trx,"%m-%Y") as periodeData'), DB::raw('SUM(total_payment) as totalPayment'), 'date_trx')
             ->where(DB::raw('DATE_FORMAT(date_trx,"%Y")'),$year)
             ->groupBy('periodeData')
             ->get();
