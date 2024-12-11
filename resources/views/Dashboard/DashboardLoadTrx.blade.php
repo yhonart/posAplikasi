@@ -64,28 +64,22 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h3>Pembelian vs Penjualan</h3>
-            </div>
-            <div class="card-body">
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <select name="pilihTahun" id="pilihTahun" class="form-control form-control-sm">
-                                @foreach($selectYear as $sy)
-                                    <option value="{{$sy->years}}">{{$sy->years}}</option>
-                                @endforeach
-                            </select>    
-                        </div>
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select name="pilihTahun" id="pilihTahun" class="form-control form-control-sm">
+                            @foreach($selectYear as $sy)
+                                <option value="{{$sy->years}}">{{$sy->years}}</option>
+                            @endforeach
+                        </select>    
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="pembelianVsPenjualan"></div>
-                    </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="pembelianVsPenjualan"></div>
                 </div>
             </div>
         </div>

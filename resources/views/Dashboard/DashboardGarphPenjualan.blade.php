@@ -5,18 +5,18 @@
 
     Highcharts.chart('container', {
         title: {
-            text: 'U.S Solar Employment Growth',
+            text: 'Pembelian VS Penjualan',
             align: 'left'
         },
 
         subtitle: {
-            text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
+            text: 'For {{$year}}',
             align: 'left'
         },
 
         yAxis: {
             title: {
-                text: 'Number of Employees'
+                text: 'Jumlah Pembayaran'
             }
         },
 

@@ -136,7 +136,7 @@ class DashboardController extends Controller
             ->groupBy(DB::raw('SUBSTRING(purchase_date,6,2)'))
             ->get();
 
-        return view('Dashboard/DashboardGarphPenjualan', compact('penjualan','pembelian'));
+        return view('Dashboard/DashboardGarphPenjualan', compact('penjualan','pembelian','year'));
     }
     
     public function onClickDetail (Request $reqPostOnClick){
