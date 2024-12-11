@@ -60,7 +60,8 @@
                     {{$ySeriesData2->totalPayment}},
                 @endforeach
             ]
-        },
+        }],
+
         responsive: {
             rules: [{
                 condition: {
