@@ -21,10 +21,12 @@
         },
 
         xAxis: {
-            categories: [   
-                @foreach($penjualan as $xAxisDate)
-                    '{{$xAxisDate->displayPeriode}}',
-                @endforeach
+            categories: [  
+                <?php
+                    for ($i=1; $i <= 12 ; $i++) { 
+                        echo "'".$i."',";
+                    }
+                ?>
             ],
             crosshair: true,
             accessibility: {
