@@ -10,9 +10,9 @@
             align: 'left'
         },
         xAxis: {
-            categories: [                
-                @foreach($garpPenjualan as $xAxisDate)
-                    '{{$xAxisDate->date_trx}}',
+            categories: [   
+                @foreach($penjualanVSPembelian as $xAxisDate)
+                    '{{$xAxisDate->displayPeriode}}',
                 @endforeach
             ],
             crosshair: true,
@@ -36,7 +36,7 @@
             {
                 name: 'Total',
                 data: [
-                    @foreach($garpPenjualan as $ySeriesData1)
+                    @foreach($penjualanVSPembelian as $ySeriesData1)
                         {{$ySeriesData1->totalPayment}},
                     @endforeach
                 ]
