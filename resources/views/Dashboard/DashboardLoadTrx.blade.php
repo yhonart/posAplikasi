@@ -119,7 +119,7 @@
     $(function() {
         let selectYear1 = $("#pilihTahun").val();
         $.ajax({ 
-            type : 'post', 
+            type : 'get', 
             url : "{{route('Dashboard')}}/garphPembelian/"+selectYear1,              
             success : function(response){
                 $('#pembelianVsPenjualan').html(response);
@@ -148,7 +148,7 @@
         $("#pilihTahun").change(function(){
             let selectYear2 = $(this).find(":selected").val();
             $.ajax({ 
-                type : 'post', 
+                type : 'get', 
                 url : "{{route('Dashboard')}}/garphPembelian/"+selectYear2,              
                 success : function(response){
                     $('#pembelianVsPenjualan').html(response);
