@@ -54,7 +54,7 @@
                     for ($i=1; $i <= 12; $i++) { 
                         foreach ($penjualan as $ySeriesData1) {
                             if ($i == $ySeriesData1->displayPeriode) {
-                                echo $ySeriesData1->displayPeriode."0".$i.",";
+                                echo $ySeriesData1->totalPayment.",";
                             }
                         }
                     }
