@@ -124,13 +124,19 @@ class DashboardController extends Controller
     public function garphPembelian ($year){
         $thisPeriode = date("m-Y");
 
-        $penjualanVSPembelian = DB::table('tr_payment_record')
+        $penjualan = DB::table('tr_payment_record')
             ->select(DB::raw('SUBSTRING(date_trx,1,7) as displayPeriode'), DB::raw('SUM(total_payment) as totalPayment'))
             ->where(DB::raw('SUBSTRING(date_trx,1,4)'),$year)
             ->groupBy(DB::raw('SUBSTRING(date_trx,1,7)'))
             ->get();
 
-        return view('Dashboard/DashboardGarphPenjualan', compact('penjualanVSPembelian'));
+        $pembelian = DB::table('purchase_order')
+            ->select(DB::raw('SUBSTRING(purchase_date,1,7) as displayPeriode'), DB::raw('SUM(sub_total) as totalPayment'))
+            ->where(DB::raw('SUBSTRING(purchase_date,1,4)'),$year)
+            ->groupBy(DB::raw('SUBSTRING(purchase_date,1,7)'))
+            ->get();
+
+        return view('Dashboard/DashboardGarphPenjualan', compact('penjualan','pembelian'));
     }
     
     public function onClickDetail (Request $reqPostOnClick){

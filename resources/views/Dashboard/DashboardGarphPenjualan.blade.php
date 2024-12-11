@@ -22,7 +22,7 @@
 
         xAxis: {
             categories: [   
-                @foreach($penjualanVSPembelian as $xAxisDate)
+                @foreach($penjualan as $xAxisDate)
                     '{{$xAxisDate->displayPeriode}}',
                 @endforeach
             ],
@@ -46,17 +46,19 @@
         },
 
         series: [{
-            name: 'Pembelian',
+            name: 'Penjualan',
             data: [
-                @foreach($penjualanVSPembelian as $ySeriesData1)
+                @foreach($penjualan as $ySeriesData1)
                     {{$ySeriesData1->totalPayment}},
                 @endforeach
             ]
-        }, {
-            name: 'Manufacturing',
+        }, 
+        {
+            name: 'Pembelian',
             data: [
-                24916, 37941, 29742, 29851, 32490, 30282,
-                38121, 36885, 33726, 34243, 31050, 33099, 33473
+                @foreach($pembelian as $ySeriesData2)
+                    {{$ySeriesData2->totalPayment}},
+                @endforeach
             ]
         }, {
             name: 'Sales & Distribution',
