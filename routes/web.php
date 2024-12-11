@@ -63,6 +63,8 @@ Route::get('Dashboard', [App\Http\Controllers\DashboardController::class, 'mainD
 Route::get('Dashboard/loadDataTransaksi/{fromDate}/{endDate}', [App\Http\Controllers\DashboardController::class, 'lodaDataTransaksi']);
 Route::get('Dashboard/modalLogTrx/{noBill}', [App\Http\Controllers\DashboardController::class, 'modalLogTrx']);
 
+Route::get('Dashboard/garphPembelian/{year}', [App\Http\Controllers\DashboardController::class, 'garphPembelian']);
+
 // Inventory
 Route::get('remainingStock', [App\Http\Controllers\RemainingController::class, 'remainingStock'])->name('remainingStock');
 

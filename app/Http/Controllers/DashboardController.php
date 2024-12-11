@@ -104,12 +104,11 @@ class DashboardController extends Controller
             
         $lastTrxKredit = DB::table('tr_kredit')
             ->whereBetween('created_at',[$fromDate, $endDate])
-            ->count();
-            
-        $garpPenjualan = DB::table('tr_payment_record')
-            ->select(DB::raw('SUM(total_payment) as totalPayment'), 'date_trx')
-            ->where(DB::raw('DATE_FORMAT(date_trx,"%m-%Y")'),$thisPeriode)
-            ->groupBy('date_trx')
+            ->count();           
+        
+        $selectYear = DB::table('tr_payment_record')
+            ->select(DB::raw('DATE_FORMAT(date_trx,"%Y") as years'))
+            ->groupBy(DB::raw('DATE_FORMAT(date_trx,"%Y")'))
             ->get();
             
         $totalTransaksi = DB::table('view_billing_action')
@@ -119,7 +118,19 @@ class DashboardController extends Controller
             ->whereBetween('tr_date',[$fromDate, $endDate])
             ->count();
             
-        return view ('Dashboard/DashboardLoadTrx', compact('countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','garpPenjualan','lastTrxAll','totalTransaksi'));
+        return view ('Dashboard/DashboardLoadTrx', compact('countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear'));
+    }
+
+    public function garphPembelian ($year){
+        $thisPeriode = date("m-Y");
+
+        $garpPenjualan = DB::table('tr_payment_record')
+            ->select(DB::raw('SUM(total_payment) as totalPayment'), 'date_trx')
+            ->where(DB::raw('DATE_FORMAT(date_trx,"%Y")'),$year)
+            ->groupBy(DB::raw('DATE_FORMAT(date_trx,"%m-%Y")'))
+            ->get();
+
+        return view('Dashboard/DashboardGarphPenjualan', compact('garpPenjualan'));
     }
     
     public function onClickDetail (Request $reqPostOnClick){
