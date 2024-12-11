@@ -51,10 +51,10 @@
             name: 'Penjualan',
             data: [
                 <?php
-                    for ($i=01; $i <= 12 ; $i++) { 
+                    for ($i=1; $i <= 12 ; $i++) { 
                         foreach ($penjualan as $ySeriesData1) {
                             if ($i == $ySeriesData1->displayPeriode) {
-                                echo $ySeriesData1->totalPayment.",";
+                                echo $ySeriesData1->displayPeriode.",";
                             }
                         }
                     }
