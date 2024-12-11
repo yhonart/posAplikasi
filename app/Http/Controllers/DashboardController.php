@@ -125,9 +125,9 @@ class DashboardController extends Controller
         $thisPeriode = date("m-Y");
 
         $penjualanVSPembelian = DB::table('tr_payment_record')
-            ->select(DB::table('SUBSTRING(date_trx,1,7) as displayPeriode'), DB::raw('SUM(total_payment) as totalPayment'))
+            ->select(DB::raw('SUBSTRING(date_trx,1,7) as displayPeriode'), DB::raw('SUM(total_payment) as totalPayment'))
             ->where(DB::raw('SUBSTRING(date_trx,1,4)'),$year)
-            ->groupBy(DB::table('SUBSTRING(date_trx,1,7)'))
+            ->groupBy(DB::raw('SUBSTRING(date_trx,1,7)'))
             ->get();
 
         return view('Dashboard/DashboardGarphPenjualan', compact('penjualanVSPembelian'));
