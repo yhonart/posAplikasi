@@ -176,8 +176,8 @@
             },
             function(){
                 alertify.error('Cancel');
-            });
-        }).set({title:"Transaksi Dibatalkan."});
+            }).set({title:"Transaksi Dibatalkan."});
+        })
 
         $("#submitItem").on('click', function (e){
             e.preventDefault();
@@ -189,8 +189,6 @@
             e.preventDefault();
             let sumInputStock = $("#sumInputStock").val(),
                 noOpname = $("#numberOpname").val();
-            
-            alert(sumInputStock);
             alertify.prompt("Masukkaan catatan bila ada [OPTIONAL]", "",
                 function(evt, value ){
                     alertify.success('Ok: ' + value);
