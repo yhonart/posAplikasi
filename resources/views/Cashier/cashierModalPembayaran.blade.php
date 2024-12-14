@@ -478,7 +478,8 @@
             let penguranganTunai = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
                 totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai),
                 totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replaceKredit);
-            if (kreditLimit === '0') {
+
+            if (kreditLimit === '0' &&  replaceTotalPembayaran < valBelanja) {
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit!");
             }
@@ -518,7 +519,7 @@
                 totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replaceKredit);
                 
                 // alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + penguranganTunai + " / " + replaceTotalPembayaran + " / " + replaceKredit);
-                if (kreditLimit === '0') {
+                if (kreditLimit === '0' && replaceTotalPembayaran < valBelanja) {
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit!");
                 }
