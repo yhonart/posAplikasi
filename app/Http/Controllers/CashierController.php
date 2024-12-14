@@ -1754,12 +1754,12 @@ class CashierController extends Controller
             ->first();
 
         $prodSatuan = $productView->product_size;
-
-
+        
         if ($column == "qty") {
             $hrgSatuan = $prdItem->m_price;
             $totalBelanja = $hrgSatuan * $editVal;
             $lastQty = $prdItem->qty;
+            $locationID = '3';
 
             //update history qty terlebih dahulu.
             DB::table('tr_store_prod_list')
@@ -1822,7 +1822,8 @@ class CashierController extends Controller
                 // Akan dilakukan pengurangan pada stock.
                 $qty = $editVal - $lastQty;
                 $upStock = $lastStock - $qty;
-                // $qty = '7';
+                $this->TempInventoryController->editReportItemKasir($billingCode, $productID, $prodSatuan, $qty, $locationID, $lastQty, $editVal);              
+
                 foreach ($dataStock as $ds) {
                     if ($prodSatuan == "BESAR") { // Jika yang dimasukkan adalah satuan Besar
                         if ($ds->size_code == '1') { // Jika kode dalam list 1
@@ -1872,6 +1873,9 @@ class CashierController extends Controller
                 // Akan dilakukan penambahan pada stock.
                 $qty = $lastQty - $editVal;
                 $upStock = $lastStock + $qty;
+                
+                $this->TempInventoryController->editReportItemKasir($billingCode, $productID, $prodSatuan, $qty, $locationID, $lastQty, $editVal);
+                
                 foreach ($dataStock as $ds) {
                     if ($prodSatuan == "BESAR") { // Jika yang dimasukkan adalah satuan Besar
                         if ($ds->size_code == '1') { // Jika kode dalam list 1
@@ -1921,7 +1925,9 @@ class CashierController extends Controller
                 $qty = $lastQty;
                 $a = $qty;
                 $upStock = $lastStock;
-            }
+
+                $this->TempInventoryController->editReportItemKasir($billingCode, $productID, $prodSatuan, $qty, $locationID, $lastQty, $editVal);
+            }            
 
             DB::table($tableName)
                 ->where('list_id', $id)

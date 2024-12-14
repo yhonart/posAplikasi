@@ -822,4 +822,84 @@ class TempInventoryController extends Controller
                 'status_trx'=>'4'
             ]);
     }
+
+    public function editReportItemKasir($docNumber, $prdID, $satuan, $qty, $location, $lastQty, $editVal)
+    {
+        //NOTED : qty yang di masukkan adalah qty selisih dari qty sebelumnya dengan qty yang di update
+        $invStock = DB::table('view_product_stock')
+            ->select(DB::raw('DISTINCT(idm_data_product) as prodid'),'stock')
+            ->where([
+                ['core_id_product',$prdID],
+                ['location_id',$location]
+            ])
+            ->orderBy('size_code','desc')
+            ->first();
+
+        $mProduct = DB::table('m_product')
+            ->where('idm_data_product',$prdID)
+            ->first();
+
+        $volB = $mProduct->large_unit_val;
+        $volK = $mProduct->medium_unit_val;
+        $volKonv = $mProduct->small_unit_val;
+        
+        $mUnit = DB::table('m_product_unit')
+            ->select('size_code','product_volume')
+            ->where('core_id_product',$prdID)
+            ->orderBy('size_code','desc')
+            ->first();
+
+        $sizeCodeDesc = $mUnit->size_code;
+
+        if ($sizeCodeDesc == '1') {
+            $qtyReport = $qty;
+        }
+        elseif ($sizeCodeDesc == '2') {
+            if ($satuan == "BESAR") {
+                $qtyReport1 = $qty * $volB;
+                $qtyReport = (int)$qtyReport1;
+            }
+            elseif ($satuan == "KECIL") {
+                $qtyReport = $qty;
+            }
+        }
+        elseif ($sizeCodeDesc == '3') {
+            if ($satuan == "BESAR") {
+                $qtyReport1 = $qty * $volKonv;
+                $qtyReport = (int)$qtyReport1;
+            }
+            elseif ($satuan == "KECIL") {
+                $qtyReport1 = $qty * $volK;
+                $qtyReport = (int)$qtyReport1;
+            }
+            elseif ($satuan == "KONV") {
+                $qtyReport = $qty;
+            }
+        }
+
+        $invIn = '0';
+        $invOut = $qtyReport;
+
+        if ($lastQty < $editVal) {
+            $saldo = $invStock->stock + $invOut;
+        }
+        elseif ($lastQty > $editVal) {
+            $saldo = $invStock->stock - $invOut;
+        }
+        else {
+            $saldo = $invStock->stock;
+        }
+        
+        DB::table('report_inv')
+            ->where([
+                ['number_code',$docNumber],
+                ['prod_id',$prdID],
+                ['satuan',$satuan]
+            ])
+            ->update([
+                'inv_out'=>$invOut,
+                'saldo'=>$saldo,
+                'last_saldo'=>$invStock->stock,
+            ]);
+    }
 }
