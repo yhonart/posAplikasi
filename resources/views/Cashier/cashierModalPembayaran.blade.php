@@ -493,10 +493,10 @@
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
             }
-            // else if (checkBox2.checked == true && selisih !== '0') {
-            //     $(".notive-display").fadeIn();
-            //     $("#notiveDisplay").html("2 Metode pembayaran belum terpenuhi. Masih kurang : "+selisih+" klik plus (+) untuk melengkapi pembayaran.");
-            // }
+            else if ( kreditLimit === '0') {
+                $(".notive-display").fadeIn();
+                $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit!");
+            }
             else {
                 inputPembayaran(billPembayaran, typeCetak);
             }            
