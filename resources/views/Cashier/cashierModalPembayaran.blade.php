@@ -534,6 +534,10 @@
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
                 }
+                else if ( kreditLimit === '0') {
+                    $(".notive-display").fadeIn();
+                    $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit!");
+                }
                 else {
                     inputPembayaran(billPembayaran, typeCetak);
                 }
