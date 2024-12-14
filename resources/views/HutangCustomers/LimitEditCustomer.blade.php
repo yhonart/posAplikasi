@@ -5,20 +5,23 @@
     <div class="card-body">
         <dl class="row">
             <dt class="col-md-4">Nama Toko/Pelanggan</dt>
-            <dd class="col-md-4"></dd>
+            <dd class="col-md-4">{{$selectCustomer->customer_store}}</dd>
         </dl>
         <dl class="row">
             <dt class="col-md-4">Alamat</dt>
-            <dd class="col-md-4"></dd>
+            <dd class="col-md-4">{{$selectCustomer->city}}. {{$selectCustomer->address}}</dd>
         </dl>
         <dl class="row">
             <dt class="col-md-4">Tipe Pelanggan</dt>
-            <dd class="col-md-4"></dd>
+            <dd class="col-md-4">{{$selectCustomer->customer_type}}</dd>
         </dl>
         <form id="formEditLimit">
+            <input type="hidden" name="idCus" id="idCus" value="{{$selectCustomer->idm_customer}}">
             <dl class="row">
                 <dt class="col-md-4">Kredit Limit</dt>
-                <dd class="col-md-4"></dd>
+                <dd class="col-md-4">
+                    <input type="text" class="form-control form-control-sm" name="kreditLimit" id="kreditLimit" value="{{$selectCustomer->kredit_limit}}">
+                </dd>
             </dl>
             <div class="row">
                 <div class="col-md-6">
