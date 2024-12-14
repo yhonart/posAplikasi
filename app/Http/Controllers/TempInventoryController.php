@@ -889,11 +889,11 @@ class TempInventoryController extends Controller
         else {
             $saldo = $invStock->stock;
         }
-        
+
         DB::table('report_inv')
             ->where([
                 ['number_code',$docNumber],
-                ['prod_id',$prdID],
+                ['product_id',$prdID],
                 ['satuan',$satuan]
             ])
             ->update([
