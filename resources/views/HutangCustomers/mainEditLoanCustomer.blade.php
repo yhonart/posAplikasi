@@ -3,12 +3,19 @@
 <!-- Header -->
 <div class="content-header">
     <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-md-8 col-12">          
-                <h1 class="m-0">Piutang Pelanggan</h1>
-            </div>          
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1 class="m-0">Piutang Pelanggan</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item text-muted">Home</li>
+                <li class="breadcrumb-item text-muted">Keuangan</li>
+                <li class="breadcrumb-item text-info active">Piutang Pelanggan</li>
+            </ol>
         </div>
-    </div>
+    </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
 </div>
 <div class="content mt-0">
     <div class="container-fluid">
@@ -21,7 +28,7 @@
                                 <label class="form-label">Panel Pembayaran</label>
                                 <div class="form-group">
                                     <select name="actionCode" id="actionCode" class="form-control">
-                                        <option value="0">Pilih Proses </option>
+                                        <option value="0">{{str_repeat(".", 6)}}</option>
                                         <option value="1">Pembayaran Hutang</option>
                                         <option value="3">Histori Pembayaran</option>
                                         <option value="2">Edit & Open Limit Hutang</option>
