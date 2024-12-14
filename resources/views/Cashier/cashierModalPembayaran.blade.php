@@ -478,8 +478,11 @@
             let penguranganTunai = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
                 totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai),
                 totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replaceKredit);
-
-            if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
+            if (kreditLimit === '0') {
+                $(".notive-display").fadeIn();
+                $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit!");
+            }
+            else if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
                 alertify
                 .alert("Hutang Customer Sudah Melewati Limit !", function(){
                     alertify.message('Transaksi di batalkan.');
@@ -492,10 +495,6 @@
             else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && parseInt(replaceTotalPembayaran) >= totalHarusDibayar && replaceKredit !== '0' && checkBoxLunas.checked == false) {
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
-            }
-            else if ( kreditLimit === '0') {
-                $(".notive-display").fadeIn();
-                $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit!");
             }
             else {
                 inputPembayaran(billPembayaran, typeCetak);
@@ -519,8 +518,11 @@
                 totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replaceKredit);
                 
                 // alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + penguranganTunai + " / " + replaceTotalPembayaran + " / " + replaceKredit);
-
-                if (parseInt(totalHutang) > parseInt(kreditLimit) && parseInt(kreditLimit) !== '0' && parseInt(replaceTotalPembayaran) < parseInt(valBelanja) && checkBoxLunas.checked == false) {
+                if (kreditLimit === '0') {
+                    $(".notive-display").fadeIn();
+                    $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit!");
+                }
+                else if (parseInt(totalHutang) > parseInt(kreditLimit) && parseInt(kreditLimit) !== '0' && parseInt(replaceTotalPembayaran) < parseInt(valBelanja) && checkBoxLunas.checked == false) {
                     alertify
                     .alert("Hutang Customer Sudah Melewati Limit ! " + totalHutang, function(){
                         window.location.reload();
@@ -533,10 +535,6 @@
                 else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && parseInt(replaceTotalPembayaran) >= totalHarusDibayar && replaceKredit !== '0' && checkBoxLunas.checked == false) {
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
-                }
-                else if ( kreditLimit === '0') {
-                    $(".notive-display").fadeIn();
-                    $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit!");
                 }
                 else {
                     inputPembayaran(billPembayaran, typeCetak);
