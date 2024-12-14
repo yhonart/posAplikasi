@@ -881,10 +881,10 @@ class TempInventoryController extends Controller
         $invOut = $qtyReport;
 
         if ($lastQty < $editVal) {
-            $saldo = $invStock->stock + $invOut;
+            $saldo = $invStock->stock - $invOut;
         }
         elseif ($lastQty > $editVal) {
-            $saldo = $invStock->stock - $invOut;
+            $saldo = $invStock->stock + $invOut;
         }
         else {
             $saldo = $invStock->stock;
