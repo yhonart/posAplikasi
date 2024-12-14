@@ -41,6 +41,6 @@ class LoanMaintenanceController extends Controller
             ->where('idm_customer',$id)
             ->first();
 
-        return view('hutangCustomers/LimitEditCustomer', compact('selectCustomer'));
+        return view('HutangCustomers/LimitEditCustomer', compact('selectCustomer'));
     }
 }
