@@ -35,4 +35,12 @@ class LoanMaintenanceController extends Controller
 
         return view('HutangCustomers/mainEditLoanCustomer', compact('dbMCustomer'));
     }
+
+    public function modalEditLimit ($id){
+        $selectCustomer = DB::table('m_customers')
+            ->where('idm_customer',$id)
+            ->first();
+
+        return view('hutangCustomers/LimitEditCustomer', compact('selectCustomer'));
+    }
 }

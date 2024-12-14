@@ -15,7 +15,7 @@
                 <td>{{$cslt->customer_store}}</td>
                 <td>
                     <i class="fa-solid fa-rupiah-sign float-left"></i>
-                    <a href="#" class="text-info font-weight-bold float-right">
+                    <a href="{{route('adminPiutangPelanggan')}}/modalEditLimit/{{$cslt->idm_customer}}" class="text-info font-weight-bold float-right BTN-OPEN-MODAL-GLOBAL-LG">
                         {{number_format($cslt->kredit_limit,'0',',','.')}} <i class="fa-solid fa-file-pen"></i>
                     </a>
                 </td>
@@ -61,7 +61,7 @@
             var id_asset = $(this).val();
             var data_reserve = {id_asset:id_asset,reservable:0};
 
-            alert(data_reserve);
+            alert(id_asset);
         }
     });
 </script>

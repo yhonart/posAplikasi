@@ -28,7 +28,7 @@
                                 <label class="form-label">Panel Pembayaran</label>
                                 <div class="form-group">
                                     <select name="actionCode" id="actionCode" class="form-control">
-                                        <option value="0">{{str_repeat(".", 6)}}</option>
+                                        <option value="0">{{str_repeat(".", 15)}}</option>
                                         <option value="1">Pembayaran Hutang</option>
                                         <option value="3">Histori Pembayaran</option>
                                         <option value="2">Edit & Open Limit Hutang</option>

@@ -100,7 +100,9 @@ Route::get('log_system', [App\Http\Controllers\logSystemController::class, 'logS
 
 Route::get('trxJualBeli', [App\Http\Controllers\trxJualBeliController::class, 'mainTrx'])->name('trxJualBeli');
 Route::get('trxKasUmum', [App\Http\Controllers\TrxKasUmumController::class, 'mainTrx'])->name('trxKasUmum');
+
 Route::get('adminPiutangPelanggan', [App\Http\Controllers\LoanMaintenanceController::class, 'mainAdmin'])->name('adminPiutangPelanggan');
+Route::get('adminPiutangPelanggan/modalEditLimit/{id}', [App\Http\Controllers\LoanMaintenanceController::class, 'modalEditLimit']);
 
 Route::get('kasKategori', [App\Http\Controllers\MasterDataKategoriKasController::class, 'mainCatgoryController'])->name('kasKategori');
 
