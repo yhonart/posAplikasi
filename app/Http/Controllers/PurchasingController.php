@@ -534,33 +534,34 @@ class PurchasingController extends Controller
             $purchasingDate = $idDataReport->delivery_date;
             $dateNow = date("Y-m-d");
 
-            if ($purchasingDate < $dateNow) {
-                $repotInv = DB::table('report_inv')
-                    ->where('date_input','>',$purchasingDate)
-                    ->get();
+            // if ($purchasingDate < $dateNow) {
+            //     $repotInv = DB::table('report_inv')
+            //         ->where('date_input','>',$purchasingDate)
+            //         ->get();
 
-                $lastSaldo = DB::table('report_inv')
-                    ->where('product_id',$productID)
-                    ->orderBy('idr_inv','desc')
-                    ->first();
+            //     $lastSaldo = DB::table('report_inv')
+            //         ->where('product_id',$productID)
+            //         ->orderBy('idr_inv','desc')
+            //         ->first();
 
-                foreach ($repotInv as $RI) {
-                    $endSaldo = $RI->saldo;
-                    $updateSaldo = $endSaldo + $ls;
-                    $idUpdate = $RI->idr_inv;
+            //     foreach ($repotInv as $RI) {
+            //         $endSaldo = $RI->saldo;
+            //         $updateSaldo = $endSaldo + $ls;
+            //         $idUpdate = $RI->idr_inv;
 
-                    DB::table('report_inv')
-                        ->where('idr_inv',$idUpdate)
-                        ->update([
-                            'saldo'=>$updateSaldo
-                        ]);
-                }
-                $inInv = $lastSaldo->saldo + $ls;
-            }
-            else {
-                $inInv = $ls;
-            }
+            //         DB::table('report_inv')
+            //             ->where('idr_inv',$idUpdate)
+            //             ->update([
+            //                 'saldo'=>$updateSaldo
+            //             ]);
+            //     }
+            //     $inInv = $lastSaldo->saldo + $ls;
+            // }
+            // else {
+            // }
             
+            $inInv = $ls;
+
             $saldo = $inInv + $selectLastStock->stock;
             $volPrd = $selectSizeCode->product_volume;
             //Query insert into report
