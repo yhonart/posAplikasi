@@ -20,7 +20,8 @@
                 </thead>
                 <tbody>
                     <?php   
-                        $saldoawal = '0';                        
+                        $saldoawal = 0; 
+                        $saldoHitung = 0;                       
                         if ($codeDisplay == '1' AND !empty($dataSaldoAwal)) {
                             echo "<tr>";
                                 echo "<td>".$dataSaldoAwal->date_input."</td>";
@@ -61,7 +62,10 @@
                             <td class="text-right">{{$dri->inv_in}}</td>
                             <td class="text-right">{{$dri->inv_out}}</td>
                             <td class="text-right">
-                                {{$dri->saldo}}
+                                <?php
+                                    $saldoHitung += $dri->inv_in - $dri->inv_out;
+                                    echo $saldoHitung;
+                                ?>
                             </td>
                         </tr>
                     @endforeach
