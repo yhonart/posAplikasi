@@ -49,7 +49,7 @@ $statusDokumen = array(
                                 </td>
                                 <td class="text-right">
                                     @if($ltp->status =='2' AND $approval >= '1')
-                                        <button class="btn btn-success btn-sm  font-weight-bold BTN-APPROVE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Approve</button>
+                                        <button class="btn btn-success btn-sm  font-weight-bold BTN-APPROVE" id="purchaseApprove{{$ltp->id_purchase}}" data-number="{{$ltp->purchase_number}}" data-id="{{$ltp->id_purchase}}"><i class="fa-solid fa-check"></i> Approve</button>
                                     @endif
                                     @if($approval >= '1')
                                         <button class="btn btn-danger btn-sm  font-weight-bold BTN-DELETE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Delete</button>
@@ -96,6 +96,8 @@ $statusDokumen = array(
         $(".dataTable").on('click','.BTN-APPROVE', function (e) {
             e.preventDefault();
             let dataEdit = $(this).attr('data-number');
+            let dataID = $(this).attr('data-id');
+            $(this).closest("tr").find("#purchaseApprove"+dataID).animate({ opacity: "hide" }, "slow");
             alertify.confirm("Apakah anda yakin ingin menyetuji transaksi ini ?",
             function(){
                 $.ajax({
@@ -120,7 +122,6 @@ $statusDokumen = array(
                     type : 'get',
                     url : "{{route('Purchasing')}}/tablePenerimaan/btnDelete/"+dataEdit,
                     success : function(response){
-                        // window.location.reload();
                         loadDisplay();
                     }
                 });
