@@ -4,31 +4,76 @@
     </div>
     <div class="card-body">
         <dl class="row">
-            <dt class="col-md-4">Nama Toko/Pelanggan</dt>
-            <dd class="col-md-4">{{$selectCustomer->customer_store}}</dd>
+            <dt class="col-md-3">Nama Toko/Pelanggan</dt>
+            <dd class="col-md-4">: {{$selectCustomer->customer_store}}</dd>
         </dl>
         <dl class="row">
-            <dt class="col-md-4">Alamat</dt>
-            <dd class="col-md-4">{{$selectCustomer->city}}. {{$selectCustomer->address}}</dd>
+            <dt class="col-md-3">Alamat</dt>
+            <dd class="col-md-4">: {{$selectCustomer->city}}. {{$selectCustomer->address}}</dd>
         </dl>
         <dl class="row">
-            <dt class="col-md-4">Tipe Pelanggan</dt>
-            <dd class="col-md-4">{{$selectCustomer->customer_type}}</dd>
+            <dt class="col-md-3">Tipe Pelanggan</dt>
+            <dd class="col-md-4">: {{$selectCustomer->group_name}}</dd>
         </dl>
         <form id="formEditLimit">
             <input type="hidden" name="idCus" id="idCus" value="{{$selectCustomer->idm_customer}}">
             <dl class="row">
-                <dt class="col-md-4">Kredit Limit</dt>
+                <dt class="col-md-3">Kredit Limit</dt>
                 <dd class="col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="kreditLimit" id="kreditLimit" value="{{$selectCustomer->kredit_limit}}">
+                    <input type="text" class="form-control form-control-sm price-tag" name="kreditLimit" id="kreditLimit" value="{{$selectCustomer->kredit_limit}}">
                 </dd>
             </dl>
             <div class="row">
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-success btn-sm" id="btnEditLimit">Simpan</button>
-                    <button type="button" class="btn btn-warning btn-sm" id="btnCloseModal">Batal</button>
+                    <button type="submit" class="btn btn-success btn-sm font-weight-bold" id="btnEditLimit">Simpan</button>
+                    <button type="button" class="btn btn-warning btn-sm font-weight-bold" id="btnCloseModal">Batal</button>
+                    <span class="text-danger font-weight-bold" id="pleaseWait" style="display: none;">Please Wait ....</span>
                 </div>
             </div>
         </form>
     </div>
 </div>
+<script>
+    $(function(){
+        $('.price-tag').mask('000.000.000', {reverse: true});
+    });
+    $(document).ready(function(){
+        $("form#formEditLimit").submit(function(event){
+            event.preventDefault();
+            let keyWord = "{{$selectCustomer->idm_customer}}",
+                fromDate = '0',
+                endDate = '0',
+                valAction = '3';
+
+            $("#btnEditLimit").fadeOut('slow');
+            $("#pleaseWait").fadeIn('slow');
+            $.ajax({
+                url: "{{route('Cashier')}}/buttonAction/dataPelunasan/postPelunasan",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    entryDisplay(keyWord, fromDate, endDate, valAction);
+                    $('body').removeClass('modal-open');
+                    $(".MODAL-GLOBAL").modal('hide'); 
+                    $('.modal-backdrop').remove();
+                }
+            });
+        });
+
+        function entryDisplay(keyWord, fromDate, endDate, valAction){  
+            $("#reloadDisplay").fadeIn("slow");
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/buttonAction/dataPelunasan/funcData/"+keyWord+"/"+fromDate+"/"+endDate+"/"+valAction,
+                success : function(response){
+                    $("#reloadDisplay").fadeOut("slow");
+                    $("#divDataPelunasan").html(response);
+                }
+            });
+        }
+    });
+</script>

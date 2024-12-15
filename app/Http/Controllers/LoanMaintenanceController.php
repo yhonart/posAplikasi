@@ -37,8 +37,10 @@ class LoanMaintenanceController extends Controller
     }
 
     public function modalEditLimit ($id){
-        $selectCustomer = DB::table('m_customers')
-            ->where('idm_customer',$id)
+        $selectCustomer = DB::table('m_customers as a')
+            ->select('a.*','b.group_name')
+            ->leftJoin('m_cos_group as b','a.customer_type','=','b.idm_cos_group')
+            ->where('<a href="" class=""></a>idm_customer',$id)
             ->first();
 
         return view('HutangCustomers/LimitEditCustomer', compact('selectCustomer'));
