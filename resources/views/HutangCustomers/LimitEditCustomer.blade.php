@@ -33,7 +33,7 @@
         </form>
         <div class="row">
             <div class="col-md-12">
-                <span class="text-danger" id="spanNotifWarning"></span>
+                <p class="text-info bg-light border-2 border-success m-2" id="spanNotifWarning"></p>
             </div>
         </div>
     </div>
@@ -48,8 +48,8 @@
             let keyWord = "{{$selectCustomer->idm_customer}}",
                 fromDate = '0',
                 endDate = '0',
-                valAction = '3';
-
+                valAction = '2';
+            
             $("#btnEditLimit").fadeOut('slow');
             $("#pleaseWait").fadeIn('slow');
             $.ajax({
@@ -69,6 +69,8 @@
                     else{
                         entryDisplay(keyWord, fromDate, endDate, valAction);
                         $("#spanNotifWarning").html(data.success);
+                        $("#pleaseWait").fadeOut('slow');
+                        $("#btnEditLimit").fadeIn('slow');
                         // $('body').removeClass('modal-open');
                         // $(".MODAL-GLOBAL").modal('hide'); 
                         // $('.modal-backdrop').remove();
