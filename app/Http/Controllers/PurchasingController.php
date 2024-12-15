@@ -535,7 +535,7 @@ class PurchasingController extends Controller
                 ])
                 ->first();
 
-            $purchasingDate = $idDataReport->purchase_date;
+            $purchasingDate = $idDataReport->delivery_date;
             $dateNow = date("Y-m-d");
 
             if ($purchasingDate < $dateNow) {
