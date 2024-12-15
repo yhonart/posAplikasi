@@ -562,7 +562,7 @@ class PurchasingController extends Controller
             //Query insert into report
             DB::table('report_inv')
                 ->insert([
-                    'date_input'=>now(),
+                    'date_input'=>$purchasingDate,
                     'number_code'=>$numberCode,
                     'product_id'=>$productID,
                     'product_name'=>$prodName,
