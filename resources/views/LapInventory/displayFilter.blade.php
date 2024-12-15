@@ -64,6 +64,7 @@
                             <td class="text-right">
                                 <?php
                                     $saldoHitung += $dri->inv_in - $dri->inv_out;
+                                    echo $dri->saldo."-";
                                     echo $saldoHitung;
                                 ?>
                             </td>
