@@ -53,7 +53,7 @@
             $("#btnEditLimit").fadeOut('slow');
             $("#pleaseWait").fadeIn('slow');
             $.ajax({
-                url: "{{route('Cashier')}}/buttonAction/dataPelunasan/postPelunasan",
+                url: "{{route('adminPiutangPelanggan')}}/postLimitCustomer",
                 type: 'POST',
                 data: new FormData(this),
                 async: true,
