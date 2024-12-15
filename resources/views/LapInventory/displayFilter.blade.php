@@ -62,14 +62,7 @@
                             <td class="text-right">{{$dri->inv_in}}</td>
                             <td class="text-right">{{$dri->inv_out}}</td>
                             <td class="text-right">
-                                <?php
-                                    $saldoHitung += $dri->inv_in - $dri->inv_out;
-                                    if ($saldoHitung == 0) {
-                                        echo $dri->inv_in;
-                                    }else {
-                                        echo $saldoHitung;                                        
-                                    }
-                                ?>
+                                {{$dri->saldo}}
                             </td>
                         </tr>
                     @endforeach
