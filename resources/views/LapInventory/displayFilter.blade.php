@@ -51,9 +51,6 @@
                                 echo "</td>";
                             echo "</tr>";
                         }
-                        foreach ($dataReportInv as $key => $value) {
-                            $saldo += $value['inv_in'] - $value['inv_out'];
-                        }
                     ?>
                     @foreach($dataReportInv as $dri)
                         <tr>
@@ -64,7 +61,7 @@
                             <td class="text-right">{{$dri->inv_in}}</td>
                             <td class="text-right">{{$dri->inv_out}}</td>
                             <td class="text-right">
-                                {{$saldo}}
+                                {{$dri->saldo}}
                             </td>
                         </tr>
                     @endforeach
