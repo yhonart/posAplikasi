@@ -55,7 +55,7 @@
                     ?>
                     @foreach($dataReportInv as $dri)
                         <tr>
-                            <td>{{$dri->date_input}}</td>
+                            <td>{{date_format("d-M-Y", strtotime($dri->date_input))}}</td>
                             <td>{{$dri->number_code}}</td>
                             <td>{{$dri->product_name}}</td>
                             <td>{{$dri->description}}</td>
