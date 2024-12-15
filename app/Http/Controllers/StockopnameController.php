@@ -703,7 +703,7 @@ class StockopnameController extends Controller
                 // Insert into laporan                
                 DB::table('report_inv')
                 ->insert([
-                    'date_input'=>$dateInput,
+                    'date_input'=>now(),
                     'number_code'=>$idOpname,
                     'product_id'=>$opmProduct,
                     'product_name'=>$prodName,
