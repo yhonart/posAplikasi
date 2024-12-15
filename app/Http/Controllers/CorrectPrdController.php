@@ -584,11 +584,16 @@ class CorrectPrdController extends Controller
                 $inInv = '0';
                 $outInv = $ls - $i->saldo;
             }
-            
+            $dokNumber = $i->number_correction;
+            $selectDateCorrection = DB::table('inv_correction')
+                ->select('dateInput')
+                ->where('number',$dokNumber)
+                ->first();
+            $correctionDate = $selectDateCorrection->dateInput;
             // Insert into laporan
             DB::table('report_inv')
             ->insert([
-                'date_input'=>now(),
+                'date_input'=>$correctionDate,
                 'number_code'=>$number,
                 'product_id'=>$prdID,
                 'product_name'=>$prodName,
