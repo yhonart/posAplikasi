@@ -540,7 +540,7 @@ class PurchasingController extends Controller
 
             if ($purchasingDate < $dateNow) {
                 // Jika backdate input tanggal.
-                $repotInv = DB::table('report_in')
+                $repotInv = DB::table('report_inv')
                     ->where('date_input','>',$purchasingDate)
                     ->get();
 
