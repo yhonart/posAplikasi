@@ -19,7 +19,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php                    
+                    <?php   
+                        $saldoawal = '0';                        
                         if ($codeDisplay == '1' AND !empty($dataSaldoAwal)) {
                             echo "<tr>";
                                 echo "<td>".$dataSaldoAwal->date_input."</td>";
@@ -49,6 +50,10 @@
                                 echo $saldoawal;
                                 echo "</td>";
                             echo "</tr>";
+                        }
+                        foreach ($dataReportInv as $key => $value) {
+                            $saldo += $value['inv_in'] - $value['inv_out'];
+                            $dataReportInv[$key]['saldo'] = $saldo;
                         }
                     ?>
                     @foreach($dataReportInv as $dri)
