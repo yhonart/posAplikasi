@@ -13,7 +13,7 @@ $statusDokumen = array(
                 <table class="table table-sm table-valign-middle table-hover " id="tableListPembelian">
                     <thead class="bg-gray">
                         <tr>
-                            <th>Tgl. Penerimaan</th>
+                            <th>Tanggal</th>
                             <th>Nomor</th>
                             <th>Supplier</th>
                             <th>Total Belanja</th>
@@ -25,7 +25,7 @@ $statusDokumen = array(
                     <tbody>
                         @foreach($listTablePem as $ltp)
                             <tr>
-                                <td>{{$ltp->purchase_date}}</td>
+                                <td>{{$ltp->delivery_date}}</td>
                                 <td>
                                     <span class="font-weight-bold">{{$ltp->purchase_number}}</span>
                                 </td>
