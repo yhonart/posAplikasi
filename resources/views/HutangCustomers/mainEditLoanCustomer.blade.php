@@ -18,16 +18,7 @@
     </div><!-- /.container-fluid -->
 </div>
 <div class="content mt-0">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-info btn-flat" data-action="1">Pembayaran Hutang</button>
-                    <button type="button" class="btn btn-info btn-flat" data-action="2">Lock/Unlock & Limit Hutang</button>
-                    <button type="button" class="btn btn-info btn-flat" data-action="3">History Pembayaran</button>
-                </div>
-            </div>
-        </div>
+    <div class="container-fluid">        
         <div class="row p-1">
             <div class="col-12">
                 <div class="card">                    
