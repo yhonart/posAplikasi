@@ -743,7 +743,7 @@ class TempInventoryController extends Controller
 
     }
 
-    public function reportBarangKeluar($productID, $satuan, $location, $qty, $description, $noTrx, $userName)
+    public function reportBarangKeluar($productID, $satuan, $location, $qty, $description, $noTrx, $userName, $dateInput)
     {
         //Perhitungan Konversi
         $invStock = DB::table('view_product_stock')
@@ -804,7 +804,7 @@ class TempInventoryController extends Controller
 
         DB::table('report_inv')
             ->insert([
-                'date_input'=>now(),
+                'date_input'=>$dateInput,
                 'number_code'=>$noTrx,
                 'product_id'=>$productID,
                 'product_name'=>$prodName,

@@ -514,6 +514,7 @@ class MutasibarangController extends Controller
             
         $toLoc = $docMutasi->to_loc;
         $fromLoc = $docMutasi->from_loc;
+        $dateMutasi = $docMutasi->date_moving;
         
         //Untuk membuat description
         $mToLoc = DB::table('m_site')
@@ -593,9 +594,7 @@ class MutasibarangController extends Controller
                     $qtyLastStock = $lastStock;
                 }
             }
-            
-            
-            
+
             //Cek saldo di laporan inventory yang terakhir sebelum dilakukan approval
             if ($fromLoc == $locAsalBarang) {
                 $itemIn = '0';
@@ -604,7 +603,7 @@ class MutasibarangController extends Controller
 
                 DB::table('report_inv')
                     ->insert([
-                        'date_input'=>now(),
+                        'date_input'=>$dateMutasi,
                         'number_code'=>$idParam,
                         'product_id'=>$productID,
                         'product_name'=>$prodName,
@@ -623,7 +622,7 @@ class MutasibarangController extends Controller
                     ]);
             }
 
-            $this->TempInventoryController->reportBarangMasuk ($productID, $invID, $satuan, $toLoc, $takenStock, $description, $idParam, $updateBy);
+            $this->TempInventoryController->reportBarangMasuk ($productID, $invID, $satuan, $toLoc, $takenStock, $description, $idParam, $updateBy, $dateMutasi);
 
             //Update Stock
             $this->TempInventoryController->penguranganItem ($productID, $penguranganStock, $satuan, $fromLoc);
