@@ -103,6 +103,7 @@ Route::get('trxKasUmum', [App\Http\Controllers\TrxKasUmumController::class, 'mai
 
 Route::get('adminPiutangPelanggan', [App\Http\Controllers\LoanMaintenanceController::class, 'mainAdmin'])->name('adminPiutangPelanggan');
 Route::get('adminPiutangPelanggan/modalEditLimit/{id}', [App\Http\Controllers\LoanMaintenanceController::class, 'modalEditLimit']);
+Route::post('adminPiutangPelanggan/postLimitCustomer', [App\Http\Controllers\LoanMaintenanceController::class, 'postLimitCustomer']);
 
 Route::get('kasKategori', [App\Http\Controllers\MasterDataKategoriKasController::class, 'mainCatgoryController'])->name('kasKategori');
 

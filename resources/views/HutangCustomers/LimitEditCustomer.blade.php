@@ -26,11 +26,16 @@
             <div class="row">
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-success btn-sm font-weight-bold" id="btnEditLimit">Simpan</button>
-                    <button type="button" class="btn btn-warning btn-sm font-weight-bold" id="btnCloseModal">Batal</button>
+                    <button type="button" class="btn btn-warning btn-sm font-weight-bold" id="btnCloseModal" data-dismiss="modal">Tutup</button>
                     <span class="text-danger font-weight-bold" id="pleaseWait" style="display: none;">Please Wait ....</span>
                 </div>
             </div>
         </form>
+        <div class="row">
+            <div class="col-md-12">
+                <span class="text-danger" id="spanNotifWarning"></span>
+            </div>
+        </div>
     </div>
 </div>
 <script>
@@ -56,10 +61,18 @@
                 contentType: false,
                 processData: false,
                 success: function (data) {
-                    entryDisplay(keyWord, fromDate, endDate, valAction);
-                    $('body').removeClass('modal-open');
-                    $(".MODAL-GLOBAL").modal('hide'); 
-                    $('.modal-backdrop').remove();
+                    if (data.warning) {
+                        $("#spanNotifWarning").html(data.warning);
+                        $("#pleaseWait").fadeOut('slow');
+                        $("#btnEditLimit").fadeIn('slow');
+                    }
+                    else{
+                        entryDisplay(keyWord, fromDate, endDate, valAction);
+                        $("#spanNotifWarning").html(data.success);
+                        // $('body').removeClass('modal-open');
+                        // $(".MODAL-GLOBAL").modal('hide'); 
+                        // $('.modal-backdrop').remove();
+                    }
                 }
             });
         });

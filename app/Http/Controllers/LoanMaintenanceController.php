@@ -40,9 +40,43 @@ class LoanMaintenanceController extends Controller
         $selectCustomer = DB::table('m_customers as a')
             ->select('a.*','b.group_name')
             ->leftJoin('m_cos_group as b','a.customer_type','=','b.idm_cos_group')
-            ->where('<a href="" class=""></a>idm_customer',$id)
+            ->where('a.idm_customer',$id)
             ->first();
 
         return view('HutangCustomers/LimitEditCustomer', compact('selectCustomer'));
+    }
+
+    public function postLimitCustomer (Request $reqLimit){
+        $customerID = $reqLimit->idCus;
+        $nominal = str_replace(".","",$reqLimit->kreditLimit);
+
+        //cek Hutang Customer :
+        $aktifHutang = DB::table('tr_kredit')
+            ->select(DB::raw('SUM(nom_kredit) as nominalKredit'))
+            ->where([
+                ['from_member_id',$customerID],
+                ['nom_kredit','!=','0']
+                ])
+            ->first();
+        if (!empty($aktifHutang)) {
+            $sumKredit = $aktifHutang->nominalKredit;
+        }
+        else {
+            $sumKredit = '0';
+        }
+
+        if ($sumKredit > $nominal) {
+            $msg = array('warning' => 'Limit kredit pelanggan tidak dapat kurang dari kredit yang belum dibayarkan, yaitu : '.number_format($sumKredit,'0',',','.'));
+        }
+        else {
+            DB::table('m_customers')
+                ->where('idm_customer',$customerID)
+                ->update([
+                    'kredit_limit'=>$nominal
+                ]);
+                
+            $msg = array('success' => 'Limit kredit pelanggan berhasil ter update.');
+        }
+        return response()->json($msg);
     }
 }
