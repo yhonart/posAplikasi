@@ -522,12 +522,8 @@ class PurchasingController extends Controller
                 elseif ($satuan == "KONV") {
                     $ls = $qtyInput;
                 }
-            }
-
-            $inInv = $ls;
+            }            
             $outInv = '0';
-
-
             $selectLastStock = DB::table('inv_stock')
                 ->where([
                     ['product_id',$mUnit->idm_product_satuan],
@@ -539,14 +535,18 @@ class PurchasingController extends Controller
             $dateNow = date("Y-m-d");
 
             if ($purchasingDate < $dateNow) {
-                // Jika backdate input tanggal.
                 $repotInv = DB::table('report_inv')
                     ->where('date_input','>',$purchasingDate)
                     ->get();
 
+                $lastSaldo = DB::table('report_inv')
+                    ->where('product_id',$productID)
+                    ->orderBy('idr_inv','desc')
+                    ->first();
+
                 foreach ($repotInv as $RI) {
                     $endSaldo = $RI->saldo;
-                    $updateSaldo = $endSaldo + $inInv;
+                    $updateSaldo = $endSaldo + $ls;
                     $idUpdate = $RI->idr_inv;
 
                     DB::table('report_inv')
@@ -555,10 +555,14 @@ class PurchasingController extends Controller
                             'saldo'=>$updateSaldo
                         ]);
                 }
+                $inInv = $lastSaldo->saldo + $ls;
             }
+            else {
+                $inInv = $ls;
+            }
+            
             $saldo = $inInv + $selectLastStock->stock;
             $volPrd = $selectSizeCode->product_volume;
-
             //Query insert into report
             DB::table('report_inv')
                 ->insert([
