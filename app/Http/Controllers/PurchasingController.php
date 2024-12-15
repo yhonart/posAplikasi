@@ -535,6 +535,27 @@ class PurchasingController extends Controller
                 ])
                 ->first();
 
+            $purchasingDate = $idDataReport->purchase_date;
+            $dateNow = date("Y-m-d");
+
+            if ($purchasingDate < $dateNow) {
+                // Jika backdate input tanggal.
+                $repotInv = DB::table('report_in')
+                    ->where('date_input','>',$purchasingDate)
+                    ->get();
+
+                foreach ($repotInv as $RI) {
+                    $endSaldo = $RI->saldo;
+                    $updateSaldo = $endSaldo + $inInv;
+                    $idUpdate = $RI->idr_inv;
+
+                    DB::table('report_inv')
+                        ->where('idr_inv',$idUpdate)
+                        ->update([
+                            'saldo'=>$updateSaldo
+                        ]);
+                }
+            }
             $saldo = $inInv + $selectLastStock->stock;
             $volPrd = $selectSizeCode->product_volume;
 
