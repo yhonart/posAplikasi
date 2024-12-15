@@ -7,7 +7,7 @@
         <div class="col-sm-6">
             <h1 class="m-0">Piutang Pelanggan</h1>
         </div><!-- /.col -->
-        <div class="col-sm-6">
+        <div class="col-sm-6 d-lg-block">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item text-muted">Home</li>
                 <li class="breadcrumb-item text-muted">Keuangan</li>
@@ -19,6 +19,15 @@
 </div>
 <div class="content mt-0">
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info btn-flat" data-action="1">Pembayaran Hutang</button>
+                    <button type="button" class="btn btn-info btn-flat" data-action="2">Lock/Unlock & Limit Hutang</button>
+                    <button type="button" class="btn btn-info btn-flat" data-action="3">History Pembayaran</button>
+                </div>
+            </div>
+        </div>
         <div class="row p-1">
             <div class="col-12">
                 <div class="card">                    
