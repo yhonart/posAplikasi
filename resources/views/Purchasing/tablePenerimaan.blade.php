@@ -45,7 +45,7 @@ $statusDokumen = array(
                                     @endif
                                 </td>
                                 <td class="text-right">
-                                    <span class="green-alert border border-success font-weight-bold pl-2 pr-2 pt-1 pb-1 rounded-pill">{{$statusDokumen[$ltp->status]}}</span>
+                                    <span class="bg-light border border-success pl-2 pr-2 pt-1 pb-1 rounded-pill">{{$statusDokumen[$ltp->status]}}</span>
                                 </td>
                                 <td class="text-right">
                                     @if($ltp->status =='2' AND $approval >= '1')
