@@ -20,7 +20,7 @@
             <dl class="row">
                 <dt class="col-md-3">Kredit Limit</dt>
                 <dd class="col-md-4">
-                    <input type="text" class="form-control form-control-sm price-tag" name="kreditLimit" id="kreditLimit" value="{{$selectCustomer->kredit_limit}}">
+                    <input type="text" class="form-control price-tag font-weight-bold" name="kreditLimit" id="kreditLimit" value="{{$selectCustomer->kredit_limit}}">
                 </dd>
             </dl>
             <div class="row">
@@ -41,7 +41,9 @@
 <script>
     $(function(){
         $('.price-tag').mask('000.000.000', {reverse: true});
+        $("#kreditLimit").focus().select();
     });
+
     $(document).ready(function(){
         $("form#formEditLimit").submit(function(event){
             event.preventDefault();
