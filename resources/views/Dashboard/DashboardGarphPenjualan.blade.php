@@ -87,7 +87,7 @@
                     foreach ($xAxistSet as $x2) {                                             
                         foreach ($pembelian as $ySeriesData2) {
                             if ($x2->periode == $ySeriesData2->displayPeriode) {
-                                echo $ySeriesData2->totalPayment.",";
+                                echo $ySeriesData2->displayPeriode.",";
                             }
                         }
                     }
