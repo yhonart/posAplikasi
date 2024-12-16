@@ -89,9 +89,6 @@
                             if ($x2->periode == $ySeriesData2->displayPeriode) {
                                 echo $ySeriesData2->totalPayment.",";
                             }
-                            else {
-                                echo null.",";
-                            }
                         }
                     }
                 ?>
