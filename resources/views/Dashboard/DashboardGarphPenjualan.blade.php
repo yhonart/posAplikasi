@@ -5,14 +5,14 @@
 
     Highcharts.chart('container', {
         chart: {
-            type: 'column'
+            type: 'area'
         },
         title: {
             text: 'Pembelian VS Penjualan'
         },
 
         subtitle: {
-            text: 'Report ditampilkan perbulan'
+            text: 'Transaksi Bulanan'
         },
         credits: {
             enabled: false,
@@ -20,6 +20,25 @@
         yAxis: {
             title: {
                 text: 'Jumlah Pembayaran'
+            },
+            plotLines: [{
+                color: '#FF0000',
+                width: 2,
+                value: 0,
+                label: {
+                    text: 'Zero',
+                    align: 'left',
+                    // y: 20, /*moves label down*/
+                    style: {
+                        color: '#fff',
+                        font: '11px '
+                    }
+                }
+            }],   
+            labels: {
+                formatter: function () {
+                    return this.value;
+                },
             }
         },
 
@@ -30,11 +49,7 @@
                         echo "'".$x->periode."',";
                     }
                 ?>
-            ],
-            crosshair: true,
-            accessibility: {
-                description: 'Countries'
-            }
+            ]
         },
 
         legend: {
@@ -44,10 +59,11 @@
         },
 
         plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+            },  
         },
 
         series: [{
