@@ -10,7 +10,7 @@
         },
 
         subtitle: {
-            text: 'For {{$year}}',
+            text: 'Report ditampilkan perbulan',
             align: 'left'
         },
 
