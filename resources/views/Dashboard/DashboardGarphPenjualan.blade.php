@@ -23,9 +23,8 @@
         xAxis: {
             categories: [  
                 <?php
-                    foreach ($xAxist as $x) {
+                    foreach ($xAxistSet as $x) {
                         echo "'".$x."',";
-                        
                     }
                 ?>
             ],
@@ -52,7 +51,7 @@
             name: 'Penjualan',
             data: [
                 <?php
-                    foreach ($xAxist as $x1) {
+                    foreach ($xAxistSet as $x1) {
                         foreach ($penjualan as $ySeriesData1) {
                             if ($x1->periode == $ySeriesData1->displayPeriode) {
                                 echo $ySeriesData1->totalPayment.",";
@@ -66,7 +65,7 @@
             name: 'Pembelian',
             data: [
                 <?php
-                    foreach ($xAxist as $x2) {                                             
+                    foreach ($xAxistSet as $x2) {                                             
                         foreach ($pembelian as $ySeriesData2) {
                             if ($x2->periode == $ySeriesData2->displayPeriode) {
                                 echo $ySeriesData2->totalPayment.",";

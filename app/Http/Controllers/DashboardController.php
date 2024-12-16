@@ -124,7 +124,7 @@ class DashboardController extends Controller
     public function garphPembelian ($year){
         $thisPeriode = date("m-Y");
 
-        $xAxist = DB::table('tr_payment_record')
+        $xAxistSet = DB::table('tr_payment_record')
             ->select(DB::raw('SUBSTRING(date_trx,6,2) as periode'))
             ->where(DB::raw('SUBSTRING(date_trx,1,4)'),$year)
             ->groupBy(DB::raw('SUBSTRING(date_trx,6,2)'))
@@ -142,7 +142,7 @@ class DashboardController extends Controller
             ->groupBy(DB::raw('SUBSTRING(purchase_date,6,2)'))
             ->get();
 
-        return view('Dashboard/DashboardGarphPenjualan', compact('penjualan','pembelian','year','xAxist'));
+        return view('Dashboard/DashboardGarphPenjualan', compact('penjualan','pembelian','year','xAxistSet'));
     }
     
     public function onClickDetail (Request $reqPostOnClick){
