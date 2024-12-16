@@ -4,16 +4,19 @@
     
 
     Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
         title: {
-            text: 'Pembelian VS Penjualan',
-            align: 'left'
+            text: 'Pembelian VS Penjualan'
         },
 
         subtitle: {
-            text: 'Report ditampilkan perbulan',
-            align: 'left'
+            text: 'Report ditampilkan perbulan'
         },
-
+        credits: {
+            enabled: false,
+        },
         yAxis: {
             title: {
                 text: 'Jumlah Pembayaran'
@@ -24,7 +27,7 @@
             categories: [  
                 <?php
                     foreach ($xAxistSet as $x) {
-                        echo "'".$x."',";
+                        echo "'".$x->periode."',";
                     }
                 ?>
             ],
