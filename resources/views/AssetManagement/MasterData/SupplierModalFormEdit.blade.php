@@ -125,12 +125,23 @@
                     cache: true,
                     contentType: false,
                     processData: false,
-                    success: function (data) {                    
-                        global_style.hide_modal();
-                        global_style.load_table(loadSpinner,routeIndex,tableData,displayData);                        
+                    success: function (data) {   
+                        alertify.success('Data Berhasil Terupdate');                 
+                        loadTable();                        
                     },                
                 });
                 return false;
             });
+
+        function loadTable(){
+            let dataId = "{{$id}}";
+            $.ajax({
+                url: "{{route('Supplier')}}/tableSupplier/EditSupplier/" + dataId,
+                type: 'GET',
+                success: function (response) {
+                    $("#displaySupplier").html(response);
+                },                
+            });
+        }
     });
 </script>
