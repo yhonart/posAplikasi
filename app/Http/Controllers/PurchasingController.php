@@ -933,4 +933,12 @@ class PurchasingController extends Controller
         return view ('Purchasing/PurchaseOrder/mainPiutangSupplier', compact('mSupplier'));
     }
     
+    public function metodePembayaran ($supplier)
+    {
+        $mSupplier = DB::table('m_supplier')
+            ->where('idm_supplier',$supplier)
+            ->first();
+
+        return view ('Purchasing/selectMetodePembayaran', compact('mSupplier'));
+    }
 }

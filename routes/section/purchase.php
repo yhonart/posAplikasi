@@ -1,6 +1,7 @@
 <?php
 // PRN Route
 Route::get('Purchasing/dataPurchasing', [App\Http\Controllers\PurchasingController::class, 'dataPurchasing']);
+Route::get('Purchasing/metodePembayaran/{supplier}', [App\Http\Controllers\PurchasingController::class, 'metodePembayaran']);
 
 // Purchase Input Penerimaan Barang
 Route::get('Purchasing/addPurchasing', [App\Http\Controllers\PurchasingController::class, 'addPurchasing']);

@@ -15,13 +15,7 @@
                         <div class="col-12">
                             <label class="label">Metode Pembayaran</label>
                             <select class="form-control form-control-sm select-2" name="methodPayment" id="methodPayment">
-                                <option value="0"></option>
-                                <option value="1">Tunai</option>
-                                <option value="2">Transfer</option>
-                                <option value="3">Tempo [Custome]</option>
-                                <option value="30">Net 30</option>
-                                <option value="15">Net 15</option>
-                                <option value="60">Net 60</option>
+                                <option value="0"></option>                                
                             </select>
                         </div>
                     </div>
@@ -167,6 +161,14 @@
                 url : "{{route('Purchasing')}}/notivePoint/"+supplier,
                 success : function(response){
                     $("#point").html(response);
+                }
+            });
+
+            $.ajax({
+                type : 'get',
+                url : "{{route('Purchasing')}}/metodePembayaran/" + supplier,
+                success : function(response){  
+                    $("#methodPayment").html(response);
                 }
             });
         });
