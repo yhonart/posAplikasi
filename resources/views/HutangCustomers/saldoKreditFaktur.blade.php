@@ -18,6 +18,7 @@
                 <td>{{$hf->date_payment}}</td>
                 <td>{{$hf->customer_store}}</td>
                 <td>{{$hf->account_code}} | {{$hf->account_name}}</td>
+                <td>{{$hf->no_kredit}}</td>
                 <td>{{$hf->debit}}</td>
                 <td>{{$hf->kredit}}</td>
                 <td>{{$hf->total_kredit}}</td>
