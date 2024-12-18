@@ -88,7 +88,7 @@ class SuplayerController extends Controller
                 'salesman'=>$suppSalesman,
                 'level'=>$suppLevel,
                 'supplier_status'=>$suppStatus,
-                'updated_date'=>now(),
+                'updated_at'=>now(),
             ]); 
     }
 
