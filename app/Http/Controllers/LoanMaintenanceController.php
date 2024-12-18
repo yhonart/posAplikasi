@@ -108,4 +108,12 @@ class LoanMaintenanceController extends Controller
 
         return view('HutangCustomers/saldoKreditFaktur', compact('historyFaktur'));
     }
+
+    public function saldoCustomer(){
+        $sumSaldoCustomer = DB::table('view_customer_kredit')
+            ->select(DB::raw('DISTINCT(from_member_id) as distctMember'), DB::raw('SUM(nominal)as nominal'), DB::raw('SUM(nom_payed) as nomPayed'), DB::raw('SUM(nom_kredit) as saldoKredit'), 'customer_store', 'from_payment_code','created_at','kredit_limit')
+            ->get();
+
+        return view('HutangCustomers/saldoKreditCustomer', compact('sumSaldoCustomer'));
+    }
 }

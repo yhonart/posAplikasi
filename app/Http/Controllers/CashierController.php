@@ -1435,8 +1435,6 @@ class CashierController extends Controller
         $nominalBayar = str_replace(".", "", $reqPostPelunasan->nominalBayar);
         $nomorBukti = $reqPostPelunasan->nomorBukti;
         $accountCode = $reqPostPelunasan->accountCode;
-        
-        $createdBy = Auth::user()->name;
 
         DB::table('tr_pembayaran_kredit')
             ->insert([
