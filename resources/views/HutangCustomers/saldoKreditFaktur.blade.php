@@ -1,5 +1,5 @@
-<table class="table table-sm tabl-valign-middle">
-    <thead>
+<table class="table table-sm tabl-valign-middle table-hover">
+    <thead class="bg-gray">
         <tr>
             <th>Nomor</th>
             <th>Tgl. Pembayaran</th>
@@ -19,9 +19,9 @@
                 <td>{{$hf->customer_store}}</td>
                 <td>{{$hf->account_code}} | {{$hf->account_name}}</td>
                 <td>{{$hf->no_kredit}}</td>
-                <td>{{$hf->debit}}</td>
-                <td>{{$hf->kredit}}</td>
-                <td>{{$hf->total_kredit}}</td>
+                <td><i class="fa-solid fa-rupiah-sign"></i>{{number_format($hf->debit,'0',',','.')}}</td>
+                <td><i class="fa-solid fa-rupiah-sign"></i>{{number_format($hf->kredit,'0',',','.')}}</td>
+                <td><i class="fa-solid fa-rupiah-sign"></i>{{number_format($hf->total_kredit,'0',',','.')}}</td>
             </tr>
         @endforeach
     </tbody>
