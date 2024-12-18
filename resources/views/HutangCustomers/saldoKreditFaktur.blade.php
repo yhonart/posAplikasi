@@ -1,4 +1,4 @@
-<table class="table table-sm tabl-valign-middle table-hover">
+<table class="table table-sm tabl-valign-middle table-hover" id="tableKreditFaktur">
     <thead class="bg-gray">
         <tr>
             <th>Nomor</th>
@@ -26,3 +26,14 @@
         @endforeach
     </tbody>
 </table>
+<script>
+    $(function(){        
+        $("#tableKreditFaktur").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>
