@@ -101,4 +101,11 @@ class LoanMaintenanceController extends Controller
         }
         return response()->json($msg);
     }
+
+    public function saldoFaktur(){
+        $historyFaktur = DB::table('view_payment_kredit')
+            ->get();
+
+        return view('HutangCustomers/saldoKreditFaktur', compact('historyFaktur'));
+    }
 }

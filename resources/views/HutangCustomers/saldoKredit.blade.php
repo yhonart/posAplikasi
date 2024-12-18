@@ -12,11 +12,30 @@
     <div class="card-body">
         <div class="tab-content" id="custom-tabs-one-tabContent">
             <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
-                <div id="saldoFaktur"></div>
+                <div id="divSaldoFaktur"></div>
             </div>
             <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-                <div id="saldoCustomer"></div>
+                <div id="divSaldoCustomer"></div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(function(){
+        $.ajax({
+            type : 'get',
+            url : "{{route('adminPiutangPelanggan')}}/saldoFaktur",
+            success : function(response){
+                $('#divSaldoFaktur').html(response);
+            }
+        });
+
+        $.ajax({
+            type : 'get',
+            url : "{{route('adminPiutangPelanggan')}}/saldoCustomer",
+            success : function(response){
+                $('#divSaldoCustomer').html(response);
+            }
+        });
+    })
+</script>
