@@ -145,3 +145,5 @@ include __DIR__.'/section/trxKasUmum.php';
 // Master Data Kategori Kas
 include __DIR__.'/section/kasKategori.php';
 
+include __DIR__.'/section/piutang.php';
+

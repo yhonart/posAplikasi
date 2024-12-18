@@ -30,12 +30,34 @@ class LoanMaintenanceController extends Controller
     }
     
     public function mainAdmin () {
+        return view('HutangCustomers/mainEditLoanCustomer');
+    }
+
+    public function pembayaran (){
         $dbMCustomer = DB::table('m_customers')
             ->get();
 
-        return view('HutangCustomers/mainEditLoanCustomer', compact('dbMCustomer'));
+        return view('HutangCustomers/pembayaran', compact('dbMCustomer'));
     }
 
+    public function saldo (){
+        $dbMCustomer = DB::table('m_customers')
+            ->get();
+
+        return view('HutangCustomers/saldoKredit', compact('dbMCustomer'));
+    }
+    public function lapCustomer (){
+        $dbMCustomer = DB::table('m_customers')
+            ->get();
+
+        return view('HutangCustomers/lapCustomers', compact('dbMCustomer'));
+    }
+    public function setup (){
+        $dbMCustomer = DB::table('m_customers')
+            ->get();
+
+        return view('HutangCustomers/setupKredit', compact('dbMCustomer'));
+    }
     public function modalEditLimit ($id){
         $selectCustomer = DB::table('m_customers as a')
             ->select('a.*','b.group_name')
