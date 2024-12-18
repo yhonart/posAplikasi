@@ -42,19 +42,30 @@
     });
 
     $(function(){
+        
+    });   
+    
+    $(document).ready(function(){
         let display = "pembayaran";
         displayOnClick(display);
-    });   
-    function displayOnClick(display){
-        $("#displayNotif").fadeIn("slow");
-        $.ajax({
-            type : 'get',
-            url : "{{route('adminPiutangPelanggan')}}/"+display,
-            success : function(response){
-                $('#displayMenu').html(response);
-                $("#displayNotif").fadeOut("slow");
-            }
+
+        $('.CLICK-AR').on('click', function (e) {
+            e.preventDefault();
+            let display = $(this).attr('data-display');
+            displayOnClick(display);
         });
-    }
+
+        function displayOnClick(display){
+            $("#displayNotif").fadeIn("slow");
+            $.ajax({
+                type : 'get',
+                url : "{{route('adminPiutangPelanggan')}}/"+display,
+                success : function(response){
+                    $('#displayMenu').html(response);
+                    $("#displayNotif").fadeOut("slow");
+                }
+            });
+        }
+    });
 </script>
 @endsection
