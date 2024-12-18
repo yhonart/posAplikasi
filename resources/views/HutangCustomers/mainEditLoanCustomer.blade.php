@@ -22,9 +22,9 @@
         <div class="row mb-2">
             <div class="col-md-12">
                 <button type="button" class="btn bg-lightblue CLICK-AR" data-display="pembayaran">Pembayaran</button>
-                <button type="button" class="btn btn-warning CLICK-AR" data-display="saldo">Saldo Hutang</button>
-                <button type="button" class="btn bg-olive CLICK-AR" data-display="lapCustomer">Lap. Customer</button>
-                <button type="button" class="btn bg-maroon CLICK-AR" data-display="setup">Setup</button>
+                <button type="button" class="btn bg-lightblue CLICK-AR" data-display="saldo">Saldo Hutang</button>
+                <button type="button" class="btn bg-lightblue CLICK-AR" data-display="lapCustomer">Lap. Customer</button>
+                <button type="button" class="btn bg-lightblue CLICK-AR" data-display="setup">Setup</button>
             </div>
         </div>
         <div class="row">
