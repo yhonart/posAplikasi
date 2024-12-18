@@ -51,7 +51,7 @@
             type : 'get',
             url : "{{route('adminPiutangPelanggan')}}/"+display,
             success : function(response){
-                $('#displayOpname').html(response);
+                $('#displayMenu').html(response);
                 $("#displayNotif").fadeOut("slow");
             }
         });
