@@ -19,9 +19,9 @@
                 <td>{{$hf->customer_store}}</td>
                 <td>{{$hf->account_code}} | {{$hf->account_name}}</td>
                 <td>{{$hf->no_kredit}}</td>
-                <td><i class="fa-solid fa-rupiah-sign"></i>{{number_format($hf->debit,'0',',','.')}}</td>
-                <td><i class="fa-solid fa-rupiah-sign"></i>{{number_format($hf->kredit,'0',',','.')}}</td>
-                <td><i class="fa-solid fa-rupiah-sign"></i>{{number_format($hf->total_kredit,'0',',','.')}}</td>
+                <td class="text-right">{{number_format($hf->debit,'0',',','.')}}</td>
+                <td class="text-right">{{number_format($hf->kredit,'0',',','.')}}</td>
+                <td class="text-right">{{number_format($hf->total_kredit,'0',',','.')}}</td>
             </tr>
         @endforeach
     </tbody>

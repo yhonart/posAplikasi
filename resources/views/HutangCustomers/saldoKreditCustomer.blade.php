@@ -17,10 +17,10 @@
             <tr>
                 <td>{{$no++}}</td>
                 <td>{{$ssc->customer_store}}</td>
-                <td>{{number_format($ssc->kredit_limit,'0',',','.')}}</td>
-                <td>{{number_format($ssc->nominal,'0',',','.')}}</td>
-                <td>{{number_format($ssc->nomPayed,'0',',','.')}}</td>
-                <td>{{number_format($ssc->saldoKredit,'0',',','.')}}</td>
+                <td class="text-right">{{number_format($ssc->kredit_limit,'0',',','.')}}</td>
+                <td class="text-right">{{number_format($ssc->nominal,'0',',','.')}}</td>
+                <td class="text-right">{{number_format($ssc->nomPayed,'0',',','.')}}</td>
+                <td class="text-right">{{number_format($ssc->saldoKredit,'0',',','.')}}</td>
             </tr>
         @endforeach
     </tbody>
