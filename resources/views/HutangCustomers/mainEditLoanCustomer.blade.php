@@ -18,14 +18,22 @@
     </div><!-- /.container-fluid -->
 </div>
 <div class="content mt-0">
-    <div class="container-fluid">        
-        <div class="row p-1">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <button type="button" class="btn bg-lightblue CLICK-AR" data-display="pembayaran">Pembayaran</button>
+                <button type="button" class="btn btn-warning CLICK-AR" data-display="saldo">Saldo Hutang</button>
+                <button type="button" class="btn bg-olive CLICK-AR" data-display="lapCustomer">Lap. Customer</button>
+                <button type="button" class="btn bg-maroon CLICK-AR" data-display="setup">Setup</button>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12">
                 <div class="card">                    
                     <div class="card-body">                
                         <div class="row">
                             <div class="col-6 col-md-3">
-                                <label class="form-label">Panel Pembayaran</label>
+                                <label class="form-label">Pilih Display</label>
                                 <div class="form-group">
                                     <select name="actionCode" id="actionCode" class="form-control">
                                         <option value="0">{{str_repeat(".", 15)}}</option>
