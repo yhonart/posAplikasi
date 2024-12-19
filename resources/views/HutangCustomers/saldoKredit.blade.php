@@ -70,11 +70,7 @@
 </div>
 <script>    
     $(document).ready(function() {    
-        let fakturPelanggan = $("#fakturPelanggan").find(":selected").val(),
-            kreditPelanggan = $("#kreditPelanggan").find(":selected").val(),
-            fromDate = $("#dariTanggal").val(),
-            endDate = $("#sampaiTanggal").val();
-        alert(fromDate);
+        
         $( ".datetimepicker-input" ).datepicker({
             dateFormat: 'yy-mm-dd',
             autoclose: true,
@@ -88,6 +84,12 @@
         $('#kreditPelanggan').select2({
             theme: 'bootstrap4',
         });
+        
+        let fakturPelanggan = $("#fakturPelanggan").find(":selected").val(),
+            kreditPelanggan = $("#kreditPelanggan").find(":selected").val(),
+            fromDate = $("#dariTanggal").val(),
+            endDate = $("#sampaiTanggal").val();
+        alert(fromDate);
 
         $("#fakturPelanggan").change(function(){
             let fakturPelanggan = $(this).find(":selected").val();  
