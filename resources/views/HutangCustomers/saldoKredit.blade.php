@@ -1,3 +1,4 @@
+
 <div class="card card-tabs">
     <div class="card-header">
         <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
@@ -12,16 +13,77 @@
     <div class="card-body">
         <div class="tab-content" id="custom-tabs-one-tabContent">
             <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
-                <div id="divSaldoFaktur"></div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Cari Nama Pelanggan</label>
+                            <select class="form-control select-pelanggan" id="fakturPelanggan" class="form-control ">
+                                <option value="0" readonly>Nama Pelanggan</option>
+                                @foreach($dbMCustomer as $dcs1)
+                                <option value="{{$dcs1->idm_customer }}">{{$dcs1->customer_store}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Dari Tanggal</label>
+                            <input type="text" class="form-control datetimepicker-input" name="dariTanggal" id="dariTanggal">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">s.d Tanggal</label>
+                            <input type="text" class="form-control datetimepicker-input roundedd-0" name="sampaiTanggal" id="sampaiTanggal">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div id="divSaldoFaktur"></div>
+                    </div>
+                </div>
             </div>
             <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-                <div id="divSaldoCustomer"></div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Cari Nama Pelanggan</label>
+                            <select class="form-control select-pelanggan" id="kreditPelanggan" class="form-control ">
+                                <option value="0" readonly>Nama Pelanggan</option>
+                                @foreach($dbMCustomer as $dcs2)
+                                <option value="{{$dcs2->idm_customer }}">{{$dcs2->customer_store}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div id="divSaldoCustomer"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<script>
-    $(function(){
+<script>    
+    $(document).ready(function() {        
+        $( ".datetimepicker-input" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('.datetimepicker-input').datepicker("setDate",new Date());
+        
+        $('#fakturPelanggan').select2({
+            theme: 'bootstrap4',
+        });
+        $('#kreditPelanggan').select2({
+            theme: 'bootstrap4',
+        });
+    
         $.ajax({
             type : 'get',
             url : "{{route('adminPiutangPelanggan')}}/saldoFaktur",
@@ -29,7 +91,7 @@
                 $('#divSaldoFaktur').html(response);
             }
         });
-
+    
         $.ajax({
             type : 'get',
             url : "{{route('adminPiutangPelanggan')}}/saldoCustomer",
@@ -37,5 +99,5 @@
                 $('#divSaldoCustomer').html(response);
             }
         });
-    })
+    });
 </script>
