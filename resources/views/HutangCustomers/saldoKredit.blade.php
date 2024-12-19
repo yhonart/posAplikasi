@@ -74,7 +74,7 @@
             kreditPelanggan = $("#kreditPelanggan").find(":selected").val(),
             fromDate = $("#dariTanggal").val(),
             endDate = $("#sampaiTanggal").val();
-
+        alert(fromDate);
         $( ".datetimepicker-input" ).datepicker({
             dateFormat: 'yy-mm-dd',
             autoclose: true,
