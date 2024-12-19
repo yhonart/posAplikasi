@@ -84,22 +84,30 @@
         $('#kreditPelanggan').select2({
             theme: 'bootstrap4',
         });
-        
+
         let fakturPelanggan = $("#fakturPelanggan").find(":selected").val(),
             kreditPelanggan = $("#kreditPelanggan").find(":selected").val(),
-            fromDate = $("#dariTanggal").val(),
-            endDate = $("#sampaiTanggal").val();
-        alert(fromDate);
+            fromDate = 0,
+            endDate = 0;
 
         $("#fakturPelanggan").change(function(){
             let fakturPelanggan = $(this).find(":selected").val();  
-            
         });
         
         $("#kreditPelanggan").change(function(){
             let kreditPelanggan = $(this).find(":selected").val();                
-        });        
+        });    
         
+        $("#dariTanggal").change(function(){
+            let fromDate = $(this).val(),
+                endDate = $("#sampaiTanggal").val(),
+                fakturPelanggan = $("#fakturPelanggan").val();
+        });
+        $("#sampaiTanggal").change(function(){
+            let fromDate = $("#dariTanggal").val(),
+                endDate = $(this).val(),
+                fakturPelanggan = $("#fakturPelanggan").val();
+        });        
         selectFaktur (fakturPelanggan, fromDate, endDate);
         selectKredit (kreditPelanggan);
 
