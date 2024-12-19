@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-12">
         <table class="table table-hover table-valign-middle table-sm" id="tableManufacture">
-            <thead class="text-center bg-gray">
+            <thead class="text-center bg-gray-dark">
                 <tr>
                     <th>No.</th>
                     <th>Kode</th>

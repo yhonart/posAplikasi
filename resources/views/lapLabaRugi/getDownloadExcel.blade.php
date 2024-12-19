@@ -21,7 +21,7 @@
             <th colspan="9">Dari Tgl {{$fromDate}} s.d {{$endDate}}</th>
         </tr>
     </thead>
-    <thead class="bg-gray">
+    <thead class="bg-gray-dark">
         <tr>
             <th>Nama Barang</th>
             <th>Satuan</th>

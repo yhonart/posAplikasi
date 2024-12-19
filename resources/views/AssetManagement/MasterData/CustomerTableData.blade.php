@@ -8,7 +8,7 @@
         );
     @endphp
     <table class="table table-valign-middle table-hover">
-        <thead class="text-center bg-gray">
+        <thead class="text-center bg-gray-dark">
             <tr>
                 <th>Klik Pada Nama Pelanggan</th>
         </thead>

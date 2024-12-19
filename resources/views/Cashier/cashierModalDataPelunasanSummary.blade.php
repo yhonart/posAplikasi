@@ -5,7 +5,7 @@
 @endphp
 <div class="card card-body table-responsive p-0" style="height:500px;">
     <table class="table table-valign-middle table-hover">
-        <thead class="bg-gray">
+        <thead class="bg-gray-dark">
             <tr>
                 <th></th>
                 <th>Nama Pelanggan</th>

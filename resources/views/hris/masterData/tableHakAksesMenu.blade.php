@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-12">
         <table class="table table-sm table-hover">
-            <thead class="bg-gray">
+            <thead class="bg-gray-dark">
                 <tr>
                     <th>Menu</th>
                     <th>Sub Menu</th>

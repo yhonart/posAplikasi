@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-sm table-valign-middle table-hover " id="tableDetailStokOpname">
-                        <thead class="bg-gray">
+                        <thead class="bg-gray-dark">
                             <tr>
                                 <th>No</th>
                                 <th>Nama Barang</th>

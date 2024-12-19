@@ -2,7 +2,7 @@
     $no = '1';
 ?>
 <table class="table table-sm table-valign-middle table-hover">
-    <thead class="bg-gray">
+    <thead class="bg-gray-dark">
         <tr>
             <th>No</th>
             <th>User Kasir</th>

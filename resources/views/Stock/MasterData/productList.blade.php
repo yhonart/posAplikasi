@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <table class="table table-striped table-valign-middle table-sm">
-                <thead class="bg-gray">
+                <thead class="bg-gray-dark">
                     <tr>
                         <th>Produk</th>
                     </tr>

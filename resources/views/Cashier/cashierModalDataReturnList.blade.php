@@ -12,7 +12,7 @@
         0=>"bg-danger",
         1=>"bg-info",
         2=>"bg-warning",
-        3=>"bg-gray",
+        3=>"bg-gray-dark",
         4=>"bg-olive"
     );
 ?>

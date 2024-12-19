@@ -85,7 +85,7 @@
     </div>
     <hr>    
     <table class="table table-sm table-hover text-xs table-valign-middle">
-        <thead class="bg-gray">
+        <thead class="bg-gray-dark">
             <tr>
                 <th></th>
                 <th>Nama Pelanggan</th>

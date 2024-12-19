@@ -14,7 +14,7 @@ $no = '1';
     <div class="col-md-12">
         <div class="card card-body table-responsive p-0" style="height:700px">
             <table class="table table-sm table-valign-middle table-hover " id="listTableItem">
-                <thead class="bg-gray">
+                <thead class="bg-gray-dark">
                     <tr>
                         <th>Nama Barang</th>
                         <th>Qty. Beli</th>

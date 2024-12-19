@@ -14,7 +14,7 @@
     );
 ?>
 <table class="table table-sm table-valign-middle table-hover " id="tableDataKoreksi">
-    <thead class="bg-gray">
+    <thead class="bg-gray-dark">
         <tr>
             <th>Nomor</th>
             <th>Tanggal</th>

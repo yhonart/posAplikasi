@@ -53,7 +53,7 @@
     <div class="row">
         <div class="col-md-12">
             <table class="table  table-sm table-hover table-valign-middle text-nowrap">
-                <thead class="bg-gray">
+                <thead class="bg-gray-dark">
                     <tr>
                         <th>No</th>
                         <th width="30%">Nama Barang</th>

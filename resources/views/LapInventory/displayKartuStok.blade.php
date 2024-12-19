@@ -76,7 +76,7 @@
     </tbody>
 </table>
 <table class="table table-sm text-xs  border-2">
-    <thead style="white-space: nowrap;" class="bg-gray">
+    <thead style="white-space: nowrap;" class="bg-gray-dark">
         <tr>
             <th>Tanggal </th>
             <th>Nomor Bukti</th>

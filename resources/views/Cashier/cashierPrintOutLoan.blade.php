@@ -31,7 +31,7 @@
 <div class="row">
     <div class="col-12">
         <table class="table table-sm table-bordered table-valign-middle">
-            <thead class="bg-gray font-weight-bold">
+            <thead class="bg-gray-dark font-weight-bold">
                 <tr>
                     <th class="text-center">No.</th>
                     <th class="text-right">Qty</th>

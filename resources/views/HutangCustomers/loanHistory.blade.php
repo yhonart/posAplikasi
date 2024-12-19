@@ -1,5 +1,5 @@
 <table class="table table-sm table-valign-middle table-hover" id="tableHistoryPembayaran">
-    <thead class="font-weight-bold bg-gray">
+    <thead class="font-weight-bold bg-gray-dark">
         <tr>
             <th>Kode Pembayaran</th>
             <th>Tgl. Pembayaran</th>

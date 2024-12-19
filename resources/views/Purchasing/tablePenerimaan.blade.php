@@ -11,7 +11,7 @@ $statusDokumen = array(
         <div class="card">
             <div class="card-body p-2 table-responsive" style="height:700px;">
                 <table class="table table-sm table-valign-middle table-hover " id="tableListPembelian">
-                    <thead class="bg-gray">
+                    <thead class="bg-gray-dark">
                         <tr>
                             <th>Tanggal</th>
                             <th>Nomor</th>

@@ -38,7 +38,7 @@ $arayDK = array(
             <div class="row">
                 <div class="col-12">
                     <table class="table table-sm table-valign-middle table-hover " id="tableDetailKoreksi">
-                        <thead class="bg-gray">
+                        <thead class="bg-gray-dark">
                             <tr>
                                 <th>Nama Barang</th>
                                 <th>Lokasi</th>

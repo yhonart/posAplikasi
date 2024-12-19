@@ -261,7 +261,7 @@
                 <td></td>
             </tr>
     </tbody>
-    <tbody class="grand-total bg-gray">
+    <tbody class="grand-total bg-gray-dark">
         <tr>
             <td colspan="11" class="bg-light"></td>
         </tr>

@@ -112,7 +112,7 @@ $statusBarang = array(
         <thead>
             <tr>
                 <th></th>
-                <th class="bg-gray">Satuan</th>
+                <th class="bg-gray-dark">Satuan</th>
                 <th>Volume</th>
                 <th>Set Barcode</th>
                 <th></th>
@@ -131,7 +131,7 @@ $statusBarang = array(
                     <td width="25%" class="bg-light">
                         {{$unit1->product_size}}
                     </td>
-                    <td class="bg-gray">
+                    <td class="bg-gray-dark">
                         <select name="satuanBesar[]" class="form-control form-control-sm " onchange="saveMasterBarang(this,'m_product_unit','product_satuan','{{$unit1->idm_product_satuan}}','idm_product_satuan','{{$id}}')">
                             <option>{{$unit1->product_satuan}}</option>
                             <option style="color:red" value="DELL">Hapus Satuan Besar</option>
@@ -201,7 +201,7 @@ $statusBarang = array(
             <thead>
                 <tr>
                     <th width="10%"></th>
-                    <th class="bg-gray">Harga Beli <i class="fa-solid fa-rupiah-sign float-right"></i></th>
+                    <th class="bg-gray-dark">Harga Beli <i class="fa-solid fa-rupiah-sign float-right"></i></th>
                     @foreach($cosGroup as $cg)
                     <th>{{$cg->group_name}} <i class="fa-solid fa-rupiah-sign float-right text-info"></i></th>
                     @endforeach
@@ -217,7 +217,7 @@ $statusBarang = array(
                         <td>
                             {{$size->product_size}} <br>
                         </td>
-                        <td class="bg-gray">
+                        <td class="bg-gray-dark">
                             @if($size->size_code == '1')
                                 <input class="form-control form-control-sm text-right EDIT-PRICE " name="priceOrder" value="{{$size->product_price_order}}" onchange="saveMasterBarang(this,'m_product_unit','product_price_order','{{$size->idm_product_satuan}}','idm_product_satuan','{{$id}}')">
                             @else

@@ -14,7 +14,7 @@
     );
 ?>
 <table class="table table-valign-middle table-hover " id="listDocOpname">
-    <thead class="bg-gray">
+    <thead class="bg-gray-dark">
         <tr>
             <th>No.</th>
             <th>Opname Number</th>
