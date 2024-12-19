@@ -11,9 +11,9 @@
                 <th>Nama Pelanggan</th>
                 <th>Nomor Faktur</th>
                 <th>Tgl. Faktur</th>
-                <th>Kredit</th>
-                <th>Dibayar</th>
-                <th>Sisa Kredit</th>
+                <th><i class="fa-solid fa-rupiah-sign float-left"></i> <span class="float-right">Kredit</span></th>
+                <th><i class="fa-solid fa-rupiah-sign float-left"></i> <span class="float-right">Dibayar</span></th>
+                <th><i class="fa-solid fa-rupiah-sign float-left"></i> <span class="float-right">Sisa Kredit</span></th>
             </tr>
         </thead>
         <tbody>
@@ -23,9 +23,9 @@
                     <td>{{$dpn->customer_store}}</td>
                     <td>{{$dpn->from_payment_code}}</td>
                     <td>{{date('d-M-Y', strtotime($dpn->created_at))}}</td>
-                    <td><i class="fa-solid fa-rupiah-sign float-left"></i> <span class="float-right">{{number_format($dpn->nominal,'0',',','.')}}</span></td>
-                    <td><i class="fa-solid fa-rupiah-sign float-left"></i> <span class="float-right">{{number_format($dpn->nom_payed,'0',',','.')}}</span></td>
-                    <td><i class="fa-solid fa-rupiah-sign float-left"></i> <span class="float-right">{{number_format($dpn->nom_kredit,'0',',','.')}}</span></td>
+                    <td class="text-right">{{number_format($dpn->nominal,'0',',','.')}}</td>
+                    <td class="text-right">{{number_format($dpn->nom_payed,'0',',','.')}}</td>
+                    <td class="text-right">{{number_format($dpn->nom_kredit,'0',',','.')}}</td>
                 </tr>
                 @php
                     $grandTotalKredit += $dpn->nominal; 
