@@ -89,34 +89,43 @@
             kreditPelanggan = $("#kreditPelanggan").find(":selected").val(),
             fromDate = 0,
             endDate = 0;
-            
+
         selectFaktur (fakturPelanggan, fromDate, endDate);
         selectKredit (kreditPelanggan);
         
         $("#fakturPelanggan").change(function(){
+            $("#displayNotif").fadeIn("slow");
             let fakturPelanggan = $(this).find(":selected").val(),
                 fromDate = $("#dariTanggal").val(), 
                 endDate = $("#sampaiTanggal").val();
             selectFaktur (fakturPelanggan, fromDate, endDate);
+            $("#displayNotif").fadeOut("slow");
         });        
         
         $("#dariTanggal").change(function(){
+            $("#displayNotif").fadeIn("slow");
             let fromDate = $(this).val(),
             endDate = $("#sampaiTanggal").val(),
             fakturPelanggan = $("#fakturPelanggan").val();
             selectFaktur (fakturPelanggan, fromDate, endDate);
+            $("#displayNotif").fadeOut("slow");
         });
         
         $("#sampaiTanggal").change(function(){
+            $("#displayNotif").fadeIn("slow");
             let fromDate = $("#dariTanggal").val(),
             endDate = $(this).val(),
             fakturPelanggan = $("#fakturPelanggan").val();
             selectFaktur (fakturPelanggan, fromDate, endDate);
+            $("#displayNotif").fadeOut("slow");
         });        
         
         $("#kreditPelanggan").change(function(){
-            let kreditPelanggan = $(this).find(":selected").val();                
-        });    
+            $("#displayNotif").fadeIn("slow");
+            let kreditPelanggan = $(this).find(":selected").val(); 
+            $("#displayNotif").fadeOut("slow");               
+        });
+
         function selectFaktur (fakturPelanggan, fromDate, endDate){
             $.ajax({
                 type : 'get',

@@ -58,6 +58,23 @@ class LoanMaintenanceController extends Controller
 
         return view('HutangCustomers/setupKredit', compact('dbMCustomer'));
     }
+
+    public function setupPelanggan ($keyword){
+        $customerListTrx = DB::table('m_customers');
+        if ($keyword <> '0') {
+            $customerListTrx = $customerListTrx->where('idm_customer',$keyword);
+        }
+        $customerListTrx = $customerListTrx->get();
+
+        $totalHutang2 = DB::table('view_customer_kredit');
+        $totalHutang2 = $totalHutang2->select(DB::raw('SUM(nom_kredit) as kredit'), 'from_member_id');
+        if ($keyword <> '0') {
+            $totalHutang2 = $totalHutang2->where('from_member_id', $keyword);
+        }
+        $totalHutang2 = $totalHutang2->get();
+        return view("HutangCustomers/UnlockCustomerLoan", compact('customerListTrx','totalHutang2'));
+    }
+
     public function modalEditLimit ($id){
         $selectCustomer = DB::table('m_customers as a')
             ->select('a.*','b.group_name')
@@ -109,16 +126,22 @@ class LoanMaintenanceController extends Controller
                 $historyFaktur = $historyFaktur->where('member_id',$pelanggan);
             }
             $historyFaktur = $historyFaktur->whereBetween('date_payment',[$fromDate,$endDate]);
+            $historyFaktur = $historyFaktur->orderBy('idtr_payment','desc');
             $historyFaktur = $historyFaktur->get();
 
         return view('HutangCustomers/saldoKreditFaktur', compact('historyFaktur'));
     }
 
     public function saldoCustomer($pelanggan){
-        $sumSaldoCustomer = DB::table('view_customer_kredit')
-            ->select(DB::raw('DISTINCT(from_member_id) as distctMember'), DB::raw('SUM(nominal)as nominal'), DB::raw('SUM(nom_payed) as nomPayed'), DB::raw('SUM(nom_kredit) as saldoKredit'), 'customer_store', 'from_payment_code','created_at','kredit_limit')
-            ->get();
-
+        $sumSaldoCustomer = DB::table('view_customer_kredit');
+            $sumSaldoCustomer=$sumSaldoCustomer->select(DB::raw('DISTINCT(from_member_id) as distctMember'), DB::raw('SUM(nominal)as nominal'), DB::raw('SUM(nom_payed) as nomPayed'), DB::raw('SUM(nom_kredit) as saldoKredit'), 'customer_store', 'from_payment_code','created_at','kredit_limit');
+            if ($pelanggan <> 0) {
+                $sumSaldoCustomer=$sumSaldoCustomer->where('from_member_id',$pelanggan);
+            }
+            $sumSaldoCustomer=$sumSaldoCustomer->orderBy('idtr_kredit','desc');
+            $sumSaldoCustomer=$sumSaldoCustomer->get();
         return view('HutangCustomers/saldoKreditCustomer', compact('sumSaldoCustomer'));
     }
+
+    
 }

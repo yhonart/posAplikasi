@@ -5,17 +5,6 @@
     <div class="card-body">                
         <div class="row">
             <div class="col-6 col-md-3">
-                <label class="form-label">Pilih Display</label>
-                <div class="form-group">
-                    <select name="actionCode" id="actionCode" class="form-control">
-                        <option value="0">{{str_repeat(".", 15)}}</option>
-                        <option value="1">Pembayaran Hutang</option>
-                        <option value="3">Histori Pembayaran</option>
-                        <option value="2">Edit & Open Limit Hutang</option>
-                    </select>
-                </div>
-            </div>   
-            <div class="col-6 col-md-3">
                 <div class="form-group">
                     <label class="form-label">Cari Nama Pelanggan</label>
                     <select class="form-control select-pelanggan" id="cariNamaPelanggan" class="form-control ">
@@ -77,34 +66,21 @@
     $(document).ready(function() {
         let fromDate = $('#dariTanggal').val(),
             endDate = $('#sampaiTanggal').val(),
-            valAction = $("#actionCode").val(),
+            valAction = 1,
             keyWord = $("#cariNamaPelanggan").find(":selected").val();
             timer_cari_member = null;
         
         $("#cariNamaPelanggan").change(function(){
             let keyWord = $(this).find(":selected").val();
                 fromDate = $('#dariTanggal').val(),
-                endDate = $('#sampaiTanggal').val(),
-                valAction = $("#actionCode").val();
+                endDate = $('#sampaiTanggal').val();
 
-            searchData(keyWord, fromDate, endDate, valAction);
-        });
-        
-        $("#actionCode").change(function(){
-            let valAction = $(this).find(":selected").val();
-                fromDate = $('#dariTanggal').val(),
-                endDate = $('#sampaiTanggal').val(),
-                keyWord = $("#cariNamaPelanggan").find(":selected").val(); 
-                if(keyWord == ''){
-                    keyWord = '0';
-                }  
             searchData(keyWord, fromDate, endDate, valAction);
         });
         
         $("#dariTanggal").change(function(){
             let fromDate = $('#dariTanggal').val(),
                 endDate = $('#sampaiTanggal').val(),
-                valAction = $("#actionCode").val(),
                 keyWord = $("#cariNamaPelanggan").find(":selected").val();
 
                 if(keyWord == ''){
@@ -115,8 +91,7 @@
 
         $("#sampaiTanggal").change(function(){
             let fromDate = $('#dariTanggal').val(),
-                endDate = $('#sampaiTanggal').val(),
-                valAction = $("#actionCode").val(),
+                endDate = $('#sampaiTanggal').val(),                
                 keyWord = $("#cariNamaPelanggan").find(":selected").val();
                 if(keyWord == ''){
                     keyWord = '0';

@@ -1370,21 +1370,6 @@ class CashierController extends Controller
                 ->first();
             return view('Cashier/cashierModalDataPelunasanList', compact('dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman','accountPenjualan','sumPayed'));
         }
-        elseif ($valAction == '2') {
-            $customerListTrx = DB::table('m_customers');
-            if ($keyword <> '0') {
-                $customerListTrx = $customerListTrx->where('idm_customer',$keyword);
-            }
-            $customerListTrx = $customerListTrx->get();
-
-            $totalHutang2 = DB::table('view_customer_kredit');
-            $totalHutang2 = $totalHutang2->select(DB::raw('SUM(nom_kredit) as kredit'), 'from_member_id');
-            if ($keyword <> '0') {
-                $totalHutang2 = $totalHutang2->where('from_member_id', $keyword);
-            }
-            $totalHutang2 = $totalHutang2->get();
-            return view("HutangCustomers/UnlockCustomerLoan", compact('customerListTrx','totalHutang2'));
-        }
         elseif ($valAction == '3') {
             $listPembayaranCustomer = DB::table('tr_pembayaran_kredit as a')
                 ->leftJoin('m_customers as b','a.member_id','=','b.idm_customer')
