@@ -89,28 +89,34 @@
             kreditPelanggan = $("#kreditPelanggan").find(":selected").val(),
             fromDate = 0,
             endDate = 0;
-
+            
+        selectFaktur (fakturPelanggan, fromDate, endDate);
+        selectKredit (kreditPelanggan);
+        
         $("#fakturPelanggan").change(function(){
-            let fakturPelanggan = $(this).find(":selected").val();  
+            let fakturPelanggan = $(this).find(":selected").val(),
+                fromDate = $("#dariTanggal").val(), 
+                endDate = $("#sampaiTanggal").val();
+            selectFaktur (fakturPelanggan, fromDate, endDate);
+        });        
+        
+        $("#dariTanggal").change(function(){
+            let fromDate = $(this).val(),
+            endDate = $("#sampaiTanggal").val(),
+            fakturPelanggan = $("#fakturPelanggan").val();
+            selectFaktur (fakturPelanggan, fromDate, endDate);
         });
+        
+        $("#sampaiTanggal").change(function(){
+            let fromDate = $("#dariTanggal").val(),
+            endDate = $(this).val(),
+            fakturPelanggan = $("#fakturPelanggan").val();
+            selectFaktur (fakturPelanggan, fromDate, endDate);
+        });        
         
         $("#kreditPelanggan").change(function(){
             let kreditPelanggan = $(this).find(":selected").val();                
         });    
-        
-        $("#dariTanggal").change(function(){
-            let fromDate = $(this).val(),
-                endDate = $("#sampaiTanggal").val(),
-                fakturPelanggan = $("#fakturPelanggan").val();
-        });
-        $("#sampaiTanggal").change(function(){
-            let fromDate = $("#dariTanggal").val(),
-                endDate = $(this).val(),
-                fakturPelanggan = $("#fakturPelanggan").val();
-        });        
-        selectFaktur (fakturPelanggan, fromDate, endDate);
-        selectKredit (kreditPelanggan);
-
         function selectFaktur (fakturPelanggan, fromDate, endDate){
             $.ajax({
                 type : 'get',
