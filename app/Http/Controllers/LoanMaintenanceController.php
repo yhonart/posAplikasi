@@ -102,14 +102,19 @@ class LoanMaintenanceController extends Controller
         return response()->json($msg);
     }
 
-    public function saldoFaktur(){
-        $historyFaktur = DB::table('view_payment_kredit')
-            ->get();
+    public function saldoFaktur($pelanggan, $fromDate, $endDate){
+
+        $historyFaktur = DB::table('view_payment_kredit');
+            if ($pelanggan <> 0) {
+                $historyFaktur = $historyFaktur->where('member_id',$pelanggan);
+            }
+            $historyFaktur = $historyFaktur->whereBetween('date_payment',[$fromDate,$endDate]);
+            $historyFaktur = $historyFaktur->get();
 
         return view('HutangCustomers/saldoKreditFaktur', compact('historyFaktur'));
     }
 
-    public function saldoCustomer(){
+    public function saldoCustomer($pelanggan){
         $sumSaldoCustomer = DB::table('view_customer_kredit')
             ->select(DB::raw('DISTINCT(from_member_id) as distctMember'), DB::raw('SUM(nominal)as nominal'), DB::raw('SUM(nom_payed) as nomPayed'), DB::raw('SUM(nom_kredit) as saldoKredit'), 'customer_store', 'from_payment_code','created_at','kredit_limit')
             ->get();

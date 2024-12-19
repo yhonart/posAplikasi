@@ -3,10 +3,10 @@
     <div class="card-header">
         <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
             <li class="nav-item">
-            <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Saldo Hutang Faktur</a>
+                <a class="nav-link font-weight-bold active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Saldo Hutang Faktur</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Saldo Hutang Customers</a>
+                <a class="nav-link font-weight-bold" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Saldo Hutang Customers</a>
             </li>
         </ul>
     </div>
@@ -69,7 +69,12 @@
     </div>
 </div>
 <script>    
-    $(document).ready(function() {        
+    $(document).ready(function() {    
+        let fakturPelanggan = $("#fakturPelanggan").find(":selected").val(),
+            kreditPelanggan = $("#kreditPelanggan").find(":selected").val(),
+            fromDate = $("#dariTanggal").val(),
+            endDate = $("#sampaiTanggal").val();
+
         $( ".datetimepicker-input" ).datepicker({
             dateFormat: 'yy-mm-dd',
             autoclose: true,
@@ -83,21 +88,37 @@
         $('#kreditPelanggan').select2({
             theme: 'bootstrap4',
         });
-    
-        $.ajax({
-            type : 'get',
-            url : "{{route('adminPiutangPelanggan')}}/saldoFaktur",
-            success : function(response){
-                $('#divSaldoFaktur').html(response);
-            }
+
+        $("#fakturPelanggan").change(function(){
+            let fakturPelanggan = $(this).find(":selected").val();  
+            
         });
-    
-        $.ajax({
-            type : 'get',
-            url : "{{route('adminPiutangPelanggan')}}/saldoCustomer",
-            success : function(response){
-                $('#divSaldoCustomer').html(response);
-            }
-        });
+        
+        $("#kreditPelanggan").change(function(){
+            let kreditPelanggan = $(this).find(":selected").val();                
+        });        
+        
+        selectFaktur (fakturPelanggan, fromDatem, endDate);
+        selectKredit (kreditPelanggan);
+
+        function selectFaktur (fakturPelanggan, fromDatem, endDate){
+            $.ajax({
+                type : 'get',
+                url : "{{route('adminPiutangPelanggan')}}/saldoFaktur/"+fakturPelanggan+"/"+fromDate+"/"+endDate,
+                success : function(response){
+                    $('#divSaldoFaktur').html(response);
+                }
+            });
+        }
+        
+        function selectKredit (kreditPelanggan){
+            $.ajax({
+                type : 'get',
+                url : "{{route('adminPiutangPelanggan')}}/saldoCustomer/"+kreditPelanggan,
+                success : function(response){
+                    $('#divSaldoCustomer').html(response);
+                }
+            });
+        }
     });
 </script>
