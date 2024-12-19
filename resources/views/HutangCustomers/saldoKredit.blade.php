@@ -98,10 +98,10 @@
             let kreditPelanggan = $(this).find(":selected").val();                
         });        
         
-        selectFaktur (fakturPelanggan, fromDatem, endDate);
+        selectFaktur (fakturPelanggan, fromDate, endDate);
         selectKredit (kreditPelanggan);
 
-        function selectFaktur (fakturPelanggan, fromDatem, endDate){
+        function selectFaktur (fakturPelanggan, fromDate, endDate){
             $.ajax({
                 type : 'get',
                 url : "{{route('adminPiutangPelanggan')}}/saldoFaktur/"+fakturPelanggan+"/"+fromDate+"/"+endDate,
