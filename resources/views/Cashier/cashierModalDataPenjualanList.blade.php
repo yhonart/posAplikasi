@@ -39,6 +39,7 @@
                             @if($lds->status >= '3')
                             <td>{{$lds->method_name}}</td>
                             <td>
+                                <i class="fa-solid fa-pen-to-square"></i>
                                 <select class="form-control form-control-sm" name="rePrintID[]" onchange="sendReprint(this,'{{$lds->billing_number}}')">
                                     <option value="0" readonly>Pilih</option>
                                     <option value="1">Struk</option>

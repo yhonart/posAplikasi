@@ -5,7 +5,7 @@
     <div class="col-12">
         <div class="card card-body table-responsive" style="height:700px;">
             <table class="table table-valign-middle table-hover" id="tableDisplayLap">
-                <thead class="bg-indigo">
+                <thead class="bg-gray-dark">
                     <tr>
                         <th>Tanggal </th>
                         <th>Nomor Bukti</th>
