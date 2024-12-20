@@ -801,10 +801,16 @@ class TempInventoryController extends Controller
         $invIn = '0';
         $invOut = $qtyReport;
         $saldo = $invStock->stock - $invOut;
+        
+        $dokumenDate = DB::table('tr_store')
+            ->select('tr_date')
+            ->where('billing_number',$noTrx)
+            ->first();
+        $dokDate = $dokumenDate->tr_date;
 
         DB::table('report_inv')
             ->insert([
-                'date_input'=>now(),
+                'date_input'=>$dokDate,
                 'number_code'=>$noTrx,
                 'product_id'=>$productID,
                 'product_name'=>$prodName,
