@@ -100,13 +100,14 @@
         });
     })
     function saveChangeDate(editableObj,tablename,column,id,dataId){
-        alertify.confirm("Apakah anda yakin ingin melakukan perubahan tanggal transaksi ke tanggal : "+editableObj,
+        alertify.confirm("Apakah anda yakin ingin melakukan perubahan tanggal transaksi ke tanggal : "+editableObj.value,
         function(){
             $.ajax({
                 url: "{{route('Cashier')}}/buttonAction/dataReturn/changeDate",
                 type: "POST",
                 data:'tablename='+tablename+'&column='+column+'&editval='+editableObj.value+'&id='+id+'&dataId='+dataId,
                 success: function(data){
+                    loadDataReturn();
                     alertify.success('Tanggal Berhasil Dirubah');
                 }
             });
@@ -170,9 +171,7 @@
     $("form#formKonfirmAdmin").submit(function(eventvendor){
         eventvendor.preventDefault();
         let dataAction = $("#datAction").val(),
-            keyword = "{{$keyword}}",
-            fromDate = "{{$fromDate}}",
-            endDate = "{{$endDate}}",
+            
             toko = $("#toko").val();
             
             $("#spinLanjutkan").fadeIn("slow");
@@ -194,7 +193,7 @@
                         }
                         else{
                             $("#notifDisplay").html(data.success);
-                            loadDataReturn(keyword, fromDate, endDate);
+                            loadDataReturn();
                         }
                     }
                     $("#spinLanjutkan").fadeOut("slow");
@@ -203,8 +202,10 @@
         return false;
     });
     
-    function loadDataReturn(keyword, fromDate, endDate){ 
-        // alert(fromDate);
+    function loadDataReturn(){ 
+        let keyword = "{{$keyword}}",
+            fromDate = "{{$fromDate}}",
+            endDate = "{{$endDate}}";
         $.ajax({
             type : 'get',
             url : "{{route('Cashier')}}/buttonAction/dataReturn/searchDataReturn/"+keyword+"/"+fromDate+"/"+endDate,
