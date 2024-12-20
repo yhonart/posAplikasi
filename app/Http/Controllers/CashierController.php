@@ -1048,7 +1048,7 @@ class CashierController extends Controller
             ['a.status', '!=', '1'],
             ['a.status', '!=', '2']
         ]);
-        $listDataSelling = $listDataSelling->orderBy('a.tr_store_id', 'asc');
+        $listDataSelling = $listDataSelling->orderBy('a.billing_number', 'asc');
         $listDataSelling = $listDataSelling->get();
 
         return view('Cashier/cashierModalDataPenjualanList', compact('listDataSelling', 'area'));
