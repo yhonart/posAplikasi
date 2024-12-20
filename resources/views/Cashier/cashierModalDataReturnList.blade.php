@@ -100,15 +100,20 @@
         });
     })
     function saveChangeDate(editableObj,tablename,column,id,dataId){
-        alert(id);
-        $.ajax({
-            url: "{{route('Cashier')}}/buttonAction/dataReturn/changeDate",
-            type: "POST",
-            data:'tablename='+tablename+'&column='+column+'&editval='+editableObj.value+'&id='+id+'&dataId='+dataId,
-            success: function(data){
-                alertify.success('Tanggal Berhasil Dirubah');
-            }
-        });
+        alertify.confirm("Apakah anda yakin ingin melakukan perubahan tanggal transaksi ke tanggal : "+editableObj,
+        function(){
+            $.ajax({
+                url: "{{route('Cashier')}}/buttonAction/dataReturn/changeDate",
+                type: "POST",
+                data:'tablename='+tablename+'&column='+column+'&editval='+editableObj.value+'&id='+id+'&dataId='+dataId,
+                success: function(data){
+                    alertify.success('Tanggal Berhasil Dirubah');
+                }
+            });
+        },
+        function(){
+            alertify.error('Cancel');
+        }).set({title:"Konfirmasi Perubahan Tanggal."});
     }
     $(document).ready(function(){
         let divViewId = $("#divDataReturn");        

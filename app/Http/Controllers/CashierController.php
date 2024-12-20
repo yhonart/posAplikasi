@@ -3254,12 +3254,80 @@ class CashierController extends Controller
         $editval = $reqChangeDate->editval;
         $id = $reqChangeDate->id;
         $dataId = $reqChangeDate->dataId;
+        
+        $countNumber = DB::table('tr_store')
+            ->where('tr_date',$editval)
+            ->count();
 
-        DB::table($tableName)
+        $thisDate = date("dmy", $editval);
+        if ($countNumber == 0) {
+            $no = "1";
+            $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
+        }
+        else {
+            $no = $countNumber + 1;
+            $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
+        }
+
+        $selectInfoData = DB::table('tr_store')
+            ->where($dataId, $id)
+            ->first();
+
+        $billNumber = $selectInfoData->billing_number;
+
+        //Change tr_kredit
+        DB::table('tr_kredit')
+            ->where('from_payment_code',$billNumber)
+            ->update([
+                'from_payment_code'=>$pCode
+            ]);
+
+        //Change tr_kredit_record
+        DB::table('tr_kredit_record')
+            ->where('trx_code',$billNumber)
+            ->update([
+                'trx_code'=>$pCode
+            ]);
+
+        //Change tr_payment_method
+        DB::table('tr_payment_method')
+            ->where('core_id_trx',$billNumber)
+            ->update([
+                'core_id_trx'=>$pCode
+            ]);
+
+        //Change tr_payment_record
+        DB::table('tr_payment_record')
+            ->where('trx_code',$billNumber)
+            ->update([
+                'trx_code'=>$pCode
+            ]);
+
+        //Change tr_store_prod_list
+        DB::table('tr_store_prod_list')
+            ->where('from_payment_code',$billNumber)
+            ->update([
+                'from_payment_code'=>$pCode
+            ]);
+        
+        //Change laporan inventory
+        DB::table('report_inv')
+            ->where('number_code',$billNumber)
+            ->update([
+                'number_code'=>$pCode,
+                'date_input'=>$editval
+            ]);
+        
+        DB::table('tr_store')
             ->where($dataId, $id)
             ->update([
-                $column => $editval
+                $column => $editval,
+                'billing_number'=>$pCode,
+                'updated_date'=>now()
             ]);
+
+        
+
     }
 
     // add temporer trx
