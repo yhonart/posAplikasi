@@ -1,8 +1,6 @@
-<div class="row mb-2">
-    <div class="col-12">
-        
-    </div>
-</div>
+<?php
+    $saldo = 0;
+?>
 <div class="row">
     <div class="col-12">
         <div class="card card-body table-responsive" style="height:700px;">
@@ -62,7 +60,10 @@
                             <td class="text-right">{{$dri->inv_in}}</td>
                             <td class="text-right">{{$dri->inv_out}}</td>
                             <td class="text-right">
-                                {{$dri->saldo}}
+                                <?php
+                                    $saldo += $dri->inv_in - $dri->inv_out;
+                                ?>
+                                {{$saldo}}
                             </td>
                         </tr>
                     @endforeach
