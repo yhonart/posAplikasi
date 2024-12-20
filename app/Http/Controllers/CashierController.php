@@ -1529,7 +1529,7 @@ class CashierController extends Controller
             ['a.status', '!=', '2'],
             ['a.status', '!=', '0']
         ]);
-        $listDataNumber = $listDataNumber->orderBy('a.tr_store_id', 'asc');
+        $listDataNumber = $listDataNumber->orderBy('a.billing_number', 'asc');
         $listDataNumber = $listDataNumber->get();
 
         return view('Cashier/cashierModalDataReturnList', compact('listDataNumber', 'keyword', 'fromDate', 'endDate'));
