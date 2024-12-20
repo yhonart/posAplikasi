@@ -3259,7 +3259,7 @@ class CashierController extends Controller
             ->where('tr_date',$editval)
             ->count();
 
-        $thisDate = date("dmy", $editval);
+        $thisDate = date("dmy", strtotime($editval));
         if ($countNumber == 0) {
             $no = "1";
             $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
