@@ -219,7 +219,7 @@ class PurchasingController extends Controller
         
         $periode = date("mY");
         $hariIni = date("Y-m-d");
-        $monthNumber = date("dmY", strtotime($dateDelivery));
+        $monthNumber = date("dmy", strtotime($dateDelivery));
 
         $createdBy = Auth::user()->name;
         //Get nomor dokumen
