@@ -534,56 +534,56 @@ class PurchasingController extends Controller
             $purchasingDate = $idDataReport->delivery_date;
             $dateNow = date("Y-m-d");
 
-            // if ($purchasingDate < $dateNow) {
-            //     $repotInv = DB::table('report_inv')
-            //         ->where('date_input','>',$purchasingDate)
-            //         ->get();
+            if ($purchasingDate < $dateNow) {
+                //cari tanggal lebih dari tanggal yang di input
+                $repotInv = DB::table('report_inv')
+                    ->where('date_input','>',$purchasingDate)
+                    ->get();
 
-            //     $lastSaldo = DB::table('report_inv')
-            //         ->where('product_id',$productID)
-            //         ->orderBy('idr_inv','desc')
-            //         ->first();
+                $lastSaldo = DB::table('report_inv')
+                    ->where('product_id',$productID)
+                    ->orderBy('idr_inv','desc')
+                    ->first();
 
-            //     foreach ($repotInv as $RI) {
-            //         $endSaldo = $RI->saldo;
-            //         $updateSaldo = $endSaldo + $ls;
-            //         $idUpdate = $RI->idr_inv;
+                foreach ($repotInv as $RI) {
+                    $endSaldo = $RI->saldo;
+                    $updateSaldo = $endSaldo + $ls;
+                    $idUpdate = $RI->idr_inv;
 
-            //         DB::table('report_inv')
-            //             ->where('idr_inv',$idUpdate)
-            //             ->update([
-            //                 'saldo'=>$updateSaldo
-            //             ]);
-            //     }
-            //     $inInv = $lastSaldo->saldo + $ls;
-            // }
-            // else {
-            // }
-            
-            $inInv = $ls;
-
-            $saldo = $inInv + $selectLastStock->stock;
-            $volPrd = $selectSizeCode->product_volume;
-            //Query insert into report
-            DB::table('report_inv')
-                ->insert([
-                    'date_input'=>$purchasingDate,
-                    'number_code'=>$numberCode,
-                    'product_id'=>$productID,
-                    'product_name'=>$prodName,
-                    'satuan'=>$satuan,
-                    'satuan_code'=>$sizeCodeDesc,
-                    'description'=>$description,
-                    'inv_in'=>$inInv,
-                    'inv_out'=>$outInv,
-                    'saldo'=>$saldo,
-                    'created_by'=>$createdBy,
-                    'location'=>$loc,
-                    'vol_prd'=>$volPrd,
-                    'last_saldo'=>$pl->stock_awal,
-                    'actual_input'=>$pl->qty,
-                    'status_trx'=>'4'
-                ]);
+                    DB::table('report_inv')
+                        ->where('idr_inv',$idUpdate)
+                        ->update([
+                            'saldo'=>$updateSaldo
+                        ]);
+                }
+                $inInv = $lastSaldo->saldo + $ls;
+            }
+            else {
+                $inInv = $ls;
+    
+                $saldo = $inInv + $selectLastStock->stock;
+                $volPrd = $selectSizeCode->product_volume;
+                //Query insert into report
+                DB::table('report_inv')
+                    ->insert([
+                        'date_input'=>$purchasingDate,
+                        'number_code'=>$numberCode,
+                        'product_id'=>$productID,
+                        'product_name'=>$prodName,
+                        'satuan'=>$satuan,
+                        'satuan_code'=>$sizeCodeDesc,
+                        'description'=>$description,
+                        'inv_in'=>$inInv,
+                        'inv_out'=>$outInv,
+                        'saldo'=>$saldo,
+                        'created_by'=>$createdBy,
+                        'location'=>$loc,
+                        'vol_prd'=>$volPrd,
+                        'last_saldo'=>$pl->stock_awal,
+                        'actual_input'=>$pl->qty,
+                        'status_trx'=>'4'
+                    ]);
+            }          
 
             //UPDATE STOCK;            
             $updateInv = $this->TempInventoryController->tambahStock($productID, $qtyInput, $satuan, $location);
