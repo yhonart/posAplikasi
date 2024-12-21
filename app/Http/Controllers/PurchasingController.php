@@ -233,7 +233,7 @@ class PurchasingController extends Controller
                 $nomorPembelian = "PB-".$monthNumber."-".sprintf("%07d",$no);
             }
             else {
-                $no = '1';
+                $no = $countNomorDok + 1;
                 $nomorPembelian = "PB-".$monthNumber."-".sprintf("%07d",$no);
             }
         }
