@@ -218,15 +218,35 @@ class PurchasingController extends Controller
         $nomPPN = $posPenerimaan->nomPPN;
         
         $periode = date("mY");
+        $hariIni = date("Y-m-d");
+        $monthNumber = date("dmY", strtotime($dateDelivery));
+
         $createdBy = Auth::user()->name;
-        
+        //Get nomor dokumen
+        $countNomorDok = DB::table('purchase_order')
+            ->where('purchase_date',$dateDelivery)
+            ->count();
+
+        if ($dateDelivery <> $hariIni) {
+            if ($countNomorDok == 0) {
+                $no = '1';
+                $nomorPembelian = "PB-".$monthNumber."-".sprintf("%07d",$no);
+            }
+            else {
+                $no = '1';
+                $nomorPembelian = "PB-".$monthNumber."-".sprintf("%07d",$no);
+            }
+        }
+        else {
+            $nomorPembelian = $noTrx;
+        }
         if($supplier == '0'){
             $msg = array('warning' => 'Nama supplier belum ada !');
         }
         else{
             DB::table('purchase_order')
                 ->insert([
-                    'purchase_number'=>$noTrx,    
+                    'purchase_number'=>$nomorPembelian,    
                     'periode'=>$periode,    
                     'purchase_date'=>now(),    
                     'supplier_id'=>$supplier,    
