@@ -586,7 +586,13 @@ class PurchasingController extends Controller
                 }
                 
                 $inInv = $ls;
-                $saldo = $lastSaldo->saldo + $ls;
+                if (!empty($lastSaldo)) {
+                    $lapSaldoAkhir = $lastSaldo->saldo;
+                }
+                else {
+                    $lapSaldoAkhir = 0;
+                }
+                $saldo = $lapSaldoAkhir + $ls;
                 $volPrd = $selectSizeCode->product_volume;
                 DB::table('report_inv')
                     ->insert([
