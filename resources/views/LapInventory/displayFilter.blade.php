@@ -63,7 +63,7 @@
                                 <?php
                                     $saldo += $dri->inv_in - $dri->inv_out;
                                 ?>
-                                {{$dri->saldo}}
+                                {{$saldo}}
                             </td>
                         </tr>
                     @endforeach

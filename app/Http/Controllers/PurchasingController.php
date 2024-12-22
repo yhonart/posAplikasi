@@ -590,7 +590,14 @@ class PurchasingController extends Controller
                     $lapSaldoAkhir = $lastSaldo->saldo;
                 }
                 else {
-                    $lapSaldoAkhir = 0;
+                    $cekNextSaldo = DB::table('report_inv')
+                        ->where([
+                            ['date_input','>',$purchasingDate],
+                            ['product_id',$productID],
+                            ['location',$location]
+                            ])
+                        ->first();
+                    $lapSaldoAkhir = $cekNextSaldo->saldo;
                 }
                 $saldo = $lapSaldoAkhir + $ls;
                 $volPrd = $selectSizeCode->product_volume;
