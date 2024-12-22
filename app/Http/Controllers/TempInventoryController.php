@@ -904,7 +904,7 @@ class TempInventoryController extends Controller
             $saldo = $invStock->stock;
             $invOut = (int)$reportInv->saldo;
         }
-        
+
         DB::table('report_inv')
             ->where([
                 ['number_code',$docNumber],
@@ -912,7 +912,7 @@ class TempInventoryController extends Controller
                 ['satuan',$satuan]
             ])
             ->update([
-                'inv_out'=>$invOut,
+                'inv_out'=>$qtyReport,
                 'saldo'=>$saldo,
             ]);
     }
