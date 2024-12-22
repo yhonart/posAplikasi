@@ -70,7 +70,20 @@
                                 echo $saldoawal;
                                 echo "</td>";
                             echo "</tr>";
-                        }                        
+                        }  
+                        else {
+                            echo "<tr>";
+                                echo "<td>".$dataSaldoAwal->date_input."</td>";
+                                echo "<td></td>";
+                                echo "<td></td>";
+                                echo "<td>Saldo Awal</td>";
+                                echo "<td class='text-right'>0</td>";
+                                echo "<td class='text-right'>0</td>";
+                                echo "<td class='text-right'>";
+                                echo $lastSaldo;
+                                echo "</td>";
+                            echo "</tr>";
+                        }                      
                     ?>
                     @foreach($dataReportInv as $dri)
                         <tr>
