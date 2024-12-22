@@ -84,7 +84,7 @@
                                     $saldo1 = $saldoInv-$keySaldo;
                                     $saldo2 = $saldo+$saldo1;
                                 ?>
-                                {{$saldo1}}
+                                {{$saldo2}}
                             </td>
                         </tr>
                     @endforeach
