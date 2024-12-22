@@ -93,8 +93,16 @@ class LapInventoryController extends Controller
             ->first();
 
         $codeDisplay = '1';
+
+        $lastSaldo = DB::table('view_product_stock')
+            ->where([
+                ['idm_data_product',$produk],
+                ['location_id',$lokasi]
+                ])
+            ->orderBy('size_code','desc')
+            ->first();
         
-        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay','dataSaldoAwal','mProduct'));
+        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay','dataSaldoAwal','mProduct','lastSaldo'));
     }
 
     public function downloadKartuStock($produk, $fromDate, $endDate, $lokasi){

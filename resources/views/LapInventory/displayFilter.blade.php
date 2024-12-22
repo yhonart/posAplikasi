@@ -4,6 +4,14 @@
     $tKeluar = 0;
     $tSaldo = 0;
     $disSaldo = 0;
+    $keyMasuk = 0;
+    $keyKeluar = 0;
+    $keySaldo = 0;
+    foreach ($dataReportInv as $keyReport) {
+        $keyMasuk += $keyReport->inv_in;
+        $keyKeluar += $keyReport->inv_out;
+        $keySaldo += $keyMasuk - $keyKeluar;
+    }
 ?>
 <div class="row">
     <div class="col-12">
@@ -53,7 +61,7 @@
                                 echo $saldoawal;
                                 echo "</td>";
                             echo "</tr>";
-                        }
+                        }                        
                     ?>
                     @foreach($dataReportInv as $dri)
                         <tr>
@@ -71,7 +79,7 @@
                                     $tSaldo += $dri->saldo;
                                     $disSaldo += $tMasuk - $tKeluar;
                                 ?>
-                                {{$saldo}}
+                                {{$saldo}}/{{$keySaldo}}
                             </td>
                         </tr>
                     @endforeach
