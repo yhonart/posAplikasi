@@ -10,7 +10,12 @@
     $saldo1 = 0;
     $saldo2 = 0;
     $saldo3 = 0;
-    $saldoInv = $lastSaldo->stock;
+    if (!empty($lastSaldo)) {
+        $saldoInv = $lastSaldo->stock;
+    }
+    else {
+        $saldoInv = 0;
+    }
     foreach ($dataReportInv as $keyReport) {
         $keyMasuk += $keyReport->inv_in;
         $keyKeluar += $keyReport->inv_out;
