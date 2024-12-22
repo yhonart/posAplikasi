@@ -3,6 +3,7 @@
     $tMasuk = 0;
     $tKeluar = 0;
     $tSaldo = 0;
+    $disSaldo = 0;
 ?>
 <div class="row">
     <div class="col-12">
