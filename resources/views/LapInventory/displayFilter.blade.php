@@ -68,6 +68,7 @@
                                     $tMasuk += $dri->inv_in;
                                     $tKeluar += $dri->inv_out;
                                     $tSaldo += $dri->saldo;
+                                    $disSaldo = $tSaldo - $tKeluar;
                                 ?>
                                 {{$saldo}}
                             </td>
