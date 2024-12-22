@@ -79,14 +79,9 @@
                                 <?php
                                     $saldo += $dri->inv_in - $dri->inv_out;
                                     $tMasuk += $dri->inv_in;
-                                    $tKeluar += $dri->inv_out;
-                                    $tSaldo += $dri->saldo;
-                                    $disSaldo += $tMasuk - $tKeluar;
-                                    $saldo1 = $saldoInv-$keySaldo;
-                                    $saldo2 = $saldo+$saldo1;
-                                    $saldo3 = $saldo2+$keySaldo;
+                                    $tKeluar += $dri->inv_out;                                    
                                 ?>
-                                {{$saldo}}/{{$saldo1}}/{{$saldo2}}/{{$saldo3}}/{{$keySaldo}}
+                                {{$saldo}}
                             </td>
                         </tr>
                     @endforeach
