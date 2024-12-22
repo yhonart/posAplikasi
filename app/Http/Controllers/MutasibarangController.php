@@ -51,17 +51,18 @@ class MutasibarangController extends Controller
         else{
             
             //cek deleted number
-            $deletedNumber = DB::table('inv_moving')
-                ->where('status','0')
-                ->first();
+            $pag = $countPeriode+1;
+            $nopag = "PAG-".$thisPeriode."-".sprintf("%07d",$pag);
+            
+            // $deletedNumber = DB::table('inv_moving')
+            //     ->where('status','0')
+            //     ->first();
                 
-            if(empty($deletedNumber)){
-                $pag = $countPeriode+1;
-                $nopag = "PAG-".$thisPeriode."-".sprintf("%07d",$pag);
-            }
-            else{
-                $nopag = $deletedNumber->number_so;
-            }
+            // if(empty($deletedNumber)){
+            // }
+            // else{
+            //     $nopag = $deletedNumber->number_so;
+            // }
         }
         return $nopag;
     }
