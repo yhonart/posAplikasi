@@ -1,5 +1,8 @@
 <?php
     $saldo = 0;
+    $tMasuk = 0;
+    $tKeluar = 0;
+    $tSaldo = 0;
 ?>
 <div class="row">
     <div class="col-12">
@@ -62,11 +65,20 @@
                             <td class="text-right">
                                 <?php
                                     $saldo += $dri->inv_in - $dri->inv_out;
+                                    $tMasuk += $dri->inv_in;
+                                    $tKeluar += $dri->inv_out;
+                                    $tSaldo += $dri->saldo;
                                 ?>
                                 {{$dri->saldo}}
                             </td>
                         </tr>
                     @endforeach
+                        <tr>
+                            <td colspan="4">TOTAL</td>
+                            <td>{{$tMasuk}}</td>
+                            <td>{{$tKeluar}}</td>
+                            <td>{{$tSaldo}}</td>
+                        </tr>
                 </tbody>
             </table>
         </div>
