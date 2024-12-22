@@ -683,4 +683,18 @@ class MutasibarangController extends Controller
             $coloumn => $editVal
             ]);
    }
+
+    public function deleteMutasi($noDok){
+        DB::table('inv_moving')
+            ->where('number',$noDok)
+            ->update([
+                'status'=>'0'
+            ]);
+
+        DB::table('inv_moving_list')
+            ->where('mutasi_code',$noDok)
+            ->update([
+                'status'=>'0'
+            ]);
+    }
 }
