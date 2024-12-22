@@ -74,10 +74,10 @@
                         </tr>
                     @endforeach
                         <tr>
-                            <td colspan="4">TOTAL</td>
-                            <td>{{$tMasuk}}</td>
-                            <td>{{$tKeluar}}</td>
-                            <td>{{$tSaldo}}</td>
+                            <td colspan="4" class="font-weight-bold text-center bg-lightblue">TOTAL</td>
+                            <td class="font-weight-bold text-right bg-lightblue">{{$tMasuk}}</td>
+                            <td class="font-weight-bold text-right bg-lightblue">{{$tKeluar}}</td>
+                            <td class="bg-lightblue"></td>
                         </tr>
                 </tbody>
             </table>
