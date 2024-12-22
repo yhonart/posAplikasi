@@ -7,6 +7,7 @@
     $keyMasuk = 0;
     $keyKeluar = 0;
     $keySaldo = 0;
+    $saldo1 = 0;
     foreach ($dataReportInv as $keyReport) {
         $keyMasuk += $keyReport->inv_in;
         $keyKeluar += $keyReport->inv_out;
@@ -78,8 +79,9 @@
                                     $tKeluar += $dri->inv_out;
                                     $tSaldo += $dri->saldo;
                                     $disSaldo += $tMasuk - $tKeluar;
+                                    $saldo1 = $saldo+$keySaldo;
                                 ?>
-                                {{$saldo}}/{{$keySaldo}}
+                                {{$saldo1}}
                             </td>
                         </tr>
                     @endforeach
