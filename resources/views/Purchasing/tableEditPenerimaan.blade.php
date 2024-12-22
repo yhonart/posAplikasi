@@ -1,4 +1,4 @@
-<div class="row mt-2 mb-2">
+<div class="row mt-2 mb-1">
     <div class="col-md-12">
         <span class="text-muted font-weight-bold">No. Dokumen : {{$editPurchase->purchase_number}} || Supplier : {{$editPurchase->store_name}}</span>        
     </div>
