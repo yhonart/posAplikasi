@@ -72,7 +72,7 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Kirim Melalui</label>
-                            <input type="text" name="deliveryBy" id="deliveryBy" class="form-control form-control-sm " autocomplete="off">
+                            <input type="text" name="deliveryBy" id="deliveryBy" class="form-control form-control-sm " autocomplete="off" style="text-transform:uppercase">
                         </div>
                     </div>
                     <div class="form-group row">
