@@ -894,15 +894,15 @@ class TempInventoryController extends Controller
         
         if ($lastQty < $editVal) {
             $saldo = $invStock->stock - $qtyReport;
-            $invOut = (int)$reportInv->inv_out - $qtyReport;
+            $invOut = $reportInv->inv_out + $qtyReport;
         }
         elseif ($lastQty > $editVal) {
             $saldo = $invStock->stock + $qtyReport;
-            $invOut = (int)$reportInv->inv_out + $qtyReport;
+            $invOut = $reportInv->inv_out - $qtyReport;
         }
         else {
             $saldo = $invStock->stock;
-            $invOut = (int)$reportInv->saldo;
+            $invOut = $reportInv->saldo;
         }
 
         DB::table('report_inv')
