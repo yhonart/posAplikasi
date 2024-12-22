@@ -1,3 +1,15 @@
+<div class="row">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-light btn-sm" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <i class="fa-solid fa-pen-to-square"></i> Dokumen Pembelian
+        </button>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <div id="displayCollapseDokumen"></div>
+            </div>
+        </div>
+    </div>
+</div>
 <form class="form animate__animated animate__fadeIn" >
     <div class="form-group row">
         <div class="col-md-3">
@@ -35,7 +47,16 @@
             purchaseCode = $("#purchaseCode").val(),
             noPO = $("#noPO").val(),
             subTotalSatuan = $("#subTotalSatuan").val(),
+            dokNumber = "{{$trxPO}}";
             subTotal = $("#subTotal").val();
+
+        $.ajax({
+            type : 'get',
+            url : "{{route('Purchasing')}}/collapseDokumen/"+dokNumber,
+            success : function(response){
+                $("#displayCollapseDokumen").html(response);
+            }
+        });
             
         $("#simpanPenerimaan").on('click', function(){
             $("#simpanPenerimaan").hide();

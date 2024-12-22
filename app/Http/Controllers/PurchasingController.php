@@ -1004,4 +1004,15 @@ class PurchasingController extends Controller
 
         return view ('Purchasing/selectMetodePembayaran', compact('mSupplier'));
     }
+
+    public function collapseDokumen ($dokNumber){
+        $numberPurchase = DB::table('purchase_order')
+            ->where('purchase_number',$dokNumber)
+            ->first();
+
+        $supplier = DB::table('m_supplier')
+            ->get();
+
+        return view('Purchasing/newPurchaseOrderCollapse', compact('numberPurchase','supplier'));
+    }
 }

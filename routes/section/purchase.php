@@ -15,6 +15,7 @@ Route::post('Purchasing/tableInputBarang/postTableSum', [App\Http\Controllers\Pu
 Route::get('Purchasing/tableInputBarang/stockIden/{gudang}/{satuan}/{product}', [App\Http\Controllers\PurchasingController::class, 'stockIden']);
 
 Route::get('Purchasing/purchOrder/InputDataPO', [App\Http\Controllers\PurchasingController::class, 'mainPurchaseOrder']);
+Route::get('Purchasing/collapseDokumen/{dokPurchase}', [App\Http\Controllers\PurchasingController::class, 'collapseDokumen']);
 
 //Table
 Route::get('Purchasing/tablePenerimaan/{status}/{fromDate}/{endDate}', [App\Http\Controllers\PurchasingController::class, 'tablePenerimaan']);
