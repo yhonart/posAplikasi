@@ -8,6 +8,7 @@
     $keyKeluar = 0;
     $keySaldo = 0;
     $saldo1 = 0;
+    $saldo2 = 0;
     $saldoInv = $lastSaldo->stock;
     foreach ($dataReportInv as $keyReport) {
         $keyMasuk += $keyReport->inv_in;
@@ -81,6 +82,7 @@
                                     $tSaldo += $dri->saldo;
                                     $disSaldo += $tMasuk - $tKeluar;
                                     $saldo1 = $saldoInv-$keySaldo;
+                                    $saldo2 = $saldo+$saldo1;
                                 ?>
                                 {{$saldo1}}
                             </td>
