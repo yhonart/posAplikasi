@@ -846,7 +846,7 @@ class TempInventoryController extends Controller
             ->first();
 
         $reportInv = DB::table('report_inv')
-            ->select('last_saldo','saldo')
+            ->select('last_saldo','saldo','inv_out')
             ->where([
                 ['number_code',$docNumber],
                 ['product_id',$prdID],
@@ -894,11 +894,11 @@ class TempInventoryController extends Controller
         
         if ($lastQty < $editVal) {
             $saldo = $invStock->stock - $qtyReport;
-            $invOut = (int)$reportInv->last_saldo - $saldo;
+            $invOut = (int)$reportInv->inv_out - $saldo;
         }
         elseif ($lastQty > $editVal) {
             $saldo = $invStock->stock + $qtyReport;
-            $invOut = (int)$reportInv->last_saldo - $saldo;
+            $invOut = (int)$reportInv->inv_out + $saldo;
         }
         else {
             $saldo = $invStock->stock;
@@ -912,7 +912,7 @@ class TempInventoryController extends Controller
                 ['satuan',$satuan]
             ])
             ->update([
-                'inv_out'=>$qtyReport,
+                'inv_out'=>$invOut,
                 'saldo'=>$saldo,
             ]);
     }
