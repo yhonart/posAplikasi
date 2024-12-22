@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row mb-2">
     <div class="col-md-12">
-        <button type="button" class="btn btn-light btn-sm" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <button type="button" class="btn btn-light btn-sm mb-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             <i class="fa-solid fa-pen-to-square"></i> Dokumen Pembelian
         </button>
         <div class="collapse" id="collapseExample">
