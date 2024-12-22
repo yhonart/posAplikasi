@@ -808,6 +808,14 @@ class TempInventoryController extends Controller
             ->first();
         $dokDate = $dokumenDate->tr_date;
 
+        //CEK KETERSEDIAAN LAPORAN
+        $countPrdReport = DB::table('report_inv')
+            ->where([
+                ['date_input',$dokDate],
+                ['product_id',$productID]
+            ])
+            ->count();
+
         DB::table('report_inv')
             ->insert([
                 'date_input'=>$dokDate,

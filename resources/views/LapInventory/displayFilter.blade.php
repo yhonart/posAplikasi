@@ -81,7 +81,7 @@
                                     $tMasuk += $dri->inv_in;
                                     $tKeluar += $dri->inv_out;                                    
                                 ?>
-                                {{$saldo}}
+                                {{$dri->saldo}}
                             </td>
                         </tr>
                     @endforeach
