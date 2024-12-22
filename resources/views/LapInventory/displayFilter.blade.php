@@ -69,7 +69,7 @@
                                     $tKeluar += $dri->inv_out;
                                     $tSaldo += $dri->saldo;
                                 ?>
-                                {{$dri->saldo}}
+                                {{$saldo}}
                             </td>
                         </tr>
                     @endforeach
@@ -77,7 +77,7 @@
                             <td colspan="4" class="font-weight-bold text-center bg-lightblue">TOTAL</td>
                             <td class="font-weight-bold text-right bg-lightblue">{{$tMasuk}}</td>
                             <td class="font-weight-bold text-right bg-lightblue">{{$tKeluar}}</td>
-                            <td class="bg-lightblue"></td>
+                            <td class="bg-lightblue">{{$tSaldo}}</td>
                         </tr>
                 </tbody>
             </table>
