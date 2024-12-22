@@ -86,7 +86,7 @@
                                     $saldo2 = $saldo+$saldo1;
                                     $saldo3 = $saldo2+$keySaldo;
                                 ?>
-                                {{$saldo3}}
+                                {{$saldo}}/{{$saldo1}}/{{$saldo2}}/{{$saldo3}}/{{$keySaldo}}
                             </td>
                         </tr>
                     @endforeach
@@ -94,7 +94,7 @@
                             <td colspan="4" class="font-weight-bold text-center bg-lightblue">TOTAL</td>
                             <td class="font-weight-bold text-right bg-lightblue">{{$tMasuk}}</td>
                             <td class="font-weight-bold text-right bg-lightblue">{{$tKeluar}}</td>
-                            <td class="bg-lightblue">{{$disSaldo}}</td>
+                            <td class="bg-lightblue"></td>
                         </tr>
                 </tbody>
             </table>
