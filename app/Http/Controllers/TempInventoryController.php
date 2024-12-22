@@ -845,6 +845,15 @@ class TempInventoryController extends Controller
             ->where('idm_data_product',$prdID)
             ->first();
 
+        $reportInv = DB::table('report_inv')
+            ->select('last_saldo','saldo')
+            ->where([
+                ['number_code',$docNumber],
+                ['product_id',$prdID],
+                ['satuan',$satuan]
+            ])
+            ->first();
+
         $volB = $mProduct->large_unit_val;
         $volK = $mProduct->medium_unit_val;
         $volKonv = $mProduct->small_unit_val;
@@ -881,20 +890,21 @@ class TempInventoryController extends Controller
             elseif ($satuan == "KONV") {
                 $qtyReport = $qty;
             }
-        }
-        
-        $invOut = $editVal;
+        }       
         
         if ($lastQty < $editVal) {
             $saldo = $invStock->stock - $qtyReport;
+            $invOut = (int)$reportInv->last_saldo - $saldo;
         }
         elseif ($lastQty > $editVal) {
             $saldo = $invStock->stock + $qtyReport;
+            $invOut = (int)$reportInv->last_saldo - $saldo;
         }
         else {
             $saldo = $invStock->stock;
+            $invOut = (int)$reportInv->saldo;
         }
-
+        
         DB::table('report_inv')
             ->where([
                 ['number_code',$docNumber],
@@ -904,7 +914,6 @@ class TempInventoryController extends Controller
             ->update([
                 'inv_out'=>$invOut,
                 'saldo'=>$saldo,
-                'last_saldo'=>$invStock->stock,
             ]);
     }
 }
