@@ -71,7 +71,7 @@
                                     $tSaldo += $dri->saldo;
                                     $disSaldo += $tMasuk - $tKeluar;
                                 ?>
-                                {{$disSaldo}}
+                                {{$saldo}}
                             </td>
                         </tr>
                     @endforeach
