@@ -34,6 +34,33 @@
     </div>
 
     <script>
-        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function(){
+            let display = "inputPembayaran";
+            displayOnClick(display);
+
+            $('.CLICK-AP').on('click', function (e) {
+                e.preventDefault();
+                let display = $(this).attr('data-display');
+                displayOnClick(display);
+            });
+
+            function displayOnClick(display){
+                $("#displayNotif").fadeIn("slow");
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('Purchasing')}}/"+display,
+                    success : function(response){
+                        $('#displayMenu').html(response);
+                        $("#displayNotif").fadeOut("slow");
+                    }
+                });
+            }
+        });
     </script>
 @endsection

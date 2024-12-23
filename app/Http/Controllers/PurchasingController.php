@@ -687,7 +687,7 @@ class PurchasingController extends Controller
             ]);
     }
     
-    public function Bayar (){
+    public function Bayar ($supplier, $fromDate, $endDate){
         $tbPurchase = DB::table('view_purchase_order')
             ->where([
                 ['payment_methode','3'],
@@ -990,10 +990,14 @@ class PurchasingController extends Controller
     }
 
     public function piutangSupplier (){
+        return view ('Purchasing/PurchaseOrder/mainPiutangSupplier');
+    }
+
+    public function pembayaran (){
         $mSupplier = DB::table('m_supplier')
             ->get();
 
-        return view ('Purchasing/PurchaseOrder/mainPiutangSupplier', compact('mSupplier'));
+        return view('Purchasing/PurchaseOrder/pembayaran', compact('mSupplier'));
     }
     
     public function metodePembayaran ($supplier)

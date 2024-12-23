@@ -29,10 +29,11 @@ Route::get('Purchasing/tablePenerimaan/btnDelete/{dataEdit}', [App\Http\Controll
 Route::post('Purchasing/editPurchasing/postEditDocPenerimaan', [App\Http\Controllers\PurchasingController::class, 'postEditDocPenerimaan']);
 
 // Dashboar 
-Route::get('Purchasing/dashboard', [App\Http\Controllers\PurchasingController::class, 'mainDashboard']);
+Route::get('Purchasing/dashboardPembayaran', [App\Http\Controllers\PurchasingController::class, 'mainDashboard']);
 
 // filter by card
-Route::get('Purchasing/Bayar', [App\Http\Controllers\PurchasingController::class, 'Bayar']);
+Route::get('Purchasing/inputPembayaran', [App\Http\Controllers\PurchasingController::class, 'inputPembayaran']);
+Route::get('Purchasing/Bayar/{supplier}/{fromDate}/{endDate}', [App\Http\Controllers\PurchasingController::class, 'Bayar']);
 Route::post('Purchasing/Bayar/payPost', [App\Http\Controllers\PurchasingController::class, 'payPost']);
 Route::get('Purchasing/Bayar/modalMethod/{nomor}', [App\Http\Controllers\PurchasingController::class, 'modalMethod']);
 Route::post('Purchasing/Bayar/postModalPembayaran', [App\Http\Controllers\PurchasingController::class, 'postModalPembayaran']);
@@ -47,3 +48,5 @@ Route::get('Purchasing/cencelInput/{idNo}', [App\Http\Controllers\PurchasingCont
 
 Route::get('Purchasing/getAutoPrice/{prdId}', [App\Http\Controllers\PurchasingController::class, 'getAutoPrice']);
 Route::get('Purchasing/notivePoint/{suppID}', [App\Http\Controllers\PurchasingController::class, 'notivePoint']);
+
+Route::get('piutangSupplier/pembayaran', [App\Http\Controllers\PurchasingController::class, 'pembayaran']);

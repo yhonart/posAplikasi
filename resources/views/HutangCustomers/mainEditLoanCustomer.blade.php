@@ -40,10 +40,6 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
-    $(function(){
-        
-    });   
     
     $(document).ready(function(){
         let display = "pembayaran";
