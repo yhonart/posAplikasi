@@ -1,6 +1,6 @@
 <div class="card card-body table-responsive p-0">
     <table class="table table-sm table-align-middle text-nowrap table-hover ">
-        <thead class="bg-graydark">
+        <thead class="bg-gray-dark">
             <tr>
                 <th>Nomor</th>
                 <th>Tgl. Penerimaan</th>
