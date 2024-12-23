@@ -43,12 +43,43 @@
             theme: 'bootstrap4',
         });
 
-        $.ajax({
-            type : 'get',
-            url : "{{route('Purchasing')}}/Bayar",
-            success : function(response){
-                $('#tableFilter').html(response);
-            }
+    });
+    
+    $(document).ready(function(){
+        let supplier = $("#supName").val(),
+            fromDate = 0,
+            endDate = 0;
+
+        tableAP(supplier, fromDate, endDate);
+        
+        $("#supName").change(function(){
+            let supplier = $(this).val(),
+                fromDate = $("#dariTanggal").val(),
+                endDate = $("#sampaiTanggal").val();
+                tableAP(supplier, fromDate, endDate);
         });
+        $("#dariTanggal").change(function(){
+            let supplier = $("#supName").val(),
+                fromDate = $(this).val(),
+                endDate = $("#sampaiTanggal").val();
+                tableAP(supplier, fromDate, endDate);
+        });
+        $("#sampaiTanggal").change(function(){
+            let supplier = $("#supName").val(),
+                fromDate = $("#dariTanggal").val(),
+                endDate = $(this).val();
+                tableAP(supplier, fromDate, endDate);
+        });
+
+        function tableAP(supplier, fromDate, endDate){
+            $.ajax({
+                type : 'get',
+                url : "{{route('Purchasing')}}/Bayar/"+supplier+"/"+fromDate+"/"+endDate,
+                success : function(response){
+                    $('#tableFilter').html(response);
+                }
+            });
+        }
+
     });
 </script>

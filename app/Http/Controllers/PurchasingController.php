@@ -688,12 +688,26 @@ class PurchasingController extends Controller
     }
     
     public function Bayar ($supplier, $fromDate, $endDate){
-        $tbPurchase = DB::table('view_purchase_order')
-            ->where([
-                ['payment_methode','3'],
-                ['payment_status','1']
-                ])
-            ->get();
+
+        $tbPurchase = DB::table('view_purchase_order');
+        if ($fromDate <> 0 AND $endDate <> 0 AND $supplier <> 0) {
+            $tbPurchase=$tbPurchase->whereBetween('delivery_date',[$fromDate,$endDate]);
+            $tbPurchase=$tbPurchase->where([
+                    ['payment_methode','3'],
+                    ['payment_status','1'],
+                    ['supplier_id',$supplier]
+            ]);
+        }
+        elseif ($supplier == 0 AND $fromDate<>0 AND $endDate<>0) {
+            $tbPurchase=$tbPurchase->whereBetween('delivery_date',[$fromDate,$endDate]);
+        }
+        else {
+            $tbPurchase=$tbPurchase->where([
+                    ['payment_methode','3'],
+                    ['payment_status','1']
+            ]);
+        }        
+        $tbPurchase=$tbPurchase->get();
 
         $payed = DB::table('purchase_kredit_payment')
             ->select(DB::raw('SUM(kredit_pay) as kreditPayed'),'nomor','idp_pay')
