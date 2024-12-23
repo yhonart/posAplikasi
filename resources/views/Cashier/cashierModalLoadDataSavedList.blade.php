@@ -26,6 +26,7 @@
             <th>Last T.Nominal</th>
             <th>Created By</th>
             <th>Status</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -44,6 +45,8 @@
                 <td>{{$dS2->created_by}}</td>
                 <td>
                     <span class="badge {{$arayBadge[$dS2->status]}}">{{$arayStatus[$dS2->status]}}</span>
+                </td>
+                <td>
                     <button class="btn btn-danger btn-sm elevation-1 btnDel" data-trx="{{$dS2->billing_number}}">Delete</button>
                 </td>
             </tr>

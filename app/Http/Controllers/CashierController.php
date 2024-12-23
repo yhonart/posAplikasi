@@ -2748,6 +2748,7 @@ class CashierController extends Controller
     {
         //Update stock di inventory
         //select item transaksi
+        $persName = Auth::user()->name;
         $listItem = DB::table('tr_store_prod_list')
             ->where('from_payment_code', $noBill)
             ->get();
@@ -2766,7 +2767,8 @@ class CashierController extends Controller
             ->where('billing_number', $noBill)
             ->update([
                 'status' => '0',
-                'is_return' => '1'
+                'is_return' => '1',
+                'return_by' => $persName
             ]);
 
         DB::table('tr_store_prod_list')
