@@ -993,7 +993,7 @@ class PurchasingController extends Controller
         return view ('Purchasing/PurchaseOrder/mainPiutangSupplier');
     }
 
-    public function pembayaran (){
+    public function inputPembayaran (){
         $mSupplier = DB::table('m_supplier')
             ->get();
 
