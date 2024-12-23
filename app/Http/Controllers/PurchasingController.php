@@ -711,7 +711,6 @@ class PurchasingController extends Controller
 
         $payed = DB::table('purchase_kredit_payment')
             ->select(DB::raw('SUM(kredit_pay) as kreditPayed'),'nomor','idp_pay')
-            ->groupBy('nomor')
             ->get();
             
         return view ('Purchasing/PurchaseOrder/tableListBayar', compact('tbPurchase','payed'));
