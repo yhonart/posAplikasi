@@ -56,7 +56,7 @@
                     type : 'get',
                     url : "{{route('Purchasing')}}/"+display,
                     success : function(response){
-                        $('#displayMenu').html(response);
+                        $('#displayAP').html(response);
                         $("#displayNotif").fadeOut("slow");
                     }
                 });
