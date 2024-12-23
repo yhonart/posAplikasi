@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header border-0">
-        <h3 class="card-title">Input Pembayaran <small>* Pilih nama supplier untuk input pembayaran</small></h3>
+        <h3 class="card-title">Input Pembayaran <small class="text-muted">* Mode testing</small></h3>
     </div>
     <div class="card-body">
         <div class="row">
