@@ -80,7 +80,7 @@
                                 echo "<td class='text-right'>0</td>";
                                 echo "<td class='text-right'>0</td>";
                                 echo "<td class='text-right'>";
-                                echo $lastSaldo;
+                                // echo $lastSaldo;
                                 echo "</td>";
                             echo "</tr>";
                         }                      
