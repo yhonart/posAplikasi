@@ -709,11 +709,11 @@ class PurchasingController extends Controller
         }        
         $tbPurchase=$tbPurchase->get();
 
-        $payed = DB::table('purchase_kredit_payment')
-            ->select(DB::raw('SUM(kredit_pay) as kreditPayed'),'nomor','idp_pay')
-            ->get();
+        // $payed = DB::table('purchase_kredit_payment')
+        //     ->select(DB::raw('SUM(kredit_pay) as dibayar'),'nomor','idp_pay')
+        //     ->get();
             
-        return view ('Purchasing/PurchaseOrder/tableListBayar', compact('tbPurchase','payed'));
+        return view ('Purchasing/PurchaseOrder/tableListBayar', compact('tbPurchase'));
     }
     
     public function payPost(Request $reqPost){

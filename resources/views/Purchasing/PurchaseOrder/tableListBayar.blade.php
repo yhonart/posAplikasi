@@ -27,14 +27,10 @@
                         <input type="text" class="form-control form-control-sm form-control-border price-tag" name="kredit" id="kredit" value="{{$tPayment->sub_total}}" readonly>
                     </td>
                     <td>
-                        <input type="text" class="form-control form-control-sm form-control-border price-tag" name="pay" id="pay" autocomplete="off" onchange="saveChangePembayaran(this,'purchase_kredit_payment','kredit_pay','{{$tPayment->purchase_number}}','nomor')">    
+                        <input type="text" placeholder="Input nominal disini" class="form-control form-control-sm form-control-border price-tag" name="pay" id="pay" autocomplete="off" onchange="saveChangePembayaran(this,'purchase_kredit_payment','kredit_pay','{{$tPayment->purchase_number}}','nomor')">    
                     </td>
                     <td>
-                        @foreach($payed as $p)
-                            @if($p->nomor == $tPayment->purchase_number)
-                                <span class="text-muted">Di bayar : {{number_format($p->kreditPayed,'0',',','.')}}</span>
-                            @endif
-                        @endforeach
+                        
                     </td>
                 </tr>
             @endforeach
