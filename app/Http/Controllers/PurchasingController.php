@@ -709,6 +709,10 @@ class PurchasingController extends Controller
         }        
         $tbPurchase=$tbPurchase->get();
 
+        $dataPayed = DB::table('purchase_kredit_payment');
+            $dataPayed = $dataPayed->select(DB::raw('sum(kredit_pay) as kreditPay'), 'nomor', 'idp_pay');
+            $dataPayed = $dataPayed->get();
+
         // $payed = DB::table('purchase_kredit_payment')
         //     ->select(DB::raw('SUM(kredit_pay) as dibayar'),'nomor','idp_pay')
         //     ->get();
