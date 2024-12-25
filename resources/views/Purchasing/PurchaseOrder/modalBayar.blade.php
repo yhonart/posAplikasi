@@ -2,17 +2,23 @@
     <div class="row">
         <div class="col-12">
             <form id="formPayMethod">
-                <input type="hidden" name="idPayment" value="{{$tbPayment->idp_pay}}">
+                <input type="hidden" name="idPayment" value="{{$datPayment->number_dok}}">
+                <div class="form-group row">
+                    <label class="col-4">AP Number</label>
+                    <div class="col-6">
+                        <input type="text" class="form-control form-control-sm" name="purchaseNumber" id="purchaseNumber" value="{{$numberTrx}}" readonly>
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label class="col-4">Purchase Number</label>
                     <div class="col-6">
-                        <input type="text" class="form-control form-control-sm" name="purchaseNumber" id="purchaseNumber" value="{{$tbPayment->nomor}}" readonly>
+                        <input type="text" class="form-control form-control-sm" name="purchaseNumber" id="purchaseNumber" value="{{$datPayment->number_dok}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-4">Nominal Kredit</label>
                     <div class="col-6">
-                        <input type="text" class="form-control form-control-sm price-tag" name="nominalKredit" id="nominalKredit" value="{{$datPayment->sub_total}}" readonly>
+                        <input type="text" class="form-control form-control-sm price-tag" name="nominalKredit" id="nominalKredit" value="{{$datPayment->kredit}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -25,7 +31,7 @@
                     <label class="col-4">Selisih</label>
                     <div class="col-6">
                         <?php
-                            $selisih = $datPayment->sub_total - $tbPayment->kredit_pay;
+                            $selisih = $datPayment->kredit - $tbPayment->kredit_pay;
                         ?>
                         <input type="text" class="form-control form-control-sm" name="selisih" id="selisih" value="{{$selisih}}" readonly>
                     </div>
@@ -51,15 +57,15 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-4">Nama Akun <small class="text-muted">[Optional]</small></label>
+                    <label class="col-4">Nama Akun Bank <small class="text-muted">[Optional]</small></label>
                     <div class="col-6">
-                        <input type="text" class="form-control form-control-sm" name="accountName" id="accountName">
+                        <input type="text" class="form-control form-control-sm" name="accountName" id="accountName" placeholder="Jika menggunnakan selain tunai">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-4">Nomor Akun <small class="text-muted">[Optional]</small></label>
+                    <label class="col-4">Nomor Akun Bank <small class="text-muted">[Optional]</small></label>
                     <div class="col-6">
-                        <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber">
+                        <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber" placeholder="Jika menggunnakan selain tunai">
                     </div>
                 </div>
                 <div class="form-group row">

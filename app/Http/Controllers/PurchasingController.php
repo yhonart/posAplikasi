@@ -738,33 +738,64 @@ class PurchasingController extends Controller
         $column = $reqPost->column;
         $editval = str_replace(".","",$reqPost->editval);
         $id = $reqPost->id;
-        $idKredit = $reqPost->idKredit;
+        $idKredit = $reqPost->idKredit;  
         
-        $cekInput = DB::table('purchase_kredit_payment')
+        $createdBy = Auth::user()->name;
+        $dateNow = date("Y-m-d");
+        $dateNo = date("mY");
+
+        $payKredit = DB::table('purchase_kredit')
+            ->where('idp_kredit',$id)
+            ->first();
+        $purchaseNumber = $payKredit->number_dok;
+
+        $payNumber = DB::table('purchase_kredit_payment')
             ->where([
-                ['nomor',$id],
-                ['status','0']
-                ])
+                ['payment_date',$dateNow]
+            ])
             ->count();
-            
-        if($cekInput == '0' AND ($editval <> '' OR $editval <> '0')){
+
+        if ($payNumber == 0) {
+            $no = 1;
+            $numberTrx = "AP".$dateNo."-".sprintf("%07d", $no);
+        }
+        else {
+            $no = $payNumber+1;
+            $numberTrx = "AP".$dateNo."-".sprintf("%07d", $no);
+        }
+
+        if($editval <> '' OR $editval <> '0'){
             DB::table($table)
+                ->where($idKredit,$id)
+                ->update([
+                    $column=>$editval
+                ]);
+
+            DB::table('purchase_kredit_payment')
                 ->insert([
-                    $column => $editval,
-                    'nomor' => $id
+                    'nomor'=>$numberTrx,
+                    'kredit_pay'=>$editval,
+                    'created_at'=>now(),
+                    'created_by'=>$createdBy,
+                    'status'=>1,
+                    'purchase_number'=>$purchaseNumber
                 ]);
         }
     }
     
-    public function modalMethod ($id){
-        $datPayment = DB::table('purchase_order')
-            ->where('purchase_number',$id)
+    public function modalMethod ($id){   
+        //cek payment number
+        
+
+        $datPayment = DB::table('purchase_kredit')
+            ->where('idp_kredit',$id)
             ->first();
+
+        $purchaseNumber = $datPayment->number_dok;
             
         $tbPayment = DB::table('purchase_kredit_payment')
             ->where([
-                ['nomor',$id],
-                ['status','0']
+                ['purchase_number',$purchaseNumber]
                 ])
             ->first();
             

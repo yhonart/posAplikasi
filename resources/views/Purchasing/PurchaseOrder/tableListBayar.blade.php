@@ -29,7 +29,7 @@
                     {{number_format($tPayment->payed,'0',',','.')}}
                 </td>
                 <td>
-                    <input type="text" placeholder="Kurang bayar {{$tPayment->selisih}}" class="form-control form-control-sm price-tag" name="pay" id="pay" autocomplete="off" onchange="saveChangePembayaran(this,'purchase_kredit','payed','{{$tPayment->payed}}','idp_kredit','{{$tPayment->idp_kredit}}')">    
+                    <input type="text" placeholder="Kurang bayar {{$tPayment->selisih}}" class="form-control form-control-sm price-tag" name="pay" id="pay" autocomplete="off" onchange="saveChangePembayaran(this,'purchase_kredit','payed','{{$tPayment->idp_kredit}}','idp_kredit')">    
                 </td>
             </tr>
         @endforeach
