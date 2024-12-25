@@ -13,7 +13,7 @@
     <tbody>
         @foreach($supKredit as $tPayment)
             <tr>
-                <td>{{$supKredit->number_dok}}</td>
+                <td>{{$tPayment->number_dok}}</td>
                 <td>{{date("d/M/Y", strtotime($tPayment->dok_date))}}</td>
                 <td>
                     <?php
