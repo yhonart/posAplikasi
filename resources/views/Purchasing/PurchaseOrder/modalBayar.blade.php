@@ -6,7 +6,7 @@
                 <div class="form-group row">
                     <label class="col-4">AP Number</label>
                     <div class="col-6">
-                        <input type="text" class="form-control form-control-sm" name="purchaseNumber" id="purchaseNumber" value="{{$numberTrx}}" readonly>
+                        <input type="text" class="form-control form-control-sm" name="purchaseNumber" id="purchaseNumber" value="{{$tbPayment->nomor}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
