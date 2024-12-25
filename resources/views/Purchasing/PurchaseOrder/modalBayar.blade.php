@@ -3,10 +3,11 @@
         <div class="col-12">
             <form id="formPayMethod">
                 <input type="hidden" name="idPayment" value="{{$datPayment->number_dok}}">
+                <input type="hidden" name="idTrx" value="{{$datPayment->number_dok}}">
                 <div class="form-group row">
                     <label class="col-4">AP Number</label>
                     <div class="col-6">
-                        <input type="text" class="form-control form-control-sm" name="purchaseNumber" id="purchaseNumber" value="{{$tbPayment->nomor}}" readonly>
+                        <input type="text" class="form-control form-control-sm" name="apNumber" id="apNumber" value="{{$tbPayment->nomor}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
