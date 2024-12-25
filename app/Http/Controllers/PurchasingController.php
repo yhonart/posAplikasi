@@ -429,7 +429,8 @@ class PurchasingController extends Controller
         DB::table('purchase_kredit')
             ->where('number_dok',$purchaseCode)
             ->update([
-                'kredit'=>$subTotal
+                'kredit'=>$subTotal,
+                'selisih'=>$subTotal
             ]);
     }
     
