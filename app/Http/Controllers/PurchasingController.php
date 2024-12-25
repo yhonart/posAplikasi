@@ -244,6 +244,17 @@ class PurchasingController extends Controller
             $msg = array('warning' => 'Nama supplier belum ada !');
         }
         else{
+            if ($methodPayment=='3' OR $methodPayment=='30' OR $methodPayment=='15' OR $methodPayment=='60') {
+                DB::table('purchase_kredit')
+                    ->insert([
+                        'number_dok'=>$nomorPembelian,
+                        'supplier_id'=>$supplier,
+                        'created_at'=>now(),
+                        'tenor'=>$dayKredit,
+                        'dok_date'=>$dateDelivery
+                    ]);
+            }
+
             DB::table('purchase_order')
                 ->insert([
                     'purchase_number'=>$nomorPembelian,    
@@ -413,6 +424,12 @@ class PurchasingController extends Controller
                 'total_satuan'=>$subTotalSatuan,   
                 'sub_total'=>$subTotal,
                 'status'=>'2'
+            ]);
+
+        DB::table('purchase_kredit')
+            ->where('number_dok',$purchaseCode)
+            ->update([
+                'kredit'=>$subTotal
             ]);
     }
     
@@ -689,35 +706,30 @@ class PurchasingController extends Controller
     
     public function Bayar ($supplier, $fromDate, $endDate){
 
-        $tbPurchase = DB::table('view_purchase_order');
+        $supKredit = DB::table('purchase_kredit as a');
+        $supKredit = $supKredit->select('a.*','b.store_name');
+        $supKredit = $supKredit->leftJoin('m_supplier as b', 'a.supplier_id','=','b.idm_supplier');
         if ($fromDate <> 0 AND $endDate <> 0 AND $supplier <> 0) {
-            $tbPurchase=$tbPurchase->whereBetween('delivery_date',[$fromDate,$endDate]);
-            $tbPurchase=$tbPurchase->where([
-                    ['payment_methode','3'],
-                    ['payment_status','1'],
-                    ['supplier_id',$supplier]
+            $supKredit = $supKredit->where([
+                ['supplier_id',$supplier]
             ]);
         }
         elseif ($supplier == 0 AND $fromDate<>0 AND $endDate<>0) {
-            $tbPurchase=$tbPurchase->whereBetween('delivery_date',[$fromDate,$endDate]);
+            $supKredit = $supKredit->whereBetween('dok_date',[$fromDate,$endDate]);
+        }
+        elseif ($supplier <> 0 AND $fromDate==0 AND $endDate==0) {
+            $supKredit = $supKredit->where([
+                ['supplier_id',$supplier]
+            ]);
         }
         else {
-            $tbPurchase=$tbPurchase->where([
-                    ['payment_methode','3'],
-                    ['payment_status','1']
+            $supKredit = $supKredit->where([
+                ['selisih','!=','0']
             ]);
-        }        
-        $tbPurchase=$tbPurchase->get();
-
-        $dataPayed = DB::table('purchase_kredit_payment');
-            $dataPayed = $dataPayed->select(DB::raw('sum(kredit_pay) as kreditPay'), 'nomor', 'idp_pay');
-            $dataPayed = $dataPayed->get();
-
-        // $payed = DB::table('purchase_kredit_payment')
-        //     ->select(DB::raw('SUM(kredit_pay) as dibayar'),'nomor','idp_pay')
-        //     ->get();
+        }
+        $supKredit = $supKredit->get();
             
-        return view ('Purchasing/PurchaseOrder/tableListBayar', compact('tbPurchase'));
+        return view ('Purchasing/PurchaseOrder/tableListBayar', compact('supKredit'));
     }
     
     public function payPost(Request $reqPost){

@@ -11,13 +11,13 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($tbPurchase as $tPayment)
+        @foreach($supKredit as $tPayment)
             <tr>
-                <td>{{$tPayment->purchase_number}}</td>
-                <td>{{date("d/M/Y", strtotime($tPayment->delivery_date))}}</td>
+                <td>{{$supKredit->number_dok}}</td>
+                <td>{{date("d/M/Y", strtotime($tPayment->dok_date))}}</td>
                 <td>
                     <?php
-                        $dodate = date("d/M/Y", strtotime("+".$tPayment->tempo."day",strtotime($tPayment->delivery_date)));
+                        $dodate = date("d/M/Y", strtotime("+".$tPayment->tenor."day",strtotime($tPayment->dok_date)));
                     ?>
                     {{$dodate}}
                 </td>
@@ -26,7 +26,7 @@
                     <input type="text" class="form-control form-control-sm form-control-border price-tag" name="kredit" id="kredit" value="{{$tPayment->sub_total}}" readonly>
                 </td>
                 <td>
-                    <input type="text" placeholder="Input nominal disini" class="form-control form-control-sm form-control-border price-tag" name="pay" id="pay" autocomplete="off" onchange="saveChangePembayaran(this,'purchase_kredit_payment','kredit_pay','{{$tPayment->purchase_number}}','nomor')">    
+                    <input type="text" placeholder="Input nominal disini" class="form-control form-control-sm form-control-border price-tag" name="pay" id="pay" autocomplete="off" onchange="saveChangePembayaran(this,'purchase_kredit','payed','{{$tPayment->payed}}','idp_kredit','{{$tPayment->idp_kredit}}')">    
                 </td>
                 <td>
                     
