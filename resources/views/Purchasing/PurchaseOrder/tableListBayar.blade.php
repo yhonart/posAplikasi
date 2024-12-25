@@ -6,8 +6,8 @@
             <th>Jatuh Tempo</th>
             <th>Supplier</th>
             <th>Nominal</th>
+            <th>Dibayar</th>
             <th>Bayar</th>
-            <th>Keterangan</th>
         </tr>
     </thead>
     <tbody>
@@ -23,13 +23,13 @@
                 </td>
                 <td>{{$tPayment->store_name}}</td>
                 <td class="text-right">
-                    <input type="text" class="form-control form-control-sm form-control-border price-tag" name="kredit" id="kredit" value="{{$tPayment->kredit}}" readonly>
+                    <input type="text" class="form-control form-control-sm price-tag" name="kredit" id="kredit" value="{{$tPayment->kredit}}" readonly>
                 </td>
                 <td>
-                    <input type="text" placeholder="Input nominal disini" class="form-control form-control-sm form-control-border price-tag" name="pay" id="pay" autocomplete="off" onchange="saveChangePembayaran(this,'purchase_kredit','payed','{{$tPayment->payed}}','idp_kredit','{{$tPayment->idp_kredit}}')">    
+                    {{number_format($tPayment->payed,'0',',','.')}}
                 </td>
                 <td>
-                    
+                    <input type="text" placeholder="Kurang bayar {{$tPayment->selisih}}" class="form-control form-control-sm price-tag" name="pay" id="pay" autocomplete="off" onchange="saveChangePembayaran(this,'purchase_kredit','payed','{{$tPayment->payed}}','idp_kredit','{{$tPayment->idp_kredit}}')">    
                 </td>
             </tr>
         @endforeach
