@@ -68,7 +68,7 @@
                         <button type="submit" class="btn btn-success btn-sm elevation-2 font-weight-bold btn-block" id="submitPembayaran"><i class="fa-solid fa-receipt"></i> Bayar</button>
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="btn btn-danger btn-sm elevation-2 font-weight-bold btn-block" id="batalPembayaran"><i class="fa-solid fa-circle-xmark"></i> Bayar</button>
+                        <button type="button" class="btn btn-danger btn-sm elevation-2 font-weight-bold btn-block" id="batalPembayaran"><i class="fa-solid fa-circle-xmark"></i> Bayar</button>
                     </div>
                 </div>
             </form>
@@ -121,6 +121,10 @@
             });
             return false;
         });
+        $("#batalPembayaran").on('click', function(e){
+            e.preventDefault();
+            window.location.reload();
+        })
     });
     
     function displayLoadFilter(datFilter){
