@@ -1,4 +1,4 @@
-<table class="table table-sm table-align-middle text-nowrap table-hover ">
+<table class="table table-sm table-align-middle text-nowrap table-hover" id="tableListAP">
     <thead class="bg-gray-dark">
         <tr>
             <th>Nomor</th>
@@ -7,7 +7,8 @@
             <th>Supplier</th>
             <th>Nominal</th>
             <th>Dibayar</th>
-            <th>Bayar</th>
+            <th>Piutang</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -29,25 +30,23 @@
                     {{number_format($tPayment->payed,'0',',','.')}}
                 </td>
                 <td>
-                    <input type="text" placeholder="Kurang bayar {{$tPayment->selisih}}" class="form-control form-control-sm price-tag" name="pay" id="pay" autocomplete="off" onchange="saveChangePembayaran(this,'purchase_kredit','last_payed','{{$tPayment->idp_kredit}}','idp_kredit')">    
+                    {{number_format($tPayment->selisih,'0',',','.')}}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-success BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/Bayar/modalMethod/{{$tPayment->idp_kredit}}"><i class="fa-solid fa-money-check-dollar"></i></button>
                 </td>
             </tr>
         @endforeach
     </tbody>
 </table>
 <script>
-        $('.price-tag').mask('000.000.000', {reverse: true});
-        var el_modal_all = $('.MODAL-GLOBAL'),
-                el_modal_large = $('#modal-global-large'),
-                id_modal_content = '.MODAL-CONTENT-GLOBAL';
-        function saveChangePembayaran(editableObj,tablename,column,id,idKredit){
-            $.ajax({
-                url: "{{route('Purchasing')}}/Bayar/payPost",
-                type: "POST",
-                data:'tablename='+tablename+'&column='+column+'&editval='+editableObj.value+'&id='+id+'&idKredit='+idKredit,
-                success: function(data){
-                    el_modal_large.modal('show').find(id_modal_content).load("{{route('Purchasing')}}/Bayar/modalMethod/"+id);
-                }
-            });
-        }
+    $(function(){
+        $("#tableListAP").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
 </script>
