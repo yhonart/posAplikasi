@@ -80,12 +80,12 @@
     $(document).ready(function(){
         $('#nominalKredit').mask('000.000.000', {reverse: true});
         $('#nominal').mask('000.000.000', {reverse: true});
-        
+
         $("#nominal").on('input', computBayar);
 
         function computBayar(){
             let nominalKredit = $("#nominalKredit").val(),
-                nominal = $("nominal").val();
+                nominal = $("#nominal").val();
 
             let replaceKredit = nominalKredit.replace(/\./g, ""),
                 replaceNominal = nominal.replace(/\./g, "");
