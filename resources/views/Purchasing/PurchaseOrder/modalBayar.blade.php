@@ -55,8 +55,8 @@
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="accountName" id="accountName" placeholder="Jika menggunnakan selain tunai">
                     </div>
-                    <label class="col-md-4">Nomor Akun Bank <small class="text-muted">[Optional]</small></label>
-                    <div class="col-md-6">
+                    <label class="col-md-2">Nomor Akun Bank <small class="text-muted">[Optional]</small></label>
+                    <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber" placeholder="Jika menggunnakan selain tunai">
                     </div>
                 </div>
