@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <form id="formPayMethod">
-                <input type="text" name="idKredit" value="{{$datPayment->idp_kredit}}">
+                <input type="hidden" name="idKredit" value="{{$datPayment->idp_kredit}}">
                 <div class="form-group row">
                     <label class="col-md-2">AP Number</label>
                     <div class="col-md-3">
