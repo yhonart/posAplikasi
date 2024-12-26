@@ -16,23 +16,18 @@
                 <div class="form-group row">
                     <label class="col-md-2">Nominal Kredit</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm price-tag" name="nominalKredit" id="nominalKredit" value="{{$datPayment->kredit}}" readonly>
+                        <input type="text" class="form-control form-control-sm price-tag" name="nominalKredit" id="nominalKredit" value="{{$datPayment->selisih}}" readonly>
                     </div>
-                </div>
-                <div class="form-group row">
                     <label class="col-md-2">Nominal Bayar</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm price-tag" name="nominal" id="nominal" value="{{$tbPayment->kredit_pay}}">
                     </div>
-                    <label class="col-2">Selisih</label>
-                    <div class="col-3">
-                        <?php
-                            $selisih = $datPayment->kredit - $tbPayment->kredit_pay;
-                        ?>
-                        <input type="text" class="form-control form-control-sm" name="selisih" id="selisih" value="{{$selisih}}" readonly>
-                    </div>
                 </div>
                 <div class="form-group row">
+                    <label class="col-2">Selisih</label>
+                    <div class="col-3">
+                        <input type="text" class="form-control form-control-sm" name="selisih" id="selisih" readonly>
+                    </div>
                     <label class="col-md-2">Metode Pembayaran</label>
                     <div class="col-md-3">
                         <select class="form-control form-control-sm" name="method" id="method">
@@ -40,6 +35,8 @@
                             <option value="TRANSFER">TRANSFER</option>
                         </select>
                     </div>
+                </div>
+                <div class="form-group row">
                     <label class="col-md-2">Akun Pembayaran <small class="text-muted">[Optional]</small></label>
                     <div class="col-md-3">
                         <select class="form-control form-control-sm" name="account" id="account">
@@ -60,12 +57,18 @@
                         <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber" placeholder="Jika menggunnakan selain tunai">
                     </div>
                 </div>
+                <div class="from-group row">                    
+                    <label for="description" class="col-md-2">Keterangan <small>[Optional]</small></label>
+                    <div class="col-md-10">
+                        <input type="text" class="from-control form-control-sm" name="description" id="description">
+                    </div>
+                </div>
                 <div class="form-group row">
                     <div class="col-md-2">
                         <button type="submit" class="btn btn-success btn-sm elevation-2 font-weight-bold btn-block" id="submitPembayaran"><i class="fa-solid fa-receipt"></i> Bayar</button>
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="btn btn-danger btn-sm elevation-2 font-weight-bold btn-block" id="batalPembayaran"><i class="fa-solid fa-circle-xmark"></i> Batal</button>
+                        <button type="submit" class="btn btn-danger btn-sm elevation-2 font-weight-bold btn-block" id="batalPembayaran"><i class="fa-solid fa-circle-xmark"></i> Bayar</button>
                     </div>
                 </div>
             </form>
@@ -73,7 +76,27 @@
     </div>
 </div>
 <script>
+
     $(document).ready(function(){
+        $("#nominal").on('input', computBayar);
+
+        function computBayar(){
+            let nominalKredit = $("#nominalKredit").val(),
+                nominal = $("nominal").val();
+
+            let replaceKredit = nominalKredit.replace(/\./g, ""),
+                replaceNominal = nominal.replace(/\./g, "");
+
+            if (typeof replaceNominal === "undefined" || typeof replaceNominal === "0") {
+                return
+            }
+            let selisih = (parseInt(replaceKredit) - parseInt(replaceNominal));
+            $("#selisih").val(accounting.formatMoney(selisih,{
+                Symbol: "",
+                precision: 0,
+                thausand: ".",
+            }));
+        }
         $('.price-tag').mask('000.000.000', {reverse: true});
         let datFilter = "dataPurchasing";
         $("form#formPayMethod").submit(function(event){

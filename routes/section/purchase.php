@@ -37,6 +37,7 @@ Route::get('Purchasing/Bayar/{supplier}/{fromDate}/{endDate}', [App\Http\Control
 Route::post('Purchasing/Bayar/payPost', [App\Http\Controllers\PurchasingController::class, 'payPost']);
 Route::get('Purchasing/Bayar/modalMethod/{nomor}', [App\Http\Controllers\PurchasingController::class, 'modalMethod']);
 Route::post('Purchasing/Bayar/postModalPembayaran', [App\Http\Controllers\PurchasingController::class, 'postModalPembayaran']);
+Route::get('Purchasing/Bayar/modalDetailKredit/{nomor}', [App\Http\Controllers\PurchasingController::class, 'modalDetailKredit']);
 
 Route::post('Purchasing/tablePenerimaan/updateOnChange', [App\Http\Controllers\PurchasingController::class, 'updateOnChange']);
 Route::get('Purchasing/tablePenerimaan/deleteItem/{delId}', [App\Http\Controllers\PurchasingController::class, 'deleteItem']);

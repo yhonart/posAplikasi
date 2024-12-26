@@ -24,16 +24,17 @@
                 </td>
                 <td>{{$tPayment->store_name}}</td>
                 <td class="text-right">
-                    <input type="text" class="form-control form-control-sm price-tag" name="kredit" id="kredit" value="{{$tPayment->kredit}}" readonly>
+                    {{number_format($tPayment->kredit,'0',',','.')}}
                 </td>
-                <td>
+                <td class="text-right">
                     {{number_format($tPayment->payed,'0',',','.')}}
                 </td>
-                <td>
+                <td class="text-right">
                     {{number_format($tPayment->selisih,'0',',','.')}}
                 </td>
-                <td>
-                    <button type="button" class="btn btn-sm btn-success BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/Bayar/modalMethod/{{$tPayment->idp_kredit}}"><i class="fa-solid fa-money-check-dollar"></i></button>
+                <td class="text-right">
+                    <button type="button" class="btn btn-sm btn-info BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/Bayar/modalDetail/{{$tPayment->idp_kredit}}" title="Detail"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="button" class="btn btn-sm btn-success BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/Bayar/modalDetailKredit/{{$tPayment->idp_kredit}}" title="Bayar"><i class="fa-solid fa-file-invoice-dollar"></i></button>
                 </td>
             </tr>
         @endforeach
@@ -46,7 +47,7 @@
             "lengthChange": false, 
             "autoWidth": false,
             "dom": 'Bfrtip',
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
 </script>

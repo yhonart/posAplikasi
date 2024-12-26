@@ -799,44 +799,50 @@ class PurchasingController extends Controller
         return view ('Purchasing/PurchaseOrder/modalBayar', compact('tbPayment','datPayment','id'));
     }
     
-    public function postModalPembayaran (Request $reqPostPayment){
-        $nomorTrx = $reqPostPayment->idPayment;
-        $idKredit = $reqPostPayment->idKredit;        
+    public function postModalPembayaran (Request $reqPostPayment){        
+        $kreditId = $reqPostPayment->idKredit;        
+        $apNumber = $reqPostPayment->apNumber;
         $purchaseNumber = $reqPostPayment->purchaseNumber;
+        $nominalKredit = str_replace(".","",$reqPostPayment->nominalKredit);        
         $nominal = str_replace(".","",$reqPostPayment->nominal);
         $selisih = str_replace(".","",$reqPostPayment->selisih);
         $method = $reqPostPayment->method;
         $account = $reqPostPayment->account;
         $accountName = $reqPostPayment->accountName;
         $accountNumber = $reqPostPayment->accountNumber;
-        
+        $description = $reqPostPayment->description;
+        $createdBy = Auth::user()->name;
+
         if($selisih == '0'){
             $status = '4';
         }else{
             $status = '1';
-        }
+        }       
         
-        $payedDetail = DB::table('purchase_kredit')
-            ->where('idp_kredit',$idKredit)
-            ->first();
-        $payed = $payedDetail->payed;
-        $lastPayed = $payedDetail->last_payed;
-        $updatePayed = $payed + $nominal;
-
         DB::table('purchase_kredit')
-            ->where('idp_kredit',$idKredit)
+            ->where('idp_kredit',$kreditId)
             ->update([
-                'payed'=>$updatePayed
+                'payed'=>$nominal,
+                'selisih'=>$selisih,
+                'last_payed'=>now()
             ]);
 
         DB::table('purchase_kredit_payment')
-            ->where('idp_pay',$nomorTrx)
-            ->update([  
-                'methode'=>$method,   
-                'account'=>$account,   
-                'number_account'=>$accountNumber,   
-                'selisih'=>$selisih,   
-                'status'=>'4',   
+            ->insert([
+                'nomor'=>$apNumber,
+                'kredit_pay'=>$nominal,
+                'methode'=>$method,
+                'from_account'=>$account,
+                'account'=>$account,
+                'number_account'=>$accountNumber,
+                'crated_at'=>now(),
+                'crated_by'=>$createdBy,
+                'status'=>"1",
+                'selisih'=>$selisih,
+                'description'=>$description,
+                'selisih'=>$selisih,
+                'payment_date'=>now(),
+                'purchase_number'=>$purchaseNumber                
             ]);
             
         DB::table('purchase_order')
@@ -844,6 +850,10 @@ class PurchasingController extends Controller
             ->update([
                 'payment_status'=>$status    
             ]);
+    }
+
+    public function modalDetailKredit($id){
+        echo $id;
     }
     
     public function lastPayment (){
