@@ -78,8 +78,10 @@
 <script>
 
     $(document).ready(function(){
+        $('#nominalKredit').mask('000.000.000', {reverse: true});
+        $('#nominal').mask('000.000.000', {reverse: true});
+        
         $("#nominal").on('input', computBayar);
-        $('.price-tag').mask('000.000.000', {reverse: true});
 
         function computBayar(){
             let nominalKredit = $("#nominalKredit").val(),
