@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-12">
             <form id="formPayMethod">
-                <input type="text" name="idKredit" value="{{$tbPayment->idp_kredit}}">
+                <input type="text" name="idKredit" value="{{$datPayment->idp_kredit}}">
                 <div class="form-group row">
                     <label class="col-md-2">AP Number</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm" name="apNumber" id="apNumber" value="{{$tbPayment->nomor}}" readonly>
+                        <input type="text" class="form-control form-control-sm" name="apNumber" id="apNumber" value="{{$numberTrx}}" readonly>
                     </div>
                     <label class="col-md-2">Purchase Number</label>
                     <div class="col-md-2">
@@ -20,7 +20,7 @@
                     </div>
                     <label class="col-md-2">Nominal Bayar</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm price-tag" name="nominal" id="nominal" value="{{$tbPayment->kredit_pay}}">
+                        <input type="text" class="form-control form-control-sm price-tag" name="nominal" id="nominal">
                     </div>
                 </div>
                 <div class="form-group row">

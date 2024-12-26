@@ -783,10 +783,28 @@ class PurchasingController extends Controller
         }
     }
     
-    public function modalMethod ($id){   
+    public function modalMethod ($id){  
+        $dateNow = date("Y-m-d");
+        $dateNo = date("mY");
+
         $datPayment = DB::table('purchase_kredit')
             ->where('idp_kredit',$id)
             ->first();
+        
+        $payNumber = DB::table('purchase_kredit_payment')
+            ->where([
+                ['payment_date',$dateNow]
+            ])
+            ->count();
+
+        if ($payNumber == 0) {
+            $no = 1;
+            $numberTrx = "AP".$dateNo."-".sprintf("%07d", $no);
+        }
+        else {
+            $no = $payNumber+1;
+            $numberTrx = "AP".$dateNo."-".sprintf("%07d", $no);
+        }
 
         $purchaseNumber = $datPayment->number_dok;
             
@@ -796,7 +814,7 @@ class PurchasingController extends Controller
                 ])
             ->first();
             
-        return view ('Purchasing/PurchaseOrder/modalBayar', compact('tbPayment','datPayment','id'));
+        return view ('Purchasing/PurchaseOrder/modalBayar', compact('tbPayment','datPayment','id','numberTrx'));
     }
     
     public function postModalPembayaran (Request $reqPostPayment){        
