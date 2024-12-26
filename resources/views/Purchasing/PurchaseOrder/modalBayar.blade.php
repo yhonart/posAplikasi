@@ -24,8 +24,8 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-2">Selisih</label>
-                    <div class="col-3">
+                    <label class="col-md-2">Selisih</label>
+                    <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="selisih" id="selisih" readonly>
                     </div>
                     <label class="col-md-2">Metode Pembayaran</label>
@@ -57,7 +57,7 @@
                         <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber" placeholder="Jika menggunnakan selain tunai">
                     </div>
                 </div>
-                <div class="from-group row">                    
+                <div class="form-group row">                    
                     <label for="description" class="col-md-2">Keterangan <small>[Optional]</small></label>
                     <div class="col-md-10">
                         <input type="text" class="from-control form-control-sm" name="description" id="description">
