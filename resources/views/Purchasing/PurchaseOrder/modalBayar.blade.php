@@ -15,9 +15,9 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2">Total Kredit</label>
+                    <label class="col-md-2">Saldo Hutang</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm price-tag" name="nominalKredit" id="nominalKredit" value="{{$datPayment->kredit}}" readonly>
+                        <input type="text" class="form-control form-control-sm price-tag" name="nominalKredit" id="nominalKredit" value="{{$datPayment->selisih}}" readonly>
                     </div>
                     <label class="col-md-2">Total Pembayaran</label>
                     <div class="col-md-3">
