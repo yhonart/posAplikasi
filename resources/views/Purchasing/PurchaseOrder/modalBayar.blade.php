@@ -60,7 +60,7 @@
                 <div class="form-group row">                    
                     <label for="description" class="col-md-2">Keterangan <small>[Optional]</small></label>
                     <div class="col-md-10">
-                        <input type="text" class="from-control form-control-sm" name="description" id="description">
+                        <input type="text" class="form-control form-control-sm" name="description" id="description">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -97,7 +97,7 @@
             $("#selisih").val(accounting.formatMoney(selisih,{
                 symbol: "",
                 precision: 0,
-                thausand: ".",
+    	        thousand: ".",
             }));
         }
         let datFilter = "dataPurchasing";
