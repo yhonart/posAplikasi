@@ -784,9 +784,6 @@ class PurchasingController extends Controller
     }
     
     public function modalMethod ($id){   
-        //cek payment number
-        
-
         $datPayment = DB::table('purchase_kredit')
             ->where('idp_kredit',$id)
             ->first();
@@ -803,9 +800,9 @@ class PurchasingController extends Controller
     }
     
     public function postModalPembayaran (Request $reqPostPayment){
-        $idPayment = $reqPostPayment->idPayment;
+        $nomorTrx = $reqPostPayment->idPayment;
+        $idKredit = $reqPostPayment->idKredit;        
         $purchaseNumber = $reqPostPayment->purchaseNumber;
-        $nominalKredit = str_replace(".","",$reqPostPayment->nominalKredit);
         $nominal = str_replace(".","",$reqPostPayment->nominal);
         $selisih = str_replace(".","",$reqPostPayment->selisih);
         $method = $reqPostPayment->method;
@@ -818,15 +815,28 @@ class PurchasingController extends Controller
         }else{
             $status = '1';
         }
-        DB::table('purchase_kredit_payment')
-            ->where('idp_pay',$idPayment)
+        
+        $payedDetail = DB::table('purchase_kredit')
+            ->where('idp_kredit',$idKredit)
+            ->first();
+        $payed = $payedDetail->payed;
+        $lastPayed = $payedDetail->last_payed;
+        $updatePayed = $payed + $nominal;
+
+        DB::table('purchase_kredit')
+            ->where('idp_kredit',$idKredit)
             ->update([
-                'kredit_pay'=>$nominal,   
+                'payed'=>$updatePayed
+            ]);
+
+        DB::table('purchase_kredit_payment')
+            ->where('idp_pay',$nomorTrx)
+            ->update([  
                 'methode'=>$method,   
                 'account'=>$account,   
                 'number_account'=>$accountNumber,   
                 'selisih'=>$selisih,   
-                'status'=>$status,   
+                'status'=>'4',   
             ]);
             
         DB::table('purchase_order')

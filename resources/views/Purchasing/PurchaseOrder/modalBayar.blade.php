@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-12">
             <form id="formPayMethod">
-                <input type="hidden" name="idPayment" value="{{$datPayment->number_dok}}">
-                <input type="hidden" name="idTrx" value="{{$datPayment->number_dok}}">
+                <input type="text" name="idPayment" value="{{$datPayment->number_dok}}">
+                <input type="text" name="idKredit" value="{{$tbPayment->idp_pay}}">
                 <div class="form-group row">
                     <label class="col-4">AP Number</label>
                     <div class="col-6">
