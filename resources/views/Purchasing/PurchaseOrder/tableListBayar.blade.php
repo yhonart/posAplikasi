@@ -7,7 +7,7 @@
             <th>Supplier</th>
             <th>Nominal</th>
             <th>Dibayar</th>
-            <th>Piutang</th>
+            <th>Saldo Piutang</th>
             <th></th>
         </tr>
     </thead>
@@ -24,13 +24,19 @@
                 </td>
                 <td>{{$tPayment->store_name}}</td>
                 <td class="text-right">
-                    {{number_format($tPayment->kredit,'0',',','.')}}
+                    <span class="text-danger font-weight-bold">
+                        {{number_format($tPayment->kredit,'0',',','.')}}
+                    </span>
                 </td>
                 <td class="text-right">
-                    {{number_format($tPayment->payed,'0',',','.')}}
+                    <span class="text-success font-weight-bold">
+                        {{number_format($tPayment->payed,'0',',','.')}}
+                    </span>
                 </td>
                 <td class="text-right">
-                    {{number_format($tPayment->selisih,'0',',','.')}}
+                    <span class="text-info font-weight-bold">
+                        {{number_format($tPayment->selisih,'0',',','.')}}
+                    </span>
                 </td>
                 <td class="text-right">
                     <button type="button" class="btn btn-sm btn-success BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/Bayar/modalMethod/{{$tPayment->idp_kredit}}" title="Bayar"><i class="fa-solid fa-file-invoice-dollar"></i></button>
