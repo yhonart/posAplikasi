@@ -33,7 +33,7 @@
                     {{number_format($tPayment->selisih,'0',',','.')}}
                 </td>
                 <td class="text-right">
-                    <button type="button" class="btn btn-sm btn-info BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/Bayar/modalDetail/{{$tPayment->idp_kredit}}" title="Detail"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="button" class="btn btn-sm btn-info BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/Bayar/modalMethod/{{$tPayment->idp_kredit}}" title="Detail"><i class="fa-solid fa-magnifying-glass"></i></button>
                     <button type="button" class="btn btn-sm btn-success BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/Bayar/modalDetailKredit/{{$tPayment->idp_kredit}}" title="Bayar"><i class="fa-solid fa-file-invoice-dollar"></i></button>
                 </td>
             </tr>
