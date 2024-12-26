@@ -79,6 +79,7 @@
 
     $(document).ready(function(){
         $("#nominal").on('input', computBayar);
+        $('.price-tag').mask('000.000.000', {reverse: true});
 
         function computBayar(){
             let nominalKredit = $("#nominalKredit").val(),
@@ -97,7 +98,6 @@
                 thausand: ".",
             }));
         }
-        $('.price-tag').mask('000.000.000', {reverse: true});
         let datFilter = "dataPurchasing";
         $("form#formPayMethod").submit(function(event){
             $("#submitPembayaran").hide();
