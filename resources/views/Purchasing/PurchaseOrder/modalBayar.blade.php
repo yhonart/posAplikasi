@@ -3,6 +3,7 @@
         <div class="col-12">
             <form id="formPayMethod">
                 <input type="hidden" name="idKredit" value="{{$datPayment->idp_kredit}}">
+                <input type="hidden" name="idKredit" value="{{$datPayment->idp_kredit}}">
                 <div class="form-group row">
                     <label class="col-md-2">AP Number</label>
                     <div class="col-md-3">
@@ -14,20 +15,26 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2">Nominal Kredit</label>
+                    <label class="col-md-2">Total Kredit</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm price-tag" name="nominalKredit" id="nominalKredit" value="{{$datPayment->selisih}}" readonly>
+                        <input type="text" class="form-control form-control-sm price-tag" name="nominalKredit" id="nominalKredit" value="{{$datPayment->kredit}}" readonly>
                     </div>
+                    <label class="col-md-2">Total Pembayaran</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control form-control-sm price-tag" name="nominalPayed" id="nominalPayed" value="{{$datPayment->payed}}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label class="col-md-2">Nominal Bayar</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm price-tag" name="nominal" id="nominal">
                     </div>
-                </div>
-                <div class="form-group row">
                     <label class="col-md-2">Selisih</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="selisih" id="selisih" readonly>
                     </div>
+                </div>
+                <div class="form-group row">
                     <label class="col-md-2">Metode Pembayaran</label>
                     <div class="col-md-3">
                         <select class="form-control form-control-sm" name="method" id="method">
@@ -35,8 +42,6 @@
                             <option value="TRANSFER">TRANSFER</option>
                         </select>
                     </div>
-                </div>
-                <div class="form-group row">
                     <label class="col-md-2">Akun Pembayaran <small class="text-muted">[Optional]</small></label>
                     <div class="col-md-3">
                         <select class="form-control form-control-sm" name="account" id="account">

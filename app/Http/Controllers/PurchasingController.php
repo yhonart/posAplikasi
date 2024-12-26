@@ -830,19 +830,20 @@ class PurchasingController extends Controller
         $accountNumber = $reqPostPayment->accountNumber;
         $description = $reqPostPayment->description;
         $createdBy = Auth::user()->name;
+        $payed = $reqPostPayment->nominalPayed;       
 
         if($selisih == '0'){
             $status = '4';
         }else{
             $status = '1';
         }       
-        
+        $nominalPayed = (int)$payed + (int)$nominal;
         DB::table('purchase_kredit')
             ->where('idp_kredit',$kreditId)
             ->update([
-                'payed'=>$nominal,
+                'payed'=>$nominalPayed,
                 'selisih'=>$selisih,
-                'last_payed'=>now()
+                'last_payed'=>$nominal
             ]);
 
         DB::table('purchase_kredit_payment')
