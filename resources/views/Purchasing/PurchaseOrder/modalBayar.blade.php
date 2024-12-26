@@ -2,23 +2,22 @@
     <div class="row">
         <div class="col-12">
             <form id="formPayMethod">
-                <input type="text" name="idPayment" value="{{$datPayment->number_dok}}">
                 <input type="text" name="idKredit" value="{{$tbPayment->idp_pay}}">
                 <div class="form-group row">
-                    <label class="col-4">AP Number</label>
-                    <div class="col-6">
+                    <label class="col-md-3">AP Number</label>
+                    <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="apNumber" id="apNumber" value="{{$tbPayment->nomor}}" readonly>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-4">Purchase Number</label>
-                    <div class="col-6">
+                    <label class="col-3">Purchase Number</label>
+                    <div class="col-3">
                         <input type="text" class="form-control form-control-sm" name="purchaseNumber" id="purchaseNumber" value="{{$datPayment->number_dok}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-4">Nominal Kredit</label>
-                    <div class="col-6">
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3">Nominal Kredit</label>
+                    <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm price-tag" name="nominalKredit" id="nominalKredit" value="{{$datPayment->kredit}}" readonly>
                     </div>
                 </div>
