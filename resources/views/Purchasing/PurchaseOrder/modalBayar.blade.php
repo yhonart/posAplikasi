@@ -95,7 +95,7 @@
             }
             let selisih = (parseInt(replaceKredit) - parseInt(replaceNominal));
             $("#selisih").val(accounting.formatMoney(selisih,{
-                Symbol: "",
+                symbol: "",
                 precision: 0,
                 thausand: ".",
             }));
