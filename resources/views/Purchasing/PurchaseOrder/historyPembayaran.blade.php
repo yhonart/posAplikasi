@@ -32,8 +32,8 @@
                     <label for="status" class="label">Status</label>
                     <select name="status" id="status" class="form-control">
                         <option value="0">All</option>
-                        <option value="1">Lunas</option>
-                        <option value="2">Outstanding</option>
+                        <option value="4">Lunas</option>
+                        <option value="1">Outstanding</option>
                     </select>
                 </div>
             </div>

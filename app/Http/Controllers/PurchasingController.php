@@ -1129,5 +1129,30 @@ class PurchasingController extends Controller
 
     public function filteringHistory ($supplier, $fromDate, $endDate, $status){
         echo $supplier."/".$fromDate."/".$endDate."/".$status;
+        $disHistory = DB::table('purchase_kredit_payment as a');
+        $disHistory = $disHistory->leftJoin('view_purchase_order as b','a.purchase_number','=','b.purchase_number');
+        if ($supplier <> 0 AND $fromDate <> 0 AND $endDate <> 0 AND $status <> 0) {
+            $disHistory = $disHistory->where([
+                ['b.supplier_id',$supplier],
+                ['b.payment_status',$status]
+            ]);
+            $disHistory = $disHistory->whereBetween('a.payment_date',[$fromDate, $endDate]);
+        }
+        elseif ($supplier == 0 AND $fromDate <> 0 AND $endDate <> 0 AND $status <> 0) {
+            $disHistory = $disHistory->where([
+                ['b.payment_status',$status]
+            ]);
+            $disHistory = $disHistory->whereBetween('a.payment_date',[$fromDate, $endDate]);
+        }
+        elseif ($supplier == 0 AND $fromDate == 0 AND $endDate == 0 AND $status <> 0) {
+            $disHistory = $disHistory->where([
+                ['b.payment_status',$status]
+            ]);
+        }
+        $disHistory = $disHistory->limit(100);
+        $disHistory = $disHistory->get();
+
+        return view('Purchasing/PurchaseOrder/historyPembayaranTable', compact('disHistory'));
+        
     }
 }
