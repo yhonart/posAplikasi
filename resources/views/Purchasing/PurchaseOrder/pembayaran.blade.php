@@ -82,7 +82,7 @@
         function tableAP(supplier, fromDate, endDate){
             $.ajax({
                 type : 'get',
-                url : "{{route('Purchasing')}}/historyPembayaran/filtering/"+supplier+"/"+fromDate+"/"+endDate,
+                url : "{{route('Purchasing')}}/Bayar/"+supplier+"/"+fromDate+"/"+endDate,
                 success : function(response){
                     $('#tableFilter').html(response);
                 }

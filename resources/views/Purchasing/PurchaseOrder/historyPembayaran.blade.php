@@ -94,7 +94,7 @@
         function tableAP(supplier, fromDate, endDate, status){
             $.ajax({
                 type : 'get',
-                url : "{{route('Purchasing')}}/Bayar/"+supplier+"/"+fromDate+"/"+endDate+"/"+status,
+                url : "{{route('Purchasing')}}/historyPembayaran/filtering/"+supplier+"/"+fromDate+"/"+endDate+"/"+status,
                 success : function(response){
                     $('#tableFilterHistory').html(response);
                 }
