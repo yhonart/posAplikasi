@@ -6,3 +6,4 @@ Route::get('Customers/TableDataCustomer/searchTableCus/{keyword}', [App\Http\Con
 Route::get('Customers/TableDataCustomer/EditTable/{id}', [App\Http\Controllers\CustomersController::class, 'EditTable']);
 Route::post('Customers/TableDataCustomer/PostEditTable', [App\Http\Controllers\CustomersController::class, 'PostEditTable']);
 Route::get('Customers/TableDataCustomer/DeleteTable/{id}', [App\Http\Controllers\CustomersController::class, 'DeleteTable']);
+Route::get('Customers/downloadAllCustomer', [App\Http\Controllers\CustomersController::class, 'downloadAllCustomer']);

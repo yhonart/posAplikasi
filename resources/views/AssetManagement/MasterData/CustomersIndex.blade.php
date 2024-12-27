@@ -22,6 +22,9 @@
                 </div>
             </div>
             <div class="col-12 col-md-9">
+                <div id="displayDownload">
+                    <a href="{{route('Customers')}}/downloadAllCustomer" class="btn btn-success btn-sm" target="_blank"><i class="fa-solid fa-file-excel"></i> Download Semua Customer</a>
+                </div>
                 <div id="displayEditCos"></div>
             </div>
         </div>
@@ -34,7 +37,7 @@
         let timer_cari_equipment = null;
         $("#searchCustomer").keyup(function (e){
             e.preventDefault();
-            clearTimeout(timer_cari_equipment);
+            clearTimeout(timer_cari_equipment);            
             timer_cari_equipment = setTimeout(function(){
                 let keyWord = $("#searchCustomer").val().trim();
                 if (keyWord=='') {
@@ -43,7 +46,8 @@
             searchData(keyWord)},700)
         });
         
-        function searchData(keyWord){        
+        function searchData(keyWord){
+            $("#displayDownload").fadeOut("slow");        
             $.ajax({
                 type : 'get',
                 url : "{{route('Customers')}}/TableDataCustomer/searchTableCus/"+keyWord,
