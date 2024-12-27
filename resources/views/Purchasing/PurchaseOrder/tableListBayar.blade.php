@@ -7,7 +7,7 @@
             <th>Supplier</th>
             <th>Nominal</th>
             <th>Dibayar</th>
-            <th>Saldo Piutang</th>
+            <th>Saldo Hutang</th>
             <th></th>
         </tr>
     </thead>
@@ -22,7 +22,11 @@
                     ?>
                     {{$dodate}}
                 </td>
-                <td>{{$tPayment->store_name}}</td>
+                <td>
+                    <span data-toggle="tooltip" data-placement="top" title="{{$tPayment->store}}">
+                        {{substr($tPayment->store_name,0,10)}}
+                    </span>
+                </td>
                 <td class="text-right">
                     <span class="text-danger font-weight-bold">
                         {{number_format($tPayment->kredit,'0',',','.')}}
