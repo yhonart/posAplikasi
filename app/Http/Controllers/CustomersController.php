@@ -117,9 +117,10 @@ class CustomersController extends Controller
 
     public function downloadAllCustomer (){
         $dbCustomer = DB::table('m_customers as a')
-            ->select('a.*','b.sales_name','c.group_name')
+            ->select('a.*','b.sales_name','c.group_name','d.method_name')
             ->leftJoin('m_sales as b','a.sales','=','sales_code')
             ->leftJoin('m_cos_group as c','a.customer_type','=','c.idm_cos_group')
+            ->leftJoin('m_payment_method as d','a.payment_type','=','c.idm_payment_method')
             ->get();
 
         return view('AssetManagement/MasterData/CustomersDownloadExcel', compact('dbCustomer'));

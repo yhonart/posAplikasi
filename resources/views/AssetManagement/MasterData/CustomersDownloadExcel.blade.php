@@ -26,7 +26,7 @@
                 <td>{{$dbc->customer_code}}</td>
                 <td>{{$dbc->customer_store}}</td>
                 <td>{{$dbc->address}}</td>
-                <td>{{$dbc->payment_type}}</td>
+                <td>{{$dbc->method_name}}</td>
                 <td>{{$dbc->group_name}}</td>
                 <td>{{$dbc->sales_name}}</td>
                 <td>{{$arrStatus[$dbc->customer_status]}}</td>
