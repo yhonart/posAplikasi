@@ -4,8 +4,8 @@
         1=>"Aktif",
         2=>"Non Member",
     );
-    // header("Content-type: application/vnd-ms-excel");
-    // header("Content-Disposition: attachment; filename=MasterDataCustomer.xls");
+    header("Content-type: application/vnd-ms-excel");
+    header("Content-Disposition: attachment; filename=MasterDataCustomer.xls");
 ?>
 <table width="100%" border="1">
     <thead>
