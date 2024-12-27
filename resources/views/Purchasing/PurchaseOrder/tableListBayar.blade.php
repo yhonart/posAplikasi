@@ -23,7 +23,7 @@
                     {{$dodate}}
                 </td>
                 <td>
-                    <span data-toggle="tooltip" data-placement="top" title="{{$tPayment->store}}">
+                    <span data-toggle="tooltip" data-placement="top" title="{{$tPayment->store_name}}">
                         {{substr($tPayment->store_name,0,10)}}
                     </span>
                 </td>
