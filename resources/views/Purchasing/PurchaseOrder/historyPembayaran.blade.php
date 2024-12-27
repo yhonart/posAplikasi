@@ -91,6 +91,14 @@
                 tableAP(supplier, fromDate, endDate, status);
         });
 
+        $("#status").change(function(){
+            let supplier = $("#supNameHistory").val(),
+                fromDate = $("#formDateHistory").val(),
+                endDate = $("#endDateHistory").val(),
+                status = $(this).val();
+                tableAP(supplier, fromDate, endDate, status);
+        });
+
         function tableAP(supplier, fromDate, endDate, status){
             $.ajax({
                 type : 'get',

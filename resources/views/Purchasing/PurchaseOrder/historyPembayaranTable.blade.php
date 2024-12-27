@@ -3,6 +3,7 @@
         <tr>
             <th>Nomor</th>
             <th>Tanggal</th>
+            <th>Supplier</th>
             <th>Type Pembayaran</th>
             <th>Bayar</th>
             <th>Saldo Kredit</th>
@@ -14,6 +15,7 @@
             <tr>
                 <td>{{$dh->nomor}}</td>
                 <td>{{$dh->payment_date}}</td>
+                <td>{{$dh->store_name}}</td>
                 <td>{{$dh->methode}}</td>
                 <td>{{number_format($dh->kredit_pay,'0',',','.')}}</td>
                 <td>{{number_format($dh->selisih,'0',',','.')}}</td>
