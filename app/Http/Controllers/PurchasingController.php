@@ -1149,6 +1149,7 @@ class PurchasingController extends Controller
             ]);
         }
         $disHistory = $disHistory->limit(100);
+        $disHistory = $disHistory->orderBy('a.idp_pay','desc');
         $disHistory = $disHistory->get();
 
         return view('Purchasing/PurchaseOrder/historyPembayaranTable', compact('disHistory'));
