@@ -53,3 +53,4 @@ Route::get('Purchasing/notivePoint/{suppID}', [App\Http\Controllers\PurchasingCo
 Route::get('piutangSupplier/pembayaran', [App\Http\Controllers\PurchasingController::class, 'pembayaran']);
 
 Route::get('Purchasing/historyPembayaran', [App\Http\Controllers\PurchasingController::class, 'historyPembayaran']);
+Route::get('Purchasing/historyPembayaran/filtering/{supplier}/{fromDate}/{endDate}/{status}', [App\Http\Controllers\PurchasingController::class, 'filteringHistory']);

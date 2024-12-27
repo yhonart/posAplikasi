@@ -1126,4 +1126,8 @@ class PurchasingController extends Controller
 
         return view('Purchasing/PurchaseOrder/historyPembayaran', compact('mSupplier'));
     }
+
+    public function filteringHistory ($supplier, $fromDate, $endDate, $status){
+        echo $supplier."/".$fromDate."/".$endDate."/".$status;
+    }
 }

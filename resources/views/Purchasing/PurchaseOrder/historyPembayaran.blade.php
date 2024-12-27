@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header border-0">
-        <h3 class="card-title">Input Pembayaran <small class="text-muted">* Pilih nama supplier untuk input pembayaran</small></h3>
+        <h3 class="card-title">History Pembayaran</h3>
     </div>
     <div class="card-body">
         <div class="row">
@@ -25,6 +25,16 @@
                 <div class="form-group">
                     <label for="endDateHistory" class="label">Sampai Tanggal</label>
                     <input type="text" class="form-control datetimepicker-input roundedd-0" name="endDateHistory" id="endDateHistory">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="from-group">
+                    <label for="status" class="label">Status</label>
+                    <select name="status" id="status" class="form-control">
+                        <option value="0">All</option>
+                        <option value="1">Lunas</option>
+                        <option value="2">Outstanding</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -54,33 +64,37 @@
     $(document).ready(function(){
         let supplier = $("#supNameHistory").val(),
             fromDate = 0,
-            endDate = 0;
+            endDate = 0,
+            status = 0;
 
-        tableAP(supplier, fromDate, endDate);
+        tableAP(supplier, fromDate, endDate, status);
         
         $("#supNameHistory").change(function(){
             let supplier = $(this).val(),
                 fromDate = $("#formDateHistory").val(),
-                endDate = $("#endDateHistory").val();
-                tableAP(supplier, fromDate, endDate);
+                endDate = $("#endDateHistory").val(),
+                status = $("#status").val();
+                tableAP(supplier, fromDate, endDate, status);
         });
         $("#formDateHistory").change(function(){
             let supplier = $("#supNameHistory").val(),
                 fromDate = $(this).val(),
-                endDate = $("#endDateHistory").val();
-                tableAP(supplier, fromDate, endDate);
+                endDate = $("#endDateHistory").val(),
+                status = $("#status").val();
+                tableAP(supplier, fromDate, endDate, status);
         });
         $("#endDateHistory").change(function(){
             let supplier = $("#supNameHistory").val(),
                 fromDate = $("#formDateHistory").val(),
-                endDate = $(this).val();
-                tableAP(supplier, fromDate, endDate);
+                endDate = $(this).val(),
+                status = $("#status").val();
+                tableAP(supplier, fromDate, endDate, status);
         });
 
-        function tableAP(supplier, fromDate, endDate){
+        function tableAP(supplier, fromDate, endDate, status){
             $.ajax({
                 type : 'get',
-                url : "{{route('Purchasing')}}/Bayar/"+supplier+"/"+fromDate+"/"+endDate,
+                url : "{{route('Purchasing')}}/Bayar/"+supplier+"/"+fromDate+"/"+endDate+"/"+status,
                 success : function(response){
                     $('#tableFilterHistory').html(response);
                 }
