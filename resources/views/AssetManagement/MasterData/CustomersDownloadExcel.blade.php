@@ -7,7 +7,7 @@
     // header("Content-type: application/vnd-ms-excel");
     // header("Content-Disposition: attachment; filename=MasterDataCustomer.xls");
 ?>
-<table>
+<table width="100%" border="1">
     <thead>
         <tr>
             <th>Kode</th>
