@@ -51,3 +51,5 @@ Route::get('Purchasing/getAutoPrice/{prdId}', [App\Http\Controllers\PurchasingCo
 Route::get('Purchasing/notivePoint/{suppID}', [App\Http\Controllers\PurchasingController::class, 'notivePoint']);
 
 Route::get('piutangSupplier/pembayaran', [App\Http\Controllers\PurchasingController::class, 'pembayaran']);
+
+Route::get('Purchasing/historyPembayaran', [App\Http\Controllers\PurchasingController::class, 'historyPembayaran']);
