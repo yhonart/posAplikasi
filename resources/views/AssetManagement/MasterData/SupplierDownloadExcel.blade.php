@@ -28,7 +28,11 @@
                 <td>{{$ms->city}}</td>
                 <td>{{$ms->payment_type}}</td>
                 <td>{{$ms->payment_type}}</td>
-                <td>{{$arrStatus[$ms->supplier_status]}}</td>
+                <td>
+                    @if($ms->supplier_status <> '')
+                    {{$arrStatus[$ms->supplier_status]}}
+                    @endif
+                </td>
             </tr>
         @endforeach
     </tbody>
