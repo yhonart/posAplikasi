@@ -6,7 +6,7 @@
         2=>"Non Member",
     );
 ?>
-<table>
+<table width="100%" border="1">
     <thead>
         <tr>
             <th>No</th>
