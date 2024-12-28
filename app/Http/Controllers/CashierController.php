@@ -1100,7 +1100,7 @@ class CashierController extends Controller
                 'new_payment' => '0',
                 'return_date' => now(),
                 'update_by' => $userAction,
-                'last_status_trx' => '3',
+                'last_status_trx' => '2',
             ]);
 
         
@@ -2724,22 +2724,6 @@ class CashierController extends Controller
         $persName = Auth::user()->name;
 
         $dataSaved = DB::table('view_trx_store');
-        // if ($dateTampil == "" OR $dateTampil == "0"){
-        //     $dataSaved = $dataSaved->where('status','2');
-        //     $dataSaved = $dataSaved->orWhere('status','0');
-        // }
-        // else{
-        //     $dataSaved = $dataSaved
-        //         ->where([
-        //             ['status','2'],
-        //             ['tr_date',$dateTampil]
-        //         ]);
-        //     // $dataSaved = $dataSaved
-        //     //     ->orWhere([
-        //     //         ['status','0'],
-        //     //         ['tr_date',$dateTampil]
-        //     //     ]);
-        // }
         if ($hakakses == '1') {
             $dataSaved = $dataSaved->where("status", '2');
         }
