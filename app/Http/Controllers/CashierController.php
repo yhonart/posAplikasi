@@ -1092,6 +1092,18 @@ class CashierController extends Controller
             ->update([
                 'status' => '1',
             ]);
+
+        DB::table('tr_return_record')
+            ->insert([
+                'trx_code' => $billingIden,
+                'last_payment' => '0',
+                'new_payment' => '0',
+                'return_date' => now(),
+                'update_by' => $userAction,
+                'last_status_trx' => '3',
+            ]);
+
+        
     }
 
     public function modalDataStock()
