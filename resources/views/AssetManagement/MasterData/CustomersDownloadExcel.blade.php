@@ -23,7 +23,7 @@
     <tbody>
         @foreach($dbCustomer as $dbc)
             <tr>
-                <td>CUS{{sprintf("%07d", $dbc->idm_customer)}}</td>
+                <td>PL{{sprintf("%07d", $dbc->idm_customer)}}</td>
                 <td>{{$dbc->customer_store}}</td>
                 <td>{{$dbc->address}}</td>
                 <td>{{$dbc->method_name}}</td>
