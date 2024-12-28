@@ -27,7 +27,7 @@
                 <div class="form-group row">
                     <label class="col-md-2">Nominal Bayar</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm price-tag" name="nominal" id="nominal">
+                        <input type="text" class="form-control form-control-sm price-tag" name="nominal" id="nominal" value="{{$datPayment->selisih}}">
                     </div>
                     <label class="col-md-2">Selisih</label>
                     <div class="col-md-3">
@@ -85,7 +85,7 @@
     $(document).ready(function(){
         $('#nominalKredit').mask('000.000.000', {reverse: true});
         $('#nominal').mask('000.000.000', {reverse: true});
-
+        $("#nominal").focus().select();
         $("#nominal").on('input', computBayar);
 
         function computBayar(){
