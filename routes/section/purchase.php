@@ -54,3 +54,5 @@ Route::get('piutangSupplier/pembayaran', [App\Http\Controllers\PurchasingControl
 
 Route::get('Purchasing/historyPembayaran', [App\Http\Controllers\PurchasingController::class, 'historyPembayaran']);
 Route::get('Purchasing/historyPembayaran/filtering/{supplier}/{fromDate}/{endDate}/{status}', [App\Http\Controllers\PurchasingController::class, 'filteringHistory']);
+
+Route::get('Purchasing/modalDetailKreditPembayaran/{id}/{noDok}', [App\Http\Controllers\PurchasingController::class, 'modalDetailKreditPembayaran']);

@@ -106,7 +106,7 @@
     	        thousand: ".",
             }));
         }
-        let datFilter = "dataPurchasing";
+        
         $("form#formPayMethod").submit(function(event){
             $("#submitPembayaran").hide();
             event.preventDefault();
@@ -122,7 +122,7 @@
                     $('body').removeClass('modal-open');
                     $("#modal-global-large").modal('hide');
                     $('.modal-backdrop').remove();
-                    displayLoadFilter(datFilter);
+                    window.location.reload();
                 }
             });
             return false;
@@ -132,14 +132,4 @@
             window.location.reload();
         })
     });
-    
-    function displayLoadFilter(datFilter){
-        $.ajax({
-            type : 'get',
-            url : "{{route('Purchasing')}}/"+datFilter,
-            success : function(response){
-                $("#divPageProduct").html(response);
-            }
-        });
-    }
 </script>

@@ -872,7 +872,12 @@ class PurchasingController extends Controller
     }
 
     public function modalDetailKredit($id){
-        echo $id;
+        $numberDok = DB::table('purchase_kredit')
+            ->select('number_dok')
+            ->where('idp_kredit',$id)
+            ->first();
+
+        return view('Purchasing/PurchaseOrder/modalDetailKreditMain',compact('id','numberDok'));
     }
     
     public function lastPayment (){
@@ -1154,5 +1159,9 @@ class PurchasingController extends Controller
 
         return view('Purchasing/PurchaseOrder/historyPembayaranTable', compact('disHistory'));
         
+    }
+
+    public function modalDetailKreditPembayaran($id, $noDok){
+        echo $id."/".$noDok;
     }
 }
