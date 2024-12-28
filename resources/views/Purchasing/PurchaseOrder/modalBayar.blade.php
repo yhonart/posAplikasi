@@ -87,18 +87,21 @@
         $('#nominal').mask('000.000.000', {reverse: true});
         $("#nominal").focus().select();
         $("#nominal").on('input', computBayar);
-
+        let nominalKredit = $("#nominalKredit").val(),
+        nominal = $("#nominal").val();
+        
+        let replaceKredit = nominalKredit.replace(/\./g, ""),
+        replaceNominal = nominal.replace(/\./g, "");
+        let selisih = (parseInt(replaceKredit) - parseInt(replaceNominal));
+        $("#selisih").val(accounting.formatMoney(selisih,{
+            symbol: "",
+            precision: 0,
+            thousand: ".",
+        }));
         function computBayar(){
-            let nominalKredit = $("#nominalKredit").val(),
-                nominal = $("#nominal").val();
-
-            let replaceKredit = nominalKredit.replace(/\./g, ""),
-                replaceNominal = nominal.replace(/\./g, "");
-
             if (typeof replaceNominal === "undefined" || typeof replaceNominal === "0") {
                 return
             }
-            let selisih = (parseInt(replaceKredit) - parseInt(replaceNominal));
             $("#selisih").val(accounting.formatMoney(selisih,{
                 symbol: "",
                 precision: 0,
