@@ -1,5 +1,5 @@
 <div class="row">
-<div class="col-12 col-sm-6">
+<div class="col-12">
     <div class="card card-primary card-tabs">
         <div class="card-header p-0 pt-1">
         <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
@@ -29,15 +29,15 @@
     $(document).ready(function(){
         let id = "{{$id}}",
             noDok = "{{$numberDok->number_dok}}",
-            functionDisplay = "modalDetailKreditPembayaran",
-            divDisplay = $("#detailAllFunction");
-
-        function detailAllFunction(functionDisplay, divDisplay, id, noDok){           
+            functionDisplay = "modalDetailKreditPembayaran";
+        detailAllFunction(functionDisplay, id, noDok)
+        
+        function detailAllFunction(functionDisplay, id, noDok){           
             $.ajax({
                 type : 'get',
                 url : "{{route('Purchasing')}}/"+functionDisplay+"/"+id+"/"+noDok,
                 success : function(response){
-                    divDisplay.html(response);
+                    $("#detailAllFunction").html(response);
                 }
             });
         }
