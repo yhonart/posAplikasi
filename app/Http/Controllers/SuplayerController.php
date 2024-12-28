@@ -97,4 +97,11 @@ class SuplayerController extends Controller
             ->where('idm_supplier',$id)
             ->delete();
     }
+
+    public function downloadExcelSupplier(){
+        $masterSupplier = DB::table('m_supplier')
+            ->get();
+
+        return view ('AssetManagement/MasterData/SupplierDownloadExcel', compact('masterSupplier'));
+    }
 }
