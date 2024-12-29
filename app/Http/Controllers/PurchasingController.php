@@ -1162,6 +1162,9 @@ class PurchasingController extends Controller
     }
 
     public function modalDetailKreditPembayaran($id, $noDok){
-        echo $id."/".$noDok;
+        $tbPembayaran = DB::table('purchase_kredit_payment')
+            ->where('purchase_number'.$noDok)
+            ->get();
+        return view('Purchasing/PurchaseOrder/modalDetailKreditPembayaran', compact('tbPembayaran','noDok'));                
     }
 }
