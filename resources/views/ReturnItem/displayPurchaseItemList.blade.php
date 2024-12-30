@@ -162,14 +162,18 @@ $no = '1';
             })); 
             
             $("#saldo").val(saldo);
-            
-            $("#btnInsert").focus().removeClass('btn-default');
-            $("#btnInsert").focus().addClass('bg-success');
         }
         
-        var activities = document.getElementById("btnInsert");
+        var activities = document.getElementById("qtyRetur");
+        var activitiesHrgSatuan = document.getElementById("hargaSatuan");
         
         activities.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
+        activitiesHrgSatuan.addEventListener('keydown', function(event) {  
             if (event.keyCode === 13) {
                 event.preventDefault();
                 addActivityItem();
