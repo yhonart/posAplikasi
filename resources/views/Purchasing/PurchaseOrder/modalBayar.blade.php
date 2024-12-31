@@ -67,7 +67,7 @@
                     <div class="col-md-3">
                         <select name="sumberDana" id="sumberDana" class="form-control form-control-sm">
                             <option value="0"></option>
-                            @foreach($sumberKas as sk)
+                            @foreach($sumberKas as $sk)
                             <option value="{{$sk->created_by}}">{{$sk->created_by}} - Rp.{{$sk->kasUmum}}</option>
                             @endforeach
                         </select>
