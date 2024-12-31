@@ -2562,6 +2562,19 @@ class CashierController extends Controller
                     ->update([
                         'nominal' => $trxList->total
                     ]);
+                $trxKredit = DB::table('tr_kredit')
+                    ->where('from_payment_code',$noBill)
+                    ->first();
+
+                $nom_payed = $trxKredit->nom_payed;
+                $updateKredit = $trxList->total - $nom_payed;
+
+                DB::table('tr_kredit')
+                    ->where('from_payment_code',$noBill)
+                    ->update([
+                        'nominal'=>$trxList->total,
+                        'nom_kredit'=>$updateKredit
+                    ]);
             }
         } else {  // Mengubah status transaksi menjadi 0 /hapus
             foreach ($prdList as $pest) {
