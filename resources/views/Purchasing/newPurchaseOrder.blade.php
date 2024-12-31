@@ -82,16 +82,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <div class="label" id="point"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>            
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group row ml-2">
@@ -122,6 +113,15 @@
                             <div class="spinner-border text-dark" role="status" id="spinnerSimpan" style="display:none;">
                               <span class="sr-only">Loading...</span>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div class="label" id="point"></div>
                         </div>
                     </div>
                 </div>
