@@ -49,6 +49,7 @@ Route::get('Purchasing/cencelInput/{idNo}', [App\Http\Controllers\PurchasingCont
 
 Route::get('Purchasing/getAutoPrice/{prdId}', [App\Http\Controllers\PurchasingController::class, 'getAutoPrice']);
 Route::get('Purchasing/notivePoint/{suppID}', [App\Http\Controllers\PurchasingController::class, 'notivePoint']);
+Route::get('Purchasing/displayItemReturn/{suppID}', [App\Http\Controllers\PurchasingController::class, 'displayItemReturn']);
 
 Route::get('piutangSupplier/pembayaran', [App\Http\Controllers\PurchasingController::class, 'pembayaran']);
 

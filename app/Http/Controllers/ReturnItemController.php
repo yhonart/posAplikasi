@@ -10,6 +10,8 @@ class ReturnItemController extends Controller
 {
     protected $tempInv;
     protected $tempUser;
+    protected $TempInventoryController;
+    protected $TempUsersController;
     
     public function __construct(TempInventoryController $tempInv, TempUsersController $tempUser)
     {
@@ -152,7 +154,23 @@ class ReturnItemController extends Controller
         $stockAwal = $reqReturn->stock;
         $stockAkhir = $reqReturn->saldo;
         $userName = Auth::user()->name;
-        
+
+        $listLO = DB::table('purchase_list_order')
+            ->where('id_lo',$id)
+            ->first();
+            
+        $productID = $listLO->product_id;
+        $location = $listLO->warehouse;
+        $qty = $qtyReturn;
+        $prodSatuan = $listLO->size;
+        $purchNumber = $listLO->purchase_number;
+
+        $docPurchase = DB::table("purchase_order")
+            ->where('purchase_number',$purchNumber)
+            ->first();
+
+        $supplierId = $docPurchase->supplier_id;
+
         DB::table('purchase_return')
             ->insert([
                 'purchase_number'=>$purchaseNumber,
@@ -167,24 +185,9 @@ class ReturnItemController extends Controller
                 'stock_awal'=>$stockAwal,
                 'stock_akhir'=>$stockAkhir,
                 'created_by'=>$userName,
-                'status'=>'1'
+                'status'=>'1',
+                'supplier_id'=>$supplierId,
             ]);
-        
-        // Updating stock
-        
-        $listLO = DB::table('purchase_list_order')
-            ->where('id_lo',$id)
-            ->first();
-            
-        $productID = $listLO->product_id;
-        $location = $listLO->warehouse;
-        $qty = $qtyReturn;
-        $prodSatuan = $listLO->size;
-        $purchNumber = $listLO->purchase_number;
-        
-        $docPurchase = DB::table("purchase_order")
-            ->where('purchase_number',$purchNumber)
-            ->first();
             
         $nomReturn = $hrgSatuan * $qtyReturn;  
         DB::table('purchase_point')
@@ -201,116 +204,7 @@ class ReturnItemController extends Controller
         
          
         $updateInv = $this->TempInventoryController->stockControl($productID, $location, $stockAkhir, $satuan); 
-        
-        // foreach($mUnit as $pl){
-        //     //UPDATE STOCK;
-        //     $dataStock = DB::table('view_product_stock')
-        //     ->where([
-        //         ['idm_data_product',$productID],
-        //         ['location_id',$location]
-        //     ])
-        //     ->get();
-            
-        //     echo $productID."/".$location;
-        //     // Cek volume by kode size 2
-        //     $codeSatu = DB::table('view_product_stock')
-        //     ->where([
-        //         ['idm_data_product',$productID],
-        //         ['location_id',$location],
-        //         ['size_code','1'],
-        //     ])
-        //     ->first();
-            
-        //     // Cek volume by kode size 2
-        //     $codeDua = DB::table('view_product_stock')
-        //     ->where([
-        //         ['idm_data_product',$productID],
-        //         ['location_id',$location],
-        //         ['size_code','2'],
-        //     ])
-        //     ->first();
-            
-        //     $codeTiga = DB::table('view_product_stock')
-        //     ->where([
-        //         ['idm_data_product',$productID],
-        //         ['location_id',$location],
-        //         ['size_code','3'],
-        //     ])
-        //     ->first();
-        //     if(!empty($codeTiga)){
-        //         $volTiga = $codeTiga->product_volume;
-        //         $stokTiga = $codeTiga->stock;
-        //     }
-        //     else{
-        //         $volTiga = $codeSatu->product_volume;
-        //         $stokTiga = $codeSatu->stock;
-        //     }
-            
-        //     if(!empty($codeDua)){
-        //         $volDua = $codeDua->product_volume;
-        //         $stokDua = $codeDua->stock;
-        //     }
-        //     else{
-        //         $volDua = $volTiga;
-        //         $stokDua = $stokTiga;
-        //     }
-            
-        //     foreach($dataStock as $ds){
-        //         if($prodSatuan == "BESAR"){ // Jika yang dimasukkan adalah satuan Besar
-        //             if($ds->size_code == '1'){ // Jika kode dalam list 1
-        //                 $a = $ds->stock - $qty;
-        //             }
-        //             elseif($ds->size_code == '2'){
-        //                 $a1 = $ds->product_volume * $qty; //contoh 1 x 10 = 10
-        //                 $a = $ds->stock - $a1;
-        //             }
-        //             elseif($ds->size_code == '3'){
-        //                 $a1 = $ds->product_volume * $qty;
-        //                 $a = $ds->stock - $a1;
-        //             }
-        //         }
-        //         elseif($prodSatuan == "KECIL"){ // Jika yang idmasukkan adalah satuan kecil
-        //             if($ds->size_code == '1'){ // Jika kode dalam list 1
-        //                 $a1 = $stokDua - $qty;
-        //                 $a2 = $a1/$ds->product_volume;
-        //                 $a = (int)$a2;
-        //             }
-        //             elseif($ds->size_code == '2'){
-        //                 $a1 = $ds->stock - $qty;
-        //                 $a = (int)$a1;
-        //             }
-        //             elseif($ds->size_code == '3'){
-        //                 $a1 = $volDua * $qty;
-        //                 $a2 = $ds->stock-$a1;
-        //                 $a = (int)$a2;
-        //             }
-        //         }
-        //         elseif($prodSatuan == "KONV"){
-        //             $ab = $stokTiga - $qty;
-                    
-        //             if($ds->size_code == '1'){ // Jika kode dalam list 1
-        //                 $a1 = $ab / $volTiga;
-        //                 $a = (int)$a1;
-        //             }
-        //             elseif($ds->size_code == '2'){
-        //                 $a1 = $ab / $volDua;
-        //                 $a = (int)$a1;
-        //             }
-        //             elseif($ds->size_code == '3'){
-        //                 $a = $ds->stock-$qty;
-        //             }
-        //         }
-        //         if($a < '0'){
-        //             $a = '0';
-        //         }
-        //         DB::table('inv_stock')
-        //         ->where('idinv_stock',$ds->idinv_stock)
-        //         ->update([
-        //             'stock'=>$a,    
-        //             'saldo'=>$a    
-        //         ]);
-        //     }
-        // }
+
         return back();
     }
 }

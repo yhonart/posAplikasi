@@ -190,7 +190,20 @@ class PurchasingController extends Controller
                 ])
             ->first();
             
-        return view ('Purchasing/notivPoint', compact('disPoint','countPoint'));
+        return view ('Purchasing/notivPoint', compact('disPoint','countPoint','suppID'));
+    }
+    
+    public function displayItemReturn($suppID){
+        $itemReturn = DB::table('purchase_return as a')
+            ->select('a.*','b.product_name')
+            ->leftJoin('m_product as b','a.product_id','=','b.idm_data_product')
+            ->where([
+                ['supplier_id', $suppID],
+                ['status','1']
+            ])
+            ->get();
+
+        return view ('Purchasing/notivModalItem', compact('suppID','itemReturn'));
     }
     
     public function cencelInput($idNo){

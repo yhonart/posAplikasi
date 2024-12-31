@@ -47,12 +47,6 @@
                             <input type="text" name="dayKredit" id="dayKredit" class="form-control form-control-sm " placeholder="Abaikan Jika Menggunakan Tunai/Transfer" autocomplete="off">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <div class="label" id="point"></div>
-                        </div>
-                    </div>
-                    
                 </div>
                 <div class="col-12 col-md-3">
                     <div class="form-group row">
@@ -85,6 +79,15 @@
                         <div class="col-12">
                             <label class="label">Keterangan</label>
                             <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm " autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div class="label" id="point"></div>
                         </div>
                     </div>
                 </div>
