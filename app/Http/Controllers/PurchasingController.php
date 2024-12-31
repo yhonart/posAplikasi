@@ -189,8 +189,17 @@ class PurchasingController extends Controller
                 ['status','1']
                 ])
             ->first();
+
+        $itemReturn = DB::table('purchase_return as a')
+            ->select('a.*','b.product_name')
+            ->leftJoin('m_product as b','a.product_id','=','b.idm_data_product')
+            ->where([
+                ['supplier_id', $suppID],
+                ['status','1']
+            ])
+            ->get();
             
-        return view ('Purchasing/notivPoint', compact('disPoint','countPoint','suppID'));
+        return view ('Purchasing/notivPoint', compact('disPoint','countPoint','suppID','itemReturn'));
     }
     
     public function displayItemReturn($suppID){

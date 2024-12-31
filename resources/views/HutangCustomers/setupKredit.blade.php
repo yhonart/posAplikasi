@@ -25,9 +25,15 @@
 </div>
 <script>
     $(document).ready(function() {    
+        let namaPelanggan = '0';
+        
         $("#setupPilihPelanggan").change(function(){
             $("#displayNotif").fadeIn("slow");
             let namaPelanggan = $(this).find(":selected").val();
+            displaySetupcustomer(namaPelanggan);
+        });
+
+        function displaySetupcustomer(namaPelanggan){
             $.ajax({
                 type : 'get',
                 url : "{{route('adminPiutangPelanggan')}}/setupPelanggan/"+namaPelanggan,
@@ -36,6 +42,6 @@
                     $("#displayNotif").fadeOut("slow");
                 }
             });
-        });
+        }
     });
 </script>

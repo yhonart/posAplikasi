@@ -71,6 +71,7 @@ class LoanMaintenanceController extends Controller
         if ($keyword <> '0') {
             $totalHutang2 = $totalHutang2->where('from_member_id', $keyword);
         }
+        $totalHutang2 = $totalHutang2->limit(100);
         $totalHutang2 = $totalHutang2->get();
         return view("HutangCustomers/UnlockCustomerLoan", compact('customerListTrx','totalHutang2'));
     }
