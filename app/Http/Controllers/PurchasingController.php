@@ -835,8 +835,17 @@ class PurchasingController extends Controller
                 ['purchase_number',$purchaseNumber]
                 ])
             ->first();
+
+        $sumberKas = DB::table('tr_store')
+            ->select(DB::raw('SUM(t_pay) AS kasUmum'), 'created_by')
+            ->where([
+                ['tr_date',$dateNow],
+                ['status','4']
+            ])
+            ->groupBy('created_by')
+            ->get();
             
-        return view ('Purchasing/PurchaseOrder/modalBayar', compact('tbPayment','datPayment','id','numberTrx'));
+        return view ('Purchasing/PurchaseOrder/modalBayar', compact('tbPayment','datPayment','id','numberTrx','sumberKas'));
     }
     
     public function postModalPembayaran (Request $reqPostPayment){        

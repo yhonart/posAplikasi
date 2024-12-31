@@ -62,6 +62,17 @@
                         <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber" placeholder="Jika menggunnakan selain tunai">
                     </div>
                 </div>
+                <div class="from-group row">
+                    <label class="col-md-3">Sumber Dana <small class="text-muted">[Optional]</small></label>
+                    <div class="col-md-3">
+                        <select name="sumberDana" id="sumberDana" class="form-control form-control-sm">
+                            <option value="0"></option>
+                            @foreach($sumberKas as sk)
+                            <option value="{{$sk->created_by}}">{{$sk->created_by}} - Rp.{{$sk->kasUmum}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group row">                    
                     <label for="description" class="col-md-3">Keterangan <small>[Optional]</small></label>
                     <div class="col-md-10">
