@@ -1,54 +1,56 @@
-<table class="table table-valign-middle table-sm ">
-    <thead class="bg-gray-dark">
-        <tr>
-            <td>Kode Pelanggan</td>
-            <td>Nama Pelanggan</td>
-            <td>Limit Hutang</td>
-            <td>Over Limit</td>
-            <td>Lock & Unlock</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($customerListTrx as $cslt)
+<div class="table-responsive" style="height: 700px;">
+    <table class="table table-valign-middle table-sm ">
+        <thead class="bg-gray-dark">
             <tr>
-                <td>{{$cslt->customer_code}}</td>
-                <td>{{$cslt->customer_store}}</td>
-                <td>
-                    <i class="fa-solid fa-rupiah-sign float-left"></i>
-                    <a href="{{route('adminPiutangPelanggan')}}/modalEditLimit/{{$cslt->idm_customer}}" class="text-info font-weight-bold float-right BTN-OPEN-MODAL-GLOBAL-LG">
-                        {{number_format($cslt->kredit_limit,'0',',','.')}} <i class="fa-solid fa-file-pen"></i>
-                    </a>
-                </td>
-                <td>
-                    @foreach($totalHutang2 as $th2)
+                <td>Kode Pelanggan</td>
+                <td>Nama Pelanggan</td>
+                <td>Limit Hutang</td>
+                <td>Over Limit</td>
+                <td>Lock & Unlock</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($customerListTrx as $cslt)
+                <tr>
+                    <td>{{$cslt->customer_code}}</td>
+                    <td>{{$cslt->customer_store}}</td>
+                    <td>
                         <i class="fa-solid fa-rupiah-sign float-left"></i>
-                        @if($th2->from_member_id == $cslt->idm_customer)
-                            <span class="text-danger float-right">{{number_format($th2->kredit,'0',',','.')}}</span>
-                        @endif
-                    @endforeach
-                </td>
-                <td>
-                    <?php
-                        if ($cslt->loan_lock == '0') {
-                            $checked = "";
-                        }
-                        else {
-                            $checked = "checked";
-                        }
-                    ?>
-                    <form class="CHANGE_RESERVE">
-                        <div class="form-group">
-                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                <input type="checkbox" class="custom-control-input change-status" id="customSwitch{{$cslt->idm_customer}}" value="{{$cslt->idm_customer}}" {{$checked}}> 
-                                <label class="custom-control-label" for="customSwitch{{$cslt->idm_customer}}">Lock/Unlock</label>                     
+                        <a href="{{route('adminPiutangPelanggan')}}/modalEditLimit/{{$cslt->idm_customer}}" class="text-info font-weight-bold float-right BTN-OPEN-MODAL-GLOBAL-LG">
+                            {{number_format($cslt->kredit_limit,'0',',','.')}} <i class="fa-solid fa-file-pen"></i>
+                        </a>
+                    </td>
+                    <td>
+                        @foreach($totalHutang2 as $th2)
+                            <i class="fa-solid fa-rupiah-sign float-left"></i>
+                            @if($th2->from_member_id == $cslt->idm_customer)
+                                <span class="text-danger float-right">{{number_format($th2->kredit,'0',',','.')}}</span>
+                            @endif
+                        @endforeach
+                    </td>
+                    <td>
+                        <?php
+                            if ($cslt->loan_lock == '0') {
+                                $checked = "";
+                            }
+                            else {
+                                $checked = "checked";
+                            }
+                        ?>
+                        <form class="CHANGE_RESERVE">
+                            <div class="form-group">
+                                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                    <input type="checkbox" class="custom-control-input change-status" id="customSwitch{{$cslt->idm_customer}}" value="{{$cslt->idm_customer}}" {{$checked}}> 
+                                    <label class="custom-control-label" for="customSwitch{{$cslt->idm_customer}}">Lock/Unlock</label>                     
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </td>
-            </tr>            
-        @endforeach
-    </tbody>
-</table>
+                        </form>
+                    </td>
+                </tr>            
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
 <script>
     $(document).on('change','.CHANGE_RESERVE :checkbox',function(e){

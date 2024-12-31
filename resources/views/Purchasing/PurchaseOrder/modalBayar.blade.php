@@ -5,44 +5,44 @@
                 <input type="hidden" name="idKredit" value="{{$datPayment->idp_kredit}}">
                 <input type="hidden" name="idKredit" value="{{$datPayment->idp_kredit}}">
                 <div class="form-group row">
-                    <label class="col-md-2">AP Number</label>
+                    <label class="col-md-3">AP Number</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="apNumber" id="apNumber" value="{{$numberTrx}}" readonly>
                     </div>
-                    <label class="col-md-2">Purchase Number</label>
-                    <div class="col-md-2">
+                    <label class="col-md-3">Purchase Number</label>
+                    <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="purchaseNumber" id="purchaseNumber" value="{{$datPayment->number_dok}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2">Saldo Hutang</label>
+                    <label class="col-md-3">Saldo Hutang</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm price-tag" name="nominalKredit" id="nominalKredit" value="{{$datPayment->selisih}}" readonly>
                     </div>
-                    <label class="col-md-2">Total Pembayaran</label>
+                    <label class="col-md-3">Total Pembayaran</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm price-tag" name="nominalPayed" id="nominalPayed" value="{{$datPayment->payed}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2">Nominal Bayar</label>
+                    <label class="col-md-3">Nominal Bayar</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm price-tag" name="nominal" id="nominal" value="{{$datPayment->selisih}}">
                     </div>
-                    <label class="col-md-2">Selisih</label>
+                    <label class="col-md-3">Selisih</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="selisih" id="selisih" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2">Metode Pembayaran</label>
+                    <label class="col-md-3">Metode Pembayaran</label>
                     <div class="col-md-3">
                         <select class="form-control form-control-sm" name="method" id="method">
                             <option value="TUNAI">TUNAI</option>
                             <option value="TRANSFER">TRANSFER</option>
                         </select>
                     </div>
-                    <label class="col-md-2">Akun Pembayaran <small class="text-muted">[Optional]</small></label>
+                    <label class="col-md-3">Akun Pembayaran <small class="text-muted">[Optional]</small></label>
                     <div class="col-md-3">
                         <select class="form-control form-control-sm" name="account" id="account">
                             <option value="">....</option>
@@ -53,26 +53,26 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2">Nama Akun Bank <small class="text-muted">[Optional]</small></label>
+                    <label class="col-md-3">Nama Akun Bank <small class="text-muted">[Optional]</small></label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="accountName" id="accountName" placeholder="Jika menggunnakan selain tunai">
                     </div>
-                    <label class="col-md-2">Nomor Akun Bank <small class="text-muted">[Optional]</small></label>
+                    <label class="col-md-3">Nomor Akun Bank <small class="text-muted">[Optional]</small></label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber" placeholder="Jika menggunnakan selain tunai">
                     </div>
                 </div>
                 <div class="form-group row">                    
-                    <label for="description" class="col-md-2">Keterangan <small>[Optional]</small></label>
+                    <label for="description" class="col-md-3">Keterangan <small>[Optional]</small></label>
                     <div class="col-md-10">
                         <input type="text" class="form-control form-control-sm" name="description" id="description">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <button type="submit" class="btn btn-success btn-sm elevation-2 font-weight-bold btn-block" id="submitPembayaran"><i class="fa-solid fa-receipt"></i> Bayar</button>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <button type="button" class="btn btn-danger btn-sm elevation-2 font-weight-bold btn-block" id="batalPembayaran"><i class="fa-solid fa-circle-xmark"></i> Batal</button>
                     </div>
                 </div>
