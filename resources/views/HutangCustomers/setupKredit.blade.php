@@ -26,7 +26,7 @@
 <script>
     $(document).ready(function() {    
         let namaPelanggan = '0';
-        
+        displaySetupcustomer(namaPelanggan);
         $("#setupPilihPelanggan").change(function(){
             $("#displayNotif").fadeIn("slow");
             let namaPelanggan = $(this).find(":selected").val();
