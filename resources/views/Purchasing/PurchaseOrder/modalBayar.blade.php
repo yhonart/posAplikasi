@@ -19,7 +19,7 @@
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm price-tag" name="nominalKredit" id="nominalKredit" value="{{$datPayment->selisih}}" readonly>
                     </div>
-                    <label class="col-md-3">Total Pembayaran</label>
+                    <label class="col-md-3">Yang Telah Dibayar</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm price-tag" name="nominalPayed" id="nominalPayed" value="{{$datPayment->payed}}" readonly>
                     </div>
@@ -65,12 +65,17 @@
                 <div class="from-group row">
                     <label class="col-md-3">Sumber Dana<br><small class="text-muted">[Berdasarkan Transaksi Perkasir Hari ini]</small></label>
                     <div class="col-md-3">
-                        <select name="sumberDana" id="sumberDana" class="form-control form-control-sm">
+                        <select name="sumberDana" id="sumberDana" class="form-control form-control-sm" multiple="multiple">
                             <option value="0"></option>
                             @foreach($sumberKas as $sk)
-                            <option value="{{$sk->created_by}}">{{$sk->created_by}} - Rp.{{number_format($sk->kasUmum,'0',',','.')}}</option>
+                            <option value="{{$sk->created_by}}|{{$sk->kasUmum}}">{{$sk->created_by}} - Rp.{{number_format($sk->kasUmum,'0',',','.')}}</option>
                             @endforeach
                         </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="displaySumberDana"></div>
                     </div>
                 </div>
                 <div class="form-group row">                    

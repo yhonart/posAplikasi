@@ -43,7 +43,7 @@
                     </span>
                 </td>
                 <td class="text-right">
-                    <button type="button" class="btn btn-sm btn-success BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/Bayar/modalMethod/{{$tPayment->idp_kredit}}" title="Bayar"><i class="fa-solid fa-file-invoice-dollar"></i></button>
+                    <button type="button" class="btn btn-sm btn-success BAYAR" data-id="{{$tPayment->idp_kredit}}" title="Bayar"><i class="fa-solid fa-file-invoice-dollar"></i></button>
                     <button type="button" class="btn btn-sm btn-info BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/Bayar/modalDetailKredit/{{$tPayment->idp_kredit}}" title="Detail"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </td>
             </tr>
@@ -59,5 +59,18 @@
             "dom": 'Bfrtip',
             "buttons": ["copy", "csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+    $(document).ready(function(){
+        $(".dataTable").on('click','.BAYAR', function () {
+            let el = $(this);
+            let dataID = el.attr('data-id');
+            $.ajax({
+                type:'get',
+                url:"{{route('Purchasing')}}/Bayar/modalMethod/" + dataID, 
+                success : function(response){
+                    $('#tableFilter').html(response);
+                }     
+            }); 
+        });
     });
 </script>
