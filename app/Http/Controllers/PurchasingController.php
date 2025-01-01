@@ -931,13 +931,14 @@ class PurchasingController extends Controller
         }
         else {
             $danaPertama = '0';
-        }        
+        }  
+        $nominalKas = $danakas->kasUmum - $pembayaran;   
         $saldoKas = $danakas->kasUmum - $danaPertama;
 
         DB::table('purchase_dana_payment')
             ->insert([
                 'kasir'=>$kasir,
-                'nominal'=>$danaPertama,
+                'nominal'=>$nominalKas,
                 'status'=>'1',
                 'created_date'=>now(),
                 'trx_date'=>now(),
