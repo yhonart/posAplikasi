@@ -933,7 +933,7 @@ class PurchasingController extends Controller
         else {
             $danaPertama = '0';
         }  
-        $nominalKas = (int)$danaTersedia - (int)$pembayaran;   
+        $nominalKas = (int)$pembayaran - (int)$lastDana->nominal;   
         $saldoKas = (int)$danaTersedia - (int)$danaPertama;
 
         DB::table('purchase_dana_payment')
