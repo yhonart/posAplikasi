@@ -1,4 +1,11 @@
 <table class="table table-sm table-valign-middle">
+    <thead>
+        <tr>
+            <th>Kasir</th>
+            <th>Dana Tertarik</th>
+            <th>Saldo Dana</th>
+        </tr>
+    </thead>
     <tbody>
         @foreach($tableDana as $td)
             <tr>
