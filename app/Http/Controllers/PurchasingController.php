@@ -915,7 +915,7 @@ class PurchasingController extends Controller
                 ['status','4']
             ])
             ->first();
-
+        
         $lastDana = DB::table('purchase_dana_payment')
             ->select(DB::raw('SUM(nominal) as nominal'))
             ->where([
@@ -931,6 +931,7 @@ class PurchasingController extends Controller
             $danaPertama = '0';
         }        
         $saldoKas = $danakas->kasUmum - $danaPertama;
+
         DB::table('purchase_dana_payment')
             ->insert([
                 'kasir'=>$kasir,
