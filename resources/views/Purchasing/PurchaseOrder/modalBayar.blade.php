@@ -62,10 +62,11 @@
                         <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber" placeholder="Jika menggunnakan selain tunai">
                     </div>
                 </div>
+                <hr>
                 <div class="from-group row">
                     <label class="col-md-3">Sumber Dana<br><small class="text-muted">[Berdasarkan Transaksi Perkasir Hari ini]</small></label>
                     <div class="col-md-3">
-                        <select name="sumberDana" id="sumberDana" class="form-control form-control-sm select2" multiple="multiple">
+                        <select name="sumberDana" id="sumberDana" class="form-control form-control-sm">
                             <option value="0"></option>
                             @foreach($sumberKas as $sk)
                             <option value="{{$sk->created_by}}|{{$sk->kasUmum}}">{{$sk->created_by}} - Rp.{{number_format($sk->kasUmum,'0',',','.')}}</option>
