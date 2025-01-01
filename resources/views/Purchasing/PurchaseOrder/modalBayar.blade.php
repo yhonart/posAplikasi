@@ -121,7 +121,7 @@
             apNumber = $("#apNumber").val(),
             nominal = $("#nominal").val(),
             purchaseNumber = $("#purchaseNumber").val();
-        tampilSumberDana (kasir,apNumber,apNumber);
+        tampilSumberDana (kasir,apNumber,purchaseNumber);
 
         function computBayar(){
             let nominalKredit = $("#nominalKredit").val(),
@@ -152,12 +152,12 @@
                 url : "{{route('Purchasing')}}/Bayar/postSumberDana",
                 data : {kasir:kasir,apNumber:apNumber,purchaseNumber:purchaseNumber,nominal:nominal},
                 success : function(data){
-                    tampilSumberDana (kasir,apNumber,apNumber);
+                    tampilSumberDana (kasir,apNumber,purchaseNumber);
                 }
             });
         });
 
-        function tampilSumberDana (kasir,apNumber,apNumber){
+        function tampilSumberDana (kasir,apNumber,purchaseNumber){
             $.ajax({
                 type : 'get',
                 url : "{{route('Purchasing')}}/Bayar/getDisplaySumberDana/"+kasir+"/"+apNumber+"/"+apNumber,
