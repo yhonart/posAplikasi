@@ -157,11 +157,10 @@
             });
         });
 
-        function tampilSumberDana (kasir,apNumber,purchaseNumber){
-            alert (purchaseNumber);
+        function tampilSumberDana (kasir,apNumber,purchaseNumber){            
             $.ajax({
                 type : 'get',
-                url : "{{route('Purchasing')}}/Bayar/getDisplaySumberDana/"+kasir+"/"+apNumber+"/"+apNumber,
+                url : "{{route('Purchasing')}}/Bayar/getDisplaySumberDana/"+kasir+"/"+apNumber+"/"+purchaseNumber,
                 success : function(response){
                     $("#displaySumberDana").html(response);
                 }
