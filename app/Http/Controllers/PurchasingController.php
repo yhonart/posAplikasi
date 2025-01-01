@@ -917,7 +917,7 @@ class PurchasingController extends Controller
             ])
             ->groupBy('created_by')
             ->first();
-        
+        $danaTersedia = $danakas->kasUmum;
         $lastDana = DB::table('purchase_dana_payment')
             ->select(DB::raw('SUM(nominal) as nominal'))
             ->where([
@@ -932,8 +932,8 @@ class PurchasingController extends Controller
         else {
             $danaPertama = '0';
         }  
-        $nominalKas = $danakas->kasUmum - $pembayaran;   
-        $saldoKas = $danakas->kasUmum - $danaPertama;
+        $nominalKas = $danaTersedia - $pembayaran;   
+        $saldoKas = $danaTersedia - $danaPertama;
 
         DB::table('purchase_dana_payment')
             ->insert([
