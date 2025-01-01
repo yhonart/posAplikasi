@@ -38,6 +38,8 @@ Route::post('Purchasing/Bayar/payPost', [App\Http\Controllers\PurchasingControll
 Route::get('Purchasing/Bayar/modalMethod/{nomor}', [App\Http\Controllers\PurchasingController::class, 'modalMethod']);
 Route::post('Purchasing/Bayar/postModalPembayaran', [App\Http\Controllers\PurchasingController::class, 'postModalPembayaran']);
 Route::get('Purchasing/Bayar/modalDetailKredit/{nomor}', [App\Http\Controllers\PurchasingController::class, 'modalDetailKredit']);
+Route::post('Purchasing/Bayar/postSumberDana', [App\Http\Controllers\PurchasingController::class, 'postSumberDana']);
+Route::get('Purchasing/Bayar/getDisplaySumberDana/{kasir}/{apNumber}/{purchaseNumber}', [App\Http\Controllers\PurchasingController::class, 'getDisplaySumberDana']);
 
 Route::post('Purchasing/tablePenerimaan/updateOnChange', [App\Http\Controllers\PurchasingController::class, 'updateOnChange']);
 Route::get('Purchasing/tablePenerimaan/deleteItem/{delId}', [App\Http\Controllers\PurchasingController::class, 'deleteItem']);

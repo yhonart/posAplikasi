@@ -902,6 +902,61 @@ class PurchasingController extends Controller
             ]);
     }
 
+    public function postSumberDana(Request $reqPostDana){
+        $kasir = $reqPostDana->kasir;
+        $apNumber = $reqPostDana->apNumber;
+        $purchaseNumber = $reqPostDana->purchaseNumber;
+        $pembayaran = $reqPostDana->nominal;
+
+        $danakas = DB::table('tr_store')
+            ->select(DB::raw('SUM(t_pay) AS kasUmum'), 'created_by')
+            ->where([
+                ['created_by',$kasir],
+                ['status','4']
+            ])
+            ->first();
+
+        $lastDana = DB::table('purchase_dana_payment')
+            ->select(DB::raw('SUM(nominal) as nominal'))
+            ->where([
+                ['ap_number',$apNumber],
+                ['purchase_number',$purchaseNumber],
+                ['status','!=','0']
+            ])
+            ->first();
+        if (!empty($lastDana)) {
+            $danaPertama = $pembayaran-$lastDana->nominal;
+        }
+        else {
+            $danaPertama = '0';
+        }        
+        $saldoKas = $danakas->kasUmum - $danaPertama;
+        DB::table('purchase_dana_payment')
+            ->insert([
+                'kasir'=>$kasir,
+                'nominal'=>$danakas->kasUmum,
+                'status'=>'1',
+                'created_date'=>now(),
+                'trx_date'=>now(),
+                'ap_number'=>$apNumber,
+                'purchase_number'=>$purchaseNumber,
+                'saldo_kas'=>$saldoKas
+            ]);
+        
+    }
+
+    public function getDisplaySumberDana($kasir, $apNumber, $purchaseNumber){
+        //Cek ketersedian nama kasir di dalam dana 
+        $tableDana = DB::table('purchase_dana_payment')
+            ->where([
+                ['ap_number',$apNumber],
+                ['purchase_number',$purchaseNumber]
+            ])
+            ->get();
+
+        return view('Purchasing/PurchaseOrder/modalBayarDisDana',compact('kasir','tableDana'));
+    }
+
     public function modalDetailKredit($id){
         $numberDok = DB::table('purchase_kredit')
             ->select('number_dok')

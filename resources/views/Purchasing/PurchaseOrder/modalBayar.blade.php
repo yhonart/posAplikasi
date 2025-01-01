@@ -69,7 +69,7 @@
                         <select name="sumberDana" id="sumberDana" class="form-control form-control-sm">
                             <option value="0"></option>
                             @foreach($sumberKas as $sk)
-                            <option value="{{$sk->created_by}}|{{$sk->kasUmum}}">{{$sk->created_by}} - Rp.{{number_format($sk->kasUmum,'0',',','.')}}</option>
+                            <option value="{{$sk->created_by}}">{{$sk->created_by}} - Rp.{{number_format($sk->kasUmum,'0',',','.')}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -127,6 +127,21 @@
     	        thousand: ".",
             }));
         }
+
+        $("#sumberDana").change(function(){
+            let kasir = $(this).val(),
+                apNumber = $("#apNumber").val(),
+                nominal = $("#nominal").val(),
+                purchaseNumber = $("#purchaseNumber").val();
+            $.ajax({
+                type : 'post',
+                url : "{{route('Purchasing')}}/Bayar/postSumberDana",
+                data : {kasir:kasir,apNumber:apNumber,purchaseNumber:purchaseNumber,nominal:nominal},
+                success : function(data){
+                    $("#displaySumberDana").load("{{route('Purchasing')}}/Bayar/getDisplaySumberDana/"+kasir+"/"+apNumber+"/"+purchaseNumber);
+                }
+            });
+        });
         
         $("form#formPayMethod").submit(function(event){
             $("#submitPembayaran").hide();
