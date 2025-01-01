@@ -960,7 +960,6 @@ class PurchasingController extends Controller
                 ['purchase_number',$purchaseNumber]
             ])
             ->get();
-
         return view('Purchasing/PurchaseOrder/modalBayarDisDana',compact('kasir','tableDana'));
     }
 

@@ -108,6 +108,11 @@
         $('.select2').select2({
             theme: 'bootstrap4'
         });
+        let kasir = '0',
+            apNumber = $("#apNumber").val(),
+            nominal = $("#nominal").val(),
+            purchaseNumber = $("#purchaseNumber").val();
+        tampilSumberDana (kasir,apNumber,apNumber);
     })
     $(document).ready(function(){
         $('#nominalKredit').mask('000.000.000', {reverse: true});
@@ -145,10 +150,20 @@
                 url : "{{route('Purchasing')}}/Bayar/postSumberDana",
                 data : {kasir:kasir,apNumber:apNumber,purchaseNumber:purchaseNumber,nominal:nominal},
                 success : function(data){
-                    $("#displaySumberDana").load("{{route('Purchasing')}}/Bayar/getDisplaySumberDana/"+kasir+"/"+apNumber+"/"+purchaseNumber);
+                    tampilSumberDana (kasir,apNumber,apNumber);
                 }
             });
         });
+
+        function tampilSumberDana (kasir,apNumber,apNumber){
+            $.ajax({
+                type : 'get',
+                url : "{{route('Purchasing')}}/Bayar/getDisplaySumberDana/"+kasir+"/"+apNumber+"/"+apNumber,
+                success : function(response){
+                    $("#displaySumberDana").html(response);
+                }
+            });
+        }
         
         $("form#formPayMethod").submit(function(event){
             $("#submitPembayaran").hide();
