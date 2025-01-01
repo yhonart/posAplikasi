@@ -62,13 +62,15 @@
     });
     $(document).ready(function(){
         $(".dataTable").on('click','.BAYAR', function () {
+            $("#displayNotif").fadeIn("slow");
             let el = $(this);
             let dataID = el.attr('data-id');
             $.ajax({
                 type:'get',
                 url:"{{route('Purchasing')}}/Bayar/modalMethod/" + dataID, 
                 success : function(response){
-                    $('#tableFilter').html(response);
+                    $('#displayAP').html(response);
+                    $("#displayNotif").fadeOut("slow");
                 }     
             }); 
         });
