@@ -158,6 +158,7 @@
         });
 
         function tampilSumberDana (kasir,apNumber,purchaseNumber){
+            alert (purchaseNumber);
             $.ajax({
                 type : 'get',
                 url : "{{route('Purchasing')}}/Bayar/getDisplaySumberDana/"+kasir+"/"+apNumber+"/"+apNumber,
