@@ -932,8 +932,8 @@ class PurchasingController extends Controller
         else {
             $danaPertama = '0';
         }  
-        $nominalKas = $danaTersedia - $pembayaran;   
-        $saldoKas = $danaTersedia - $danaPertama;
+        $nominalKas = (int)$danaTersedia - (int)$pembayaran;   
+        $saldoKas = (int)$danaTersedia - (int)$danaPertama;
 
         DB::table('purchase_dana_payment')
             ->insert([
