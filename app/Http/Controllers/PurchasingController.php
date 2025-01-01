@@ -937,7 +937,7 @@ class PurchasingController extends Controller
         DB::table('purchase_dana_payment')
             ->insert([
                 'kasir'=>$kasir,
-                'nominal'=>$danakas->kasUmum,
+                'nominal'=>$danaPertama,
                 'status'=>'1',
                 'created_date'=>now(),
                 'trx_date'=>now(),
