@@ -907,12 +907,13 @@ class PurchasingController extends Controller
         $apNumber = $reqPostDana->apNumber;
         $purchaseNumber = $reqPostDana->purchaseNumber;
         $pembayaran = $reqPostDana->nominal;
-
+        $dateNow = date("Y-m-d");
         $danakas = DB::table('tr_store')
             ->select(DB::raw('SUM(t_pay) AS kasUmum'), 'created_by')
             ->where([
                 ['created_by',$kasir],
-                ['status','4']
+                ['status','4'],
+                ['tr_date',$dateNow]
             ])
             ->groupBy('created_by')
             ->first();
@@ -926,7 +927,7 @@ class PurchasingController extends Controller
             ])
             ->first();
         if (!empty($lastDana)) {
-            $danaPertama = (int)$pembayaran-(int)$lastDana->nominal;
+            $danaPertama = (int)$pembayaran - (int)$lastDana->nominal;
         }
         else {
             $danaPertama = '0';
