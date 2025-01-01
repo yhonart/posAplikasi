@@ -930,7 +930,7 @@ class PurchasingController extends Controller
             $danaPertama = (int)$pembayaran - (int)$lastDana->nominal;
         }
         else {
-            $danaPertama = '0';
+            $danaPertama = $pembayaran;
         }  
         $nominalKas = (int)$danaTersedia - (int)$pembayaran;   
         $saldoKas = (int)$danaTersedia - (int)$danaPertama;
