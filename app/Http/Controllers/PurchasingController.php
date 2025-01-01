@@ -954,7 +954,7 @@ class PurchasingController extends Controller
 
     public function getDisplaySumberDana($kasir, $apNumber, $purchaseNumber){
         //Cek ketersedian nama kasir di dalam dana 
-        echo $apNumber." ".$purchaseNumber;
+        
         $tableDana = DB::table('purchase_dana_payment')
             ->where([
                 ['ap_number',$apNumber],
