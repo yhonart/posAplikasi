@@ -133,14 +133,15 @@
                 apNumber = $("#apNumber").val(),
                 nominal = $("#nominal").val(),
                 purchaseNumber = $("#purchaseNumber").val();
-            $.ajax({
-                type : 'post',
-                url : "{{route('Purchasing')}}/Bayar/postSumberDana",
-                data : {kasir:kasir,apNumber:apNumber,purchaseNumber:purchaseNumber,nominal:nominal},
-                success : function(data){
-                    $("#displaySumberDana").load("{{route('Purchasing')}}/Bayar/getDisplaySumberDana/"+kasir+"/"+apNumber+"/"+purchaseNumber);
-                }
-            });
+            alert (kasir);
+            // $.ajax({
+            //     type : 'post',
+            //     url : "{{route('Purchasing')}}/Bayar/postSumberDana",
+            //     data : {kasir:kasir,apNumber:apNumber,purchaseNumber:purchaseNumber,nominal:nominal},
+            //     success : function(data){
+            //         $("#displaySumberDana").load("{{route('Purchasing')}}/Bayar/getDisplaySumberDana/"+kasir+"/"+apNumber+"/"+purchaseNumber);
+            //     }
+            // });
         });
         
         $("form#formPayMethod").submit(function(event){
