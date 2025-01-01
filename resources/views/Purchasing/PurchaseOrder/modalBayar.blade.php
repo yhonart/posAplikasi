@@ -4,34 +4,40 @@
             <form id="formPayMethod">
                 <input type="hidden" name="idKredit" value="{{$datPayment->idp_kredit}}">
                 <input type="hidden" name="idKredit" value="{{$datPayment->idp_kredit}}">
+                <div class="from-group row">
+                    <label class="col-md-3">Supplier</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control form-control-sm font-weight-bold" name="supplier" id="supplier" value="{{$datPayment->store_name}}" readonly>
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label class="col-md-3">AP Number</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm" name="apNumber" id="apNumber" value="{{$numberTrx}}" readonly>
+                        <input type="text" class="form-control form-control-sm font-weight-bold" name="apNumber" id="apNumber" value="{{$numberTrx}}" readonly>
                     </div>
                     <label class="col-md-3">Purchase Number</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm" name="purchaseNumber" id="purchaseNumber" value="{{$datPayment->number_dok}}" readonly>
+                        <input type="text" class="form-control form-control-sm font-weight-bold" name="purchaseNumber" id="purchaseNumber" value="{{$datPayment->number_dok}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3">Saldo Hutang</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm price-tag" name="nominalKredit" id="nominalKredit" value="{{$datPayment->selisih}}" readonly>
+                        <input type="text" class="form-control form-control-sm price-tag font-weight-bold" name="nominalKredit" id="nominalKredit" value="{{$datPayment->selisih}}" readonly>
                     </div>
                     <label class="col-md-3">Yang Telah Dibayar</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm price-tag" name="nominalPayed" id="nominalPayed" value="{{$datPayment->payed}}" readonly>
+                        <input type="text" class="form-control form-control-sm price-tag font-weight-bold" name="nominalPayed" id="nominalPayed" value="{{$datPayment->payed}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3">Nominal Bayar</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm price-tag" name="nominal" id="nominal" value="{{$datPayment->selisih}}">
+                        <input type="text" class="form-control form-control-sm price-tag text-success font-weight-bold" name="nominal" id="nominal" value="{{$datPayment->selisih}}">
                     </div>
                     <label class="col-md-3">Selisih</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm" name="selisih" id="selisih" readonly>
+                        <input type="text" class="form-control form-control-sm text-info font-weight-bold" name="selisih" id="selisih" readonly>
                     </div>
                 </div>
                 <div class="form-group row">

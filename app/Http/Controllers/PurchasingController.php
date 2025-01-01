@@ -809,7 +809,9 @@ class PurchasingController extends Controller
         $dateNow = date("Y-m-d");
         $dateNo = date("mY");
 
-        $datPayment = DB::table('purchase_kredit')
+        $datPayment = DB::table('purchase_kredit as a')
+            ->select('a.*','b.store_name')
+            ->leftJoin('m_supplier as b','a.supplier_id','=','b.idm_supplier')
             ->where('idp_kredit',$id)
             ->first();
         
