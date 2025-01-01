@@ -42,7 +42,7 @@
                             <option value="TRANSFER">TRANSFER</option>
                         </select>
                     </div>
-                    <label class="col-md-3">Akun Pembayaran <small class="text-muted">[Optional]</small></label>
+                    <label class="col-md-3">Akun Pembayaran <br><small class="text-muted">[Jika Menggunakan Transaksi Non Tunai]</small></label>
                     <div class="col-md-3">
                         <select class="form-control form-control-sm" name="account" id="account">
                             <option value="">....</option>
@@ -53,17 +53,17 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3">Nama Akun Bank <small class="text-muted">[Optional]</small></label>
+                    <label class="col-md-3">Nama Akun Bank <br><small class="text-muted">[Jika Menggunakan Transaksi Non Tunai]</small></label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="accountName" id="accountName" placeholder="Jika menggunnakan selain tunai">
                     </div>
-                    <label class="col-md-3">Nomor Akun Bank <small class="text-muted">[Optional]</small></label>
+                    <label class="col-md-3">Nomor Akun Bank<br><small class="text-muted">[Jika Menggunakan Transaksi Non Tunai]</small></label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber" placeholder="Jika menggunnakan selain tunai">
                     </div>
                 </div>
                 <div class="from-group row">
-                    <label class="col-md-3">Sumber Dana <small class="text-muted">[Optional]</small></label>
+                    <label class="col-md-3">Sumber Dana<br><small class="text-muted">[Berdasarkan Transaksi Perkasir Hari ini]</small></label>
                     <div class="col-md-3">
                         <select name="sumberDana" id="sumberDana" class="form-control form-control-sm">
                             <option value="0"></option>
