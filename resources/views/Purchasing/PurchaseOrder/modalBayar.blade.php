@@ -107,19 +107,21 @@
     $(function(){
         $('.select2').select2({
             theme: 'bootstrap4'
-        });
-        let kasir = '0',
-            apNumber = $("#apNumber").val(),
-            nominal = $("#nominal").val(),
-            purchaseNumber = $("#purchaseNumber").val();
-        tampilSumberDana (kasir,apNumber,apNumber);
+        });        
     })
     $(document).ready(function(){
         $('#nominalKredit').mask('000.000.000', {reverse: true});
         $('#nominal').mask('000.000.000', {reverse: true});
         $("#nominal").focus().select();
         $("#nominal").on('input', computBayar);
+        
         computBayar();
+        
+        let kasir = '0',
+            apNumber = $("#apNumber").val(),
+            nominal = $("#nominal").val(),
+            purchaseNumber = $("#purchaseNumber").val();
+        tampilSumberDana (kasir,apNumber,apNumber);
 
         function computBayar(){
             let nominalKredit = $("#nominalKredit").val(),
