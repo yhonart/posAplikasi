@@ -926,7 +926,7 @@ class PurchasingController extends Controller
             ])
             ->first();
         if (!empty($lastDana)) {
-            $danaPertama = $pembayaran-$lastDana->nominal;
+            $danaPertama = (int)$pembayaran-(int)$lastDana->nominal;
         }
         else {
             $danaPertama = '0';
