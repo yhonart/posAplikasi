@@ -906,9 +906,9 @@ class PurchasingController extends Controller
         $kasir = $reqPostDana->kasir;
         $apNumber = $reqPostDana->apNumber;
         $purchaseNumber = $reqPostDana->purchaseNumber;
-        $pembayaran = $reqPostDana->nominal;
+        $pembayaran = str_replace(".", "", $reqPostDana->nominal);
         $dateNow = date("Y-m-d");
-
+        
         $danakas = DB::table('tr_store')
             ->select(DB::raw('SUM(t_pay) AS kasUmum'), 'created_by')
             ->where([
@@ -939,7 +939,7 @@ class PurchasingController extends Controller
         DB::table('purchase_dana_payment')
             ->insert([
                 'kasir'=>$kasir,
-                'nominal'=>$danaTersedia,
+                'nominal'=>$nominalKas,
                 'status'=>'1',
                 'created_date'=>now(),
                 'trx_date'=>now(),
