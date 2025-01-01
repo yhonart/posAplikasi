@@ -914,6 +914,7 @@ class PurchasingController extends Controller
                 ['created_by',$kasir],
                 ['status','4']
             ])
+            ->groupBy('created_by')
             ->first();
         
         $lastDana = DB::table('purchase_dana_payment')
