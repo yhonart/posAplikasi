@@ -4,9 +4,9 @@
             <th>Nomor</th>
             <th>Tanggal</th>
             <th>Supplier</th>
-            <th>Type Pembayaran</th>
+            <th>Cara Pembayaran</th>
             <th>Total Kredit</th>
-            <th>Bayar</th>
+            <th>Pembayaran</th>
             <th>Saldo Kredit</th>
             <th></th>
         </tr>
@@ -29,7 +29,8 @@
                         {{number_format($dh->selisih,'0',',','.')}}</td>
                     </span>
                 <td>
-                    <button type="button" class="btn btn-info btn-sm BTN-OPEN-MODAL-GLOBAL-LG"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="button" class="btn btn-info btn-sm BTN-OPEN-MODAL-GLOBAL-LG" title="Detail" href="{{route('Purchasing')}}/historyPembayaran/detailPembayaran/{{$dh->idp_pay}}"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <a class="btn btn-primary btn-sm" href="#" target="_blank" title="Cetak"><i class="fa-solid fa-print"></i></button>
                 </td>
             </tr>
         @endforeach

@@ -1266,6 +1266,10 @@ class PurchasingController extends Controller
         
     }
 
+    public function detailPembayaran ($id){
+        return view('Purchasing/PurchaseOrder/historyPembayaranDetail', compact('id'));
+    }
+
     public function modalDetailKreditPembayaran($id, $noDok){
         $tbPembayaran = DB::table('purchase_kredit_payment')
             ->where('purchase_number',$noDok)
