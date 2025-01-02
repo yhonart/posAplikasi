@@ -14,7 +14,7 @@
                 <td>Rp. {{number_format($td->nominal,'0',',','.')}}</td>                
                 <td>Rp. {{number_format($td->saldo_kas,'0',',','.')}}</td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-default BTN-DELETE" data-id="{{$td->id_dana}}"><i class="fa-solid fa-xmark"></i></button>
+                    <button type="button" class="btn btn-sm btn-default border-0 BTN-DELETE" data-id="{{$td->id_dana}}"><i class="fa-solid fa-xmark text-danger"></i></button>
                 </td>               
             </tr>
         @endforeach
