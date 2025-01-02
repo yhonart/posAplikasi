@@ -922,13 +922,14 @@ class PurchasingController extends Controller
             ->first();
         $danaTersedia = $danakas->kasUmum;
         $lastDana = DB::table('purchase_dana_payment')
-            ->select(DB::raw('SUM(nominal) as nominal'))
+            ->select(DB::raw('SUM(nominal) as nominal'), 'kasir')
             ->where([
                 ['ap_number',$apNumber],
                 ['purchase_number',$purchaseNumber],
                 ['status','!=','0']
             ])
             ->first();
+
         if (!empty($lastDana)) {
             $danaPertama = (int)$pembayaran - (int)$lastDana->nominal;
         }
@@ -937,19 +938,20 @@ class PurchasingController extends Controller
         }  
         $nominalKas = (int)$pembayaran - (int)$lastDana->nominal;   
         $saldoKas = (int)$danaTersedia - (int)$danaPertama;
-
-        DB::table('purchase_dana_payment')
-            ->insert([
-                'kasir'=>$kasir,
-                'nominal'=>$nominalKas,
-                'status'=>'1',
-                'created_date'=>now(),
-                'trx_date'=>now(),
-                'ap_number'=>$apNumber,
-                'purchase_number'=>$purchaseNumber,
-                'saldo_kas'=>$saldoKas
-            ]);
         
+        if ($lastDana->kasir <> $kasir AND $kasir <> '0') {
+            DB::table('purchase_dana_payment')
+                ->insert([
+                    'kasir'=>$kasir,
+                    'nominal'=>$nominalKas,
+                    'status'=>'1',
+                    'created_date'=>now(),
+                    'trx_date'=>now(),
+                    'ap_number'=>$apNumber,
+                    'purchase_number'=>$purchaseNumber,
+                    'saldo_kas'=>$saldoKas
+                ]);
+        }
     }
 
     public function getDisplaySumberDana($kasir, $apNumber, $purchaseNumber){
@@ -958,11 +960,20 @@ class PurchasingController extends Controller
         $tableDana = DB::table('purchase_dana_payment')
             ->where([
                 ['ap_number',$apNumber],
-                ['purchase_number',$purchaseNumber]
+                ['purchase_number',$purchaseNumber],
+                ['status','1']
             ])
             ->get();
 
-        return view('Purchasing/PurchaseOrder/modalBayarDisDana',compact('kasir','tableDana'));
+        return view('Purchasing/PurchaseOrder/modalBayarDisDana',compact('kasir','tableDana','apNumber','purchaseNumber'));
+    }
+
+    public function deleteDana($danaId){
+        DB::table('purchase_dana_payment')
+            ->where('id_dana',$danaId)
+            ->update([
+                'status'=>'0'
+            ]);
     }
 
     public function modalDetailKredit($id){

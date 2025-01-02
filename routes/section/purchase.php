@@ -48,6 +48,7 @@ Route::get('Purchasing/DueDate', [App\Http\Controllers\PurchasingController::cla
 Route::get('Purchasing/lastPayment', [App\Http\Controllers\PurchasingController::class, 'lastPayment']);
 Route::get('Purchasing/Payed', [App\Http\Controllers\PurchasingController::class, 'Payed']);
 Route::get('Purchasing/cencelInput/{idNo}', [App\Http\Controllers\PurchasingController::class, 'cencelInput']);
+Route::get('Purchasing/deleteDana/{idNo}', [App\Http\Controllers\PurchasingController::class, 'deleteDana']);
 
 Route::get('Purchasing/getAutoPrice/{prdId}', [App\Http\Controllers\PurchasingController::class, 'getAutoPrice']);
 Route::get('Purchasing/notivePoint/{suppID}', [App\Http\Controllers\PurchasingController::class, 'notivePoint']);
