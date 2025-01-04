@@ -24,9 +24,9 @@
                         <span class="pt-1 pb-1 pl-2 pr-2 bg-success rounded-pill font-weight-bold">{{$pr->tempo}}</span>
                     @endif
                 </td>
-                <td> 
-                    <button type="button" class="btn btn-sm btn-primary font-weight-bold float-right DIS-ITEM" title="Retur Item" data-purchase="{{$pr->purchase_number}}"><i class="fa-solid fa-rotate-right"></i> Retur</button>
-                    <button type="button" class="btn btn-sm btn-info font-weight-bold float-right DETAIL-ITEM" title="Detail" data-purchase="{{$pr->purchase_number}}"><i class="fa-solid fa-magnifying-glass"></i> Detail</button>
+                <td class="text-right"> 
+                    <button class="btn btn-sm btn-primary font-weight-bold float-right DIS-ITEM" title="Retur Item" data-purchase="{{$pr->purchase_number}}"><i class="fa-solid fa-rotate-right"></i> Retur</button>
+                    <button class="btn btn-sm btn-info font-weight-bold float-right DETAIL-ITEM" title="Detail" data-purchase="{{$pr->purchase_number}}"><i class="fa-solid fa-magnifying-glass"></i> Detail</button>
                 </td>
             </tr>
         @endforeach
