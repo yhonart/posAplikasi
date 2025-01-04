@@ -6,4 +6,5 @@
     Route::get('adminPiutangPelanggan/saldoFaktur/{pelanggan}/{fromDate}/{endDate}', [App\Http\Controllers\LoanMaintenanceController::class, 'saldoFaktur']);
     Route::get('adminPiutangPelanggan/saldoCustomer/{pelanggan}', [App\Http\Controllers\LoanMaintenanceController::class, 'saldoCustomer']);
     Route::get('adminPiutangPelanggan/setupPelanggan/{keyword}', [App\Http\Controllers\LoanMaintenanceController::class, 'setupPelanggan']);
+    Route::get('adminPiutangPelanggan/laporanCustomer/{pelanggan}/{fromDate}/{endDate}', [App\Http\Controllers\LoanMaintenanceController::class, 'laporanCustomer']);
 ?>

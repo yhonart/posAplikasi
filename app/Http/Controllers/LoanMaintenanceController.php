@@ -52,6 +52,14 @@ class LoanMaintenanceController extends Controller
 
         return view('HutangCustomers/lapCustomers', compact('dbMCustomer'));
     }
+    public function laporanCustomer($keyword, $fromDate, $endDate){
+        $dbTableKredit = DB::table('view_customer_kredit');
+        $dbTableKredit = $dbTableKredit->where('from_member_id', $keyword);
+        $dbTableKredit = $dbTableKredit->whereBetween('created_at',[$fromDate,$endDate]);
+        $dbTableKredit = $dbTableKredit->get();
+
+        return view('HutangCustomers/lapCustomersTable', compact('dbTableKredit'));
+    }
     public function setup (){
         $dbMCustomer = DB::table('m_customers')
             ->get();
@@ -121,7 +129,7 @@ class LoanMaintenanceController extends Controller
     }
 
     public function saldoFaktur($pelanggan, $fromDate, $endDate){
-        echo $pelanggan." ".$fromDate." ".$endDate;
+        // echo $pelanggan." ".$fromDate." ".$endDate;
         $historyFaktur = DB::table('view_payment_kredit');
             if ($pelanggan <> 0) {
                 $historyFaktur = $historyFaktur->where('member_id',$pelanggan);
