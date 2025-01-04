@@ -30,7 +30,7 @@
                     </span>
                 <td>
                     <button type="button" class="btn btn-info btn-sm BTN-OPEN-MODAL-GLOBAL-LG" title="Detail" href="{{route('Purchasing')}}/historyPembayaran/detailPembayaran/{{$dh->idp_pay}}"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <a class="btn btn-primary btn-sm" href="#" target="_blank" title="Cetak" href="{{route('Purchasing')}}/historyPembayaran/cetakPembayaran/{{$dh->idp_pay}}"><i class="fa-solid fa-print"></i></button>
+                    <a class="btn btn-primary btn-sm" target="_blank" title="Cetak" href="{{route('Purchasing')}}/historyPembayaran/cetakPembayaran/{{$dh->idp_pay}}"><i class="fa-solid fa-print"></i></button>
                 </td>
             </tr>
         @endforeach
