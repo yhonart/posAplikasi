@@ -54,8 +54,13 @@ class LoanMaintenanceController extends Controller
     }
     public function laporanCustomer($keyword, $fromDate, $endDate){
         $dbTableKredit = DB::table('view_customer_kredit');
-        $dbTableKredit = $dbTableKredit->where('from_member_id', $keyword);
-        $dbTableKredit = $dbTableKredit->whereBetween('created_at',[$fromDate,$endDate]);
+        if ($keyword <> '') {
+            $dbTableKredit = $dbTableKredit->where('from_member_id', $keyword);
+        }
+        if ($fromDate <> 0 OR $endDate <> 0) {
+            $dbTableKredit = $dbTableKredit->whereBetween('created_at',[$fromDate,$endDate]);
+        }
+        $dbTableKredit = $dbTableKredit->limit(100);
         $dbTableKredit = $dbTableKredit->get();
 
         return view('HutangCustomers/lapCustomersTable', compact('dbTableKredit'));

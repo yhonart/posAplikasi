@@ -1,4 +1,4 @@
-<table class="table table-sm table-valign-middle">
+<table class="table table-sm table-valign-middle" id="tableLapKreditCustomer">
     <thead class="bg-gray-dark">
         <tr>
             <th>Nama Customers</th>
@@ -22,3 +22,15 @@
         @endforeach
     </tbody>
 </table>
+<script>
+    $(function(){        
+        $("#tableLapKreditCustomer").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "searching": false,
+            "dom": 'Bfrtip',
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>
