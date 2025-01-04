@@ -207,4 +207,12 @@ class ReturnItemController extends Controller
 
         return back();
     }
+
+    public function detailItem ($purchCode){
+        $viewPurchaseOrder = DB::table('view_purchase_lo')
+            ->where('purchase_number',$purchCode)
+            ->get();
+
+        return view ('ReturnItem/displayPurchaseDetailItem', compact('viewPurchaseOrder','purchCode'));
+    }
 }

@@ -7,3 +7,5 @@ Route::post('returnItem/postItemReturn', [App\Http\Controllers\ReturnItemControl
 
 Route::get('returnItem/satuanAction/{satuanUnit}/{prdID}/{idLo}', [App\Http\Controllers\ReturnItemController::class, 'satuanAction']);
 Route::get('returnItem/prodListAction/{productID}/{numberPO}', [App\Http\Controllers\ReturnItemController::class, 'prodListAction']);
+
+Route::get('returnItem/purchasingList/detailItem/{purchCode}', [App\Http\Controllers\ReturnItemController::class, 'detailItem']);

@@ -25,7 +25,8 @@
                     @endif
                 </td>
                 <td> 
-                    <button type="button" class="btn btn-sm bg-olive  font-weight-bold float-right DIS-ITEM" title="Tampilkan item" data-purchase="{{$pr->purchase_number}}"><i class="fa-solid fa-rotate-right"></i> Retur Barang</button>
+                    <button type="button" class="btn btn-sm btn-primary font-weight-bold float-right DIS-ITEM" title="Retur Item" data-purchase="{{$pr->purchase_number}}"><i class="fa-solid fa-rotate-right"></i> Retur</button>
+                    <button type="button" class="btn btn-sm btn-info font-weight-bold float-right DETAIL-ITEM" title="Detail" data-purchase="{{$pr->purchase_number}}"><i class="fa-solid fa-magnifying-glass"></i> Detail</button>
                 </td>
             </tr>
         @endforeach
@@ -52,6 +53,18 @@
                 $.ajax({
                     type : 'get',
                     url : "{{route('returnItem')}}/purchasingList/displayItemList/"+purchaseNumber,
+                    success : function(response){
+                        $("#displayInfo").html(response);
+                    }
+                });
+        });
+        $(".dataTable").on('click','.DETAIL-ITEM', function (e) {
+            e.preventDefault();
+            let el = $(this),
+                purchaseNumber = el.attr('data-purchase');
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('returnItem')}}/purchasingList/detailItem/"+purchaseNumber,
                     success : function(response){
                         $("#displayInfo").html(response);
                     }
