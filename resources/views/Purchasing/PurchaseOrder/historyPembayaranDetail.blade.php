@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Detail Pembayaran</h3>
+                <h3 class="card-title">RINCIAN PEMBELIAN</h3>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-body">
-                            <p class="font-weight-bold text-primary">Rincian Pembayaran</p>
+                            <p class="font-weight-bold text-primary">RINCIAN PEMBAYARAN</p>
                             <dl class="row">
                                 <dt class="col-md-4">No. Pembayaran</dt>
                                 <dd class="col-md-8">: {{$pembayaran->nomor}}</dd>

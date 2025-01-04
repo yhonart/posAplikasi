@@ -121,7 +121,7 @@ class LoanMaintenanceController extends Controller
     }
 
     public function saldoFaktur($pelanggan, $fromDate, $endDate){
-
+        echo $pelanggan." ".$fromDate." ".$endDate;
         $historyFaktur = DB::table('view_payment_kredit');
             if ($pelanggan <> 0) {
                 $historyFaktur = $historyFaktur->where('member_id',$pelanggan);
