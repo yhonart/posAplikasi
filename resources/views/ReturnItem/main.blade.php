@@ -10,7 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                       <li class="breadcrumb-item"><a href="#"><i class="fa-solid fa-house"></i></a></li>
-                      <li class="breadcrumb-item"><a href="#">Pembelian</li>
+                      <li class="breadcrumb-item">Pembelian</li>
                       <li class="breadcrumb-item">Retur Barang</li>
                     </ol>
                  </div>          
