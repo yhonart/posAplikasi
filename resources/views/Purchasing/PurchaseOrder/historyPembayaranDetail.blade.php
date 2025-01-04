@@ -50,11 +50,16 @@
                                         <thead>
                                             <tr>
                                                 <th>Tanggal</th>
-                                                <th>Nominal</th>
-                                                <th>Kurang Bayar</th>
+                                                <th class="text-right">Nominal</th>
+                                                <th class="text-right">Kurang Bayar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <tr>
+                                                <td>Kredit</td>
+                                                <td>0</td>
+                                                <td class="text-right">{{number_format($purchaseOrder->sub_total,'0',',','.')}}</td>
+                                            </tr>
                                             @foreach($historyPm as $hp)
                                                 <tr>
                                                     <td>{{$hp->payment_date}}</td>
