@@ -126,7 +126,9 @@ class LoanMaintenanceController extends Controller
             if ($pelanggan <> 0) {
                 $historyFaktur = $historyFaktur->where('member_id',$pelanggan);
             }
-            $historyFaktur = $historyFaktur->whereBetween('date_payment',[$fromDate,$endDate]);
+            if ($fromDate <> 0 OR $endDate <> 0) {
+                $historyFaktur = $historyFaktur->whereBetween('date_payment',[$fromDate,$endDate]);
+            }
             $historyFaktur = $historyFaktur->orderBy('idtr_payment','desc');
             $historyFaktur = $historyFaktur->get();
 
