@@ -48,7 +48,7 @@
                             <option value="TRANSFER">TRANSFER</option>
                         </select>
                     </div>
-                    <label class="col-md-3">Akun Pembayaran <br><small class="text-muted">[Jika Menggunakan Transaksi Non Tunai]</small></label>
+                    <label class="col-md-3">Akun Pembayaran</label>
                     <div class="col-md-3">
                         <select class="form-control form-control-sm" name="account" id="account">
                             <option value="">....</option>
@@ -59,11 +59,11 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3">Nama Akun Bank <br><small class="text-muted">[Jika Menggunakan Transaksi Non Tunai]</small></label>
+                    <label class="col-md-3">Nama Akun Bank</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="accountName" id="accountName" placeholder="Jika menggunnakan selain tunai">
                     </div>
-                    <label class="col-md-3">Nomor Akun Bank<br><small class="text-muted">[Jika Menggunakan Transaksi Non Tunai]</small></label>
+                    <label class="col-md-3">Nomor Akun Bank</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber" placeholder="Jika menggunnakan selain tunai">
                     </div>
