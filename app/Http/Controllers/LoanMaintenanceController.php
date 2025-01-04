@@ -56,9 +56,9 @@ class LoanMaintenanceController extends Controller
         echo $keyword." ".$fromDate." ".$endDate;
 
         $dbTableKredit = DB::table('view_customer_kredit');
-        // if ($keyword <> '' OR $keyword <> 0) {
-        //     $dbTableKredit = $dbTableKredit->where('from_member_id', $keyword);
-        // }
+        if ($keyword <> '' OR $keyword <> 0) {
+            $dbTableKredit = $dbTableKredit->where('from_member_id', $keyword);
+        }
         if ($fromDate <> 0 OR $endDate <> 0) {
             $dbTableKredit = $dbTableKredit->whereBetween('created_at',[$fromDate,$endDate]);
         }

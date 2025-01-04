@@ -55,8 +55,7 @@
     $(document).ready(function() {
         let fromDate = 0,
             endDate = 0,
-            keyWord = 0,
-            timer_cari_member = null;
+            keyWord = 0;
         
         searchData(keyWord, fromDate, endDate);
         
