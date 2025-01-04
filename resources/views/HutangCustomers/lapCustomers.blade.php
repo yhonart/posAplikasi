@@ -50,13 +50,12 @@
         $('#cariNamaPelanggan').select2({
             theme: 'bootstrap4',
         });
-        dataPinjaman();
     });
 
     $(document).ready(function() {
         let fromDate = 0,
             endDate = 0,
-            keyWord = 0;
+            keyWord = 0,
             timer_cari_member = null;
         
         searchData(keyWord, fromDate, endDate);
