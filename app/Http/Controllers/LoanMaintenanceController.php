@@ -54,9 +54,9 @@ class LoanMaintenanceController extends Controller
     }
     public function laporanCustomer($keyword, $fromDate, $endDate){
         echo $keyword." ".$fromDate." ".$endDate;
-        
+
         $dbTableKredit = DB::table('view_customer_kredit');
-        if ($keyword <> '') {
+        if ($keyword <> '' OR $keyword <> 0) {
             $dbTableKredit = $dbTableKredit->where('from_member_id', $keyword);
         }
         if ($fromDate <> 0 OR $endDate <> 0) {
