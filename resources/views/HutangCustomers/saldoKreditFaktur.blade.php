@@ -9,6 +9,7 @@
             <th>Debit</th>
             <th>Kredit</th>
             <th>Total</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +24,7 @@
                 <td class="text-right">{{number_format($hf->kredit,'0',',','.')}}</td>
                 <td class="text-right">{{number_format($hf->total_kredit,'0',',','.')}}</td>
                 <td>
-                    <a href="{{route('Cashier')}}/dataPelunasan/printPelunasan/{{$hf->payment_number}}" class="btn btn-primary btn-sm"><i class="fa-solid fa-print"></i></a>
+                    <a href="{{route('Cashier')}}/dataPelunasan/printPelunasan/{{$hf->payment_number}}" class="btn btn-primary btn-sm" target="_blank"><i class="fa-solid fa-print"></i></a>
                 </td>
             </tr>
         @endforeach
