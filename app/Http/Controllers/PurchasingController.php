@@ -1267,7 +1267,21 @@ class PurchasingController extends Controller
     }
 
     public function detailPembayaran ($id){
-        return view('Purchasing/PurchaseOrder/historyPembayaranDetail', compact('id'));
+        $pembayaran = DB::table('purchase_kredit_payment')
+            ->where('idp_pay',$id)
+            ->first();
+
+        $noPembelian = $pembayaran->purchase_number;
+        $purchaseOrder = DB::table('purchase_order')
+            ->where('purchase_number',$noPembelian)
+            ->first();
+
+        $historyPm = DB::table('purchase_kredit_payment')
+            ->where('purchase_number',$noPembelian)
+            ->orderBy('idp_pay','asc')
+            ->get();
+
+        return view('Purchasing/PurchaseOrder/historyPembayaranDetail', compact('id','pembayaran','purchaseOrder','historyPm'));
     }
 
     public function modalDetailKreditPembayaran($id, $noDok){
