@@ -54,18 +54,19 @@
     });
 
     $(document).ready(function() {
-        let fromDate = $('#dariTanggal').val(),
-            endDate = $('#sampaiTanggal').val(),
-            valAction = 1,
-            keyWord = $("#cariNamaPelanggan").find(":selected").val();
+        let fromDate = 0,
+            endDate = 0,
+            keyWord = 0;
             timer_cari_member = null;
+        
+        searchData(keyWord, fromDate, endDate);
         
         $("#cariNamaPelanggan").change(function(){
             let keyWord = $(this).find(":selected").val();
                 fromDate = $('#dariTanggal').val(),
                 endDate = $('#sampaiTanggal').val();
 
-            searchData(keyWord, fromDate, endDate, valAction);
+            searchData(keyWord, fromDate, endDate);
         });
         
         $("#dariTanggal").change(function(){
@@ -76,7 +77,7 @@
                 if(keyWord == ''){
                     keyWord = '0';
                 }                
-            searchData(keyWord, fromDate, endDate,valAction);
+            searchData(keyWord, fromDate, endDate);
         });
 
         $("#sampaiTanggal").change(function(){
@@ -87,15 +88,15 @@
                     keyWord = '0';
                 }
                 
-            searchData(keyWord, fromDate, endDate, valAction);
+            searchData(keyWord, fromDate, endDate);
         });
         
 
-        function searchData(keyWord, fromDate, endDate, valAction){  
+        function searchData(keyWord, fromDate, endDate){  
             $("#reloadDisplay").fadeIn("slow");
             $.ajax({
                 type : 'get',
-                url : "{{route('adminPiutangPelanggan')}}/laporanCustomer/"+keyWord+"/"+fromDate+"/"+endDate+"/"+valAction,
+                url : "{{route('adminPiutangPelanggan')}}/laporanCustomer/"+keyWord+"/"+fromDate+"/"+endDate,
                 success : function(response){
                     $("#reloadDisplay").fadeOut("slow");
                     $("#displayLaporanCustomer").html(response);
@@ -103,13 +104,4 @@
             });
         }
     });
-    function dataPinjaman(){
-        $.ajax({
-            type : 'get',
-            url : "{{route('Cashier')}}/buttonAction/dataPelunasan/listDataPinjaman",
-            success : function(response){
-                $("#displayLaporanCustomer").html(response);
-            }
-        });
-    }
 </script>
