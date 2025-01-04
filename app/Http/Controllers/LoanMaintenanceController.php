@@ -53,6 +53,8 @@ class LoanMaintenanceController extends Controller
         return view('HutangCustomers/lapCustomers', compact('dbMCustomer'));
     }
     public function laporanCustomer($keyword, $fromDate, $endDate){
+        echo $keyword." ".$fromDate." ".$endDate;
+        
         $dbTableKredit = DB::table('view_customer_kredit');
         if ($keyword <> '') {
             $dbTableKredit = $dbTableKredit->where('from_member_id', $keyword);
