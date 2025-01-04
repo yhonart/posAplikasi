@@ -20,9 +20,17 @@
 <!-- content -->
     <div class="content">
         <div class="container-fluid">
-            @if($checkArea <> 0).
+            @if($checkArea <> 0)
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <button class="btn bg-olive elevation-1 font-weight-bold onclick-submenu " data-click="purchasingList">Retur Item</button>
+                        <button class="btn bg-lightblue ml-1 elevation-1 font-weight-bold onclick-submenu " data-click="returnHistory">History Retur Item</button> 
+                    </div>
+                </div>
+            </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-md-12">
                    <div id="displayInfo"></div>
                 </div>
             </div>
