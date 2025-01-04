@@ -62,8 +62,8 @@
         
         $("#cariNamaPelanggan").change(function(){
             let keyWord = $(this).find(":selected").val();
-                fromDate = $('#dariTanggal').val(),
-                endDate = $('#sampaiTanggal').val();
+                fromDate = 0,
+                endDate = 0;
 
             searchData(keyWord, fromDate, endDate);
         });
