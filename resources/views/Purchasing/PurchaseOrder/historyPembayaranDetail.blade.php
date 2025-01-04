@@ -19,7 +19,7 @@
                             </dl>
                             <dl class="row">
                                 <dt class="col-md-4">Nominal Pembelian</dt>
-                                <dd class="col-md-8">: {{$purchaseOrder->sub_total}}</dd>
+                                <dd class="col-md-8">: {{number_format($purchaseOrder->sub_total,'0',',','.')}}</dd>
                             </dl>
                         </div>
                     </div>
@@ -58,8 +58,8 @@
                                             @foreach($historyPm as $hp)
                                                 <tr>
                                                     <td>{{$hp->payment_date}}</td>
-                                                    <td>{{$hp->kredit_pay}}</td>
-                                                    <td>{{$hp->selisih}}</td>
+                                                    <td class="text-right">{{number_format($hp->kredit_pay,'0',',','.')}}</td>
+                                                    <td class="text-right">{{number_format($hp->selisih,'0',',','.')}}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
