@@ -1284,6 +1284,20 @@ class PurchasingController extends Controller
         return view('Purchasing/PurchaseOrder/historyPembayaranDetail', compact('id','pembayaran','purchaseOrder','historyPm'));
     }
 
+    public function cetakPembayaran ($id){
+        $pembayaran = DB::table('purchase_kredit_payment')
+            ->where('idp_pay',$id)
+            ->first();
+
+        $noPembelian = $pembayaran->purchase_number;
+
+        $purchaseOrder = DB::table('view_purchase_order')
+            ->where('purchase_number',$noPembelian)
+            ->first();
+
+        return view('Purchasing/PurchaseOrder/historyPembayaranCetak', compact('id','pembayaran','purchaseOrder'));
+    }
+
     public function modalDetailKreditPembayaran($id, $noDok){
         $tbPembayaran = DB::table('purchase_kredit_payment')
             ->where('purchase_number',$noDok)

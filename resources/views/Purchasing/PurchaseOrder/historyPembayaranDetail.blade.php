@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-body border-info">
-                            <p class="font-weight-bold">Rincian Pembelian</p>
+                            <p class="font-weight-bold text-primary">Rincian Pembelian</p>
                             <dl class="row">
                                 <dt class="col-md-4">No. Pembelian</dt>
                                 <dd class="col-md-8">: {{$purchaseOrder->purchase_number}}</dd>
@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-body">
-                            <p class="font-weight-bold">Rincian Pembayaran</p>
+                            <p class="font-weight-bold text-primary">Rincian Pembayaran</p>
                             <dl class="row">
                                 <dt class="col-md-4">No. Pembayaran</dt>
                                 <dd class="col-md-8">: {{$pembayaran->nomor}}</dd>
