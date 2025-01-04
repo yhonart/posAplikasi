@@ -22,7 +22,7 @@
         <div class="row mb-2">
             <div class="col-md-12">
                 <button type="button" class="btn bg-lightblue CLICK-AR" data-display="pembayaran">Pembayaran</button>
-                <button type="button" class="btn bg-lightblue CLICK-AR" data-display="saldo">Saldo Hutang</button>
+                <button type="button" class="btn bg-lightblue CLICK-AR" data-display="saldo">History</button>
                 <button type="button" class="btn bg-lightblue CLICK-AR" data-display="lapCustomer">Lap. Customer</button>
                 <button type="button" class="btn bg-lightblue CLICK-AR" data-display="setup">Setup</button>
             </div>
