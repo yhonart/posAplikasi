@@ -134,10 +134,35 @@ class ReturnItemController extends Controller
         $dspReturn = DB::table('purchase_return as a')
             ->select('a.*','b.product_name')
             ->leftJoin('m_product as b', 'a.product_id','=','b.idm_data_product')
-            ->where('purchase_number',$purchCode)
+            ->where([
+                ['purchase_number',$purchCode],
+                ['status','>=','1']
+                ])
             ->get();
             
         return view ('ReturnItem/displayPurchaseItemReturn', compact('dspReturn','purchCode'));
+    }
+
+    public function deleteItem ($id){
+        $selectProduk = DB::table('purchase_return as a')
+            ->select('a.*','b.warehouse')
+            ->leftJoin('purchase_list_order as b','a.list_order_id','=','b.id_lo')
+            ->where('a.id_return',$id)
+            ->first();
+
+        $productID = $selectProduk->product_id;
+        $location = $selectProduk->warehouse;
+        $stockAkhir = $selectProduk->stock_akhir;
+        $satuan = $selectProduk->satuan;
+        
+        $this->TempInventoryController->stockControl($productID, $location, $stockAkhir, $satuan); 
+
+        DB::table('purchase_return')
+            ->where('id_return',$id)
+            ->update([
+                'status'=>'0'
+            ]);
+
     }
     
     public function postItemReturn(Request $reqReturn){
@@ -214,5 +239,9 @@ class ReturnItemController extends Controller
             ->get();
 
         return view ('ReturnItem/displayPurchaseDetailItem', compact('viewPurchaseOrder','purchCode'));
+    }
+
+    public function returnHistory (){
+
     }
 }

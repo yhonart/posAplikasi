@@ -9,3 +9,6 @@ Route::get('returnItem/satuanAction/{satuanUnit}/{prdID}/{idLo}', [App\Http\Cont
 Route::get('returnItem/prodListAction/{productID}/{numberPO}', [App\Http\Controllers\ReturnItemController::class, 'prodListAction']);
 
 Route::get('returnItem/purchasingList/detailItem/{purchCode}', [App\Http\Controllers\ReturnItemController::class, 'detailItem']);
+Route::get('returnItem/purchasingList/deleteItem/{id}', [App\Http\Controllers\ReturnItemController::class, 'deleteItem']);
+
+Route::get('returnItem/returnHistory', [App\Http\Controllers\ReturnItemController::class, 'returnHistory']);
