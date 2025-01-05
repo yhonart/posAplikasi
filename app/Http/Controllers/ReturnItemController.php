@@ -154,7 +154,7 @@ class ReturnItemController extends Controller
         $location = $selectProduk->warehouse;
         $stockAkhir = $selectProduk->stock_akhir;
         $satuan = $selectProduk->satuan;
-        
+
         $this->TempInventoryController->stockControl($productID, $location, $stockAkhir, $satuan); 
 
         DB::table('purchase_return')
@@ -242,6 +242,12 @@ class ReturnItemController extends Controller
     }
 
     public function returnHistory (){
+        $historyReturn = DB::table('purchase_return as a')
+            ->select(DB::raw('SUM(total_price) as price','purchase_number','created_at'))
+            ->leftJoin('m_supplier as b', 'a.supplier_id','=','b.idm_supplier')
+            ->groupBy('a.purchase_number')
+            ->get();
 
+        return view ('ReturnItem/displayPurchaseReturnHistory', compact('historyReturn'));
     }
 }
