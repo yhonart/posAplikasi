@@ -12,3 +12,4 @@ Route::get('returnItem/purchasingList/detailItem/{purchCode}', [App\Http\Control
 Route::get('returnItem/purchasingList/deleteItem/{id}', [App\Http\Controllers\ReturnItemController::class, 'deleteItem']);
 
 Route::get('returnItem/returnHistory', [App\Http\Controllers\ReturnItemController::class, 'returnHistory']);
+Route::get('returnItem/returnHistory/detailHistory/{purchNumber}', [App\Http\Controllers\ReturnItemController::class, 'detailHistory']);

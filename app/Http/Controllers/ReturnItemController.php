@@ -233,6 +233,10 @@ class ReturnItemController extends Controller
         return back();
     }
 
+    public function detailHistory ($purchNumber){
+        echo $purchNumber;
+    }
+
     public function detailItem ($purchCode){
         $viewPurchaseOrder = DB::table('view_purchase_lo')
             ->where('purchase_number',$purchCode)

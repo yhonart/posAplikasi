@@ -1,5 +1,5 @@
 <div class="card card-body">
-    <table class="table table-sm">
+    <table class="table table-sm table-valign-middle table-hover">
         <thead class="bg-gray-dark">
             <tr>
                 <th>Supplier</th>
@@ -15,7 +15,7 @@
                     <td>{{$hisReturn->purchase_number}}</td>
                     <td class="text-right">{{number_format($hisReturn->price,'0',',','.')}}</td>
                     <td class="text-right">
-                        <button type="button" class="btn btn-sm btn-info BTN-DETAIL"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button type="button" class="btn btn-sm btn-info BTN-DETAIL" data-purchase="{{$hisReturn->purchase_number}}"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </td>
                 </tr>
             @endforeach
@@ -23,5 +23,18 @@
     </table>
 </div>
 <script>
-
+    $(document).ready(function(){
+        $(".BTN-DETAIL").on('click', function (e) {
+            e.preventDefault();
+            let el = $(this),
+                purchaseReturn = el.attr('data-purchase');                
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('returnItem')}}/returnHistory/detailHistory/"+purchaseReturn,
+                    success : function(response){
+                        $("#displayInfo").html(response);
+                    }
+                });
+        });
+    });
 </script>
