@@ -234,7 +234,20 @@ class ReturnItemController extends Controller
     }
 
     public function detailHistory ($purchNumber){
-        echo $purchNumber;
+        $purchaseOrder = DB::table('view_purchase_order')
+            ->where('purchase_number',$purchNumber)
+            ->first();
+
+        $purchaseListOrder = DB::table('view_purchase_lo')
+            ->where('purchase_number',$purchNumber)
+            ->get();
+
+        $purchaseReturn = DB::table('purchase_return as a')
+            ->select('a.*','b.product_name')
+            ->leftJoin('m_product as b','a.product_id','=','b.idm_data_product')
+            ->get();
+
+        return view ('ReturnItem/displayPurchaseDetailReturn', compact('purchNumber','purchaseOrder','purchaseListOrder','purchaseReturn'));
     }
 
     public function detailItem ($purchCode){
