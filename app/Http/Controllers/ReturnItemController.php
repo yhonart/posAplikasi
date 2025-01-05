@@ -246,6 +246,7 @@ class ReturnItemController extends Controller
             ->select(DB::raw('SUM(a.total_price) as price'),'a.purchase_number','b.store_name')
             ->leftJoin('m_supplier as b', 'a.supplier_id','=','b.idm_supplier')
             ->groupBy('a.purchase_number')
+            ->groupBy('b.store_name')
             ->get();
 
         return view ('ReturnItem/displayPurchaseReturnHistory', compact('historyReturn'));
