@@ -19,8 +19,8 @@
                         <td>{{$plo->product_name}}</td>
                         <td>{{$plo->qty}}</td>
                         <td>{{$plo->satuan}}</td>
-                        <td>{{number_format($plo->unit_price,'0',',','.')}}</td>
-                        <td>{{number_format($plo->total_price,'0',',','.')}}</td>
+                        <td class="text-right">{{number_format($plo->unit_price,'0',',','.')}}</td>
+                        <td class="text-right">{{number_format($plo->total_price,'0',',','.')}}</td>
                     </tr>
                 @endforeach
             </tbody>
