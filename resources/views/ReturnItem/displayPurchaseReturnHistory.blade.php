@@ -4,8 +4,8 @@
             <tr>
                 <th>Supplier</th>
                 <th>Purchase Number</th>
-                <th>Tanggal</th>
                 <th>Point Belanja</th>
+                <th>#</th>
             </tr>
         </thead>
         <tbody>
@@ -13,10 +13,15 @@
                 <tr>
                     <td>{{$hisReturn->store_name}}</td>
                     <td>{{$hisReturn->purchase_number}}</td>
-                    <td>{{date_format("d-M-Y", strtotime($hisReturn->created_at))}}</td>
                     <td>{{$hisReturn->price}}</td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-info BTN-DETAIL"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </div>
+<script>
+    
+</script>
