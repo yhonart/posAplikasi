@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 Route::get('AssManaged', [App\Http\Controllers\AssManagedController::class, 'main'])->name('AssManaged');
 Route::get('M_Category', [App\Http\Controllers\AssManagedController::class, 'mCategory'])->name('M_Category');
 Route::get('M_Category/AddCategory', [App\Http\Controllers\AssManagedController::class, 'FormAddCategory']);

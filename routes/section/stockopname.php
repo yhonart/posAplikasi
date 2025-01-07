@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 Route::post('stockOpname/submitStockOpname', [App\Http\Controllers\StockopnameController::class, 'submitStockOpname']);
 
 Route::get('stockOpname/listDataOpname', [App\Http\Controllers\StockopnameController::class, 'listDataOpname']);
@@ -26,3 +27,4 @@ Route::post('stockOpname/saveToEditTable', [App\Http\Controllers\StockopnameCont
 Route::post('stockOpname/submitUpdateStockOpname', [App\Http\Controllers\StockopnameController::class, 'submitUpdateStockOpname']);
 
 Route::get('stockOpname/listTableOpname/{fromDate}/{endDate}/{status}', [App\Http\Controllers\StockopnameController::class, 'listTableOpname']);
+?>

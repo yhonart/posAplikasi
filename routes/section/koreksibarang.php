@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 Route::post('koreksiBarang/submitFormKoreksi', [App\Http\Controllers\CorrectPrdController::class, 'submitFormKoreksi']);
 Route::get('koreksiBarang/listInputBarang', [App\Http\Controllers\CorrectPrdController::class, 'listInputBarang']);
 Route::post('koreksiBarang/listInputBarang/submitBarang', [App\Http\Controllers\CorrectPrdController::class, 'submitBarang']);

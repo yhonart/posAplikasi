@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 Route::get('kasKategori/listTableKategori', [App\Http\Controllers\MasterDataKategoriKasController::class, 'listTableKategori']);
 Route::get('kasKategori/addKategori', [App\Http\Controllers\MasterDataKategoriKasController::class, 'addKategori']);
 Route::post('kasKategori/addKategori/postKategori', [App\Http\Controllers\MasterDataKategoriKasController::class, 'postKategori']);

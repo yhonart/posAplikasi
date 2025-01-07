@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 // PRN Route
 Route::get('Purchasing/dataPurchasing', [App\Http\Controllers\PurchasingController::class, 'dataPurchasing']);
 Route::get('Purchasing/metodePembayaran/{supplier}', [App\Http\Controllers\PurchasingController::class, 'metodePembayaran']);
@@ -62,3 +63,4 @@ Route::get('Purchasing/historyPembayaran/detailPembayaran/{id}', [App\Http\Contr
 Route::get('Purchasing/historyPembayaran/cetakPembayaran/{id}', [App\Http\Controllers\PurchasingController::class, 'cetakPembayaran']);
 
 Route::get('Purchasing/modalDetailKreditPembayaran/{id}/{noDok}', [App\Http\Controllers\PurchasingController::class, 'modalDetailKreditPembayaran']);
+?>

@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 Route::get('Personalia/newUsers', [App\Http\Controllers\PersonaliaController::class, 'newUsers']);
 Route::post('Personalia/newUsers/postNewUser', [App\Http\Controllers\PersonaliaController::class, 'postNewUser']);
 Route::get('Personalia/modalHakAkses/{id}', [App\Http\Controllers\PersonaliaController::class, 'modalHakAkses']);
@@ -20,3 +21,4 @@ Route::get('Personalia/loadHakAksesMenu/{id}', [App\Http\Controllers\PersonaliaC
 Route::get('Personalia/subMenuList/{menuId}', [App\Http\Controllers\PersonaliaController::class, 'subMenuList']);
 Route::get('Personalia/deleteAksesMenu/{paramId}', [App\Http\Controllers\PersonaliaController::class, 'deleteAksesMenu']);
 Route::post('Personalia/postChangePassword', [App\Http\Controllers\PersonaliaController::class, 'postChangePassword']);
+?>

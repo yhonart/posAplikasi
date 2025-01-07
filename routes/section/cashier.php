@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 Route::get('Cashier/productList', [App\Http\Controllers\CashierController::class, 'productList']);
 // Select Condition With Product Selected
 Route::get('Cashier/productList/satuan/{prdID}', [App\Http\Controllers\CashierController::class, 'inputSatuan']);

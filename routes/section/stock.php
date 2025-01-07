@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 Route::get('StockList', [App\Http\Controllers\StockListController::class, 'stockList']);
 
 Route::get('Stock/AddProduct', [App\Http\Controllers\StockListController::class, 'AddProduct']);
@@ -32,3 +33,4 @@ Route::get('Stock/ProductMaintenance/MenuEditHarga/{id}', [App\Http\Controllers\
 Route::post('Stock/ProductMaintenance/PostInventory', [App\Http\Controllers\StockListController::class, 'PostInventory']);
 
 Route::get('Stock/postDeleteItem/{dataId}/{dataSize}', [App\Http\Controllers\StockListController::class, 'postDeleteItem']);
+?>

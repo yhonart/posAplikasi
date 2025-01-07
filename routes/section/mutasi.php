@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 Route::get('mutasi/tableDataMutasi', [App\Http\Controllers\MutasibarangController::class, 'tableDataMutasi']);
 Route::get('mutasi/tableDataMutasi/detailMutasi/{idParam}', [App\Http\Controllers\MutasibarangController::class, 'detailMutasi']);
 Route::get('mutasi/tableDataMutasi/deleteMutasi/{idParam}', [App\Http\Controllers\MutasibarangController::class, 'deleteMutasi']);
@@ -24,5 +25,5 @@ Route::get('mutasi/manualBook', function () {
     return view('Mutasi/manualBook');
 });
 Route::get('mutasi/tableDokMutasi/{fromDate}/{endDate}/{status}', [App\Http\Controllers\MutasibarangController::class, 'tableDokMutasi']);
-
+?>
 

@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 Route::get('setKasKasir', [App\Http\Controllers\GlobSettingController::class, 'setKasKasir'])->name('setKasKasir');
 Route::get('setKasKasir/newNominal', [App\Http\Controllers\GlobSettingController::class, 'newNominal']);
 Route::post('setKasKasir/newNominal/postNewNominal', [App\Http\Controllers\GlobSettingController::class, 'postNewNominal']);
@@ -21,3 +21,4 @@ Route::get('setPembayaran/deleteAkun/{id}', [App\Http\Controllers\GlobSettingCon
 Route::get('setPembayaran/deletePembayaran/{id}', [App\Http\Controllers\GlobSettingController::class, 'deletePembayaran']);
 Route::get('setPembayaran/editMethod/{id}', [App\Http\Controllers\GlobSettingController::class, 'editMethod']);
 Route::post('setPembayaran/editMethod/postEditPembayaran', [App\Http\Controllers\GlobSettingController::class, 'postEditPembayaran']);
+?>
