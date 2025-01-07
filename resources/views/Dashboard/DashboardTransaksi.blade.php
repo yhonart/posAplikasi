@@ -34,18 +34,7 @@
                     <label class="form-label">s.d Tanggal</label>
                     <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="sampaiTanggal" id="sampaiTanggal">
                 </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="form-group">
-                    <label class="form-label">Kasir</label>
-                    <select name="namaKasir" id="namaKasir" class="form-control form_control-sm ">
-                        <option value="0">All Kasir</option>
-                        @foreach($userKasir as $uk)
-                            <option value="{{$uk->name}}">{{$uk->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
+            </div>            
         </div>
         <div class="row">
             <div class="col-12">
