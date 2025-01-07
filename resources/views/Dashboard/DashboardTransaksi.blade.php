@@ -35,6 +35,17 @@
                     <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="sampaiTanggal" id="sampaiTanggal">
                 </div>
             </div>
+            <div class="col-6 col-md-3">
+                <div class="form-group">
+                    <label class="form-label">Kasir</label>
+                    <select name="namaKasir" id="namaKasir" class="form-control form_control-sm ">
+                            <option value="0">All Kasir</option>
+                        @foreach($userKasir as $uk)
+                            <option value="{{$uk->name}}">{{$uk->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-12">
@@ -58,26 +69,36 @@
     $(document).ready(function(){
         let fromDate = $('#dariTanggal').val(),
             endDate = $('#sampaiTanggal').val();
-        funcLoadDataTrx(fromDate, endDate);
+        funcLoadDataTrx(fromDate, endDate, namaKasir);
             
         $("#dariTanggal").change(function(){
             let fromDate = $('#dariTanggal').val(),
-            endDate = $('#sampaiTanggal').val();
+                endDate = $('#sampaiTanggal').val(),
+                kasir = $('#namaKasir').val();
             
-            funcLoadDataTrx(fromDate, endDate);
+            funcLoadDataTrx(fromDate, endDate, namaKasir);
         });
 
         $("#sampaiTanggal").change(function(){
             let fromDate = $('#dariTanggal').val(),
-                endDate = $('#sampaiTanggal').val();
+                endDate = $('#sampaiTanggal').val(),
+                namaKasir = $("#namaKasir").val();
                 
-            funcLoadDataTrx(fromDate, endDate);
+            funcLoadDataTrx(fromDate, endDate, namaKasir);
+        });
+
+        $("#namaKasir").change(function(){
+            let fromDate = $('#dariTanggal').val(),
+                endDate = $('#sampaiTanggal').val(),
+                namaKasir = $(this).val();
+                
+            funcLoadDataTrx(fromDate, endDate, namaKasir);
         });
         
-        function funcLoadDataTrx(fromDate, endDate){
+        function funcLoadDataTrx(fromDate, endDate, namaKasir){
             $.ajax({
                 type : 'get',
-                url : "{{route('Dashboard')}}/loadDataTransaksi/"+fromDate+"/"+endDate,
+                url : "{{route('Dashboard')}}/loadDataTransaksi/"+fromDate+"/"+endDate+"/"+namaKasir,
                 success : function(response){
                     $("#loadDataDashboard").html(response);
                 }

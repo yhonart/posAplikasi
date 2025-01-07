@@ -60,7 +60,7 @@ Route::get('returnItem', [App\Http\Controllers\ReturnItemController::class, 'mai
 
 // Dashboard
 Route::get('Dashboard', [App\Http\Controllers\DashboardController::class, 'mainDashboard'])->name('Dashboard');
-Route::get('Dashboard/loadDataTransaksi/{fromDate}/{endDate}', [App\Http\Controllers\DashboardController::class, 'lodaDataTransaksi']);
+Route::get('Dashboard/loadDataTransaksi/{fromDate}/{endDate}/{kasir}', [App\Http\Controllers\DashboardController::class, 'lodaDataTransaksi']);
 Route::get('Dashboard/modalLogTrx/{noBill}', [App\Http\Controllers\DashboardController::class, 'modalLogTrx']);
 
 Route::get('Dashboard/garphPembelian/{year}', [App\Http\Controllers\DashboardController::class, 'garphPembelian']);

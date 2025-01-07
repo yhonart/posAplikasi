@@ -67,8 +67,12 @@ class DashboardController extends Controller
                 ['status','4']
                 ])
             ->count();
+
+        $userKasir = DB::table('users')
+            // ->where('hakakses','2')
+            ->get();
         if ($userRole == '1') {
-            return view ('Dashboard/DashboardTransaksi', compact('countPenjualan','countProcess','countKredit','countcompleted','dbUser'));
+            return view ('Dashboard/DashboardTransaksi', compact('countPenjualan','countProcess','countKredit','countcompleted','dbUser','userKasir'));
         }
         else {
             return view('Dashboard/WelcomeHome', compact('dbUser'));
@@ -76,49 +80,70 @@ class DashboardController extends Controller
             
     }
     
-    public function lodaDataTransaksi ($fromDate, $endDate){
+    public function lodaDataTransaksi ($fromDate, $endDate, $kasir){
         // echo $fromDate."/".$endDate;
         $thisPeriode = date("m-Y");
         
-        $lastTrxAll = DB::table('trx_record_view')
-            ->select(DB::raw('SUM(total_struk) as totalAll'))
-            ->where('status_by_store','>=','3')
-            ->whereBetween('date_trx',[$fromDate, $endDate])
-            ->first();
+        $lastTrxAll = DB::table('trx_record_view');
+        $lastTrxAll = $lastTrxAll->select(DB::raw('SUM(total_struk) as totalAll'));
+        if ($kasir <> '0') {
+            $lastTrxAll=$lastTrxAll->where('created_by',$kasir);
+        }
+        $lastTrxAll=$lastTrxAll->where('status_by_store','>=','3');
+        $lastTrxAll=$lastTrxAll->whereBetween('date_trx',[$fromDate, $endDate]);
+        $lastTrxAll=$lastTrxAll->first();
             
-        $countTransaksi = DB::table('trx_record_view')
-            ->where('status_by_store','>=','3')
-            ->whereBetween('date_trx',[$fromDate, $endDate])
-            ->count();
+        $countTransaksi = DB::table('trx_record_view');
+        if ($kasir <> 0) {
+            $countTransaksi = $countTransaksi->where('created_by',$kasir);
+        }
+        $countTransaksi = $countTransaksi->where('status_by_store','>=','3');
+        $countTransaksi = $countTransaksi->whereBetween('date_trx',[$fromDate, $endDate]);
+        $countTransaksi = $countTransaksi->count();
             
-        $lastTrxTransfer = DB::table('tr_payment_record')
-            ->select(DB::raw('SUM(total_payment) as totalPayment'))
-            ->whereBetween('date_trx',[$fromDate, $endDate])
-            ->where('trx_method','4')
-            ->first();
+        $lastTrxTransfer = DB::table('tr_payment_record as a');
+        $lastTrxTransfer = $lastTrxTransfer->select(DB::raw('SUM(a.total_payment) as totalPayment'),'b.created_by');
+        $lastTrxTransfer = $lastTrxTransfer->leftJoin('tr_store as b','a.trx_code','=','b.billing_number');
+        if ($kasir <> 0) {
+            $lastTrxTransfer = $lastTrxTransfer->where('b.created_by',$kasir);
+        }
+        $lastTrxTransfer = $lastTrxTransfer->where('a.trx_method','4');
+        $lastTrxTransfer = $lastTrxTransfer->whereBetween('a.date_trx',[$fromDate, $endDate]);
+        $lastTrxTransfer = $lastTrxTransfer->first();
             
-        $lastTrxonProcess = DB::table('view_billing_action')
-            ->whereBetween('tr_date',[$fromDate, $endDate])
-            ->where('status','1')
-            ->count();
+        $lastTrxonProcess = DB::table('view_billing_action');
+        $lastTrxonProcess = $lastTrxonProcess->where('status','1');
+        if ($kasir <> 0) {
+            $lastTrxonProcess = $lastTrxonProcess->where('created_by',$kasir);
+        }
+        $lastTrxonProcess = $lastTrxonProcess->whereBetween('tr_date',[$fromDate, $endDate]);
+        $lastTrxonProcess = $lastTrxonProcess->count();
             
-        $lastTrxKredit = DB::table('tr_kredit')
-            ->whereBetween('created_at',[$fromDate, $endDate])
-            ->count();           
+        $lastTrxKredit = DB::table('tr_kredit as a');
+        $lastTrxKredit = $lastTrxKredit->leftJoin('tr_store as b','a.from_payment_code','=','b.billing_number');
+        if ($kasir <> 0) {
+            $lastTrxKredit = $lastTrxKredit->where("b.created_by",$kasir);
+        }
+        $lastTrxKredit = $lastTrxKredit->whereBetween('a.created_at',[$fromDate, $endDate]);
+        $lastTrxKredit = $lastTrxKredit->count();           
         
-        $selectYear = DB::table('tr_payment_record')
-            ->select(DB::raw('DATE_FORMAT(date_trx,"%Y") as years'))
-            ->groupBy(DB::raw('DATE_FORMAT(date_trx,"%Y")'))
-            ->get();
+        $selectYear = DB::table('tr_payment_record as a');        
+        $selectYear = $selectYear->select(DB::raw('DATE_FORMAT(a.date_trx,"%Y") as years'));
+        $selectYear =$selectYear->leftJoin('tr_store as b','a.trx_code','=','b.billing_number');
+        $selectYear = $selectYear->groupBy(DB::raw('DATE_FORMAT(a.date_trx,"%Y")'));
+        $selectYear = $selectYear->get();
             
-        $totalTransaksi = DB::table('view_billing_action')
-            ->where([
+        $totalTransaksi = DB::table('view_billing_action');
+        if ($kasir <> '0') {
+            $totalTransaksi = $totalTransaksi->where('created_by',$kasir);
+        }
+        $totalTransaksi = $totalTransaksi->where([
                 ['is_return','!=','1']
-                ])
-            ->whereBetween('tr_date',[$fromDate, $endDate])
-            ->count();
+        ]);
+        $totalTransaksi = $totalTransaksi->whereBetween('tr_date',[$fromDate, $endDate]);
+        $totalTransaksi = $totalTransaksi->count();
             
-        return view ('Dashboard/DashboardLoadTrx', compact('countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear'));
+        return view ('Dashboard/DashboardLoadTrx', compact('countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','kasir'));
     }
 
     public function garphPembelian ($year){
@@ -149,34 +174,47 @@ class DashboardController extends Controller
         $condition = $reqPostOnClick->condition;
         $fromDate = $reqPostOnClick->fromDate;
         $endDate = $reqPostOnClick->endDate;
+        $kasir = $reqPostOnClick->kasir;
         
         // echo $condition."-".$fromDate."-".$endDate;
         
         if($condition == "alltrx"){
-            $allCondition = DB::table('view_trx_method')
-                ->whereBetween('date_trx',[$fromDate, $endDate])
-                ->where('status_by_store','>=','3')
-                ->orderBy('core_id_trx','asc')
-                ->get();
+            $allCondition = DB::table('view_trx_method');
+            $allCondition = $allCondition->where('status_by_store','>=','3');
+            if ($kasir <> 0) {
+                $allCondition = $allCondition->where('created_by',$kasir);
+            }
+            $allCondition = $allCondition->whereBetween('date_trx',[$fromDate, $endDate]);
+            $allCondition = $allCondition->orderBy('core_id_trx','asc');
+            $allCondition = $allCondition->get();
         }
         elseif($condition == "onprocess"){
-            $allCondition = DB::table('view_billing_action')
-                ->whereBetween('tr_date',[$fromDate, $endDate])
-                ->where('status','1')
-                ->get();
+            $allCondition = DB::table('view_billing_action');
+            $allCondition = $allCondition->where('status','1');
+            if ($kasir <> 0) {
+                $allCondition = $allCondition->where('created_by',$kasir);
+            }
+            $allCondition = $allCondition->whereBetween('tr_date',[$fromDate, $endDate]);
+            $allCondition = $allCondition->get();
         }
         elseif($condition == "kredit"){
-            $allCondition = DB::table('view_customer_kredit')
-                ->whereBetween('created_at',[$fromDate, $endDate])
-                ->get();
+            $allCondition = DB::table('view_customer_kredit');
+            if ($kasir <> 0) {
+                $allCondition = $allCondition->where('created_by',$kasir);
+            }
+            $allCondition = $allCondition->whereBetween('created_at',[$fromDate, $endDate]);
+            $allCondition = $allCondition->get();
         }
         elseif($condition == "allSummery"){
-            $allCondition = DB::table('view_billing_action')
-                ->where([
+            $allCondition = DB::table('view_billing_action');
+            $allCondition = $allCondition->where([
                     ['is_return','!=','1']
-                    ])
-                ->whereBetween('tr_date',[$fromDate, $endDate])
-                ->get();
+            ]);
+            if ($kasir <> 0) {
+                $allCondition = $allCondition->where('created_by',$kasir);
+            }
+            $allCondition = $allCondition->whereBetween('tr_date',[$fromDate, $endDate]);
+            $allCondition = $allCondition->get();
         }
         
         return view ('Dashboard/DashboardLoadOnClick', compact('allCondition','condition','fromDate','endDate'));
