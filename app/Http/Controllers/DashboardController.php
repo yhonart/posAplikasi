@@ -102,7 +102,7 @@ class DashboardController extends Controller
         $countTransaksi = $countTransaksi->count();
             
         $lastTrxTransfer = DB::table('tr_payment_record as a');
-        $lastTrxTransfer = $lastTrxTransfer->select(DB::raw('SUM(a.total_payment) as totalPayment'),'b.created_by');
+        $lastTrxTransfer = $lastTrxTransfer->select(DB::raw('SUM(a.total_payment) as totalPayment'));
         $lastTrxTransfer = $lastTrxTransfer->leftJoin('tr_store as b','a.trx_code','=','b.billing_number');
         if ($kasir <> 0) {
             $lastTrxTransfer = $lastTrxTransfer->where('b.created_by',$kasir);
