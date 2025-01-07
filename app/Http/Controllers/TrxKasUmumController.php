@@ -37,16 +37,21 @@ class TrxKasUmumController extends Controller
 
     public function selectKategori($kategori)
     {
+        $countSubcategory = DB::table('m_subcategory_kas')
+            ->where('from_cat_id',$kategori)
+            ->count();
+                   
+        $selectKategori = DB::table('m_category_kas')
+            ->where('idm_cat_kas',$kategori)
+            ->first();
+
         $selectOption = DB::table('m_subcategory_kas')
             ->where('from_cat_id',$kategori)
             ->orderBy('subcat_name','asc')
             ->get();
 
-        $selectKategori = DB::table('m_category_kas')
-            ->where('idm_cat_kas',$kategori)
-            ->first();
 
-        return view('TrxKasUmum/selectOptionSubKategori', compact('selectOption','selectKategori'));
+        return view('TrxKasUmum/selectOptionSubKategori', compact('selectOption','selectKategori','countSubcategory'));
     }
 
     public function postTrxPembiayaan(Request $reqAddPembiayaan)
