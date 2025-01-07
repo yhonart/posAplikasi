@@ -28,6 +28,32 @@
     </div>
 </div>
 <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $(document).ready(function(){
+        let display = "laporanKasKecil";
+        displayOnClick(display);
 
+        $('.CLIK-LAP').on('click', function (e) {
+            e.preventDefault();
+            let display = $(this).attr('data-display');
+            displayOnClick(display);
+        });
+
+        function displayOnClick(display){
+            $("#displayNotif").fadeIn("slow");
+            $.ajax({
+                type : 'get',
+                url : "{{route('kasKecil')}}/"+display,
+                success : function(response){
+                    $('#displayAP').html(response);
+                    $("#displayNotif").fadeOut("slow");
+                }
+            });
+        }
+    });
 </script>
 @endsection
