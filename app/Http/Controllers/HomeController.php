@@ -90,12 +90,16 @@ class HomeController extends Controller
             ->leftJoin('users as b', 'a.user_id','=','b.id')
             ->where('a.user_id',$userID)
             ->first();
+
+        $userKasir = DB::table('users')
+            // ->where('hakakses','2')
+            ->get();
             
         $userRoles = $dbUser->role_code;
         
         if($role == '1'){
             if ($userRoles == '1') {
-                return view('Dashboard/DashboardTransaksi');
+                return view('Dashboard/DashboardTransaksi', compact('userKasir'));
             }
             else {
                 return view('Dashboard/WelcomeHome', compact('dbUser'));
