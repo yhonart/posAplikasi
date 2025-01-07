@@ -42,7 +42,11 @@ class TrxKasUmumController extends Controller
             ->orderBy('subcat_name','asc')
             ->get();
 
-        return view('TrxKasUmum/selectOptionSubKategori', compact('selectOption'));
+        $selectKategori = DB::table('m_category_kas')
+            ->where('idm_cat_kas',$kategori)
+            ->first();
+
+        return view('TrxKasUmum/selectOptionSubKategori', compact('selectOption','selectKategori'));
     }
 
     public function postTrxPembiayaan(Request $reqAddPembiayaan)
