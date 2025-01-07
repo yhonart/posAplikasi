@@ -19,7 +19,8 @@ Route::get('/', function () {
         $hakakses = Auth::user()->hakakses;
         $checkArea = Auth::user()->count_area;
         if($hakakses == '1'){
-            return view('Dashboard/DashboardTransaksi');
+            Route::get('Dashboard', [App\Http\Controllers\DashboardController::class, 'mainDashboard'])->name('Dashboard');
+            // return view('Dashboard/DashboardTransaksi');
         }
         elseif($hakakses == '2' OR $hakakses == '3'){
             return view('Cashier/maintenancePage', compact('checkArea'));
