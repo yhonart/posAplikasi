@@ -38,23 +38,18 @@
                                 <button type="button" class="btn btn-success btn-sm download-laporan" id="downloadExcel" export-type="excel"><i class="fa-solid fa-file-excel"></i> Download Excel</button>
                                 <button type="button" class="btn btn-danger btn-sm download-laporan" id="downloadPdf" export-type="pdf"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
                             </div>
-                        </div>
+                        </div> 
+                        <div class="row">
+                            <div class="col-md-12">                
+                                <div id="actionDisplay"></div>
+                                <span id="notiveDisplay" class="font-weight-bold text-danger"></span>
+                            </div>
+                        </div>                       
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="loadSpinner" style="display: none;">
-                    <div class="spinner-grow spinner-grow-sm text-danger" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                    <span class="font-weight-bold">Please Wait...</span>
-                </div>
-                <div id="actionDisplay"></div>
-                <span id="notiveDisplay" class="font-weight-bold text-danger"></span>
-            </div>
-        </div>
+        
     </div>
 </div>
 <script>
@@ -107,11 +102,13 @@
         });
 
         function searchData(fromDate, endDate){ 
+            $("#displayNotif").fadeIn("slow");
             $.ajax({
                 type : 'get',
                 url : "{{route('trxKasUmum')}}/filterByDate/"+fromDate+"/"+endDate,
                 success : function(response){
                     $("#actionDisplay").html(response);
+                    $("#displayNotif").fadeOut("slow");
                 }
             });
         }
