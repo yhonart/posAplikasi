@@ -6,6 +6,6 @@
 </select>
 @else
 <select name="subKategori" id="subKategori" class="form-control form-control-sm  select-2">
-    <option value="0">{{$selectKategori->cat_name}}</option>
+    <option value="999">{{$selectKategori->cat_name}}</option>
 </select>
 @endif
