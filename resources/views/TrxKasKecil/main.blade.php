@@ -49,7 +49,7 @@
                 type : 'get',
                 url : "{{route('kasKecil')}}/"+display,
                 success : function(response){
-                    $('#displayAP').html(response);
+                    $('#displayLap').html(response);
                     $("#displayNotif").fadeOut("slow");
                 }
             });
