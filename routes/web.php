@@ -107,6 +107,8 @@ Route::post('adminPiutangPelanggan/postLimitCustomer', [App\Http\Controllers\Loa
 
 Route::get('kasKategori', [App\Http\Controllers\MasterDataKategoriKasController::class, 'mainCatgoryController'])->name('kasKategori');
 
+Route::get('kasKecil', [App\Http\Controllers\TrxKasKecilController::class, 'kasKecil'])->name('kasKecil');
+
 include __DIR__.'/section/accounting.php';
 include __DIR__.'/section/asset.php';
 include __DIR__.'/section/cp_setup.php';
@@ -146,4 +148,6 @@ include __DIR__.'/section/trxKasUmum.php';
 include __DIR__.'/section/kasKategori.php';
 
 include __DIR__.'/section/piutang.php';
+
+include __DIR__.'/section/kasKecil.php';
 
