@@ -39,7 +39,7 @@
                 <div class="form-group">
                     <label class="form-label">Kasir</label>
                     <select name="namaKasir" id="namaKasir" class="form-control form_control-sm ">
-                            <option value="0">All Kasir</option>
+                        <option value="0">All Kasir</option>
                         @foreach($userKasir as $uk)
                             <option value="{{$uk->name}}">{{$uk->name}}</option>
                         @endforeach
