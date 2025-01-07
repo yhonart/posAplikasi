@@ -3,7 +3,7 @@
 ?>
 <div class="row">
     <div class="col-lg-3 col-6">
-        <a href="#" class="onClick-Data" data-condition="alltrx" data-from="{{$fromDate}}" data-end="{{$endDate}}" data-kasir="{{$kasir}}">
+        <a href="#" class="onClick-Data" data-condition="alltrx" data-from="{{$fromDate}}" data-end="{{$endDate}}">
             <div class="small-box bg-success">
               <div class="inner">
                 <h4>Rp.{{number_format($lastTrxAll->totalAll,'0',',','.')}}</h4>
@@ -13,7 +13,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-6">
-        <a href="#" class="onClick-Data" data-condition="allSummery" data-from="{{$fromDate}}" data-end="{{$endDate}}" data-kasir="{{$kasir}}">
+        <a href="#" class="onClick-Data" data-condition="allSummery" data-from="{{$fromDate}}" data-end="{{$endDate}}">
             <div class="small-box bg-primary">
               <div class="inner">
                 <h4>{{$totalTransaksi}}</h4>
@@ -23,7 +23,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-6">
-        <a href="#" class="onClick-Data" data-condition="onprocess" data-from="{{$fromDate}}" data-end="{{$endDate}}" data-kasir="{{$kasir}}">
+        <a href="#" class="onClick-Data" data-condition="onprocess" data-from="{{$fromDate}}" data-end="{{$endDate}}">
             <div class="small-box bg-info">
               <div class="inner">
                 <h4>{{$lastTrxonProcess}}</h4>
@@ -33,7 +33,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-6">
-        <a href="#" class="onClick-Data" data-condition="kredit" data-from="{{$fromDate}}" data-end="{{$endDate}}" data-kasir="{{$kasir}}">
+        <a href="#" class="onClick-Data" data-condition="kredit" data-from="{{$fromDate}}" data-end="{{$endDate}}">
             <div class="small-box bg-danger">
               <div class="inner">
                 <h4>{{$lastTrxKredit}}</h4>
@@ -132,13 +132,12 @@
             var el = $(this) ;
             let condition = el.attr("data-condition"),
                 fromDate = el.attr("data-from"),
-                endDate = el.attr("data-end"),
-                kasir = el.attr("data-kasir");
+                endDate = el.attr("data-end");
             
             $.ajax({ 
                 type : 'post', 
                 url : "{{route('Dashboard')}}/loadDataTransaksi/postOnClick", 
-                data :  {condition:condition, fromDate:fromDate, endDate:endDate, kasir:kasir}, 
+                data :  {condition:condition, fromDate:fromDate, endDate:endDate}, 
                 success : function(response){
                     $('#tableDataOnClick').html(response);
                 } 

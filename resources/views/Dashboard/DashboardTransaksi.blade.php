@@ -58,36 +58,26 @@
     $(document).ready(function(){
         let fromDate = $('#dariTanggal').val(),
             endDate = $('#sampaiTanggal').val();
-        funcLoadDataTrx(fromDate, endDate, namaKasir);
+        funcLoadDataTrx(fromDate, endDate);
             
         $("#dariTanggal").change(function(){
             let fromDate = $('#dariTanggal').val(),
-                endDate = $('#sampaiTanggal').val(),
-                kasir = $('#namaKasir').val();
+                endDate = $('#sampaiTanggal').val();
             
-            funcLoadDataTrx(fromDate, endDate, namaKasir);
+            funcLoadDataTrx(fromDate, endDate);
         });
 
         $("#sampaiTanggal").change(function(){
             let fromDate = $('#dariTanggal').val(),
-                endDate = $('#sampaiTanggal').val(),
-                namaKasir = $("#namaKasir").val();
+                endDate = $('#sampaiTanggal').val();
                 
-            funcLoadDataTrx(fromDate, endDate, namaKasir);
-        });
-
-        $("#namaKasir").change(function(){
-            let fromDate = $('#dariTanggal').val(),
-                endDate = $('#sampaiTanggal').val(),
-                namaKasir = $(this).val();
-                
-            funcLoadDataTrx(fromDate, endDate, namaKasir);
+            funcLoadDataTrx(fromDate, endDate);
         });
         
-        function funcLoadDataTrx(fromDate, endDate, namaKasir){
+        function funcLoadDataTrx(fromDate, endDate){
             $.ajax({
                 type : 'get',
-                url : "{{route('Dashboard')}}/loadDataTransaksi/"+fromDate+"/"+endDate+"/"+namaKasir,
+                url : "{{route('Dashboard')}}/loadDataTransaksi/"+fromDate+"/"+endDate,
                 success : function(response){
                     $("#loadDataDashboard").html(response);
                 }
