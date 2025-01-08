@@ -45,7 +45,11 @@ class TrxKasUmumController extends Controller
             ->groupBy('created_by')
             ->get();
 
-        return view('TrxKasUmum/modalTambahBiaya', compact('kasKategori','mAdmin','mStaff','selectOption','kasKasir','pendapatanKasir'));
+        $mBank = DB::table('m_bank')
+            ->where('display_status','1')
+            ->get();
+
+        return view('TrxKasUmum/modalTambahBiaya', compact('kasKategori','mAdmin','mStaff','selectOption','kasKasir','pendapatanKasir','mBank'));
     }
 
     public function selectKategori($kategori)
