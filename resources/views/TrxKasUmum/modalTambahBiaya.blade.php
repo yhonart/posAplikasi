@@ -156,11 +156,11 @@
         $("#sumberDana").change(function(){
             let valSumberDana = $(this).find(":selected").val();
             alert  (valSumberDana);
-            if (valSumberDana === 1) {
+            if (valSumberDana === '1') {
                 document.getElementById("sumberLainLain").fadeOut("slow");
                 document.getElementById("displayAkunBank").fadeIn("slow");
             }
-            else if (valSumberDana === 2) {
+            else if (valSumberDana === '2') {
                 document.getElementById("displayAkunBank").fadeOut("slow");
                 document.getElementById("sumberLainLain").fadeIn("slow");
             }
