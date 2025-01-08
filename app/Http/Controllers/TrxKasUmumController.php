@@ -81,6 +81,12 @@ class TrxKasUmumController extends Controller
         $kasPersonal = $reqAddPembiayaan->personal;
         $kasNominal = str_replace(".", "", $reqAddPembiayaan->nominal);
         $mFile = $reqAddPembiayaan->docLampiran;
+        $sumberDana = $reqAddPembiayaan->sumberDana;
+        $bank = $reqAddPembiayaan->bank;
+        $noRek = $reqAddPembiayaan->noRek;
+        $atasNama = $reqAddPembiayaan->atasNama;
+        $sumberLain = $reqAddPembiayaan->sumberLain;
+        $akunLain = $reqAddPembiayaan->akunLain;
 
         $splitPers = explode("|",$kasPersonal);
         $persCode = $splitPers[0];
@@ -113,7 +119,13 @@ class TrxKasUmumController extends Controller
                 'created_by'=>$creatorName,
                 'nominal'=>$kasNominal,
                 'file_name'=>$NameDoc,
-                'file_type'=>$TypeDoc
+                'file_type'=>$TypeDoc,
+                'sumber_dana'=>$sumberDana,
+                'bank_code'=>$bank,
+                'no_akun'=>$noRek,
+                'nama_akun'=>$atasNama,
+                'sumber_lain'=>$sumberLain,
+                'akun_sumber_lain'=>$akunLain
             ]);
         
     }
