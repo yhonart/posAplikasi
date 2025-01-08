@@ -54,6 +54,17 @@
                         <div class="col-md-3">
                             <input type="text" class="form-control form-control-sm price-text" name="nominal" id="nominal">
                         </div>
+                        <label class="label col-md-3">Sumber Dana</label>
+                        <div class="col-md-3">
+                            <select name="sumberDana" id="sumberDana" class="form-control form-control-sm">
+                                <option value="0">==</option>
+                                @foreach($pendapatanKasir as $pendapatan)
+                                <option value="{{$pendapatan->created_by}}">{{$pendapatan->created_by}} @{{number_format($pendapatan->payment,'0',',','.')}}</option>
+                                @endforeach
+                                <option value="1">Akun Bank</option>
+                                <option value="2">Lain-lain</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label class="label col-md-3">Lampiran</label>

@@ -16,6 +16,8 @@ class TrxKasUmumController extends Controller
 
     public function tambahBiaya()
     {
+        $todayInfo = date("Y-m-d");
+
         $kasKategori = DB::table('m_category_kas')
             ->where('status','1')
             ->orderBy('cat_name','asc')
@@ -32,7 +34,17 @@ class TrxKasUmumController extends Controller
             ->orderBy('subcat_name','asc')
             ->get();
 
-        return view('TrxKasUmum/modalTambahBiaya', compact('kasKategori','mAdmin','mStaff','selectOption'));
+        $kasKasir = DB::table('m_set_kas as a')
+            ->select('a.*', 'b.name')
+            ->leftJoin('users as b', 'a.personal_id','=','b.id')
+            ->get();
+
+        $pendapatanKasir = DB::table('tr_store')
+            ->select(DB::raw('SUM(t_pay) as payment'),'created_by')
+            ->groupBy('created_by')
+            ->get();
+
+        return view('TrxKasUmum/modalTambahBiaya', compact('kasKategori','mAdmin','mStaff','selectOption','kasKasir','pendapatanKasir'));
     }
 
     public function selectKategori($kategori)
