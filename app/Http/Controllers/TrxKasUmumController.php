@@ -41,6 +41,7 @@ class TrxKasUmumController extends Controller
 
         $pendapatanKasir = DB::table('tr_store')
             ->select(DB::raw('SUM(t_pay) as payment'),'created_by')
+            ->where('tr_date',$todayInfo)
             ->groupBy('created_by')
             ->get();
 
