@@ -13,7 +13,14 @@
         @foreach($tablePengeluaran as $pengeluaran)
             <tr>
                 <td>{{$pengeluaran->kas_date}}</td>
-                <td>{{$pengeluaran->kas_number}}</td>
+                <td>
+                    <?php
+                        $dateTk = date("dmy", strtotime($pengeluaran->kas_date));
+                        $idTk = $pengeluaran->idtr_kas;
+                        $noTrx = "KAS" . $dateTk . "-" . sprintf("%07d", $idTk);
+                    ?>
+                    {{$noTrx}}
+                </td>
                 <td>{{$pengeluaran->kas_persCode}}#{{$pengeluaran->kas_persName}}</td>
                 <td>{{$pengeluaran->cat_name}} <br> {{$pengeluaran->subcat_name}}</td>
                 <td>{{number_format($pengeluaran->nominal,'0',',','.')}}</td>
