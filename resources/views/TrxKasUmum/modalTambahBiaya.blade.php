@@ -22,8 +22,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <label class="label col-md-3">Sub-Kategori</label>
-                        <div class="col-md-3">
+                        <label class="label col-md-2">Sub-Kategori</label>
+                        <div class="col-md-4">
                             <select name="subKategori" id="subCategory" class="form-control form-control-sm select-2">
                                 <option value="0"></option>                                
                             </select>

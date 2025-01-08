@@ -20,6 +20,13 @@ class TrxKasKecilController extends Controller
     }
 
     public function tableLaporan($kasir, $fromDate, $endDate){
-        
+        $tablePengeluaran = DB::table('view_trx_kas');
+        if ($kasir <> '') {
+            $tablePengeluaran = $tablePengeluaran->where('kas_persCode',$kasir);
+        }
+        //$tablePengeluaran = $tablePengeluaran->whereBetween('kas_date',[$fromDate,$endDate]);
+        $tablePengeluaran = $tablePengeluaran->get();
+
+        return view('TrxKasKecil/laporanKasKecilTable', compact('tablePengeluaran'));
     }
 }
