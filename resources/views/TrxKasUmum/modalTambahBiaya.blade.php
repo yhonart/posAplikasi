@@ -28,13 +28,7 @@
                                 <option value="0"></option>                                
                             </select>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="label col-md-3">Keterangan</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control form-control-sm " name="keterangan" id="keterangan">
-                        </div>
-                    </div>
+                    </div>                    
                     <div class="form-group row">
                         <label class="label col-md-3">Personal</label>
                         <div class="col-md-3">
@@ -84,8 +78,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="label col-md-2">Atas Nama</label>
-                            <div class="col-md-4">
+                            <label class="label col-md-3">Atas Nama</label>
+                            <div class="col-md-3">
                                 <input type="text" class="form-control form-control-sm" name="atasNama" id="atasNama">
                             </div>
                         </div>
@@ -94,7 +88,7 @@
                     <!-- DISPLAY LAIN-LAIN  -->
                      <div id="sumberLainLain" style="display: none;">
                         <div class="form-group row">
-                            <label class="label col-md-3">Deskripsi</label>
+                            <label class="label col-md-3">Deskripsi Akun</label>
                             <div class="col-md-3">
                                 <input type="text" class="form-control form-control-sm" name="sumberLain" id="sumberLain">
                             </div>
@@ -104,6 +98,12 @@
                             </div>
                         </div>
                      </div>
+                    <div class="form-group row">
+                        <label class="label col-md-3">Keterangan</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control form-control-sm " name="keterangan" id="keterangan">
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label class="label col-md-3">Lampiran</label>
                         <div class="col-md-3">
