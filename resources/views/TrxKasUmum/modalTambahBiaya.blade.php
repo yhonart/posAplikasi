@@ -157,16 +157,16 @@
             let valSumberDana = $(this).find(":selected").val();
             alert  (valSumberDana);
             if (valSumberDana === '1') {
-                document.getElementById("sumberLainLain").fadeOut("slow");
-                document.getElementById("displayAkunBank").fadeIn("slow");
+                $("#sumberLainLain").fadeOut("slow");
+                $("#displayAkunBank").fadeIn("slow");
             }
             else if (valSumberDana === '2') {
-                document.getElementById("displayAkunBank").fadeOut("slow");
-                document.getElementById("sumberLainLain").fadeIn("slow");
+                $("#displayAkunBank").fadeOut("slow");
+                $("#sumberLainLain").fadeIn("slow");
             }
             else{
-                document.getElementById("sumberLainLain").style.visibility="hidden";
-                document.getElementById("displayAkunBank").style.visibility="hidden";
+                $("#sumberLainLain").hide();
+                $("#displayAkunBank").hide();
             }
         });    
 
