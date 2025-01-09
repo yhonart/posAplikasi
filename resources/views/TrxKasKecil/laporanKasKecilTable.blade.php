@@ -10,20 +10,20 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($tablePengeluaran as $pengeluaran)
+        @foreach($tablePengeluaran as $tbPengeluaran)
             <tr>
-                <td>{{$pengeluaran->kas_date}}</td>
+                <td>{{$tbPengeluaran->kas_date}}</td>
                 <td>
                     <?php
-                        $dateTk = date("dmy", strtotime($pengeluaran->kas_date));
-                        $idTk = $pengeluaran->idtr_kas;
+                        $dateTk = date("dmy", strtotime($tbPengeluaran->kas_date));
+                        $idTk = $tbPengeluaran->idtr_kas;
                         $noTrx = "KAS" . $dateTk . "-" . sprintf("%07d", $idTk);
                     ?>
                     {{$noTrx}}
                 </td>
-                <td>{{$pengeluaran->kas_persCode}}#{{$pengeluaran->kas_persName}}</td>
-                <td>{{$pengeluaran->cat_name}} <br> {{$pengeluaran->subcat_name}}</td>
-                <td>{{number_format($pengeluaran->nominal,'0',',','.')}}</td>
+                <td>{{$tbPengeluaran->kas_persCode}}#{{$tbPengeluaran->kas_persName}}</td>
+                <td>{{$tbPengeluaran->cat_name}} <br> {{$tbPengeluaran->subcat_name}}</td>
+                <td>{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
                 <td></td>
             </tr>
         @endforeach
