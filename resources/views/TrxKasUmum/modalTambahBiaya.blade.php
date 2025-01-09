@@ -51,8 +51,8 @@
                         <div class="col-md-3">
                             <input type="text" class="form-control form-control-sm price-text" name="nominal" id="nominal">
                         </div>
-                        <label class="label col-md-3">Sumber Dana</label>
-                        <div class="col-md-3">
+                        <label class="label col-md-2">Sumber Dana</label>
+                        <div class="col-md-4">
                             <select name="sumberDana" id="sumberDana" class="form-control form-control-sm">
                                 <option value="0">==</option>
                                 @foreach($pendapatanKasir as $pendapatan)
@@ -63,7 +63,7 @@
                                         }
                                     }
                                 ?>
-                                <option value="{{$pendapatan->created_by}}">{{$pendapatan->created_by}} Rp.{{number_format($saldo,'0',',','.')}}</option>
+                                <option value="{{$pendapatan->created_by}}">Penjualan {{$pendapatan->created_by}} Rp.{{number_format($saldo,'0',',','.')}}</option>
                                 @endforeach
                                 <option value="1">Akun Bank</option>
                                 <option value="2">Lain-lain</option>
