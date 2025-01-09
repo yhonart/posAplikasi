@@ -50,10 +50,12 @@ class TrxKasUmumController extends Controller
             ->get();
 
         $kasPayble = DB::table('tr_kas')
+            ->select(DB::raw('SUM(nominal) as nominal'), 'sumber_dana')
             ->where([
                 ['kas_date',$todayInfo],
                 ['status','1']
                 ])
+            ->groupBy('sumber_dana')
             ->get();
 
         return view('TrxKasUmum/modalTambahBiaya', compact('kasKategori','mAdmin','mStaff','selectOption','kasKasir','pendapatanKasir','mBank','kasPayble'));

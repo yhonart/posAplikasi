@@ -1,3 +1,6 @@
+<?php
+    $saldo = 0;
+?>
 <div class="card card-indigo">
     <div class="card-header">
         <h3 class="card-title">Tambah Transaksi Biaya Operasional</h3>
