@@ -155,7 +155,7 @@
         });    
         $("#sumberDana").change(function(){
             let valSumberDana = $(this).find(":selected").val();
-            alert  (valSumberDana);
+            // alert  (valSumberDana);
             if (valSumberDana === '1') {
                 $("#sumberLainLain").fadeOut("slow");
                 $("#displayAkunBank").fadeIn("slow");

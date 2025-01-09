@@ -49,6 +49,12 @@ class TrxKasUmumController extends Controller
             ->where('display_status','1')
             ->get();
 
+        // $kasPayble = DB::table('tr_kas')
+        //     ->where([
+        //         ['']
+        //         ['status','1']])
+        //     ->get();
+
         return view('TrxKasUmum/modalTambahBiaya', compact('kasKategori','mAdmin','mStaff','selectOption','kasKasir','pendapatanKasir','mBank'));
     }
 
