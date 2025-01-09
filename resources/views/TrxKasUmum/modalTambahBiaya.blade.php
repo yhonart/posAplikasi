@@ -53,7 +53,14 @@
                             <select name="sumberDana" id="sumberDana" class="form-control form-control-sm">
                                 <option value="0">==</option>
                                 @foreach($pendapatanKasir as $pendapatan)
-                                <option value="{{$pendapatan->created_by}}">{{$pendapatan->created_by}} Rp.{{number_format($pendapatan->payment,'0',',','.')}}</option>
+                                <?php
+                                    foreach ($kasPayble as $kap) {
+                                        if ($kap->sumber_dana == $pendapatan->created_by) {
+                                            $saldo += $pendapatan->payment - $kap->nominal;
+                                        }
+                                    }
+                                ?>
+                                <option value="{{$pendapatan->created_by}}">{{$pendapatan->created_by}} Rp.{{number_format($saldo,'0',',','.')}}</option>
                                 @endforeach
                                 <option value="1">Akun Bank</option>
                                 <option value="2">Lain-lain</option>

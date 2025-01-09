@@ -49,13 +49,14 @@ class TrxKasUmumController extends Controller
             ->where('display_status','1')
             ->get();
 
-        // $kasPayble = DB::table('tr_kas')
-        //     ->where([
-        //         ['']
-        //         ['status','1']])
-        //     ->get();
+        $kasPayble = DB::table('tr_kas')
+            ->where([
+                ['kas_date',$todayInfo],
+                ['status','1']
+                ])
+            ->get();
 
-        return view('TrxKasUmum/modalTambahBiaya', compact('kasKategori','mAdmin','mStaff','selectOption','kasKasir','pendapatanKasir','mBank'));
+        return view('TrxKasUmum/modalTambahBiaya', compact('kasKategori','mAdmin','mStaff','selectOption','kasKasir','pendapatanKasir','mBank','kasPayble'));
     }
 
     public function selectKategori($kategori)
@@ -133,7 +134,6 @@ class TrxKasUmumController extends Controller
                 'sumber_lain'=>$sumberLain,
                 'akun_sumber_lain'=>$akunLain
             ]);
-        
     }
 
     public function filterByDate($fromDate, $endDate)
