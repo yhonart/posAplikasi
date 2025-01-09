@@ -46,6 +46,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="label col-md-4">No. Polisi</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control form-control-sm " name="nopol" id="nopol" value="{{$editData->no_polisi}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="label col-md-4">Personal</label>
                         <div class="col-md-4">
                             <select name="personal" id="personal" class="form-control form-control-sm select-2">

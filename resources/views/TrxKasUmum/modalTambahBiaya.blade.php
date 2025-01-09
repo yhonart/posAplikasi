@@ -45,69 +45,17 @@
                                 @endforeach
                             </select>
                         </div>
+                        <label class="label col-md-2">No. Polisi</label>
+                        <div class="col-md-4">
+                            <input type="text" name="nopol" id="nopol" class="form-control form-control-sm">
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label class="label col-md-3">nominal</label>
                         <div class="col-md-3">
                             <input type="text" class="form-control form-control-sm price-text" name="nominal" id="nominal">
-                        </div>
-                        <label class="label col-md-2">Sumber Dana</label>
-                        <div class="col-md-4">
-                            <select name="sumberDana" id="sumberDana" class="form-control form-control-sm">
-                                <option value="0">==</option>
-                                @foreach($pendapatanKasir as $pendapatan)
-                                <?php
-                                    foreach ($kasPayble as $kap) {
-                                        if ($kap->sumber_dana == $pendapatan->created_by) {
-                                            $saldo += $pendapatan->payment - $kap->nominal;
-                                        }
-                                    }
-                                ?>
-                                <option value="{{$pendapatan->created_by}}">Penjualan {{$pendapatan->created_by}} Rp.{{number_format($saldo,'0',',','.')}}</option>
-                                @endforeach
-                                <option value="1">Akun Bank</option>
-                                <option value="2">Lain-lain</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- DISPLAY AKUN BANK  -->
-                    <div id="displayAkunBank" style="display: none;">
-                        <div class="form-group row">
-                            <label class="label col-md-3">Nama Bank</label>
-                            <div class="col-md-3">
-                                <select name="bank" id="bank" class="form-control form-control-sm">
-                                    <option value="0">===</option>
-                                    @foreach($mBank as $bank)
-                                        <option value="{{$bank->bank_code}}">{{$bank->bank_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <label class="label col-md-2">No. Rekening</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control form-control-sm" name="noRek" id="noRek">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="label col-md-3">Atas Nama</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control form-control-sm" name="atasNama" id="atasNama">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- DISPLAY LAIN-LAIN  -->
-                     <div id="sumberLainLain" style="display: none;">
-                        <div class="form-group row">
-                            <label class="label col-md-3">Deskripsi Akun</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control form-control-sm" name="sumberLain" id="sumberLain">
-                            </div>
-                            <label class="label col-md-3">Nomor/Nama Akun</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control form-control-sm" name="akunLain" id="akunLain">
-                            </div>
-                        </div>
-                     </div>
+                        </div>                        
+                    </div>                    
                     <div class="form-group row">
                         <label class="label col-md-3">Keterangan</label>
                         <div class="col-md-9">
@@ -162,23 +110,7 @@
                     $("#subCategory").html(response);
                 }
             });
-        });    
-        $("#sumberDana").change(function(){
-            let valSumberDana = $(this).find(":selected").val();
-            // alert  (valSumberDana);
-            if (valSumberDana === '1') {
-                $("#sumberLainLain").fadeOut("slow");
-                $("#displayAkunBank").fadeIn("slow");
-            }
-            else if (valSumberDana === '2') {
-                $("#displayAkunBank").fadeOut("slow");
-                $("#sumberLainLain").fadeIn("slow");
-            }
-            else{
-                $("#sumberLainLain").hide();
-                $("#displayAkunBank").hide();
-            }
-        });    
+        }); 
 
         $("#btnClose").click(function(){
             window.location.reload();

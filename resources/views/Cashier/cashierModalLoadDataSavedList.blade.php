@@ -1,4 +1,5 @@
 <?php
+    use Illuminate\Support\Facades\Auth;
     $no = '0';
     $arayStatus = array(
         0=>"Deleted",
@@ -85,8 +86,9 @@
                     $.ajax({
                         type : "get",
                         url: "{{route('Cashier')}}/buttonAction/deleteHoldData/"+dataTrx,
-                        success: function(response) {                    
-                            window.location.reload();
+                        success: function(response) {    
+                            funcLoadSuccess(fromDate, endDate)                
+                            // window.location.reload();
                         }
                     })
                 },
