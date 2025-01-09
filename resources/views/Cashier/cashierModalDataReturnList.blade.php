@@ -32,7 +32,7 @@
                             <input type="hidden" class="form-control form-control-sm is-warning" name="dataId" id="datId">
                             <input type="hidden" class="form-control form-control-sm is-warning" name="dataAction" id="datAction">
                             <input type="hidden" class="form-control form-control-sm is-warning mb-2" name="toko" id="toko">
-                            <input type="text" class="form-control form-control-sm is-warning mb-2" name="userName" id="userName" placeholder="Username Login">
+                            <input type="text" class="form-control form-control-sm is-warning mb-2" name="userName" id="userName" placeholder="Username Login" autocomplete="off">
                             <input type="password" class="form-control form-control-sm is-warning mb-2" name="passInput" id="passInput" placeholder="Password Login">
                         </div>
                         <div class="col-12">
@@ -83,7 +83,7 @@
                         <td class="text-right">{{$ldN->method_name}}</td>
                         <td class="text-right {{$arrayBG[$ldN->status]}} font-weight-bold">{{$arrayStatus[$ldN->status]}}</td>
                         <td class="text-right">
-                            <button class="btn btn-danger BTN-DELETE " data-id="{{$ldN->billing_number}}" data-action="1" data-toko="{{$ldN->customer_name}}">Hapus</button>
+                            <button class="btn btn-danger BTN-DELETE " data-id="{{$ldN->billing_number}}" data-action="1" data-toko="{{$ldN->customer_name}}" data-trx="{{$ldN->billing_number}}">Hapus</button>
                         </td>
                     </tr>
                 @endforeach
@@ -145,12 +145,20 @@
             let el = $(this),
                 dataTrx = el.attr("data-id"),
                 dataAction = el.attr("data-action"),
+                numberTrx = el.attr("data-trx"),
                 dataToko = el.attr("data-toko");
-            $("#cardConfirmPassword").show();
-            $("#userName").focus();
-            $("#datAction").val(dataAction);
-            $("#datId").val(dataTrx);
-            $("#toko").val(dataToko);
+
+            alertify.confirm("Apakah anda yakin inngin menghapus Nomor Transaksi : "+numberTrx,
+            function(){
+                $("#cardConfirmPassword").show();
+                $("#userName").focus();
+                $("#datAction").val(dataAction);
+                $("#datId").val(dataTrx);
+                $("#toko").val(dataToko);
+            },
+            function(){
+                alertify.error('Dibatalkan');
+            }).set({title:"Notifikasi Hapus Transaksi"});
         });
         
         $("#batal").click(function(){
@@ -171,10 +179,8 @@
     $("form#formKonfirmAdmin").submit(function(eventvendor){
         eventvendor.preventDefault();
         let dataAction = $("#datAction").val(),
-            
-            toko = $("#toko").val();
-            
-            $("#spinLanjutkan").fadeIn("slow");
+            toko = $("#toko").val();            
+            $("#spinLanjutkan").fadeIn("slow");            
             $.ajax({
                 url: "{{route('Cashier')}}/buttonAction/unlockReturn",
                 type: 'POST',
