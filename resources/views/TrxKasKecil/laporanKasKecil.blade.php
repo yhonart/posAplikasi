@@ -43,8 +43,8 @@
         var curr = new Date();
         var first = curr.getDate() - curr.getDay();
         var last = first + 6;
-        var firstDate = new date(curr.setDate(first)).toUTCString();
-        var lastDate = new date(curr.setDate(last)).toUTCString();
+        var firstDate = new Date(curr.setDate(first)).toUTCString();
+        var lastDate = new Date(curr.setDate(last)).toUTCString();
 
         $('#dariTanggal').datepicker("setDate",firstDate);
         
