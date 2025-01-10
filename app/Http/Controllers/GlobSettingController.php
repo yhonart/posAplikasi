@@ -235,4 +235,8 @@ class GlobSettingController extends Controller
 
         echo "SUKSES";
     }
+
+    public function modalKasKecil(){
+        return view('globalSetting/danaTetapKasKecil');
+    }
 }

@@ -21,4 +21,7 @@ Route::get('setPembayaran/deleteAkun/{id}', [App\Http\Controllers\GlobSettingCon
 Route::get('setPembayaran/deletePembayaran/{id}', [App\Http\Controllers\GlobSettingController::class, 'deletePembayaran']);
 Route::get('setPembayaran/editMethod/{id}', [App\Http\Controllers\GlobSettingController::class, 'editMethod']);
 Route::post('setPembayaran/editMethod/postEditPembayaran', [App\Http\Controllers\GlobSettingController::class, 'postEditPembayaran']);
+
+
+Route::get('modalKasKecil', [App\Http\Controllers\GlobSettingController::class, 'modalKasKecil'])->name('modalKasKecil');
 ?>
