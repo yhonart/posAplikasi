@@ -40,7 +40,7 @@
             todayHighlight: true,
         });
 
-        var curr = new Date();
+        var curr = new Date;
         var first = curr.getDate() - curr.getDay();
         var last = first + 6;
         var firstDate = new Date(curr.setDate(first)).toUTCString();
