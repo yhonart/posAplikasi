@@ -1,4 +1,4 @@
-<table class="table table-sm table-hover table-valign-mmiddle">
+<table class="table table-sm table-hover table-valign-mmiddle text-nowrap">
     <thead class="bg-gray-dark">
         <tr>
             <td>Tanggal</td>
