@@ -44,9 +44,10 @@
         var first = curr.getDate() - curr.getDay();
         var last = first + 6;
         var firstDate = new Date(curr.setDate(first));
-        var lastDate = new Date(curr.setDate(last)).toUTCString();
+        var lastDate = new Date(curr.setDate(last));
 
         $('#dariTanggal').datepicker("setDate",firstDate);
+        $('#sampaiTanggal').datepicker("setDate",lastDate);
         
         $('#namaKasir').select2({
             theme: 'bootstrap4',
@@ -56,8 +57,8 @@
 
     $(document).ready(function(){
         let kasir = $("#namaKasir").val(),
-            fromDate = 0,
-            endDate = 0;
+            fromDate = $("#dariTanggal").val(),
+            endDate = $("#sampaiTanggal").val();
 
         tableAP(kasir, fromDate, endDate);
         

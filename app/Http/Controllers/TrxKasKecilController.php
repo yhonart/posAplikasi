@@ -25,7 +25,7 @@ class TrxKasKecilController extends Controller
         if ($kasir <> '0') {
             $tablePengeluaran = $tablePengeluaran->where('kas_persCode',$kasir);
         }
-        //$tablePengeluaran = $tablePengeluaran->whereBetween('kas_date',[$fromDate,$endDate]);
+        $tablePengeluaran = $tablePengeluaran->whereBetween('kas_date',[$fromDate,$endDate]);
         $tablePengeluaran = $tablePengeluaran->get();
 
         return view('TrxKasKecil/laporanKasKecilTable', compact('tablePengeluaran'));
