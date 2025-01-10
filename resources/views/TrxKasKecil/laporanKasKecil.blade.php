@@ -34,24 +34,25 @@
 
 <script>
     $(function(){
-        // $( ".datetimepicker-input" ).datepicker({
-        //     dateFormat: 'yy-mm-dd',
-        //     autoclose: true,
-        //     todayHighlight: true,
-        // });
-        // $('.datetimepicker-input').datepicker("setDate",new Date());
+        $( ".datetimepicker-input" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+
+        var curr = new Date();
+        var first = curr.getDate() - curr.getDay();
+        var last = first + 6;
+        var firstDate = new date(curr.setDate(first)).toUTCString();
+        var lastDate = new date(curr.setDate(last)).toUTCString();
+
+        $('#dariTanggal').datepicker("setDate",firstDate);
         
-    });
-    $(function() {
-        $('input[name="dariTanggal"]').daterangepicker({
-            opens: 'left'
-        }, function(start, end, label) {
-            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+        $('#namaKasir').select2({
+            theme: 'bootstrap4',
         });
     });
-    $('#namaKasir').select2({
-        theme: 'bootstrap4',
-    });
+    
 
     $(document).ready(function(){
         let kasir = $("#namaKasir").val(),
