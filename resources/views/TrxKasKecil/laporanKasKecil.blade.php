@@ -34,13 +34,19 @@
 
 <script>
     $(function(){
-        $( ".datetimepicker-input" ).datepicker({
-            dateFormat: 'yy-mm-dd',
-            autoclose: true,
-            todayHighlight: true,
+        // $( ".datetimepicker-input" ).datepicker({
+        //     dateFormat: 'yy-mm-dd',
+        //     autoclose: true,
+        //     todayHighlight: true,
+        // });
+        // $('.datetimepicker-input').datepicker("setDate",new Date());
+        $(function() {
+            $('input[name="dariTanggal"]').daterangepicker({
+                opens: 'left'
+            }, function(start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
         });
-        $('.datetimepicker-input').datepicker("setDate",new Date());
-        
         $('#namaKasir').select2({
             theme: 'bootstrap4',
         });
