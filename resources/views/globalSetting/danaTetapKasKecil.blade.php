@@ -37,7 +37,7 @@
                                 @foreach($mainDanaTetap as $mdt)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td class="text-right">{{number_format($mdt->nominal,'0',',','.')}}</td>
+                                        <td class="text-right">{{number_format($mdt->nominal_dana,'0',',','.')}}</td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></button>
                                             <button type="button" class="btn btn-sm btn-info"><i class="fa-solid fa-pencil"></i></button>
