@@ -26,7 +26,7 @@
                 <div class="col-md-6">
                     <button class="btn btn-info font-weight-bold onclick-submenu " data-click="dataPurchasing" id="productIn">Data Pembelian</button>
                     <button class="btn btn-success ml-1 font-weight-bold onclick-submenu " data-click="addPurchasing" id="pr">Penerimaan Barang</button>                        
-                    <button class="btn btn-danger ml-1 font-weight-bold" href="{{route('returnItem')}}">Retur</button>                        
+                    <a href="{{route('returnItem')}}" class="btn btn-danger ml-1 font-weight-bold">Retur Barang</a>                                         
                 </div>
                 <div class="col-md-4">
                     <select class="form-control " name="selectTransaksi" id="selectTransaksi">
