@@ -237,6 +237,9 @@ class GlobSettingController extends Controller
     }
 
     public function modalKasKecil(){
-        return view('globalSetting/danaTetapKasKecil');
+        $mainDanaTetap = DB::table('m_trx_kas_kasir')
+            ->get();
+
+        return view('globalSetting/danaTetapKasKecil',compact('mainDanaTetap'));
     }
 }

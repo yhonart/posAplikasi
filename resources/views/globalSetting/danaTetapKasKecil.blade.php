@@ -1,6 +1,9 @@
 @extends('layouts.sidebarpage')
 
 @section('content')
+<?php
+    $no = 0;
+?>
 <div class="content-header">
     <div class="container-fluid">
     <div class="row mb-2">
@@ -22,7 +25,27 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body table-responsive p-0">
-                        <div id="displayTableKasKasir"></div>
+                        <table class="table table-valign-middle table-hover">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Dana Tetap</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($mainDanaTetap as $mdt)
+                                    <tr>
+                                        <td>{{$no++}}</td>
+                                        <td class="text-right">{{number_format($mdt->nominal,'0',',','.')}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></button>
+                                            <button type="button" class="btn btn-sm btn-info"><i class="fa-solid fa-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
