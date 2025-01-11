@@ -32,7 +32,12 @@
                 <td>{{$tbPengeluaran->kas_persCode}}#{{$tbPengeluaran->kas_persName}}</td>
                 <td class="text-right"></td>
                 <td class="text-right">{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
-                <td class="text-right"></td>
+                <td class="text-right">
+                    <?php
+                        $saldoTransaksi += $mDanaTrx->nominal_dana-$tbPengeluaran->nominal;
+                        echo number_format($saldoTransaksi,'0',',','.');
+                    ?>
+                </td>
                 <td>{{$tbPengeluaran->file_name}}</td>
                 <td></td>
             </tr>
