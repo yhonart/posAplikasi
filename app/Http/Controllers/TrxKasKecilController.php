@@ -32,6 +32,21 @@ class TrxKasKecilController extends Controller
             ->orderBy('m_id_dana','desc')
             ->first();
 
-        return view('TrxKasKecil/laporanKasKecilTable', compact('tablePengeluaran','mDanaTrx'));
+        return view('TrxKasKecil/laporanKasKecilTable', compact('tablePengeluaran','mDanaTrx','fromDate','endDate'));
+    }
+    public function cetakKasKecil($kasir, $fromDate, $endDate){
+        // echo $kasir;
+        $tablePengeluaran = DB::table('view_trx_kas');
+        if ($kasir <> '0') {
+            $tablePengeluaran = $tablePengeluaran->where('kas_persCode',$kasir);
+        }
+        $tablePengeluaran = $tablePengeluaran->whereBetween('kas_date',[$fromDate,$endDate]);
+        $tablePengeluaran = $tablePengeluaran->get();
+
+        $mDanaTrx = DB::table('m_trx_kas_kasir')
+            ->orderBy('m_id_dana','desc')
+            ->first();
+
+        return view('TrxKasKecil/laporanKasKecilCetak', compact('tablePengeluaran','mDanaTrx','fromDate','endDate'));
     }
 }

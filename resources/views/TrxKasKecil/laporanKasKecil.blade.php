@@ -1,6 +1,11 @@
 <div class="card card-body">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-12">
+            <p>* Range Tanggal Dalam 1 Minggu</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3" style="display: none;">
             <div class="form-group">
                 <label for="namaKasir" class="label">Kasir</label>
                 <select name="namaKasir" id="namaKasir" class="form-control form-control-sm">
