@@ -2,7 +2,7 @@
 
 @section('content')
 <?php
-    $no = 0;
+    $no = 1;
 ?>
 <div class="content-header">
     <div class="container-fluid">
