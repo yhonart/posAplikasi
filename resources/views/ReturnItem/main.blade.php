@@ -23,8 +23,8 @@
             @if($checkArea <> 0)
             <div class="row mb-2">
                 <div class="col-md-12">
-                    <button class="btn btn-info elevation-1 font-weight-bold onclick-submenu " data-click="purchasingList">Retur Item</button>
-                    <button class="btn btn-success elevation-1 font-weight-bold onclick-submenu " data-click="returnHistory">History Retur Item</button>                     
+                    <button class="btn btn-primary elevation-1 onclick-submenu " data-click="purchasingList">Retur Item</button>
+                    <button class="btn btn-primary elevation-1 onclick-submenu " data-click="returnHistory">History Retur Item</button>                     
                 </div>
             </div>
             <div class="row">
