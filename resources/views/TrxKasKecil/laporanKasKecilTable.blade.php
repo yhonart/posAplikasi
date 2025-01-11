@@ -1,5 +1,7 @@
 <?php
 $saldoTransaksi = 0;
+$debit = 0;
+$kredit = 0;
 ?>
 <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered">
     <thead class="bg-gray-dark">
@@ -37,8 +39,10 @@ $saldoTransaksi = 0;
                 <td class="text-right">{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
                 <td class="text-right">
                     <?php
-                        $saldoTransaksi -= $mDanaTrx->nominal_dana-$tbPengeluaran->nominal;
+                        $debit += $tbPengeluaran->nominal;
+                        $saldoTransaksi = $mDanaTrx->nominal_dana - $debit;
                         echo number_format($saldoTransaksi,'0',',','.');
+
                     ?>
                 </td>
                 <td>{{$tbPengeluaran->file_name}}</td>
