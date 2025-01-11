@@ -1,4 +1,4 @@
-<table class="table table-sm table-hover table-valign-mmiddle text-nowrap">
+<table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered">
     <thead class="bg-gray-dark">
         <tr>
             <td>Tanggal</td>
@@ -13,15 +13,26 @@
         </tr>
     </thead>
     <tbody>
+            <tr>
+                <td></td>
+                <td>SALDO AWAL</td>
+                <td></td>
+                <td></td>
+                <td class="text-right">{{number_format($mDanaTrx->nominal_dana,'0',',','.')}}</td>
+                <td class="text-right"></td>
+                <td class="text-right">{{number_format($mDanaTrx->nominal_dana,'0',',','.')}}</td>
+                <td></td>
+                <td></td>
+            </tr>
         @foreach($tablePengeluaran as $tbPengeluaran)
             <tr>
-                <td>{{date("d-m-Y", strtotime($tbPengeluaran->kas_date))}}</td>
+                <td>{{date("d-M-Y", strtotime($tbPengeluaran->kas_date))}}</td>
                 <td>{{$tbPengeluaran->cat_name}} - {{$tbPengeluaran->subcat_name}}</td>
                 <td>{{$tbPengeluaran->description}}</td>
                 <td>{{$tbPengeluaran->kas_persCode}}#{{$tbPengeluaran->kas_persName}}</td>
-                <td></td>
-                <td>{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
-                <td></td>
+                <td class="text-right"></td>
+                <td class="text-right">{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
+                <td class="text-right"></td>
                 <td>{{$tbPengeluaran->file_name}}</td>
                 <td></td>
             </tr>
