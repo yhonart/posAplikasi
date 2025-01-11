@@ -37,7 +37,7 @@ $saldoTransaksi = 0;
                 <td class="text-right">{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
                 <td class="text-right">
                     <?php
-                        $saldoTransaksi += $mDanaTrx->nominal_dana-$tbPengeluaran->nominal;
+                        $saldoTransaksi .= $mDanaTrx->nominal_dana-$tbPengeluaran->nominal;
                         echo number_format($saldoTransaksi,'0',',','.');
                     ?>
                 </td>
