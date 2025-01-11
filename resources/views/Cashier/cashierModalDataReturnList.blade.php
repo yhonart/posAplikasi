@@ -76,7 +76,7 @@
                             </a>
                         </td>
                         <td class="bg-light">
-                            <input type="text" class="form-control form-control-sm form-control-border date-change" name="editDate" value="{{$ldN->tr_date}}" onchange="saveChangeDate(this,'tr_store','tr_date','{{$ldN->tr_store_id}}','tr_store_id')">
+                            <input type="text" class="form-control form-control-sm form-control-border date-change" name="editDate" value="{{$ldN->tr_date}}" onchange="saveChangeDate(this,'tr_store','tr_date','{{$ldN->tr_store_id}}','tr_store_id','{{$ldN->billing_number}}')">
                         </td>
                         <td>{{$ldN->customer_name}}</td>
                         <td class="text-right font-weight-bold">{{number_format($ldN->t_bill,'0',',','.')}}</td>
@@ -99,13 +99,13 @@
             todayHighlight: true,
         });
     })
-    function saveChangeDate(editableObj,tablename,column,id,dataId){
+    function saveChangeDate(editableObj,tablename,column,id,dataId,billNumber){
         alertify.confirm("Apakah anda yakin ingin melakukan perubahan tanggal transaksi ke tanggal : "+editableObj.value,
         function(){
             $.ajax({
                 url: "{{route('Cashier')}}/buttonAction/dataReturn/changeDate",
                 type: "POST",
-                data:'tablename='+tablename+'&column='+column+'&editval='+editableObj.value+'&id='+id+'&dataId='+dataId,
+                data:'tablename='+tablename+'&column='+column+'&editval='+editableObj.value+'&id='+id+'&dataId='+dataId+'&billNumber='+billNumber,
                 success: function(data){
                     loadDataReturn();
                     alertify.success('Tanggal Berhasil Dirubah');

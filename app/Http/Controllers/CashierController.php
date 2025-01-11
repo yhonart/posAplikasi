@@ -3265,6 +3265,8 @@ class CashierController extends Controller
         $editval = $reqChangeDate->editval;
         $id = $reqChangeDate->id;
         $dataId = $reqChangeDate->dataId;
+        $numberTrx = $reqChangeDate->billNumber;
+        $userEdited = Auth::user()->name;
         
         $countNumber = DB::table('tr_store')
             ->where('tr_date',$editval)
@@ -3290,21 +3292,23 @@ class CashierController extends Controller
         DB::table('tr_kredit')
             ->where('from_payment_code',$billNumber)
             ->update([
-                'from_payment_code'=>$pCode
+                'from_payment_code'=>$pCode,
+                'created_at'=>$editval
             ]);
 
         //Change tr_kredit_record
         DB::table('tr_kredit_record')
             ->where('trx_code',$billNumber)
             ->update([
-                'trx_code'=>$pCode
+                'trx_code'=>$pCode,
+                'date_trx'=>$editval
             ]);
 
         //Change tr_payment_method
         DB::table('tr_payment_method')
             ->where('core_id_trx',$billNumber)
             ->update([
-                'core_id_trx'=>$pCode
+                'core_id_trx'=>$pCode,                
             ]);
 
         //Change tr_payment_record
@@ -3318,7 +3322,8 @@ class CashierController extends Controller
         DB::table('tr_store_prod_list')
             ->where('from_payment_code',$billNumber)
             ->update([
-                'from_payment_code'=>$pCode
+                'from_payment_code'=>$pCode,
+                'date_trx'=>$editval
             ]);
         
         //Change laporan inventory
@@ -3329,7 +3334,8 @@ class CashierController extends Controller
                 'date_input'=>$editval
             ]);
         
-        DB::table('tr_store')
+            
+            DB::table('tr_store')
             ->where($dataId, $id)
             ->update([
                 $column => $editval,
@@ -3337,7 +3343,18 @@ class CashierController extends Controller
                 'updated_date'=>now()
             ]);
 
-        
+            DB::table('tr_store')
+                ->insert([
+                    'store_id'=>'3',
+                    'billing_number'=>$numberTrx,
+                    'tr_date'=>now(),
+                    'status'=>'0',
+                    'return_by'=>$userEdited,
+                    'created_by'=>$userEdited,
+                    'created_date'=>now(),
+                    'is_return'=>'1'
+                ]);
+            
 
     }
 
