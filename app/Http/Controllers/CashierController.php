@@ -3323,7 +3323,7 @@ class CashierController extends Controller
             ->where('from_payment_code',$billNumber)
             ->update([
                 'from_payment_code'=>$pCode,
-                'date_trx'=>$editval
+                'date'=>$editval
             ]);
         
         //Change laporan inventory
