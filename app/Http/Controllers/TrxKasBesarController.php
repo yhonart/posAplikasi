@@ -36,7 +36,7 @@ class TrxKasBesarController extends Controller
             ])
             ->whereBetween('date_trx',[$fromDate,$endDate])
             ->groupBy('b.created_by')
-            ->groupBy('b.date_trx')
+            ->groupBy('a.date_trx')
             ->get();
 
         return view('TrxKasBesar/laporanKasBesarTable', compact('pembelian','penjualan'));        
