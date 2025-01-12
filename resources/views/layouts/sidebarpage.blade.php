@@ -296,7 +296,7 @@
                         $("#divSidebar").html(response);
                     }
                 });
-                let keyWord = 0;
+                let keyWord = '0';
                 funcSearchMenu(keyWord);
                 let timer_cari_equipment = null;
                 $("#searchMenu").keyup(function (e){
