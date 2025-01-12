@@ -22,11 +22,11 @@ $kredit = 0;
                 <tr>
                     <td></td>
                     <td>Penjualan {{$tbPengeluaran->created_by}}</td>
-                    <td class="text-right">{{number_format($tbPengeluaran->payment,'0',',','.')}}</td>
+                    <td class="text-right">{{number_format($tbPengeluaran->paymentCus,'0',',','.')}}</td>
                     <td class="text-right"></td>
                     <td class="text-right">
                         <?php
-                            $debit += $tbPengeluaran->payment;
+                            $debit += $tbPengeluaran->paymentCus;
                             // $saldoTransaksi = $mDanaTrx->nominal_dana - $debit;
                             echo number_format($debit,'0',',','.');
     
