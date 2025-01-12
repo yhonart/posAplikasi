@@ -312,17 +312,15 @@
                 
                 function funcSearchMenu(keyWord){                    
                     if (keyWord !== '0') {
-                        $("#divSidebar").fadeOut("slow");
                         $.ajax({
                             type : 'get',
                             url : "{{route('home')}}/searchingMenu/"+keyWord,
                             success : function(response){
-                                $("#divMenuBySearch").html(response);
+                                $("#divSidebar").html(response);
                             }
                         });
                     }
                     if (keyWord === '0'){
-                        $("#divSidebar").fadeIn("slow");
                         $.ajax({
                             type : 'get',
                             url : "{{route('home')}}/mainMenu",
