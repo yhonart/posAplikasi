@@ -313,6 +313,13 @@
                 function funcSearchMenu(keyWord){
                     if (keyWord !== 0) {
                         $("#divSidebar").fadeOut("slow");
+                        $.ajax({
+                            type : 'get',
+                            url : "{{route('home')}}/searchingMenu/"+keyWord,
+                            success : function(response){
+                                $("#divMenuBySearch").html(response);
+                            }
+                        });
                     }
                     else{
                         $("#divSidebar").fadeIn("slow");
@@ -323,15 +330,7 @@
                                 $("#divSidebar").html(response);
                             }
                         });
-                    }
-
-                    $.ajax({
-                        type : 'get',
-                        url : "{{route('home')}}/searchingMenu/"+keyWord,
-                        success : function(response){
-                            $("#divMenuBySearch").html(response);
-                        }
-                    });
+                    }                    
                 }
             })
 
