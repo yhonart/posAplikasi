@@ -296,7 +296,7 @@
                 //         $("#divSidebar").html(response);
                 //     }
                 // });
-                let keyWord = '0';
+                let keyWord = "0";
                 funcSearchMenu(keyWord);
                 let timer_cari_equipment = null;
                 $("#searchMenu").keyup(function (e){
@@ -305,23 +305,14 @@
                     timer_cari_equipment = setTimeout(function(){
                         let keyWord = $("#searchMenu").val().trim();
                         if (keyWord === '') {
-                            keyWord = '0';
+                            keyWord = "0";
                         }
                     funcSearchMenu(keyWord)},500)
                 });
                 
                 function funcSearchMenu(keyWord){  
-                    alert (keyWord);
-                    if (keyWord !== '0') {
-                        $.ajax({
-                            type : 'get',
-                            url : "{{route('home')}}/searchingMenu/"+keyWord,
-                            success : function(response){
-                                $("#divSidebar").html(response);
-                            }
-                        });
-                    }
-                    if (keyWord === '0'){
+                    alert (keyWord);                    
+                    if (keyWord === "0" || keyWord === ""){
                         $.ajax({
                             type : 'get',
                             url : "{{route('home')}}/mainMenu",
@@ -329,7 +320,16 @@
                                 $("#divSidebar").html(response);
                             }
                         });
-                    }                    
+                    }  
+                    else{
+                        $.ajax({
+                            type : 'get',
+                            url : "{{route('home')}}/searchingMenu/"+keyWord,
+                            success : function(response){
+                                $("#divSidebar").html(response);
+                            }
+                        });
+                    }                  
                 }
             })
 
