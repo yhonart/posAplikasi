@@ -158,7 +158,7 @@
             });
         });     
         
-        $("#namaKasir".change(function(){
+        $("#namaKasir").change(function(){
             let namaKasir = $(this).val();
             let fromdate = "{{$fromDate}}",
                 enddate = "{{$endDate}}";
@@ -170,7 +170,7 @@
                     $('#tableDataOnClick').html(response);
                 } 
             });
-        }))
+        });
         
     });
 
