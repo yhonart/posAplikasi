@@ -310,8 +310,8 @@
                     funcSearchMenu(keyWord)},500)
                 });
                 
-                function funcSearchMenu(keyWord){
-                    if (keyWord !== 0) {
+                function funcSearchMenu(keyWord){                    
+                    if (keyWord !== '0') {
                         $("#divSidebar").fadeOut("slow");
                         $.ajax({
                             type : 'get',
