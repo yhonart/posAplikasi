@@ -310,7 +310,8 @@
                     funcSearchMenu(keyWord)},500)
                 });
                 
-                function funcSearchMenu(keyWord){                    
+                function funcSearchMenu(keyWord){  
+                    alert (keyWord);
                     if (keyWord !== '0') {
                         $.ajax({
                             type : 'get',
