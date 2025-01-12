@@ -30,10 +30,9 @@ class TrxKasBesarController extends Controller
             ->get();
         
         $penjualan = DB::table('tr_store')
-                ->select(DB::raw('SUM(t_pay) as paymentCus'), 'tr_date','created_by')
+                ->select(DB::raw('SUM(t_pay) as paymentCus'),'created_by')
                 ->whereBetween('tr_date',[$fromDate,$endDate])
                 ->groupBy('created_by')
-                ->groupBy('tr_date')
                 ->get();        
 
         return view('TrxKasBesar/laporanKasBesarTable', compact('pembelian','penjualan','kasir','fromDate','endDate'));        
