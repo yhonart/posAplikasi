@@ -230,9 +230,9 @@
                         </div>
                     </div>
                 </div>
-                <div id="divMenuBySearch"></div>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+                      <div id="divMenuBySearch"></div>
                       <div id="divSidebar"></div>
                     </ul>
                 </nav>
@@ -309,7 +309,7 @@
                         }
                     funcSearchMenu(keyWord)},700)
                 });
-
+                
                 function funcSearchMenu(keyWord){
                     if (keyWord !== 0) {
                         $("#divSidebar").fadeOut("slow");
@@ -318,10 +318,7 @@
                         type : 'get',
                         url : "{{route('home')}}/searchingMenu/"+keyWord,
                         success : function(response){
-                            // $("#divMenuBySearch").html(response);
-                            var results = JSON.parse(response); var resultsHtml = ''; 
-                            $.each(results, function(index, item) { resultsHtml += '<div>' + item + '</div>'; }); 
-                            $('#divMenuBySearch').html(resultsHtml);
+                            $("#divMenuBySearch").html(response);
                         }
                     });
                 }
