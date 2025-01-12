@@ -310,26 +310,14 @@
                     funcSearchMenu(keyWord)},500)
                 });
                 
-                function funcSearchMenu(keyWord){  
-                    alert (keyWord);                    
-                    if (keyWord === "0" || keyWord === ""){
-                        $.ajax({
-                            type : 'get',
-                            url : "{{route('home')}}/mainMenu",
-                            success : function(response){                
-                                $("#divSidebar").html(response);
-                            }
-                        });
-                    }  
-                    else{
-                        $.ajax({
-                            type : 'get',
-                            url : "{{route('home')}}/searchingMenu/"+keyWord,
-                            success : function(response){
-                                $("#divSidebar").html(response);
-                            }
-                        });
-                    }                  
+                function funcSearchMenu(keyWord){                                        
+                    $.ajax({
+                        type : 'get',
+                        url : "{{route('home')}}/searchingMenu/"+keyWord,
+                        success : function(response){
+                            $("#divSidebar").html(response);
+                        }
+                    });
                 }
             })
 
