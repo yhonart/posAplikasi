@@ -13,7 +13,6 @@ $kredit = 0;
                 <td>Keterangan</td>
                 <td>Debit</td>
                 <td>Kredit</td>
-                <td>Saldo</td>
                 <td></td>
             </tr>
         </thead>
@@ -23,15 +22,10 @@ $kredit = 0;
                     <td>{{date('d-M-Y'), strtotime($endDate)}}</td>
                     <td>Penjualan {{$tbPengeluaran->created_by}}</td>
                     <td class="text-right">{{number_format($tbPengeluaran->paymentCus,'0',',','.')}}</td>
-                    <td class="text-right"></td>
-                    <td class="text-right">
-                        <?php
-                            $debit += $tbPengeluaran->paymentCus;
-                            // $saldoTransaksi = $mDanaTrx->nominal_dana - $debit;
-                            // echo number_format($debit,'0',',','.');
-                        ?>
+                    <td class="text-right"></td>                    
+                    <td>
+                        <a href="#" class="btn btn-sm btn-info"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </td>
-                    <td></td>
                 </tr>
             @endforeach
             @foreach($pembelian as $pmb)
@@ -40,7 +34,9 @@ $kredit = 0;
                     <td>Pembelian Dari Supplier {{$pmb->store_name}}</td>
                     <td></td>
                     <td class="text-right">{{number_format($pmb->sub_total,'0',',','.')}}</td>
-                    <td></td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-info"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
