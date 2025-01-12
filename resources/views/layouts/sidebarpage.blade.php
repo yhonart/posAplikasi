@@ -289,13 +289,13 @@
                     $(this).find(id_modal_content).html('');
                 });
                 
-                $.ajax({
-                    type : 'get',
-                    url : "{{route('home')}}/mainMenu",
-                    success : function(response){                
-                        $("#divSidebar").html(response);
-                    }
-                });
+                // $.ajax({
+                //     type : 'get',
+                //     url : "{{route('home')}}/mainMenu",
+                //     success : function(response){                
+                //         $("#divSidebar").html(response);
+                //     }
+                // });
                 let keyWord = '0';
                 funcSearchMenu(keyWord);
                 let timer_cari_equipment = null;
