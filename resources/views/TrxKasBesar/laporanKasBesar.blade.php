@@ -4,7 +4,7 @@
             <p>* Range Tanggal Dalam 1 Minggu</p>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="display: none;">
         <div class="col-md-3">
             <div class="form-group">
                 <label for="namaKasir" class="label">Kasir</label>
