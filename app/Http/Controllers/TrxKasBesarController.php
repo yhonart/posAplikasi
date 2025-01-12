@@ -29,7 +29,7 @@ class TrxKasBesarController extends Controller
             ->get();
         
         $penjualan = DB::table('tr_payment_record as a')
-            ->select(DB::raw("SUM(a.total_payment) as payment"),'b.created_by','a.tr_date','')
+            ->select(DB::raw("SUM(a.total_payment) as payment"),'b.created_by','a.date_trx','')
             ->leftJoin('tr_store as b','a.trx_code','=','b.billing_number')
             ->where([
                 ['trx_method','8']
