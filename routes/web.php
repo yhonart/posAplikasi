@@ -108,6 +108,7 @@ Route::post('adminPiutangPelanggan/postLimitCustomer', [App\Http\Controllers\Loa
 Route::get('kasKategori', [App\Http\Controllers\MasterDataKategoriKasController::class, 'mainCatgoryController'])->name('kasKategori');
 
 Route::get('kasKecil', [App\Http\Controllers\TrxKasKecilController::class, 'kasKecil'])->name('kasKecil');
+Route::get('kasBesar', [App\Http\Controllers\TrxKasBesarController::class, 'kasBesar'])->name('kasBesar');
 
 include __DIR__.'/section/accounting.php';
 include __DIR__.'/section/asset.php';
