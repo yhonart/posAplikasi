@@ -20,7 +20,7 @@ $kredit = 0;
         <tbody>
             @foreach($penjualan as $tbPengeluaran)
                 <tr>
-                    <td></td>
+                    <td>{{$date('d-M-Y'), strtotime($endDate)}}</td>
                     <td>Penjualan {{$tbPengeluaran->created_by}}</td>
                     <td class="text-right">{{number_format($tbPengeluaran->paymentCus,'0',',','.')}}</td>
                     <td class="text-right"></td>
@@ -28,10 +28,18 @@ $kredit = 0;
                         <?php
                             $debit += $tbPengeluaran->paymentCus;
                             // $saldoTransaksi = $mDanaTrx->nominal_dana - $debit;
-                            echo number_format($debit,'0',',','.');
-    
+                            // echo number_format($debit,'0',',','.');
                         ?>
                     </td>
+                    <td></td>
+                </tr>
+            @endforeach
+            @foreach($pembelian as $pmb)
+                <tr>
+                    <td>{{date('d-M-Y', strtotime($pmb->delivery_date))}}</td>
+                    <td>Pembelian Dari Supplier {{$pmb->store_name}}</td>
+                    <td></td>
+                    <td class="text-right">{{number_format($pmb->sub_total,'0',',','.')}}</td>
                     <td></td>
                 </tr>
             @endforeach
