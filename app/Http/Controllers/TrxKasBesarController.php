@@ -20,6 +20,7 @@ class TrxKasBesarController extends Controller
     }
 
     public function tableLaporan ($kasir, $fromDate, $endDate){
+        echo $kasir."/".$fromDate."/".$endDate;
         $pembelian = DB::table('purchase_order')
             ->where([
                 ['payment_methode','1'],
