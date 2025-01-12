@@ -39,7 +39,7 @@ class TrxKasBesarController extends Controller
             ->groupBy('a.date_trx')
             ->get();
 
-        return view('TrxKasBesar/laporanKasBesarTable', compact('pembelian','penjualan'));        
+        return view('TrxKasBesar/laporanKasBesarTable', compact('pembelian','penjualan','kasir','fromDate','endDate'));        
     }
 
     
