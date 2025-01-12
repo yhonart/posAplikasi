@@ -151,4 +151,5 @@ include __DIR__.'/section/kasKategori.php';
 include __DIR__.'/section/piutang.php';
 
 include __DIR__.'/section/kasKecil.php';
+include __DIR__.'/section/kasBesar.php';
 
