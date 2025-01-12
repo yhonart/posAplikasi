@@ -1,6 +1,5 @@
-
 <hr>
-@if($userRole >= 1)
+@if($cekUserGroup >= 1)
     @foreach($searchSubMenu as $sm)
     <li class="nav-item">
         <a href="{{route($sm->data_menu)}}" class="nav-link">

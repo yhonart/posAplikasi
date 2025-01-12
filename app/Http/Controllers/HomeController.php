@@ -116,59 +116,52 @@ class HomeController extends Controller
     
     public function searchingMenu ($keyword){
         $userID = Auth::user()->id;
-
+        echo $keyword;
         $searchSubMenu = DB::table('m_submenu')
             ->where('name_menu','like','%'.$keyword.'%')
             ->get();
 
-        $userRole = DB::table('users_role')
+        $cekUserGroup = DB::table('users_role')
             ->where([
                 ['user_id',$userID],
                 ['role_code','1']
             ])
             ->count();
-
-        if ($keyword == '0') {
-            $cekUserGroup = DB::table('users_role')
-                ->where([
-                    ['user_id',$userID],
-                    ['role_code','1']
-                ])
-                ->count();
+            
+        if($cekUserGroup >= '1'){
+            $mainMenu = DB::table('m_public_system')
+                ->where('status','1')
+                ->orderBy('ordering','asc')
+                ->get();
                 
-            if($cekUserGroup >= '1'){
-                $mainMenu = DB::table('m_public_system')
-                    ->where('status','1')
-                    ->orderBy('ordering','asc')
-                    ->get();
-                    
-                $subMenu = DB::table('m_submenu')
-                    ->where('status','1')
-                    ->get();
-                    
-            }
-            else{
-            $mainMenu = DB::table('users_auth as a')
-                    ->leftJoin('m_public_system as b','a.menu_id','=','b.idm_system')
-                    ->where([
-                        ['a.users_id',$userID],
-                        ['b.status','1']
-                        ])
-                    ->orderBy('b.ordering','asc')
-                    ->get(); 
-                    
-            $subMenu = DB::table('users_auth as a')
-                    ->leftJoin('m_submenu as b','a.submenu_id','=','b.idm_submenu')
-                    ->where([
-                        ['a.users_id',$userID],
-                        ['b.status','1']
-                        ])
-                    ->get(); 
-            }
+            $subMenu = DB::table('m_submenu')
+                ->where('status','1')
+                ->get();
+                
+        }
+        else{
+        $mainMenu = DB::table('users_auth as a')
+                ->leftJoin('m_public_system as b','a.menu_id','=','b.idm_system')
+                ->where([
+                    ['a.users_id',$userID],
+                    ['b.status','1']
+                    ])
+                ->orderBy('b.ordering','asc')
+                ->get(); 
+                
+        $subMenu = DB::table('users_auth as a')
+                ->leftJoin('m_submenu as b','a.submenu_id','=','b.idm_submenu')
+                ->where([
+                    ['a.users_id',$userID],
+                    ['b.status','1']
+                    ])
+                ->get(); 
+        }
+        if ($keyword == '0') {
             return view('mainDivMenu', compact('mainMenu','subMenu','cekUserGroup')); 
         }
         else {
-            return view('mainSearchMenu', compact('searchSubMenu','userRole')); 
+            return view('mainSearchMenu', compact('searchSubMenu','cekUserGroup')); 
         }
 
     }
