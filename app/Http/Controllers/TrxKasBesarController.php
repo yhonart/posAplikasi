@@ -20,7 +20,7 @@ class TrxKasBesarController extends Controller
     }
 
     public function tableLaporan ($kasir, $fromDate, $endDate){
-        echo $kasir."/".$fromDate."/".$endDate;
+        
         $pembelian = DB::table('purchase_order')
             ->where([
                 ['payment_methode','1'],
@@ -29,11 +29,14 @@ class TrxKasBesarController extends Controller
             ->whereBetween('delivery_date',[$fromDate,$endDate])
             ->get();
         
-        $penjualan = DB::table('tr_store')
-                ->select(DB::raw('SUM(t_pay) as paymentCus'),'created_by')
-                ->whereBetween('tr_date',[$fromDate,$endDate])
-                ->groupBy('created_by')
-                ->get();        
+        $penjualan = DB::table('tr_store');
+        $penjualan = $penjualan->select(DB::raw('SUM(t_pay) as paymentCus'),'created_by');
+        if ($kasir <> 0) {
+            $penjualan = $penjualan->where('created_by', $kasir);
+        }
+        $penjualan = $penjualan->whereBetween('tr_date',[$fromDate,$endDate]);
+        $penjualan = $penjualan->groupBy('created_by');
+        $penjualan = $penjualan->get();        
 
         return view('TrxKasBesar/laporanKasBesarTable', compact('pembelian','penjualan','kasir','fromDate','endDate'));        
     }

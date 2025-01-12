@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3" style="display: none;">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="namaKasir" class="label">Kasir</label>
                 <select name="namaKasir" id="namaKasir" class="form-control form-control-sm">
