@@ -1,7 +1,7 @@
 <?php
     $sumRecord = '0';
 ?>
-<div class="row">
+<div class="row mb-2">
     <div class="col-lg-3 col-6">
         <a href="#" class="onClick-Data" data-condition="alltrx" data-from="{{$fromDate}}" data-end="{{$endDate}}">
             <div class="small-box bg-success">
@@ -41,10 +41,24 @@
               </div>
             </div>
         </a>
-    </div>
-    
+    </div>    
 </div>
-<div class="row">
+<div class="row mb-2">
+    <div class="col-md-12">
+        <div class="form-group row">
+            <label for="0" class="col-md-3">Pilih Kasir</label>
+            <div class="col-md-4">
+                <select name="namaKasir" id="namaKasir" class="form-control">
+                    <option value="0">===</option>
+                    @foreach($userKasir as $uk)
+                        <option value="{{$uk->name}}">{{$uk->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-2">
     <div class="col-12">
         <div id="tableDataOnClick"></div>
     </div>
@@ -142,7 +156,21 @@
                     $('#tableDataOnClick').html(response);
                 } 
             });
-        });         
+        });     
+        
+        $("#namaKasir".change(function(){
+            let namaKasir = $(this).val();
+            let fromdate = "{{$fromDate}}",
+                enddate = "{{$endDate}}";
+
+            $.ajax({ 
+                type : 'get', 
+                url : "{{route('Dashboard')}}/loadDataTransaksi/getTrxByKasir/"+namaKasir+"/"+fromdate+"/"+enddate,
+                success : function(response){
+                    $('#tableDataOnClick').html(response);
+                } 
+            });
+        }))
         
     });
 

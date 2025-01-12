@@ -117,6 +117,9 @@ class DashboardController extends Controller
         $selectYear =$selectYear->leftJoin('tr_store as b','a.trx_code','=','b.billing_number');
         $selectYear = $selectYear->groupBy(DB::raw('DATE_FORMAT(a.date_trx,"%Y")'));
         $selectYear = $selectYear->get();
+
+        $userKasir = DB::table('users')
+            ->get();
             
         $totalTransaksi = DB::table('view_billing_action');
         $totalTransaksi = $totalTransaksi->where([
@@ -125,7 +128,21 @@ class DashboardController extends Controller
         $totalTransaksi = $totalTransaksi->whereBetween('tr_date',[$fromDate, $endDate]);
         $totalTransaksi = $totalTransaksi->count();
             
-        return view ('Dashboard/DashboardLoadTrx', compact('countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear'));
+        return view ('Dashboard/DashboardLoadTrx', compact('countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','userKasir'));
+    }
+
+    public function getTrxByKasir($kasir, $fromDate, $endDate){
+        $dataByKasir = DB::table('view_billing_action');
+            $dataByKasir = $dataByKasir->where([
+                    ['is_return','!=','1']
+            ]);
+            if ($kasir <> 0) {
+                $dataByKasir = $dataByKasir->where('created_by',$kasir);
+            }
+            $dataByKasir = $dataByKasir->whereBetween('tr_date',[$fromDate, $endDate]);
+            $dataByKasir = $dataByKasir->get();
+
+        return view ('Dashboard/DashboardLoadByKasir', compact('dataByKasir','kasir','fromDate','endDate'));
     }
 
     public function garphPembelian ($year){
