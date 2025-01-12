@@ -222,17 +222,17 @@
                 </div>
                 <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
-                    <input class="form-control form-control-sidebar" type="search" placeholder="Cari Menu" id="searchMenu" aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                        </button>
-                    </div>
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Cari Menu" id="searchMenu" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar">
+                            <i class="fas fa-search fa-fw"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
+                <div id="divMenuBySearch"></div>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-                      <div id="divMenuBySearch"></div>
                       <div id="divSidebar"></div>
                     </ul>
                 </nav>
@@ -318,7 +318,10 @@
                         type : 'get',
                         url : "{{route('home')}}/searchingMenu/"+keyWord,
                         success : function(response){
-                            $("#divMenuBySearch").html(response);
+                            // $("#divMenuBySearch").html(response);
+                            var results = JSON.parse(response); var resultsHtml = ''; 
+                            $.each(results, function(index, item) { resultsHtml += '<div>' + item + '</div>'; }); 
+                            $('#divMenuBySearch').html(resultsHtml);
                         }
                     });
                 }
