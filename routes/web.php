@@ -40,6 +40,7 @@ Route::get('/home/getMenu', [App\Http\Controllers\HomeController::class, 'getMen
 Route::get('home/mainMenu', [App\Http\Controllers\HomeController::class, 'mainMenu']);
 Route::get('home/GetGlobaDelete/WithDeleteId/{dataId}/{dataTb}/{dataCol}', [App\Http\Controllers\HomeController::class, 'GlobalDelete']);
 Route::post('home/GlobalLiveEditTable', [App\Http\Controllers\HomeController::class, 'GlobalEditTable']);
+Route::get('/home/searchingMenu/{keyword}', [App\Http\Controllers\HomeController::class, 'searchingMenu']);
 
 Route::get('Stock', [App\Http\Controllers\StockListController::class, 'getMenu'])->name('Stock');
 Route::get('MoU', [App\Http\Controllers\MoUController::class, 'mainIndex'])->name('MoU');

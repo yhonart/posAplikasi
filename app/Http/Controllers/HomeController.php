@@ -78,7 +78,7 @@ class HomeController extends Controller
         }
         return $userAreaID;
     }
-    
+
     public function index()
     {
         $role = Auth::user()->hakakses;
@@ -114,6 +114,23 @@ class HomeController extends Controller
         // }
     }
     
+    public function searchingMenu ($keyword){
+        $userID = Auth::user()->id;
+
+        $searchSubMenu = DB::table('m_submenu')
+            ->where('name_menu','like','%'.$keyword.'%')
+            ->get();
+
+        $userRole = DB::table('users_role')
+            ->where([
+                ['user_id',$userID],
+                ['role_code','1']
+            ])
+            ->count();
+
+        return view('mainSearchMenu', compact('searchSubMenu','userRole')); 
+    }
+
     public function mainMenu(){
         $userID = Auth::user()->id;
         
