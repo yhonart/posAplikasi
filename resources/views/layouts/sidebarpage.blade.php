@@ -321,7 +321,7 @@
                             }
                         });
                     }
-                    else{
+                    if (keyWord === '0'){
                         $("#divSidebar").fadeIn("slow");
                         $.ajax({
                             type : 'get',
