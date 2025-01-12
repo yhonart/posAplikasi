@@ -43,7 +43,7 @@
         </a>
     </div>    
 </div>
-<div class="row mb-2">
+<div class="row mb-2" style="display: none;">
     <div class="col-md-12">
         <div class="form-group row">
             <label for="0" class="col-md-3">Pilih Kasir</label>

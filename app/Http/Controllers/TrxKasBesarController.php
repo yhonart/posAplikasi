@@ -20,7 +20,17 @@ class TrxKasBesarController extends Controller
     }
 
     public function tableLaporan ($kasir, $fromDate, $endDate){
-        // echo $kasir."/".$fromDate."/".$endDate;
+        // Hasil Penjualan Per Kasir
+        $penjualan = DB::table('tr_store');
+        $penjualan = $penjualan->select(DB::raw('SUM(t_pay) as paymentCus'),'created_by');
+        if ($kasir <> 0) {
+            $penjualan = $penjualan->where('created_by', $kasir);
+        }
+        $penjualan = $penjualan->whereBetween('tr_date',[$fromDate,$endDate]);
+        $penjualan = $penjualan->groupBy('created_by');
+        $penjualan = $penjualan->get(); 
+
+        // Pembelian Supplier Cash
         $pembelian = DB::table('view_purchase_order');
         $pembelian = $pembelian->where([
                 ['payment_methode','1'],
@@ -29,14 +39,7 @@ class TrxKasBesarController extends Controller
         $pembelian = $pembelian->whereBetween('delivery_date',[$fromDate,$endDate]);
         $pembelian = $pembelian->get();
         
-        $penjualan = DB::table('tr_store');
-        $penjualan = $penjualan->select(DB::raw('SUM(t_pay) as paymentCus'),'created_by');
-        if ($kasir <> 0) {
-            $penjualan = $penjualan->where('created_by', $kasir);
-        }
-        $penjualan = $penjualan->whereBetween('tr_date',[$fromDate,$endDate]);
-        $penjualan = $penjualan->groupBy('created_by');
-        $penjualan = $penjualan->get();        
+               
 
         return view('TrxKasBesar/laporanKasBesarTable', compact('pembelian','penjualan','kasir','fromDate','endDate'));        
     }

@@ -6,7 +6,7 @@ $kredit = 0;
 <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
 <hr>
 <div class="table-responsive">
-    <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered">
+    <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered" id="tableKasBesar">
         <thead class="bg-gray-dark">
             <tr>
                 <td>Tanggal</td>
@@ -46,3 +46,17 @@ $kredit = 0;
         </tbody>
     </table>
 </div>
+
+<script>
+    $(function(){        
+        $("#tableKasBesar").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "searching": false,
+            "paging": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>
