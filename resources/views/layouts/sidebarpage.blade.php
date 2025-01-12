@@ -304,7 +304,7 @@
                     clearTimeout(timer_cari_equipment);            
                     timer_cari_equipment = setTimeout(function(){
                         let keyWord = $("#searchMenu").val().trim();
-                        if (keyWord=='') {
+                        if (keyWord === '') {
                             keyWord = '0';
                         }
                     funcSearchMenu(keyWord)},500)
