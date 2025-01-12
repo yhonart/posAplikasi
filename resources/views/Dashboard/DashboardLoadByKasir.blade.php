@@ -23,7 +23,7 @@
 ?>
 <div class="card">
     <div class="card-header border-0">
-        <h3 class="card-title">{{$arayCondition[$condition]}}</h3>
+        <h3 class="card-title">{{$kasir}}</h3>
 
         <div class="card-tools">            
             <button type="button" class="btn btn-tool" data-card-widget="maximize">
