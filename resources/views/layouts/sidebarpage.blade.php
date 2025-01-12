@@ -316,7 +316,15 @@
                     }
                     else{
                         $("#divSidebar").fadeIn("slow");
+                        $.ajax({
+                            type : 'get',
+                            url : "{{route('home')}}/mainMenu",
+                            success : function(response){                
+                                $("#divSidebar").html(response);
+                            }
+                        });
                     }
+
                     $.ajax({
                         type : 'get',
                         url : "{{route('home')}}/searchingMenu/"+keyWord,
