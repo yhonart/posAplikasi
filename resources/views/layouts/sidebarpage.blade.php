@@ -307,12 +307,15 @@
                         if (keyWord=='') {
                             keyWord = '0';
                         }
-                    funcSearchMenu(keyWord)},700)
+                    funcSearchMenu(keyWord)},500)
                 });
                 
                 function funcSearchMenu(keyWord){
                     if (keyWord !== 0) {
                         $("#divSidebar").fadeOut("slow");
+                    }
+                    else{
+                        $("#divSidebar").fadeIn("slow");
                     }
                     $.ajax({
                         type : 'get',
