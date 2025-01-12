@@ -11,7 +11,7 @@
                 <select name="namaKasir" id="namaKasir" class="form-control form-control-sm">
                     <option value="0">====</option>
                     @foreach($userKasir as $uk)
-                        <option value="{{$uk->id}}">{{$uk->name}}</option>
+                        <option value="{{$uk->name}}">{{$uk->name}}</option>
                     @endforeach
                 </select>
             </div>
