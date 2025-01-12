@@ -233,7 +233,6 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
                       <div id="divMenuBySearch"></div>
-                      <div id="divSidebar"></div>
                     </ul>
                 </nav>
             </div>
@@ -315,7 +314,7 @@
                         type : 'get',
                         url : "{{route('home')}}/searchingMenu/"+keyWord,
                         success : function(response){
-                            $("#divSidebar").html(response);
+                            $("#divMenuBySearch").html(response);
                         }
                     });
                 }
