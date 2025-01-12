@@ -266,6 +266,7 @@
             $(function(){
                 $("#ajaxClientName").load("{{route('home')}}/storeName");
                 bsCustomFileInput.init();
+                $("#searchMenu").val(null).focus();
             })                      
             $(document).ready(function(){
                 $.ajaxSetup({

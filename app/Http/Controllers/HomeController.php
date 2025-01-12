@@ -116,7 +116,7 @@ class HomeController extends Controller
     
     public function searchingMenu ($keyword){
         $userID = Auth::user()->id;
-        echo $keyword;
+        // echo $keyword;
         $searchSubMenu = DB::table('m_submenu')
             ->where('name_menu','like','%'.$keyword.'%')
             ->get();
