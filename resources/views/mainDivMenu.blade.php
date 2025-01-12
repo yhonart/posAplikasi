@@ -1,11 +1,11 @@
 <?php
-    // if($cekUserGroup >= '1'){
-    //     $menuOpen = "";
-    // }
-    // else{
-        // $menuOpen = "menu-open";
-    // }
-    $menuOpen = "menu-open";
+    if($cekUserGroup >= '1'){
+        $menuOpen = "";
+    }
+    else{
+        $menuOpen = "menu-open";
+    }
+    // $menuOpen = "menu-open";
     ?>
 @if($cekUserGroup >= '1')
     @foreach($mainMenu as $mm)
