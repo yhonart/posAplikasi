@@ -93,7 +93,7 @@ $no = '1';
             });
             let satuanAsSelect = $("#satuan").val();
             alert (satuanAsSelect);
-            fetch("{{route('returnItem')}}/prodListAction/" + productID + "/" + numberPO +)
+            fetch("{{route('returnItem')}}/prodListAction/" + productID + "/" + numberPO)
             .then(response => response.json())
             .then(data => {                    
                 if ((data.qtyPB || data.unitPB || data.dataId)) {
