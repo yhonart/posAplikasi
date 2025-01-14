@@ -92,11 +92,11 @@ class ReturnItemController extends Controller
     }
 
     public function productAction ($prdID){
-        $itemOrder = DB::table('view_purchase_lo')            
-            ->where('product_id',$prdID)
+        $satuanItem = DB::table('product_list_view')            
+            ->where('core_id_product',$prdID)
             ->get();
             
-        return view ('ReturnItem/displaySelectSatuan', compact('itemOrder'));
+        return view ('ReturnItem/displaySelectSatuan', compact('satuanItem'));
     }
     
     public function satuanAction ($satuan, $prdID, $idLo){
