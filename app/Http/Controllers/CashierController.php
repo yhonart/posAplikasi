@@ -2932,7 +2932,16 @@ class CashierController extends Controller
         }
         $grndTotalPembelian = $grndTotalPembelian->first();
 
-        $pdf = PDF::loadview('Report/cashierDetailReport', compact('fromDate', 'endDate', 'tableReport', 'trStore', 'bankTransaction', 'creditRecord', 'tableMthodPayment', 'hakakses', 'grndTotalPembelian'))->setPaper("A4", 'portrait');
+        $pengeluaranKasir = DB::table('purchase_dana_payment as a');
+        $pengeluaranKasir = $pengeluaranKasir->leftJoin('view_payment_kredit as b','a.ap_number','=','b.payment_number');
+        if ($hakakses == '2') {
+            $pengeluaranKasir = $pengeluaranKasir->where('kasir',$createdBy);
+        }
+        $pengeluaranKasir = $pengeluaranKasir->where('status','1');
+        $pengeluaranKasir = $pengeluaranKasir->get();
+
+
+        $pdf = PDF::loadview('Report/cashierDetailReport', compact('fromDate', 'endDate', 'tableReport', 'trStore', 'bankTransaction', 'creditRecord', 'tableMthodPayment', 'hakakses', 'grndTotalPembelian','pengeluaranKasir'))->setPaper("A4", 'portrait');
         return $pdf->stream();
     }
 
