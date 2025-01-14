@@ -313,11 +313,15 @@
 ?>
 <div class="row">
     <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="judul">
+                    <p><b>PENGELUARAN KASIR</b></p>
+                </div>
+            </div>
+        </div>
         <table class="styled-table text-nowrap table-valign-middle" width="100%">
             <thead>
-                <tr>
-                    <th class="font-weight-bold" colspan="4">PENGELUARAN KASIR</th>
-                </tr>
                 <tr>
                     <th>Nomor</th>
                     <th>Kasir</th>
@@ -338,8 +342,8 @@
                     ?>  
                 @endforeach
                 <tr>
-                    <td>TOTAL PENGELUARAN KASIR</td>
-                    <td class="text-right">{{number_format($totalPengeluaran,'0',',','.')}}</td>
+                    <td class="text-right font-weight-bold">TOTAL PENGELUARAN KASIR</td>
+                    <td class="text-right" colspan="3">{{number_format($totalPengeluaran,'0',',','.')}}</td>
                 </tr>
             </tbody>
         </table>
