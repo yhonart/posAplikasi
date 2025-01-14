@@ -84,6 +84,8 @@ $no = '1';
     })
     $(document).ready(function(){
         $("#selectProduct").focus();
+        let satuan = document.getElementById("satuan"),
+            hargaSatuan = document.getElementById("hargaSatuan");
         $("#selectProduct").change(function(){
             let productID = $(this).find(":selected").val(),
                 numberPO = "{{$numberpo}}";
@@ -102,10 +104,16 @@ $no = '1';
             .then(response => response.json())
             .then(data => {                    
                 if ((data.qtyPB || data.unitPB || data.dataId)) {
+                    hargaSatuan.value = accounting.formatMoney(data.price,{
+                        symbol: "",
+                        precision: 0,
+                        thousand: ".",
+                    });
                     let valPbl = data.qtyPB + " " + data.unitPB;
                     $("#qtyPbl").val(valPbl);
                     $("#idLo").val(data.dataId);
                     $("#recive").val(data.qtyPB);
+                    $("#wh").val(data.warehouse);
                     $("#wh").val(data.warehouse);
                 } else {
                     $("#qtyPbl").value = "0";
@@ -117,8 +125,7 @@ $no = '1';
             });
         });
         
-        let satuan = document.getElementById("satuan"),
-            hargaSatuan = document.getElementById("hargaSatuan");
+        
         
         satuan.addEventListener("change", function() {
             let satuanUnit = $(this).find(":selected").val(),
