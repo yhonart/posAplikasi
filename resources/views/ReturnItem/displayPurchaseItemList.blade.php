@@ -18,6 +18,7 @@ $no = '1';
                     <tr>
                         <th>Nama Barang</th>
                         <th>Qty. Beli</th>
+                        <th>WH</th>
                         <th>Satuan</th>
                         <th>Retur</th>
                         <th>Harga Satuan</th>
@@ -43,6 +44,9 @@ $no = '1';
                         </td>
                         <td>
                             <input type="text" class="form-control form-control-sm " name="qtyPbl" id="qtyPbl" autocomplete="off" readonly>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm " name="wh" id="wh" autocomplete="off" readonly>
                         </td>
                         <td>
                             <select class="form-control form-control-sm " name="satuan" id="satuan">
@@ -102,6 +106,7 @@ $no = '1';
                     $("#qtyPbl").val(valPbl);
                     $("#idLo").val(data.dataId);
                     $("#recive").val(data.qtyPB);
+                    $("#wh").val(data.warehouse);
                 } else {
                     $("#qtyPbl").value = "0";
                     $("#idLo").value = "0";

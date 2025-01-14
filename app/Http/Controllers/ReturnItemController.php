@@ -123,7 +123,7 @@ class ReturnItemController extends Controller
     }
     
     public function prodListAction ($prdID, $numberPO){
-        $trxPmbl = DB::table('purchase_list_order')
+        $trxPmbl = DB::table('view_purchase_lo')
             ->where([
                 ['product_id',$prdID],
                 ['purchase_number',$numberPO]
@@ -134,8 +134,8 @@ class ReturnItemController extends Controller
             'qtyPB' => $trxPmbl->qty,
             'unitPB' => $trxPmbl->satuan,
             'dataId' => $trxPmbl->id_lo,
-            'price' => $trxPmbl->id_lo,
-            
+            'price' => $trxPmbl->unit_price,
+            'warehouse' => $trxPmbl->site_name,            
         ]);
         return response()->json(['error' => 'Product not found'], 404);
     }
