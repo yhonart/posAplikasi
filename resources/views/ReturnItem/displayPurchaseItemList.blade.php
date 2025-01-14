@@ -86,11 +86,12 @@ $no = '1';
 
             $.ajax({
                 type : 'get',
-                url : "{{route('Cashier')}}/productList/satuan/" + productID,
+                url : "{{route('returnItem')}}/productAction/" + productID,
                 success : function(response){  
                     $("#satuan").html(response).focus();
                 }
             });
+
             let satuanAsSelect = $("#satuan").val();
             alert (satuanAsSelect);
             fetch("{{route('returnItem')}}/prodListAction/" + productID + "/" + numberPO)

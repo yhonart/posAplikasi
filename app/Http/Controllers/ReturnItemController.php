@@ -90,6 +90,14 @@ class ReturnItemController extends Controller
             
         return view ('ReturnItem/displayPurchaseItemList', compact('itemList', 'numberpo','unitList'));
     }
+
+    public function productAction ($prdID){
+        $itemOrder = DB::table('view_purchase_lo')            
+            ->where('product_id',$prdID)
+            ->get();
+            
+        return view ('ReturnItem/displaySelectSatuan', compact('itemOrder'));
+    }
     
     public function satuanAction ($satuan, $prdID, $idLo){
         $wh = DB::table('purchase_list_order')
@@ -121,11 +129,12 @@ class ReturnItemController extends Controller
                 ['purchase_number',$numberPO]
                 ])
             ->first();
-            
+           
         return response()->json([
             'qtyPB' => $trxPmbl->qty,
             'unitPB' => $trxPmbl->satuan,
             'dataId' => $trxPmbl->id_lo,
+            'price' => $trxPmbl->id_lo,
             
         ]);
         return response()->json(['error' => 'Product not found'], 404);
