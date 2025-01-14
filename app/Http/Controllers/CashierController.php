@@ -2935,7 +2935,7 @@ class CashierController extends Controller
         $pengeluaranKasir = DB::table('purchase_dana_payment as a');
         $pengeluaranKasir = $pengeluaranKasir->leftJoin('view_payment_kredit as b','a.ap_number','=','b.payment_number');
         if ($hakakses == '2') {
-            $pengeluaranKasir = $pengeluaranKasir->where('kasir',$createdBy);
+            $pengeluaranKasir = $pengeluaranKasir->where('a.kasir',$createdBy);
         }
         $pengeluaranKasir = $pengeluaranKasir->where('a.status','1');
         $pengeluaranKasir = $pengeluaranKasir->get();
