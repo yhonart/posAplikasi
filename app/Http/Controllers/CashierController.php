@@ -2933,10 +2933,13 @@ class CashierController extends Controller
         $grndTotalPembelian = $grndTotalPembelian->first();
 
         $pengeluaranKasir = DB::table('purchase_dana_payment as a');
-        $pengeluaranKasir = $pengeluaranKasir->leftJoin('view_payment_kredit as b','a.ap_number','=','b.payment_number');
+        $pengeluaranKasir = $pengeluaranKasir->select('a.*','b.nomor','b.methode','c.store_name');
+        $pengeluaranKasir = $pengeluaranKasir->leftJoin('purchase_kredit_payment as b','a.ap_number','=','b.nomor');
+        $pengeluaranKasir = $pengeluaranKasir->leftJoin('view_purchase_order as c','a.purchase_number','=','c.purchase_number');
         if ($hakakses == '2') {
             $pengeluaranKasir = $pengeluaranKasir->where('a.kasir',$createdBy);
         }
+        $pengeluaranKasir = $pengeluaranKasir->whereBetween('a.trx_date', [$fromDate, $endDate]);
         $pengeluaranKasir = $pengeluaranKasir->where('a.status','1');
         $pengeluaranKasir = $pengeluaranKasir->get();
 

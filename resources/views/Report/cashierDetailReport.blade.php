@@ -11,7 +11,7 @@
         border: 1px solid #dee2e6;
     }.styled-table-2 tbody tr th,
     .styled-table thead tr {
-        background-color: #17a2b8;
+        background-color: #1e40af;
         color: #ffffff;
         text-align: left;
     }
@@ -305,24 +305,32 @@
     </table>
     </div>
 </div>
-
+<?php
+    $noPengeluaran = '1';
+?>
 <div class="row">
     <div class="col-md-12">
-        <table class="styled-table text-nowrap table-valign-middle">
+        <table class="styled-table text-nowrap table-valign-middle" width="100%">
             <thead>
                 <tr>
                     <th>PENGELUARAN KASIR</th>
                 </tr>
                 <tr>
-                    <th>No.</th>
+                    <th>Nomor</th>
                     <th>Kasir</th>
-                    <th>Kode</th>
                     <th>Keterangan</th>
                     <th>Nominal</th>
                 </tr>
             </thead>
             <tbody>
-
+                @foreach($pengeluaranKasir as $pengeluaran)
+                    <tr>
+                        <td>{{$pengeluaran->purchase_number}}</td>
+                        <td>{{$pengeluaran->kasir}}</td>
+                        <td>Pembayaran {{$pengeluaran->purchase_number}}-{{$pengeluaran->store_name}}</td>
+                        <td class="text-right">{{number_format($pengeluaran->nominal,'0',',','0')}}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
