@@ -83,6 +83,7 @@ $no = '1';
         $("#selectProduct").change(function(){
             let productID = $(this).find(":selected").val(),
                 numberPO = "{{$numberpo}}";
+
             $.ajax({
                 type : 'get',
                 url : "{{route('Cashier')}}/productList/satuan/" + productID,
@@ -90,7 +91,9 @@ $no = '1';
                     $("#satuan").html(response).focus();
                 }
             });
-            fetch("{{route('returnItem')}}/prodListAction/" + productID + "/" + numberPO)
+            let satuanAsSelect = $("#satuan").val();
+            alert (satuanAsSelect);
+            fetch("{{route('returnItem')}}/prodListAction/" + productID + "/" + numberPO +)
             .then(response => response.json())
             .then(data => {                    
                 if ((data.qtyPB || data.unitPB || data.dataId)) {
@@ -106,11 +109,6 @@ $no = '1';
             .catch(error => {
                 console.error('Error:', error);
             });
-
-            let satuanUnit = $("#satuan").val(),
-                prdID = $("#selectProduct").val(),
-                idLo = $("#idLo").val();
-            inputHarga (satuanUnit, prdID, idLo);
         });
         
         let satuan = document.getElementById("satuan"),
@@ -123,10 +121,6 @@ $no = '1';
                 // alert(countBill);
                             
             // FATCH DATA SATUAN
-            inputHarga (satuanUnit, prdID, idLo);
-        });
-
-        function inputHarga (satuanUnit, prdID, idLo){
             fetch("{{route('returnItem')}}/satuanAction/" + satuanUnit + "/" + prdID + "/" + idLo)
             .then(response => response.json())
             .then(data => {                    
@@ -146,7 +140,7 @@ $no = '1';
             .catch(error => {
                 console.error('Error:', error);
             });
-        }
+        });
         
         $("#qtyRetur").on('input', computeDisc);
         function computeDisc(){

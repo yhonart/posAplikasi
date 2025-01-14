@@ -93,7 +93,7 @@ class ReturnItemController extends Controller
     
     public function satuanAction ($satuan, $prdID, $idLo){
         $wh = DB::table('purchase_list_order')
-            ->select('warehouse')
+            ->select('warehouse','unit_price')
             ->where('id_lo',$idLo)
             ->first();
         $warehouse = $wh->warehouse;
@@ -125,7 +125,8 @@ class ReturnItemController extends Controller
         return response()->json([
             'qtyPB' => $trxPmbl->qty,
             'unitPB' => $trxPmbl->satuan,
-            'dataId' => $trxPmbl->id_lo
+            'dataId' => $trxPmbl->id_lo,
+            
         ]);
         return response()->json(['error' => 'Product not found'], 404);
     }
