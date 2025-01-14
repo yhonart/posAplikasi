@@ -307,13 +307,16 @@
 </div>
 <?php
     $noPengeluaran = '1';
+    $totalPengeluaran = '0';
+    $totalKasir = '0';
+    $totalLapKasir = '0';
 ?>
 <div class="row">
     <div class="col-md-12">
         <table class="styled-table text-nowrap table-valign-middle" width="100%">
             <thead>
                 <tr>
-                    <th>PENGELUARAN KASIR</th>
+                    <th class="font-weight-bold" colspan="4">PENGELUARAN KASIR</th>
                 </tr>
                 <tr>
                     <th>Nomor</th>
@@ -330,7 +333,45 @@
                         <td>Pembayaran {{$pengeluaran->purchase_number}}-{{$pengeluaran->store_name}}</td>
                         <td class="text-right">{{number_format($pengeluaran->nominal,'0',',','0')}}</td>
                     </tr>
+                    <?php
+                        $totalPengeluaran +=$pengeluaran->nominal;
+                    ?>  
                 @endforeach
+                <tr>
+                    <td>TOTAL PENGELUARAN KASIR</td>
+                    <td class="text-right">{{number_format($totalPengeluaran,'0',',','.')}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="styled-table text-nowrap table-valign-middle" width="100%">
+            <thead>
+                <tr>
+                    <th class="font-weight-bold" colspan="4">LAPORAN PER KASIR</th>
+                </tr>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Pemasukan</th>
+                    <th>Pengeluaran</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{$fromDate}} s.d {{$endDate}}</td>
+                    <td>{{number_format($totalPenerimaan,'0',',','.')}}</td>
+                    <td>{{number_format($totalPengeluaran,'0',',','.')}}</td>
+                    <td>
+                        <?php
+                            $totalLapKasir = $totalPenerimaan - $totalPengeluaran;
+                        ?>
+                        {{number_format($totalLapKasir,'0',',','.')}}
+                    </td>
+                </tr>                
             </tbody>
         </table>
     </div>
