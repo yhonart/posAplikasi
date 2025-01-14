@@ -2937,7 +2937,7 @@ class CashierController extends Controller
         if ($hakakses == '2') {
             $pengeluaranKasir = $pengeluaranKasir->where('kasir',$createdBy);
         }
-        $pengeluaranKasir = $pengeluaranKasir->where('status','1');
+        $pengeluaranKasir = $pengeluaranKasir->where('a.status','1');
         $pengeluaranKasir = $pengeluaranKasir->get();
 
 
