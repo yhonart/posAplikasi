@@ -49,4 +49,8 @@ class TrxKasKecilController extends Controller
 
         return view('TrxKasKecil/laporanKasKecilCetak', compact('tablePengeluaran','mDanaTrx','fromDate','endDate'));
     }
+    public function addModalKas()
+    {
+        return view('TrxKasKecil/modalLaporanKasKecilCetak');   
+    }
 }
