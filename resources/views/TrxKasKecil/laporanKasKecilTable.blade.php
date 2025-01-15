@@ -3,7 +3,7 @@ $saldoTransaksi = 0;
 $debit = 0;
 $kredit = 0;
 ?>
-<div class="btn-group border-light">
+<div class="btn-group  bordered border-light">
     <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
     <a href="{{route('kasKecil')}}/addModalKas" class="btn btn-success btn-sm BTN-OPEN-MODAL-GLOBAL-LG"><i class="fa-solid fa-plus"></i> Tambah Saldo</a>
 </div>
