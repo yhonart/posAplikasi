@@ -35,7 +35,12 @@ $kredit = 0;
                 <tr>
                     <td>{{date("d-M-Y", strtotime($tbPengeluaran->kas_date))}}</td>
                     <td>{{$tbPengeluaran->cat_name}} - {{$tbPengeluaran->subcat_name}}</td>
-                    <td>{{$tbPengeluaran->description}}</td>
+                    <td>
+                        {{$tbPengeluaran->description}}
+                        @if($tbPengeluaran->no_polisi <> '')
+                            - Kendaraan {{$tbPengeluaran->no_polisi}}
+                        @endif
+                    </td>
                     <td>{{$tbPengeluaran->kas_persCode}}#{{$tbPengeluaran->kas_persName}}</td>
                     <td class="text-right"></td>
                     <td class="text-right">{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
