@@ -38,7 +38,7 @@
                             <select name="personal" id="personal" class="form-control form-control-sm  select-2">
                                 <option value="0|0"></option>
                                 @foreach($mStaff as $ms)
-                                <option value="{{$ms->sales_code}}|{{$ms->sales_name}}">{{$ms->sales_name}} (Sales)</option>
+                                <option value="{{$ms->sales_code}}|{{$ms->sales_name}}">{{$ms->sales_name}}/(Sales)</option>
                                 @endforeach
                                 @foreach($mAdmin as $md)
                                 <option value="{{$md->id}}|{{$md->name}}">{{$md->name}}</option>
@@ -108,6 +108,16 @@
                 url : "{{route('trxKasUmum')}}/selectKategori/" + kategori,
                 success : function(response){  
                     $("#subCategory").html(response);
+                }
+            });
+        }); 
+        $("#personal").change(function(){
+            let persno = $(this).find(":selected").val();
+            $.ajax({
+                type : 'get',
+                url : "{{route('trxKasUmum')}}/selectPersonal/" + persno,
+                success : function(response){  
+                    $("#nopol").html(response);
                 }
             });
         }); 

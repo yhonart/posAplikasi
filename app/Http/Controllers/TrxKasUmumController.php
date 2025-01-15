@@ -80,6 +80,20 @@ class TrxKasUmumController extends Controller
         return view('TrxKasUmum/selectOptionSubKategori', compact('selectOption','selectKategori','countSubcategory'));
     }
 
+    public function selectPersonal($persno)
+    {
+        $explodPersno = explode("|",$persno);
+        $persCode = $explodPersno[0];
+        $persName = $explodPersno[1];
+
+        $selectNopol = DB::table('users')
+            ->select('utility','no_utility')
+            ->where('id',$persCode)
+            ->first();
+
+        return view('TrxKasUmum/selectInputNoPol', compact('selectNopol'));
+    }
+
     public function postTrxPembiayaan(Request $reqAddPembiayaan)
     {
         

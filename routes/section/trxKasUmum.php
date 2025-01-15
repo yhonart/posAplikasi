@@ -7,4 +7,5 @@ use Illuminate\Support\Facades\Route;
     Route::get('trxKasUmum/modalEditKas/{id}', [App\Http\Controllers\TrxKasUmumController::class, 'modalEditKas']);
     Route::post('trxKasUmum/postTrxEditKas', [App\Http\Controllers\TrxKasUmumController::class, 'postTrxEditKas']);
     Route::get('trxKasUmum/exportData/{exportType}/{fromDate}/{endDate}', [App\Http\Controllers\TrxKasUmumController::class, 'exportData']);
+    Route::get('trxKasUmum/selectPersonal/{persno}', [App\Http\Controllers\TrxKasUmumController::class, 'selectPersonal']);
 ?>

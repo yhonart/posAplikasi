@@ -256,6 +256,8 @@ class PersonaliaController extends Controller
         $userName = $reqEditPersonalia->userName;
         $email = $reqEditPersonalia->email;
         $id = $reqEditPersonalia->idUser;
+        $utility = $reqEditPersonalia->utility;
+        $noUtility = $reqEditPersonalia->noUtility;
         
         DB::table('users')
             ->where('id',$id)
@@ -263,6 +265,8 @@ class PersonaliaController extends Controller
                 'name'=>$namaLengkap,
                 'username'=>$userName,
                 'email'=>$email,
+                'utility'=>$utility,
+                'no_utility'=>$noUtility,
                 ]);
     }
     
