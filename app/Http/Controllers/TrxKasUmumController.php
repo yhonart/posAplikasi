@@ -91,7 +91,10 @@ class TrxKasUmumController extends Controller
             ->where('id',$persCode)
             ->first();
 
-        return view('TrxKasUmum/selectInputNoPol', compact('selectNopol'));
+        return response()->json([
+            'noPol' => $selectNopol->no_utility,
+        ]);
+        return response()->json(['error' => '0'], 404);        
     }
 
     public function postTrxPembiayaan(Request $reqAddPembiayaan)

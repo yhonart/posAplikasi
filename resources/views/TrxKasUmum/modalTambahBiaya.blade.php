@@ -110,15 +110,21 @@
                     $("#subCategory").html(response);
                 }
             });
-        }); 
+        });
+
         $("#personal").change(function(){
             let persno = $(this).find(":selected").val();
-            $.ajax({
-                type : 'get',
-                url : "{{route('trxKasUmum')}}/selectPersonal/" + persno,
-                success : function(response){  
-                    $("#nopol").html(response);
+            fetch("{{route('trxKasUmum')}}/selectPersonal/" + persno)
+            .then(response => response.json())
+            .then(data => {                    
+                if ((data.noPol)) {
+                    $("#nopol").val(data.noPol);
+                } else {
+                    $("#nopol").val();
                 }
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
         }); 
 
