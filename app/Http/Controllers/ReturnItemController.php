@@ -100,12 +100,20 @@ class ReturnItemController extends Controller
     }
     
     public function satuanAction ($satuan, $prdID, $idLo){
-        $wh = DB::table('purchase_list_order')
+        $wh = DB::table('view_purchase_lo')
             ->select('warehouse','unit_price')
             ->where('id_lo',$idLo)
             ->first();
+
         $warehouse = $wh->warehouse;
-        
+        $unitPrice = $wh->unit_price;
+
+        // Cek unit volume
+        $unitVolume = DB::table('m_product_unit')
+            ->select('product_size','size_code')
+            ->where('core_id_product',$prdID)
+            ->get();
+            
         $mUnit = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product',$prdID],
@@ -113,6 +121,29 @@ class ReturnItemController extends Controller
                 ['location_id',$warehouse]
                 ])
             ->first();
+
+        foreach ($unitVolume as $key) {
+            $prdSize = $key->product_size;
+            $sizeCode = $key->size_code;
+
+            if ($prdSize == $satuan) {
+                $price = $mUnit->product_price_order;
+            }
+            else {
+                $mProduct = DB::table('m_product')
+                    ->where('idm_data_product',$prdID)
+                    ->first();
+
+                $besar = $mProduct->large_unit_val;
+                $kecil = $mProduct->medium_unit_val;
+                if ($kecil == 0) {
+                    $konv = $besar;
+                }
+                else {
+                    $konv = (int)$besar*(int)$kecil;
+                }                              
+            }
+        }
             
         return response()->json([
             'price' => $mUnit->product_price_order,
