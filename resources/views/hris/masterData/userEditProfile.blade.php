@@ -1,3 +1,6 @@
+<?php
+    $utilityArray = array("Mobil", "Motor", "Handphone", "Lain-Lain");
+?>
 <div class="row p-1">
     <div class="col-12">
         <div class="card card-purple">
@@ -28,7 +31,26 @@
                             <input type="text" class="form-control form-control-sm " name="email" autocomplate="off" value="{{$tbUser->email}}">
                         </div>
                     </div>
-                    
+                    <div class="form-group row">
+                        <label class="label col-2">Jenis Utility</label>
+                        <div class="col-4">
+                            
+                            <select name="utility" id="utility" class="form-control form-control-sm">
+                                <option value="{{$tbUser->utility}}">{{$tbUser->utility}}</option>
+                                @foreach($utilityArray as $ua)
+                                    @if($ua <> $tbUser->utility)
+                                        <option value="{{$ua}}">{{$ua}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="label col-2">Nomor Utility</label>
+                        <div class="col-4">
+                            <input type="text" class="form-control form-control-sm " name="noUtility" autocomplate="off" value="{{$tbUser->no_utility}}">
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="col-2">
                             <button type="submit" class="btn btn-success btn-block btn-sm font-weight-bold">Simpan Profile</button>
