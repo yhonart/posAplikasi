@@ -67,7 +67,11 @@
         /* [class^='select2'] {
           border-radius: 0px !important;
           font-size: 15px;
-        } */        
+        } */  
+        .active { 
+            background-color: #f3f4f6; 
+            color: #111827; 
+        }      
         button:hover {  
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);  /* Enhanced shadow on hover */
         } 
