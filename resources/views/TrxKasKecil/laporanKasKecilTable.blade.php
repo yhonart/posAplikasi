@@ -77,7 +77,7 @@ $kredit = 0;
 <script>
      $(function(){        
         $("#tableKasKecil").DataTable({
-            "responsive": true, 
+            // "responsive": true, 
             "lengthChange": false, 
             "autoWidth": false,
             "dom": 'Bfrtip',
