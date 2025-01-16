@@ -45,12 +45,14 @@ $kredit = 0;
                         {{$tbPengeluaran->no_polisi}}
                     </td>
                     <td>{{$tbPengeluaran->kas_persCode}}#{{$tbPengeluaran->kas_persName}}</td>
-                    <td class="text-right"></td>
+                    <td class="text-right">
+                        {{number_format($tbPengeluaran->nominal_modal,'0',',','.')}}
+                    </td>
                     <td class="text-right">{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
                     <td class="text-right">
                         <?php
                             $debit += $tbPengeluaran->nominal;
-                            $saldoTransaksi = $mDanaTrx->nominal_dana - $debit;
+                            $saldoTransaksi = $mDanaTrx->nominal_dana - ($debit + $tbPengeluaran->nominal_modal);
                             echo number_format($saldoTransaksi,'0',',','.');
     
                         ?>
@@ -82,6 +84,7 @@ $kredit = 0;
             "autoWidth": false,
             "dom": 'Bfrtip',
             "paging": false,
+            "searching":false,
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
             initComplete: function () {
                 this.api()
