@@ -17,11 +17,11 @@ $kredit = 0;
             </tr>
         </thead>
         <tbody>
-            @foreach($penjualan as $tbPengeluaran)
+            @foreach($penjualan as $tbPenjualan)
                 <tr>
-                    <td>{{date('d-M-Y'), strtotime($endDate)}}</td>
-                    <td>Penjualan {{$tbPengeluaran->created_by}}</td>
-                    <td class="text-right">{{number_format($tbPengeluaran->paymentCus,'0',',','.')}}</td>
+                    <td>{{date('d-M-Y'), strtotime($tbPenjualan->tr_date)}}</td>
+                    <td>Penjualan {{$tbPenjualan->created_by}}</td>
+                    <td class="text-right">{{number_format($tbPenjualan->paymentCus,'0',',','.')}}</td>
                     <td class="text-right"></td>                    
                     <td>
                         <a href="#" class="btn btn-sm btn-info"><i class="fa-solid fa-magnifying-glass"></i></a>
