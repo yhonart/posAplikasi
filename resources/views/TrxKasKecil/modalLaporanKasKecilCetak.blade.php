@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <form id="formAddModalKas">
+        <form id="formAddModalKas" autocomplete="off">
             <div class="form-group row">
                 <label for="danaTambahan" class="label col-md-3">Nominal</label>
                 <div class="col-md-4">
