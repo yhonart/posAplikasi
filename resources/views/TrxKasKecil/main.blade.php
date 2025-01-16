@@ -38,11 +38,16 @@
         let display = "laporanKasKecil";
         displayOnClick(display);
 
-        $('.CLIK-LAP').on('click', function (e) {
-            e.preventDefault();
-            let display = $(this).attr('data-display');
-            displayOnClick(display);
+        document.querySelectorAll(".CLIK-LAP").forEach(function(button) { 
+            button.onclick = function() { 
+                this.classList.toggle("active"); 
+                let display = $(this).attr('data-display');
+                displayOnClick(display);
+            }; 
         });
+        // $('.CLIK-LAP').on('click', function (e) {
+        //     e.preventDefault();
+        // });
 
         function displayOnClick(display){
             $("#displayNotif").fadeIn("slow");
