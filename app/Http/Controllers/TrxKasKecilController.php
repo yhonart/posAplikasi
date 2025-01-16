@@ -54,7 +54,7 @@ class TrxKasKecilController extends Controller
         $sumberDana = DB::table('tr_payment_record as a')
             ->select(DB::raw('SUM(a.total_payment) as totKasir'), 'b.created_by')
             ->leftJoin('tr_store as b','a.trx_code','=','b.billing_number')
-            ->where('a.tr_payment','!=','8')
+            ->where('a.total_payment','!=','8')
             ->groupBy('b.created_by')
             ->get();
         return view('TrxKasKecil/modalLaporanKasKecilCetak', compact('sumberDana'));   
