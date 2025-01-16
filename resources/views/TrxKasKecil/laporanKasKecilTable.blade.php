@@ -5,7 +5,7 @@ $kredit = 0;
 ?>
 <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
 <hr>
-<div class="table-responsive" style="height: 700px;">
+<div class="table-responsive">
     <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered" id="tableKasKecil">
         <thead class="bg-gray-dark">
             <tr>
@@ -64,7 +64,7 @@ $kredit = 0;
             <th>Cari Tanggal</th>
             <th>Cari Sub.Kategori</th>
             <th>Cari Keterangan</th>
-            <th>Cari Nomor Kendaraan</th>
+            <th>Cari No.Kendaraan</th>
             <th>Cari User</th>
             <th>Cari Kredit</th>
             <th>Cari Debit</th>
