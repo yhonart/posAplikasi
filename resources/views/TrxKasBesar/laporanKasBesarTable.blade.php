@@ -31,7 +31,7 @@ $kredit = 0;
             @foreach($pembelian as $pmb)
                 <tr>
                     <td>{{date('d-M-Y', strtotime($pmb->delivery_date))}}</td>
-                    <td>Pembayaran Supplier {{$pmb->store_name}} @{{$pmb->purchase_number}}</td>
+                    <td>Pembayaran Supplier {{$pmb->store_name}} @ {{$pmb->purchase_number}}</td>
                     <td></td>
                     <td class="text-right">{{number_format($pmb->sub_total,'0',',','.')}}</td>
                     <td>
