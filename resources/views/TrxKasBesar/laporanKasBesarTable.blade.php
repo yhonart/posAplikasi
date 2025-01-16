@@ -9,37 +9,42 @@ $kredit = 0;
     <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered" id="tableKasBesar">
         <thead class="bg-gray-dark">
             <tr>
-                <td>Tanggal</td>
-                <td>Keterangan</td>
-                <td>Debit</td>
-                <td>Kredit</td>
-                <td></td>
+                <th>Tanggal</th>
+                <th>Nomor</th>
+                <th>Keterangan</th>
+                <th>Debit</th>
+                <th>Kredit</th>
             </tr>
         </thead>
         <tbody>
             @foreach($penjualan as $tbPenjualan)
                 <tr>
                     <td>{{date('d-M-Y', strtotime($tbPenjualan->tr_date))}}</td>
+                    <td></td>
                     <td>Penjualan {{$tbPenjualan->created_by}}</td>
                     <td class="text-right">{{number_format($tbPenjualan->paymentCus,'0',',','.')}}</td>
-                    <td class="text-right"></td>                    
-                    <td>
-                        <a href="#" class="btn btn-sm btn-info"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </td>
+                    <td class="text-right"></td> 
                 </tr>
             @endforeach
             @foreach($pembelian as $pmb)
                 <tr>
                     <td>{{date('d-M-Y', strtotime($pmb->delivery_date))}}</td>
-                    <td>Pembayaran Supplier {{$pmb->store_name}} @ {{$pmb->purchase_number}}</td>
+                    <td>{{$pmb->purchase_number}}</td>
+                    <td>Pembayaran Supplier {{$pmb->store_name}}</td>
                     <td></td>
                     <td class="text-right">{{number_format($pmb->sub_total,'0',',','.')}}</td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-info"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </td>
                 </tr>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <th>Cari Tanggal</th>
+                <th>Cari Nomor</th>
+                <th>Cari Keterangan</th>
+                <th>Cari Debit</th>
+                <th>Cari Kredit</th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
@@ -52,7 +57,27 @@ $kredit = 0;
             "dom": 'Bfrtip',
             "searching": false,
             "paging": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+            "buttons": ["copy", "csv", "excel", "pdf", "print"],
+            initComplete: function () {
+                this.api()
+                    .columns()
+                    .every(function () {
+                        let column = this;
+                        let title = column.footer().textContent;
+        
+                        // Create input element
+                        let input = document.createElement('input');
+                        input.placeholder = title;
+                        column.footer().replaceChildren(input);
+        
+                        // Event listener for user input
+                        input.addEventListener('keyup', () => {
+                            if (column.search() !== this.value) {
+                                column.search(input.value).draw();
+                            }
+                        });
+                    });
+            }
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
 </script>
