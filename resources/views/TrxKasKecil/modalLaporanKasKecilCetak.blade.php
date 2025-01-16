@@ -10,8 +10,11 @@
             <div class="form-group row">
                 <label for="danaTambahan" class="label col-md-3">Sumber Dana</label>
                 <div class="col-md-4">
-                    <select name="sumberDana" id="sumberDana" class="from-control">
+                    <select name="sumberDana" id="sumberDana" class="form-control">
                         <option value="0"></option>
+                        @foreach($sumberDana as $smbD)
+                        <option value="{{$smbD->created_by}}">{{$smbD->created_by}} || {{number_format($smbD->totKasir,'0',',','.')}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
