@@ -22,12 +22,12 @@ class TrxKasBesarController extends Controller
     public function tableLaporan ($kasir, $fromDate, $endDate){
         // Hasil Penjualan Per Kasir
         $penjualan = DB::table('tr_store');
-        $penjualan = $penjualan->select(DB::raw('SUM(t_pay) as paymentCus'),'created_by');
+        $penjualan = $penjualan->select(DB::raw('SUM(t_pay) as paymentCus'),'tr_date','created_by');
         if ($kasir <> 0) {
             $penjualan = $penjualan->where('created_by', $kasir);
         }
         $penjualan = $penjualan->whereBetween('tr_date',[$fromDate,$endDate]);
-        $penjualan = $penjualan->groupBy('created_by');
+        $penjualan = $penjualan->groupBy('tr_date');
         $penjualan = $penjualan->get(); 
 
         // Pembelian Supplier Cash
