@@ -68,8 +68,8 @@ class TrxKasKecilController extends Controller
     public function postingTambahSaldo(Request $reqPostAddModal)
     {
         $createdBy = Auth::user()->name;
-        $nominal = $reqPostAddModal->nominal;
-        $sumberDana = str_replace(".","",$reqPostAddModal->sumberDana);
+        $sumberDana = $reqPostAddModal->sumberDana;
+        $nominal = str_replace(".","",$reqPostAddModal->nominal);
         $selisih = str_replace(".","",$reqPostAddModal->selisih);
         $keterangan = $reqPostAddModal->keterangan;
         $namaBank = $reqPostAddModal->namaBank;
