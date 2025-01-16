@@ -6,7 +6,7 @@ $kredit = 0;
 <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
 <hr>
 <div class="table-responsive">
-    <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered" id="tableKasKecil">
+    <table class="table table-sm table-hover table-valign-mmiddle table-bordered" id="tableKasKecil">
         <thead class="bg-gray-dark">
             <tr>
                 <th>Tanggal</th>
@@ -27,10 +27,10 @@ $kredit = 0;
                     <td class="font-weight-bold">SALDO AWAL</td>
                     <td></td>
                     <td></td>
+                    <td></td>
                     <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_dana,'0',',','.')}}</td>
                     <td class="text-right font-weight-bold"></td>
                     <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_dana,'0',',','.')}}</td>
-                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
