@@ -64,4 +64,26 @@ class TrxKasKecilController extends Controller
             ->get();
         return view('TrxKasKecil/modalLaporanKasKecilCetak', compact('sumberDana'));   
     }
+
+    public function postingTambahSaldo(Request $reqPostAddModal)
+    {
+        $createdBy = Auth::user()->name;
+        $nominal = $reqPostAddModal->nominal;
+        $sumberDana = str_replace(".","",$reqPostAddModal->sumberDana);
+        $selisih = str_replace(".","",$reqPostAddModal->selisih);
+        $keterangan = $reqPostAddModal->keterangan;
+
+        DB::table('tr_kas')
+            ->insert([
+                'description'=>$keterangan,
+                'kas_date'=>now(),
+                'created_date'=>now(),
+                'status'=>'1',
+                'created_by'=>$createdBy,
+                'nominal'=>$nominal,
+                'sumber_dana'=>$sumberDana,                
+            ]);
+
+        return back();
+    }
 }
