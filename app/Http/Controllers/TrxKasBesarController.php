@@ -27,7 +27,8 @@ class TrxKasBesarController extends Controller
             $penjualan = $penjualan->where('created_by', $kasir);
         }
         $penjualan = $penjualan->whereBetween('tr_date',[$fromDate,$endDate]);
-        $penjualan = $penjualan->groupBy('tr_date','created_by');
+        $penjualan = $penjualan->groupBy('tr_date');
+        $penjualan = $penjualan->groupBy('created_by');
         $penjualan = $penjualan->get(); 
 
         // Pembelian Supplier Cash
