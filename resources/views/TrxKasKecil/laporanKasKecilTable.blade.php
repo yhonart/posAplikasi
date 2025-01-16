@@ -45,11 +45,11 @@ $kredit = 0;
                         {{$tbPengeluaran->no_polisi}}
                     </td>
                     <td>{{$tbPengeluaran->kas_persCode}}#{{$tbPengeluaran->kas_persName}}</td>
-                    <td class="text-right">
+                    <td class="text-right font-weight-bold">
                         {{number_format($tbPengeluaran->nominal_modal,'0',',','.')}}
                     </td>
                     <td class="text-right">{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
-                    <td class="text-right">
+                    <td class="text-right font-weight-bold">
                         <?php
                             $debit += $tbPengeluaran->nominal;
                             $kredit += $tbPengeluaran->nominal_modal;
