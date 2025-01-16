@@ -9,16 +9,16 @@ $kredit = 0;
     <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered" id="tableKasKecil">
         <thead class="bg-gray-dark">
             <tr>
-                <td>Tanggal</td>
-                <td>Sub.Kategori</td>
-                <td>Keterangan</td>
-                <td>Nomor Kendaraan</td>
-                <td>User</td>
-                <td>Kredit</td>
-                <td>Debit</td>
-                <td>Saldo</td>
-                <td>Ket. Lain</td>
-                <td></td>
+                <th>Tanggal</th>
+                <th>Sub.Kategori</th>
+                <th>Keterangan</th>
+                <th>Nomor Kendaraan</th>
+                <th>User</th>
+                <th>Kredit</th>
+                <th>Debit</th>
+                <th>Saldo</th>
+                <th>Ket. Lain</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +30,8 @@ $kredit = 0;
                     <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_dana,'0',',','.')}}</td>
                     <td class="text-right font-weight-bold"></td>
                     <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_dana,'0',',','.')}}</td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                 </tr>
             @foreach($tablePengeluaran as $tbPengeluaran)
@@ -54,9 +56,22 @@ $kredit = 0;
                         ?>
                     </td>
                     <td>{{$tbPengeluaran->file_name}}</td>
+                    <td></td>
                 </tr>
             @endforeach
         </tbody>
+        <tfoot>
+            <th>Cari Tanggal</th>
+            <th>Cari Sub.Kategori</th>
+            <th>Cari Keterangan</th>
+            <th>Cari Nomor Kendaraan</th>
+            <th>Cari User</th>
+            <th>Cari Kredit</th>
+            <th>Cari Debit</th>
+            <th>Cari Saldo</th>
+            <th>Cari Keterangan</th>
+            <th></th>
+        </tfoot>
     </table>
 </div>
 <script>
@@ -67,7 +82,27 @@ $kredit = 0;
             "autoWidth": false,
             "dom": 'Bfrtip',
             "paging": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+            "buttons": ["copy", "csv", "excel", "pdf", "print"],
+            initComplete: function () {
+                this.api()
+                    .columns()
+                    .every(function () {
+                        let column = this;
+                        let title = column.footer().textContent;
+        
+                        // Create input element
+                        let input = document.createElement('input');
+                        input.placeholder = title;
+                        column.footer().replaceChildren(input);
+        
+                        // Event listener for user input
+                        input.addEventListener('keyup', () => {
+                            if (column.search() !== this.value) {
+                                column.search(input.value).draw();
+                            }
+                        });
+                    });
+            }
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
 </script>
