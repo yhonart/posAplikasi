@@ -1,7 +1,4 @@
 <div class="card">
-    <div class="card-header bg-purple">
-        <h3 class="card-title">Tambah Modal</h3>
-    </div>
     <div class="card-body">
         <form id="formAddModalKas">
             <div class="form-group row">
@@ -13,7 +10,9 @@
             <div class="form-group row">
                 <label for="danaTambahan" class="label col-md-3">Sumber Dana</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control priceText" name="nominal" id="nominal">
+                    <select name="sumberDana" id="sumberDana" class="from-control">
+                        <option value="0"></option>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
@@ -25,7 +24,7 @@
             <div class="form-group row">
                 <label for="danaTambahan" class="label col-md-3">Keterangan</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control priceText" name="nominal" id="nominal">
+                    <input type="text" class="form-control" name="nominal" id="nominal">
                 </div>
             </div>
             <div class="form-group row">
@@ -36,3 +35,10 @@
         </form>
     </div>
 </div>
+<script>
+    $(function(){
+        $('.priceText').mask('000.000.000', {
+            reverse: true
+        });
+    })
+</script>
