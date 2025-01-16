@@ -39,7 +39,11 @@
         displayOnClick(display);
 
         document.querySelectorAll(".CLIK-LAP").forEach(function(button) { 
-            button.onclick = function() { 
+            button.onclick = function() {
+                document.querySelectorAll(".CLIK-LAP").forEach(function(btn) 
+                { 
+                    btn.classList.remove("active"); 
+                }); 
                 this.classList.toggle("active"); 
                 let display = $(this).attr('data-display');
                 displayOnClick(display);
