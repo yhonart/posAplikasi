@@ -1,4 +1,7 @@
 <div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Tambah Dana Modal</h3>
+    </div>
     <div class="card-body">
         <form id="formAddModalKas" autocomplete="off">
             <div class="form-group row">
@@ -38,10 +41,10 @@
                     <input type="text" class="form-control priceText" name="nomorAkun" id="nomorAkun">
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row" style="display: none;">
                 <label for="danaTambahan" class="label col-md-3">Selisih</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control priceText" name="selisih" id="selisih">
+                    <input type="text" class="form-control priceText" name="selisih" id="selisih" value="0">
                 </div>
             </div>
             <div class="form-group row">
