@@ -15,7 +15,27 @@
                         @foreach($sumberDana as $smbD)
                         <option value="{{$smbD->created_by}}">{{$smbD->created_by}} || {{number_format($smbD->totKasir,'0',',','.')}}</option>
                         @endforeach
+                        <option value="1">Akun Bank</option>
+                        <option value="2">Sumber Lain</option>
                     </select>
+                </div>
+            </div>
+            <div class="form-group row" id="bankName" style="display:none;">
+                <label for="danaTambahan" class="label col-md-3">Nama Bank</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control priceText" name="namaBank" id="namaBank">
+                </div>
+            </div>
+            <div class="form-group row" id="accountName" style="display:none;">
+                <label for="danaTambahan" class="label col-md-3">Nama Akun</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control priceText" name="namaAkun" id="namaAkun">
+                </div>
+            </div>
+            <div class="form-group row" id="accountNo" style="display:none;">
+                <label for="danaTambahan" class="label col-md-3">No.Akun <small class="muted">Optional</small></label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control priceText" name="nomorAkun" id="nomorAkun">
                 </div>
             </div>
             <div class="form-group row">
@@ -50,6 +70,26 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        $("#sumberDana").change(function(){
+            let sumberDana = $(this).find(":selected").val();
+            if (sumberDana === '1') {
+                $("#bankName").fadeIn("slow");
+                $("#accountNo").fadeIn("slow");
+                $("#accountName").fadeOut("slow");
+            }
+            else if (sumberDana === '2') {
+                $("#bankName").fadeOut("slow");
+                $("#accountNo").fadeIn("slow");
+                $("#accountName").fadeIn("slow");
+            }
+            else{
+                $("#bankName").fadeOut("slow");
+                $("#accountNo").fadeOut("slow");
+                $("#accountName").fadeOut("slow");
+            }
+
+        }); 
 
         $("form#formAddModalKas").submit(function(event){
             event.preventDefault();

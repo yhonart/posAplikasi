@@ -6,12 +6,13 @@ $kredit = 0;
 <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
 <hr>
 <div class="table-responsive">
-    <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered">
+    <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered" id="tableKasKecil">
         <thead class="bg-gray-dark">
             <tr>
                 <td>Tanggal</td>
                 <td>Sub.Kategori</td>
                 <td>Keterangan</td>
+                <td>Nomor Kendaraan</td>
                 <td>User</td>
                 <td>Kredit</td>
                 <td>Debit</td>
@@ -37,9 +38,9 @@ $kredit = 0;
                     <td>{{$tbPengeluaran->cat_name}} - {{$tbPengeluaran->subcat_name}}</td>
                     <td>
                         {{$tbPengeluaran->description}}
-                        @if($tbPengeluaran->no_polisi <> '')
-                            - Kendaraan {{$tbPengeluaran->no_polisi}}
-                        @endif
+                    </td>
+                    <td>
+                        {{$tbPengeluaran->no_polisi}}
                     </td>
                     <td>{{$tbPengeluaran->kas_persCode}}#{{$tbPengeluaran->kas_persName}}</td>
                     <td class="text-right"></td>
@@ -58,3 +59,15 @@ $kredit = 0;
         </tbody>
     </table>
 </div>
+<script>
+     $(function(){        
+        $("#tableKasKecil").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "paging": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>

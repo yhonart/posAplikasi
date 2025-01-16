@@ -72,6 +72,9 @@ class TrxKasKecilController extends Controller
         $sumberDana = str_replace(".","",$reqPostAddModal->sumberDana);
         $selisih = str_replace(".","",$reqPostAddModal->selisih);
         $keterangan = $reqPostAddModal->keterangan;
+        $namaBank = $reqPostAddModal->namaBank;
+        $namaAkun = $reqPostAddModal->namaAkun;
+        $nomorAkun = $reqPostAddModal->nomorAkun;
 
         DB::table('tr_kas')
             ->insert([
@@ -81,9 +84,11 @@ class TrxKasKecilController extends Controller
                 'status'=>'1',
                 'created_by'=>$createdBy,
                 'nominal'=>$nominal,
-                'sumber_dana'=>$sumberDana,                
+                'sumber_dana'=>$sumberDana, 
+                'bank_code'=>$namaBank,               
+                'no_akun'=>$nomorAkun,               
+                'sumber_lain'=>$namaAkun,
             ]);
-
         return back();
     }
 }
