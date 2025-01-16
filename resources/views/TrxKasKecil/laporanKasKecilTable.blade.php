@@ -18,7 +18,6 @@ $kredit = 0;
                 <th>Debit</th>
                 <th>Saldo</th>
                 <th>Ket. Lain</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +30,6 @@ $kredit = 0;
                     <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_dana,'0',',','.')}}</td>
                     <td class="text-right font-weight-bold"></td>
                     <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_dana,'0',',','.')}}</td>
-                    <td></td>
                     <td></td>
                 </tr>
             @foreach($tablePengeluaran as $tbPengeluaran)
@@ -60,7 +58,6 @@ $kredit = 0;
                         ?>
                     </td>
                     <td>{{$tbPengeluaran->file_name}}</td>
-                    <td></td>
                 </tr>
             @endforeach
         </tbody>
@@ -74,7 +71,6 @@ $kredit = 0;
             <th>Cari Debit</th>
             <th>Cari Saldo</th>
             <th>Cari Keterangan</th>
-            <th></th>
         </tfoot>
     </table>
 </div>
