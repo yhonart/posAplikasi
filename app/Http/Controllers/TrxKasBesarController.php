@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Termwind\Components\Dd;
 
 class TrxKasBesarController extends Controller
 {
@@ -27,8 +28,7 @@ class TrxKasBesarController extends Controller
             $penjualan = $penjualan->where('created_by', $kasir);
         }
         $penjualan = $penjualan->whereBetween('tr_date',[$fromDate,$endDate]);
-        $penjualan = $penjualan->groupBy('tr_date');
-        $penjualan = $penjualan->groupBy('created_by');
+        $penjualan = $penjualan->groupBy('tr_date','created_by');
         $penjualan = $penjualan->get(); 
 
         // Pembelian Supplier Cash
@@ -40,6 +40,7 @@ class TrxKasBesarController extends Controller
         $pembelian = $pembelian->whereBetween('delivery_date',[$fromDate,$endDate]);
         $pembelian = $pembelian->get();
         
+        dd($penjualan);
                
 
         return view('TrxKasBesar/laporanKasBesarTable', compact('pembelian','penjualan','kasir','fromDate','endDate'));        
