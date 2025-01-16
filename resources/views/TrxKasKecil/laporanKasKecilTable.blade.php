@@ -53,8 +53,9 @@ $kredit = 0;
                         <?php
                             $debit += $tbPengeluaran->nominal;
                             $kredit += $tbPengeluaran->nominal_modal;
-                            $saldoTransaksi += $mDanaTrx->nominal_dana - ($debit + $kredit);
-                            echo number_format($saldoTransaksi,'0',',','.');
+                            $saldoTransaksi = $mDanaTrx->nominal_dana - $debit;
+                            $nextSaldo = $saldoTransaksi + $kredit;
+                            echo number_format($nextSaldo,'0',',','.');
     
                         ?>
                     </td>
