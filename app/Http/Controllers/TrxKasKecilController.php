@@ -51,10 +51,15 @@ class TrxKasKecilController extends Controller
     }
     public function addModalKas()
     {
+        $noww = date("Y-m-d");
+
         $sumberDana = DB::table('tr_payment_record as a')
             ->select(DB::raw('SUM(a.total_payment) as totKasir'), 'b.created_by')
             ->leftJoin('tr_store as b','a.trx_code','=','b.billing_number')
-            ->where('a.total_payment','!=','8')
+            ->where([
+                ['a.total_payment','!=','8'],
+                ['a.date_trx',$noww]
+                ])
             ->groupBy('b.created_by')
             ->get();
         return view('TrxKasKecil/modalLaporanKasKecilCetak', compact('sumberDana'));   
