@@ -46,8 +46,8 @@ $sumPembelian = 0;
                     <td>
                         <?php
                             $sumPembelian += $pmb->sub_total;
-                            $saldoPembelian += $saldoPenjualan - $sumPembelian;
-                            echo $saldoPembelian;
+                            $saldoPembelian = $saldoPenjualan - $sumPembelian;
+                            echo number_format($saldoPembelian,'0',',','.');
                         ?>
                     </td>
                 </tr>
