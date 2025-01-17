@@ -4,6 +4,7 @@ $debit = 0;
 $kredit = 0;
 $saldoPenjualan = 0;
 $saldoPembelian = 0;
+$sumPembelian = 0;
 ?>
 <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
 <hr>
