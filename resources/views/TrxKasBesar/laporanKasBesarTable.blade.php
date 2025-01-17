@@ -2,6 +2,8 @@
 $saldoTransaksi = 0;
 $debit = 0;
 $kredit = 0;
+$saldoPenjualan = 0;
+$saldoPembelian = 0;
 ?>
 <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
 <hr>
@@ -14,6 +16,7 @@ $kredit = 0;
                 <th>Keterangan</th>
                 <th>Debit</th>
                 <th>Kredit</th>
+                <th>Saldo</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +27,12 @@ $kredit = 0;
                     <td>Penjualan {{$tbPenjualan->created_by}}</td>
                     <td class="text-right">{{number_format($tbPenjualan->paymentCus,'0',',','.')}}</td>
                     <td class="text-right"></td> 
+                    <td class="text-right">
+                        <?php
+                            $saldoPenjualan += $tbPenjualan->paymentCus;
+                            echo number_format($saldoPenjualan,'0',',','.');
+                        ?>
+                    </td> 
                 </tr>
             @endforeach
             @foreach($pembelian as $pmb)
@@ -33,6 +42,12 @@ $kredit = 0;
                     <td>Pembayaran Supplier {{$pmb->store_name}}</td>
                     <td></td>
                     <td class="text-right">{{number_format($pmb->sub_total,'0',',','.')}}</td>
+                    <td>
+                        <?php
+                            $sumPembelian += $pmb->sub_total;
+                            $saldoPembelian += $saldoPenjualan - $sumPembelian;
+                        ?>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
