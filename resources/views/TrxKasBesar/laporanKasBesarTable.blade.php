@@ -47,6 +47,7 @@ $sumPembelian = 0;
                         <?php
                             $sumPembelian += $pmb->sub_total;
                             $saldoPembelian += $saldoPenjualan - $sumPembelian;
+                            echo $saldoPembelian;
                         ?>
                     </td>
                 </tr>
