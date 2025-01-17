@@ -25,10 +25,14 @@ $sumPembelian = 0;
                 <tr>
                     <td>{{date('d-M-Y', strtotime($tbPenjualan->tr_date))}}</td>
                     <td></td>
-                    <td>Penjualan {{$tbPenjualan->created_by}}</td>
+                    <td>
+                        <a href="#" class="text-primary">
+                            Penjualan {{$tbPenjualan->created_by}}
+                        </a>
+                    </td>
                     <td class="text-right">{{number_format($tbPenjualan->paymentCus,'0',',','.')}}</td>
                     <td class="text-right"></td> 
-                    <td class="text-right">
+                    <td class="text-right font-weight-bold">
                         <?php
                             $saldoPenjualan += $tbPenjualan->paymentCus;
                             echo number_format($saldoPenjualan,'0',',','.');
@@ -40,10 +44,14 @@ $sumPembelian = 0;
                 <tr>
                     <td>{{date('d-M-Y', strtotime($pmb->delivery_date))}}</td>
                     <td>{{$pmb->purchase_number}}</td>
-                    <td>Pembayaran Supplier {{$pmb->store_name}}</td>
+                    <td>
+                        <a href="#" class="text-primary">
+                            Pembayaran {{$pmb->store_name}}
+                        </a>
+                    </td>
                     <td></td>
                     <td class="text-right">{{number_format($pmb->sub_total,'0',',','.')}}</td>
-                    <td>
+                    <td class="text-right font-weight-bold">
                         <?php
                             $sumPembelian += $pmb->sub_total;
                             $saldoPembelian = $saldoPenjualan - $sumPembelian;
