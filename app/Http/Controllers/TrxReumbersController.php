@@ -8,6 +8,25 @@ use Illuminate\Support\Facades\Auth;
 
 class TrxReumbersController extends Controller
 {
+    public function reumbersNumber ()
+    {
+        $thisPeriode = date("mY");
+
+        $countPeriode = DB::table('tr_reumbersment')
+            ->where('periode',$thisPeriode)
+            ->count();
+
+        if ($countPeriode == 0) {
+            $no = 1;
+            $numberR = "RMB" . $thisPeriode . "-". sprintf("%04d",$no);
+        }
+        else {
+            $no = $countPeriode + 1;
+            $numberR = "RMB" . $thisPeriode . "-". sprintf("%04d",$no);
+        }
+
+        return $numberR;
+    }   
     public function trxReumbers ()
     {
         return view('TrxReumbers/main');
@@ -16,6 +35,7 @@ class TrxReumbersController extends Controller
     public function addReumbers ()
     {
         $dateNow = date('Y-m-d');
+        $thisNumber = $this->reumbersNumber();
 
         $mStaff = DB::table('m_sales')
             ->where('sales_status','1')
@@ -27,7 +47,7 @@ class TrxReumbersController extends Controller
         $akunTrs = DB::table('view_trx_kas')
             ->get();
 
-        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs'));
+        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber'));
     }
 
     public function postTransaksiReumbers(Request $reqPosting)
