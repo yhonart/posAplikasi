@@ -111,6 +111,7 @@ Route::get('kasKategori', [App\Http\Controllers\MasterDataKategoriKasController:
 
 Route::get('kasKecil', [App\Http\Controllers\TrxKasKecilController::class, 'kasKecil'])->name('kasKecil');
 Route::get('kasBesar', [App\Http\Controllers\TrxKasBesarController::class, 'kasBesar'])->name('kasBesar');
+Route::get('trxReumbers', [App\Http\Controllers\TrxReumbersController::class, 'trxReumbers'])->name('trxReumbers');
 
 include __DIR__.'/section/accounting.php';
 include __DIR__.'/section/asset.php';
