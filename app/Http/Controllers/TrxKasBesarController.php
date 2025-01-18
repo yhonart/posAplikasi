@@ -53,7 +53,7 @@ class TrxKasBesarController extends Controller
             ->where([
                 ['a.date_trx',$date],
                 ['b.created_by',$akun],
-                ['b.payment_method','1']
+                ['a.payment_method','1']
             ])
             ->get();
 
