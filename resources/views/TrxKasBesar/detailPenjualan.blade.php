@@ -36,12 +36,14 @@
                         </thead>
                         <tbody>
                             @foreach($dbDetail as $detail)
-                            <td>{{$detail->billing_number}}</td>
-                            <td>{{$detail->customer_name}} <br> <small class="text-muted">{{$detail->address}}</small></td>
-                            <td>{{$detail->t_item}}</td>
-                            <td class="text-right">{{number_format($detail->t_bill,'0',',','.')}}</td>
-                            <td class="text-right font-weight-bol">{{number_format($detail->t_pay,'0',',','.')}}</td>
-                            <td>{{$detail->payment1}}, {{$detail->payment2}}</td>
+                            <tr>
+                                <td>{{$detail->billing_number}}</td>
+                                <td>{{$detail->customer_name}} <br> <small class="text-muted">{{$detail->address}}</small></td>
+                                <td>{{$detail->t_item}}</td>
+                                <td class="text-right">{{number_format($detail->t_bill,'0',',','.')}}</td>
+                                <td class="text-right font-weight-bol">{{number_format($detail->t_pay,'0',',','.')}}</td>
+                                <td>{{$detail->payment1}}, {{$detail->payment2}}</td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
