@@ -17,6 +17,10 @@
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
+<?php
+    $sumBayar = 0;
+    $sumBelanja = 0;
+?>
 <div class="content mt-0">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -43,8 +47,20 @@
                                 <td class="text-right">{{number_format($detail->t_bill,'0',',','.')}}</td>
                                 <td class="text-right font-weight-bol">{{number_format($detail->t_pay,'0',',','.')}}</td>
                                 <td>{{$detail->payment1}}, {{$detail->payment2}}</td>
+                                <?php
+                                    $sumBelanja += $detail->t_bill;
+                                    $sumBayar += $detail->t_pay;
+                                ?>
                             </tr>
                             @endforeach
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{number_format($sumBelanja,'0',',','.')}}</td>
+                                <td>{{number_format($sumBayar,'0',',','.')}}</td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
