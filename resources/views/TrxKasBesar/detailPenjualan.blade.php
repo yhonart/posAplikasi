@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Penjualan {{$akun}} <small>Date:{{date_format('d-M-Y')}}</small></h1>
+                <h1 class="m-0">Penjualan {{$akun}} <small>Date:{{date('d-M-Y', strtotime($date))}}</small></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
