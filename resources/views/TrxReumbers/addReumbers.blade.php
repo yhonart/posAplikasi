@@ -22,7 +22,7 @@
                         <label class="col-md-3">User</label>
                         <div class="col-md-4">
                             <select name="akunUser" id="akunUser" class="form-control">
-                                <option value="0"></option>
+                                <option value="0|0"></option>
                                 @foreach($mStaff as $staff)
                                     <option value="{{$staff->idm_sales}}|{{$staff->sales_name}}">{{$staff->sales_name}} (Sales)</option>
                                 @endforeach
