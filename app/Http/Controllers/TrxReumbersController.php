@@ -58,6 +58,7 @@ class TrxReumbersController extends Controller
         $typeReumbers = explode("|",$reqPosting->typeReumbers);
         $fromAkunDana = $reqPosting->fromAkunDana;
         $nominal = str_replace(".","",$reqPosting->nominal);
+        $thisPeriode = date("mY");
 
         $idUser = $akunUser[0];
         $persname = $akunUser[1];
@@ -80,6 +81,7 @@ class TrxReumbersController extends Controller
                 'status'=>'1',
                 'reumbers_date'=>now(),
                 'nominal'=>$nominal,
+                'periode'=>$thisPeriode,
             ]);
     }
     
