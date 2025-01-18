@@ -20,8 +20,8 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary CLIK-LAP font-weight-bold" data-display="laporanKasKecil"><i class="fa-solid fa-file-invoice-dollar"></i> History</button>
-                <button type="button" class="btn btn-primary CLIK-LAP font-weight-bold" data-display="addModalKas"><i class="fa-solid fa-plus"></i> Tambah Transaksi</button>
+                <button type="button" class="btn btn-primary CLIK-LAP font-weight-bold" data-display="tableReumbers"><i class="fa-solid fa-file-invoice-dollar"></i> History</button>
+                <button type="button" class="btn btn-primary CLIK-LAP font-weight-bold" data-display="addReumbers"><i class="fa-solid fa-plus"></i> Tambah Transaksi</button>
             </div>
         </div>
         <div id="displayLap"></div>

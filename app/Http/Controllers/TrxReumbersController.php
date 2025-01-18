@@ -10,4 +10,14 @@ class TrxReumbersController extends Controller
     {
         return view('TrxReumbers/main');
     }
+
+    public function addReumbers ()
+    {
+        return view('TrxReumbers/addReumbers');
+    }
+
+    public function tableReumbers ()
+    {
+
+    }
 }
