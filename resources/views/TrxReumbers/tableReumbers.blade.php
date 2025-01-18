@@ -14,6 +14,7 @@
                         <th>Nomor</th>
                         <th>Tanggal</th>
                         <th>User</th>
+                        <th>Pengembalian</th>
                         <th>Tipe Reumbers</th>
                         <th>Keterangan</th>
                         <th>Status</th>
@@ -26,6 +27,7 @@
                             <td>{{$tr->reumbers_no}}</td>
                             <td>{{date("d-M-Y", strtotime($tr->reumbers_date))}}</td>
                             <td>{{$tr->persname}}</td>
+                            <td>{{$tr->from_akun}}</td>
                             <td>{{$tr->type_reumbers}}</td>
                             <td>{{$tr->description}}</td>
                             <td>{{$arrStatus[$tr->status]}}</td>
