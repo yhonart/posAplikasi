@@ -34,7 +34,7 @@
         }
     });
     $(document).ready(function(){
-        let display = "laporanKasKecil";
+        let display = "tableReumbers";
         displayOnClick(display);
 
         document.querySelectorAll(".CLIK-LAP").forEach(function(button) { 
