@@ -105,13 +105,13 @@
                 processData: false,
                 success: function (data) {
                     alertify.success('Data berhasil ditambahkan!');
-                    loadDisplay(loadDiv)
+                    loadDisplay();
                 }
             });
             return false;
         });
 
-        function disInputBarang() {
+        function loadDisplay() {
             let display = "tableReumbers";
             $("#displayNotif").fadeIn("slow");
             $.ajax({

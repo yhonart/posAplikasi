@@ -32,7 +32,7 @@
                             <td>{{$tr->description}}</td>
                             <td>{{$arrStatus[$tr->status]}}</td>
                             <td>
-                                <a href="#" class="btn btn-info btn-sm"></a>
+                                <a href="#" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
                             </td>
                         </tr>
                     @endforeach
