@@ -9,7 +9,7 @@
                     <div class="form-group row">
                         <label class="col-md-3">Nomor</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" name="nomor" id="nomor">
+                            <input type="text" class="form-control" name="nomor" id="nomor" value="{{$thisNumber}}" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -46,9 +46,9 @@
                         <label class="col-md-3">Dari Dana</label>
                         <div class="col-md-9">
                             <select name="fromAkunDana" id="fromAkunDana" class="form-control">
-                                <option value="0"></option>
+                                <option value="0"> ==== </option>
                                 @foreach($akunTrs as $ats)
-                                    <option value="{{$ats->idtr_kas}}">{{$ats->description}}</option>
+                                    <option value="{{$ats->idtr_kas}}">{{$ats->description}} @ {{number_format('$ats->nominal','0',',','.')}}</option>
                                 @endforeach
                             </select>
                         </div>
