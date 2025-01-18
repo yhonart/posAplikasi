@@ -50,7 +50,7 @@ class TrxKasBesarController extends Controller
     {
         $dbDetail = DB::table('view_billing_action')
             ->where([
-                ['trx_date',$date],
+                ['tr_date',$date],
                 ['created_by',$akun],
                 ['trx_method','1']
             ])
