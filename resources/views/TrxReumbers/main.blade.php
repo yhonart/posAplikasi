@@ -56,7 +56,7 @@
             $("#displayNotif").fadeIn("slow");
             $.ajax({
                 type : 'get',
-                url : "{{route('kasKecil')}}/"+display,
+                url : "{{route('trxReumbers')}}/"+display,
                 success : function(response){
                     $('#displayLap').html(response);
                     $("#displayNotif").fadeOut("slow");
