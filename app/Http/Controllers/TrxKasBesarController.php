@@ -48,12 +48,11 @@ class TrxKasBesarController extends Controller
 
     public function detailPenjualan($date, $akun)
     {
-        $dbDetail = DB::table('tr_payment_record as a')
-            ->leftJoin('tr_store as b','a.trx_code','=','b.billing_number')
+        $dbDetail = DB::table('view_billing_action')
             ->where([
-                ['a.date_trx',$date],
-                ['b.created_by',$akun],
-                ['a.trx_method','1']
+                ['trx_date',$date],
+                ['created_by',$akun],
+                ['trx_method','1']
             ])
             ->get();
 
