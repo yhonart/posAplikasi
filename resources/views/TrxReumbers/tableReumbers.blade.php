@@ -17,6 +17,7 @@
                         <th>Pengembalian</th>
                         <th>Tipe Reumbers</th>
                         <th>Keterangan</th>
+                        <th>Nominal</th>
                         <th>Status</th>
                         <th></th>
                     </tr>
@@ -31,6 +32,7 @@
                             <td>{{$tr->type_reumbers}}</td>
                             <td>{{$tr->description}}</td>
                             <td>{{$arrStatus[$tr->status]}}</td>
+                            <td>{{number_format($tr->nominal,'0',',','.')}}</td>
                             <td>
                                 <a href="#" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
                             </td>
