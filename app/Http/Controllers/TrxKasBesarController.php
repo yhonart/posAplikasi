@@ -46,5 +46,19 @@ class TrxKasBesarController extends Controller
         return view('TrxKasBesar/laporanKasBesarTable', compact('pembelian','penjualan','kasir','fromDate','endDate'));        
     }
 
+    public function detailPenjualan($date, $akun)
+    {
+        $dbDetail = DB::table('tr_payment_record as a')
+            ->leftJoin('tr_store as b','a.trx_code','=','b.billing_number')
+            ->where([
+                ['a.date_trx',$date],
+                ['b.created_by',$akun],
+                ['b.payment_method','1']
+            ])
+            ->get();
+
+        return view('TrxKasBesar/detailPenjualan', compact('dbDetail','date','akun'));        
+    }
+
     
 }

@@ -26,7 +26,7 @@ $sumPembelian = 0;
                     <td>{{date('d-M-Y', strtotime($tbPenjualan->tr_date))}}</td>
                     <td></td>
                     <td>
-                        <a href="#" class="text-primary">
+                        <a href="{{route('kasBesar')}}/detailPenjualan/{{$tbPenjualan->tr_date}}/{{$tbPenjualan->created_by}}" class="text-primary font-weight-bold">
                             Penjualan {{$tbPenjualan->created_by}}
                         </a>
                     </td>
@@ -76,12 +76,12 @@ $sumPembelian = 0;
 <script>
     $(function(){        
         $("#tableKasBesar").DataTable({
-            "responsive": true, 
+            // "responsive": true, 
             "lengthChange": false, 
             "autoWidth": false,
             "dom": 'Bfrtip',
-            "searching": false,
             "paging": false,
+            "searching":false,
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
             initComplete: function () {
                 this.api()
