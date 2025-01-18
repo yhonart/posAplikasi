@@ -48,7 +48,7 @@
                             <select name="fromAkunDana" id="fromAkunDana" class="form-control">
                                 <option value="0"> ==== </option>
                                 @foreach($akunTrs as $ats)
-                                    <option value="{{$ats->idtr_kas}}">{{$ats->description}} @ {{number_format('$ats->nominal','0',',','.')}}</option>
+                                    <option value="{{$ats->idtr_kas}}">{{$ats->description}} @ {{number_format($ats->nominal,'0',',','.')}}</option>
                                 @endforeach
                             </select>
                         </div>
