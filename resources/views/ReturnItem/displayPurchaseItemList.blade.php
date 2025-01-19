@@ -131,7 +131,8 @@ $no = '1';
             let satuanUnit = $(this).find(":selected").val(),
                 prdID = $("#selectProduct").val(),
                 idLo = $("#idLo").val();
-                // alert(countBill);
+            
+            alert(satuanUnit+" "+prdID+" "+idLo);
                             
             // FATCH DATA SATUAN
             fetch("{{route('returnItem')}}/satuanAction/" + satuanUnit + "/" + prdID + "/" + idLo)
