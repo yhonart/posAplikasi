@@ -71,7 +71,7 @@
 <table class="styled-table text-nowrap" width="100%">
     <thead style="white-space: nowrap;">
         <tr>
-            <th>Keteranga</th>
+            <th>Keterangan</th>
             <th>Total Penjualan</th>
             <th>Total Tunai</th>
             <th>Total Transfer</th>

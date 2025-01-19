@@ -2952,6 +2952,9 @@ class CashierController extends Controller
         $tableReport = DB::table("trx_record_view as a")
             ->select(DB::raw('SUM(total_struk) as total_struk'), DB::raw('SUM(total_payment) as total_payment'))
             ->leftJoin("tr_kredit as b", 'a.trx_code', '=', 'b.from_payment_code')
+            ->where([
+                ['a.status','!=','0']
+                ])
             ->whereBetween('a.date_trx', [$fromDate, $endDate])
             ->first();
 
