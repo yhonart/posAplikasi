@@ -23,10 +23,10 @@ $sumPembelian = 0;
         <tbody>
             @foreach($penjualan as $tbPenjualan)
                 <tr>
-                    <td>{{date('d-M-Y', strtotime($tbPenjualan->tr_date))}}</td>
+                    <td>{{date('d-M-Y', strtotime($tbPenjualan->date_trx))}}</td>
                     <td></td>
                     <td>
-                        <a href="{{route('kasBesar')}}/detailPenjualan/{{$tbPenjualan->tr_date}}/{{$tbPenjualan->created_by}}" class="text-primary font-weight-bold">
+                        <a href="{{route('kasBesar')}}/detailPenjualan/{{$tbPenjualan->date_trx}}/{{$tbPenjualan->created_by}}" class="text-primary font-weight-bold">
                             Penjualan {{$tbPenjualan->created_by}}
                         </a>
                     </td>
