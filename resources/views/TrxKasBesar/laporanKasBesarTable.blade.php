@@ -82,6 +82,7 @@ $sumPembelian = 0;
             "dom": 'Bfrtip',
             "paging": false,
             "searching":false,
+            "ordering":false,
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
             initComplete: function () {
                 this.api()
