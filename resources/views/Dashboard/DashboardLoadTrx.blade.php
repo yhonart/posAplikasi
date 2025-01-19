@@ -74,23 +74,26 @@
 
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group row">
-            <div class="col-md-6">
-                <select name="pilihTahun" id="pilihTahun" class="form-control form-control-sm">
-                    @foreach($selectYear as $sy)
-                        <option value="{{$sy->years}}">{{$sy->years}}</option>
-                    @endforeach
-                </select> 
+        <div class="card card-body">
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <select name="pilihTahun" id="pilihTahun" class="form-control form-control-sm">
+                        @foreach($selectYear as $sy)
+                            <option value="{{$sy->years}}">{{$sy->years}}</option>
+                        @endforeach
+                    </select> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="pembelianVsPenjualan"></div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="pembelianVsPenjualan"></div>
-            </div>
-        </div>     
     </div>  
+
     <div class="col-md-6">
-        <div class="card">
+        <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title">Transaksi Per Kasir</h3>
                 <div class="card-tools">
