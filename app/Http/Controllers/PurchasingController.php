@@ -472,7 +472,7 @@ class PurchasingController extends Controller
             ->select(DB::raw('SUM(nom_return) as NumRet'),'supplier_id')
             ->where([
                 ['status','2'],
-                ['action_by','2']
+                ['action_by','1']
             ])
             ->groupBy('supplier_id')
             ->get();
@@ -534,7 +534,7 @@ class PurchasingController extends Controller
             ->where([
                 ['supplier_id',$supplierID],
                 ['status','2'],
-                ['action_by','2']
+                ['action_by','1']
             ])
             ->first();
         
@@ -544,7 +544,7 @@ class PurchasingController extends Controller
                 ->where([
                     ['supplier_id',$supplierID],
                     ['status','2'],
-                    ['action_by','2']
+                    ['action_by','1']
                 ])
                 ->update([
                     'status'=>'3'
