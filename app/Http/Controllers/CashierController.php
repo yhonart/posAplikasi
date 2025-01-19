@@ -2961,6 +2961,9 @@ class CashierController extends Controller
         $tableReportTunai = DB::table("trx_record_view as a")
             ->select(DB::raw('SUM(total_struk) as total_struk'), DB::raw('SUM(total_payment) as total_payment'))
             ->leftJoin("tr_kredit as b", 'a.trx_code', '=', 'b.from_payment_code')
+            ->where([
+                ['a.status','!=','0']
+                ])
             ->whereBetween('a.date_trx', [$fromDate, $endDate])
             ->where('a.trx_method', '1')
             ->first();
@@ -2973,15 +2976,16 @@ class CashierController extends Controller
         $bankTransaction = DB::table('trx_record_view')
             ->select(DB::raw('SUM(total_payment) as totalTransfer'), 'bank_code', 'bank_name')
             ->whereBetween('date_trx', [$fromDate, $endDate])
-            ->where('trx_method', '4')
+            ->where([
+                ['status','!=','0'],
+                ['trx_method', '4']
+                ])
             ->first();
 
         $creditRecord = DB::table('trx_kredit_record_view')
             ->select(DB::raw('SUM(total_payment) as totalBon'))
             ->whereBetween('date_trx', [$fromDate, $endDate])
-            ->first();
-
-        
+            ->first();        
 
         $pdf = PDF::loadview('Report/cashierRecapReport', compact('fromDate', 'endDate', 'tableReport', 'trStore', 'bankTransaction', 'creditRecord', 'tableReportTunai'))->setPaper("A4", 'portrait');
         return $pdf->stream();
