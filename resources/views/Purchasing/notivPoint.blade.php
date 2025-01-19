@@ -1,7 +1,7 @@
 @if($countPoint >= '1')
     <div class="row">
         <div class="col-md-12">
-            <h5 class="font-weight-bold">Riwayat Pengembalian/Retur Barang</h5>
+            <h6 class="font-weight-bold text-muted">Riwayat Pengembalian/Retur Barang</h6>
         </div>
     </div>
     <div class="form-group row">
