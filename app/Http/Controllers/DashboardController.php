@@ -123,6 +123,7 @@ class DashboardController extends Controller
         $selectYear = $selectYear->select(DB::raw('DATE_FORMAT(a.date_trx,"%Y") as years'));
         $selectYear =$selectYear->leftJoin('tr_store as b','a.trx_code','=','b.billing_number');
         $selectYear = $selectYear->groupBy(DB::raw('DATE_FORMAT(a.date_trx,"%Y")'));
+        $selectYear = $selectYear->orderBy(DB::raw('DATE_FORMAT(a.date_trx,"%Y")'), 'desc');
         $selectYear = $selectYear->get();
 
         $userKasir = DB::table('users')
