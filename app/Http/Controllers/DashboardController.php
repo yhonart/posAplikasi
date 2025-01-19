@@ -83,6 +83,13 @@ class DashboardController extends Controller
     public function lodaDataTransaksi ($fromDate, $endDate){
         // echo $fromDate."/".$endDate;
         $thisPeriode = date("m-Y");
+
+        $penjualan = DB::table('view_trx_method');
+        $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'date_trx','created_by'); 
+        $penjualan = $penjualan->where('status_by_store','>=','3');
+        $penjualan = $penjualan->whereBetween('date_trx',[$fromDate,$endDate]);
+        $penjualan = $penjualan->groupBy('date_trx','created_by');
+        $penjualan = $penjualan->get(); 
         
         $lastTrxAll = DB::table('trx_record_view');
         $lastTrxAll = $lastTrxAll->select(DB::raw('SUM(total_struk) as totalAll'));        
@@ -128,7 +135,7 @@ class DashboardController extends Controller
         $totalTransaksi = $totalTransaksi->whereBetween('tr_date',[$fromDate, $endDate]);
         $totalTransaksi = $totalTransaksi->count();
             
-        return view ('Dashboard/DashboardLoadTrx', compact('countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','userKasir'));
+        return view ('Dashboard/DashboardLoadTrx', compact('countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','userKasir','penjualan'));
     }
 
     public function getTrxByKasir($kasir, $fromDate, $endDate){
@@ -175,14 +182,6 @@ class DashboardController extends Controller
         $endDate = $reqPostOnClick->endDate;
         
         // echo $condition."-".$fromDate."-".$endDate;
-
-        $penjualan = DB::table('view_trx_method');
-        $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'date_trx','created_by'); 
-        $penjualan = $penjualan->where('status_by_store','>=','3');
-        $penjualan = $penjualan->whereBetween('date_trx',[$fromDate,$endDate]);
-        $penjualan = $penjualan->groupBy('date_trx','created_by');
-        $penjualan = $penjualan->get(); 
-        
         if($condition == "alltrx"){
             $allCondition = DB::table('view_trx_method');
             $allCondition = $allCondition->where('status_by_store','>=','3');
@@ -210,7 +209,7 @@ class DashboardController extends Controller
             $allCondition = $allCondition->get();
         }
         
-        return view ('Dashboard/DashboardLoadOnClick', compact('allCondition','condition','fromDate','endDate','penjualan'));
+        return view ('Dashboard/DashboardLoadOnClick', compact('allCondition','condition','fromDate','endDate'));
     }
 
     public function modalLogTrx ($noBill)
