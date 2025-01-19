@@ -71,18 +71,20 @@ $total = 0;
                                     <span class="bg-light border border-success pl-2 pr-2 pt-1 pb-1 rounded-pill">{{$statusDokumen[$ltp->status]}}</span>
                                 </td>
                                 <td class="text-right">
-                                    @if($ltp->status =='2' AND $approval >= '1')
-                                        <button class="btn btn-success btn-sm font-weight-bold BTN-APPROVE mb-auto" id="purchaseApprove{{$ltp->id_purchase}}" data-number="{{$ltp->purchase_number}}" data-id="{{$ltp->id_purchase}}"><i class="fa-solid fa-check"></i> Approve</button>
-                                    @endif
-                                    @if($approval >= '1')
-                                        <button class="btn btn-danger btn-sm  font-weight-bold BTN-DELETE mb-auto" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-xmark"></i> Delete</button>
-                                    @endif
-                                    @if($ltp->status =='2')
-                                        <button class="btn btn-info btn-sm  font-weight-bold BTN-EDIT mb-auto" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-pencil"></i> Edit</button>
-                                    @endif
-                                    @if($ltp->status > '2')
-                                    <button class="btn btn-primary font-weight-bold btn-sm  BTN-OPEN-MODAL-GLOBAL-LG mb-auto" href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}"><i class="fa-solid fa-binoculars" ></i> Detail</button>
-                                    @endif
+                                    <div class="bnt-group">
+                                        @if($ltp->status =='2' AND $approval >= '1')
+                                            <button class="btn btn-outline-success btn-sm font-weight-bold BTN-APPROVE mb-auto" id="purchaseApprove{{$ltp->id_purchase}}" data-number="{{$ltp->purchase_number}}" data-id="{{$ltp->id_purchase}}"><i class="fa-solid fa-check"></i> Approve</button>
+                                        @endif
+                                        @if($approval >= '1')
+                                            <button class="btn btn-outline-danger btn-sm  font-weight-bold BTN-DELETE mb-auto" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-xmark"></i> Delete</button>
+                                        @endif
+                                        @if($ltp->status =='2')
+                                            <button class="btn btn-outline-info btn-sm  font-weight-bold BTN-EDIT mb-auto" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-pencil"></i> Edit</button>
+                                        @endif
+                                        @if($ltp->status > '2')
+                                        <button class="btn btn-outline-primary font-weight-bold btn-sm  BTN-OPEN-MODAL-GLOBAL-LG mb-auto" href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}"><i class="fa-solid fa-binoculars" ></i> Detail</button>
+                                        @endif
+                                    </div>                                
                                 </td>
                             </tr>
                         @endforeach
