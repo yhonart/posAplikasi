@@ -175,6 +175,12 @@ class DashboardController extends Controller
         $endDate = $reqPostOnClick->endDate;
         
         // echo $condition."-".$fromDate."-".$endDate;
+
+        $penjualan = DB::table('tr_store');
+        $penjualan = $penjualan->select(DB::raw('SUM(t_pay) as paymentCus'),'tr_date','created_by');        
+        $penjualan = $penjualan->whereBetween('tr_date',[$fromDate,$endDate]);
+        $penjualan = $penjualan->groupBy('tr_date','created_by');
+        $penjualan = $penjualan->get(); 
         
         if($condition == "alltrx"){
             $allCondition = DB::table('view_trx_method');
@@ -203,7 +209,7 @@ class DashboardController extends Controller
             $allCondition = $allCondition->get();
         }
         
-        return view ('Dashboard/DashboardLoadOnClick', compact('allCondition','condition','fromDate','endDate'));
+        return view ('Dashboard/DashboardLoadOnClick', compact('allCondition','condition','fromDate','endDate','penjualan'));
     }
 
     public function modalLogTrx ($noBill)

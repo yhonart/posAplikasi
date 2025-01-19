@@ -37,109 +37,128 @@
             </button>
         </div>
     </div>
-    <div class="card-body table-responsive" style="height:500px;">
-        <table class="table  table-sm table-hover" id="dataOnClick">
-            <thead class="bg-gray-dark font-weight-bold text-center">
-                <tr>
-                    <td>No.</td>
-                    <td>Kode Transaksi</td>
-                    <td>Tanggal</td>
-                    <td>Kasir</td>
-                    <td>Pelanggan</td>
-                    <td>Jenis Pembayaran</td>
-                    <td>Total Belanja</td>
-                    <td>Total Pembayaran</td>
-                    <td>Bank Transfer</td>
-                    <td>Status</td>
-                </tr>
-            </thead>
-            <tbody>
-                @if($condition == "alltrx")
-                    @foreach($allCondition as $aC)
+    <div class="card-body table-responsive">
+        @if($condition == "alltrx")
+        <div class="row">
+            @foreach($penjualan as $p)
+            <div class="col-12 col-sm-4">
+                <div class="info-box bg-light">
+                <div class="info-box-content">
+                    <span class="info-box-text text-center text-muted">{{$p->created_by}}</span>
+                    <span class="info-box-number text-center text-muted mb-0">{{number_format($p->paymentCus,'0',',','.')}}</span>
+                </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        @endif
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table  table-sm table-hover" id="dataOnClick">
+                    <thead class="bg-gray-dark font-weight-bold text-center">
                         <tr>
-                            <td>{{$no++}}</td>
-                            <td>
-                                {{$aC->core_id_trx}}
-                            </td>
-                            <td>{{$aC->date_trx}}</td>
-                            <td>{{$aC->created_by}}</td>
-                            <td>{{$aC->customer_store}}</td>
-                            <td>{{$aC->bankTransfer}}</td>
-                            <td>{{number_format($aC->total_struk,'0',',','.')}}</td>
-                            <td>{{number_format($aC->nominal,'0',',','.')}}</td>
-                            <td>{{$aC->bank_name}}</td>
-                            <td></td>
+                            <td>No.</td>
+                            <td>Kode Transaksi</td>
+                            <td>Tanggal</td>
+                            <td>Kasir</td>
+                            <td>Pelanggan</td>
+                            <td>Jenis Pembayaran</td>
+                            <td>Total Belanja</td>
+                            <td>Total Pembayaran</td>
+                            <td>Bank Transfer</td>
+                            <td>Status</td>
                         </tr>
-                    @endforeach
-                @elseif($condition == "onprocess")
-                    @foreach($allCondition as $aC)
-                        <tr>
-                            <td>{{$no++}}</td>
-                            <td>{{$aC->billing_number}}</td>
-                            <td>{{$aC->tr_date}}</td>
-                            <td>{{$aC->created_by}}</td>
-                            <td>{{$aC->customer_name}}</td>
-                            <td>-</td>
-                            <td>{{number_format($aC->t_bill,'0',',','.')}}</td>
-                            <td>{{number_format($aC->t_pay,'0',',','.')}}</td>
-                            <td>-</td>
-                            <td class="text-right {{$arayColor[$aC->status]}}">
-                                    {{$arayStatus[$aC->status]}}
-                            </td>
-                        </tr>
-                    @endforeach
-                @elseif($condition == "kredit")
-                    @foreach($allCondition as $aC)
-                        <tr>
-                            <td>{{$no++}}</td>
-                            <td>{{$aC->from_payment_code}}</td>
-                            <td>{{$aC->created_at}}</td>
-                            <td>{{$aC->created_by}}</td>
-                            <td>{{$aC->customer_store}}</td>
-                            <td>-</td>
-                            <td>{{number_format($aC->nominal,'0',',','.')}}</td>
-                            <td>{{number_format($aC->nom_payed,'0',',','.')}}</td>
-                            <td>-</td>
-                            <td></td>
-                        </tr>
-                    @endforeach
-                @elseif($condition == "allSummery")
-                    @foreach($allCondition as $aC)
-                        <tr>
-                            <td>{{$no++}}</td>
-                            <td>
-                                <a href="{{route('Dashboard')}}/modalLogTrx/{{$aC->billing_number}}" class="text-info font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG">
-                                    {{$aC->billing_number}}                                
-                                </a>
-                            </td>
-                            <td>{{$aC->tr_date}}</td>
-                            <td>{{$aC->created_by}}</td>
-                            <td>{{$aC->customer_name}}</td>
-                            <td>-</td>
-                            <td>{{number_format($aC->t_bill,'0',',','.')}}</td>
-                            <td>
-                                <?php
-                                    if($aC->t_pay >= $aC->t_bill){
-                                        $selisih = $aC->t_bill;
-                                    }
-                                    elseif($aC->t_pay < $aC->t_bill){
-                                        $selisih = $aC->t_bill - $aC->t_pay - $aC->t_bill;
-                                    }
-                                    else{
-                                        $selisih = '0';
-                                    }
-                                ?>
-                                {{number_format($selisih,'0',',','.')}}
-                            </td>
-                            <td>-</td>
-                            <td class="text-right {{$arayColor[$aC->status]}}">
-                                    {{$arayStatus[$aC->status]}}
-                            </td>
-                        </tr>
-                    @endforeach
-                @endif
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                        @if($condition == "alltrx")
+                            @foreach($allCondition as $aC)
+                                <tr>
+                                    <td>{{$no++}}</td>
+                                    <td>
+                                        {{$aC->core_id_trx}}
+                                    </td>
+                                    <td>{{$aC->date_trx}}</td>
+                                    <td>{{$aC->created_by}}</td>
+                                    <td>{{$aC->customer_store}}</td>
+                                    <td>{{$aC->bankTransfer}}</td>
+                                    <td>{{number_format($aC->total_struk,'0',',','.')}}</td>
+                                    <td>{{number_format($aC->nominal,'0',',','.')}}</td>
+                                    <td>{{$aC->bank_name}}</td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        @elseif($condition == "onprocess")
+                            @foreach($allCondition as $aC)
+                                <tr>
+                                    <td>{{$no++}}</td>
+                                    <td>{{$aC->billing_number}}</td>
+                                    <td>{{$aC->tr_date}}</td>
+                                    <td>{{$aC->created_by}}</td>
+                                    <td>{{$aC->customer_name}}</td>
+                                    <td>-</td>
+                                    <td>{{number_format($aC->t_bill,'0',',','.')}}</td>
+                                    <td>{{number_format($aC->t_pay,'0',',','.')}}</td>
+                                    <td>-</td>
+                                    <td class="text-right {{$arayColor[$aC->status]}}">
+                                            {{$arayStatus[$aC->status]}}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @elseif($condition == "kredit")
+                            @foreach($allCondition as $aC)
+                                <tr>
+                                    <td>{{$no++}}</td>
+                                    <td>{{$aC->from_payment_code}}</td>
+                                    <td>{{$aC->created_at}}</td>
+                                    <td>{{$aC->created_by}}</td>
+                                    <td>{{$aC->customer_store}}</td>
+                                    <td>-</td>
+                                    <td>{{number_format($aC->nominal,'0',',','.')}}</td>
+                                    <td>{{number_format($aC->nom_payed,'0',',','.')}}</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        @elseif($condition == "allSummery")
+                            @foreach($allCondition as $aC)
+                                <tr>
+                                    <td>{{$no++}}</td>
+                                    <td>
+                                        <a href="{{route('Dashboard')}}/modalLogTrx/{{$aC->billing_number}}" class="text-info font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG">
+                                            {{$aC->billing_number}}                                
+                                        </a>
+                                    </td>
+                                    <td>{{$aC->tr_date}}</td>
+                                    <td>{{$aC->created_by}}</td>
+                                    <td>{{$aC->customer_name}}</td>
+                                    <td>-</td>
+                                    <td>{{number_format($aC->t_bill,'0',',','.')}}</td>
+                                    <td>
+                                        <?php
+                                            if($aC->t_pay >= $aC->t_bill){
+                                                $selisih = $aC->t_bill;
+                                            }
+                                            elseif($aC->t_pay < $aC->t_bill){
+                                                $selisih = $aC->t_bill - $aC->t_pay - $aC->t_bill;
+                                            }
+                                            else{
+                                                $selisih = '0';
+                                            }
+                                        ?>
+                                        {{number_format($selisih,'0',',','.')}}
+                                    </td>
+                                    <td>-</td>
+                                    <td class="text-right {{$arayColor[$aC->status]}}">
+                                            {{$arayStatus[$aC->status]}}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
     </div>
 </div>
 
