@@ -52,7 +52,7 @@ class PurchasingController extends Controller
             $numberByDate = DB::table('purchase_order')
                 ->select('purchase_number')
                 ->where([
-                        ['purchase_date',$date]
+                        ['periode',$thisMonth]
                     ])
                 ->count();
                 

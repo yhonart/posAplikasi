@@ -26,7 +26,7 @@
             <tr>
                 <td>{{$noMutasi++}}</td>
                 <td>{{$tm->number}}</td>
-                <td>{{$tm->date_moving}}</td>
+                <td>{{date("d-M-y", strtotime($tm->date_moving))}}</td>
                 <td class="bg-success font-weight-bold">
                     @foreach($mSites as $ms1)
                         @if($ms1->idm_site == $tm->from_loc)

@@ -28,7 +28,7 @@
         @foreach($lisDatKoreksi as $ldk)
             <tr>
                 <td>{{$ldk->number}}</td>
-                <td>{{$ldk->dateInput}}</td>
+                <td>{{date("d-M-y", strtotime($ldk->dateInput))}}</td>
                 <td>{{$ldk->notes}}</td>
                 <td>{{$ldk->created_by}}</td>
                 <td class="text-right">

@@ -28,35 +28,35 @@ class StockopnameController extends Controller
         $userName = Auth::user()->name;
         $date = date('Y-m-d');
         
-        //cek jumlah pada table inv_stock_opname berdasarkan tanggal sekarang dan created by user yang sama. 
-        $countPeriode = DB::table('inv_stock_opname')
+        //Verifikasi data dengan tanggal dan user input yang sama dan status 1 (on proses). 
+        $countVerifikasiData = DB::table('inv_stock_opname')
             ->where([
                 ['date_input',$date],
                 ['created_by',$userName],
                 ['status','1']
                 ])
             ->count();
+
+        $countPeriode = DB::table('inv_stock_opname')
+            ->where([
+                ['periode',$thisPeriode]
+                ])
+            ->count();
+        
             
         //cek data transaksi yang di delete.
         $deletedNumber = DB::table('inv_stock_opname')
             ->where('status','0')
             ->first();
             
-        // Jika data tidak ditemukan
-        if($countPeriode=='0'){
-            // cek jumlah data pada tanggal yang sama 
-            $countData = DB::table('inv_stock_opname')
-                ->where([
-                    ['periode',$thisPeriode]
-                    ])
-                ->count();
-                
-            // Jika data di tanggal yang sama tidak ditemukan
-            if($countData == '0'){
+        // Jika verifikasi tidak ditemukan
+        if($countVerifikasiData=='0'){
+            // Jika periode ditemukan
+            if($countPeriode == '0'){
                 $stp = '1';
                 $nostp = "STP-".$dateNumber."-".sprintf("%07d",$stp);
             }else{
-                $stp = $countData + 1;
+                $stp = $countPeriode + 1;
                 $nostp = "STP-".$dateNumber."-".sprintf("%07d",$stp);
             }
                 
