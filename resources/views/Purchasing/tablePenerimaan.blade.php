@@ -75,12 +75,14 @@ $total = 0;
                                         <button class="btn btn-success btn-sm font-weight-bold BTN-APPROVE mb-auto" id="purchaseApprove{{$ltp->id_purchase}}" data-number="{{$ltp->purchase_number}}" data-id="{{$ltp->id_purchase}}"><i class="fa-solid fa-check"></i> Approve</button>
                                     @endif
                                     @if($approval >= '1')
-                                        <button class="btn btn-danger btn-sm  font-weight-bold BTN-DELETE mb-auto" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-check"></i> Delete</button>
+                                        <button class="btn btn-danger btn-sm  font-weight-bold BTN-DELETE mb-auto" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-xmark"></i> Delete</button>
                                     @endif
                                     @if($ltp->status =='2')
                                         <button class="btn btn-info btn-sm  font-weight-bold BTN-EDIT mb-auto" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-pencil"></i> Edit</button>
                                     @endif
+                                    @if($ltp->status > '2')
                                     <button class="btn btn-primary font-weight-bold btn-sm  BTN-OPEN-MODAL-GLOBAL-LG mb-auto" href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}"><i class="fa-solid fa-binoculars" ></i> Detail</button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
