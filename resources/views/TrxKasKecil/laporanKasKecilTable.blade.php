@@ -35,7 +35,12 @@ $kredit = 0;
             @foreach($tablePengeluaran as $tbPengeluaran)
                 <tr>
                     <td>{{date("d-M-Y", strtotime($tbPengeluaran->kas_date))}}</td>
-                    <td>{{$tbPengeluaran->cat_name}}<br>{{$tbPengeluaran->subcat_name}}</td>
+                    <td>{{$tbPengeluaran->cat_name}}
+                        <br>
+                        <small>
+                            {{$tbPengeluaran->subcat_name}}
+                        </small>
+                    </td>
                     <td>
                         {{$tbPengeluaran->description}}
                     </td>
