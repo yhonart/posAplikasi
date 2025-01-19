@@ -54,7 +54,7 @@ $sumPembelian = 0;
                     <td class="text-right font-weight-bold">
                         <?php
                             $sumPembelian += $pmb->sub_total;
-                            $saldoPembelian = $saldoPenjualan - $sumPembelian;
+                            $saldoPembelian += $saldoPenjualan - $pmb->sub_total;
                             echo number_format($saldoPembelian,'0',',','.');
                         ?>
                     </td>
@@ -82,7 +82,7 @@ $sumPembelian = 0;
             "dom": 'Bfrtip',
             "paging": false,
             "searching":false,
-            "ordering":false,
+            // "ordering":false,
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
             initComplete: function () {
                 this.api()
