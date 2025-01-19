@@ -62,16 +62,7 @@ $sumPembelian = 0;
                 </tr>
             @endforeach
         </tbody>
-        <tfoot>
-            <tr>
-                <th>Cari Tanggal</th>
-                <th>Cari Nomor</th>
-                <th>Cari Keterangan</th>
-                <th>Cari Debit</th>
-                <th>Cari Kredit</th>
-                <th></th>
-            </tr>
-        </tfoot>
+        
     </table>
 </div>
 
@@ -83,7 +74,7 @@ $sumPembelian = 0;
             "autoWidth": false,
             "dom": 'Bfrtip',
             "paging": false,
-            "searching":false,
+            "searching":true,
             "ordering":false,
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
             // initComplete: function () {

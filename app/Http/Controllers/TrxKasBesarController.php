@@ -41,7 +41,8 @@ class TrxKasBesarController extends Controller
         $pembelian = $pembelian->whereBetween('delivery_date',[$fromDate,$endDate]);
         $pembelian = $pembelian->get();
         
-        // dd($penjualan);
+        //DB Reumbers
+        
                
 
         return view('TrxKasBesar/laporanKasBesarTable', compact('pembelian','penjualan','kasir','fromDate','endDate'));        

@@ -73,7 +73,12 @@
                         }  
                         else {
                             echo "<tr>";
-                                echo "<td>".$dataSaldoAwal->date_input."</td>";
+                                if (!empty($dataSaldoAwal)) {
+                                    echo "<td>".$dataSaldoAwal->date_input."</td>";
+                                }
+                                else{
+                                    echo "<td></td>";
+                                }
                                 echo "<td></td>";
                                 echo "<td></td>";
                                 echo "<td>Saldo Awal</td>";
