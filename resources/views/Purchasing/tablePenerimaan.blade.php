@@ -12,7 +12,7 @@ $total = 0;
     <div class="col-12">
         <div class="card">
             <div class="card-body p-2 table-responsive" style="height:700px;">
-                <table class="table table-sm table-valign-middle table-hover " id="tableListPembelian">
+                <table class="table table-sm table-valign-middle table-hover" id="tableListPembelian">
                     <thead class="bg-gray-dark">
                         <tr>
                             <th>Tanggal</th>
@@ -73,16 +73,16 @@ $total = 0;
                                 <td class="text-right">
                                     <div class="bnt-group">
                                         @if($ltp->status =='2' AND $approval >= '1')
-                                            <button class="btn btn-outline-success btn-sm font-weight-bold BTN-APPROVE mb-auto" id="purchaseApprove{{$ltp->id_purchase}}" data-number="{{$ltp->purchase_number}}" data-id="{{$ltp->id_purchase}}"><i class="fa-solid fa-check"></i> Approve</button>
+                                            <button class="btn btn-success btn-sm font-weight-bold BTN-APPROVE" id="purchaseApprove{{$ltp->id_purchase}}" data-number="{{$ltp->purchase_number}}" data-id="{{$ltp->id_purchase}}"><i class="fa-solid fa-check"></i> Approve</button>
                                         @endif
                                         @if($approval >= '1')
-                                            <button class="btn btn-outline-danger btn-sm  font-weight-bold BTN-DELETE mb-auto" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-xmark"></i> Delete</button>
+                                            <button class="btn btn-danger btn-sm font-weight-bold BTN-DELETE" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-xmark"></i> Delete</button>
                                         @endif
                                         @if($ltp->status =='2')
-                                            <button class="btn btn-outline-info btn-sm  font-weight-bold BTN-EDIT mb-auto" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-pencil"></i> Edit</button>
+                                            <button class="btn btn-info btn-sm font-weight-bold BTN-EDIT" data-number="{{$ltp->purchase_number}}"><i class="fa-solid fa-pencil"></i> Edit</button>
                                         @endif
                                         @if($ltp->status > '2')
-                                        <button class="btn btn-outline-primary font-weight-bold btn-sm  BTN-OPEN-MODAL-GLOBAL-LG mb-auto" href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}"><i class="fa-solid fa-binoculars" ></i> Detail</button>
+                                            <button class="btn btn-primary font-weight-bold btn-sm  BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}"><i class="fa-solid fa-binoculars" ></i> Detail</button>
                                         @endif
                                     </div>                                
                                 </td>
