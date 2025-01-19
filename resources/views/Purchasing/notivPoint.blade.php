@@ -1,7 +1,11 @@
 @if($countPoint >= '1')
+    <div class="row">
+        <div class="col-md-12">
+            <h5 class="font-weight-bold">Riwayat Pengembalian/Retur Barang</h5>
+        </div>
+    </div>
     <div class="form-group row">
         <div class="col-md-4">
-            <label class="label">Nilai Pengembalian Barang Sebelumnya</label>
             <input type="text" name="point" id="point" class="form-control form-control-sm  text-success font-weight-bold" value="{{number_format($disPoint->NumRet,'0',',','.')}}" readonly>
         </div>
         <div class="col-md-8">
