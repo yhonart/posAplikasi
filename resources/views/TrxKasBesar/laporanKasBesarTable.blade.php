@@ -52,7 +52,7 @@ $sumPembelian = 0;
                     </td>
                     <td></td>
                     <td class="text-right">{{number_format($pmb->sub_total,'0',',','.')}}</td>
-                    <td class="text-right font-weight-bold">
+                    <td class="font-weight-bold">
                         <?php
                             $sumPembelian += $pmb->sub_total;
                             $saldoPembelian = $saldoPenjualan - $sumPembelian;
@@ -77,6 +77,9 @@ $sumPembelian = 0;
             "searching":true,
             "ordering":false,
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
+            "columnDefs": [                
+                { targets: [ 4,5 ], className: 'dt-left' }
+            ],
             // initComplete: function () {
             //     this.api()
             //     .columns()
