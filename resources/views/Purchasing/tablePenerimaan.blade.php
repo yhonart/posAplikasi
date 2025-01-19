@@ -5,6 +5,7 @@ $statusDokumen = array(
     2=>"Review",
     3=>"Disetujui"
 );
+$total = 0;
 ?>
 <div class="row">
     <div class="col-12">
@@ -16,7 +17,9 @@ $statusDokumen = array(
                             <th>Tanggal</th>
                             <th>Nomor</th>
                             <th>Supplier</th>
-                            <th>Total Belanja</th>
+                            <th>Belanja</th>
+                            <th>Potongan</th>
+                            <th>Total</th>
                             <th>Pembayaran</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -36,6 +39,14 @@ $statusDokumen = array(
                                 </td>
                                 <td class="text-right font-weight-bold">
                                     {{number_format($ltp->sub_total,'0',',','.')}}
+                                </td>
+                                <td class="text-right font-weight-bold">
+                                    {{number_format($ltp->total_potongan,'0',',','.')}}
+                                </td>
+                                <td class="text-right font-weight-bold">
+                                    <?php
+                                        $total = $ltp->sub_total - $ltp->total_potongan;
+                                    ?>
                                 </td>
                                 <td>
                                     @if($ltp->payment_methode <> '1' AND $ltp->payment_methode <> '2')

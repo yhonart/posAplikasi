@@ -516,7 +516,34 @@ class PurchasingController extends Controller
         $idDataReport = DB::table('view_purchase_order')
             ->where('purchase_number',$dataEdit)
             ->first();
-            
+        $supplierID = $idDataReport->supplier_id;
+
+        // Cek Potongan 
+        $detailPotongan = DB::table('purchase_point')
+            ->select(DB::raw('SUM(nom_return) as NumRet'))
+            ->where([
+                ['supplier_id',$supplierID],
+                ['status','2'],
+                ['action_by','2']
+            ])
+            ->first();
+        
+        if (!empty($detailPotongan)) {
+            $totalPotongan = $detailPotongan->NumRet;
+            DB::table('purchase_point')
+                ->where([
+                    ['supplier_id',$supplierID],
+                    ['status','2'],
+                    ['action_by','2']
+                ])
+                ->update([
+                    'status'=>'3'
+                ]);
+        }
+        else {
+            $totalPotongan = 0;
+        }
+
         foreach($dblp as $pl){
             $productID = $pl->product_id;
             $satuan = $pl->size;
@@ -703,7 +730,8 @@ class PurchasingController extends Controller
             ->update([
                 'status'=>'3',
                 'sub_total'=>$sumPembelian->sumPrice,
-                'total_satuan'=>$sumPembelian->jumlahProduk
+                'total_satuan'=>$sumPembelian->jumlahProduk,
+                'total_potongan'=>$totalPotongan
                 ]);
                 
         DB::table('purchase_list_order')
@@ -1313,7 +1341,7 @@ class PurchasingController extends Controller
                 'action_by'=>'1'
             ]);
     }
-    
+
     public function penggantianBarang($id){
         DB::table('purchase_point')
             ->where('supplier_id',$id)
