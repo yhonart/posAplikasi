@@ -99,7 +99,7 @@ $no = '1';
             });
 
             let satuanAsSelect = $("#satuan").val();
-            // alert (satuanAsSelect);
+            alert (productID+" "+numberPO);
             fetch("{{route('returnItem')}}/prodListAction/" + productID + "/" + numberPO)
             .then(response => response.json())
             .then(data => {                    
@@ -119,6 +119,7 @@ $no = '1';
                 } else {
                     $("#qtyPbl").value = "0";
                     $("#idLo").value = "0";
+                    $("#stock").value = "0";
                 }
             })
             .catch(error => {
