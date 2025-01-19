@@ -161,7 +161,7 @@ class ReturnItemController extends Controller
                 ])
             ->first();
 
-        $satuan = $trxPmbl->qty;
+        $satuan = $trxPmbl->size;
         $warehouse = $trxPmbl->warehouse;
 
         $mUnit = DB::table('view_product_stock')

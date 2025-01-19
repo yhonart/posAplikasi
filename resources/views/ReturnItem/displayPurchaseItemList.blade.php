@@ -99,7 +99,7 @@ $no = '1';
             });
 
             let satuanAsSelect = $("#satuan").val();
-            alert (productID+" "+numberPO);
+            // alert (productID+" "+numberPO);
             fetch("{{route('returnItem')}}/prodListAction/" + productID + "/" + numberPO)
             .then(response => response.json())
             .then(data => {                    
