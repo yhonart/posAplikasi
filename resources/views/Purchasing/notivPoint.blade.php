@@ -4,6 +4,10 @@
             <label class="label">Nilai Pengembalian Barang Sebelumnya</label>
             <input type="text" name="point" id="point" class="form-control form-control-sm  text-success font-weight-bold" value="{{number_format($disPoint->NumRet,'0',',','.')}}" readonly>
         </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-default BTN-HARGA" data-supplier = "{{$suppID}}">Gunakan Potongan Harga</button>
+            <button type="button" class="btn btn-default BTN-BARANG" data-supplier = "{{$suppID}}">Gunakan Penggantian Barang</button>
+        </div>
     </div>
     
     <div class="row">
