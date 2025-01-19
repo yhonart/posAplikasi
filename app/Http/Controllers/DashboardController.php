@@ -177,7 +177,8 @@ class DashboardController extends Controller
         // echo $condition."-".$fromDate."-".$endDate;
 
         $penjualan = DB::table('view_trx_method');
-        $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'date_trx','created_by');        
+        $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'date_trx','created_by'); 
+        $penjualan = $penjualan->where('status_by_store','>=','3');
         $penjualan = $penjualan->whereBetween('date_trx',[$fromDate,$endDate]);
         $penjualan = $penjualan->groupBy('date_trx','created_by');
         $penjualan = $penjualan->get(); 
