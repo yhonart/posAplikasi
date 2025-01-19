@@ -12,7 +12,7 @@ $kredit = 0;
                 <th>Tanggal</th>
                 <th>Sub.Kategori</th>
                 <th>Keterangan</th>
-                <th>Nomor Kendaraan</th>
+                <th>No.Kendaraan</th>
                 <th>User</th>
                 <th>Kredit</th>
                 <th>Debit</th>
@@ -61,7 +61,7 @@ $kredit = 0;
                 </tr>
             @endforeach
         </tbody>
-        <tfoot>
+        <!-- <tfoot>
             <th>Cari Tanggal</th>
             <th>Cari Sub.Kategori</th>
             <th>Cari Keterangan</th>
@@ -71,7 +71,7 @@ $kredit = 0;
             <th>Cari Debit</th>
             <th>Cari Saldo</th>
             <th>Cari Keterangan</th>
-        </tfoot>
+        </tfoot> -->
     </table>
 </div>
 <script>
@@ -84,26 +84,26 @@ $kredit = 0;
             "paging": false,
             "searching":false,
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
-            initComplete: function () {
-                this.api()
-                    .columns()
-                    .every(function () {
-                        let column = this;
-                        let title = column.footer().textContent;
+            // initComplete: function () {
+            //     this.api()
+            //         .columns()
+            //         .every(function () {
+            //             let column = this;
+            //             let title = column.footer().textContent;
         
-                        // Create input element
-                        let input = document.createElement('input');
-                        input.placeholder = title;
-                        column.footer().replaceChildren(input);
+            //             // Create input element
+            //             let input = document.createElement('input');
+            //             input.placeholder = title;
+            //             column.footer().replaceChildren(input);
         
-                        // Event listener for user input
-                        input.addEventListener('keyup', () => {
-                            if (column.search() !== this.value) {
-                                column.search(input.value).draw();
-                            }
-                        });
-                    });
-            }
+            //             // Event listener for user input
+            //             input.addEventListener('keyup', () => {
+            //                 if (column.search() !== this.value) {
+            //                     column.search(input.value).draw();
+            //                 }
+            //             });
+            //         });
+            // }
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
 </script>
