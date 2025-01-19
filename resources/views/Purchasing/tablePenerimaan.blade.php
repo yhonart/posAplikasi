@@ -52,7 +52,12 @@ $total = 0;
                                 </td>
                                 <td class="text-right font-weight-bold">
                                     <?php
-                                        $total = $ltp->sub_total - $potonganBayar;
+                                        foreach ($detailPotongan as $dp1) {
+                                            if ($dp1->supplier_id == $ltp->supplier_id) {
+                                                $total = $ltp->sub_total - $dp1->NumRet;
+                                                echo number_format($total,'0',',','.');
+                                            }
+                                        }
                                     ?>
                                 </td>
                                 <td>
