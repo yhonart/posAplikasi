@@ -6,6 +6,7 @@ $statusDokumen = array(
     3=>"Disetujui"
 );
 $total = 0;
+$potonganBayar = 0;
 ?>
 <div class="row">
     <div class="col-12">
@@ -27,6 +28,13 @@ $total = 0;
                     </thead>
                     <tbody>
                         @foreach($listTablePem as $ltp)
+                            <?php
+                                if (!empty($detailPotongan)) {
+                                    if ($detailPotongan->supplier_id == $ltp->supplier_id) {
+                                        $potonganBayar = $detailPotongan->NumRet;
+                                    }
+                                }
+                            ?>
                             <tr>
                                 <td>{{$ltp->delivery_date}}</td>
                                 <td>
@@ -41,11 +49,11 @@ $total = 0;
                                     {{number_format($ltp->sub_total,'0',',','.')}}
                                 </td>
                                 <td class="text-right font-weight-bold">
-                                    {{number_format($ltp->total_potongan,'0',',','.')}}
+                                    {{number_format($potonganBayar,'0',',','.')}}
                                 </td>
                                 <td class="text-right font-weight-bold">
                                     <?php
-                                        $total = $ltp->sub_total - $ltp->total_potongan;
+                                        $total = $ltp->sub_total - $potonganBayar;
                                     ?>
                                 </td>
                                 <td>

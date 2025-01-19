@@ -466,8 +466,17 @@ class PurchasingController extends Controller
             }
             $listTablePem = $listTablePem->orderBy('id_purchase','desc');
             $listTablePem = $listTablePem->get();
-            
-        return view ('Purchasing/tablePenerimaan', compact('listTablePem','approval','status','fromDate','endDate'));
+
+        //Chek potongan
+        $detailPotongan = DB::table('purchase_point')
+            ->select(DB::raw('SUM(nom_return) as NumRet'),'supplier_id')
+            ->where([
+                ['status','2'],
+                ['action_by','2']
+            ])
+            ->first();
+
+        return view ('Purchasing/tablePenerimaan', compact('listTablePem','approval','status','fromDate','endDate','detailPotongan'));
     }
 
     //Purchase Dashboard
