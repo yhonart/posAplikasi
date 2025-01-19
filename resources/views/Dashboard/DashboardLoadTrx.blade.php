@@ -63,69 +63,64 @@
         <div id="tableDataOnClick"></div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-12">
-        <div class="card card-body border-info">
-            <div class="row">
-                <div class="col-md-12">
-                    <button class="btn bg-indigo m-1 elevation-1 " id="btnLap1"><i class="fa-solid fa-file-pdf"></i> Laporan Kasir</button>
-                    <button class="btn bg-indigo m-1 elevation-1 " id="btnLap2"><i class="fa-solid fa-file-pdf"></i> Ringkasan Laporan Kasir</button>
-                    <button class="btn bg-success m-1 elevation-1 " id="btnLapxls"><i class="fa-solid fa-file-excel"></i> Laporan Harian excel</button>
-                </div>
-            </div>
-            <div class="row">
-                <!-- Diagram  -->
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <select name="pilihTahun" id="pilihTahun" class="form-control form-control-sm">
-                            @foreach($selectYear as $sy)
-                                <option value="{{$sy->years}}">{{$sy->years}}</option>
-                            @endforeach
-                        </select>    
-                    </div>    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="pembelianVsPenjualan"></div>
-                        </div>
-                    </div>                
-                </div>
+        <button class="btn bg-indigo m-1 elevation-1 " id="btnLap1"><i class="fa-solid fa-file-pdf"></i> Laporan Kasir</button>
+        <button class="btn bg-indigo m-1 elevation-1 " id="btnLap2"><i class="fa-solid fa-file-pdf"></i> Ringkasan Laporan Kasir</button>
+        <button class="btn bg-success m-1 elevation-1 " id="btnLapxls"><i class="fa-solid fa-file-excel"></i> Laporan Harian excel</button>
+    </div>
+</div>
 
-                <!-- List Transaksi Per Kasir -->
-                 <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Transaksi Per Kasir</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body p-0">
-                            <table class="table table-striped projects">
-                                <thead>
-                                    <tr>
-                                        <th>Tanggal</th>
-                                        <th>Nama Kasir</th>
-                                        <th>Total Penerimaan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($penjualan as $p)
-                                        <tr>
-                                            <td>{{date("d-M-y", strtotime($p->date_trx))}}</td>
-                                            <td>{{$p->created_by}}</td>
-                                            <td class="text-right">{{number_format($p->paymentCus,'0',',','.')}}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                 </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group row">
+            <div class="col-md-6">
+                <select name="pilihTahun" id="pilihTahun" class="form-control form-control-sm">
+                    @foreach($selectYear as $sy)
+                        <option value="{{$sy->years}}">{{$sy->years}}</option>
+                    @endforeach
+                </select> 
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="pembelianVsPenjualan"></div>
+            </div>
+        </div>     
+    </div>  
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Transaksi Per Kasir</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Nama Kasir</th>
+                            <th>Total Penerimaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($penjualan as $p)
+                            <tr>
+                                <td>{{date("d-M-y", strtotime($p->date_trx))}}</td>
+                                <td>{{$p->created_by}}</td>
+                                <td class="text-right">{{number_format($p->paymentCus,'0',',','.')}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> 
 </div>
 
 <script>
