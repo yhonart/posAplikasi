@@ -1,5 +1,6 @@
 <?php
     $sumRecord = '0';
+    $sumPendapatan = 0;
 ?>
 <div class="row mb-2">
     <div class="col-lg-3 col-6">
@@ -118,7 +119,15 @@
                                 <td>{{$p->created_by}}</td>
                                 <td class="text-right">{{number_format($p->paymentCus,'0',',','.')}}</td>
                             </tr>
+                            <?php
+                                $sumPendapatan +=$p->paymentCus
+                            ?>
                         @endforeach
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="font-weight-bold">{{number_format($sumPendapatan,'0',',','.')}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
