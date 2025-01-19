@@ -41,7 +41,7 @@ $total = 0;
                                 <td class="text-right font-weight-bold">
                                     {{number_format($ltp->sub_total,'0',',','.')}}
                                 </td>
-                                <td class="text-right font-weight-bold">
+                                <td class="text-right font-weight-bold text-danger">
                                     <?php
                                         foreach ($detailPotongan as $dp) {
                                             if ($dp->supplier_id == $ltp->supplier_id) {
