@@ -39,27 +39,27 @@ $sumPembelian = 0;
                         ?>
                     </td> 
                 </tr>
-                @foreach($pembelian as $pmb)
-                    <tr>
-                        <td>{{date('d-M-Y', strtotime($pmb->delivery_date))}}</td>
-                        <td>{{$pmb->purchase_number}}</td>
-                        <td>
-                            <a href="#" class="text-primary">
-                                Pembayaran {{$pmb->store_name}}
-                            </a>
-                        </td>
-                        <td></td>
-                        <td class="text-right">{{number_format($pmb->sub_total,'0',',','.')}}</td>
-                        <td class="text-right font-weight-bold">
-                            <?php
-                                $sumPembelian += $pmb->sub_total;
-                                $saldoPembelian = $saldoPenjualan - $sumPembelian;
-                                echo number_format($saldoPembelian,'0',',','.');
-                            ?>
-                        </td>
-                    </tr>
-                @endforeach
             @endforeach           
+            @foreach($pembelian as $pmb)
+                <tr>
+                    <td>{{date('d-M-Y', strtotime($pmb->delivery_date))}}</td>
+                    <td>{{$pmb->purchase_number}}</td>
+                    <td>
+                        <a href="#" class="text-primary">
+                            Pembayaran {{$pmb->store_name}}
+                        </a>
+                    </td>
+                    <td></td>
+                    <td class="text-right">{{number_format($pmb->sub_total,'0',',','.')}}</td>
+                    <td class="text-right font-weight-bold">
+                        <?php
+                            $sumPembelian += $pmb->sub_total;
+                            $saldoPembelian = $saldoPenjualan - $sumPembelian;
+                            echo number_format($saldoPembelian,'0',',','.');
+                        ?>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
         <tfoot>
             <tr>
@@ -82,7 +82,7 @@ $sumPembelian = 0;
             "dom": 'Bfrtip',
             "paging": false,
             "searching":false,
-            "ordering":true,
+            "ordering":false,
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
             initComplete: function () {
                 this.api()
