@@ -27,7 +27,6 @@
                         <th>Qty.Retur</th>
                         <th>Hrg.Satuan</th>
                         <th>Jml.Retur</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,13 +38,51 @@
                             <td><span class="font-weight-bold text-indigo">{{$iR->return}} {{$iR->unit}}</span></td>
                             <td class="text-right">{{number_format($iR->unit_price,'0',',','.')}}</td>
                             <td class="text-right">{{number_format($iR->total_price,'0',',','.')}}</td>
-                            <td>
-                                
-                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+            $(".BTN-HARGA").on('click', function (e) {
+                e.preventDefault();
+                $(".LOAD-SPINNER").fadeIn();
+                let supplierID = $(this).attr('data-supplier');
+                alertify.confirm("Anda akan menggunakan potongan harga dari harga retur sebelumnya ?",
+                function(){
+                    $.ajax({
+                        type : 'get',
+                        url : "{{route('Purchasing')}}/potonganHarga/"+supplierID,
+                        success : function(response){
+                            $(".LOAD-SPINNER").fadeOut();
+                        }
+                    });
+                },
+                function(){
+                    alertify.error('Cancel');
+                });
+            });
+            $(".BTN-BARANG").on('click', function (e) {
+                e.preventDefault();
+                $(".LOAD-SPINNER").fadeIn();
+                let supplierID = $(this).attr('data-supplier');
+                alertify.confirm("Item yang di retur sebelumnya akan di ganti dengan item baru.",
+                function(){
+                    $.ajax({
+                        type : 'get',
+                        url : "{{route('Purchasing')}}/penggantianBarang/"+supplierID,
+                        success : function(response){
+                            $(".LOAD-SPINNER").fadeOut();
+                        }
+                    });
+                },
+                function(){
+                    alertify.error('Cancel');
+                });
+            });
+        });
+    </script>
 @endif

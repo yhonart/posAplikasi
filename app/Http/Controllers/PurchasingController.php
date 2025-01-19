@@ -1304,4 +1304,22 @@ class PurchasingController extends Controller
             ->get();
         return view('Purchasing/PurchaseOrder/modalDetailKreditPembayaran', compact('tbPembayaran','noDok'));                
     }
+
+    public function potonganHarga($id){
+        DB::table('purchase_point')
+            ->where('supplier_id',$id)
+            ->update([
+                'status'=>'2',
+                'action_by'=>'1'
+            ]);
+    }
+    
+    public function penggantianBarang($id){
+        DB::table('purchase_point')
+            ->where('supplier_id',$id)
+            ->update([
+                'status'=>'2',
+                'action_by'=>'2'
+            ]);
+    }
 }
