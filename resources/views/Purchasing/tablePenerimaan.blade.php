@@ -43,11 +43,12 @@ $total = 0;
                                 </td>
                                 <td class="text-right font-weight-bold">
                                     <?php
-                                        if ($detailPotongan->supplier_id == $ltp->supplier_id) {
-                                            $potonganBayar = $detailPotongan->NumRet;
+                                        foreach ($detailPotongan as $dp) {
+                                            if ($dp->supplier_id == $ltp->supplier_id) {
+                                                echo number_format($dp->NumRet,'0',',','.');
+                                            }
                                         }
                                     ?>
-                                    {{number_format($potonganBayar,'0',',','.')}}
                                 </td>
                                 <td class="text-right font-weight-bold">
                                     <?php
