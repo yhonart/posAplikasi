@@ -10,8 +10,8 @@
         </div>
         <div class="col-md-8">
             <div class="btn-group">
-                <button type="button" class="btn btn-outline-primary BTN-HARGA" data-supplier = "{{$suppID}}">Gunakan Potongan Harga</button>
-                <button type="button" class="btn btn-outline-primary BTN-BARANG" data-supplier = "{{$suppID}}">Gunakan Penggantian Barang</button>
+                <button type="button" class="btn btn-outline-primary BTN-HARGA font-weight-bold" data-supplier = "{{$suppID}}">Gunakan Potongan Harga</button>
+                <button type="button" class="btn btn-outline-primary BTN-BARANG font-weight-bold" data-supplier = "{{$suppID}}">Gunakan Penggantian Barang</button>
             </div>
         </div>
     </div>
