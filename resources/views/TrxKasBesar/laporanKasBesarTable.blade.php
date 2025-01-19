@@ -78,7 +78,7 @@ $sumPembelian = 0;
             "ordering":false,
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
             "columnDefs": [                
-                { targets: [ 4,5 ], className: 'dt-left' }
+                { targets: [ 4,5 ], className: 'dt-right' }
             ],
             // initComplete: function () {
             //     this.api()
