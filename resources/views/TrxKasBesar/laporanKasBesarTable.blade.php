@@ -39,7 +39,23 @@ $sumPembelian = 0;
                         ?>
                     </td> 
                 </tr>
-            @endforeach           
+            @endforeach   
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Total Penjualan</td>
+                <td>
+                    <?php
+                        echo number_format($saldoPenjualan,'0',',','.');
+                    ?>
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    
+                </td>
+            </tr>        
             @foreach($pembelian as $pmb)
                 <tr>
                     <td>{{date('d-M-Y', strtotime($pmb->delivery_date))}}</td>
