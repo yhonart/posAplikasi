@@ -474,6 +474,7 @@ class PurchasingController extends Controller
                 ['status','2'],
                 ['action_by','2']
             ])
+            ->groupBy('supplier_id')
             ->first();
 
         return view ('Purchasing/tablePenerimaan', compact('listTablePem','approval','status','fromDate','endDate','detailPotongan'));
