@@ -63,6 +63,7 @@
                 },
                 function(){
                     alertify.error('Cancel');
+                    $(".LOAD-SPINNER").fadeOut();
                 });
             });
             $(".BTN-BARANG").on('click', function (e) {
@@ -81,6 +82,7 @@
                 },
                 function(){
                     alertify.error('Cancel');
+                    $(".LOAD-SPINNER").fadeOut();
                 });
             });
         });
