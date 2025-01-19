@@ -34,8 +34,8 @@ $sumPembelian = 0;
                     <td class="text-right"></td> 
                     <td class="text-right font-weight-bold">
                         <?php
-                            // $saldoPenjualan += $tbPenjualan->paymentCus;
-                            // echo number_format($saldoPenjualan,'0',',','.');
+                            $saldoPenjualan += $tbPenjualan->paymentCus;
+                            echo number_format($saldoPenjualan,'0',',','.');
                         ?>
                     </td> 
                 </tr>
@@ -53,9 +53,9 @@ $sumPembelian = 0;
                     <td class="text-right">{{number_format($pmb->sub_total,'0',',','.')}}</td>
                     <td class="text-right font-weight-bold">
                         <?php
-                            // $sumPembelian += $pmb->sub_total;
-                            // $saldoPembelian = $saldoPenjualan - $sumPembelian;
-                            // echo number_format($saldoPembelian,'0',',','.');
+                            $sumPembelian += $pmb->sub_total;
+                            $saldoPembelian = $saldoPenjualan - $sumPembelian;
+                            echo number_format($saldoPembelian,'0',',','.');
                         ?>
                     </td>
                 </tr>
@@ -83,28 +83,28 @@ $sumPembelian = 0;
             "dom": 'Bfrtip',
             "paging": false,
             "searching":false,
-            "ordering":true,
+            "ordering":false,
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
-            initComplete: function () {
-                this.api()
-                .columns()
-                .every(function () {
-                    let column = this;
-                    let title = column.footer().textContent;
+            // initComplete: function () {
+            //     this.api()
+            //     .columns()
+            //     .every(function () {
+            //         let column = this;
+            //         let title = column.footer().textContent;
     
-                    // Create input element
-                    let input = document.createElement('input');
-                    input.placeholder = title;
-                    column.footer().replaceChildren(input);
+            //         // Create input element
+            //         let input = document.createElement('input');
+            //         input.placeholder = title;
+            //         column.footer().replaceChildren(input);
     
-                    // Event listener for user input
-                    input.addEventListener('keyup', () => {
-                        if (column.search() !== this.value) {
-                            column.search(input.value).draw();
-                        }
-                    });
-                });
-            }
+            //         // Event listener for user input
+            //         input.addEventListener('keyup', () => {
+            //             if (column.search() !== this.value) {
+            //                 column.search(input.value).draw();
+            //             }
+            //         });
+            //     });
+            // }
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
 </script>
