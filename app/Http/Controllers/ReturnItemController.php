@@ -269,21 +269,57 @@ class ReturnItemController extends Controller
             ]);
             
         $nomReturn = $hrgSatuan * $qtyReturn;  
+
+        //Hitung Konversi 
+        $mProduct = DB::table('m_product')
+            ->where('idm_data_product',$listLO->product_id)
+            ->first();
+
+        $volB = $mProduct->large_unit_val;
+        $volK = $mProduct->medium_unit_val;
+        $volKonv = $mProduct->small_unit_val;
+
+        $mUnit = DB::table('m_product_unit')
+            ->select('size_code','product_volume')
+            ->where('core_id_product',$listLO->product_id)
+            ->orderBy('size_code','desc')
+            ->first();   
+        $sizeCodeDesc = $mUnit->size_code;
+        if ($sizeCodeDesc == '1') {
+            $qtyReport = $qty;
+        }
+        elseif ($sizeCodeDesc == '2') {
+            if ($satuan == "BESAR") {
+                $qtyReport1 = $qty * $volB;
+                $qtyReport = (int)$qtyReport1;
+            }
+            elseif ($satuan == "KECIL") {
+                $qtyReport = $qty;
+            }
+        }
+        elseif ($sizeCodeDesc == '3') {
+            if ($satuan == "BESAR") {
+                $qtyReport1 = $qty * $volKonv;
+                $qtyReport = (int)$qtyReport1;
+            }
+            elseif ($satuan == "KECIL") {
+                $qtyReport1 = $qty * $volK;
+                $qtyReport = (int)$qtyReport1;
+            }
+            elseif ($satuan == "KONV") {
+                $qtyReport = $qty;
+            }
+        }   
         DB::table('purchase_point')
             ->insert([
                 'purchase_number'=>$purchNumber,
                 'supplier_id'=>$docPurchase->supplier_id,
                 'nom_return'=>$jumlahHrg,
-                'status'=>'1'
-                ]);
-        
-        $mUnit = DB::table('m_product_unit')
-            ->where('core_id_product',$listLO->product_id)
-            ->get();
-        
-         
-        $updateInv = $this->TempInventoryController->stockControl($productID, $location, $stockAkhir, $satuan); 
-
+                'status'=>'1',
+                'total_item'=>$qtyReport,
+                'product_id'=>$listLO->product_id
+            ]);         
+        $this->TempInventoryController->stockControl($productID, $location, $stockAkhir, $satuan); 
         return back();
     }
 
