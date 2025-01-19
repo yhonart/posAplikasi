@@ -160,6 +160,17 @@ class ReturnItemController extends Controller
                 ['purchase_number',$numberPO]
                 ])
             ->first();
+
+        $satuan = $trxPmbl->qty;
+        $warehouse = $trxPmbl->warehouse;
+
+        $mUnit = DB::table('view_product_stock')
+            ->where([
+                ['idm_data_product',$prdID],
+                ['product_size',$satuan],
+                ['location_id',$warehouse]
+                ])
+            ->first();
            
         return response()->json([
             'qtyPB' => $trxPmbl->qty,
@@ -167,6 +178,8 @@ class ReturnItemController extends Controller
             'dataId' => $trxPmbl->id_lo,
             'price' => $trxPmbl->unit_price,
             'warehouse' => $trxPmbl->site_name,            
+            'stock' => $mUnit->stock,
+            'unit' => $mUnit->product_satuan,
         ]);
         return response()->json(['error' => 'Product not found'], 404);
     }

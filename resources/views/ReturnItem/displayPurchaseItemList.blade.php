@@ -103,7 +103,7 @@ $no = '1';
             fetch("{{route('returnItem')}}/prodListAction/" + productID + "/" + numberPO)
             .then(response => response.json())
             .then(data => {                    
-                if ((data.qtyPB || data.unitPB || data.dataId)) {
+                if ((data.qtyPB || data.unitPB || data.dataId || data.qtyPB || data.warehouse || data.stock || data.unit)) {
                     hargaSatuan.value = accounting.formatMoney(data.price,{
                         symbol: "",
                         precision: 0,
@@ -114,7 +114,8 @@ $no = '1';
                     $("#idLo").val(data.dataId);
                     $("#recive").val(data.qtyPB);
                     $("#wh").val(data.warehouse);
-                    $("#wh").val(data.warehouse);
+                    $("#stock").val(data.stock);
+                    $("#unit").val(data.unit);
                 } else {
                     $("#qtyPbl").value = "0";
                     $("#idLo").value = "0";
@@ -132,7 +133,7 @@ $no = '1';
                 prdID = $("#selectProduct").val(),
                 idLo = $("#idLo").val();
             
-            alert(satuanUnit+" "+prdID+" "+idLo);
+            // alert(satuanUnit+" "+prdID+" "+idLo);
                             
             // FATCH DATA SATUAN
             fetch("{{route('returnItem')}}/satuanAction/" + satuanUnit + "/" + prdID + "/" + idLo)
