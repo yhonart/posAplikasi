@@ -35,7 +35,7 @@ $kredit = 0;
             @foreach($tablePengeluaran as $tbPengeluaran)
                 <tr>
                     <td>{{date("d-M-Y", strtotime($tbPengeluaran->kas_date))}}</td>
-                    <td>{{$tbPengeluaran->cat_name}} - {{$tbPengeluaran->subcat_name}}</td>
+                    <td>{{$tbPengeluaran->cat_name}}<br>{{$tbPengeluaran->subcat_name}}</td>
                     <td>
                         {{$tbPengeluaran->description}}
                     </td>
@@ -82,7 +82,7 @@ $kredit = 0;
             "autoWidth": false,
             "dom": 'Bfrtip',
             "paging": false,
-            "searching":false,
+            "searching":true,
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
             // initComplete: function () {
             //     this.api()
