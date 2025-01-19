@@ -126,7 +126,7 @@
                         <tr>
                             <td></td>
                             <td></td>
-                            <td class="font-weight-bold">{{number_format($sumPendapatan,'0',',','.')}}</td>
+                            <td class="font-weight-bold text-right">{{number_format($sumPendapatan,'0',',','.')}}</td>
                         </tr>
                     </tbody>
                 </table>
