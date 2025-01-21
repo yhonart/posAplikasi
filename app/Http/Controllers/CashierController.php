@@ -11,11 +11,14 @@ use Illuminate\Support\Facades\Hash;
 class CashierController extends Controller
 {
     protected $tempInv;
+    protected $tempKasBesar;
     protected $TempInventoryController;
+    protected $TempKeuanganController;
 
-    public function __construct(TempInventoryController $tempInv)
+    public function __construct(TempInventoryController $tempInv, TempKeuanganController $tempKasBesar)
     {
         $this->TempInventoryController = $tempInv;
+        $this->TempKeuanganController = $tempKasBesar;
     }
 
     // CEK INFORMASI USER TERKAIT AREA KERJA YANG TERDAFTAR PADA SISTEMre
@@ -173,7 +176,7 @@ class CashierController extends Controller
         }
         
         return $nomorstruk;
-    }
+    }    
 
     public function mainCashier()
     {
@@ -2209,6 +2212,7 @@ class CashierController extends Controller
                     'transaction'=>"Sale",                    
                 ]);
             }
+            $this->TempKeuanganController->kasBesarPenjualan($tBelanja, $updateBy);        
         } 
         //Transaksi return/edit transaksi setelah pembayaran
         elseif ($record >= '1') {
@@ -2236,8 +2240,9 @@ class CashierController extends Controller
                     'status2'=>$returnBy,
                 ]);
             }
+            $this->TempKeuanganController->kasBesarPenjualan($tBelanja, $updateBy);
         } 
-        //Transaksi Hutang
+        //Transaksi Hutang dan tidak ada riwayat input yang sama 
         elseif ($tPembayaran < $tBelanja and $record == '0') {
             //Cek data pinjaman member
             $status = "3";
