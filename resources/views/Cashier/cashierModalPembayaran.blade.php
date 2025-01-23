@@ -229,25 +229,28 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-12 col-md-3">
+                                <div class="col-md-3">
                                     <div class="from-group">
                                         <select name="typeCetak" id="typeCetak" class="form-control ">
                                             <option value="1">Cetak Struk</option>
                                             <option value="2">Cetak Faktur</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <p id="notif-error"></p>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <a class="btn bg-success  font-weight-bold" id="btnSimpanTrx">
+                                </div>                                
+                                <div class="col-md-3">
+                                    <a class="btn bg-success font-weight-bold btn-block" id="btnSimpanTrx">
                                         [Ctrl+S] Simpan & Cetak
                                     </a>
-                                    <a class="btn bg-primary  font-weight-bold" id="btnBatalTrx" data-dismiss="modal">
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="btn bg-primary font-weight-bold btn-block" id="btnBatalTrx" data-dismiss="modal">
                                         [ESC] Tutup Pembayaran
-                                    </a>
-                                    
+                                    </a>  
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <p id="notif-error"></p>
                                 </div>
                             </div>
                         </form>
@@ -386,7 +389,7 @@
                 bankAccount = $("#bankAccount").val(),
                 billNumber = "{{$noBill}}",
                 totalBelanja = $("#tBelanja").val();
-                
+
             $.ajax({
                 url: "{{route('Cashier')}}/buttonAction/postDataMethodPembayaran",
                 type: 'post',
