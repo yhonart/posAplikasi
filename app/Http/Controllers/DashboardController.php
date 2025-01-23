@@ -184,7 +184,7 @@ class DashboardController extends Controller
         
         // echo $condition."-".$fromDate."-".$endDate;
         if($condition == "alltrx"){
-            $allCondition = DB::table('view_trx_method');
+            $allCondition = DB::table('view_trx_method');            
             $allCondition = $allCondition->where('status_by_store','>=','3');
             $allCondition = $allCondition->whereBetween('date_trx',[$fromDate, $endDate]);
             $allCondition = $allCondition->orderBy('core_id_trx','asc');

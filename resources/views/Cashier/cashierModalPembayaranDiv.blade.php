@@ -27,10 +27,11 @@
         }
     });
     function saveMethod(editTableObj,tableName,column,id,tableID) {
+        let valMethod = $("#editMetodePembayaran").val();
         $.ajax({
-            url: "{{route('home')}}/GlobalLiveEditTable",
+            url: "{{route('Cashier')}}/buttonAction/changeTwoPayment",
             type: "POST",
-            data:'tableName='+tableName+'&column='+column+'&editVal='+editTableObj.value+'&id='+id+'&tableId='+tableID,
+            data:'tableName='+tableName+'&column='+column+'&editVal='+editTableObj.value+'&id='+id+'&tableId='+tableID+'&method='+valMethod,
             success: function(data){
                 alertify.warning('Success');
             }

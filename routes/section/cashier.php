@@ -33,6 +33,7 @@ Route::get('Cashier/buttonAction/dataPelunasan', [App\Http\Controllers\CashierCo
 Route::get('Cashier/buttonAction/modalPembayaran/{noBill}/{tBayar}/{tBill}', [App\Http\Controllers\CashierController::class, 'modalPembayaran']);
 Route::post('Cashier/buttonAction/postDataPembayaran', [App\Http\Controllers\CashierController::class, 'postDataPembayaran']);
 Route::post('Cashier/buttonAction/postDataMethodPembayaran', [App\Http\Controllers\CashierController::class, 'postDataMethodPembayaran']);
+Route::post('Cashier/buttonAction/changeTwoPayment', [App\Http\Controllers\CashierController::class, 'changeTwoPayment']);
 Route::get('Cashier/buttonAction/loadDataMethod/{noBill}', [App\Http\Controllers\CashierController::class, 'loadDataMethod']);
 
 

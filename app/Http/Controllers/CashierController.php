@@ -2037,6 +2037,29 @@ class CashierController extends Controller
 
     }
 
+    public function changeTwoPayment(Request $reqChangePayment)
+    {
+        $tableName = $reqChangePayment->tableName;
+        $column = $reqChangePayment->column;
+        $editVal = $reqChangePayment->editVal;
+        $id = $reqChangePayment->id;
+        $tableId = $reqChangePayment->tableId;
+        $method = $reqChangePayment->method;
+
+
+        DB::table($tableName)
+            ->where($tableId,$id)
+            ->update([
+                $column => $editVal
+            ]);
+        
+        if ($method <> '8') {
+            $updateBy = Auth::user()->name;
+            $postNominal = $editVal;
+            $this->TempKeuanganController->kasBesarPenjualan($postNominal, $updateBy);
+        }
+    }
+
     public function loadDataMethod($noBill)
     {
         $tableMethod = DB::table('tr_payment_method as a')
