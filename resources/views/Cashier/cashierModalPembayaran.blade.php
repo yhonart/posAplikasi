@@ -163,7 +163,7 @@
                                 <div class="col-12"> 
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="radioMethod" id="radioMethod" value="1" onclick="myFunctionChecked()">
-                                        <label class="form-check-label">Metode Pembayaran Lebih Dari 2</label>
+                                        <label class="form-check-label font-weight-bold">Metode Pembayaran Lebih Dari 2</label>
                                     </div>
                                 </div>
                             </div>
@@ -386,6 +386,7 @@
                 bankAccount = $("#bankAccount").val(),
                 billNumber = "{{$noBill}}",
                 totalBelanja = $("#tBelanja").val();
+                
             $.ajax({
                 url: "{{route('Cashier')}}/buttonAction/postDataMethodPembayaran",
                 type: 'post',
