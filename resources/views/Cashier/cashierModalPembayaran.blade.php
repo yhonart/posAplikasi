@@ -228,6 +228,7 @@
                                     </table>
                                 </div>
                             </div>
+                            <hr>
                             <div class="form-group row">
                                 <div class="col-md-3">
                                     <div class="from-group">

@@ -2029,6 +2029,12 @@ class CashierController extends Controller
                     'status' => '1',
                 ]);
         }
+
+        if ($paymentMethod->category != "KREDIT") {
+            $updateBy = Auth::user()->name;
+            $this->TempKeuanganController->kasBesarPenjualan($postNominal, $updateBy);
+        }
+
     }
 
     public function loadDataMethod($noBill)
