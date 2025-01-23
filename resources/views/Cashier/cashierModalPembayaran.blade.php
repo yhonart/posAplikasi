@@ -163,7 +163,7 @@
                                 <div class="col-12"> 
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="radioMethod" id="radioMethod" value="1" onclick="myFunctionChecked()">
-                                        <label class="form-check-label font-weight-bold">Metode Pembayaran Lebih Dari 2</label>
+                                        <label class="form-check-label font-weight-bold">Metode Pembayaran Lebih Dari 1 Pembayaran</label>
                                     </div>
                                 </div>
                             </div>

@@ -2030,7 +2030,7 @@ class CashierController extends Controller
                 ]);
         }
 
-        if ($paymentMethod->category != "KREDIT") {
+        if ($paymentMethod->category <> "KREDIT" ) {
             $updateBy = Auth::user()->name;
             $this->TempKeuanganController->kasBesarPenjualan($postNominal, $updateBy);
         }
