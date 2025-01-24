@@ -9,6 +9,9 @@ class StockListController extends Controller
 {
     protected $tempInv;
     protected $tempUser;    
+    protected $TempUsersController;
+    protected $TempInventoryController;
+    
     public function __construct(TempInventoryController $tempInv, TempUsersController $tempUser)
     {
         $this->TempUsersController = $tempUser;

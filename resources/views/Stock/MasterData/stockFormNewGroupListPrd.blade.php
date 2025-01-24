@@ -17,7 +17,7 @@
             <tr>
                 <td class="p-0"><b>{{$mPrd->product_satuan}}/</b><small>{{$mPrd->product_size}}</small></td>
                 <td class="p-0">
-                    @if($mPrd->size_code == '1')
+                    @if($mPrd->size_code == '1' OR $mPrd->product_price_sell == "")
                         <input class="form-control form-control-sm  EDIT-PRICE" name="editPriceOrder" id="eeditPriceOrder" value="{{$mPrd->product_price_order}}" onchange="saveToDatabase(this,'m_product_unit','product_price_order','{{$mPrd->idm_product_satuan}}','idm_product_satuan','{{$mPrd->core_id_product}}')">
                     @else
                         <input class="form-control form-control-sm text-right  EDIT-PRICE" value="{{$mPrd->product_price_order}}" readonly>
