@@ -185,7 +185,7 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control type-account " name="nominalBayar" id="nominalBayar" autocomplete="off">
+                                                    <input type="text" class="form-control type-account " name="nominalBayar" id="nominalTwoPayment" autocomplete="off">
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-info " id="addPaymentMethod"><i class="fas fa-plus"></i></button>
@@ -384,7 +384,7 @@
         })
         $("#addPaymentMethod").on('click', function(){
             let methodName = $("#metodePembayaran").find(":selected").val(),
-                postNominal = $("#nominalBayar").val(),
+                postNominal = $("#nominalTwoPayment").val(),
                 cardName = $("#cardName").val(),
                 cardNumber = $("#cardNumber").val(),
                 bankAccount = $("#bankAccount").val(),
