@@ -397,6 +397,7 @@
                 data: {methodName:methodName,postNominal:postNominal,cardName:cardName,cardNumber:cardNumber,bankAccount:bankAccount,billNumber:billNumber,totalBelanja:totalBelanja},
                 success: function (data) {
                     $("#recordMethod").load("{{route('Cashier')}}/buttonAction/loadDataMethod/"+billNumber);
+                    $("#nominalTwoPayment").val("0");
                 }
             });
             
