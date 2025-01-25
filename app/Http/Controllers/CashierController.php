@@ -1019,7 +1019,7 @@ class CashierController extends Controller
         return view('Cashier/cashierModalDataPenjualan', compact('method', 'cekClosing', 'area','pelanggan'));
     }
 
-    public function funcDataPenjualan($fromdate, $enddate, $keyword, $method)
+    public function funcDataPenjualan($fromdate, $enddate, $keyword, $method, $customers)
     {
         $fields = ['a.billing_number', 'a.customer_name'];
         $createdBy = Auth::user()->name;
@@ -1050,6 +1050,9 @@ class CashierController extends Controller
         }        
         if ($userRole >= '2' OR $hakakses == '2') {
             $listDataSelling = $listDataSelling->where('a.created_by', $createdBy);
+        }
+        if ($customers <> '0') {
+            $listDataSelling = $listDataSelling->where('a.member_id', $customers);
         }
         $listDataSelling = $listDataSelling->where([
             ['a.status', '!=', '1'],

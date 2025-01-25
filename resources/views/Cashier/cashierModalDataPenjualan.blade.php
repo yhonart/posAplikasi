@@ -97,33 +97,36 @@
     $(document).ready(function(){
         let fromdate = $('#fromDatePenjualan').val(),
             enddate = $('#endDatePenjualan').val(),
+            customers = $('#customer').val(),
             keyword = '0',
             method = '0',
             timer_cari_equipment = null;
             
-        funcDataPenjualan(fromdate, enddate, keyword, method);
+        funcDataPenjualan(fromdate, enddate, keyword, method, customers);
         
         $("#fromDatePenjualan").change(function(){
             let fromdate = $('#fromDatePenjualan').val(),
                 enddate = $('#endDatePenjualan').val(),
                 keyword = $('#keyword').val(),
+                customers = $('#customer').val(),
                 method = $('#jenisBayar').find(":selected").val();
                 if(keyword == ''){
                     keyword = '0';
                 }
                 
-            funcDataPenjualan(fromdate, enddate, keyword, method);
+            funcDataPenjualan(fromdate, enddate, keyword, method, customers);
         });
         $("#endDatePenjualan").change(function(){
             let fromdate = $('#fromDatePenjualan').val(),
                 enddate = $('#endDatePenjualan').val(),
                 keyword = $('#keyword').val(),
+                customers = $('#customer').val(),
                 method = $('#jenisBayar').find(":selected").val();
                 if(keyword == ''){
                     keyword = '0';
                 }
                 
-            funcDataPenjualan(fromdate, enddate, keyword, method);
+            funcDataPenjualan(fromdate, enddate, keyword, method, customers);
         });
         $("#keyword").keyup(function (e) {
             e.preventDefault();
@@ -132,22 +135,35 @@
                 let fromdate = $('#fromDatePenjualan').val(),
                     enddate = $('#endDatePenjualan').val(),
                     keyword = $("#keyword").val().trim(),
+                    customers = $('#customer').val(),
                     method = $('#jenisBayar').find(":selected").val();
                 if(keyword == ''){
                     keyword = '0';
                 }
                 
-            funcDataPenjualan(fromdate, enddate, keyword, method)}, 700)
+            funcDataPenjualan(fromdate, enddate, keyword, method, customers)}, 700)
         });
         $("#jenisBayar").change(function(){
             let fromdate = $('#fromDatePenjualan').val(),
                 enddate = $('#endDatePenjualan').val(),
                 keyword = $('#keyword').val(),
+                customers = $('#customer').val(),
                 method = $(this).find(":selected").val();
                 if(keyword == ''){
                     keyword = '0';
                 }
-            funcDataPenjualan(fromdate, enddate, keyword, method);
+            funcDataPenjualan(fromdate, enddate, keyword, method, customers);
+        });
+        $("#customer").change(function(){
+            let fromdate = $('#fromDatePenjualan').val(),
+                enddate = $('#endDatePenjualan').val(),
+                keyword = $('#keyword').val(),
+                customers = $(this).find(":selected").val(),
+                method = $(this).find(":selected").val();
+                if(keyword == ''){
+                    keyword = '0';
+                }
+            funcDataPenjualan(fromdate, enddate, keyword, method, customers);
         });
         $("#btnLapor").click(function(){
             let routeIndex = "{{route('Cashier')}}",
@@ -184,10 +200,10 @@
             window.open("{{route('Cashier')}}/buttonAction/trxReportRecapPdf/"+fromdate+"/"+enddate+"/"+customer, "_blank");
         })
     });
-    function funcDataPenjualan(fromdate, enddate, keyword, method){        
+    function funcDataPenjualan(fromdate, enddate, keyword, method, customers){        
         $.ajax({
             type : 'get',
-            url : "{{route('Cashier')}}/buttonAction/dataPenjualan/funcData/"+fromdate+"/"+enddate+"/"+keyword+"/"+method,
+            url : "{{route('Cashier')}}/buttonAction/dataPenjualan/funcData/"+fromdate+"/"+enddate+"/"+keyword+"/"+method+"/"+customers,
             success : function(response){
                 $("#divDataPenjualan").html(response);
             }
