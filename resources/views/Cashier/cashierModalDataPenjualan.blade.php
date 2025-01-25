@@ -113,7 +113,7 @@
                 if(keyword == ''){
                     keyword = '0';
                 }
-                
+                alert (customers);                
             funcDataPenjualan(fromdate, enddate, keyword, method, customers);
         });
         $("#endDatePenjualan").change(function(){
