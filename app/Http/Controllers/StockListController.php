@@ -11,7 +11,7 @@ class StockListController extends Controller
     protected $tempUser;    
     protected $TempUsersController;
     protected $TempInventoryController;
-    
+
     public function __construct(TempInventoryController $tempInv, TempUsersController $tempUser)
     {
         $this->TempUsersController = $tempUser;
@@ -348,7 +348,6 @@ class StockListController extends Controller
             else {
                 $volKonv = '0';
             }
-
             
             DB::table('m_product')
                 ->insert([
@@ -595,6 +594,27 @@ class StockListController extends Controller
                     $coloumn => $editVal    
                 ]);
         }
+        elseif ($coloumn == "product_size") {
+            if ($editVal == "BESAR") {
+                $sizeCode = '1';
+            }
+            elseif ($editVal == "KECIL") {
+                $sizeCode = '2';
+            }
+            elseif ($editVal == "KONV") {
+                $sizeCode = '3';
+            }
+            else {
+                $sizeCode = '0';
+            }
+
+            DB::table($tableName)
+                ->where($tableID,$idData)
+                ->update([
+                    $coloumn => $editVal,
+                    'size_code' => $sizeCode   
+                ]);
+        }
         else{
             DB::table($tableName)
                 ->where($tableID,$idData)
@@ -602,8 +622,6 @@ class StockListController extends Controller
                     $coloumn => $editVal    
                 ]);
         }
-        
-        
         return back();
     }
     public function PostNewProductPrice(Request $reqNewPrice){
