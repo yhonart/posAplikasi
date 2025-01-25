@@ -85,7 +85,7 @@ class TempKeuanganController extends Controller
         }
         else {
              DB::table('lap_kas_besar')
-                ->where('purchase_number',$trxNumber)
+                ->where('trx_number',$trxNumber)
                 ->update([
                     'kredit'=>$nominal
                 ]);
