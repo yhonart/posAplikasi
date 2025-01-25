@@ -62,7 +62,7 @@ Route::get('Cashier/buttonAction/deleteHoldData/{noBill}', [App\Http\Controllers
 
 //PDF
 Route::get('Cashier/buttonAction/trxReportDetailPdf/{fromDate}/{endDate}', [App\Http\Controllers\CashierController::class, 'cashierReportDetailPdf']);
-Route::get('Cashier/buttonAction/trxReportRecapPdf/{fromDate}/{endDate}', [App\Http\Controllers\CashierController::class, 'cashierReportRecapPdf']);
+Route::get('Cashier/buttonAction/trxReportRecapPdf/{fromDate}/{endDate}/{customer}', [App\Http\Controllers\CashierController::class, 'cashierReportRecapPdf']);
 Route::get('Cashier/buttonAction/trxReportRecapExcel/{fromDate}/{endDate}', [App\Http\Controllers\CashierController::class, 'trxReportRecapExcel']);
 Route::get('Cashier/buttonAction/trxReportClosing/{fromDate}/{endDate}', [App\Http\Controllers\CashierController::class, 'trxReportClosing']);
 

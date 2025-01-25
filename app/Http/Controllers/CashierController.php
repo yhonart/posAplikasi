@@ -1012,7 +1012,11 @@ class CashierController extends Controller
             ])
             ->count();
 
-        return view('Cashier/cashierModalDataPenjualan', compact('method', 'cekClosing', 'area'));
+        $pelanggan = DB::table('m_customers')
+            ->where('customer_status','1')
+            ->get();
+
+        return view('Cashier/cashierModalDataPenjualan', compact('method', 'cekClosing', 'area','pelanggan'));
     }
 
     public function funcDataPenjualan($fromdate, $enddate, $keyword, $method)
@@ -2981,45 +2985,63 @@ class CashierController extends Controller
         return $pdf->stream();
     }
 
-    public function cashierReportRecapPdf($fromDate, $endDate)
+    public function cashierReportRecapPdf($fromDate, $endDate, $customer)
     {
-        $tableReport = DB::table("trx_record_view as a")
-            ->select(DB::raw('SUM(total_struk) as total_struk'), DB::raw('SUM(total_payment) as total_payment'))
-            ->leftJoin("tr_kredit as b", 'a.trx_code', '=', 'b.from_payment_code')
-            ->where([
+        $tableReport = DB::table("trx_record_view as a");
+        $tableReport = $tableReport->select(DB::raw('SUM(total_struk) as total_struk'), DB::raw('SUM(total_payment) as total_payment'));
+        $tableReport = $tableReport->leftJoin("tr_kredit as b", 'a.trx_code', '=', 'b.from_payment_code');
+        $tableReport = $tableReport->where([
                 ['a.status','!=','0']
-                ])
-            ->whereBetween('a.date_trx', [$fromDate, $endDate])
-            ->first();
+        ]);
+        if ($customer <> '0') {
+            $tableReport = $tableReport->where([
+                    ['a.member_id',$customer]
+            ]);
+        }
+        $tableReport = $tableReport->whereBetween('a.date_trx', [$fromDate, $endDate]);
+        $tableReport = $tableReport->first();
 
-        $tableReportTunai = DB::table("trx_record_view as a")
-            ->select(DB::raw('SUM(total_struk) as total_struk'), DB::raw('SUM(total_payment) as total_payment'))
-            ->leftJoin("tr_kredit as b", 'a.trx_code', '=', 'b.from_payment_code')
-            ->where([
+        $tableReportTunai = DB::table("trx_record_view as a");
+        $tableReportTunai = $tableReportTunai->select(DB::raw('SUM(total_struk) as total_struk'), DB::raw('SUM(total_payment) as total_payment'));
+        $tableReportTunai = $tableReportTunai->leftJoin("tr_kredit as b", 'a.trx_code', '=', 'b.from_payment_code');
+        $tableReportTunai = $tableReportTunai->where([
                 ['a.status','!=','0']
-                ])
-            ->whereBetween('a.date_trx', [$fromDate, $endDate])
-            ->where('a.trx_method', '1')
-            ->first();
+        ]);
+        if ($customer <> '0') {
+            $tableReportTunai = $tableReportTunai->where([
+                ['a.status','!=','0']
+            ]);
+        }
+        $tableReportTunai = $tableReportTunai->whereBetween('a.date_trx', [$fromDate, $endDate]);
+        $tableReportTunai = $tableReportTunai->where('a.trx_method', '1');
+        $tableReportTunai = $tableReportTunai->first();
 
         $trStore = DB::table("tr_store_prod_list")
             ->select('t_price', 'from_payment_code')
             ->whereBetween('date', [$fromDate, $endDate])
             ->get();
 
-        $bankTransaction = DB::table('trx_record_view')
-            ->select(DB::raw('SUM(total_payment) as totalTransfer'), 'bank_code', 'bank_name')
-            ->whereBetween('date_trx', [$fromDate, $endDate])
-            ->where([
+        $bankTransaction = DB::table('trx_record_view');
+        $bankTransaction = $bankTransaction->select(DB::raw('SUM(total_payment) as totalTransfer'), 'bank_code', 'bank_name');
+        $bankTransaction = $bankTransaction->whereBetween('date_trx', [$fromDate, $endDate]);
+        $bankTransaction = $bankTransaction->where([
                 ['status','!=','0'],
                 ['trx_method', '4']
-                ])
-            ->first();
+        ]);
+        if ($customer <> '0') {
+            $bankTransaction = $bankTransaction->where([
+                ['member_id',$customer],
+        ]);
+        }
+        $bankTransaction = $bankTransaction->first();
 
-        $creditRecord = DB::table('trx_kredit_record_view')
-            ->select(DB::raw('SUM(total_payment) as totalBon'))
-            ->whereBetween('date_trx', [$fromDate, $endDate])
-            ->first();        
+        $creditRecord = DB::table('trx_kredit_record_view');
+        $creditRecord = $creditRecord->select(DB::raw('SUM(total_payment) as totalBon'));
+        if ($customer <> '0') {
+            $creditRecord = $creditRecord->where('member_id',$customer);
+        }
+        $creditRecord = $creditRecord->whereBetween('date_trx', [$fromDate, $endDate]);
+        $creditRecord = $creditRecord->first();        
 
         $pdf = PDF::loadview('Report/cashierRecapReport', compact('fromDate', 'endDate', 'tableReport', 'trStore', 'bankTransaction', 'creditRecord', 'tableReportTunai'))->setPaper("A4", 'portrait');
         return $pdf->stream();

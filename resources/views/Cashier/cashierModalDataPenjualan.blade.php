@@ -43,7 +43,17 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-12">
-                                <input type="text" name="keyword" id="keyword" class="form-control form-control-border form-control-sm" placeholder="Cari No. Bukti / Nama Pelanggan">
+                                <input type="text" name="keyword" id="keyword" class="form-control form-control-border form-control-sm" placeholder="Cari No. Transaksi">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <select class="form-control form-control-border form-control-sm" name="customer" id="customer">
+                                    <option value="0">Nama Pelanggan</option>
+                                    @foreach($pelanggan as $p)
+                                        <option value="{{$p->idm_customer}}">{{$p->customer_store}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -77,6 +87,10 @@
             autoclose: true,
             todayHighlight: true,
         });
+        $('#customer').select2({
+            width: 'resolve',
+        });
+        $("#customer").val(null).focus();
         $('.datetimepicker-input').datepicker("setDate",new Date());
     } );
 
@@ -165,8 +179,9 @@
         })
         $("#btnLap2").click(function(){
             let fromdate = $('#fromDatePenjualan').val(),
-                enddate = $('#endDatePenjualan').val();
-            window.open("{{route('Cashier')}}/buttonAction/trxReportRecapPdf/"+fromdate+"/"+enddate, "_blank");
+                enddate = $('#endDatePenjualan').val(),
+                customer = $("#customer").val();
+            window.open("{{route('Cashier')}}/buttonAction/trxReportRecapPdf/"+fromdate+"/"+enddate+"/"+customer, "_blank");
         })
     });
     function funcDataPenjualan(fromdate, enddate, keyword, method){        
