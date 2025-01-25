@@ -82,7 +82,13 @@
     </thead>
     <tbody>
         <tr>
-            <td>Keterangan Kasir</td>
+            <td>
+                @if($customer <> '0')
+                    {{$customerIden->customer_store}} <small class="text-muted">{{$customerIden->address}}</small>
+                @else
+                    Penjualan Dari Tgl {{$fromDate}} s.d {{$endDate}}
+                @endif
+            </td>
             <td class="text-right">{{number_format($tableReport->total_struk,'0',',','.')}}</td>
             <td class="text-right">{{number_format($tableReportTunai->total_payment,'0',',','.')}}</td>
             <td class="text-right">{{number_format($bankTransaction->totalTransfer,'0',',','.')}}</td>

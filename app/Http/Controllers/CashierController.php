@@ -2989,7 +2989,7 @@ class CashierController extends Controller
     }
 
     public function cashierReportRecapPdf($fromDate, $endDate, $customer)
-    {
+    {        
         $tableReport = DB::table("trx_record_view as a");
         $tableReport = $tableReport->select(DB::raw('SUM(total_struk) as total_struk'), DB::raw('SUM(total_payment) as total_payment'));
         $tableReport = $tableReport->leftJoin("tr_kredit as b", 'a.trx_code', '=', 'b.from_payment_code');
@@ -3044,9 +3044,13 @@ class CashierController extends Controller
             $creditRecord = $creditRecord->where('member_id',$customer);
         }
         $creditRecord = $creditRecord->whereBetween('date_trx', [$fromDate, $endDate]);
-        $creditRecord = $creditRecord->first();        
+        $creditRecord = $creditRecord->first();   
+        
+        $customerIden = DB::table('m_customers')
+            ->where('idm_customer',$customer)
+            ->first();
 
-        $pdf = PDF::loadview('Report/cashierRecapReport', compact('fromDate', 'endDate', 'tableReport', 'trStore', 'bankTransaction', 'creditRecord', 'tableReportTunai'))->setPaper("A4", 'portrait');
+        $pdf = PDF::loadview('Report/cashierRecapReport', compact('fromDate', 'endDate', 'tableReport', 'trStore', 'bankTransaction', 'creditRecord', 'tableReportTunai','customer','customerIden'))->setPaper("A4", 'portrait');
         return $pdf->stream();
     }
 
