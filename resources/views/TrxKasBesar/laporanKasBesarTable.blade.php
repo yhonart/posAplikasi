@@ -36,47 +36,7 @@ $addSaldo = 0;
                         ?>
                     </td>
                 </tr>
-            @endforeach
-            @foreach($penjualan as $tbPenjualan)
-                <tr>
-                    <td>{{date('d-M-Y', strtotime($tbPenjualan->date_trx))}}</td>
-                    <td></td>
-                    <td>
-                        <a href="{{route('kasBesar')}}/detailPenjualan/{{$tbPenjualan->date_trx}}/{{$tbPenjualan->created_by}}" class="text-primary font-weight-bold">
-                            Penjualan {{$tbPenjualan->created_by}}
-                        </a>
-                    </td>
-                    <td class="text-right">{{number_format($tbPenjualan->paymentCus,'0',',','.')}}</td>
-                    <td class="text-right"></td> 
-                    <td class="text-right font-weight-bold">
-                        <?php
-                            $saldoPenjualan += $tbPenjualan->paymentCus;
-                            echo number_format($saldoPenjualan,'0',',','.');
-                        ?>
-                    </td> 
-                </tr>
-            @endforeach   
-                  
-            @foreach($pembelian as $pmb)
-                <tr>
-                    <td>{{date('d-M-Y', strtotime($pmb->delivery_date))}}</td>
-                    <td>{{$pmb->purchase_number}}</td>
-                    <td>
-                        <a href="#" class="text-primary">
-                            Pembayaran {{$pmb->store_name}}
-                        </a>
-                    </td>
-                    <td></td>
-                    <td class="text-right">{{number_format($pmb->sub_total,'0',',','.')}}</td>
-                    <td class="font-weight-bold">
-                        <?php
-                            $sumPembelian += $pmb->sub_total;
-                            $saldoPembelian = $saldoPenjualan - $sumPembelian;
-                            echo number_format($saldoPembelian,'0',',','.');
-                        ?>
-                    </td>
-                </tr>
-            @endforeach
+            @endforeach            
         </tbody>
         
     </table>
