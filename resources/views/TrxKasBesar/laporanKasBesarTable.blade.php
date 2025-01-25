@@ -51,7 +51,7 @@ $addSaldo = 0;
             "dom": 'Bfrtip',
             "paging": false,
             "searching":true,
-            "ordering":false,
+            "ordering":true,
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
             "columnDefs": [                
                 { targets: [ 3,4,5 ], className: 'dt-right' }
