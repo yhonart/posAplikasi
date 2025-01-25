@@ -5,6 +5,7 @@ $kredit = 0;
 $saldoPenjualan = 0;
 $saldoPembelian = 0;
 $sumPembelian = 0;
+$addSaldo = 0;
 ?>
 <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
 <hr>
@@ -21,6 +22,20 @@ $sumPembelian = 0;
             </tr>
         </thead>
         <tbody>
+            @foreach($lapKasBesar as $lkb)
+                <tr>
+                    <td>{{date('d-M-Y', strtotime($lkb->trx_date))}}</td>
+                    <td>{{$lkb->description}}</td>
+                    <td>{{number_format($lkb->debit,'0',',','.')}}</td>
+                    <td>{{number_format($lkb->kredit,'0',',','.')}}</td>
+                    <td>
+                        <?php
+                            $addSaldo += $lkb->debit - $lkb->kredit;
+                            echo number_format($addSaldo,'0',',','.');
+                        ?>
+                    </td>
+                </tr>
+            @endforeach
             @foreach($penjualan as $tbPenjualan)
                 <tr>
                     <td>{{date('d-M-Y', strtotime($tbPenjualan->date_trx))}}</td>

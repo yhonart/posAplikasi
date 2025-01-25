@@ -41,11 +41,22 @@ class TrxKasBesarController extends Controller
         $pembelian = $pembelian->whereBetween('delivery_date',[$fromDate,$endDate]);
         $pembelian = $pembelian->get();
         
+        //Report by table lap_kas_besar
+        $lapKasBesar = DB::table('lap_kas_besar');
+        if ($kasir <> 0) {
+            $lapKasBesar = $lapKasBesar->where([
+                ['create_by',$kasir],
+                ['trx_code','1']
+            ]);
+        }
+        $lapKasBesar = $lapKasBesar->whereBetween('trx_date',[$fromDate,$endDate]);
+        $lapKasBesar = $lapKasBesar->get();
+
         //DB Reumbers
         
                
 
-        return view('TrxKasBesar/laporanKasBesarTable', compact('pembelian','penjualan','kasir','fromDate','endDate'));        
+        return view('TrxKasBesar/laporanKasBesarTable', compact('pembelian','penjualan','kasir','fromDate','endDate','lapKasBesar'));        
     }
 
     public function detailPenjualan($date, $akun)
