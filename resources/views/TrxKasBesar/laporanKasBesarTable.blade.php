@@ -25,6 +25,7 @@ $addSaldo = 0;
             @foreach($lapKasBesar as $lkb)
                 <tr>
                     <td>{{date('d-M-Y', strtotime($lkb->trx_date))}}</td>
+                    <td>{{$lkb->trx_number}}</td>
                     <td>{{$lkb->description}}</td>
                     <td>{{number_format($lkb->debit,'0',',','.')}}</td>
                     <td>{{number_format($lkb->kredit,'0',',','.')}}</td>
