@@ -116,7 +116,7 @@
                 if (customers == null) {
                     customers = '0';
                 }
-                alert (customers);                
+                // alert (customers);                
             funcDataPenjualan(fromdate, enddate, keyword, method, customers);
         });
         $("#endDatePenjualan").change(function(){
