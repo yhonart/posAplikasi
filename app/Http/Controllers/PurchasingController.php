@@ -464,9 +464,9 @@ class PurchasingController extends Controller
 
         $paymentMethod = $selectPurchase->payment_methode;
         
-        $this->TempKeuanganController->kasBesarPembelian ($subTotal, $updateBy, $purchaseCode);
-        // if ($paymentMethod == '1' OR $paymentMethod == '2') {
-        // }
+        if ($paymentMethod == '1' OR $paymentMethod == '2') {
+            $this->TempKeuanganController->kasBesarPembelian ($subTotal, $updateBy, $purchaseCode);
+        }
     }
     
     public function tablePenerimaan($status, $fromDate, $endDate){
