@@ -13,11 +13,13 @@ class PurchasingController extends Controller
     protected $tempUser;  
     protected $TempInventoryController;
     protected $TempUsersController;
+    protected $TempKeuanganController;
 
-    public function __construct(TempInventoryController $tempInv, TempUsersController $tempUser)
+    public function __construct(TempInventoryController $tempInv, TempUsersController $tempUser, TempKeuanganController $tempKasBesar)
     {
         $this->TempInventoryController = $tempInv;
         $this->TempUsersController = $tempUser;
+        $this->TempKeuanganController = $tempKasBesar;
     }
     
     public function userApproval (){
@@ -438,6 +440,7 @@ class PurchasingController extends Controller
         $noPO = $reqPostTableSum->noPO;
         $subTotalSatuan = str_replace('.','',$reqPostTableSum->subTotalSatuan);
         $subTotal = str_replace('.','',$reqPostTableSum->subTotal);
+        $updateBy = Auth::user()->name;
         
         DB::table('purchase_order')
             ->where('purchase_number',$purchaseCode)
@@ -454,6 +457,16 @@ class PurchasingController extends Controller
                 'kredit'=>$subTotal,
                 'selisih'=>$subTotal
             ]);
+
+        $selectPurchase = DB::table('purchase_order')
+            ->where('purchase_number',$purchaseCode)
+            ->first();
+
+        $paymentMethod = $selectPurchase->payment_methode;
+        
+        if ($paymentMethod == '1' OR $paymentMethod == '2') {
+            $this->TempKeuanganController->kasBesarPembelian ($subTotal, $updateBy, $purchaseCode);
+        }
     }
     
     public function tablePenerimaan($status, $fromDate, $endDate){

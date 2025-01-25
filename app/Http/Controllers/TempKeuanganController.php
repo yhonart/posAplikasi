@@ -56,4 +56,39 @@ class TempKeuanganController extends Controller
                 ]);
         }
     }
+
+    public function kasBesarPembelian ($nominal, $createBy, $trxNumber)
+    {
+        // Cek ketersediaan data 
+        $countPembelian = DB::table('lap_kas_besar')
+            ->where('trx_number',$trxNumber)
+            ->count();
+
+        if ($countPembelian == '0') {
+            $getPurchase = DB::table('view_purchase_order')
+                ->where('purchase_number',$trxNumber)
+                ->first();
+            $dateTrx = $getPurchase->delivery_date;
+            $description = "Pembayaran ". $getPurchase->store_name ." No.". $getPurchase->purchase_number;
+                DB::table('lap_kas_besar')
+                    ->insert([
+                        'description'=>$description,
+                        'create_by'=>$createBy,
+                        'trx_date'=>$dateTrx,
+                        'debit'=>'0',
+                        'kredit'=>$nominal,
+                        'saldo'=>'0',
+                        'created_date'=>now(),
+                        'trx_number'=>$trxNumber,
+                        'trx_code'=>'2'
+                    ]);
+        }
+        else {
+             DB::table('lap_kas_besar')
+                ->where('purchase_number',$trxNumber)
+                ->update([
+                    'kredit'=>$nominal
+                ]);
+        }
+    }
 }
