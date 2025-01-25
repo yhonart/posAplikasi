@@ -113,6 +113,9 @@
                 if(keyword == ''){
                     keyword = '0';
                 }
+                if (customers == null) {
+                    customers = '0';
+                }
                 alert (customers);                
             funcDataPenjualan(fromdate, enddate, keyword, method, customers);
         });
@@ -124,6 +127,9 @@
                 method = $('#jenisBayar').find(":selected").val();
                 if(keyword == ''){
                     keyword = '0';
+                }
+                if (customers == null) {
+                    customers = '0';
                 }
                 
             funcDataPenjualan(fromdate, enddate, keyword, method, customers);
@@ -140,6 +146,9 @@
                 if(keyword == ''){
                     keyword = '0';
                 }
+                if (customers == null) {
+                    customers = '0';
+                }
                 
             funcDataPenjualan(fromdate, enddate, keyword, method, customers)}, 700)
         });
@@ -151,6 +160,9 @@
                 method = $(this).find(":selected").val();
                 if(keyword == ''){
                     keyword = '0';
+                }
+                if (customers == null) {
+                    customers = '0';
                 }
             funcDataPenjualan(fromdate, enddate, keyword, method, customers);
         });
