@@ -18,7 +18,7 @@
                             <select name="fromAkunDana" id="fromAkunDana" class="form-control">
                                 <option value="0"> ==== </option>
                                 @foreach($akunTrs as $ats)
-                                    <option value="{{$ats->lap_id}}">{{$ats->description}} @ {{number_format($ats->debit,'0',',','.')}}</option>
+                                    <option value="{{$ats->create_by}}|{{$ats->debit}}">{{$ats->description}} @ {{number_format($ats->debit,'0',',','.')}}</option>
                                 @endforeach
                             </select>
                             <br>
