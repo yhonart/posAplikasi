@@ -44,8 +44,8 @@ class TrxReumbersController extends Controller
         $mAdmin = DB::table('users')
             ->get();
         //Tampilkan tanggal minggu kemarin.
-        $today = date("Y-m-d");
-
+        $today = strtotime('today');
+        
         // Menghitung timestamp awal minggu sebelumnya (Senin)
         $lastMonday = strtotime('last monday', $today);
 
