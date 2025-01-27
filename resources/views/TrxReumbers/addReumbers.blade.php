@@ -22,7 +22,7 @@
                                 @endforeach
                             </select>
                             <br>
-                            <span>Dana diambil dari minggu lali, mulai Tanggal : {{date("d-M-Y", strtotime($lastMonday))}} s.d {{date("d-M-Y", strtotime($lastSunday))}}</span>
+                            <span>Dana diambil dari minggu lali, mulai Tanggal : {{date("d-M-Y", strtotime($startDate))}} s.d {{date("d-M-Y", strtotime($endDate))}}</span>
                         </div>
                     </div>
                     <div class="form-group row">

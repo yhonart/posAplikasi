@@ -63,7 +63,7 @@ class TrxReumbersController extends Controller
             ->groupBy('description','create_by')
             ->get();
 
-        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','lastMonday','lastSunday'));
+        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate'));
     }
 
     public function postTransaksiReumbers(Request $reqPosting)
