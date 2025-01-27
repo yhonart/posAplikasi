@@ -21,6 +21,8 @@
                                     <option value="{{$ats->lap_id}}">{{$ats->description}} @ {{number_format($ats->debit,'0',',','.')}}</option>
                                 @endforeach
                             </select>
+                            <br>
+                            <span>Dana diambil dari minggu lali, mulai Tanggal : {{date("d-M-Y", strtotime($lastMonday))}} s.d {{date("d-M-Y", strtotime($lastSunday))}}</span>
                         </div>
                     </div>
                     <div class="form-group row">

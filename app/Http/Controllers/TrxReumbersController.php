@@ -45,7 +45,7 @@ class TrxReumbersController extends Controller
             ->get();
         //Tampilkan tanggal minggu kemarin.
         $today = strtotime('today');
-        
+
         // Menghitung timestamp awal minggu sebelumnya (Senin)
         $lastMonday = strtotime('last monday', $today);
 
@@ -57,11 +57,13 @@ class TrxReumbersController extends Controller
         $endDate = date('Y-m-d', $lastSunday);
 
         $akunTrs = DB::table('lap_kas_besar')
+            ->select(DB::raw('SUM(debit) AS debit'), 'description', 'create_by')
             ->where('trx_code','1')
             ->whereBetween('trx_date',[$startDate, $endDate])
+            ->groupBy('description','create_by')
             ->get();
 
-        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber'));
+        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','lastMonday','lastSunday'));
     }
 
     public function postTransaksiReumbers(Request $reqPosting)
