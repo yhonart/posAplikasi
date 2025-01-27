@@ -4,13 +4,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Reumbersment</h1>
+                <h1 class="m-0">Pengembalian Dana</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item text-muted">Home</li>
                     <li class="breadcrumb-item text-muted">Transaksi Lain</li>
-                    <li class="breadcrumb-item text-info active">Reumbersment</li>
+                    <li class="breadcrumb-item text-info active">Pengembalian Dana</li>
                 </ol>
             </div>
         </div><!-- /.row -->
@@ -21,7 +21,7 @@
         <div class="row mb-2">
             <div class="col-md-12">
                 <button type="button" class="btn btn-primary CLIK-LAP font-weight-bold" data-display="tableReumbers"><i class="fa-solid fa-file-invoice-dollar"></i> History</button>
-                <button type="button" class="btn btn-primary CLIK-LAP font-weight-bold" data-display="addReumbers"><i class="fa-solid fa-plus"></i> Tambah Transaksi</button>
+                <button type="button" class="btn btn-primary CLIK-LAP font-weight-bold" data-display="addReumbers"><i class="fa-solid fa-plus"></i> Tambah Dana</button>
             </div>
         </div>
         <div id="displayLap"></div>

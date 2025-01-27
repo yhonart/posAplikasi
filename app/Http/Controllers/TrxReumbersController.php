@@ -43,8 +43,22 @@ class TrxReumbersController extends Controller
         
         $mAdmin = DB::table('users')
             ->get();
+        //Tampilkan tanggal minggu kemarin.
+        $today = date("Y-m-d");
 
-        $akunTrs = DB::table('view_trx_kas')
+        // Menghitung timestamp awal minggu sebelumnya (Senin)
+        $lastMonday = strtotime('last monday', $today);
+
+        // Menghitung timestamp akhir minggu sebelumnya (Minggu)
+        $lastSunday = strtotime('last sunday', $today);
+
+        // Memformat tanggal menjadi string dengan format yang diinginkan
+        $startDate = date('Y-m-d', $lastMonday);
+        $endDate = date('Y-m-d', $lastSunday);
+
+        $akunTrs = DB::table('lap_kas_besar')
+            ->where('trx_code','1')
+            ->whereBetween('trx_date',[$startDate, $endDate])
             ->get();
 
         return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber'));

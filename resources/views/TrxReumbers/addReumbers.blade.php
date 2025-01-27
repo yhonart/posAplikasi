@@ -11,44 +11,14 @@
                         <div class="col-md-4">
                             <input type="text" class="form-control" name="nomor" id="nomor" value="{{$thisNumber}}" readonly>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3">Keterangan</label>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" name="keterangan" id="keterangan">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3">User</label>
-                        <div class="col-md-4">
-                            <select name="akunUser" id="akunUser" class="form-control">
-                                <option value="0|0"> ==== </option>
-                                @foreach($mStaff as $staff)
-                                    <option value="{{$staff->idm_sales}}|{{$staff->sales_name}}">{{$staff->sales_name}} (Sales)</option>
-                                @endforeach
-                                @foreach($mAdmin as $admin)
-                                    <option value="{{$admin->id}}|{{$admin->name}}">{{$admin->name}} (Admin)</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3">Tipe Reumbers</label>
-                        <div class="col-md-4">
-                            <select name="typeReumbers" id="typeReumbers" class="form-control">
-                                <option value="0|0"> ==== </option>
-                                <option value="1|Pengembalian Dana Toko">Pengembalian Dana Toko</option>
-                                <option value="2|Dana Pribadi">Penggunaan Dana Pribadi</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row" id="disAkunDana" style="display: none;">
-                        <label class="col-md-3">Dari Dana</label>
+                    </div> 
+                    <div class="form-group row" id="disAkunDana">
+                        <label class="col-md-3">Sumber Dana Minggu Lalu</label>
                         <div class="col-md-9">
                             <select name="fromAkunDana" id="fromAkunDana" class="form-control">
                                 <option value="0"> ==== </option>
                                 @foreach($akunTrs as $ats)
-                                    <option value="{{$ats->idtr_kas}}">{{$ats->description}} @ {{number_format($ats->nominal,'0',',','.')}}</option>
+                                    <option value="{{$ats->lap_id}}">{{$ats->description}} @ {{number_format($ats->debit,'0',',','.')}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -57,6 +27,12 @@
                         <label class="col-md-3">Nominal</label>
                         <div class="col-md-6">
                             <input type="text" class="form-control price-text" name="nominal" id="nominal">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3">Keterangan</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="keterangan" id="keterangan">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -78,19 +54,7 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        });
-
-        $("#typeReumbers").change(function(){
-            changeType = $(this).val();
-
-            if (changeType === "1|Pengembalian Dana Toko") {
-                $("#disAkunDana").fadeIn("slow");
-            }
-            else{
-                $("#disAkunDana").fadeOut("slow");
-            }
-        });
-        
+        });        
         $("form#formAddReumbers").submit(function(event){
             event.preventDefault();
             var loadDiv = "listInputBarang";
