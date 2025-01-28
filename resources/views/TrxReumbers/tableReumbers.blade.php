@@ -13,12 +13,9 @@
                     <tr>
                         <th>Nomor</th>
                         <th>Tanggal</th>
-                        <th>User</th>
-                        <th>Pengembalian</th>
-                        <th>Tipe Reumbers</th>
+                        <th>Sumber Dana</th>
                         <th>Keterangan</th>
                         <th>Nominal</th>
-                        <th>Status</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -26,10 +23,8 @@
                     @foreach($tbReumbers as $tr)
                         <tr>
                             <td>{{$tr->reumbers_no}}</td>
-                            <td>{{date("d-M-Y", strtotime($tr->reumbers_date))}}</td>
-                            <td>{{$tr->persname}}</td>
-                            <td>{{$tr->from_akun}}</td>
-                            <td>{{$tr->type_reumbers}}</td>
+                            <td>{{date("d-M-Y", strtotime($tr->reumbers_date))}}</td>                            
+                            <td>{{$tr->from_akun}} @ {{number_format($tr->nominal_dana,'0',',','.')}}</td>
                             <td>{{$tr->description}}</td>
                             <td>{{$arrStatus[$tr->status]}}</td>
                             <td>{{number_format($tr->nominal,'0',',','.')}}</td>

@@ -70,16 +70,12 @@ class TrxReumbersController extends Controller
     {
         $nomor = $reqPosting->nomor;
         $keterangan = $reqPosting->keterangan;
-        $akunUser = explode("|",$reqPosting->akunUser);
-        $typeReumbers = explode("|",$reqPosting->typeReumbers);
-        $fromAkunDana = $reqPosting->fromAkunDana;
+        $fromAkunDana = explode("|",$reqPosting->fromAkunDana);
         $nominal = str_replace(".","",$reqPosting->nominal);
         $thisPeriode = date("mY");
 
-        $idUser = $akunUser[0];
-        $persname = $akunUser[1];
-        $typeCode = $typeReumbers[0];
-        $typeName = $typeReumbers[1];
+        $fromDana = $fromAkunDana[0];
+        $nominalDana = $fromAkunDana[1];
 
         $creator = Auth::user()->name;
 
@@ -87,11 +83,8 @@ class TrxReumbersController extends Controller
             ->insert([
                 'reumbers_no'=>$nomor,
                 'description'=>$keterangan,
-                'persno_id'=>$idUser,
-                'persname'=>$persname,
-                'from_akun'=>$fromAkunDana,
-                'type_reumbers'=>$typeCode,
-                'type_description'=>$typeName,
+                'from_akun'=>$fromDana,
+                'nominal_dana'=>$nominalDana,
                 'create_date'=>now(),
                 'create_by'=>$creator,
                 'status'=>'1',
