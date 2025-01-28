@@ -216,15 +216,15 @@
         });
     })
     
+    let keyWord = "{{$keyword}}",
+        fromDate = "{{$fromDate}}",
+        endDate = "{{$endDate}}",
+        actionType = '1',
+        numberingPembayaran = $("input[name=numbering]").val();
+        if (keyWord === ''){
+            keyWord = '0';
+        }            
     function saveChangePembayaran(editableObj,tablename,column,id,idKredit,codeTrx){
-        let keyWord = "{{$keyword}}",
-            fromDate = "{{$fromDate}}",
-            endDate = "{{$endDate}}",
-            actionType = '1',
-            numberingPembayaran = $("input[name=numbering]").val();
-            if (keyWord === ''){
-                keyWord = '0';
-            }            
         $.ajax({
             url: "{{route('Cashier')}}/buttonAction/dataPelunasan/actionData",
             type: "POST",
