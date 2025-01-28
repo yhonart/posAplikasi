@@ -132,7 +132,7 @@
                         @elseif($dP->status == '1')
                             @foreach($getLastRecord as $glr)
                                 @if($glr->trx_code == $dP->from_payment_code)
-                                    <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" value="{{$glr->total_payment}}">
+                                    <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" value="{{$glr->total_payment}}">
                                 @endif
                             @endforeach
                         @else
