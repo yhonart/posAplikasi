@@ -1541,6 +1541,21 @@ class CashierController extends Controller
                 'nom_kredit' => $updateKredit,
             ]); 
     }
+
+    public function actionUpdateRecord(Request $reqRecord)
+    {
+        $tableDB = $reqRecord->tablename;
+        $column = $reqRecord->column;
+        $editable = $reqRecord->editableObj;
+        $id = $reqRecord->id;
+        $idKredit = $reqRecord->idKredit;
+
+        DB::table($tableDB)
+            ->where($idKredit, $id)
+            ->update([
+                $column => $editable,
+            ]); 
+    }
     public function modalDataReturn()
     {
         return view('Cashier/cashierModalDataReturn');

@@ -41,6 +41,7 @@ Route::get('Cashier/buttonAction/printTemplateCashier/{noBill}/{typeCetak}', [Ap
 Route::get('Cashier/buttonAction/dataPelunasan/funcData/{keyword}/{fromDate}/{endDate}/{valAction}', [App\Http\Controllers\CashierController::class, 'funcDataPelunasan']);
 Route::get('Cashier/buttonAction/dataPelunasan/listDataPinjaman', [App\Http\Controllers\CashierController::class, 'listDataPinjaman']);
 Route::post('Cashier/buttonAction/dataPelunasan/actionData', [App\Http\Controllers\CashierController::class, 'actionDataPinjaman']);
+Route::post('Cashier/buttonAction/dataPelunasan/actionUpdateRecord', [App\Http\Controllers\CashierController::class, 'actionUpdateRecord']);
 Route::post('Cashier/buttonAction/dataPelunasan/postPelunasan', [App\Http\Controllers\CashierController::class, 'postPelunasan']);
 Route::get('Cashier/dataPelunasan/printPelunasan/{voucher}', [App\Http\Controllers\CashierController::class, 'printPelunasan']);
 
