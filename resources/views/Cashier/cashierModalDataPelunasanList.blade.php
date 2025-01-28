@@ -102,8 +102,7 @@
             @foreach($dataPinjaman as $dP)
                 <tr id="{{$dP->idtr_kredit}}">
                     <td>
-                        <div class="btn-group">
-                            <button class="btn btn-info btn-sm BTN-PRINT border-light" data-id="{{$dP->idtr_kredit}}"><i class="fa-solid fa-print"></i></button>
+                        <div class="btn-group">                            
                             <button class="btn btn-info btn-sm BTN-DETAIL border-light" data-id="{{$dP->idtr_kredit}}"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </td>
