@@ -1381,6 +1381,10 @@ class CashierController extends Controller
             ->select(DB::raw('DISTINCT(payment_number)'))
             ->where('member_id', $keyword)
             ->get();
+
+        $getLastRecord = DB::table('tr_kredit_record')
+            ->where('status','1')
+            ->get();
             
         if ($valAction == '1') {
             $sumPayed = DB::table('tr_kredit_record')
@@ -1390,7 +1394,7 @@ class CashierController extends Controller
                     ['status','1']
                 ])
                 ->first();
-            return view('Cashier/cashierModalDataPelunasanList', compact('dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman','accountPenjualan','sumPayed'));
+            return view('Cashier/cashierModalDataPelunasanList', compact('getLastRecord','dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman','accountPenjualan','sumPayed'));
         }
         elseif ($valAction == '3') {
             $listPembayaranCustomer = DB::table('tr_pembayaran_kredit as a')

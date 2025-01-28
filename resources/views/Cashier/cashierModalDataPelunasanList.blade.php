@@ -93,7 +93,11 @@
                 <th>Tgl. Faktur</th>
                 <th>Tgl. Jatuh Tempo</th>
                 <th>Kredit</th>
-                <th>Di Bayar</th>
+                <th>
+                    Di Bayar
+                    <br>
+                    <small>Gunakan ENTER untuk input nominal.</small>
+                </th>
                 <th>Pembayaran</th>
                 <th>Keterangan</th>
             </tr>
@@ -125,6 +129,12 @@
                     <td>
                         @if($dP->nom_payed == $dP->nominal)
                             {{number_format($dP->nom_payed,'0',',','.')}}
+                        @elseif($dP->status == '1')
+                            @foreach($getLastRecord as $glr)
+                                @if($glr->trx_code == $dP->from_payment_code)
+                                    <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">
+                                @endforeach
+                            @endforeach
                         @else
                             <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">
                         @endif
@@ -214,8 +224,7 @@
             numberingPembayaran = $("input[name=numbering]").val();
             if (keyWord === ''){
                 keyWord = '0';
-            }
-            
+            }            
         $.ajax({
             url: "{{route('Cashier')}}/buttonAction/dataPelunasan/actionData",
             type: "POST",
