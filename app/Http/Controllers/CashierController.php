@@ -1469,7 +1469,25 @@ class CashierController extends Controller
                 'status'=>'2'
             ]);
 
-        //Cek transaksi kredit sesuai idpelanggan        
+        $tb_pelanggan = DB::table('m_customer')
+            ->where('idm_customer',$idPelanggan)
+            ->first();
+
+        //Cek transaksi kredit sesuai idpelanggan  
+        $description = "Pembayaran Hutang Pelanggan ". $tb_pelanggan->customer_store . " # " . $nomorBukti;
+        DB::table('lap_kas_besar')
+            ->insert([
+                'description'=>$description,
+                'create_by'=>$userCretor,
+                'trx_date'=>now(),
+                'debit'=>$nominalBayar,
+                'kredit'=>'0',
+                'saldo'=>$nominalBayar,
+                'created_date'=>now(),
+                'trx_number'=>$nomorBukti,
+                'trx_code'=>'1',
+            ]);
+        
     }
 
     public function actionDataPinjaman(Request $reqAction)
