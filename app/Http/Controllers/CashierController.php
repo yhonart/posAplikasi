@@ -1546,7 +1546,7 @@ class CashierController extends Controller
     {
         $tableDB = $reqRecord->tablename;
         $column = $reqRecord->column;
-        $editable = str_replace(".", "", $reqRecord->editableObj);
+        $editable = str_replace(".", "", $reqRecord->editval);
         $id = $reqRecord->id;
         $idKredit = $reqRecord->idKredit;
 
