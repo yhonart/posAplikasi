@@ -1469,7 +1469,7 @@ class CashierController extends Controller
                 'status'=>'2'
             ]);
 
-        $tb_pelanggan = DB::table('m_customer')
+        $tb_pelanggan = DB::table('m_customers')
             ->where('idm_customer',$idPelanggan)
             ->first();
 
