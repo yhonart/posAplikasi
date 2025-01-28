@@ -3,8 +3,7 @@
     $grandTotalBayar = '0';
     $grandSaldoKredit = '0';
 @endphp
-<div class="card card-body table-responsive p-0" style="height:500px;">
-    <p class="text-muted">Input nominal pembayaran di kolom <b>"Di Bayar"</b></p>
+<div class="card card-body table-responsive p-0" style="height:500px;">    
     <table class="table table-valign-middle table-hover">
         <thead class="bg-gray-dark">
             <tr>

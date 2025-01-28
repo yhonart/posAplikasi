@@ -83,7 +83,7 @@
             </div>
         </div>
     </div>
-    <hr>    
+    <p class="text-muted">Input nominal pembayaran di kolom <b>"Di Bayar"</b></p>
     <table class="table table-sm table-hover text-xs table-valign-middle">
         <thead class="bg-gray-dark">
             <tr>
@@ -104,7 +104,7 @@
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-info btn-sm BTN-PRINT border-light" data-id="{{$dP->idtr_kredit}}"><i class="fa-solid fa-print"></i></button>
-                            <button class="btn btn-info btn-sm BTN-DETAIL border-light" data-id="{{$dP->idtr_kredit}}">Detail</button>
+                            <button class="btn btn-info btn-sm BTN-DETAIL border-light" data-id="{{$dP->idtr_kredit}}"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </td>
                     <td>
