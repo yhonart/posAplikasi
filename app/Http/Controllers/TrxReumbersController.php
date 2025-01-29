@@ -109,4 +109,50 @@ class TrxReumbersController extends Controller
 
         return view('TrxReumbers/tableReumbers',compact('tbReumbers'));
     }
+
+    public function AppoveReumbers($idReumbers)
+    {
+        $saldo = 0;
+        $creator = Auth::user()->name;
+        DB::table('tr_reumbersment')
+            ->where('reumbers_id',$idReumbers)
+            ->update([
+                'status'=>'1'
+            ]);
+
+        // Get Modal Terakhir 
+        $lastModal = DB::table('tr_kas')
+            ->where('nominal_modal','!=','')
+            ->orderBy('idtr_kas','desc')
+            ->first();
+
+        $nomReumbeurs = DB::table('tr_reumbersment')
+            ->where('reumbers_id',$idReumbers)
+            ->first();
+        $reumbers = $nomReumbeurs->nominal;
+        $sumber_dana = $nomReumbeurs->from_akun;
+        $lastID = $lastModal->idtr_kas;
+        $nominal = $lastModal->nominal_modal;
+
+        $getOtherTrx = DB::table('tr_kas')
+            ->where('idtr_kas','>',$lastID)
+            ->get();
+
+        foreach ($getOtherTrx as $keyVal) {
+            $saldo += $nominal - $keyVal->nominal;
+        }
+
+        $modal = $saldo + $reumbers;
+        $description = "Modal Awal ". $modal;
+        DB::table('tr_kas')
+            ->insert([
+                'description'=>$description,
+                'kas_date'=>now(),
+                'status'=>'1',
+                'created_by'=>$creator,
+                'nominal'=>'0',
+                'sumber_dana'=>$sumber_dana,
+                'nominal_modal'=>$modal
+            ]);
+    }
 }
