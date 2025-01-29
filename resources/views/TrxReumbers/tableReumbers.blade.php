@@ -66,7 +66,7 @@
             function(){
                 $.ajax({
                     type : 'get',
-                    url : "{{route('trxReumbers')}}/AppoveReumbers/"+dataEdit,
+                    url : "{{route('trxReumbers')}}/AppoveReumbers/"+dataId,
                     success : function(response){
                         $(".LOAD-SPINNER").fadeOut();
                         $("#divPageProduct").html(response);
