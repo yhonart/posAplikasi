@@ -36,7 +36,7 @@
                             <td>
                                 <a href="#" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
                                 @if($tr->status == '1')
-                                    <a href="#" class="btn btn-success btn-sm BTN-APPROVE" data-id="{{$tr->reumbers_id}}"><i class="fa-solid fa-check"></i></a>
+                                    <a href="#" class="btn btn-success btn-sm APPROVE" data-id="{{$tr->reumbers_id}}"><i class="fa-solid fa-check"></i></a>
                                 @endif
                             </td>
                         </tr>
@@ -46,37 +46,36 @@
         </div>
     </div>
 </div>
-
 <script>
-$(function(){        
-    $("#tableRiwayatPengembalian").DataTable({
-        "responsive": true, 
-        "lengthChange": false, 
-        "autoWidth": false,
-        "dom": 'Bfrtip',
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-});
-
-$(document).ready(function(){
-    $(".dataTable").on('click','.BTN-APPROVE', function (e) {
-        e.preventDefault();
-        $(".LOAD-SPINNER").fadeIn();
-        let dataId = $(this).attr('data-id');
-        alertify.confirm("Apakah anda yakin akan menyetujui transaksi ini ?",
-        function(){
-            $.ajax({
-                type : 'get',
-                url : "{{route('trxReumbers')}}/AppoveReumbers/"+dataEdit,
-                success : function(response){
-                    $(".LOAD-SPINNER").fadeOut();
-                    $("#divPageProduct").html(response);
-                }
-            });
-        },
-        function(){
-            alertify.error('Cancel');
-        }).set({title:"Konfirmasi Persetujuan Transaksi"});
+    $(function(){        
+        $("#tableRiwayatPengembalian").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
-});
+
+    $(document).ready(function(){
+        $(".dataTable").on('click','.APPROVE', function (e) {
+            e.preventDefault();
+            $(".LOAD-SPINNER").fadeIn();
+            let dataId = $(this).attr('data-id');
+            alertify.confirm("Apakah anda yakin akan menyetujui transaksi ini ?",
+            function(){
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('trxReumbers')}}/AppoveReumbers/"+dataEdit,
+                    success : function(response){
+                        $(".LOAD-SPINNER").fadeOut();
+                        $("#divPageProduct").html(response);
+                    }
+                });
+            },
+            function(){
+                alertify.error('Cancel');
+            }).set({title:"Konfirmasi Persetujuan Transaksi"});
+        });
+    });
 </script>
