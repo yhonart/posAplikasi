@@ -60,8 +60,8 @@ class TrxReumbersController extends Controller
         $mAdmin = DB::table('users')
             ->get();
 
-        $startDate = date("Y-m-d");
-        $endDate = date("Y-m-d");
+        $startDate = date("Y-m-d", strtotime($firstDayOfLastWeek));
+        $endDate = date("Y-m-d", strtotime($lastDayOfLastWeek));
 
         $akunTrs = DB::table('lap_kas_besar')
             ->select(DB::raw('SUM(debit) AS debit'), 'description', 'create_by')
