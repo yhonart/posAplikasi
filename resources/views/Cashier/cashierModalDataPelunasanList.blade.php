@@ -39,6 +39,7 @@
         </thead>
         <tbody id="userData">
             @foreach($dataPinjaman as $dP)
+                @foreach($getLastRecord as $glr)
                 <tr id="{{$dP->idtr_kredit}}">
                     <td>
                         <div class="btn-group">                            
@@ -65,13 +66,11 @@
                         @if($dP->nom_payed == $dP->nominal)
                             {{number_format($dP->nom_payed,'0',',','.')}}
                         @elseif($dP->status == '1')
-                            @foreach($getLastRecord as $glr)
-                                    {{$dP->from_payment_code}}
-                                @if($glr->trx_code == $dP->from_payment_code)
-                                    {{$glr->trx_code}}
-                                    <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangeRecord(this,'tr_kredit_record','total_payment','{{$glr->idtr_kredit_record}}','idtr_kredit_record','1')" value="{{$glr->total_payment}}">
-                                @endif
-                            @endforeach
+                                {{$dP->from_payment_code}}
+                            @if($glr->trx_code == $dP->from_payment_code)
+                                {{$glr->trx_code}}
+                                <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangeRecord(this,'tr_kredit_record','total_payment','{{$glr->idtr_kredit_record}}','idtr_kredit_record','1')" value="{{$glr->total_payment}}">
+                            @endif
                         @else
                             <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">
                         @endif
@@ -92,6 +91,7 @@
                         @endif
                     </td>
                 </tr>
+                @endforeach
             @endforeach
         </tbody>
     </table>
