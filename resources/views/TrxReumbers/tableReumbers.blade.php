@@ -37,7 +37,7 @@
                                 <a href="#" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
                                 @if($tr->status == '1')
                                     <a href="#" class="btn btn-success btn-sm BTN-APPROVE" data-id="{{$tr->reumbers_id}}"><i class="fa-solid fa-magnifying-glass"></i></a>
-                                @endforeach
+                                @endif
                             </td>
                         </tr>
                     @endforeach
