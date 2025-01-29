@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+// use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 class TrxReumbersController extends Controller
 {
     public function reumbersNumber ()
@@ -34,6 +35,21 @@ class TrxReumbersController extends Controller
 
     public function addReumbers ()
     {
+        $timezone = 'Asia/Jakarta';
+        Carbon::setLocale('id'); 
+
+        // Tentukan tanggal hari ini
+        $today = Carbon::now($timezone);
+
+        // Tentukan hari pertama minggu ini (Senin)
+        $firstDayOfThisWeek = $today->startOfWeek(Carbon::MONDAY);
+
+        // Tentukan hari pertama dari minggu sebelumnya
+        $firstDayOfLastWeek = $firstDayOfThisWeek->copy()->subWeek();
+
+        // Tentukan hari terakhir minggu sebelumnya (Minggu)
+        $lastDayOfLastWeek = $firstDayOfLastWeek->copy()->endOfWeek(Carbon::SUNDAY);
+
         $dateNow = date('Y-m-d');
         $thisNumber = $this->reumbersNumber();
 
@@ -43,18 +59,9 @@ class TrxReumbersController extends Controller
         
         $mAdmin = DB::table('users')
             ->get();
-        //Tampilkan tanggal minggu kemarin.
-        $today = strtotime('today');
 
-        // Menghitung timestamp awal minggu sebelumnya (Senin)
-        $lastMonday = strtotime('last monday', $today);
-
-        // Menghitung timestamp akhir minggu sebelumnya (Minggu)
-        $lastSunday = strtotime('last sunday', $today);
-
-        // Memformat tanggal menjadi string dengan format yang diinginkan
-        $startDate = date('Y-m-d', $lastMonday);
-        $endDate = date('Y-m-d', $lastSunday);
+        $startDate = date("Y-m-d");
+        $endDate = date("Y-m-d");
 
         $akunTrs = DB::table('lap_kas_besar')
             ->select(DB::raw('SUM(debit) AS debit'), 'description', 'create_by')
@@ -63,7 +70,7 @@ class TrxReumbersController extends Controller
             ->groupBy('description','create_by')
             ->get();
 
-        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate'));
+        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate','firstDayOfLastWeek','lastDayOfLastWeek'));
     }
 
     public function postTransaksiReumbers(Request $reqPosting)
