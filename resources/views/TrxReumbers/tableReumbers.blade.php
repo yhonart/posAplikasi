@@ -9,7 +9,7 @@
     <div class="col-md-12">
         <div class="card card-body">
             <table class="table table-sm table-valign-middle table-hover">
-                <thead>
+                <thead class="bg-gray">
                     <tr>
                         <th>Nomor</th>
                         <th>Tanggal</th>
@@ -28,7 +28,7 @@
                             <td>{{$tr->from_akun}} @ {{number_format($tr->nominal_dana,'0',',','.')}}</td>
                             <td>{{$tr->description}}</td>
                             <td>
-                                <span class="border border-info m-1 rounded-pill bg-light">
+                                <span class="border border-info p-1 rounded-pill bg-light">
                                     {{$arrStatus[$tr->status]}}
                                 </span>
                             </td>
