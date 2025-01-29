@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card card-body">
-            <table class="table table-sm table-valign-middle table-hover" id="tableRiwayatPengembalian>
+            <table class="table table-sm table-valign-middle table-hover" id="tableRiwayatPengembalian">
                 <thead class="bg-gray-dark">
                     <tr>
                         <th>Nomor</th>
