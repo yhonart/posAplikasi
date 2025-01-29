@@ -19,144 +19,155 @@
         </div>
     </div>
     <p class="text-muted">Input nominal pembayaran di kolom <b>"Di Bayar"</b></p>
-    <table class="table table-sm table-hover text-xs table-valign-middle">
-        <thead class="bg-gray-dark">
-            <tr>
-                <th></th>
-                <th>Nama Pelanggan</th>
-                <th>No. Faktur</th>
-                <th>Tgl. Faktur</th>
-                <th>Tgl. Jatuh Tempo</th>
-                <th>Kredit</th>
-                <th>
-                    Di Bayar
-                    <br>
-                    <small>Gunakan ENTER untuk input nominal.</small>
-                </th>
-                <th>Pembayaran</th>
-                <th>Keterangan</th>
-            </tr>
-        </thead>
-        <tbody id="userData">
-            @foreach($dataPinjaman as $dP)
-                <tr id="{{$dP->idtr_kredit}}">
-                    <td>
-                        <div class="btn-group">                            
-                            <button class="btn btn-info btn-sm BTN-DETAIL border-light" data-id="{{$dP->idtr_kredit}}"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </div>
-                    </td>
-                    <td>
-                        {{$dP->customer_store}}
-                    </td>
-                    <td>{{$dP->from_payment_code}}</td>
-                    <td>{{$dP->created_at}}</td>
-                    <td>
-                        <?php
-                            $createdDate = $dP->created_at;
-                            $doDate = date('Y-m-d', strtotime($createdDate.'+1 month'));;
-                        ?>
-                        {{$doDate}}
-                    </td>
-                    <td>
-                        <input type="hidden" name="nominalFaktur[]" id="nominalFaktur{{$dP->idtr_kredit}}" value="{{$dP->nom_kredit}}">
-                        <input type="text" name="selisihBayar" id="selisihBayar" value="{{number_format($dP->nominal,'0',',','.')}}" class="form-control form-control-sm form-control-border editInput nominal-selisih font-weight-bold" readonly>
-                    </td>
-                    <td>
-                        @if($dP->nom_payed == $dP->nominal)
-                            {{number_format($dP->nom_payed,'0',',','.')}}
-                        @elseif($dP->status == '1')
-                            @foreach($getLastRecord as $glr)
-                                @if($glr->trx_code == $dP->from_payment_code)
-                                    <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangeRecord(this,'tr_kredit_record','total_payment','{{$glr->idtr_kredit_record}}','idtr_kredit_record','1')" value="{{$glr->total_payment}}">
-                                @endif
-                            @endforeach
-                        @else
-                            <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">
-                        @endif
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <div class="form-check">
-                            <input class="form-check-input" type="radio" name="checkHutang" value="{{$dP->idtr_kredit}}">
-                            <label class="form-check-label"></label>
+    <div class="row">
+        <div class="col-md-12">
+        <table class="table table-sm table-hover text-xs table-valign-middle">
+            <thead class="bg-gray-dark">
+                <tr>
+                    <th></th>
+                    <th>Nama Pelanggan</th>
+                    <th>No. Faktur</th>
+                    <th>Tgl. Faktur</th>
+                    <th>Tgl. Jatuh Tempo</th>
+                    <th>Kredit</th>
+                    <th>
+                        Di Bayar
+                        <br>
+                        <small>Gunakan ENTER untuk input nominal.</small>
+                    </th>
+                    <th>Pembayaran</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody id="userData">
+                @foreach($dataPinjaman as $dP)
+                    <tr id="{{$dP->idtr_kredit}}">
+                        <td>
+                            <div class="btn-group">                            
+                                <button class="btn btn-info btn-sm BTN-DETAIL border-light" data-id="{{$dP->idtr_kredit}}"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                        </td>
+                        <td>
+                            {{$dP->customer_store}}
+                        </td>
+                        <td>{{$dP->from_payment_code}}</td>
+                        <td>{{$dP->created_at}}</td>
+                        <td>
+                            <?php
+                                $createdDate = $dP->created_at;
+                                $doDate = date('Y-m-d', strtotime($createdDate.'+1 month'));;
+                            ?>
+                            {{$doDate}}
+                        </td>
+                        <td>
+                            <input type="hidden" name="nominalFaktur[]" id="nominalFaktur{{$dP->idtr_kredit}}" value="{{$dP->nom_kredit}}">
+                            <input type="text" name="selisihBayar" id="selisihBayar" value="{{number_format($dP->nominal,'0',',','.')}}" class="form-control form-control-sm form-control-border editInput nominal-selisih font-weight-bold" readonly>
+                        </td>
+                        <td>
+                            @if($dP->nom_payed == $dP->nominal)
+                                {{number_format($dP->nom_payed,'0',',','.')}}
+                            @elseif($dP->status == '1')
+                                @foreach($getLastRecord as $glr)
+                                    @if($glr->trx_code == $dP->from_payment_code)
+                                        <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangeRecord(this,'tr_kredit_record','total_payment','{{$glr->idtr_kredit_record}}','idtr_kredit_record','1')" value="{{$glr->total_payment}}">
+                                    @endif
+                                @endforeach
+                            @else
+                                <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">
+                            @endif
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="checkHutang" value="{{$dP->idtr_kredit}}">
+                                <label class="form-check-label"></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            @if($dP->nom_payed == $dP->nominal)
+                                <span class="text-success font-weight-bold">LUNAS</span>
+                            @else
+                                <input type="text" class="form-control form-control-sm form-control-border editInput keterangan" name="keteranganHtg" id="keteranganHtg" placeholder="Sisa Piutang {{number_format($dP->nom_kredit)}}" readonly>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body">
+                <form id="formPiutangPelanggan">
+                    <input type="hidden" name="periode" value="{{$periode}}">
+                    <input type="hidden" name="numbering" value="{{$numbering}}">
+                    <input type="hidden" name="idPelanggan" value="{{$keyword}}">
+                    <input type="hidden" name="accountCode" value="{{$accountPenjualan->account_code}}">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group row">
+                                <label class="label col-4">No. Bukti</label>
+                                <div class="col-8">
+                                    <input class="form-control form-control-sm" name="nomorBukti" id="nomorBukti" value="PBT-{{$periode}}-{{sprintf("%07d",$numbering)}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="label col-4">Tgl. Bukti</label>
+                                <div class="col-8">
+                                    <input class="form-control form-control-sm" name="tglBukti" id="tglBukti">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="label col-4">Pelanggan</label>
+                                <div class="col-8">
+                                    <input class="form-control form-control-sm" name="pelanggan" id="pelanggan" value="{{$customerName->customer_store}}" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="label col-4">Keterangan</label>
+                                <div class="col-8">
+                                    <input class="form-control form-control-sm" name="keterangan" id="keterangan">
+                                </div>
                             </div>
                         </div>
-                    </td>
-                    <td>
-                        @if($dP->nom_payed == $dP->nominal)
-                            <span class="text-success font-weight-bold">LUNAS</span>
-                        @else
-                            <input type="text" class="form-control form-control-sm form-control-border editInput keterangan" name="keteranganHtg" id="keteranganHtg" placeholder="Sisa Piutang {{number_format($dP->nom_kredit)}}" readonly>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <form id="formPiutangPelanggan">
-        <input type="hidden" name="periode" value="{{$periode}}">
-        <input type="hidden" name="numbering" value="{{$numbering}}">
-        <input type="hidden" name="idPelanggan" value="{{$keyword}}">
-        <input type="hidden" name="accountCode" value="{{$accountPenjualan->account_code}}">
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="form-group row">
-                    <label class="label col-4">No. Bukti</label>
-                    <div class="col-8">
-                        <input class="form-control form-control-sm" name="nomorBukti" id="nomorBukti" value="PBT-{{$periode}}-{{sprintf("%07d",$numbering)}}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="label col-4">Tgl. Bukti</label>
-                    <div class="col-8">
-                        <input class="form-control form-control-sm" name="tglBukti" id="tglBukti">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="label col-4">Pelanggan</label>
-                    <div class="col-8">
-                        <input class="form-control form-control-sm" name="pelanggan" id="pelanggan" value="{{$customerName->customer_store}}" readonly>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="label col-4">Keterangan</label>
-                    <div class="col-8">
-                        <input class="form-control form-control-sm" name="keterangan" id="keterangan">
-                    </div>
-                </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group row">
+                                <label class="label col-4">Kode Akun</label>
+                                <div class="col-8">
+                                    <select class="form-control form-control-sm" name="kodeAkun">
+                                        @foreach($accountCode as  $cc)
+                                            <option value="{{$cc->id_account}}">{{$cc->account_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="label col-4">Total Hutang</label>
+                                <div class="col-8">
+                                    <input class="form-control form-control-sm price-tag from-weight-bold" name="nominalKredit" id="nominalKredit" value="{{$totalHutang->kredit}}" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                            <label class="label col-4">Nominal Bayar</label>
+                            <div class="col-8">
+                                <input class="form-control form-control-sm price-tag" name="nominalBayar" id="nominalBayar" value="{{$sumPayed->sumpayed}}" readonly>
+                            </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-success" id="btnSimpan"><i class="fa-regular fa-floppy-disk"></i> Simpan</button>
+                                    <button type="button" class="btn btn-primary" id="cetakVoucher" style="display: none;"><i class="fa-solid fa-print"></i> Cetak Voucher</button>
+                                </div>
+                            </div>                
+                        </div>
+                    </div>        
+                </form>
             </div>
-            <div class="col-12 col-md-6">
-                <div class="form-group row">
-                    <label class="label col-4">Kode Akun</label>
-                    <div class="col-8">
-                        <select class="form-control form-control-sm" name="kodeAkun">
-                            @foreach($accountCode as  $cc)
-                                <option value="{{$cc->id_account}}">{{$cc->account_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="label col-4">Total Hutang</label>
-                    <div class="col-8">
-                        <input class="form-control form-control-sm price-tag from-weight-bold" name="nominalKredit" id="nominalKredit" value="{{$totalHutang->kredit}}" readonly>
-                    </div>
-                </div>
-                <div class="form-group row">
-                   <label class="label col-4">Nominal Bayar</label>
-                   <div class="col-8">
-                       <input class="form-control form-control-sm price-tag" name="nominalBayar" id="nominalBayar" value="{{$sumPayed->sumpayed}}" readonly>
-                   </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-success" id="btnSimpan"><i class="fa-regular fa-floppy-disk"></i> Simpan</button>
-                        <button type="button" class="btn btn-primary" id="cetakVoucher" style="display: none;"><i class="fa-solid fa-print"></i> Cetak Voucher</button>
-                    </div>
-                </div>                
-            </div>
-        </div>        
-    </form>
+        </div>
+    </div>
     @endif
 @else
 <div class="callout callout-info">
