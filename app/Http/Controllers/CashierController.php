@@ -1464,6 +1464,15 @@ class CashierController extends Controller
                 'total_kredit'=>$nominalKredit
             ]);
 
+        DB::table('tr_kredit')
+            ->where([
+                ['status','1'],
+                ['from_member_id',$idPelanggan]
+            ])
+            ->update([
+                'status'=>'2'
+            ]);       
+
         DB::table('tr_kredit_record')
             ->where([
                 ['member_id',$idPelanggan],
