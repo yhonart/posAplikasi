@@ -1539,6 +1539,7 @@ class CashierController extends Controller
             ->update([
                 'nom_payed' => $updatePayed,
                 'nom_kredit' => $updateKredit,
+                'status' => '1'
             ]); 
     }
 
