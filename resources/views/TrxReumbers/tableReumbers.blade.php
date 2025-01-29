@@ -15,6 +15,7 @@
                         <th>Tanggal</th>
                         <th>Sumber Dana</th>
                         <th>Keterangan</th>
+                        <th>Status</th>
                         <th>Nominal</th>
                         <th></th>
                     </tr>
@@ -26,7 +27,11 @@
                             <td>{{date("d-M-Y", strtotime($tr->reumbers_date))}}</td>                            
                             <td>{{$tr->from_akun}} @ {{number_format($tr->nominal_dana,'0',',','.')}}</td>
                             <td>{{$tr->description}}</td>
-                            <td>{{$arrStatus[$tr->status]}}</td>
+                            <td>
+                                <span class="border border-info m-1 rounded-pill bg-light">
+                                    {{$arrStatus[$tr->status]}}
+                                </span>
+                            </td>
                             <td>{{number_format($tr->nominal,'0',',','.')}}</td>
                             <td>
                                 <a href="#" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
