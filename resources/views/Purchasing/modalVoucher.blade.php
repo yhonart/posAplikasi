@@ -90,7 +90,7 @@
             function(){
                 alertify.error('Cancel');
                 $(".LOAD-SPINNER").fadeOut();
-            });
+            }).set({title:"Notif Penggunaan Harga Barang."});
         });
         $(".BTN-BARANG").on('click', function (e) {
             e.preventDefault();
@@ -109,7 +109,7 @@
             function(){
                 alertify.error('Cancel');
                 $(".LOAD-SPINNER").fadeOut();
-            });
+            }).set({title:"Notif Penukaran Barang."});;
         });
     });
 </script>
