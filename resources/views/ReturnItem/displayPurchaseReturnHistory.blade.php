@@ -15,7 +15,10 @@
                     <td>{{$hisReturn->purchase_number}}</td>
                     <td class="text-right">{{number_format($hisReturn->price,'0',',','.')}}</td>
                     <td class="text-right">
-                        <button type="button" class="btn btn-sm btn-info BTN-DETAIL" data-purchase="{{$hisReturn->purchase_number}}"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        @if($hisReturn->status == '2')
+                            <button type="button" class="btn btn-sm btn-outline-success BTN-APPROVE" data-purchase="{{$hisReturn->purchase_number}}">Approve</button>
+                        @endif
+                        <button type="button" class="btn btn-sm btn-outline-info BTN-DETAIL" data-purchase="{{$hisReturn->purchase_number}}">Detail</button>
                     </td>
                 </tr>
             @endforeach
