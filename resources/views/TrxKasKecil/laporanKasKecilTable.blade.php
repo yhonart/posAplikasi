@@ -57,11 +57,11 @@ $kredit = 0;
                     <td class="text-right">{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
                     <td class="text-right font-weight-bold">
                         <?php
-                            $debit += $tbPengeluaran->nominal;
-                            $kredit += $tbPengeluaran->nominal_modal;
-                            $saldoTransaksi = $mDanaTrx->nominal_dana - $debit;
-                            $nextSaldo = $saldoTransaksi + $kredit;
-                            echo number_format($nextSaldo,'0',',','.');
+                            // $debit += $tbPengeluaran->nominal;
+                            // $kredit += $tbPengeluaran->nominal_modal;
+                            // $saldoTransaksi = $mDanaTrx->nominal_dana - $debit;
+                            // $nextSaldo = $saldoTransaksi + $kredit;
+                            // echo number_format($nextSaldo,'0',',','.');
     
                         ?>
                     </td>
