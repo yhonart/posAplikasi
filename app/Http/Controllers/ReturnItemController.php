@@ -324,12 +324,6 @@ class ReturnItemController extends Controller
     }
 
     public function approveTransaksi($purchNumber){
-        DB::table('purchase_order')
-            ->where('purchase_number',$purchNumber)
-            ->update([
-                'voucher'=>'1'
-            ]);
-            
         DB::table('purchase_point')
             ->where([
                 ['purchase_number',$purchNumber],
