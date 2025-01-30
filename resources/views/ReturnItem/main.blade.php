@@ -24,8 +24,8 @@
             <div class="row mb-2">
                 <div class="col-md-12">
                     <button class="btn btn-primary elevation-1 onclick-submenu " data-click="purchasingList"><i class="fa-solid fa-dolly"></i> Retur Item</button>
-                    <button class="btn btn-primary elevation-1 onclick-submenu " data-click="returnHistory"><i class="fa-regular fa-folder-open"></i> History Retur Item</button>                     
                     <button class="btn btn-primary elevation-1 onclick-submenu " data-click="returnNonInv"><i class="fa-regular fa-folder-open"></i> Retur Non Invoice</button>                     
+                    <button class="btn btn-primary elevation-1 onclick-submenu " data-click="returnHistory"><i class="fa-regular fa-folder-open"></i> History Retur Item</button>                     
                 </div>
             </div>
             <div class="row">
@@ -65,12 +65,12 @@
             let dataIndex = $(this).attr('data-click');
             $("#selectTransaksi").val('0');
                 $.ajax({
-                type : 'get',
-                url : "{{route('returnItem')}}/"+dataIndex,
-                success : function(response){
-                    $("#displayInfo").html(response);
-                }
-            });
+                    type : 'get',
+                    url : "{{route('returnItem')}}/"+dataIndex,
+                    success : function(response){
+                        $("#displayInfo").html(response);
+                    }
+                });
         });
     });
 </script>

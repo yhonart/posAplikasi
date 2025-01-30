@@ -362,4 +362,24 @@ class ReturnItemController extends Controller
     public function returnNonInv (){
         return view ('ReturnItem/displayReturnNonInv');
     }
+
+    public function submitRetur ($poNumber){
+        DB::table('purchase_return')
+            ->where([
+                ['purchase_number',$poNumber],
+                ['status','1']
+            ])
+            ->update([
+                'status'=>'2'
+            ]);
+
+        DB::table('purchase_point')
+            ->where([
+                ['purchase_number',$poNumber],
+                ['status','1']
+            ])
+            ->update([
+                'status'=>'2'
+            ]);
+    }
 }

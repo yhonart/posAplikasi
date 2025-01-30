@@ -6,7 +6,7 @@ $no = '1';
     <div class="col-md-12">
         <button class="btn btn-success btn-sm " id="kembali"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
         <button class="btn btn-outline-success btn-sm " id="refresh"><i class="fa-solid fa-rotate"></i> Refresh</button>
-        <!--<button class="btn bg-gradient-olive btn-sm " id="kembali"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>-->
+        <button class="btn bg-gradient-olive btn-sm " id="simpan"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
     </div>
 </div>
 <hr>
@@ -82,14 +82,33 @@ $no = '1';
     $(function(){
         tbodyItem();
     })
+
     $(document).ready(function(){
         $("#selectProduct").focus();
         let satuan = document.getElementById("satuan"),
             hargaSatuan = document.getElementById("hargaSatuan");
-        $("#selectProduct").change(function(){
-            let productID = $(this).find(":selected").val(),
-                numberPO = "{{$numberpo}}";
+        
+        let numberPO = "{{$numberpo}}";
 
+        $("#simpan").on('click', function(e){
+            e.preventDefault();
+            alertify.confirm("Apakah item yang anda masukkan sudah benar ?",
+            function(){
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('returnItem')}}/submitRetur/"+numberPO,
+                    success : function(response){
+                        backToReturHistory();
+                    }
+                });                
+            },
+            function(){
+                alertify.error('Cancel');
+            }).set({title:"Simpan Transaksi"});
+        });
+
+        $("#selectProduct").change(function(){
+            let productID = $(this).find(":selected").val();
             $.ajax({
                 type : 'get',
                 url : "{{route('returnItem')}}/productAction/" + productID,
@@ -192,6 +211,7 @@ $no = '1';
                 addActivityItem();
             }   
         });
+
         activitiesHrgSatuan.addEventListener('keydown', function(event) {  
             if (event.keyCode === 13) {
                 event.preventDefault();
@@ -265,5 +285,16 @@ $no = '1';
                 $("#listPengembalian").html(response);
             }
         }); 
+    }
+
+    function backToReturHistory(){
+        $backToPage = "returnHistory";
+        $.ajax({
+            type : 'get',
+            url : "{{route('returnItem')}}/"+backToPage,
+            success : function(response){
+                $("#displayInfo").html(response);
+            }
+        });
     }
 </script>

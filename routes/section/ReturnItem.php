@@ -17,4 +17,5 @@ Route::get('returnItem/returnHistory', [App\Http\Controllers\ReturnItemControlle
 Route::get('returnItem/returnHistory/detailHistory/{purchNumber}', [App\Http\Controllers\ReturnItemController::class, 'detailHistory']);
 
 Route::get('returnItem/returnNonInv', [App\Http\Controllers\ReturnItemController::class, 'returnNonInv']);
+Route::get('returnItem/submitRetur/{poNumber}', [App\Http\Controllers\ReturnItemController::class, 'submitRetur']);
 ?>
