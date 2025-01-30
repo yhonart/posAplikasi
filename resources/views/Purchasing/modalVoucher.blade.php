@@ -9,13 +9,23 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <input type="text" name="point" id="point" class="form-control form-control-sm  text-success font-weight-bold" value="{{number_format($disPoint->NumRet,'0',',','.')}}" readonly>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="btn-group">
                     <button type="button" class="btn btn-outline-primary BTN-HARGA font-weight-bold" data-supplier = "{{$supID}}">Gunakan Semua Potongan Harga</button>
                     <button type="button" class="btn btn-outline-primary BTN-BARANG font-weight-bold" data-supplier = "{{$supID}}">Gunakan Penggantian Semua Barang</button>
+                    <button type="button" class="btn btn-outline-primary BTN-CUSTOME font-weight-bold" data-toggle="collapse" href="#collapseInvoice" role="button" aria-expanded="false" aria-controls="collapseInvoice">Gunakan Beberapa Nomor Transaksi</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
                 </div>
             </div>
         </div>
