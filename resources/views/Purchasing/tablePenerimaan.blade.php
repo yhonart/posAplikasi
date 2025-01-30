@@ -45,12 +45,13 @@ $total = 0;
                                     <?php
                                         foreach ($detailPotongan as $dp) {
                                             if ($dp->supplier_id == $ltp->supplier_id) {
-                                                echo number_format($dp->NumRet,'0',',','.');
+                                                // echo number_format($dp->NumRet,'0',',','.');
+                                                echo "<button class='btn btn-sm btn-default BTN-OPEN-MODAL-GLOBAL-LG' href='#' ><i class='fa-solid fa-ticket'></i> Voucher</button>";
                                             }
                                         }
                                     ?>
                                 </td>
-                                <td class="text-right font-weight-bold">
+                                <td class="text-right font-weight-bold">                                    
                                     <?php
                                         foreach ($detailPotongan as $dp1) {
                                             if ($dp1->supplier_id == $ltp->supplier_id) {
