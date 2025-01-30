@@ -22,9 +22,17 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" id="collapseInvoice">
                     <div class="card card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        <table class="table table-sm table-valign-middle table-hover">
+                            <thead class="bg-gray-dark">
+                                <tr>
+                                    <th>Nomor Purchase</th>
+                                    <th class="text-right">Nominal</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
