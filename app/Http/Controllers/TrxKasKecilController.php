@@ -21,6 +21,22 @@ class TrxKasKecilController extends Controller
 
     public function tableLaporan($kasir, $fromDate, $endDate){
         // echo $kasir;
+        $mDanaTrx = DB::table('tr_kas')
+            ->where('trx_code','1')
+            ->orderBy('idtr_kas','desc')
+            ->first();
+
+        $dateDana = $mDanaTrx->kas_date;
+        $beforeFromDate = date("Y-m-d", strtotime("-1 day", strtotime($fromDate)));
+
+        $getAllTransaksi = DB::table('tr_kas')
+            ->select(DB::raw("SUM('nominal') as nominal"))
+            ->where([
+                ['trx_code','2']
+            ])
+            ->whereBetween('kas_date',[$dateDana,$beforeFromDate])
+            ->first();
+        
         $tablePengeluaran = DB::table('view_trx_kas');
         if ($kasir <> '0') {
             $tablePengeluaran = $tablePengeluaran->where('kas_persCode',$kasir);

@@ -24,14 +24,14 @@ $kredit = 0;
                 <tr>
                     <td></td>
                     <td class="font-weight-bold">
-                        MODAL
+                        Modal Kas 
                     </td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_dana,'0',',','.')}}</td>
+                    <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_modal,'0',',','.')}}</td>
                     <td class="text-right font-weight-bold"></td>
-                    <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_dana,'0',',','.')}}</td>
+                    <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_modal,'0',',','.')}}</td>
                     <td></td>
                 </tr>
 
@@ -57,12 +57,11 @@ $kredit = 0;
                     <td class="text-right">{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
                     <td class="text-right font-weight-bold">
                         <?php
-                            // $debit += $tbPengeluaran->nominal;
-                            // $kredit += $tbPengeluaran->nominal_modal;
-                            // $saldoTransaksi = $mDanaTrx->nominal_dana - $debit;
-                            // $nextSaldo = $saldoTransaksi + $kredit;
-                            // echo number_format($nextSaldo,'0',',','.');
-    
+                            $debit += $tbPengeluaran->nominal;
+                            $kredit += $tbPengeluaran->nominal_modal;
+                            $saldoTransaksi = $mDanaTrx->nominal_dana - $debit;
+                            $nextSaldo = $saldoTransaksi + $kredit;
+                            echo number_format($nextSaldo,'0',',','.');    
                         ?>
                     </td>
                     <td>{{$tbPengeluaran->file_name}}</td>
