@@ -70,7 +70,26 @@ class TrxReumbersController extends Controller
             ->groupBy('description','create_by')
             ->get();
 
-        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate','firstDayOfLastWeek','lastDayOfLastWeek'));
+        $modalMingguLalu = DB::table('tr_kas')
+            ->select(DB::raw('SUM(nominal_modal) as nominal_modal'))
+            ->where('trx_code','1')
+            ->whereBetween('kas_date',[$startDate, $endDate])
+            ->first();
+
+        $modalTerpakai = DB::table('tr_kas')
+            ->select(DB::raw('SUM(nominal) as nominal'))
+            ->where('trx_code','2')
+            ->whereBetween('kas_date',[$startDate, $endDate])
+            ->first();   
+        
+        if (!empty($modalMingguLalu) OR !empty($modalTerpakai)) {
+            $penguranganKas = $modalMingguLalu->nominal_modal - $modalTerpakai->nominal;
+        }
+        else {
+            $penguranganKas = 0;
+        }
+
+        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate','firstDayOfLastWeek','lastDayOfLastWeek','penguranganKas'));
     }
 
     public function postTransaksiReumbers(Request $reqPosting)

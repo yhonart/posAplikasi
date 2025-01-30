@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-label">Tambah Transaksi Reumbers</h3>
+                <h3 class="card-title">Tambah Transaksi Reumbers</h3>
             </div>
             <div class="card-body">
                 <form id="formAddReumbers" autocomplete="off">
@@ -21,13 +21,14 @@
                                     <option value="{{$ats->create_by}}|{{$ats->debit}}">{{$ats->description}} @ {{number_format($ats->debit,'0',',','.')}}</option>
                                 @endforeach
                             </select>
-                            <span class="text-muted">Dana diambil dari minggu lali, mulai Tanggal : {{date("d-M-Y", strtotime($startDate))}} s.d {{date("d-M-Y", strtotime($endDate))}}</span>
+                            <span class="text-muted">Dana diambil dari minggu lalu, mulai Tanggal : {{date("d-M-Y", strtotime($startDate))}} s.d {{date("d-M-Y", strtotime($endDate))}}</span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3">Nominal</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control price-text" name="nominal" id="nominal">
+                            <input type="text" class="form-control price-text" name="nominal" id="nominal" value="{{$penguranganKas}}">
+                            <span>Default nominal dari saldo kas kecil saat ini</span>
                         </div>
                     </div>
                     <div class="form-group row">
