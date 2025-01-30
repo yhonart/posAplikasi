@@ -49,7 +49,7 @@
                 @else
                 <div class="alert alert-warning alert-dismissible">                  
                   <h5><i class="icon fas fa-info"></i> Alert!</h5>
-                  Transaksi pengembalian dana kas hanya dapat di lakukan di hari Senin. Untuk dapat menambahkan dana kas kecil, 
+                  Transaksi pengembalian dana kas hanya dapat di lakukan di hari <b>"Senin"</b>. Untuk dapat menambahkan dana kas kecil, 
                   silahkan gunakan form Tambah Dana di halaman Lap.Kas Kecil. 
                   <br>
                   <b>
