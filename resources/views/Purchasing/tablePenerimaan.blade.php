@@ -51,6 +51,9 @@ $total = 0;
                                             elseif ($dp->supplier_id == $ltp->supplier_id && $ltp->voucher == '2') {
                                                 echo number_format($dp->NumRet,'0',',','.');
                                             }
+                                            else {
+                                                echo $dp->supplier_id." ".$ltp->supplier_id." ".$ltp->voucher;
+                                            }
                                         }
                                     ?>
                                 </td>
