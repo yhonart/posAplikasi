@@ -47,14 +47,13 @@
                     </div>
                 </form>
                 @else
-                <div class="alert alert-warning alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <div class="alert alert-warning alert-dismissible">                  
                   <h5><i class="icon fas fa-info"></i> Alert!</h5>
                   Transaksi pengembalian dana kas hanya dapat di lakukan di hari Senin. Untuk dapat menambahkan dana kas kecil, 
                   silahkan gunakan form Tambah Dana di halaman Lap.Kas Kecil. 
                   <br>
                   <b>
-                      Klik link berikut ini <a href="{{route('kasKecil')}}">Lap. Kas Kecil</a>
+                      Klik link berikut ini <a href="{{route('kasKecil')}}" class="btn btn-success btn-sm">Lap. Kas Kecil</a>
                   </b>
                 </div>
                 @endif
