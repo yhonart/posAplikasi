@@ -323,6 +323,32 @@ class ReturnItemController extends Controller
         return back();
     }
 
+    public function approveTransaksi($purchNumber){
+        DB::table('purchase_order')
+            ->where('purchase_number',$purchNumber)
+            ->update([
+                'voucher'=>'1'
+            ]);
+            
+        DB::table('purchase_point')
+            ->where([
+                ['purchase_number',$purchNumber],
+                ['status','2']
+            ])
+            ->update([
+                'status'=>'3'
+            ]);
+
+        DB::table('purchase_return')
+            ->where([
+                ['purchase_number',$purchNumber],
+                ['status','2']
+            ])
+            ->update([
+                'status'=>'3'
+            ]);
+    }
+
     public function detailHistory ($purchNumber){
         $purchaseOrder = DB::table('view_purchase_order')
             ->where('purchase_number',$purchNumber)

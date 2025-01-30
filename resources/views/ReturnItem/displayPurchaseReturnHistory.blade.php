@@ -39,5 +39,17 @@
                     }
                 });
         });
+        $(".BTN-APPROVE").on('click', function (e) {
+            e.preventDefault();
+            let el = $(this),
+                purchaseReturn = el.attr('data-purchase');                
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('returnItem')}}/returnHistory/approveTransaksi/"+purchaseReturn,
+                    success : function(response){
+                        $("#displayInfo").html(response);
+                    }
+                });
+        });
     });
 </script>
