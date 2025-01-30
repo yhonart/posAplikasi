@@ -1,3 +1,12 @@
+
+<?php
+$arrStatus = array(
+    0=>"Batal",
+    1=>"Dalam Proses",
+    2=>"Di Periksa",
+    3=>"Di Setujui",
+);
+?>
 <div class="card card-body">
     <table class="table table-sm table-valign-middle table-hover">
         <thead class="bg-gray-dark">
@@ -5,6 +14,7 @@
                 <th>Supplier</th>
                 <th>Purchase Number</th>
                 <th class="text-right">Point Belanja</th>
+                <th>Status</th>
                 <th class="text-right">#</th>
             </tr>
         </thead>
@@ -14,6 +24,9 @@
                     <td>{{$hisReturn->store_name}}</td>
                     <td>{{$hisReturn->purchase_number}}</td>
                     <td class="text-right">{{number_format($hisReturn->price,'0',',','.')}}</td>
+                    <td class="text-right">
+                        <span class="bg-light border border-1 border-info text-info font-weight-bold rounded-pill">{{$arrStatus[$hisReturn->status]}}</span>
+                    </td>
                     <td class="text-right">
                         @if($hisReturn->status == '2')
                             <button type="button" class="btn btn-sm btn-outline-success BTN-APPROVE font-weight-bold" data-purchase="{{$hisReturn->purchase_number}}">Approve</button>
@@ -47,7 +60,7 @@
                     type : 'get',
                     url : "{{route('returnItem')}}/returnHistory/approveTransaksi/"+purchaseReturn,
                     success : function(response){
-                        $("#displayInfo").html(response);
+                        window.location.reload();
                     }
                 });
         });
