@@ -492,6 +492,10 @@ class PurchasingController extends Controller
         return view ('Purchasing/tablePenerimaan', compact('listTablePem','approval','status','fromDate','endDate','detailPotongan'));
     }
 
+    public function modalVoucher($supID){
+        echo $supID;
+    }
+
     //Purchase Dashboard
     public function mainDashboard (){
         $checkArea = $this->TempUsersController->checkuserInfo();

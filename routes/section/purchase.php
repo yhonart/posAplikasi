@@ -65,4 +65,6 @@ Route::get('Purchasing/historyPembayaran/cetakPembayaran/{id}', [App\Http\Contro
 Route::get('Purchasing/modalDetailKreditPembayaran/{id}/{noDok}', [App\Http\Controllers\PurchasingController::class, 'modalDetailKreditPembayaran']);
 Route::get('Purchasing/potonganHarga/{id}', [App\Http\Controllers\PurchasingController::class, 'potonganHarga']);
 Route::get('Purchasing/penggantianBarang/{id}', [App\Http\Controllers\PurchasingController::class, 'penggantianBarang']);
+
+Route::get('Purchasing/modalVoucher/{supId}', [App\Http\Controllers\PurchasingController::class, 'modalVoucher']);
 ?>
