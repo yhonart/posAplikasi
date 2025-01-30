@@ -510,7 +510,7 @@ class PurchasingController extends Controller
             ])
             ->get();
         
-            return view ('Purchasing/modalVoucher', compact('disPoint','itemReturn'));        
+            return view ('Purchasing/modalVoucher', compact('disPoint','itemReturn','supID'));        
     }
 
     //Purchase Dashboard
