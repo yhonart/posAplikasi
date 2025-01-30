@@ -25,7 +25,7 @@ $arrStatus = array(
                     <td>{{$hisReturn->purchase_number}}</td>
                     <td class="text-right">{{number_format($hisReturn->price,'0',',','.')}}</td>
                     <td class="text-right">
-                        <span class="bg-light border border-1 border-info rounded-pill p-1">{{$arrStatus[$hisReturn->status]}}</span>
+                        <span class="bg-light border border-2 border-success rounded-pill p-2">{{$arrStatus[$hisReturn->status]}}</span>
                     </td>
                     <td class="text-right">
                         @if($hisReturn->status == '2')
