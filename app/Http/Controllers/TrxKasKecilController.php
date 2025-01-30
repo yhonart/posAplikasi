@@ -104,6 +104,7 @@ class TrxKasKecilController extends Controller
                 'bank_code'=>$namaBank,               
                 'no_akun'=>$nomorAkun,               
                 'sumber_lain'=>$namaAkun,
+                'trx_code'=>'2'
             ]);
         return back();
     }
