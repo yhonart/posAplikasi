@@ -376,7 +376,7 @@ class ReturnItemController extends Controller
 
     public function returnHistory (){
         $historyReturn = DB::table('purchase_return as a')
-            ->select(DB::raw('SUM(a.total_price) as price'),'a.purchase_number','b.store_name')
+            ->select(DB::raw('SUM(a.total_price) as price'),'a.purchase_number','b.store_name','a.status')
             ->leftJoin('m_supplier as b', 'a.supplier_id','=','b.idm_supplier')
             ->groupBy('a.purchase_number')
             ->groupBy('b.store_name')
