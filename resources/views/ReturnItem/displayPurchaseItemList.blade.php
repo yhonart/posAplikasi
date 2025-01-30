@@ -288,7 +288,7 @@ $no = '1';
     }
 
     function backToReturHistory(){
-        $backToPage = "returnHistory";
+        let backToPage = "returnHistory";
         $.ajax({
             type : 'get',
             url : "{{route('returnItem')}}/"+backToPage,
