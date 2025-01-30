@@ -15,4 +15,6 @@ Route::get('returnItem/purchasingList/deleteItem/{id}', [App\Http\Controllers\Re
 
 Route::get('returnItem/returnHistory', [App\Http\Controllers\ReturnItemController::class, 'returnHistory']);
 Route::get('returnItem/returnHistory/detailHistory/{purchNumber}', [App\Http\Controllers\ReturnItemController::class, 'detailHistory']);
+
+Route::get('returnItem/returnNonInv', [App\Http\Controllers\ReturnItemController::class, 'returnNonInv']);
 ?>

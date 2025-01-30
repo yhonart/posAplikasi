@@ -48,13 +48,16 @@ $total = 0;
                                                 // echo number_format($dp->NumRet,'0',',','.');
                                                 echo "<button class='btn btn-sm btn-default BTN-OPEN-MODAL-GLOBAL-LG' href='#' ><i class='fa-solid fa-ticket'></i> Voucher</button>";
                                             }
+                                            elseif ($dp->supplier_id == $ltp->supplier_id && $ltp->voucher == '1') {
+                                                echo number_format($dp->NumRet,'0',',','.');
+                                            }
                                         }
                                     ?>
                                 </td>
                                 <td class="text-right font-weight-bold">                                    
                                     <?php
                                         foreach ($detailPotongan as $dp1) {
-                                            if ($dp1->supplier_id == $ltp->supplier_id) {
+                                            if ($dp1->supplier_id == $ltp->supplier_id && $ltp->voucher == '1') {
                                                 $total = $ltp->sub_total - $dp1->NumRet;
                                                 echo number_format($total,'0',',','.');
                                             }

@@ -358,4 +358,8 @@ class ReturnItemController extends Controller
 
         return view ('ReturnItem/displayPurchaseReturnHistory', compact('historyReturn'));
     }
+
+    public function returnNonInv (){
+        return view ('ReturnItem/displayReturnNonInv');
+    }
 }
