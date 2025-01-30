@@ -143,6 +143,7 @@ class TrxReumbersController extends Controller
         }
 
         $modal = $saldo + $reumbers;
+        
         $description = "Modal Awal ". $modal;
         DB::table('tr_kas')
             ->insert([

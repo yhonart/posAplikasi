@@ -242,4 +242,31 @@ class GlobSettingController extends Controller
 
         return view('globalSetting/danaTetapKasKecil',compact('mainDanaTetap'));
     }
+
+    public function formAddModalFix(){
+        return view('globalSetting/danaTetapKasKecilForm',compact('mainDanaTetap'));
+    }
+
+    public function postModalFixed(Request $reqPostModalFixed){
+        $nominal = $reqPostModalFixed->nominal;
+        $createdBy = Auth::user()->name;
+        $sumberDana = "Setup Dana";
+        $namaBank = '0';
+
+        DB::table('m_trx_kas_kasir')
+            ->insert([
+                'nominal_dana'=>$nominal
+            ]);        
+        
+        DB::table('tr_kas')
+            ->insert([
+                'kas_date'=>now(),
+                'status'=>'1',
+                'created_by'=>$createdBy,
+                'nominal'=>'0',
+                'sumber_dana'=>$sumberDana,
+                'nominal_modal'=>$nominal,
+                'trx_code'=>'1'
+            ]);
+    }
 }

@@ -28,10 +28,6 @@ class TrxKasKecilController extends Controller
         $tablePengeluaran = $tablePengeluaran->whereBetween('kas_date',[$fromDate,$endDate]);
         $tablePengeluaran = $tablePengeluaran->get();
 
-        $mDanaTrx = DB::table('m_trx_kas_kasir')
-            ->orderBy('m_id_dana','desc')
-            ->first();
-
         return view('TrxKasKecil/laporanKasKecilTable', compact('tablePengeluaran','mDanaTrx','fromDate','endDate'));
     }
     public function cetakKasKecil($kasir, $fromDate, $endDate){

@@ -24,4 +24,6 @@ Route::post('setPembayaran/editMethod/postEditPembayaran', [App\Http\Controllers
 
 
 Route::get('modalKasKecil', [App\Http\Controllers\GlobSettingController::class, 'modalKasKecil'])->name('modalKasKecil');
+Route::get('modalKasKecil/formAddModalFix', [App\Http\Controllers\GlobSettingController::class, 'formAddModalFix']);
+Route::post('modalKasKecil/formAddModalFix/postModalFixed', [App\Http\Controllers\GlobSettingController::class, 'postModalFixed']);
 ?>

@@ -23,7 +23,9 @@ $kredit = 0;
         <tbody>
                 <tr>
                     <td></td>
-                    <td class="font-weight-bold">SALDO AWAL</td>
+                    <td class="font-weight-bold">
+                        MODAL
+                    </td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -32,6 +34,7 @@ $kredit = 0;
                     <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_dana,'0',',','.')}}</td>
                     <td></td>
                 </tr>
+
             @foreach($tablePengeluaran as $tbPengeluaran)
                 <tr>
                     <td>{{date("d-M-y", strtotime($tbPengeluaran->kas_date))}}</td>
