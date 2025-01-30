@@ -188,7 +188,7 @@ class PurchasingController extends Controller
             ->select(DB::raw('SUM(nom_return) as NumRet'))
             ->where([
                 ['supplier_id',$suppID],
-                ['status','1']
+                ['status','3']
                 ])
             ->first();
 
@@ -197,7 +197,7 @@ class PurchasingController extends Controller
             ->leftJoin('m_product as b','a.product_id','=','b.idm_data_product')
             ->where([
                 ['supplier_id', $suppID],
-                ['status','1']
+                ['status','3']
             ])
             ->get();
             
@@ -493,7 +493,24 @@ class PurchasingController extends Controller
     }
 
     public function modalVoucher($supID){
-        echo $supID;
+        $disPoint = DB::table('purchase_point')
+            ->select(DB::raw('SUM(nom_return) as NumRet'))
+            ->where([
+                ['supplier_id',$supID],
+                ['status','3']
+                ])
+            ->first();
+
+        $itemReturn = DB::table('purchase_return as a')
+            ->select('a.*','b.product_name')
+            ->leftJoin('m_product as b','a.product_id','=','b.idm_data_product')
+            ->where([
+                ['supplier_id', $supID],
+                ['status','3']
+            ])
+            ->get();
+        
+            return view ('Purchasing/modalVoucher', compact('disPoint','itemReturn'));        
     }
 
     //Purchase Dashboard
