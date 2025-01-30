@@ -44,7 +44,7 @@ $total = 0;
                                 <td class="text-right font-weight-bold text-danger">
                                     <?php
                                         foreach ($detailPotongan as $dp) {
-                                            if ($dp->supplier_id == $ltp->supplier_id) {
+                                            if ($dp->supplier_id == $ltp->supplier_id && $ltp->voucher == '0') {
                                                 // echo number_format($dp->NumRet,'0',',','.');
                                                 echo "<button class='btn btn-sm btn-default BTN-OPEN-MODAL-GLOBAL-LG' href='#' ><i class='fa-solid fa-ticket'></i> Voucher</button>";
                                             }
