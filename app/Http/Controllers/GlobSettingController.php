@@ -244,7 +244,7 @@ class GlobSettingController extends Controller
     }
 
     public function formAddModalFix(){
-        return view('globalSetting/danaTetapKasKecilForm',compact('mainDanaTetap'));
+        return view('globalSetting/danaTetapKasKecilForm');
     }
 
     public function postModalFixed(Request $reqPostModalFixed){
