@@ -187,7 +187,7 @@ class ReturnItemController extends Controller
     public function displayReturnItem($purchCode){    
         $dspReturn = DB::table('purchase_return as a')
             ->select('a.*','b.product_name')
-            ->leftJoin('m_product as b', 'a.product_id','=','b.idm_data_product')
+            ->leftJoin('m_product as b', 'a.product_id','=','b.idm_data_product')            
             ->where([
                 ['purchase_number',$purchCode],
                 ['status','>=','1']

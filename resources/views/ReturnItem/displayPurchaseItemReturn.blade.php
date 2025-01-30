@@ -2,6 +2,7 @@
     <tr>
         <td>{{$dRet->product_name}}</td>
         <td>{{$dRet->received}}</td>
+        <td></td>
         <td>{{$dRet->unit}}</td>
         <td>{{$dRet->return}}</td>
         <td class="text-right">{{number_format($dRet->unit_price,'0',',','.')}}</td>
