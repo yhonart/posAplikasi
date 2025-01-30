@@ -1,10 +1,15 @@
+<?php
+    $dayNoww = date('l', strtotime($hariIni));
+    $strHari = "Monday";
+?>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Tambah Transaksi Reumbers {{date('l', strtotime($hariIni))}}</h3>
+                <h3 class="card-title">Tambah Dana Pengembalian</h3>
             </div>
             <div class="card-body">
+                @if($dayNoww == $strHari)
                 <form id="formAddReumbers" autocomplete="off">
                     <div class="form-group row">
                         <label class="col-md-3">Nomor</label>
@@ -41,6 +46,16 @@
                         <button type="submit" class="btn btn-success font-weight-bold">Simpan</button>
                     </div>
                 </form>
+                @else
+                <div class="alert alert-info alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-info"></i> Alert!</h5>
+                  Transaksi pengembalian dana kas hanya dapat di lakukan di hari Senin. Untuk dapat menambahkan dana kas kecil, 
+                  silahkan gunakan form Tambah Dana di halaman Lap.Kas Kecil. 
+                  <br>
+                  Klik link berikut ini <a href="{{route('kasKecil')}}">Lap. Kas Kecil</a>
+                </div>
+                @endif
             </div>
         </div>
     </div>
