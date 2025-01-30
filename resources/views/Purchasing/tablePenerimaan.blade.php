@@ -19,11 +19,11 @@ $total = 0;
                             <th>Nomor</th>
                             <th>Supplier</th>
                             <th>Belanja</th>
-                            <th>Potongan</th>
-                            <th>Total</th>
-                            <th>Pembayaran</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th class="text-right">Potongan</th>
+                            <th class="text-right">Total</th>
+                            <th class="text-right">Pembayaran</th>
+                            <th class="text-right">Status</th>
+                            <th class="text-right">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +46,7 @@ $total = 0;
                                         foreach ($detailPotongan as $dp) {
                                             if ($dp->supplier_id == $ltp->supplier_id && $ltp->voucher == '0') {
                                                 // echo number_format($dp->NumRet,'0',',','.');
-                                                echo "<button class='btn btn-sm btn-default BTN-OPEN-MODAL-GLOBAL-LG' href='#' ><i class='fa-solid fa-ticket'></i> Voucher</button>";
+                                                echo "<button class='btn btn-sm btn-warning BTN-OPEN-MODAL-GLOBAL-LG' href='#' ><i class='fa-solid fa-ticket'></i> Voucher</button>";
                                             }
                                             elseif ($dp->supplier_id == $ltp->supplier_id && $ltp->voucher == '1') {
                                                 echo number_format($dp->NumRet,'0',',','.');
