@@ -40,6 +40,7 @@ class TrxReumbersController extends Controller
 
         // Tentukan tanggal hari ini
         $today = Carbon::now($timezone);
+        $hariIni = Carbon::now();
 
         // Tentukan hari pertama minggu ini (Senin)
         $firstDayOfThisWeek = $today->startOfWeek(Carbon::MONDAY);
@@ -89,7 +90,7 @@ class TrxReumbersController extends Controller
             $penguranganKas = 0;
         }
 
-        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate','firstDayOfLastWeek','lastDayOfLastWeek','penguranganKas','firstDayOfThisWeek'));
+        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate','firstDayOfLastWeek','lastDayOfLastWeek','penguranganKas','hariIni'));
     }
 
     public function postTransaksiReumbers(Request $reqPosting)

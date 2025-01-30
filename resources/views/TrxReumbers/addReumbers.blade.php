@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Tambah Transaksi Reumbers</h3>
+                <h3 class="card-title">Tambah Transaksi Reumbers {{$hariIni}}</h3>
             </div>
             <div class="card-body">
                 <form id="formAddReumbers" autocomplete="off">
@@ -13,7 +13,7 @@
                         </div>
                     </div> 
                     <div class="form-group row" id="disAkunDana">
-                        <label class="col-md-3">Sumber Dana Minggu Lalu {{$firstDayOfThisWeek}}</label>
+                        <label class="col-md-3">Sumber Dana Minggu Lalu</label>
                         <div class="col-md-9">
                             <select name="fromAkunDana" id="fromAkunDana" class="form-control">
                                 <option value="0"> ==== </option>
