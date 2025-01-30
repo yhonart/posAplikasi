@@ -484,8 +484,7 @@ class PurchasingController extends Controller
         $detailPotongan = DB::table('purchase_point')
             ->select(DB::raw('SUM(nom_return) as NumRet'),'supplier_id')
             ->where([
-                ['status','2'],
-                ['action_by','1']
+                ['status','1']
             ])
             ->groupBy('supplier_id')
             ->get();
