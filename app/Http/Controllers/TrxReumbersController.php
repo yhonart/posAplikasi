@@ -89,7 +89,7 @@ class TrxReumbersController extends Controller
             $penguranganKas = 0;
         }
 
-        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate','firstDayOfLastWeek','lastDayOfLastWeek','penguranganKas'));
+        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate','firstDayOfLastWeek','lastDayOfLastWeek','penguranganKas','firstDayOfThisWeek'));
     }
 
     public function postTransaksiReumbers(Request $reqPosting)

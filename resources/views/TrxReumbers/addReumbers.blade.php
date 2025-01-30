@@ -13,7 +13,7 @@
                         </div>
                     </div> 
                     <div class="form-group row" id="disAkunDana">
-                        <label class="col-md-3">Sumber Dana Minggu Lalu</label>
+                        <label class="col-md-3">Sumber Dana Minggu Lalu {{$firstDayOfThisWeek}}</label>
                         <div class="col-md-9">
                             <select name="fromAkunDana" id="fromAkunDana" class="form-control">
                                 <option value="0"> ==== </option>
