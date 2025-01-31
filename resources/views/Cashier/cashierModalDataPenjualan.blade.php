@@ -97,7 +97,7 @@
     $(document).ready(function(){
         let fromdate = $('#fromDatePenjualan').val(),
             enddate = $('#endDatePenjualan').val(),
-            customers = $('#customer').val(),
+            customers = '0',
             keyword = '0',
             method = '0',
             timer_cari_equipment = null;
