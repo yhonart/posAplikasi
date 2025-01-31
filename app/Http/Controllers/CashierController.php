@@ -1051,7 +1051,7 @@ class CashierController extends Controller
         if ($userRole >= '2' OR $hakakses == '2') {
             $listDataSelling = $listDataSelling->where('a.created_by', $createdBy);
         }
-        if ($customers <> '0' OR $customers <> null) {
+        if ($customers <> '0' OR $customers <> "null") {
             $listDataSelling = $listDataSelling->where('a.member_id', $customers);
         }
         $listDataSelling = $listDataSelling->where([
