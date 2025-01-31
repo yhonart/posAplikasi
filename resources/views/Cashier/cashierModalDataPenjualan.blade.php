@@ -88,7 +88,8 @@
             todayHighlight: true,
         });
         $('#customer').select2({
-            width: 'resolve',
+            theme: 'bootstrap4',
+            dropdownParent: $('#modal-global-large')
         });
         $("#customer").val(null).focus();
         $('.datetimepicker-input').datepicker("setDate",new Date());
