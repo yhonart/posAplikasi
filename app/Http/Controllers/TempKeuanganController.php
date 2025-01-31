@@ -41,7 +41,7 @@ class TempKeuanganController extends Controller
                 ]);
         }
         else {
-            $lastKredit = $kredit->kredit;
+            $lastKredit = $kredit->debit;
             $addKredit = $nominal + $lastKredit;
             DB::table('lap_kas_besar')
                 ->where([
