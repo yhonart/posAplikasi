@@ -106,25 +106,25 @@
 
         // Saat beforeunload
         window.addEventListener('beforeunload', function (e) {
-        if (localStorage.getItem('sesiAktif')) {
-            // Kirim AJAX request untuk update data
-            $.ajax({
-                type: "get",
-                url: "{{route('home')}}/changeCloseData",                
-                success: function(response){
-                    alert("Data successfully sent: " + response);
-                },
-                error: function(xhr, status, error){
-                    alert("Error occurred: " + xhr.responseText);
-                }
-            });
-        }
+            if (localStorage.getItem('sesiAktif')) {
+                // Kirim AJAX request untuk update data
+                $.ajax({
+                    type: "get",
+                    url: "{{route('home')}}/changeCloseData",                
+                    success: function(response){
+                        alert("Data successfully sent: " + response);
+                    },
+                    error: function(xhr, status, error){
+                        alert("Error occurred: " + xhr.responseText);
+                    }
+                });
+            }
         });
 
         // Saat halaman di-reload
-        window.addEventListener('load', function (e) {
-            localStorage.removeItem('sesiAktif');
-        });
+        // window.addEventListener('load', function (e) {
+        //     localStorage.removeItem('sesiAktif');            
+        // });
         
     </script>
     <script type="text/javascript">
