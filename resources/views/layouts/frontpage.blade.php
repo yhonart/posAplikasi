@@ -102,7 +102,7 @@
         //     }
         //  }, 1000)
         localStorage.setItem('sesiAktif', Date.now());
-        $(window).on("beforeunload", function(){
+        window.addEventListener('beforeunload', function (e){
             if (localStorage.getItem('sesiAktif')) {
                 $.ajax({
                     type: "get",
