@@ -231,7 +231,7 @@ class HomeController extends Controller
                     't_item'=>'0',
                     'status'=>'0',
                     'return_by'=>$userName,
-                    'is_return'=>'0',
+                    'is_return'=>'1',
                 ]);
         }
     }
