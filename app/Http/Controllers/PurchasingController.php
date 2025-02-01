@@ -1404,11 +1404,31 @@ class PurchasingController extends Controller
     }
 
     public function penggantianNomorInvoice($purchNumber){
+        $sumPembayaran = DB::table('purchase_point')
+            ->select(DB::raw('SUM(nom_return) as NumRet'))
+            ->where('purchase_number',$purchNumber)
+            ->first();
+
+        $total = $sumPembayaran->NumRet;
+
+        DB::table('purchase_order')
+            ->where('purchase_number',$purchNumber)
+            ->update([
+                'total_potongan'=>$total,
+                'voucher'=>'1'
+            ]);
+
         DB::table('purchase_point')
             ->where('purchase_number',$purchNumber)
             ->update([
                 'status'=>'4',
                 'action_by'=>'1'
+            ]);
+
+        DB::table('purchase_return')
+            ->where('purchase_number',$purchNumber)
+            ->update([
+                'status'=>'4'
             ]);
     }
 }
