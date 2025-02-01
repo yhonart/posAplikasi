@@ -25,7 +25,7 @@
                 <div class="collapse" id="collapseInvoice">
                     <div class="card card-body">
                         <table class="table table-sm table-valign-middle table-hover">
-                            <thead class="bg-gray-dark">
+                            <thead>
                                 <tr>
                                     <th>Nomor Purchase</th>
                                     <th class="text-right">Nominal</th>
@@ -41,7 +41,7 @@
                                             <div class="form-group">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="gunakanRetur" value="{{$ibn->purchase_number}}">
-                                                    <label class="form-check-label">Pilih</label>
+                                                    <label class="form-check-label"></label>
                                                 </div>
                                             </div>
                                         </td>
@@ -49,6 +49,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-sm" id="btnSimpanPilih"></button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ $total = 0;
         <div class="card">
             <div class="card-body p-2 table-responsive" style="height:700px;">
                 <table class="table table-sm table-valign-middle table-hover" id="tableListPembelian">
-                    <thead class="bg-gray-dark">
+                    <thead>
                         <tr>
                             <th>Tanggal</th>
                             <th>Nomor</th>
@@ -67,15 +67,15 @@ $total = 0;
                                         }
                                     ?>
                                 </td>
-                                <td>
+                                <td class="text-right">
                                     @if($ltp->payment_methode <> '1' AND $ltp->payment_methode <> '2')
                                     <span class="text-danger font-weight-bold">{{$ltp->tempo}} [Hari]</span>
                                     @else
                                     <span class="text-success font-weight-bold">{{$ltp->tempo}}</span>
                                     @endif
                                 </td>
-                                <td class="text-right">
-                                    <span class="bg-light border border-success pl-2 pr-2 pt-1 pb-1 rounded-pill">{{$statusDokumen[$ltp->status]}}</span>
+                                <td>
+                                    <span class="badge bg-warning">{{$statusDokumen[$ltp->status]}}</span>
                                 </td>
                                 <td class="text-right">
                                     <div class="btn-group">
