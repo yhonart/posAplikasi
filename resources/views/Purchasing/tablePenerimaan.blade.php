@@ -1,4 +1,7 @@
 <?php
+
+use Termwind\Components\Span;
+
 $statusDokumen = array(
     0=>"Dihapus",
     1=>"Sedang Proses",
@@ -58,7 +61,7 @@ $total = 0;
                                     <?php                                        
                                         if ($ltp->voucher == '1') {
                                             $totalBayar = $ltp->sub_total - $ltp->total_potongan;
-                                            echo number_format($totalBayar,'0',',','.');
+                                            echo "<span class='text-success font-weight-bold'>".number_format($totalBayar,'0',',','.')."</span>";
                                         }
                                         else {
                                             echo "0";
