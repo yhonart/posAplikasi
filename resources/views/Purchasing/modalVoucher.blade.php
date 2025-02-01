@@ -24,6 +24,7 @@
             <div class="col-md-12">
                 <div class="collapse" id="collapseInvoice">
                     <div class="card card-body">
+                        <p class="text-muted"><i class="fa-solid fa-circle-info"></i></p>
                         <table class="table table-sm table-valign-middle table-hover">
                             <thead>
                                 <tr>
@@ -142,19 +143,19 @@
         $(".PILIH-DOKUMEN").change(function(){
             if ($(this).is(":checked")) {
                 var selectedValue = $(this).val();
-                alert(selectedValue);
-                // $.ajax({
-                //     type: "POST",
-                //     url: "your-server-endpoint-url",
-                //     data: { selectedOption: selectedValue },
-                //     success: function(response){
-                //         alert("Data berhasil dikirim: " + response);
-                //     },
-                //     error: function(xhr, status, error){
-                //         alert("Terjadi kesalahan: " + xhr.responseText);
-                //     }
-                // });
+                // alert(selectedValue);
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('Purchasing')}}/penggantianNomorInvoice/"+selectedValue,
+                    success : function(response){
+                        $(".LOAD-SPINNER").fadeOut();
+                    }
+                });
             }
+        });
+        $("#btnSimpanPilih").on('click', function (e) {
+            e.preventDefault();
+            window.location.reload();
         });
     });
 </script>
