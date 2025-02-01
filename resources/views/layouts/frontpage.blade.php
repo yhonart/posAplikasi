@@ -101,24 +101,31 @@
         //       alert('Sedang dilakukan update data master stock barang dan harga ')
         //     }
         //  }, 1000)
+        // Saat halaman dimuat
         localStorage.setItem('sesiAktif', Date.now());
-        window.addEventListener('beforeunload', function (e){
-            if (localStorage.getItem('sesiAktif')) {
-                $.ajax({
-                    type: "get",
-                    url: "{{route('home')}}/changeCloseData",                
-                    success: function(response){
-                        alert("Data successfully sent: " + response);
-                    },
-                    error: function(xhr, status, error){
-                        alert("Error occurred: " + xhr.responseText);
-                    }
-                });
-            }
+
+        // Saat beforeunload
+        window.addEventListener('beforeunload', function (e) {
+        if (localStorage.getItem('sesiAktif')) {
+            // Kirim AJAX request untuk update data
+            $.ajax({
+                type: "get",
+                url: "{{route('home')}}/changeCloseData",                
+                success: function(response){
+                    alert("Data successfully sent: " + response);
+                },
+                error: function(xhr, status, error){
+                    alert("Error occurred: " + xhr.responseText);
+                }
+            });
+        }
         });
+
+        // Saat halaman di-reload
         window.addEventListener('load', function (e) {
             localStorage.removeItem('sesiAktif');
         });
+        
     </script>
     <script type="text/javascript">
     //override defaults
