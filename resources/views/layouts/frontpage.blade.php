@@ -104,14 +104,12 @@
         $(window).on("beforeunload", function(){
             $.ajax({
                 type: "get",
-                url: "{{route('home')}}/changeCloseData",
-                async: false, // Make the request synchronous
-                data: { message: "User is closing the tab" },
+                url: "{{route('home')}}/changeCloseData",                
                 success: function(response){
-                    console.log("Data successfully sent: " + response);
+                    alert("Data successfully sent: " + response);
                 },
                 error: function(xhr, status, error){
-                    console.log("Error occurred: " + xhr.responseText);
+                    alert("Error occurred: " + xhr.responseText);
                 }
             });
         });
