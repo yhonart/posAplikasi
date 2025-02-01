@@ -67,4 +67,5 @@ Route::get('Purchasing/potonganHarga/{id}', [App\Http\Controllers\PurchasingCont
 Route::get('Purchasing/penggantianBarang/{id}', [App\Http\Controllers\PurchasingController::class, 'penggantianBarang']);
 
 Route::get('Purchasing/modalVoucher/{supId}', [App\Http\Controllers\PurchasingController::class, 'modalVoucher']);
+Route::get('Purchasing/penggantianNomorInvoice/{purchNumber}', [App\Http\Controllers\PurchasingController::class, 'penggantianNomorInvoice']);
 ?>

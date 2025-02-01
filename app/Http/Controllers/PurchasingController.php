@@ -1389,7 +1389,7 @@ class PurchasingController extends Controller
         DB::table('purchase_point')
             ->where('supplier_id',$id)
             ->update([
-                'status'=>'2',
+                'status'=>'4',
                 'action_by'=>'1'
             ]);
     }
@@ -1398,8 +1398,17 @@ class PurchasingController extends Controller
         DB::table('purchase_point')
             ->where('supplier_id',$id)
             ->update([
-                'status'=>'2',
+                'status'=>'4',
                 'action_by'=>'2'
+            ]);
+    }
+
+    public function penggantianNomorInvoice($purchNumber){
+        DB::table('purchase_point')
+            ->where('purchase_nunmber',$purchNumber)
+            ->update([
+                'status'=>'4',
+                'action_by'=>'1'
             ]);
     }
 }

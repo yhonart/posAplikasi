@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <div class="collapse" id="collapseInvoice">
                     <div class="card card-body">
-                        <p class="text-muted"><i class="fa-solid fa-circle-info"></i></p>
+                        <p class="text-muted"><i class="fa-solid fa-circle-info"></i> Pilih beberapa nomor pembelian, kemudian klik simpan.</p>
                         <table class="table table-sm table-valign-middle table-hover">
                             <thead>
                                 <tr>
