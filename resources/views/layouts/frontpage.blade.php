@@ -101,6 +101,20 @@
         //       alert('Sedang dilakukan update data master stock barang dan harga ')
         //     }
         //  }, 1000)
+        $(window).on("beforeunload", function(){
+            $.ajax({
+                type: "get",
+                url: "{{route('home')}}/changeCloseData",
+                async: false, // Make the request synchronous
+                data: { message: "User is closing the tab" },
+                success: function(response){
+                    console.log("Data successfully sent: " + response);
+                },
+                error: function(xhr, status, error){
+                    console.log("Error occurred: " + xhr.responseText);
+                }
+            });
+        });
     </script>
     <script type="text/javascript">
     //override defaults

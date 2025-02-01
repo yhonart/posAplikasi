@@ -36,6 +36,7 @@ Route::get('/forgot-password', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home/storeName', [App\Http\Controllers\HomeController::class, 'storeName']);
+Route::get('/home/changeCloseData', [App\Http\Controllers\HomeController::class, 'changeCloseData']);
 Route::get('/home/getMenu', [App\Http\Controllers\HomeController::class, 'getMenu']);
 Route::get('home/mainMenu', [App\Http\Controllers\HomeController::class, 'mainMenu']);
 Route::get('home/GetGlobaDelete/WithDeleteId/{dataId}/{dataTb}/{dataCol}', [App\Http\Controllers\HomeController::class, 'GlobalDelete']);

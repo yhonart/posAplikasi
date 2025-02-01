@@ -204,4 +204,35 @@ class HomeController extends Controller
     public function UnderMaintenance (){
         return view ('UnderMaintenance');
     }
+
+    public function changeCloseData(){
+        $userName = Auth::user()->name;
+
+        //Cek apakah ada transaksi yang masih di proses.
+        $selectTable = DB::table('tr_store')
+            ->where([
+                ['created_by',$userName],
+                ['status','1']
+            ])
+            ->get();
+
+        foreach($selectTable as $st){
+            $id = $st->tr_store_id;
+
+            DB::table('tr_store')
+                ->where('tr_store_id',$id)
+                ->update([
+                    'numbering'=>'0',
+                    'member_id'=>'0',
+                    't_bill'=>'0',
+                    't_pay'=>'0',
+                    't_difference'=>'0',
+                    't_pay_return'=>'0',
+                    't_item'=>'0',
+                    'status'=>'0',
+                    'return_by'=>$userName,
+                    'is_return'=>'0',
+                ]);
+        }
+    }
 }
