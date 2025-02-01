@@ -32,6 +32,22 @@
                                     <th>#</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                @foreach($itemByNumber as $ibn)
+                                    <tr>
+                                        <td>{{$ibn->purchase_number}}</td>
+                                        <td>{{$ibn->NumRet}}</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="gunakanRetur" value="{{$ibn->purchase_number}}">
+                                                    <label class="form-check-label"></label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -39,7 +55,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-sm table-hover table-valign-middle">
+                <table class="table table-sm table-hover table-valign-middle" id="tableItemRetur">
                     <thead>
                         <tr>
                             <th>No.Pembelian</th>
@@ -72,6 +88,15 @@
 </div>
 
 <script>
+    $(function(){        
+        $("#tableItemRetur").DataTable({
+            "responsive": true, 
+            "lengthChange": false, 
+            "autoWidth": false,
+            "dom": 'Bfrtip',
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
     $(document).ready(function(){
         $(".BTN-HARGA").on('click', function (e) {
             e.preventDefault();

@@ -509,8 +509,17 @@ class PurchasingController extends Controller
                 ['status','3']
             ])
             ->get();
+
+        $itemByNumber = DB::table('purchase_point')
+            ->select(DB::raw('SUM(nom_return) as NumRet'),'purchase_number')
+            ->where([
+                ['supplier_id',$supID],
+                ['status','3']
+            ])
+            ->groupBy('purchase_number')
+            ->get();
         
-            return view ('Purchasing/modalVoucher', compact('disPoint','itemReturn','supID'));        
+        return view ('Purchasing/modalVoucher', compact('disPoint','itemReturn','supID','itemByNumber'));        
     }
 
     //Purchase Dashboard
