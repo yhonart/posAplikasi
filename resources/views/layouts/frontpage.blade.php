@@ -119,12 +119,13 @@
                     }
                 });
             }
+            alert(localStorage.getItem('sesiAktif'));
         });
 
         // Saat halaman di-reload
-        // window.addEventListener('load', function (e) {
-        //     localStorage.removeItem('sesiAktif');            
-        // });
+        window.addEventListener('load', function (e) {
+            localStorage.removeItem('sesiAktif');            
+        });
         
     </script>
     <script type="text/javascript">
