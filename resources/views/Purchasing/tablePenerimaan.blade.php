@@ -48,12 +48,9 @@ $total = 0;
                                                 // echo number_format($dp->NumRet,'0',',','.');
                                                 echo "<button class='btn btn-sm btn-light BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold' href='".route('Purchasing')."/modalVoucher/".$ltp->supplier_id."' ><i class='fa-solid fa-ticket'></i> Voucher</button>";
                                             }
-                                            elseif ($ltp->voucher == '1') {
-                                                echo number_format($ltp->total_potongan,'0',',','.');
-                                            }
-                                            else {
-                                                echo $dp->supplier_id." ".$ltp->supplier_id." ".$ltp->voucher;
-                                            }
+                                        }
+                                        if ($ltp->voucher == '1') {
+                                            echo number_format($ltp->total_potongan,'0',',','.');
                                         }
                                     ?>
                                 </td>
