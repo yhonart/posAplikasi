@@ -1405,7 +1405,7 @@ class PurchasingController extends Controller
 
     public function penggantianNomorInvoice($purchNumber){
         DB::table('purchase_point')
-            ->where('purchase_nunmber',$purchNumber)
+            ->where('purchase_number',$purchNumber)
             ->update([
                 'status'=>'4',
                 'action_by'=>'1'

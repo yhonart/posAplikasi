@@ -149,6 +149,7 @@
                     url : "{{route('Purchasing')}}/penggantianNomorInvoice/"+selectedValue,
                     success : function(response){
                         $(".LOAD-SPINNER").fadeOut();
+                        alertify.success('Berhasil Ditambahkan');
                     }
                 });
             }
