@@ -102,8 +102,8 @@
         //     }
         //  }, 1000)
         localStorage.setItem('sesiAktif', Date.now());
-        if (localStorage.getItem('sesiAktif')) {
-            $(window).on("beforeunload", function(){
+        $(window).on("beforeunload", function(){
+            if (localStorage.getItem('sesiAktif')) {
                 $.ajax({
                     type: "get",
                     url: "{{route('home')}}/changeCloseData",                
@@ -114,8 +114,8 @@
                         alert("Error occurred: " + xhr.responseText);
                     }
                 });
-            });
-        }
+            }
+        });
         window.addEventListener('load', function (e) {
             localStorage.removeItem('sesiAktif');
         });
