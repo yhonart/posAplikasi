@@ -50,7 +50,7 @@
                             </tbody>
                         </table>
                         <div class="form-group">
-                            <button type="button" class="btn btn-sm" id="btnSimpanPilih"></button>
+                            <button type="button" class="btn btn-sm btn-success" id="btnSimpanPilih">Simpan</button>
                         </div>
                     </div>
                 </div>
@@ -138,6 +138,21 @@
                 alertify.error('Cancel');
                 $(".LOAD-SPINNER").fadeOut();
             }).set({title:"Notif Penukaran Barang."});;
+        });
+        $("input[type='radio']").click(function(){
+            var selectedValue = $(this).val();
+            alert (selectedValue);
+            // $.ajax({
+            //     type: "POST",
+            //     url: "your-server-endpoint-url",
+            //     data: { selectedOption: selectedValue },
+            //     success: function(response){
+            //         alert("Data successfully sent: " + response);
+            //     },
+            //     error: function(xhr, status, error){
+            //         alert("Error occurred: " + xhr.responseText);
+            //     }
+            // });
         });
     });
 </script>

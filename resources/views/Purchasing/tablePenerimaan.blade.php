@@ -2,7 +2,7 @@
 $statusDokumen = array(
     0=>"Dihapus",
     1=>"Sedang Proses",
-    2=>"Review",
+    2=>"Diperiksa",
     3=>"Disetujui"
 );
 $total = 0;
