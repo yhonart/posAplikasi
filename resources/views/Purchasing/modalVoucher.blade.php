@@ -36,12 +36,12 @@
                                 @foreach($itemByNumber as $ibn)
                                     <tr>
                                         <td>{{$ibn->purchase_number}}</td>
-                                        <td>{{$ibn->NumRet}}</td>
+                                        <td class="text-right font-weight-bold">{{number_format($ibn->NumRet,'0',',','.')}}</td>
                                         <td>
                                             <div class="form-group">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="gunakanRetur" value="{{$ibn->purchase_number}}">
-                                                    <label class="form-check-label"></label>
+                                                    <label class="form-check-label">Pilih</label>
                                                 </div>
                                             </div>
                                         </td>
