@@ -101,17 +101,23 @@
         //       alert('Sedang dilakukan update data master stock barang dan harga ')
         //     }
         //  }, 1000)
-        $(window).on("beforeunload", function(){
-            $.ajax({
-                type: "get",
-                url: "{{route('home')}}/changeCloseData",                
-                success: function(response){
-                    alert("Data successfully sent: " + response);
-                },
-                error: function(xhr, status, error){
-                    alert("Error occurred: " + xhr.responseText);
-                }
+        localStorage.setItem('sesiAktif', Date.now());
+        if (localStorage.getItem('sesiAktif')) {
+            $(window).on("beforeunload", function(){
+                $.ajax({
+                    type: "get",
+                    url: "{{route('home')}}/changeCloseData",                
+                    success: function(response){
+                        alert("Data successfully sent: " + response);
+                    },
+                    error: function(xhr, status, error){
+                        alert("Error occurred: " + xhr.responseText);
+                    }
+                });
             });
+        }
+        window.addEventListener('load', function (e) {
+            localStorage.removeItem('sesiAktif');
         });
     </script>
     <script type="text/javascript">
