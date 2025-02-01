@@ -40,8 +40,8 @@
                                         <td>
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="gunakanRetur" value="{{$ibn->purchase_number}}">
-                                                    <label class="form-check-label"></label>
+                                                    <input class="form-check-input PILIH-DOKUMEN" type="checkbox" name="pilihDokumen" value="{{$ibn->purchase_number}}">
+                                                    <label class="form-check-label">Pilih</label>
                                                 </div>
                                             </div>
                                         </td>
@@ -139,20 +139,22 @@
                 $(".LOAD-SPINNER").fadeOut();
             }).set({title:"Notif Penukaran Barang."});;
         });
-        $("input[type='radio']").click(function(){
-            var selectedValue = $(this).val();
-            alert (selectedValue);
-            // $.ajax({
-            //     type: "POST",
-            //     url: "your-server-endpoint-url",
-            //     data: { selectedOption: selectedValue },
-            //     success: function(response){
-            //         alert("Data successfully sent: " + response);
-            //     },
-            //     error: function(xhr, status, error){
-            //         alert("Error occurred: " + xhr.responseText);
-            //     }
-            // });
+        $(".PILIH-DOKUMEN").change(function(){
+            if ($(this).is(":checked")) {
+                var selectedValue = $(this).val();
+                alert(selectedValue);
+                // $.ajax({
+                //     type: "POST",
+                //     url: "your-server-endpoint-url",
+                //     data: { selectedOption: selectedValue },
+                //     success: function(response){
+                //         alert("Data berhasil dikirim: " + response);
+                //     },
+                //     error: function(xhr, status, error){
+                //         alert("Terjadi kesalahan: " + xhr.responseText);
+                //     }
+                // });
+            }
         });
     });
 </script>
