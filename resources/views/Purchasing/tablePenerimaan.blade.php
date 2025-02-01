@@ -55,12 +55,13 @@ $total = 0;
                                     ?>
                                 </td>
                                 <td class="text-right font-weight-bold">                                    
-                                    <?php
-                                        foreach ($detailPotongan as $dp1) {
-                                            if ($dp1->supplier_id == $ltp->supplier_id && $ltp->voucher == '1') {
-                                                $total = $ltp->sub_total - $dp1->NumRet;
-                                                echo number_format($total,'0',',','.');
-                                            }
+                                    <?php                                        
+                                        if ($ltp->voucher == '1') {
+                                            $totalBayar = $ltp->sub_total - $ltp->total_potongan;
+                                            echo number_format($totalBayar,'0',',','.');
+                                        }
+                                        else {
+                                            echo "0";
                                         }
                                     ?>
                                 </td>
