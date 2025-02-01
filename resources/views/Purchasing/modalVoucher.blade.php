@@ -142,11 +142,12 @@
         });
         $(".PILIH-DOKUMEN").change(function(){
             if ($(this).is(":checked")) {
-                var selectedValue = $(this).val();
+                var selectedValue = $(this).val(),
+                    purchNumber = "{{$purchNumber}}";
                 // alert(selectedValue);
                 $.ajax({
                     type : 'get',
-                    url : "{{route('Purchasing')}}/penggantianNomorInvoice/"+selectedValue,
+                    url : "{{route('Purchasing')}}/penggantianNomorInvoice/"+selectedValue+"/"+purchNumber,
                     success : function(response){
                         $(".LOAD-SPINNER").fadeOut();
                         alertify.success('Berhasil Ditambahkan');

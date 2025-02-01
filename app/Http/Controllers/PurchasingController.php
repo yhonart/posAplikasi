@@ -492,7 +492,7 @@ class PurchasingController extends Controller
         return view ('Purchasing/tablePenerimaan', compact('listTablePem','approval','status','fromDate','endDate','detailPotongan'));
     }
 
-    public function modalVoucher($supID){
+    public function modalVoucher($supID, $purchNumber){
         $disPoint = DB::table('purchase_point')
             ->select(DB::raw('SUM(nom_return) as NumRet'))
             ->where([
@@ -519,7 +519,7 @@ class PurchasingController extends Controller
             ->groupBy('purchase_number')
             ->get();
         
-        return view ('Purchasing/modalVoucher', compact('disPoint','itemReturn','supID','itemByNumber'));        
+        return view ('Purchasing/modalVoucher', compact('disPoint','itemReturn','supID','itemByNumber','purchNumber'));        
     }
 
     //Purchase Dashboard
@@ -1403,7 +1403,7 @@ class PurchasingController extends Controller
             ]);
     }
 
-    public function penggantianNomorInvoice($purchNumber){
+    public function penggantianNomorInvoice($purchNumber, $orderNumber){
         $sumPembayaran = DB::table('purchase_point')
             ->select(DB::raw('SUM(nom_return) as NumRet'))
             ->where('purchase_number',$purchNumber)
@@ -1412,7 +1412,7 @@ class PurchasingController extends Controller
         $total = $sumPembayaran->NumRet;
 
         DB::table('purchase_order')
-            ->where('purchase_number',$purchNumber)
+            ->where('purchase_number',$orderNumber)
             ->update([
                 'total_potongan'=>$total,
                 'voucher'=>'1'

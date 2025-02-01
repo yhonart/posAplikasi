@@ -49,7 +49,7 @@ $total = 0;
                                         foreach ($detailPotongan as $dp) {
                                             if ($dp->supplier_id == $ltp->supplier_id && $ltp->voucher == '0') {
                                                 // echo number_format($dp->NumRet,'0',',','.');
-                                                echo "<button class='btn btn-sm btn-light BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold' href='".route('Purchasing')."/modalVoucher/".$ltp->supplier_id."' ><i class='fa-solid fa-ticket'></i> Voucher</button>";
+                                                echo "<button class='btn btn-sm btn-light BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold' href='".route('Purchasing')."/modalVoucher/".$ltp->supplier_id."/".$ltp->purchase_number."' ><i class='fa-solid fa-ticket'></i> Voucher</button>";
                                             }
                                         }
                                         if ($ltp->voucher == '1') {
