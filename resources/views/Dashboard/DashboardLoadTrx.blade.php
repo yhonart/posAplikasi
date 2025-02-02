@@ -79,12 +79,11 @@
             <div class="form-group row">
                 <div class="col-md-6">
                     <select name="pilihTahun" id="pilihTahun" class="form-control form-control-sm">
-                        @foreach($monthsByQuarter as $quarter)
-                            <option value="{{$quarter}}">{{$quarter}}</option>
+                        @foreach($selectYear as $sy)
+                            <option value="{{$sy->years}}">{{$sy->years}}</option>
                         @endforeach
                     </select> 
-                    Or
-
+                    
                 </div>
             </div>
             <div class="row">
