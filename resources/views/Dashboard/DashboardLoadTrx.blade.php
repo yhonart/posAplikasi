@@ -7,7 +7,7 @@
         <div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fas fa-info"></i> Alert!</h5>
-            <p>Sudah hari <b>Senin</b> nih, jangan lupa  masukkan Reimbursement / Pengembalian Dana Kas.
+            <p> <img src="{{asset('public/images/cash-back.png')}}"> Sudah hari <b>Senin</b> nih, jangan lupa  masukkan Reimbursement / Pengembalian Dana Kas.
             Klik link berikut ini untuk input nominal pengembalian dana kas</p>
             <a href="{{route('trxReumbers')}}">Reimbursement / Pengembalian Dana Kas</a>
         </div>
