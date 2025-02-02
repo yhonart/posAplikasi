@@ -92,7 +92,7 @@
             <div class="card-body">
                 <div class="tab-content" id="custom-tabs-one-tabContent">
                     <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
-                        <div class="form-group row">
+                        <div class="row">
                             <div class="col-md-6">
                                 <select name="pilihTahun" id="pilihTahun" class="form-control form-control-sm">
                                     @foreach($selectYear as $sy)
