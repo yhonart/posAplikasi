@@ -31,7 +31,12 @@ class TempKeuanganController extends Controller
         $penjualan = $penjualan->groupBy('date_trx','created_by');
         $penjualan = $penjualan->first(); 
 
-        $updateNominal = $penjualan->paymentCus;       
+        if (!empty($penjualan)) {
+            $updateNominal = $penjualan->paymentCus;
+        }
+        else {
+            $updateNominal = $nominal;
+        }
 
         if ($countKasBesar == '0') {            
             DB::table('lap_kas_besar')
