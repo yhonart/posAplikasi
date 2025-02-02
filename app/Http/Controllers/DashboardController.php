@@ -9,7 +9,19 @@ use App\Helpers\QuarterHelper;
 
 
 class DashboardController extends Controller
-{    
+{  
+    protected $tempInv;
+    protected $tempUser;  
+    protected $TempInventoryController;
+    protected $TempUsersController;
+    protected $TempKeuanganController;
+
+    public function __construct(TempInventoryController $tempInv, TempUsersController $tempUser, TempKeuanganController $tempKasBesar)
+    {
+        $this->TempInventoryController = $tempInv;
+        $this->TempUsersController = $tempUser;
+        $this->TempKeuanganController = $tempKasBesar;
+    }  
     // CEK INFORMASI USER TERKAIT AREA KERJA YANG TERDAFTAR PADA SISTEM
     public function checkuserInfo (){
         $userID = Auth::user()->id;        
@@ -248,5 +260,53 @@ class DashboardController extends Controller
                     'is_delete'=>'1'
                 ]);
         }
+    }
+
+    public function displayPembelian(){
+        $checkArea = $this->TempUsersController->checkuserInfo();
+        $thisPeriode = date('mY');
+        $todayDate = date('Y-m-d');
+        $day30Ago = date('Y-m-d', strtotime('-30 days'));
+        
+        $sumTunai = DB::table('purchase_order')
+            ->select(DB::raw('SUM(sub_total) as totalTunai'))
+            ->where([
+                ['periode',$thisPeriode],
+                ['payment_methode','1'],
+                ['status','3']
+            ])
+            ->orWhere([
+                ['periode',$thisPeriode],
+                ['payment_methode','2'],
+                ['status','3']
+            ])
+            ->first();
+        
+        $sumHutang = DB::table('purchase_order')
+            ->select(DB::raw('SUM(sub_total) as totalTunai'))
+            ->where([
+                ['payment_methode','3'],
+                ['payment_status','!=','4'],
+                ['status','3']
+            ])
+            ->first();
+            
+        $sum30Ago = DB::table('purchase_order')
+            ->select(DB::raw('SUM(sub_total) as totalTunai'))
+            ->whereBetween('purchase_date',[$day30Ago,$todayDate])
+            ->where([
+                ['payment_methode','3'],
+                ['payment_status','4']
+            ])
+            ->first();
+            
+        $doDate = DB::table('view_purchase_order')
+            ->select(DB::raw('DATEDIFF(CURDATE(), purchase_date) AS jumlahHari'), 'sub_total','tempo')
+            ->where([
+                ['payment_methode','3'],
+                ['payment_status','!=','4']
+                ])
+            ->get();
+        return view('Dashboard/DashboardPurchasing', compact('checkArea','sumTunai','sumHutang','doDate','sum30Ago'));
     }
 }

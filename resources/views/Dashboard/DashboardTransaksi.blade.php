@@ -60,7 +60,7 @@
         $('#searchDataReturn').val('').focus();
         $.ajax({
             type : 'get',
-            url : "{{route('Purchasing')}}/dataPurchasing",
+            url : "{{route('Dashboard')}}/displayPembelian",
             success : function(response){
                 $("#displayDashboardPurchasing").html(response);
             }
