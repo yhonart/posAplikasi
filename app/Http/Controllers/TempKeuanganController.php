@@ -19,30 +19,33 @@ class TempKeuanganController extends Controller
             ])
             ->count();
             
-        $kredit = DB::table('lap_kas_besar')
-            ->select('debit','kredit','saldo')
-            ->where([
-                ['create_by',$createBy],
-                ['trx_date',$dateNoww],
-                ['trx_code','1']
-            ])
-            ->first();
         $description = "Penjualan ".$createBy;
+        
+        $penjualan = DB::table('view_trx_method');
+        $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'date_trx','created_by'); 
+        $penjualan = $penjualan->where([
+            ['status_by_store','>=','3'],
+            ['created_by',$createBy],
+            ['date_trx',$dateNoww]
+        ]);
+        $penjualan = $penjualan->groupBy('date_trx','created_by');
+        $penjualan = $penjualan->first(); 
+
+        $updateNominal = $penjualan->paymentCus;       
+
         if ($countKasBesar == '0') {            
             DB::table('lap_kas_besar')
                 ->insert([
                     'description'=>$description,
                     'create_by' => $createBy,
                     'trx_date' => $dateNoww,
-                    'debit' => $nominal,
+                    'debit' => $updateNominal,
                     'kredit' => '0',
-                    'saldo' => $nominal,
+                    'saldo' => $updateNominal,
                     'trx_code' => '1'
                 ]);
         }
         else {
-            $lastKredit = $kredit->debit;
-            $addKredit = $nominal + $lastKredit;
             DB::table('lap_kas_besar')
                 ->where([
                     ['create_by',$createBy],
@@ -50,8 +53,8 @@ class TempKeuanganController extends Controller
                     ['trx_code','1']
                 ])
                 ->update([
-                    'debit' => $addKredit,                    
-                    'saldo' => $addKredit,
+                    'debit' => $updateNominal,                    
+                    'saldo' => $updateNominal,
                     'trx_code' => '1'
                 ]);
         }

@@ -150,6 +150,7 @@ class DashboardController extends Controller
         ]);
         $totalTransaksi = $totalTransaksi->whereBetween('tr_date',[$fromDate, $endDate]);
         $totalTransaksi = $totalTransaksi->count();
+        
         $monthsByQuarter = QuarterHelper::getMonthsByQuarter();
 
         return view ('Dashboard/DashboardLoadTrx', compact('hariIni','countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','userKasir','penjualan','monthsByQuarter'));
