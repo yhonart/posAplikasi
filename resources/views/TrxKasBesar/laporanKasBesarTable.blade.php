@@ -13,7 +13,7 @@ $addSaldo = 0;
     <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered" id="tableKasBesar">
         <thead class="bg-gray-dark">
             <tr>
-                <th>Tanggal</th>
+                <th>Tanggals</th>
                 <th>Nomor</th>
                 <th>Keterangan</th>
                 <th>Debit</th>
