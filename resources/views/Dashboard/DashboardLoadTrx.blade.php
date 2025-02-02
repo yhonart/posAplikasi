@@ -100,7 +100,7 @@
                                     @endforeach
                                 </select> 
                                 <select name="pilihQuartal" id="pilihQuartal" class="form-control form-control-sm">
-                                    @foreach($quarters as $key => $quarter)
+                                    @foreach($monthsByQuarter as $key => $quarter)
                                         <option value="{{ $key }}">{{ $quarter }}</option>
                                     @endforeach
                                 </select>
