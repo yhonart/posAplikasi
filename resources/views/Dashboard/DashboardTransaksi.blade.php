@@ -36,7 +36,9 @@
                 </div>
             </div>   
             <div class="col-12 col-md-3">
-                <a href="#displayDashboardPurchasing" class="btn btn-success rounded-pill float-sm-right">Go to Purchase Info</a>
+                <div style ="position: absolute; bottom: 0;right:0;">
+                    <a href="#displayDashboardPurchasing" class="btn btn-success rounded-pill float-sm-right">Go to Purchase Info</a>
+                </div>
             </div>         
         </div>
         <div class="row">
