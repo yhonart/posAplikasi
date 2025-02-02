@@ -41,6 +41,11 @@
                 <div id="loadDataDashboard"></div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="displayDashboardPurchasing"></div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -53,6 +58,13 @@
         });
         $('.datetimepicker-input').datepicker("setDate",new Date());
         $('#searchDataReturn').val('').focus();
+        $.ajax({
+            type : 'get',
+            url : "{{route('Purchasing')}}/dataPurchasing",
+            success : function(response){
+                $("#displayDashboardPurchasing").html(response);
+            }
+        });
     });
     
     $(document).ready(function(){
