@@ -97,6 +97,7 @@ class DashboardController extends Controller
     public function lodaDataTransaksi ($fromDate, $endDate){
         // echo $fromDate."/".$endDate;
         $thisPeriode = date("m-Y");
+        $tglSekarang = date("d-m-Y");
         $hariIni = Carbon::now();
 
         $penjualan = DB::table('view_trx_method');
@@ -153,7 +154,15 @@ class DashboardController extends Controller
         
         $monthsByQuarter = QuarterHelper::getMonthsByQuarter();
 
-        return view ('Dashboard/DashboardLoadTrx', compact('hariIni','countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','userKasir','penjualan','monthsByQuarter'));
+        $getInfoKas = DB::table('tr_kas')
+            ->where([
+                ['trx_code','1'],
+                ['nominal_moda','!=',null],
+                ['kas_date',$tglSekarang]
+            ])
+            ->count();
+
+        return view ('Dashboard/DashboardLoadTrx', compact('getInfoKas','hariIni','countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','userKasir','penjualan','monthsByQuarter'));
     }
 
     public function getTrxByKasir($kasir, $fromDate, $endDate){
