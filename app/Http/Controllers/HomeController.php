@@ -218,6 +218,14 @@ class HomeController extends Controller
 
         foreach($selectTable as $st){
             $id = $st->tr_store_id;
+            $numberTrx = $st->billing_number;
+
+            DB::table('tr_store_prod_list')
+                ->where('from_payment_code',$numberTrx)
+                ->update([
+                    'status'=>'0',
+                    'is_delete'=>'1'
+                ]);
 
             DB::table('tr_store')
                 ->where('tr_store_id',$id)
