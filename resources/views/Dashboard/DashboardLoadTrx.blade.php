@@ -4,7 +4,6 @@
     $dayNoww = date('l', strtotime($hariIni));
     $strHari = "Monday";
 ?>
-{{$getInfoKas}}
 @if($dayNoww == $strHari AND $getInfoKas == '0')
 <div class="row mb-2">
     <div class="col-md-12">
