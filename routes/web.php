@@ -55,6 +55,8 @@ Route::post('Dashboard/loadDataTransaksi/postOnClick', [App\Http\Controllers\Das
 Route::post('Dashboard/loadDataTransaksi/postChangesStatus', [App\Http\Controllers\DashboardController::class, 'postChangesStatus']);
 Route::get('Dashboard/loadDataTransaksi/getTrxByKasir/{kasir}/{fromDate}/{endDate}', [App\Http\Controllers\DashboardController::class, 'getTrxByKasir']);
 
+Route::get('Dashboard/manualInsertKasBesar', [App\Http\Controllers\HomeController::class, 'manualInsertKasBesar']);
+
 Route::get('UnderMaintenance', [App\Http\Controllers\HomeController::class, 'UnderMaintenance'])->name('UnderMaintenance');
 
 //Purchasing

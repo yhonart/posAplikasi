@@ -235,4 +235,35 @@ class HomeController extends Controller
                 ]);
         }
     }
+
+    public function manualInsertKasBesar ()
+    {
+        // get transaksi item per day
+        $keterangan = '';
+
+        $penjualan = DB::table('view_trx_method');
+        $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'date_trx','created_by'); 
+        $penjualan = $penjualan->where('status_by_store','>=','3');
+        $penjualan = $penjualan->groupBy('date_trx','created_by');
+        $penjualan = $penjualan->get(); 
+
+        foreach ($penjualan as $key) {
+            $keterangan = "Penjualan ". $key->created_by;
+            $createdBy  = $key->created_by;
+            $tanggal  = $key->date_trx;
+            $debit = $key->paymentCus;
+
+            DB::table('lap_kas_besar')
+                ->insert([
+                    'description'=>$keterangan,
+                    'create_by'=>$createdBy,
+                    'trx_date'=>$tanggal,
+                    'debit'=>$debit,
+                    'kredit'=>'0',
+                    'saldo'=>$debit,
+                    'created_date'=>now(),
+                    'trx_code'=>'1'
+                ]);
+        }
+    }
 }
