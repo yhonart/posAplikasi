@@ -100,7 +100,7 @@ class TrxReumbersController extends Controller
         $fromAkunDana = explode("|",$reqPosting->fromAkunDana);
         $nominal = str_replace(".","",$reqPosting->nominal);
         $thisPeriode = date("mY");
-        $hariIni = date('d-m-Y');
+        $hariIni = date('Y-m-d');
 
         $fromDana = $fromAkunDana[0];
         $nominalDana = $fromAkunDana[1];
