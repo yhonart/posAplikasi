@@ -100,6 +100,7 @@ class TrxReumbersController extends Controller
         $fromAkunDana = explode("|",$reqPosting->fromAkunDana);
         $nominal = str_replace(".","",$reqPosting->nominal);
         $thisPeriode = date("mY");
+        $hariIni = date('d-m-Y');
 
         $fromDana = $fromAkunDana[0];
         $nominalDana = $fromAkunDana[1];
@@ -118,6 +119,17 @@ class TrxReumbersController extends Controller
                 'reumbers_date'=>now(),
                 'nominal'=>$nominal,
                 'periode'=>$thisPeriode,
+            ]);
+
+        DB::table('tr_kas')
+            ->insert([
+                'kas_date'=>$hariIni,
+                'status'=>'1',
+                'created_by'=>$creator,
+                'nominal'=>'0',
+                'sumber_dana'=>$fromDana,
+                'nominal_modal'=>$nominal,
+                'trx_code'=>'1'
             ]);
     }
     
