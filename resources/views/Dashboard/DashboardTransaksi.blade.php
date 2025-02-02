@@ -87,11 +87,13 @@
         });
         
         function funcLoadDataTrx(fromDate, endDate){
+            $(".LOAD-SPINNER").fadeIn();
             $.ajax({
                 type : 'get',
                 url : "{{route('Dashboard')}}/loadDataTransaksi/"+fromDate+"/"+endDate,
                 success : function(response){
                     $("#loadDataDashboard").html(response);
+                    $(".LOAD-SPINNER").fadeOut();
                 }
             });
         };
