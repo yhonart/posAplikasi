@@ -1,7 +1,10 @@
 <?php
     $sumRecord = '0';
     $sumPendapatan = 0;
+    $dayNoww = date('l', strtotime($hariIni));
+    $strHari = "Monday";
 ?>
+@if($dayNoww == $strHari)
 <div class="row mb-2">
     <div class="col-md-12">
         <div class="callout callout-info">
@@ -11,6 +14,7 @@
         </div>        
     </div>
 </div>
+@endif
 <div class="row mb-2">
     <div class="col-lg-3 col-6">
         <a href="#" class="onClick-Data" data-condition="alltrx" data-from="{{$fromDate}}" data-end="{{$endDate}}">

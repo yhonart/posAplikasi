@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\QuarterHelper;
+use Carbon\Carbon;
 
 
 class DashboardController extends Controller
@@ -96,6 +97,7 @@ class DashboardController extends Controller
     public function lodaDataTransaksi ($fromDate, $endDate){
         // echo $fromDate."/".$endDate;
         $thisPeriode = date("m-Y");
+        $hariIni = Carbon::now();
 
         $penjualan = DB::table('view_trx_method');
         $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'date_trx','created_by'); 
@@ -150,7 +152,7 @@ class DashboardController extends Controller
         $totalTransaksi = $totalTransaksi->count();
         $monthsByQuarter = QuarterHelper::getMonthsByQuarter();
 
-        return view ('Dashboard/DashboardLoadTrx', compact('countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','userKasir','penjualan','monthsByQuarter'));
+        return view ('Dashboard/DashboardLoadTrx', compact('hariIni','countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','userKasir','penjualan','monthsByQuarter'));
     }
 
     public function getTrxByKasir($kasir, $fromDate, $endDate){
