@@ -21,7 +21,7 @@
 </div>
 
 <div class="content">
-    <div class="container-fluid">        
+    <div class="container-fluid">                
         <div class="row">
             <div class="col-6 col-md-3">
                 <div class="form-group">

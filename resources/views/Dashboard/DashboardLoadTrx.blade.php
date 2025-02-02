@@ -3,6 +3,17 @@
     $sumPendapatan = 0;
 ?>
 <div class="row mb-2">
+    <div class="col-md-12">
+        <div class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-info"></i> Alert!</h5>
+            <p>Sudah hari <b>Senin</b> nih, jangan lupa  masukkan Reimbursement / Pengembalian Dana Kas.
+            Klik link berikut ini untuk input nominal pengembalian dana kas</p>
+            <a href="{{route('trxReumbers')}}">Reimbursement / Pengembalian Dana Kas</a>
+        </div>
+    </div>
+</div>
+<div class="row mb-2">
     <div class="col-lg-3 col-6">
         <a href="#" class="onClick-Data" data-condition="alltrx" data-from="{{$fromDate}}" data-end="{{$endDate}}">
             <div class="small-box bg-success">

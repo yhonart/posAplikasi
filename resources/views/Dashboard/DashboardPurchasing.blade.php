@@ -76,7 +76,7 @@
         </div>
     </div>
 </div>
-<div class="row" id="rowFilter" style="display:none;">
+<div class="row" id="rowFilter">
     <div class="col-12">
         <div id="tableFilter"></div>
     </div>
