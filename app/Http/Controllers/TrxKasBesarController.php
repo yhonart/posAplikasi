@@ -50,6 +50,7 @@ class TrxKasBesarController extends Controller
             ]);
         }
         $lapKasBesar = $lapKasBesar->whereBetween('trx_date',[$fromDate,$endDate]);
+        $lapKasBesar = $lapKasBesar->orderBy('trx_date','asc');
         $lapKasBesar = $lapKasBesar->get();
 
         //DB Reumbers
