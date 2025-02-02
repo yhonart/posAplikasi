@@ -32,7 +32,7 @@ $addSaldo = 0;
                     <td>
                         <?php
                             $addSaldo += $lkb->debit;
-                            echo number_format($lkb->debit,'0',',','.');
+                            echo number_format($addSaldo,'0',',','.');
                         ?>
                     </td>
                 </tr>
