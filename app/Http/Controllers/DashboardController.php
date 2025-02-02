@@ -157,7 +157,7 @@ class DashboardController extends Controller
         $getInfoKas = DB::table('tr_kas')
             ->where([
                 ['trx_code','1'],
-                ['nominal_moda','!=',null],
+                ['nominal_modal','!=',null],
                 ['kas_date',$tglSekarang]
             ])
             ->count();
