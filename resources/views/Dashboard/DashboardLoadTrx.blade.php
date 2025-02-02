@@ -79,13 +79,13 @@
             <div class="card-header p-0 pt-1">
                 <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                     <li class="nav-item">
-                    <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Bulanan</a>
+                    <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Quartal</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Quartal</a>
+                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Quartal Versus</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Quartal Versus</a>
+                    <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Tahunan</a>
                     </li>
                 </ul>
             </div>
@@ -99,6 +99,14 @@
                                         <option value="{{$sy->years}}">{{$sy->years}}</option>
                                     @endforeach
                                 </select> 
+                                @foreach($monthsByQuarter as $quarter => $months)
+                                    <h2>{{ $quarter }}</h2>
+                                    <ul>
+                                        @foreach($months as $month)
+                                            <li>{{ $month }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endforeach
                             </div>
                         </div>
                         <div class="row">
