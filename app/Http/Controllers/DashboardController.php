@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\QuarterHelper;
 
 
 class DashboardController extends Controller
@@ -135,8 +136,9 @@ class DashboardController extends Controller
         ]);
         $totalTransaksi = $totalTransaksi->whereBetween('tr_date',[$fromDate, $endDate]);
         $totalTransaksi = $totalTransaksi->count();
-            
-        return view ('Dashboard/DashboardLoadTrx', compact('countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','userKasir','penjualan'));
+        $monthsByQuarter = QuarterHelper::getMonthsByQuarter();
+
+        return view ('Dashboard/DashboardLoadTrx', compact('countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','userKasir','penjualan','monthsByQuarter'));
     }
 
     public function getTrxByKasir($kasir, $fromDate, $endDate){
