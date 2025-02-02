@@ -74,26 +74,50 @@
 </div>
 
 <div class="row">
-    <div class="col-md-8">
-        <div class="card card-body">
-            <div class="form-group row">
-                <div class="col-md-6">
-                    <select name="pilihTahun" id="pilihTahun" class="form-control form-control-sm">
-                        @foreach($selectYear as $sy)
-                            <option value="{{$sy->years}}">{{$sy->years}}</option>
-                        @endforeach
-                    </select> 
-                    
-                </div>
+    <div class="col-md-6">
+        <div class="card card-tabs">
+            <div class="card-header p-0 pt-1">
+                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                    <li class="nav-item">
+                    <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Bulanan</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Quartal</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Quartal Versus</a>
+                    </li>
+                </ul>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="pembelianVsPenjualan"></div>
+            <div class="card-body">
+                <div class="tab-content" id="custom-tabs-one-tabContent">
+                    <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <select name="pilihTahun" id="pilihTahun" class="form-control form-control-sm">
+                                    @foreach($selectYear as $sy)
+                                        <option value="{{$sy->years}}">{{$sy->years}}</option>
+                                    @endforeach
+                                </select> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="pembelianVsPenjualan"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                        On Progress
+                    </div>
+                    <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
+                        On Progress
+                    </div>
                 </div>
-            </div>
+            </div>            
         </div>
     </div>  
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title">Transaksi Per Kasir</h3>
