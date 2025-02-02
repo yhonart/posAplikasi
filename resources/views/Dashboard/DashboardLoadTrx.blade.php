@@ -4,7 +4,7 @@
 ?>
 <div class="row mb-2">
     <div class="col-md-12">
-        <div class="alert alert-dismissible">
+        <div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fas fa-info"></i> Alert!</h5>
             <p> <img src="{{asset('public/images/Animation - 1738511387784.gif')}}" height="60" width="60"> Sudah hari <b>Senin</b> nih, jangan lupa  masukkan Reimbursement / Pengembalian Dana Kas.
