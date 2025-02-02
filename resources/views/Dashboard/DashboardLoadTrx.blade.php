@@ -5,7 +5,7 @@
     $strHari = "Monday";
 ?>
 {{$getInfoKas}}
-@if($dayNoww == $strHari AND $getInfoKas <> '0')
+@if($dayNoww == $strHari AND $getInfoKas == '0')
 <div class="row mb-2">
     <div class="col-md-12">
         <div class="callout callout-info">
