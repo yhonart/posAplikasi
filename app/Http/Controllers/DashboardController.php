@@ -97,7 +97,7 @@ class DashboardController extends Controller
     public function lodaDataTransaksi ($fromDate, $endDate){
         // echo $fromDate."/".$endDate;
         $thisPeriode = date("m-Y");
-        $tglSekarang = date("d-m-Y");
+        $tglSekarang = date("Y-m-d");
         $hariIni = Carbon::now();
 
         $penjualan = DB::table('view_trx_method');
@@ -157,7 +157,6 @@ class DashboardController extends Controller
         $getInfoKas = DB::table('tr_kas')
             ->where([
                 ['trx_code','1'],
-                ['nominal_modal','!=',null],
                 ['kas_date',$tglSekarang]
             ])
             ->count();
