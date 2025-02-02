@@ -5,7 +5,7 @@
 <div class="row mb-2">
     <div class="col-md-12">
         <div class="callout callout-info">
-            <h5><img src="{{asset('public/images/Animation - 1738511387784.gif')}}"> Udah Hari <b>Senin</b> nih!</h5>
+            <h5><img src="{{asset('public/images/Animation1738512688097.gif')}}" height="90" width="90"> Udah Hari <b>Senin</b> nih!</h5>
             <p>Jangan lupa masukkan Reimbursement / Pengembalian Dana Kas, untuk kebutuhan kas kecil anda. Klik link dibawah ini untuk memasukkan dana : </p>
             <a href="{{route('trxReumbers')}}" class="text-info font-weight-bold">Reimbursement / Pengembalian Dana Kas</a>
         </div>        
