@@ -125,42 +125,61 @@
         </div>
     </div>  
     <div class="col-md-6">
-        <div class="card card-info">
-            <div class="card-header">
-                <h3 class="card-title">Transaksi Per Kasir</h3>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                    </button>
-                </div>
+        <div class="card card-info card-tabs">
+            <div class="card-header p-0 pt-1">
+                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                    <li class="nav-item">
+                    <a class="nav-link active" id="tabs-one-penjualan-tab" data-toggle="pill" href="#tabs-one-penjualan" role="tab" aria-controls="tabs-one-penjualan" aria-selected="true">Penjualan Kasir</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" id="tabs-two-hutang-customer-tab" data-toggle="pill" href="#tabs-two-hutang-customer" role="tab" aria-controls="tabs-two-hutang-customer" aria-selected="false">Hutang Pelanggan</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" id="tabs-three-pembelian-tab" data-toggle="pill" href="#tabs-three-pembelian" role="tab" aria-controls="tabs-three-pembelian" aria-selected="false">Pembelian Toko</a>
+                    </li>
+                </ul>
             </div>
             <div class="card-body p-0">
-                <table class="table table-striped projects">
-                    <thead>
-                        <tr>
-                            <th>Tanggal</th>
-                            <th>Nama Kasir</th>
-                            <th>Total Penerimaan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($penjualan as $p)
-                            <tr>
-                                <td>{{date("d-M-y", strtotime($p->date_trx))}}</td>
-                                <td>{{$p->created_by}}</td>
-                                <td class="text-right">{{number_format($p->paymentCus,'0',',','.')}}</td>
-                            </tr>
-                            <?php
-                                $sumPendapatan +=$p->paymentCus
-                            ?>
-                        @endforeach
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td class="font-weight-bold text-right">{{number_format($sumPendapatan,'0',',','.')}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="tab-content" id="custom-tabs-one-tabContent">
+                    <div class="tab-pane fade show active" id="tabs-one-penjualan" role="tabpanel" aria-labelledby="tabs-one-penjualan-tab">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-striped projects">
+                                    <thead>
+                                        <tr>
+                                            <th>Tanggal</th>
+                                            <th>Nama Kasir</th>
+                                            <th>Total Penerimaan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($penjualan as $p)
+                                            <tr>
+                                                <td>{{date("d-M-y", strtotime($p->date_trx))}}</td>
+                                                <td>{{$p->created_by}}</td>
+                                                <td class="text-right">{{number_format($p->paymentCus,'0',',','.')}}</td>
+                                            </tr>
+                                            <?php
+                                                $sumPendapatan +=$p->paymentCus
+                                            ?>
+                                        @endforeach
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="font-weight-bold text-right">{{number_format($sumPendapatan,'0',',','.')}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tabs-two-hutang-customer" role="tabpanel" aria-labelledby="tabs-two-hutang-customer-tab">
+                        On Progress
+                    </div>
+                    <div class="tab-pane fade" id="tabs-three-pembelian" role="tabpanel" aria-labelledby="tabs-three-pembelian-tab">
+                        On Progress
+                    </div>
+                </div>                
             </div>
         </div>
     </div> 
