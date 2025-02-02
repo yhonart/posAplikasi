@@ -31,7 +31,7 @@ $addSaldo = 0;
                     <td>{{number_format($lkb->kredit,'0',',','.')}}</td>
                     <td>
                         <?php
-                            $addSaldo += $lkb->debit - $lkb->kredit;
+                            $addSaldo += $lkb->debit;
                             echo number_format($addSaldo,'0',',','.');
                         ?>
                     </td>
