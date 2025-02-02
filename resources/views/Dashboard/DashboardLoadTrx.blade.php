@@ -4,13 +4,10 @@
 ?>
 <div class="row mb-2">
     <div class="col-md-12">
-        <div class="alert alert-info alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h5><i class="icon fas fa-info"></i> Alert!</h5>
-            <p> <img src="{{asset('public/images/Animation - 1738511387784.gif')}}" height="60" width="60"> Sudah hari <b>Senin</b> nih, jangan lupa  masukkan Reimbursement / Pengembalian Dana Kas.
-            Klik link berikut ini untuk input nominal pengembalian dana kas</p>
-            <a href="{{route('trxReumbers')}}">Reimbursement / Pengembalian Dana Kas</a>
-        </div>
+        <div class="callout callout-info">
+            <h5><img src="{{asset('public/images/Animation - 1738511387784.gif')}}" height="80" width="80"> Udah Hari <b>Senin</b> nih!</h5>
+            <p>Jangan lupa masukkan Reimbursement / Pengembalian Dana Kas, untuk kebutuhan kas kecil anda. Klik link dibawah ini untuk memasukkan dana : </p>
+        </div>        
     </div>
 </div>
 <div class="row mb-2">
