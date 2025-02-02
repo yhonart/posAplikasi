@@ -99,14 +99,11 @@
                                         <option value="{{$sy->years}}">{{$sy->years}}</option>
                                     @endforeach
                                 </select> 
-                                @foreach($monthsByQuarter as $quarter => $months)
-                                    <h2>{{ $quarter }}</h2>
-                                    <ul>
-                                        @foreach($months as $month)
-                                            <li>{{ $month }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endforeach
+                                <select name="pilihQuartal" id="pilihQuartal" class="form-control form-control-sm">
+                                    @foreach($quarters as $key => $quarter)
+                                        <option value="{{ $key }}">{{ $quarter }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="row">
