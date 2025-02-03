@@ -82,7 +82,7 @@
                                 </div>
                             </div>
                             <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
-                                <label class="col-md-4 text-right">POINT BELANJA</label>
+                                <label class="col-md-4 text-right">Voucher Belanja</label>
                                 <div class="col-md-4">
                                     <div class="custom-control custom-checkbox">
                                         <?php
@@ -93,8 +93,12 @@
                                                 $pointPlg = '0';                                        
                                             }
                                         ?>
-                                        <input class="custom-control-input" type="checkbox" id="pointBelanja" name="pointBelanja" value="{{$pointPlg}}" onclick="myFunctionAddPoint()">
-                                        <label for="pointBelanja" class="custom-control-label text-muted">Point yang bisa digunakan : Rp. {{$pointPlg}},-</label>
+                                        @if($pointPlg == '0')
+                                            <input class="custom-control-input" type="checkbox" id="pointBelanja" name="pointBelanja" value="{{$pointPlg}}" readonly>
+                                        @else
+                                            <input class="custom-control-input" type="checkbox" id="pointBelanja" name="pointBelanja" value="{{$pointPlg}}" onclick="myFunctionAddPoint()">
+                                        @endif
+                                        <label for="pointBelanja" class="custom-control-label text-muted"> : Rp. {{number_format($pointPlg,'0',',','.')}},-</label>
                                         
                                     </div>
                                 </div>
