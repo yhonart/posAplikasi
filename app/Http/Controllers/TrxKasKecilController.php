@@ -34,7 +34,7 @@ class TrxKasKecilController extends Controller
     }
 
     public function tableLaporan($kasir, $fromDate, $endDate){
-        echo $fromDate."/".$endDate;
+        // echo $fromDate."/".$endDate;
         $firstDayThisWeek = $this->getMonday();
         // Tentukan hari pertama dari minggu sebelumnya
         $firstDayOfLastWeek = $firstDayThisWeek->copy()->subWeek();
@@ -76,7 +76,6 @@ class TrxKasKecilController extends Controller
                 ['kas_persCode',$kasir]
             ]);
         }
-        // $tablePengeluaran = $tablePengeluaran->where('trx_code','2');
         $tablePengeluaran = $tablePengeluaran->whereBetween('kas_date',[$fromDate,$endDate]);
         $tablePengeluaran = $tablePengeluaran->get();
 
