@@ -34,7 +34,7 @@ class TrxKasKecilController extends Controller
     }
 
     public function tableLaporan($kasir, $fromDate, $endDate){
-        echo $fromDate."/".$endDate;
+        // echo $fromDate."/".$endDate;
         $firstDayThisWeek = $this->getMonday();
         // Tentukan hari pertama dari minggu sebelumnya
         $firstDayOfLastWeek = $firstDayThisWeek->copy()->subWeek();
@@ -42,19 +42,19 @@ class TrxKasKecilController extends Controller
         // Tentukan hari terakhir minggu sebelumnya (Minggu)
         $lastDayOfLastWeek = $firstDayOfLastWeek->copy()->endOfWeek(Carbon::SUNDAY);
 
-        $startDate = date("Y-m-d", strtotime($firstDayOfLastWeek));
-        $endDate = date("Y-m-d", strtotime($lastDayOfLastWeek));
+        $lastWeekStartDate = date("Y-m-d", strtotime($firstDayOfLastWeek));
+        $lastWeekEndDate = date("Y-m-d", strtotime($lastDayOfLastWeek));
         
         //sum transaksi minggu lalu :
         $trxKasKecil = DB::table('tr_kas')
             ->select(DB::raw('SUM(nominal) as nominal'))
             ->where('trx_code','2')
-            ->whereBetween('kas_date',[$startDate, $endDate])
+            ->whereBetween('kas_date',[$lastWeekStartDate, $lastWeekEndDate])
             ->first(); 
 
         $mDanaTrx = DB::table('tr_kas')
             ->where('trx_code','1')
-            ->whereBetween('kas_date',[$startDate, $endDate])
+            ->whereBetween('kas_date',[$lastWeekStartDate, $lastWeekEndDate])
             ->orderBy('idtr_kas','desc')
             ->first();
             
@@ -71,11 +71,11 @@ class TrxKasKecilController extends Controller
             ->first();
         
         $tablePengeluaran = DB::table('view_trx_kas');
-        // if ($kasir <> '0') {
-        //     $tablePengeluaran = $tablePengeluaran->where([
-        //         ['kas_persCode',$kasir]
-        //     ]);
-        // }
+        if ($kasir <> '0') {
+            $tablePengeluaran = $tablePengeluaran->where([
+                ['kas_persCode',$kasir]
+            ]);
+        }
         $tablePengeluaran = $tablePengeluaran->whereBetween('kas_date', [$fromDate, $endDate]);
         $tablePengeluaran = $tablePengeluaran->get();
 
