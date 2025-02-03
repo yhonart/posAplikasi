@@ -23,10 +23,22 @@
                             <select name="fromAkunDana" id="fromAkunDana" class="form-control">
                                 <option value="0"> ==== </option>
                                 @foreach($akunTrs as $ats)
-                                    <option value="{{$ats->create_by}}|{{$ats->debit}}">{{$ats->description}} @ {{number_format($ats->debit,'0',',','.')}}</option>
+                                    <option value="{{$ats->debit}}">Pendapatan Kasir {{number_format($ats->debit,'0',',','.')}}</option>
                                 @endforeach
+                                <option value="1">Lain-lain</option>
                             </select>
                             <span class="text-muted">Dana diambil dari minggu lalu, mulai Tanggal : {{date("d-M-Y", strtotime($startDate))}} s.d {{date("d-M-Y", strtotime($endDate))}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group row" id="fieldBank" style="display: none;">
+                        <label for="" class="col-md-3">Bank</label>
+                        <div class="col-md-9">
+                            <select name="namaBank" id="namaBank" class="form-control">
+                                <option value="0"> ==== </option>
+                                @foreach($bankOfStore as $bos)
+                                <option value="{{$bos->bank_code}} xxxx{{substr($bos->account_number,5)}}">{{$bos->bank_code}} - {{$bos->account_number}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -105,5 +117,15 @@
                 }
             });
         }  
+
+        $("#fromAkunDana").change(function(){
+            let thisSelected = $(this).find(":selected").val();
+            if (thisSelected === '1') {
+                $("#fieldBank").fadeIn();
+            }
+            else{
+                $("#fieldBank").fadeOut();
+            }
+        }); 
     });
 </script>

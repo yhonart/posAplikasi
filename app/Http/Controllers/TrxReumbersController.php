@@ -65,10 +65,9 @@ class TrxReumbersController extends Controller
         $endDate = date("Y-m-d", strtotime($lastDayOfLastWeek));
 
         $akunTrs = DB::table('lap_kas_besar')
-            ->select(DB::raw('SUM(debit) AS debit'), 'description', 'create_by')
+            ->select(DB::raw('SUM(debit) AS debit'))
             ->where('trx_code','1')
             ->whereBetween('trx_date',[$startDate, $endDate])
-            ->groupBy('description','create_by')
             ->get();
 
         $modalMingguLalu = DB::table('tr_kas')
@@ -81,7 +80,11 @@ class TrxReumbersController extends Controller
             ->select(DB::raw('SUM(nominal) as nominal'))
             ->where('trx_code','2')
             ->whereBetween('kas_date',[$startDate, $endDate])
-            ->first();   
+            ->first(); 
+            
+        $bankOfStore = DB::table('m_company_payment')
+            ->orderBy('bank_name','asc')
+            ->get();
         
         if (!empty($modalMingguLalu) OR !empty($modalTerpakai)) {
             $penguranganKas = $modalMingguLalu->nominal_modal - $modalTerpakai->nominal;
@@ -90,22 +93,29 @@ class TrxReumbersController extends Controller
             $penguranganKas = 0;
         }
 
-        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate','firstDayOfLastWeek','lastDayOfLastWeek','penguranganKas','hariIni'));
+        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate','firstDayOfLastWeek','lastDayOfLastWeek','penguranganKas','hariIni','bankOfStore'));
     }
 
     public function postTransaksiReumbers(Request $reqPosting)
     {
         $nomor = $reqPosting->nomor;
         $keterangan = $reqPosting->keterangan;
-        $fromAkunDana = explode("|",$reqPosting->fromAkunDana);
+        $fromAkunDana = $reqPosting->fromAkunDana;
         $nominal = str_replace(".","",$reqPosting->nominal);
         $thisPeriode = date("mY");
         $hariIni = date('Y-m-d');
+        $akunBank = $reqPosting->fieldBank;
 
-        $fromDana = $fromAkunDana[0];
-        $nominalDana = $fromAkunDana[1];
+        if ($akunBank == '0') {
+            $fromDana = "Akun Penjualan";
+            $nominalDana = $fromAkunDana;
+        }
+        else {
+            $fromDana = $akunBank;
+            $nominalDana = $fromAkunDana;
+        }
 
-        $creator = Auth::user()->name;
+        $creator = Auth::user()->name;        
 
         DB::table('tr_reumbersment')
             ->insert([
