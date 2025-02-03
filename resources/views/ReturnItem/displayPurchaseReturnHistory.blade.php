@@ -5,7 +5,7 @@ $arrStatus = array(
     1=>"Dalam Proses",
     2=>"Di Periksa",
     3=>"Di Setujui",
-    4=>"Unknown"
+    4=>"Sudah Digunakan"
 );
 ?>
 <div class="card card-body">
