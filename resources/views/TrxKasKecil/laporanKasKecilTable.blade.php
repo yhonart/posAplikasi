@@ -62,7 +62,7 @@
                         <?php
                             $debit += $tbPengeluaran->nominal;
                             $kredit += $tbPengeluaran->nominal_modal;
-                            $saldoTransaksi = $mDanaTrx->nominal_modal - $debit;
+                            $saldoTransaksi = $lastWeekSaldo - $debit;
                             $nextSaldo = $saldoTransaksi + $kredit;
                             echo number_format($nextSaldo,'0',',','.');    
                         ?>
