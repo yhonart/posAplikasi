@@ -5,9 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class TrxKasKecilController extends Controller
 {
+    public function getMonday (){
+        $timezone = 'Asia/Jakarta';
+        Carbon::setLocale('id'); 
+
+        // Tentukan tanggal hari ini
+        $today = Carbon::now($timezone);
+
+        // Tentukan hari pertama minggu ini (Senin)
+        $firstDayOfThisWeek = $today->startOfWeek(Carbon::MONDAY);
+
+        return $firstDayOfThisWeek;
+    }
+
     public function kasKecil (){
         return view('TrxKasKecil/main');
     }
@@ -20,7 +34,23 @@ class TrxKasKecilController extends Controller
     }
 
     public function tableLaporan($kasir, $fromDate, $endDate){
-        // echo $kasir;
+        $firstDayThisWeek = $this->getMonday();
+        // Tentukan hari pertama dari minggu sebelumnya
+        $firstDayOfLastWeek = $firstDayThisWeek->copy()->subWeek();
+
+        // Tentukan hari terakhir minggu sebelumnya (Minggu)
+        $lastDayOfLastWeek = $firstDayOfLastWeek->copy()->endOfWeek(Carbon::SUNDAY);
+
+        $startDate = date("Y-m-d", strtotime($firstDayOfLastWeek));
+        $endDate = date("Y-m-d", strtotime($lastDayOfLastWeek));
+        
+        //sum transaksi minggu lalu :
+        $trxKasKecil = DB::table('tr_kas')
+            ->select(DB::raw('SUM(nominal) as nominal'))
+            ->where('trx_code','2')
+            ->whereBetween('kas_date',[$startDate, $endDate])
+            ->first(); 
+
         $mDanaTrx = DB::table('tr_kas')
             ->where('trx_code','1')
             ->orderBy('idtr_kas','desc')
@@ -47,7 +77,7 @@ class TrxKasKecilController extends Controller
         $tablePengeluaran = $tablePengeluaran->whereBetween('kas_date',[$fromDate,$endDate]);
         $tablePengeluaran = $tablePengeluaran->get();
 
-        return view('TrxKasKecil/laporanKasKecilTable', compact('tablePengeluaran','mDanaTrx','fromDate','endDate'));
+        return view('TrxKasKecil/laporanKasKecilTable', compact('tablePengeluaran','mDanaTrx','fromDate','endDate','trxKasKecil'));
     }
     public function cetakKasKecil($kasir, $fromDate, $endDate){
         // echo $kasir;

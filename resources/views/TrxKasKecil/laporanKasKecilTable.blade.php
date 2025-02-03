@@ -29,9 +29,9 @@ $kredit = 0;
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_modal,'0',',','.')}}</td>
+                    <td class="text-right font-weight-bold">{{number_format($trxKasKecil->nominal,'0',',','.')}}</td>
                     <td class="text-right font-weight-bold"></td>
-                    <td class="text-right font-weight-bold">{{number_format($mDanaTrx->nominal_modal,'0',',','.')}}</td>
+                    <td class="text-right font-weight-bold">{{number_format($trxKasKecil->nominal,'0',',','.')}}</td>
                     <td></td>
                 </tr>
 
