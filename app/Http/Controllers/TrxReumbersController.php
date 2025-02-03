@@ -87,7 +87,8 @@ class TrxReumbersController extends Controller
             ->get();
         
         if (!empty($modalMingguLalu) OR !empty($modalTerpakai)) {
-            $penguranganKas = $modalMingguLalu->nominal_modal - $modalTerpakai->nominal;
+            // $penguranganKas = $modalMingguLalu->nominal_modal - $modalTerpakai->nominal;
+            $penguranganKas = $modalTerpakai->nominal;
         }
         else {
             $penguranganKas = 0;
