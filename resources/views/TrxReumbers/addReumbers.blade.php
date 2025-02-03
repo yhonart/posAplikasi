@@ -18,7 +18,7 @@
                         </div>
                     </div> 
                     <div class="form-group row" id="disAkunDana">
-                        <label class="col-md-3">Sumber Dana Minggu Lalu</label>
+                        <label class="col-md-3">Sumber Dana</label>
                         <div class="col-md-9">
                             <select name="fromAkunDana" id="fromAkunDana" class="form-control">
                                 <option value="0"> ==== </option>
@@ -27,7 +27,7 @@
                                 @endforeach
                                 <option value="1">Lain-lain</option>
                             </select>
-                            <span class="text-muted">Dana diambil dari minggu lalu, mulai Tanggal : {{date("d-M-Y", strtotime($startDate))}} s.d {{date("d-M-Y", strtotime($endDate))}}</span>
+                            <span class="text-muted">* Dana diambil dari minggu lalu, mulai Tanggal : {{date("d-M-Y", strtotime($startDate))}} s.d {{date("d-M-Y", strtotime($endDate))}}</span>
                         </div>
                     </div>
                     <div class="form-group row" id="fieldBank" style="display: none;">
@@ -45,7 +45,7 @@
                         <label class="col-md-3">Nominal</label>
                         <div class="col-md-6">
                             <input type="text" class="form-control price-text" name="nominal" id="nominal" value="{{$penguranganKas}}">
-                            <span>Default nominal dari saldo kas kecil saat ini</span>
+                            <span class="text-muted">* Dana diambil dari minggu lalu, mulai Tanggal : {{date("d-M-Y", strtotime($startDate))}} s.d {{date("d-M-Y", strtotime($endDate))}}</span>
                         </div>
                     </div>
                     <div class="form-group row">
