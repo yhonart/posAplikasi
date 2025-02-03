@@ -1,4 +1,10 @@
 <hr>
+<style>
+    .active {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
 <div class="row mb-1">
     <div class="col-12">
         <div id="tableSum"></div>
