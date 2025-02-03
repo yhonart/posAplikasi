@@ -34,7 +34,9 @@ $total = 0;
                             <tr>
                                 <td>{{$ltp->delivery_date}}</td>
                                 <td>
-                                    <span class="font-weight-bold">{{$ltp->purchase_number}}</span>
+                                    <a href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}" class="font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG">
+                                        <i class="fa-solid fa-binoculars" ></i> {{$ltp->purchase_number}}
+                                    </a>
                                 </td>
                                 <td>
                                     {{$ltp->store_name}}
@@ -86,9 +88,6 @@ $total = 0;
                                         @endif
                                         @if($ltp->status =='2')
                                             <button class="btn btn-info btn-sm font-weight-bold BTN-EDIT" data-number="{{$ltp->purchase_number}}">Edit</button>
-                                        @endif
-                                        @if($ltp->status > '2')
-                                            <button class="btn btn-primary font-weight-bold btn-sm  BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}"><i class="fa-solid fa-binoculars" ></i> Detail</button>
                                         @endif
                                     </div>                                
                                 </td>
