@@ -41,11 +41,18 @@
             @foreach($tablePengeluaran as $tbPengeluaran)
                 <tr>
                     <td>{{date("d-M-y", strtotime($tbPengeluaran->kas_date))}}</td>
-                    <td>{{$tbPengeluaran->cat_name}}
-                        <br>
-                        <small>
-                            {{$tbPengeluaran->subcat_name}}
-                        </small>
+                    <td>
+                        @if($tbPengeluaran->trx_code == 2)
+                            {{$tbPengeluaran->cat_name}}
+                            <br>
+                            <small>
+                                {{$tbPengeluaran->subcat_name}}
+                            </small>
+                        @elseif($tbPengeluaran->trx_code == 1)
+                            Reimbursement Kas
+                        @else
+                            -
+                        @endif
                     </td>
                     <td>
                         {{$tbPengeluaran->description}}
