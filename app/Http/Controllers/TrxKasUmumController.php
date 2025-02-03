@@ -152,7 +152,8 @@ class TrxKasUmumController extends Controller
             $displayByDate = $displayByDate->leftJoin('m_category_kas as b','b.idm_cat_kas','=','a.kas_catId');
             $displayByDate = $displayByDate->leftJoin('m_subcategory_kas as c','c.idm_sub','=','a.kas_subCatId');
             $displayByDate = $displayByDate->where([
-                ['a.status','1']
+                ['a.status','1'],
+                ['a.trx_code','2']
             ]);
             if ($fromDate <> '0' OR $endDate <> '0') {
                 $displayByDate = $displayByDate->whereBetween("a.kas_date", [$fromDate, $endDate]);

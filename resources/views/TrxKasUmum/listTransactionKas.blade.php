@@ -23,7 +23,9 @@
                     ?>
                     {{$noTrx}}
                 </td>
-                <td>{{date("d-M-Y", strtotime($d->kas_date));}}</td>
+                <td>
+                    {{date("d-M-Y", strtotime($d->kas_date));}}
+                </td>
                 <td>{{$d->cat_name}}</td>
                 <td>{{$d->subcat_name}}</td>
                 <td>{{$d->description}}</td>
