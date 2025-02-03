@@ -24,7 +24,7 @@
                             <select class="form-control form-control-sm select-2" name="methodPayment" id="methodPayment">
                                 <option value="0"> ==== </option>
                                 @foreach($bankTransfer as $bt)
-                                <option value="{{$bt->idm_payment}}">{{$bt->bank_code}} xxx{{substr('$bt->account_number', 5)}}</option>
+                                <option value="{{$bt->idm_payment}}">{{$bt->bank_code}} xxx - {{substr($bt->account_number, 5)}}</option>
                                 @endforeach
                             </select>
                         </div>
