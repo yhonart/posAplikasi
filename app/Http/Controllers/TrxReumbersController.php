@@ -107,6 +107,8 @@ class TrxReumbersController extends Controller
         $thisPeriode = date("mY");
         $hariIni = date('Y-m-d');
         $akunBank = $reqPosting->fieldBank;
+        $lastWeekSaldo = $reqPosting->lastWeekSaldo;
+        $nominalSaldo = $lastWeekSaldo + $nominal;
 
         if ($akunBank == '0') {
             $fromDana = "Akun Penjualan";
@@ -140,7 +142,7 @@ class TrxReumbersController extends Controller
                 'created_by'=>$creator,
                 'nominal'=>$nominal,
                 'sumber_dana'=>$fromDana,
-                'nominal_modal'=>$nominal,
+                'nominal_modal'=>$nominalSaldo,
                 'trx_code'=>'1'
             ]);
     }
