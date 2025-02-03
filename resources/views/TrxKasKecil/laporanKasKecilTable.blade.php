@@ -26,10 +26,10 @@
         <tbody>
                 <tr>
                     <td></td>
+                    <td></td>
                     <td class="font-weight-bold">
                         Saldo Minggu Lalu 
                     </td>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td class="text-right font-weight-bold">{{number_format($lastWeekSaldo,'0',',','.')}}</td>
@@ -42,20 +42,20 @@
                 <tr>
                     <td>{{date("d-M-y", strtotime($tbPengeluaran->kas_date))}}</td>
                     <td>
+                        {{$tbPengeluaran->cat_name}}
+                        <br>
+                        <small>
+                            {{$tbPengeluaran->subcat_name}}
+                        </small>                        
+                    </td>
+                    <td>
                         @if($tbPengeluaran->trx_code == 2)
-                            {{$tbPengeluaran->cat_name}}
-                            <br>
-                            <small>
-                                {{$tbPengeluaran->subcat_name}}
-                            </small>
+                            {{$tbPengeluaran->description}}
                         @elseif($tbPengeluaran->trx_code == 1)
                             Reimbursement Kas
                         @else
                             -
                         @endif
-                    </td>
-                    <td>
-                        {{$tbPengeluaran->description}}
                     </td>
                     <td>
                         {{$tbPengeluaran->no_polisi}}
