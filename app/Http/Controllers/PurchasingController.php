@@ -243,6 +243,7 @@ class PurchasingController extends Controller
         $noFaktur = $posPenerimaan->noFaktur;
         $ppn = $posPenerimaan->ppn;
         $nomPPN = $posPenerimaan->nomPPN;
+        $bankAccount = $posPenerimaan->bankAccount;
         
         $periode = date("mY");
         $hariIni = date("Y-m-d");
@@ -297,7 +298,8 @@ class PurchasingController extends Controller
                     'faktur_date'=>$tglFaktur,    
                     'ppn_type'=>$ppn,    
                     'created_by'=>$createdBy,
-                    'status'=>'1'
+                    'status'=>'1',
+                    'bank_account'=>$bankAccount,
                 ]);
                 
             DB::table('purchase_list_order')

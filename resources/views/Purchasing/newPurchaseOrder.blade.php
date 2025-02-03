@@ -21,7 +21,7 @@
                     <div class="form-group row" id="bankTransfer" style="display: none;">
                         <div class="col-12">
                             <label class="label">Bank Transfer</label>
-                            <select class="form-control form-control-sm select-2" name="methodPayment" id="methodPayment">
+                            <select class="form-control form-control-sm select-2" name="bankAccount" id="bankAccount">
                                 <option value="0"> ==== </option>
                                 @foreach($bankTransfer as $bt)
                                 <option value="{{$bt->idm_payment}}">{{$bt->bank_code}} xxx - {{substr($bt->account_number, 5)}}</option>
