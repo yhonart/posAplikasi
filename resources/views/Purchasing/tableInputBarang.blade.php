@@ -94,6 +94,52 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        const table = document.getElementById('tableInputBarang');
+        const rows = table.getElementsByTagName('tr');
+        let activeRow = null;
+
+        function setActiveRow(row) {
+        if (activeRow) {
+            activeRow.classList.remove('active');
+        }
+        row.classList.add('active');
+        activeRow = row;
+        }
+
+        document.addEventListener('keydown', function(event) {
+        if (activeRow) {
+            if (event.key === 'ArrowUp') {
+                let prevRow = activeRow.previousElementSibling;
+                if (prevRow) {
+                    setActiveRow(prevRow);
+                }
+            } else if (event.key === 'ArrowDown') {
+                let nextRow = activeRow.nextElementSibling;
+                if (nextRow) {
+                    setActiveRow(nextRow);
+                }
+            } else if (event.key === 'Delete') {
+                // Konfirmasi delete data menggunakan AJAX
+                if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+                    const id = activeRow.cells[0].textContent; // Ambil ID dari baris yang aktif
+                    // Kirim request AJAX ke server untuk menghapus data
+                    fetch('/delete_transaction/' + id, {
+                    method: 'DELETE'
+                    })
+                    .then(response => {
+                    if (response.ok) {
+                        // Hapus baris dari tabel jika data berhasil dihapus di server
+                        activeRow.remove();
+                        activeRow = null;
+                    } else {
+                        alert('Terjadi kesalahan saat menghapus data.');
+                    }
+                    });
+                }
+            }
+        }
+        });
         
         let hargaSatuan = document.getElementById("inputHrgSatuan"),
             discount = document.getElementById("inputDiscount"),
