@@ -94,6 +94,45 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        var table = $('#tableInputBarang').DataTable();
+            var selectedRow = null;
+
+        function selectRow(index) {
+            if (selectedRow !== null) {
+                $(selectedRow).removeClass('selected');
+            }
+            selectedRow = table.row(index).node();
+            $(selectedRow).addClass('selected');
+        }
+
+        $(document).on('keydown', function(e) {
+            var rowIndex;
+            if (selectedRow) {
+                rowIndex = table.row(selectedRow).index();
+            } else {
+                rowIndex = -1;
+            }
+
+            switch (e.key) {
+                case 'ArrowUp':
+                    if (rowIndex > 0) {
+                        selectRow(rowIndex - 1);
+                    }
+                    break;
+                case 'ArrowDown':
+                    if (rowIndex < table.rows().count() - 1) {
+                        selectRow(rowIndex + 1);
+                    }
+                    break;
+                case 'Delete':
+                    if (selectedRow) {
+                        table.row(selectedRow).remove().draw();
+                        selectedRow = null;
+                    }
+                    break;
+            }                
+        });
         
         let hargaSatuan = document.getElementById("inputHrgSatuan"),
             discount = document.getElementById("inputDiscount"),
