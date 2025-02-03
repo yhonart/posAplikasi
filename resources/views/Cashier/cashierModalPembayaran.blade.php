@@ -94,7 +94,7 @@
                                             }
                                         ?>
                                         @if($pointPlg == '0')
-                                            <input class="custom-control-input" type="checkbox" id="pointBelanja" name="pointBelanja" value="{{$pointPlg}}" readonly>
+                                            <input class="custom-control-input" type="checkbox" id="pointBelanja" name="pointBelanja" value="{{$pointPlg}}" disabled>
                                         @else
                                             <input class="custom-control-input" type="checkbox" id="pointBelanja" name="pointBelanja" value="{{$pointPlg}}" onclick="myFunctionAddPoint()">
                                         @endif
