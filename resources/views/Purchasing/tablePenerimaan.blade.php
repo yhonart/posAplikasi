@@ -37,9 +37,7 @@ $total = 0;
                                     <span class="font-weight-bold">{{$ltp->purchase_number}}</span>
                                 </td>
                                 <td>
-                                    <a class="font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/modalSupplier/{{$ltp->supplier_id}}">
-                                        {{$ltp->store_name}}
-                                    </a>
+                                    {{$ltp->store_name}}
                                 </td>
                                 <td class="text-right font-weight-bold">
                                     {{number_format($ltp->sub_total,'0',',','.')}}
