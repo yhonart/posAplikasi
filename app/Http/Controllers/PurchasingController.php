@@ -170,10 +170,13 @@ class PurchasingController extends Controller
             
         $supplier = DB::table('m_supplier')
             ->get();
+
+        $bankTransfer = DB::table('m_company_payment')
+            ->get();
         
         $Role = $this->TempUsersController->userRole();
         
-        return view ('Purchasing/newPurchaseOrder', compact('checkArea','formActive','nomor','supplier','numberPurchase'));
+        return view ('Purchasing/newPurchaseOrder', compact('bankTransfer','checkArea','formActive','nomor','supplier','numberPurchase'));
     }
     
     public function notivePoint($suppID){

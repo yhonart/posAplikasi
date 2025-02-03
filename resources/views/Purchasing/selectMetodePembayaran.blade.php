@@ -1,4 +1,5 @@
 <select class="form-control form-control-sm select-2" name="methodPayment" id="methodPayment">
+    <option value="0"> === </option>
     @if($mSupplier->payment_type == "Tunai")
     <option value="1">Tunai</option>
     <option value="2">Transfer</option>

@@ -9,8 +9,7 @@
                             <label class="label">NO. Transaksi</label>
                             <input type="text" name="noTrx" id="noTrx" class="form-control form-control-sm " value="{{$nomor}}" readonly>
                         </div>
-                    </div>
-                    
+                    </div>                    
                     <div class="form-group row">
                         <div class="col-12">
                             <label class="label">Metode Pembayaran</label>
@@ -19,15 +18,17 @@
                             </select>
                         </div>
                     </div>
-                                        
-                    <div class="form-group row">
+                    <div class="form-group row" id="bankTransfer" style="display: none;">
                         <div class="col-12">
-                            <label class="label">Tgl. Pengiriman</label>
-                            <input type="text" name="dateDelivery" id="dateDelivery" class="form-control form-control-sm datetimepicker-input " autocomplete="off">
+                            <label class="label">Bank Transfer</label>
+                            <select class="form-control form-control-sm select-2" name="methodPayment" id="methodPayment">
+                                <option value="0"> ==== </option>
+                                @foreach($bankTransfer as $bt)
+                                <option value="{{$bt->idm_payment}}">{{$bt->bank_code}} xxx{{substr('$bt->account_number', 5)}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    
-                    
                 </div>
                 <div class="col-12 col-md-3">
                     <div class="form-group row">
@@ -61,6 +62,12 @@
                             <input type="text" name="noFaktur" id="noFaktur" class="form-control form-control-sm " autocomplete="off">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label class="label">Keterangan</label>
+                            <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm " autocomplete="off">
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-3">
                     <div class="form-group row">
@@ -77,10 +84,10 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
-                            <label class="label">Keterangan</label>
-                            <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm " autocomplete="off">
+                            <label class="label">Tgl. Pengiriman</label>
+                            <input type="text" name="dateDelivery" id="dateDelivery" class="form-control form-control-sm datetimepicker-input " autocomplete="off">
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>            
             <div class="row">
@@ -180,15 +187,19 @@
                 
             if (method === '1'){
                 $('#dayKredit').val("TUNAI");
+                $("#bankTransfer").fadeOut("slow");
             }
             else if (method === '2'){
                 $('#dayKredit').val("TRANSFER");
+                $("#bankTransfer").fadeIn("slow");
             }
             else if (method === '3'){
                 $('#dayKredit').val("10").focus().select();
+                $("#bankTransfer").fadeOut("slow");
             }
             else{
                 $('#dayKredit').val(method);
+                $("#bankTransfer").fadeOut("slow");
             }
         });
         
