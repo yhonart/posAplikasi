@@ -53,11 +53,13 @@ class TrxKasKecilController extends Controller
 
         $mDanaTrx = DB::table('tr_kas')
             ->where('trx_code','1')
+            ->whereBetween('kas_date',[$startDate, $endDate])
             ->orderBy('idtr_kas','desc')
             ->first();
-
+            
         $dateDana = $mDanaTrx->kas_date;
         $beforeFromDate = date("Y-m-d", strtotime("-1 day", strtotime($fromDate)));
+        
 
         $getAllTransaksi = DB::table('tr_kas')
             ->select(DB::raw("SUM('nominal') as nominal"))
