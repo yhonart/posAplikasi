@@ -27,7 +27,7 @@
                 <tr>
                     <td></td>
                     <td class="font-weight-bold">
-                        Modal Kas 
+                        Saldo Minggu Lalu 
                     </td>
                     <td></td>
                     <td></td>

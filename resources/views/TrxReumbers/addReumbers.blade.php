@@ -11,6 +11,7 @@
             <div class="card-body">
                 @if($dayNoww == $strHari)
                 <form id="formAddReumbers" autocomplete="off">
+                    <input type="hidden" name="lastWeekSaldo" id="lastWeekSaldo" value="{{$lastWeekSaldo}}">
                     <div class="form-group row">
                         <label class="col-md-3">Nomor</label>
                         <div class="col-md-4">

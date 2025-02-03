@@ -87,14 +87,15 @@ class TrxReumbersController extends Controller
             ->get();
         
         if (!empty($modalMingguLalu) OR !empty($modalTerpakai)) {
-            // $penguranganKas = $modalMingguLalu->nominal_modal - $modalTerpakai->nominal;
+            $lastWeekSaldo = $modalMingguLalu->nominal_modal - $modalTerpakai->nominal;
             $penguranganKas = $modalTerpakai->nominal;
         }
         else {
+            $lastWeekSaldo = 0;
             $penguranganKas = 0;
         }
 
-        return view('TrxReumbers/addReumbers', compact('mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate','firstDayOfLastWeek','lastDayOfLastWeek','penguranganKas','hariIni','bankOfStore'));
+        return view('TrxReumbers/addReumbers', compact('lastWeekSaldo','mStaff','mAdmin','akunTrs','thisNumber','startDate','endDate','firstDayOfLastWeek','lastDayOfLastWeek','penguranganKas','hariIni','bankOfStore'));
     }
 
     public function postTransaksiReumbers(Request $reqPosting)
@@ -137,7 +138,7 @@ class TrxReumbersController extends Controller
                 'kas_date'=>$hariIni,
                 'status'=>'1',
                 'created_by'=>$creator,
-                'nominal'=>'0',
+                'nominal'=>$nominal,
                 'sumber_dana'=>$fromDana,
                 'nominal_modal'=>$nominal,
                 'trx_code'=>'1'
