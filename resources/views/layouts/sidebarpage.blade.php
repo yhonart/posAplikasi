@@ -69,7 +69,7 @@
           font-size: 15px;
         } */  
         .active { 
-            background-color: #f3f4f6; 
+            background-color: #f3f4f6 !important; 
             color: #111827; 
         }      
         button:hover {  
