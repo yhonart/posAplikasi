@@ -127,7 +127,7 @@
                             foreach($totalStock as $tStock2){
                                 if($tStock2->idm_data_product == $mp->idm_data_product){
                                     $konvDisplay = $tStock2->product_price_order * $tStock2->sumstock;
-                                    echo "<span class='font-weight-bold text-info'>".$tStock2->konvDisplay."</span>";
+                                    echo "<span class='font-weight-bold text-info'>".$konvDisplay."</span>";
                                 }
                             }
                         ?>
