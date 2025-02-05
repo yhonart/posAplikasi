@@ -175,7 +175,10 @@ class RemainingController extends Controller
             $mProduct = $mProduct->paginate(20);
         
         $tbCekStockBarang = DB::table('view_product_stock')
-            ->get();
+            ->select(DB::raw('SUM(stock) as stock'),'core_id_product','product_price_order')
+            ->orderBy('size_code','desc')
+            ->groupBy('core_id_product','product_price_order')
+            ->first();
             
         $mUnit = DB::table('m_product_unit')
             ->get();
