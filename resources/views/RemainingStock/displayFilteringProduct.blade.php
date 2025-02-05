@@ -133,10 +133,9 @@
                                         $konv = '0';
                                     }
                                     $konvDisplay += $konv;
-                                }
-                                echo $sStock->product_price_order."/".$sStock->sumstock."<br>";
+                                }                               
                             }
-                            // echo number_format($konvDisplay,'0',',','.');
+                            echo number_format($konvDisplay,'0',',','.');
                         ?>
                     </td>
                 </tr>
