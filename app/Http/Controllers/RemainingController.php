@@ -173,7 +173,12 @@ class RemainingController extends Controller
             }
             $mProduct = $mProduct->orderBy('product_name','asc');
             $mProduct = $mProduct->paginate(20);
-        
+
+        $getDescSizeCode = DB::table('m_product_unit')
+            ->select('core_id_product','size_code')
+            ->orderBy('size_code','desc')
+            ->first();
+
         $tbCekStockBarang = DB::table('view_product_stock')
             ->select(DB::raw('SUM(stock) as stock'),'core_id_product','product_price_order')
             ->groupBy('core_id_product','product_price_order')
@@ -228,7 +233,7 @@ class RemainingController extends Controller
             ->groupBy('b.idm_data_product')
             ->get();
         
-        return view('RemainingStock/displayFilteringProduct', compact('tbCekStockBarang','mProduct','totalStock','saldoStock','valKecil','mUnit','valBesar'));
+        return view('RemainingStock/displayFilteringProduct', compact('getDescSizeCode','tbCekStockBarang','mProduct','totalStock','saldoStock','valKecil','mUnit','valBesar'));
     }
     public function downloadData($keyword, $filOption, $lokasi){
             
