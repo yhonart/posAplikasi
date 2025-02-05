@@ -133,6 +133,7 @@
                                 }
                                 echo number_format($konv,'0',',','.');
                             }
+                            echo $tbCekStockBarang->core_id_product;
                         ?>
                     </td>
                 </tr>
