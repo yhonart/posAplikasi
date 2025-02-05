@@ -178,7 +178,7 @@ class RemainingController extends Controller
             ->select(DB::raw('SUM(stock) as stock'),'core_id_product','product_price_order')
             ->groupBy('core_id_product','product_price_order')
             ->orderBy('size_code','desc')
-            ->first();
+            ->get();
             
         $mUnit = DB::table('m_product_unit')
             ->get();
