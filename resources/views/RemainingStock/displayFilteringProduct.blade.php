@@ -137,11 +137,11 @@
                                     else{
                                         $konv = '0';
                                     }
-                                    // $konvDisplay += $konv;
+                                    $konvDisplay += $konv;
                                     // echo $konv."<br>";
-                                    echo number_format($konv,'0',',','.');
                                 }
                             }
+                            echo number_format($konvDisplay,'0',',','.');
                         ?>
                     </td>
                 </tr>
