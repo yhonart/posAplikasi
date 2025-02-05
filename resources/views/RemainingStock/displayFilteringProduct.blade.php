@@ -126,15 +126,19 @@
                             $konvDisplay = "0";
                             foreach($tbCekStockBarang as $sStock){
                                 if($sStock->core_id_product == $mp->idm_data_product){
-                                    if ($getDescSizeCode->core_id_product == $sStock->core_id_product AND $getDescSizeCode->size_code == $sStock->size_code) {
-                                        if($sStock->stock >= '1'){
-                                            $konv = $sStock->product_price_order * $sStock->stock;
-                                        }
-                                        else{
-                                            $konv = '0';
-                                        }
-                                        $konvDisplay += $konv;
-                                    }                         
+                                    // if($sStock->size_code=='1' AND $sStock->stock=='0'){
+                                    //     $konv = $sStock->product_price_order * $sStock->stock;
+                                    // }
+                                    // elseif($sStock->product_volume<>'0'){
+                                    // }                                    
+                                    if($sStock->stock >= '1'){
+                                        $konv = $sStock->product_price_order * $sStock->stock;
+                                    }
+                                    else{
+                                        $konv = '0';
+                                    }
+                                    $konvDisplay += $konv;
+                                    // echo $konv."<br>";
                                 }
                             }
                             echo number_format($konvDisplay,'0',',','.');
