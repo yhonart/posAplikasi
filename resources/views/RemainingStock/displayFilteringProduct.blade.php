@@ -124,18 +124,11 @@
                         <span class="float-left"><i class="fa-solid fa-rupiah-sign"></i></span>
                         <?php
                             $konvDisplay = "0";
-                            foreach($totalStock as $sStock){
-                                if($tStock->idm_data_product == $mp->idm_data_product){                                                                      
-                                    if($sStock->stock >= '1'){
-                                        $konv = $sStock->product_price_order * $sStock->sumstock;
-                                    }
-                                    else{
-                                        $konv = '0';
-                                    }
-                                    $konvDisplay += $konv;
-                                }                               
+                            foreach($totalStock as $tStock2){
+                                if($tStock2->idm_data_product == $mp->idm_data_product){
+                                    echo "<span class='font-weight-bold text-info'>".$tStock2->product_price_order."</span>";
+                                }
                             }
-                            echo number_format($konvDisplay,'0',',','.');
                         ?>
                     </td>
                 </tr>
