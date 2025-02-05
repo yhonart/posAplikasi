@@ -124,24 +124,19 @@
                         <span class="float-left"><i class="fa-solid fa-rupiah-sign"></i></span>
                         <?php
                             $konvDisplay = "0";
-                            foreach($tbCekStockBarang as $sStock){
-                                if($sStock->core_id_product == $mp->idm_data_product){
-                                    // if($sStock->size_code=='1' AND $sStock->stock=='0'){
-                                    //     $konv = $sStock->product_price_order * $sStock->stock;
-                                    // }
-                                    // elseif($sStock->product_volume<>'0'){
-                                    // }                                    
+                            foreach($totalStock as $sStock){
+                                if($tStock->idm_data_product == $mp->idm_data_product){                                                                      
                                     if($sStock->stock >= '1'){
-                                        $konv = $sStock->product_price_order * $sStock->stock;
+                                        $konv = $sStock->product_price_order * $sStock->sumstock;
                                     }
                                     else{
                                         $konv = '0';
                                     }
                                     $konvDisplay += $konv;
-                                    // echo $konv."<br>";
+                                    echo $konv."<br>";
                                 }
                             }
-                            echo number_format($konvDisplay,'0',',','.');
+                            // echo number_format($konvDisplay,'0',',','.');
                         ?>
                     </td>
                 </tr>
