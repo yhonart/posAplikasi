@@ -9,6 +9,7 @@
         <td class="text-right">{{number_format($dRet->total_price,'0',',','.')}}</td>
         <td>{{$dRet->stock_awal}}</td>
         <td>{{$dRet->stock_akhir}}</td>
+        <td>{{$dRet->item_text}}</td>
         <td>
             <button type="button" class="btn btn-sm btn-outline-danger BTN-DELETE" data-id="{{$dRet->id_return}}"><i class="fa-solid fa-xmark"></i></button>
         </td>
