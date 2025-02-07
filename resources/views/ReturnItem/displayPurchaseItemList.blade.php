@@ -44,7 +44,7 @@ $no = '1';
                             <input type="hidden" name="recive" id="recive">
                             <input type="hidden" name="unit" id="unit">
                             <input type="hidden" name="purchaseNumber" id="purchaseNumber" value="{{$numberpo}}">
-                            <select class="form-control form-control-sm" name="selectProduct" id="selectProduct">
+                            <select class="form-control rounded-0 form-control-sm" name="selectProduct" id="selectProduct">
                                 <option value="0" readonly></option>
                                 @foreach($itemList as $tl)
                                 <option value="{{$tl->idm_data_product}}">{{$tl->product_name}}</option>
@@ -52,33 +52,33 @@ $no = '1';
                             </select>
                         </td>
                         <td>
-                            <input type="text" class="form-control form-control-sm " name="qtyPbl" id="qtyPbl" autocomplete="off" readonly>
+                            <input type="text" class="form-control rounded-0 form-control-sm " name="qtyPbl" id="qtyPbl" autocomplete="off" readonly>
                         </td>
                         <td>
-                            <input type="text" class="form-control form-control-sm " name="wh" id="wh" autocomplete="off" readonly>
+                            <input type="text" class="form-control rounded-0 form-control-sm " name="wh" id="wh" autocomplete="off" readonly>
                         </td>
                         <td>
-                            <select class="form-control form-control-sm " name="satuan" id="satuan">
+                            <select class="form-control rounded-0 form-control-sm " name="satuan" id="satuan">
                                 <option value="0" readonly></option>
                             </select>
                         </td>
                         <td>
-                            <input type="number" class="form-control form-control-sm " name="qtyRetur" id="qtyRetur" autocomplete="off">
+                            <input type="number" class="form-control rounded-0 form-control-sm " name="qtyRetur" id="qtyRetur" autocomplete="off">
                         </td>
                         <td>
-                                <input class="form-control form-control-sm  text-right" name="hargaSatuan" id="hargaSatuan" autocomplete="off">
+                                <input class="form-control form-control-sm rounded-0 text-right" name="hargaSatuan" id="hargaSatuan" autocomplete="off">
                         </td>
                         <td>
-                            <input class="form-control form-control-sm  text-right" name="point" id="point" readonly>
+                            <input class="form-control form-control-sm rounded-0 text-right" name="point" id="point" readonly>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm  text-right" name="stock" id="stock" readonly>
+                            <input class="form-control form-control-sm rounded-0 text-right" name="stock" id="stock" readonly>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm  text-right" name="saldo" id="saldo" readonly>
+                            <input class="form-control form-control-sm rounded-0 text-right" name="saldo" id="saldo" readonly>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm  text-right" name="keterangan" id="keterangan" readonly>
+                            <input class="form-control form-control-sm rounded-0 text-right" name="keterangan" id="keterangan">
                         </td>
                         <td>
                             <button type="button" class="btn btn-default btn-sm " id="btnInsert"><i class="fa-solid fa-check"></i></button>
