@@ -65,7 +65,7 @@
                     <div class="col-12">
                         <label class="label">Supplier</label>
                         <select class="form-control form-control-sm select-2" name="supplier" id="supplier">
-                            <option value="{{$numberPurchase->supplier_id}}">value="{{$numberPurchase->supplier_id}}"</option>
+                            <option value="{{$numberPurchase->supplier_id}}">"{{$numberPurchase->store_name}}"</option>
                             @foreach($supplier as $s)
                                 <option value="{{$s->idm_supplier}}">{{$s->store_name}}</option>
                             @endforeach

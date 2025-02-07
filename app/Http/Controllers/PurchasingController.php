@@ -1277,7 +1277,9 @@ class PurchasingController extends Controller
     }
 
     public function collapseDokumen ($dokNumber){
-        $numberPurchase = DB::table('purchase_order')
+        $numberPurchase = DB::table('purchase_order as a')
+            ->select('a.*','b.store_name')
+            ->leftJoin('m_supplier as b','a.supplier_id','=','b.idm_supplier')
             ->where('purchase_number',$dokNumber)
             ->first();
 
