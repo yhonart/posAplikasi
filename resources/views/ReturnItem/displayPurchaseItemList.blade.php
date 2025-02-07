@@ -4,9 +4,16 @@ $no = '1';
 ?>
 <div class="row mb-2">
     <div class="col-md-12">
-        <button class="btn btn-success btn-sm " id="kembali"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
-        <button class="btn btn-outline-success btn-sm " id="refresh"><i class="fa-solid fa-rotate"></i> Refresh</button>
-        <button class="btn bg-gradient-olive btn-sm " id="simpan"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+        <button class="btn btn-info btn-sm " id="kembali"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
+        <button class="btn btn-success btn-sm " id="simpan"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+        <button class="btn btn-outline-success btn-sm " id="refresh"><i class="fa-solid fa-rotate" style="display: none;"></i> Refresh</button>
+    </div>
+</div>
+<div class="row mb-2" id="keteranganRetur" style="display: none;">
+    <div class="col-md-12">
+        <label for="ketRetur">Item Text</label>
+        <textarea name="ketRetur" id="ketRetur" class="form-control" rows="5" placeholder="Masukkan detail keterangan retur barang."></textarea>
+        <button class="btn btn-success btn-sm" id="simpanTransaksiRetur"><i class="fa-solid fa-circle-check"></i> Simpan</button>
     </div>
 </div>
 <hr>
@@ -91,6 +98,12 @@ $no = '1';
         let numberPO = "{{$numberpo}}";
 
         $("#simpan").on('click', function(e){
+            $("#keteranganRetur").fadeIn();
+            $("#simpan").fadeOut();
+            $("#refresh").fadeIn();
+        });
+
+        $("#simpanTransaksiRetur").on('click', function(e){
             e.preventDefault();
             alertify.confirm("Apakah item yang anda masukkan sudah benar ?",
             function(){
@@ -105,7 +118,7 @@ $no = '1';
             function(){
                 alertify.error('Cancel');
             }).set({title:"Simpan Transaksi"});
-        });
+        });        
 
         $("#selectProduct").change(function(){
             let productID = $(this).find(":selected").val();

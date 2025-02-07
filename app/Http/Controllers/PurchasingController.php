@@ -1286,7 +1286,10 @@ class PurchasingController extends Controller
         $supplier = DB::table('m_supplier')
             ->get();
 
-        return view('Purchasing/newPurchaseOrderCollapse', compact('numberPurchase','supplier'));
+        $mBankAccount = DB::table('m_company_payment')
+            ->get();
+
+        return view('Purchasing/newPurchaseOrderCollapse', compact('numberPurchase','supplier','mBankAccount'));
     }
 
     public function historyPembayaran (){
