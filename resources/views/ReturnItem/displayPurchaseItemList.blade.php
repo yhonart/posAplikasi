@@ -6,21 +6,22 @@ $no = '1';
     <div class="col-md-12">
         <button class="btn btn-info btn-sm " id="kembali"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
         <button class="btn btn-success btn-sm " id="simpan"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
-        <button class="btn btn-outline-success btn-sm " id="refresh"><i class="fa-solid fa-rotate" style="display: none;"></i> Refresh</button>
+        <button class="btn btn-danger btn-sm " id="refresh" style="display: none;"><i class="fa-solid fa-rotate"></i> Batal Simpan</button>
     </div>
 </div>
 <div class="row mb-2" id="keteranganRetur" style="display: none;">
     <div class="col-md-12">
         <label for="ketRetur">Item Text</label>
-        <textarea name="ketRetur" id="ketRetur" class="form-control" rows="5" placeholder="Masukkan detail keterangan retur barang."></textarea>
+        <textarea name="ketRetur" id="ketRetur" class="form-control" rows="5" placeholder="Tambahkan keterangan lainnya apabila ada !"></textarea>
         <button class="btn btn-success btn-sm" id="simpanTransaksiRetur"><i class="fa-solid fa-circle-check"></i> Simpan</button>
     </div>
 </div>
 <hr>
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-body table-responsive p-0" style="height:700px">
-            <table class="table table-sm table-valign-middle table-hover " id="listTableItem">
+        <div class="card card-body table-responsive p-0">
+            <p class="text-muted">* Gunakan "TAB" untuk pindah kolom</p>
+            <table class="table table-sm table-valign-middle table-hover text-nowrap" id="listTableItem">
                 <thead class="bg-gray-dark">
                     <tr>
                         <th>Nama Barang</th>
@@ -32,6 +33,7 @@ $no = '1';
                         <th>Point Retur</th>
                         <th>Stock Awal</th>
                         <th>Stock Akhir</th>
+                        <th>Keterangan</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -74,6 +76,9 @@ $no = '1';
                         </td>
                         <td>
                             <input class="form-control form-control-sm  text-right" name="saldo" id="saldo" readonly>
+                        </td>
+                        <td>
+                            <input class="form-control form-control-sm  text-right" name="keterangan" id="keterangan" readonly>
                         </td>
                         <td>
                             <button type="button" class="btn btn-default btn-sm " id="btnInsert"><i class="fa-solid fa-check"></i></button>
@@ -244,10 +249,11 @@ $no = '1';
                 stock = $("#stock").val(),
                 saldo = $("#saldo").val(),
                 qtyPbl = $("#qtyPbl").val(),
-                unit = $("#unit").val();
+                unit = $("#unit").val(),
+                keterangan = $("#keterangan").val();
             // alert(point);
                 
-            let dataform = {product:product, satuan:satuan, qtyRetur:qtyRetur, hargaSatuan:hargaSatuan, point:point, id:id, purchaseNumber:purchaseNumber,stock:stock,saldo:saldo,qtyPbl:qtyPbl,unit:unit};
+            let dataform = {product:product, satuan:satuan, qtyRetur:qtyRetur, hargaSatuan:hargaSatuan, point:point, id:id, purchaseNumber:purchaseNumber,stock:stock,saldo:saldo,qtyPbl:qtyPbl,unit:unit,keterangan:keterangan};
             sendData(dataform);
         }
     

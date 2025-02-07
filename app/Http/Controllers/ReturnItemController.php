@@ -233,6 +233,7 @@ class ReturnItemController extends Controller
         $stockAwal = $reqReturn->stock;
         $stockAkhir = $reqReturn->saldo;
         $userName = Auth::user()->name;
+        $keterangan = $reqReturn->keterangan;
 
         $listLO = DB::table('purchase_list_order')
             ->where('id_lo',$id)
@@ -266,6 +267,7 @@ class ReturnItemController extends Controller
                 'created_by'=>$userName,
                 'status'=>'1',
                 'supplier_id'=>$supplierId,
+                'item_text'=>$keterangan
             ]);
             
         $nomReturn = $hrgSatuan * $qtyReturn;  
