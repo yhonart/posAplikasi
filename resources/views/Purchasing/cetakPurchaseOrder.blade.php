@@ -1,6 +1,17 @@
 <link rel="stylesheet" href="{{asset('public/dazbuild/dist/css/adminlte.min.css')}}">
 <script src="{{asset('public/dazbuild/dist/js/adminlte.min.js')}}"></script>
 <style>
+.table-title {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table-title td, .table-title th {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
 .table-list {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -8,8 +19,8 @@
 }
 
 .table-list td, .table-list th {
-  border: 1px solid #ddd;
-  padding: 8px;
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
 .table-list th {
@@ -76,7 +87,7 @@
         return $hasil;
     }
 ?>
-<table class="table-list">
+<table class="table-title">
     <tbody>
         <tr>
             <td>No. Transaksi</td>
@@ -100,6 +111,7 @@
                 <br>
                 <small>{{$purchaseOrder->address}}, {{$purchaseOrder->city}}</small>
             </td>
+            <td></td>
         </tr>
     </tbody>
 </table>
@@ -114,10 +126,16 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>NO. PERKIRAAN</th>
-            <th>KETERANGAN</th>
-            <th>DEBIT</th>
-            <th>KREDIT</th>
+            <th>No.</th>
+            <th>Produk</th>
+            <th>Satuan</th>
+            <th>Qty</th>
+            <th>Harga Satuan</th>
+            <th>Disc.</th>
+            <th>Jumlah</th>
+            <th>Gudang</th>
+            <th>Saldo Awal</th>
+            <th>Saldo Akhir</th>
         </tr>
     </thead>
     <tbody>
