@@ -182,10 +182,7 @@
             $totalPotongan = $totalHargaJumlah - $potonganVoucher;
         ?>
         <tr>
-            <td colspan="6"></td>
-            <td>Total</td>
-            <td class="text-right font-weight-bold">{{number_format($totalHargaSatuan,'0',',','.')}}</td>
-            <td class="text-right font-weight-bold">{{number_format($totalHargaDiscount,'0',',','.')}}</td>
+            <td colspan="9" class="text-right font-weight-bold">Total</td>            
             <td class="text-right font-weight-bold">{{number_format($totalHargaJumlah,'0',',','.')}}</td>
         </tr>
         <tr>
