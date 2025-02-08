@@ -3,7 +3,7 @@
 <style>
 .table-title {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   border-collapse: collapse;
   width: 100%;
 }

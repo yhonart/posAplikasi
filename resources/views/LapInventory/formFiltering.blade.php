@@ -13,6 +13,17 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
+                <label class="label">Lokasi</label>
+                <select class="form-control form-control-sm " name="lokasi" id="lokasi">
+                    <option value="0" readonly>Pilih Lokasi</option>
+                    @foreach($mSite as $ms)
+                    <option value="{{$ms->idm_site}}">{{$ms->site_name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
                 <label class="label">Dari Tanggal</label>
                 <input class="form-control form-control-sm  datetimepicker-input" name="fromDate" id="fromDate">
             </div>
@@ -21,17 +32,6 @@
             <div class="form-group">
                 <label class="label">s/d Tanggal</label>
                 <input class="form-control form-control-sm  datetimepicker-input" name="endDate" id="endDate">
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="label">Lokasi</label>
-                <select class="form-control form-control-sm " name="lokasi" id="lokasi">
-                    <option value="0" readonly>Pilih Lokasi</option>
-                    @foreach($mSite as $ms)
-                    <option value="{{$ms->idm_site}}">{{$ms->site_name}}</option>
-                    @endforeach
-                </select>
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@
         </div>
     </div>
 </form>
-<div class="row">
+<div class="row mt-2">
     <div class="col-md-12">        
         <div id="displayFilter"></div>
     </div>
