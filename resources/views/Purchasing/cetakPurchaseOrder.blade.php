@@ -1,53 +1,24 @@
 <link rel="stylesheet" href="{{asset('public/dazbuild/dist/css/adminlte.min.css')}}">
 <script src="{{asset('public/dazbuild/dist/js/adminlte.min.js')}}"></script>
 <style>
-    .styled-table {
-        border-collapse: collapse;
-        margin: 25px 0;
-        font-size: 6;
-        font-family: sans-serif;
-        min-width: 400px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-        border: 1px solid #dee2e6;
-    }.styled-table-2 tbody tr th,
-    .styled-table thead tr {
-        background-color: #17a2b8;
-        color: #ffffff;
-        text-align: left;
-    }
-    .styled-table th,
-    .styled-table td {
-        padding: 6px 7px;
-        border: 1px solid #dee2e6;
-    }
-    .styled-table tbody tr.active-row {
-        font-weight: bold;
-        color: #009879;
-    }
-    .styled-table tbody{
-        vertical-align: top;
-        border: 1px solid #dee2e6;
-    }
-    .styled-table .date_check{
-        width: 100%;
-    }
-    .judul{
-        text-align: left;
-        font-size: 1em;
-        font-family: sans-serif;
-    }
-    .judul p{
-        margin: 0.1em;
-    }
-    .span {
-        font-size :8;
-    }
-    .total {
-        font-size : 7;
-    }
-    .grand-total {
-        font-size : 7;
-    }
+.table-list {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table-list td, .table-list th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table-list th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
 </style>
 <?php
     $no = '1';
@@ -105,7 +76,7 @@
         return $hasil;
     }
 ?>
-<table cellpadding="0" cellspacing="0" style="width:100%">
+<table class="table-list">
     <tbody>
         <tr>
             <td>No. Transaksi</td>
