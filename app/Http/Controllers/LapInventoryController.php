@@ -102,7 +102,7 @@ class LapInventoryController extends Controller
             ->orderBy('size_code','desc')
             ->first();
         
-        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay','dataSaldoAwal','mProduct','lastSaldo'));
+        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay','dataSaldoAwal','mProduct','lastSaldo','produk'));
     }
 
     public function downloadKartuStock($produk, $fromDate, $endDate, $lokasi){
@@ -147,7 +147,7 @@ class LapInventoryController extends Controller
 		return $pdf->stream();     
     }
     
-    public function getFilter($prdID){
+    public function getFilter($produk){
         $today = date("Y-m-d");
 
         $dataReportInv = DB::table('report_inv')
@@ -163,7 +163,7 @@ class LapInventoryController extends Controller
             ->get();
         
         $codeDisplay = '2'; 
-        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay','mProduct'));
+        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay','mProduct','produk'));
     }
     
 }

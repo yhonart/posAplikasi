@@ -28,7 +28,7 @@
             <table class="table table-valign-middle table-hover" id="tableDisplayLap">
                 <thead class="bg-gray-dark">
                     <tr>
-                        <th>Tanggal </th>
+                        <th>Tanggal {{$produk}}</th>
                         <th>Nomor Bukti</th>
                         <th>Product</th>
                         <th>Keterangan</th>
