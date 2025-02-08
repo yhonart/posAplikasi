@@ -80,27 +80,30 @@
                                 <td>{{$dri->number_code}}</td>
                                 <td>{{$dri->product_name}}</td>
                                 <td>{{$dri->description}}</td>
-                                <td class="text-right">{{$dri->inv_in}}</td>
-                                <td class="text-right">{{$dri->inv_out}}</td>
+                                <td class="text-right">{{number_format($dri->inv_in,'0',',','.')}}</td>
+                                <td class="text-right">{{number_format($dri->inv_out,'0',',','.')}}</td>
                                 <td class="text-right">
                                     <?php
                                         $saldo += $dri->inv_in - $dri->inv_out;
                                         $tMasuk += $dri->inv_in;
                                         $tKeluar += $dri->inv_out;                                    
                                     ?>
-                                    {{$dri->saldo}}
+                                    {{number_format($dri->saldo,'0',',','.')}}
                                 </td>
                             </tr>
                         @endforeach
                             <tr>
                                 <td colspan="4" class="font-weight-bold text-center bg-lightblue">TOTAL</td>
-                                <td class="font-weight-bold text-right bg-lightblue">{{$tMasuk}}</td>
-                                <td class="font-weight-bold text-right bg-lightblue">{{$tKeluar}}</td>
+                                <td class="font-weight-bold text-right bg-lightblue">{{number_format($tMasuk,'0',',','.')}}</td>
+                                <td class="font-weight-bold text-right bg-lightblue">{{number_format($tKeluar,'0',',','.')}}</td>
                                 <td class="bg-lightblue"></td>
                             </tr>
                     </tbody>
                 </table>
             @else
+                <div class="blue-alert">
+                    <span class="p-2"><i class="fa-solid fa-circle-info"></i> Secara default, data yang di tampilkan adalah transaksi data hari ini. Silahkan gunakan filter data untuk menampilkan per item.</span>
+                </div>
                 <table class="table table-valign-middle table-hover">
                     <thead class="bg-gray-dark">
                         <tr>
@@ -119,8 +122,8 @@
                                 <td>{{$dri->number_code}}</td>
                                 <td>{{$dri->product_name}}</td>
                                 <td>{{$dri->description}}</td>
-                                <td class="text-right">{{$dri->inv_in}}</td>
-                                <td class="text-right">{{$dri->inv_out}}</td>                            
+                                <td class="text-right">{{number_format($dri->inv_in,'0',',','.')}}</td>
+                                <td class="text-right">{{number_format($dri->inv_out,'0',',','.')}}</td>                            
                             </tr>
                         @endforeach
                     </tbody>
