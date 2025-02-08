@@ -75,7 +75,7 @@ $total = 0;
                                     <span class="text-success font-weight-bold">{{$ltp->tempo}}</span>
                                     @endif
                                 </td>
-                                <td>
+                                <td class="text-right">
                                     <span class="badge bg-warning">{{$statusDokumen[$ltp->status]}}</span>
                                 </td>
                                 <td class="text-right">
@@ -160,6 +160,12 @@ $total = 0;
             function(){
                 alertify.error('Penghapusan data dibatalkan');
             }).set({title:"Konfirmasi Delete Transaksi"});
+        });
+
+        $(".dataTable").on('click','.CETAK', function (e) {
+            e.preventDefault();
+            let docNumber = $(this).attr('data-number');
+            window.open("{{route('Purchasing')}}/printPurchase/"+docNumber, "_blank");
         });
         
         $(".dataTable").on('click','.BTN-DETAIL', function (e) {

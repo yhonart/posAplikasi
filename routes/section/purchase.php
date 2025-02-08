@@ -22,6 +22,7 @@ Route::get('Purchasing/collapseDokumen/{dokPurchase}', [App\Http\Controllers\Pur
 Route::get('Purchasing/tablePenerimaan/{status}/{fromDate}/{endDate}', [App\Http\Controllers\PurchasingController::class, 'tablePenerimaan']);
 Route::get('Purchasing/modalPenerimaanPO/{poNumber}', [App\Http\Controllers\PurchasingController::class, 'modalPenerimaanPO']);
 Route::get('Purchasing/modalSupplier/{supplierID}', [App\Http\Controllers\PurchasingController::class, 'modalSupplier']);
+Route::get('Purchasing/printPurchase/{poNumber}', [App\Http\Controllers\PurchasingController::class, 'printPurchase']);
 
 //Edit Table
 Route::get('Purchasing/tablePenerimaan/editTable/{dataEdit}', [App\Http\Controllers\PurchasingController::class, 'editTablePO']);

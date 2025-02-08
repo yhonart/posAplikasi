@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PurchasingController extends Controller
 {
@@ -1412,5 +1412,23 @@ class PurchasingController extends Controller
             ->update([
                 'status'=>'4'
             ]);
+    }
+
+    public function printPurchase ($poNumber)
+    {
+        $purchaseOrder = DB::table('view_purchase_order as a')
+            ->leftJoin('m_company_payment as b','a.bank_account','=','b.idm_payment')
+            ->where('purchase_number',$poNumber)
+            ->first();
+
+        $purchaseListOrder = DB::table('view_purchase_lo')
+            ->where([
+                ['purchase_number',$poNumber],
+                ['status','!=','0']
+                ])
+            ->get();
+
+        $pdf = PDF::loadview('Purchasing/cetakPurchaseOrder', compact('purchaseOrder', 'purchaseListOrder'))->setPaper("A4", 'landscape');
+        return $pdf->stream();  
     }
 }
