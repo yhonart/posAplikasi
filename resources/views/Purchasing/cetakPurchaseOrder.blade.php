@@ -3,13 +3,14 @@
 <style>
 .table-title {
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
   border-collapse: collapse;
   width: 100%;
 }
 
 .table-title td, .table-title th {
     border-bottom: 1px solid #ddd;
-    padding: 8px;
+    /* padding: 8px; */
 }
 
 .table-list {
@@ -103,6 +104,10 @@
                     Tempo : {{$purchaseOrder->tempo}}
                 @endif
             </td>
+            <td>Nomor Faktur</td>
+            <td>{{$purchaseOrder->faktur_number}}</td>
+            <td>Tgl. Faktur</td>
+            <td>{{$purchaseOrder->faktur_date}}</td>
         </tr>
         <tr>
             <td>Supplier</td>
@@ -111,6 +116,11 @@
                 <br>
                 <small>{{$purchaseOrder->address}}, {{$purchaseOrder->city}}</small>
             </td>
+            <td>Nomor SJ</td>
+            <td>{{$purchaseOrder->do_number}}</td>
+            <td>Tgl. Pengiriman</td>
+            <td>{{$purchaseOrder->delivery_date}}</td>
+            <td></td>
             <td></td>
         </tr>
     </tbody>
@@ -123,7 +133,10 @@
         </dl>
     </div>
 </div>
-<table class="table table-bordered">
+<?php
+    $nomor = 1;
+?>
+<table class="table-list">
     <thead>
         <tr>
             <th>No.</th>
@@ -139,9 +152,20 @@
         </tr>
     </thead>
     <tbody>
+        @foreach($purchaseListOrder as $plo)
         <tr>
-            
+            <td>{{$nomor++}}</td>
+            <td>{{$plo->product_name}}</td>
+            <td>{{$plo->satuan}}</td>
+            <td>{{$plo->qty}}</td>
+            <td class="text-right">{{number_format($plo->unit_price,'0',',','.')}}</td>
+            <td class="text-right">{{number_format($plo->discount,'0',',','.')}}</td>
+            <td class="text-right">{{number_format($plo->total_price,'0',',','.')}}</td>
+            <td>{{$plo->site_name}}</td>
+            <td>{{$plo->stock_awal}}</td>
+            <td>{{$plo->stock_akhir}}</td>
         </tr>
+        @endforeach
     </tbody>
 </table>
 
