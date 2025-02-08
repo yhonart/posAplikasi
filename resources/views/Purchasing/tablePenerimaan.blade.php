@@ -80,10 +80,10 @@ $total = 0;
                                 </td>
                                 <td class="text-right">
                                     @if($ltp->status =='2' AND $approval >= '1')
-                                        <button class="btn btn-success btn-sm font-weight-bold BTN-APPROVE" id="purchaseApprove{{$ltp->id_purchase}}" data-number="{{$ltp->purchase_number}}" data-id="{{$ltp->id_purchase}}" title="Setujui"><i class="fa-solid fa-circle-check"></i></button>
+                                        <button class="btn btn-success btn-sm font-weight-bold BTN-APPROVE" id="purchaseApprove{{$ltp->id_purchase}}" data-number="{{$ltp->purchase_number}}" data-id="{{$ltp->id_purchase}}" title="Setujui"><i class="fa-solid fa-check"></i></button>
                                     @endif
                                     @if($approval >= '1')
-                                        <button class="btn btn-danger btn-sm font-weight-bold BTN-DELETE" data-number="{{$ltp->purchase_number}}" title="Hapus Item"><i class="fa-solid fa-circle-xmark"></i></button>
+                                        <button class="btn btn-danger btn-sm font-weight-bold BTN-DELETE" data-number="{{$ltp->purchase_number}}" title="Hapus Item"><i class="fa-solid fa-xmark"></i></button>
                                     @endif
                                     @if($ltp->status =='2')
                                         <button class="btn btn-info btn-sm font-weight-bold BTN-EDIT" data-number="{{$ltp->purchase_number}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
