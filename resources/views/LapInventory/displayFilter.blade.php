@@ -45,13 +45,13 @@
                             $saldoHitung = 0;                       
                             if (!empty($dataSaldoAwal)) {
                                 echo "<tr>";
-                                    echo "<td>".$dataSaldoAwal->date_input."</td>";
+                                    echo "<td class='font-weight-bold'>".$dataSaldoAwal->date_input."</td>";
                                     echo "<td></td>";
                                     echo "<td></td>";
-                                    echo "<td>Saldo Awal</td>";
-                                    echo "<td class='text-right'>0</td>";
-                                    echo "<td class='text-right'>0</td>";
-                                    echo "<td class='text-right'>";
+                                    echo "<td class='font-weight-bold'>Saldo Awal</td>";
+                                    echo "<td class='text-right font-weight-bold'>0</td>";
+                                    echo "<td class='text-right font-weight-bold'>0</td>";
+                                    echo "<td class='text-right font-weight-bold'>";
     
                                     if ($dataSaldoAwal->inv_in == '0') {
                                         $saldoawal = $dataSaldoAwal->saldo + $dataSaldoAwal->inv_out;
