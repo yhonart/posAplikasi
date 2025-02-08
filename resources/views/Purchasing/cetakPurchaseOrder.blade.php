@@ -190,7 +190,7 @@
         </tr>
         <tr>
             <td colspan="9" class="text-right font-weight-bold">Voucher -</td>
-            <td class="text-right font-weight-bold">{{number_format($totalPotongan,'0',',','.')}}</td>
+            <td class="text-right font-weight-bold">{{number_format($potonganVoucher,'0',',','.')}}</td>
         </tr>
         <tr>
             <td colspan="9"></td>
