@@ -88,6 +88,12 @@
         return $hasil;
     }
 ?>
+<?php
+    $totalHargaSatuan = 0;
+    $totalHargaDiscount = 0;
+    $totalHargaJumlah = 0;
+    $totalPotongan = 0;
+?>
 <table class="table-title">
     <tbody>
         <tr>
@@ -143,12 +149,12 @@
             <th>Produk</th>
             <th>Satuan</th>
             <th>Qty</th>
-            <th>Harga Satuan</th>
-            <th>Disc.</th>
-            <th>Jumlah</th>
             <th>Gudang</th>
             <th>Saldo Awal</th>
             <th>Saldo Akhir</th>
+            <th>Harga Satuan</th>
+            <th>Disc.</th>
+            <th>Jumlah</th>
         </tr>
     </thead>
     <tbody>
@@ -158,14 +164,34 @@
             <td>{{$plo->product_name}}</td>
             <td>{{$plo->satuan}}</td>
             <td>{{$plo->qty}}</td>
-            <td class="text-right">{{number_format($plo->unit_price,'0',',','.')}}</td>
-            <td class="text-right">{{number_format($plo->discount,'0',',','.')}}</td>
-            <td class="text-right">{{number_format($plo->total_price,'0',',','.')}}</td>
             <td>{{$plo->site_name}}</td>
             <td>{{$plo->stock_awal}}</td>
             <td>{{$plo->stock_akhir}}</td>
+            <td class="text-right">{{number_format($plo->unit_price,'0',',','.')}}</td>
+            <td class="text-right">{{number_format($plo->discount,'0',',','.')}}</td>
+            <td class="text-right">{{number_format($plo->total_price,'0',',','.')}}</td>
         </tr>
+        <?php
+            $totalHargaSatuan += $plo->unit_price;
+            $totalHargaDiscount += $plo->discount;
+            $totalHargaJumlah += $plo->total_price;
+        ?>
         @endforeach
+        <?php
+            $potonganVoucher = $purchaseOrder->total_potongan;
+            $totalPotongan = $totalHargaJumlah - $potonganVoucher;
+        ?>
+        <tr>
+            <td colspan="6"></td>
+            <td>Total</td>
+            <td class="text-right font-weight-bold">{{$totalHargaSatuan}}</td>
+            <td class="text-right font-weight-bold">{{$totalHargaDiscount}}</td>
+            <td class="text-right font-weight-bold">{{$totalHargaJumlah}}</td>
+        </tr>
+        <tr>
+            <td colspan="9"></td>
+            <td class="text-right font-weight-bold">{{$totalPotongan}}</td>            
+        </tr>
     </tbody>
 </table>
 
