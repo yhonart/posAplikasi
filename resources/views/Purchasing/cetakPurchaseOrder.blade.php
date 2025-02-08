@@ -184,13 +184,17 @@
         <tr>
             <td colspan="6"></td>
             <td>Total</td>
-            <td class="text-right font-weight-bold">{{$totalHargaSatuan}}</td>
-            <td class="text-right font-weight-bold">{{$totalHargaDiscount}}</td>
-            <td class="text-right font-weight-bold">{{$totalHargaJumlah}}</td>
+            <td class="text-right font-weight-bold">{{number_format($totalHargaSatuan,'0',',','.')}}</td>
+            <td class="text-right font-weight-bold">{{number_format($totalHargaDiscount,'0',',','.')}}</td>
+            <td class="text-right font-weight-bold">{{number_format($totalHargaJumlah,'0',',','.')}}</td>
+        </tr>
+        <tr>
+            <td colspan="9" class="text-right font-weight-bold">Voucher -</td>
+            <td class="text-right font-weight-bold">{{number_format($totalPotongan,'0',',','.')}}</td>
         </tr>
         <tr>
             <td colspan="9"></td>
-            <td class="text-right font-weight-bold">{{$totalPotongan}}</td>            
+            <td class="text-right font-weight-bold">{{number_format($totalPotongan,'0',',','.')}}</td>            
         </tr>
     </tbody>
 </table>
