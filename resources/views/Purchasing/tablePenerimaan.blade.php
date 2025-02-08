@@ -79,18 +79,16 @@ $total = 0;
                                     <span class="badge bg-warning">{{$statusDokumen[$ltp->status]}}</span>
                                 </td>
                                 <td class="text-right">
-                                    <div class="btn-group">
-                                        @if($ltp->status =='2' AND $approval >= '1')
-                                            <button class="btn btn-success btn-sm font-weight-bold BTN-APPROVE" id="purchaseApprove{{$ltp->id_purchase}}" data-number="{{$ltp->purchase_number}}" data-id="{{$ltp->id_purchase}}" title="Setujui"><i class="fa-solid fa-circle-check"></i></button>
-                                        @endif
-                                        @if($approval >= '1')
-                                            <button class="btn btn-danger btn-sm font-weight-bold BTN-DELETE" data-number="{{$ltp->purchase_number}}" title="Hapus Item"><i class="fa-solid fa-circle-xmark"></i></button>
-                                        @endif
-                                        @if($ltp->status =='2')
-                                            <button class="btn btn-info btn-sm font-weight-bold BTN-EDIT" data-number="{{$ltp->purchase_number}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                                        @endif
-                                            <button class="btn btn-warning btn-sm font-weight-bold CETAK" data-number="{{$ltp->purchase_number}}" title="Cetak Transaksi"><i class="fa-solid fa-print"></i></button>
-                                    </div>                                
+                                    @if($ltp->status =='2' AND $approval >= '1')
+                                        <button class="btn btn-success btn-sm font-weight-bold BTN-APPROVE" id="purchaseApprove{{$ltp->id_purchase}}" data-number="{{$ltp->purchase_number}}" data-id="{{$ltp->id_purchase}}" title="Setujui"><i class="fa-solid fa-circle-check"></i></button>
+                                    @endif
+                                    @if($approval >= '1')
+                                        <button class="btn btn-danger btn-sm font-weight-bold BTN-DELETE" data-number="{{$ltp->purchase_number}}" title="Hapus Item"><i class="fa-solid fa-circle-xmark"></i></button>
+                                    @endif
+                                    @if($ltp->status =='2')
+                                        <button class="btn btn-info btn-sm font-weight-bold BTN-EDIT" data-number="{{$ltp->purchase_number}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    @endif
+                                        <button class="btn btn-warning btn-sm font-weight-bold CETAK" data-number="{{$ltp->purchase_number}}" title="Cetak Transaksi"><i class="fa-solid fa-print"></i></button>
                                 </td>
                             </tr>
                         @endforeach
