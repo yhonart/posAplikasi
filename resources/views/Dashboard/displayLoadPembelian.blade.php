@@ -3,7 +3,7 @@
     $total = 0;
     $totalBayar = 0;
 ?>
-<table class="table table-striped projects">
+<table class="table text-nowrap table-hover table-valign-middle table-sm">
     <thead class="font-weight-bold">
         <tr>
             <td>Tanggal</td>
