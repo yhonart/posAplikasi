@@ -1,6 +1,5 @@
 <?php
     $sumRecord = '0';
-    $sumPendapatan = 0;
     $dayNoww = date('l', strtotime($hariIni));
     $strHari = "Monday";
 ?>
@@ -202,7 +201,7 @@
             fromDate = "{{$fromDate}}",
             endDate = "{{$endDate}}";
         functionDisplayTable(display, fromDate, endDate);
-        
+
         $("#pilihTahun").change(function(){
             let selectYear2 = $(this).find(":selected").val();
             let selectQuartal = $("#pilihQuartal").val();
