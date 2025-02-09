@@ -177,7 +177,7 @@
             success : function(response){
                 $('#pembelianVsPenjualan').html(response);
             } 
-        });
+        });        
     });
 
     $("#btnLap1").click(function(){
@@ -198,6 +198,11 @@
     })
 
     $(document).ready(function() {
+        let display = "tablePenjualan",
+            fromDate = "{{$fromDate}}",
+            endDate = "{{$endDate}}";
+        functionDisplayTable(display, fromDate, endDate);
+        
         $("#pilihTahun").change(function(){
             let selectYear2 = $(this).find(":selected").val();
             let selectQuartal = $("#pilihQuartal").val();
@@ -226,7 +231,13 @@
             e.preventDefault();
             let display = $(this).attr("data-display"),
                 fromDate = "{{$fromDate}}",
-                endDate = "{{$endDate}}";            
+                endDate = "{{$endDate}}";      
+                
+            functionDisplayTable(display, fromDate, endDate);
+            
+        });
+
+        function functionDisplayTable(display, fromDate, endDate){
             $.ajax({ 
                 type : 'get', 
                 url : "{{route('Dashboard')}}/displayOnTable/"+display+"/"+fromDate+"/"+endDate,              
@@ -234,7 +245,7 @@
                     $('#displayDataTransaction').html(response);
                 } 
             });
-        })
+        }
     });
     
     $(document).ready(function(){
