@@ -27,24 +27,24 @@
     <tbody>
         @foreach($summaryOpname as $summary)
             <tr>                
-                <td>{{$summary->number_so}}</td>
                 <td>{{date("d-M-y",strtotime($summary->date_so))}}</td>
+                <td>{{$summary->number_so}}</td>
                 <td>{{$summary->site_name}}</td>
                 <td>{{$summary->created_by}}</td>
                 <td class="text-right"><span class="bg-light border border-1 border-info pl-2 pr-2 pt-1 pb-1 rounded-pill font-weight-bold text-xs">{{$araystatus[$summary->status]}}</span></td>
                 <td class="text-right">
                     @if($summary->status == '2')
-                        <a class="btn btn-sm btn-info elevation-1  btnEdit" title="Edit Dokumen" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-pencil"></i> Edit</a>
+                        <a class="btn btn-sm btn-info elevation-1  btnEdit" title="Edit Dokumen" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-pencil"></i></a>
                     @endif
                     
                     @if($approval >= '1' AND $summary->status == '2' AND $summary->t_input_stock<>'')
-                        <button type="button" class="btn btn-sm btn-success btnApprove elevation-1 " title="Approve" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-check"></i>Approve</button>
+                        <button type="button" class="btn btn-sm btn-success btnApprove elevation-1 " title="Approve" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-check"></i></button>
                     @endif
                     @if($approval >= '1' AND $approval >='1')
-                        <button type="button" class="btn btn-sm btn-primary btnDetail elevation-1 " id="btnDetail" title="View Detail {{$summary->status}}" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-magnifying-glass"></i> Detail</button>
+                        <button type="button" class="btn btn-sm btn-primary btnDetail elevation-1 " id="btnDetail" title="View Detail {{$summary->status}}" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-magnifying-glass"></i></button>
                     @endif
                     @if($summary->status == '2')
-                        <button type="button" class="btn btn-sm btn-danger btnDelete elevation-1 " title="Delete" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-trash"></i> Delete</button>
+                        <button type="button" class="btn btn-sm btn-danger btnDelete elevation-1 " title="Delete" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-trash"></i></button>
                     @endif
                 </td>
             </tr>
