@@ -2,6 +2,11 @@
     $no = 1;
     $total = 0;
 ?>
+<div class="row mb-2">
+    <div class="col-md-12">
+        <a href="{{route('piutangPelanggan')}}" class="btn btn-light border-0 font-weight-bold text-info"><i class="fa-solid fa-hand-holding-dollar"></i> Pembayaran Piutang Pelanggan</a>
+    </div>
+</div>
 <table class="table table-striped projects">
     <thead>
         <tr>

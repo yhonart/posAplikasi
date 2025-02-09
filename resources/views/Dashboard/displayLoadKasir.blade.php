@@ -1,11 +1,6 @@
 <?php
     $sumPendapatan = 0;
 ?>
-<div class="row">
-    <div class="col-md-12">
-        <a href="http://" class="btn btn-light border-0 font-weight-bold text-info">Pembayaran Piutang Pelanggan</a>
-    </div>
-</div>
 <table class="table table-striped projects">
     <thead>
         <tr>
