@@ -2315,8 +2315,7 @@ class CashierController extends Controller
                     'description'=>$bankAccountName,
                     'transaction'=>"Sale",                    
                 ]);
-            }
-            $this->TempKeuanganController->kasBesarPenjualan($tBelanja, $updateBy, $trDate);        
+            }                   
         } 
         //Transaksi return/edit transaksi setelah pembayaran
         elseif ($record >= '1') {
@@ -2343,8 +2342,7 @@ class CashierController extends Controller
                     'status1'=>$returnBy,
                     'status2'=>$returnBy,
                 ]);
-            }
-            $this->TempKeuanganController->kasBesarPenjualan($tBelanja, $updateBy, $trDate);
+            }           
         } 
         //Transaksi Hutang dan tidak ada riwayat input yang sama 
         elseif ($tPembayaran < $tBelanja and $record == '0') {
@@ -2479,7 +2477,10 @@ class CashierController extends Controller
             ->update([
                 'status_trx'=>'4'
             ]);
-
+        
+        if ($record >= '1' OR $tPembayaran >= $tBelanja) {
+            $this->TempKeuanganController->kasBesarPenjualan($tBelanja, $updateBy, $trDate); 
+        }
     }
 
     public function printTemplateCashier($noBill, $typeCetak)

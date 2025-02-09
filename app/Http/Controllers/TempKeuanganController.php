@@ -23,13 +23,13 @@ class TempKeuanganController extends Controller
         
         // check pembayaran menggunakan 2 cara pembayaran.
         $penjualan = DB::table('view_trx_method');
-        $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'date_trx','created_by'); 
+        $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'created_by'); 
         $penjualan = $penjualan->where([
             ['status_by_store','>=','3'],
             ['created_by',$createBy],
             ['date_trx',$trDate]
         ]);
-        $penjualan = $penjualan->groupBy('date_trx','created_by');
+        $penjualan = $penjualan->groupBy('created_by');
         $penjualan = $penjualan->first(); 
 
         if (!empty($penjualan)) {
@@ -44,7 +44,7 @@ class TempKeuanganController extends Controller
                 ->insert([
                     'description'=>$description,
                     'create_by' => $createBy,
-                    'trx_date' => $dateNoww,
+                    'trx_date' => $trDate,
                     'debit' => $updateNominal,
                     'kredit' => '0',
                     'saldo' => $updateNominal,
@@ -55,7 +55,7 @@ class TempKeuanganController extends Controller
             DB::table('lap_kas_besar')
                 ->where([
                     ['create_by',$createBy],
-                    ['trx_date',$dateNoww],
+                    ['trx_date',$trDate],
                     ['trx_code','1']
                 ])
                 ->update([
