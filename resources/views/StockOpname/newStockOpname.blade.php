@@ -48,12 +48,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <p class="font-weight-bold text-muted">*NOTED</p>
-                        <p class="text-muted">No. Stock opname pada form adalah nomor temporer, nomor akan tergenerate kembali menyesuaikan tanggal stock opname.</p>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-12">
                         <div id="disInputBarang"></div>
                     </div>

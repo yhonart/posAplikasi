@@ -42,8 +42,7 @@ class StockopnameController extends Controller
                 ['periode',$thisPeriode]
                 ])
             ->count();
-        
-            
+
         //cek data transaksi yang di delete.
         $deletedNumber = DB::table('inv_stock_opname')
             ->where('status','0')
@@ -58,8 +57,7 @@ class StockopnameController extends Controller
             }else{
                 $stp = $countPeriode + 1;
                 $nostp = "STP-".$dateNumber."-".sprintf("%07d",$stp);
-            }
-                
+            }                
         }
         // Jika data ditemukan.
         else{
