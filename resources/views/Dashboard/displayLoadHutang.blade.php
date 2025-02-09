@@ -7,7 +7,7 @@
         <a href="{{route('piutangPelanggan')}}" class="btn btn-light border-0 font-weight-bold text-info"><i class="fa-solid fa-hand-holding-dollar"></i> Pembayaran Piutang Pelanggan</a>
     </div>
 </div>
-<table class="table table-striped projects">
+<table class="table text-nowrap table-hover table-valign-middle table-sm">
     <thead class="font-weight-bold">
         <tr>
             <td>No.</td>
