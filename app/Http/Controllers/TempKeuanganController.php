@@ -8,25 +8,26 @@ use Illuminate\Support\Facades\Auth;
 
 class TempKeuanganController extends Controller
 {
-    public function kasBesarPenjualan($nominal, $createBy)
+    public function kasBesarPenjualan($nominal, $createBy, $trDate)
     {        
         $dateNoww = date("Y-m-d");
         // count user input
         $countKasBesar = DB::table('lap_kas_besar')
             ->where([
                 ['create_by',$createBy],
-                ['trx_date',$dateNoww]
+                ['trx_date',$trDate]
             ])
             ->count();
             
         $description = "Penjualan ".$createBy;
         
+        // check pembayaran menggunakan 2 cara pembayaran.
         $penjualan = DB::table('view_trx_method');
         $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'date_trx','created_by'); 
         $penjualan = $penjualan->where([
             ['status_by_store','>=','3'],
             ['created_by',$createBy],
-            ['date_trx',$dateNoww]
+            ['date_trx',$trDate]
         ]);
         $penjualan = $penjualan->groupBy('date_trx','created_by');
         $penjualan = $penjualan->first(); 

@@ -2086,10 +2086,14 @@ class CashierController extends Controller
                     'status' => '1',
                 ]);
         }
-
+        $checkDateTrx = DB::table('tr_store')
+            ->select('tr_date')
+            ->where('billing_number',$billNumber)
+            ->first();
+        $dateTrx = $checkDateTrx->tr_date;
         if ($paymentMethod->category <> "KREDIT" ) {
             $updateBy = Auth::user()->name;
-            $this->TempKeuanganController->kasBesarPenjualan($postNominal, $updateBy);
+            $this->TempKeuanganController->kasBesarPenjualan($postNominal, $updateBy, $dateTrx);
         }
 
     }
@@ -2109,11 +2113,25 @@ class CashierController extends Controller
             ->update([
                 $column => $editVal
             ]);
+
+        $methodChange = DB::table($tableName)
+            ->select('core_id_trx')
+            ->where($tableId,$id)
+            ->first();
+
+        $numberTrx = $methodChange->core_id_trx;
+
+        $checkDateTrx = DB::table('tr_store')
+            ->select('tr_date')
+            ->where('billing_number',$numberTrx)
+            ->first();
+
+        $dateTrx = $checkDateTrx->tr_date;
         
         if ($method <> '8') {
             $updateBy = Auth::user()->name;
             $postNominal = $editVal;
-            $this->TempKeuanganController->kasBesarPenjualan($postNominal, $updateBy);
+            $this->TempKeuanganController->kasBesarPenjualan($postNominal, $updateBy, $dateTrx);
         }
     }
 
@@ -2256,7 +2274,7 @@ class CashierController extends Controller
             ->select('t_pay','tr_date')
             ->where('billing_number', $noBill)
             ->first();
-
+        $trDate = $trxLastBayar->tr_date;
         // Jika dilakukan return pembayaran 
         if ($trxLastBayar->t_pay > $tPembayaran) {
             $nilaiPoint = $trxLastBayar->t_pay - $tPembayaran;
@@ -2298,7 +2316,7 @@ class CashierController extends Controller
                     'transaction'=>"Sale",                    
                 ]);
             }
-            $this->TempKeuanganController->kasBesarPenjualan($tBelanja, $updateBy);        
+            $this->TempKeuanganController->kasBesarPenjualan($tBelanja, $updateBy, $trDate);        
         } 
         //Transaksi return/edit transaksi setelah pembayaran
         elseif ($record >= '1') {
@@ -2326,7 +2344,7 @@ class CashierController extends Controller
                     'status2'=>$returnBy,
                 ]);
             }
-            $this->TempKeuanganController->kasBesarPenjualan($tBelanja, $updateBy);
+            $this->TempKeuanganController->kasBesarPenjualan($tBelanja, $updateBy, $trDate);
         } 
         //Transaksi Hutang dan tidak ada riwayat input yang sama 
         elseif ($tPembayaran < $tBelanja and $record == '0') {
