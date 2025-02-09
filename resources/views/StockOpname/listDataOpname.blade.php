@@ -8,7 +8,7 @@
         <div class="col-12">
             <div class="card">            
                 <div class="card-body table-responsive">
-                    <div class="card card-body elevation-0">
+                    <div class="card card-body elevation-0 bordered border-1 rounded-0">
                         <div class="row mt-1 mb-2">
                             <div class="col-md-3">
                                 <label for="" class="label">Dari Tgl.</label>
