@@ -16,8 +16,7 @@
 <table class="table table-valign-middle table-hover " id="listDocOpname">
     <thead class="bg-gray-dark">
         <tr>
-            <th>No.</th>
-            <th>Opname Number</th>
+            <th>No. Dokumen</th>
             <th>Tanggal</th>
             <th>Lokasi</th>
             <th>User Input</th>
@@ -27,8 +26,7 @@
     </thead>
     <tbody>
         @foreach($summaryOpname as $summary)
-            <tr>
-                <td>{{$nosum++}}</td>
+            <tr>                
                 <td>{{$summary->number_so}}</td>
                 <td>{{date("d-M-y",strtotime($summary->date_so))}}</td>
                 <td>{{$summary->site_name}}</td>
@@ -60,7 +58,7 @@
             "lengthChange": false, 
             "autoWidth": false,
             "dom": 'Bfrtip',
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
     $(document).ready(function(){
