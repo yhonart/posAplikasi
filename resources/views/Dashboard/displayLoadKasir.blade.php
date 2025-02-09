@@ -2,7 +2,7 @@
     $sumPendapatan = 0;
 ?>
 <table class="table table-striped projects">
-    <thead>
+    <thead class="font-weight-bold">
         <tr>
             <th>Tanggal</th>
             <th>Nama Kasir</th>
