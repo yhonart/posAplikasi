@@ -1,3 +1,6 @@
+<?php
+    $sumPendapatan = 0;
+?>
 <table class="table table-striped projects">
     <thead>
         <tr>
