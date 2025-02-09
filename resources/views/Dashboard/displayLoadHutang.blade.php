@@ -2,7 +2,7 @@
     $no = 1;
     $total = 0;
 ?>
-<table>
+<table class="table table-striped projects">
     <thead>
         <tr>
             <td>No.</td>

@@ -179,7 +179,14 @@ class DashboardController extends Controller
         return view('Dashboard/displayLoadHutang',compact('hutangPelanggan'));
     }
     public function tablePembelian($fromDate, $endDate){
-        return view('Dashboard/displayLoadPembelian');
+
+        $pembelian = DB::table('view_purchase_order')
+            ->where('status','3')            
+            ->orderBy('id_purchase','desc')
+            ->limit(10)
+            ->get(); 
+
+        return view('Dashboard/displayLoadPembelian', compact('pembelian'));
     }
 
     public function getTrxByKasir($kasir, $fromDate, $endDate){
