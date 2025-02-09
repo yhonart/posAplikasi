@@ -201,9 +201,10 @@
 <script>
     $(function() {
         let selectYear1 = $("#pilihTahun").val();
+        let selectQuartal = $("#pilihQuartal").val();
         $.ajax({ 
             type : 'get', 
-            url : "{{route('Dashboard')}}/garphPembelian/"+selectYear1,              
+            url : "{{route('Dashboard')}}/garphPembelian/"+selectYear1+"/"+selectQuartal,              
             success : function(response){
                 $('#pembelianVsPenjualan').html(response);
             } 
@@ -230,9 +231,22 @@
     $(document).ready(function() {
         $("#pilihTahun").change(function(){
             let selectYear2 = $(this).find(":selected").val();
+            let selectQuartal = $("#pilihQuartal").val();
             $.ajax({ 
                 type : 'get', 
-                url : "{{route('Dashboard')}}/garphPembelian/"+selectYear2,              
+                url : "{{route('Dashboard')}}/garphPembelian/"+selectYear2+"/"+selectQuartal,              
+                success : function(response){
+                    $('#pembelianVsPenjualan').html(response);
+                } 
+            });
+        });
+
+        $("#pilihQuartal").change(function(){
+            let selectYear2 = $("#pilihQuartal").val();
+            let selectQuartal = $(this).find(":selected").val();
+            $.ajax({ 
+                type : 'get', 
+                url : "{{route('Dashboard')}}/garphPembelian/"+selectYear2+"/"+selectQuartal,              
                 success : function(response){
                     $('#pembelianVsPenjualan').html(response);
                 } 

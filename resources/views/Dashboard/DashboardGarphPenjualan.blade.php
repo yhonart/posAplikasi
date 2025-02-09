@@ -2,71 +2,62 @@
 
 <script>
     
-
-    Highcharts.chart('container', {
-        chart: {
-            type: 'area'
-        },
-        title: {
-            text: 'Pembelian VS Penjualan'
-        },
-
-        subtitle: {
-            text: 'Transaksi Bulanan'
-        },
-        credits: {
-            enabled: false,
-        },
-        yAxis: {
-            title: {
-                text: 'Jumlah Pembayaran'
-            },
-            plotLines: [{
-                color: '#FF0000',
-                width: 2,
-                value: 0,
-                label: {
-                    text: 'Zero',
-                    align: 'left',
-                    // y: 20, /*moves label down*/
-                    style: {
-                        color: '#fff',
-                        font: '11px '
-                    }
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Penjualan VS Pembelian'
+    },
+    subtitle: {
+        text: ''            
+    },
+    xAxis: {
+        categories: [
+            <?php
+                foreach ($xAxistSet as $x) {
+                    echo "'".$x->periode."',";
                 }
-            }],   
-            labels: {
-                formatter: function () {
-                    return this.value;
-                },
+            ?>
+        ],
+        crosshair: true,
+        accessibility: {
+            description: 'Countries'
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Jumlah Pembayaran'
+        },
+        plotLines: [{
+            color: '#FF0000',
+            width: 2,
+            value: 0,
+            label: {
+                text: 'Zero',
+                align: 'left',
+                // y: 20, /*moves label down*/
+                style: {
+                    color: '#fff',
+                    font: '11px '
+                }
             }
-        },
-
-        xAxis: {
-            categories: [  
-                <?php
-                    foreach ($xAxistSet as $x) {
-                        echo "'".$x->periode."',";
-                    }
-                ?>
-            ]
-        },
-
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
-
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-            },  
-        },
-
-        series: [{
+        }],   
+        labels: {
+            formatter: function () {
+                return this.value;
+            },
+        }
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [
+        {
             name: 'Penjualan',
             data: [
                 <?php
@@ -79,7 +70,7 @@
                     }
                 ?>
             ]
-        }, 
+        },
         {
             name: 'Pembelian',
             data: [
@@ -93,21 +84,21 @@
                     }
                 ?>
             ]
-        }],
-
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
         }
-    });
+    ],
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+});
 </script>

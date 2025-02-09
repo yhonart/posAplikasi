@@ -178,9 +178,9 @@ class DashboardController extends Controller
         return view ('Dashboard/DashboardLoadByKasir', compact('dataByKasir','kasir','fromDate','endDate'));
     }
 
-    public function garphPembelian ($year){
+    public function garphPembelian ($year, $quartal){
         $thisPeriode = date("m-Y");
-
+        echo $quartal;
         $xAxistSet = DB::table('tr_payment_record')
             ->select(DB::raw('SUBSTRING(date_trx,6,2) as periode'))
             ->where(DB::raw('SUBSTRING(date_trx,1,4)'),$year)
