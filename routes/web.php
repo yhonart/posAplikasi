@@ -70,6 +70,9 @@ Route::get('Dashboard/modalLogTrx/{noBill}', [App\Http\Controllers\DashboardCont
 
 Route::get('Dashboard/garphPembelian/{year}/{quartal}', [App\Http\Controllers\DashboardController::class, 'garphPembelian']);
 Route::get('Dashboard/displayPembelian', [App\Http\Controllers\DashboardController::class, 'displayPembelian']);
+Route::get('Dashboard/displayOnTable/tablePenjualan/{fromDate}/{endDate}', [App\Http\Controllers\DashboardController::class, 'tablePenjualan']);
+Route::get('Dashboard/displayOnTable/tableHutang/{fromDate}/{endDate}', [App\Http\Controllers\DashboardController::class, 'tableHutang']);
+Route::get('Dashboard/displayOnTable/tablePembelian/{fromDate}/{endDate}', [App\Http\Controllers\DashboardController::class, 'tablePembelian']);
 
 // Inventory
 Route::get('remainingStock', [App\Http\Controllers\RemainingController::class, 'remainingStock'])->name('remainingStock');

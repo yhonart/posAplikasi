@@ -99,13 +99,6 @@ class DashboardController extends Controller
         $thisPeriode = date("m-Y");
         $tglSekarang = date("Y-m-d");
         $hariIni = Carbon::now();
-
-        $penjualan = DB::table('view_trx_method');
-        $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'date_trx','created_by'); 
-        $penjualan = $penjualan->where('status_by_store','>=','3');
-        $penjualan = $penjualan->whereBetween('date_trx',[$fromDate,$endDate]);
-        $penjualan = $penjualan->groupBy('date_trx','created_by');
-        $penjualan = $penjualan->get(); 
         
         $lastTrxAll = DB::table('trx_record_view');
         $lastTrxAll = $lastTrxAll->select(DB::raw('SUM(total_struk) as totalAll'));        
@@ -161,7 +154,25 @@ class DashboardController extends Controller
             ])
             ->count();
 
-        return view ('Dashboard/DashboardLoadTrx', compact('getInfoKas','hariIni','countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','userKasir','penjualan','monthsByQuarter'));
+        return view ('Dashboard/DashboardLoadTrx', compact('getInfoKas','hariIni','countTransaksi','lastTrxKredit','lastTrxTransfer','lastTrxonProcess','fromDate','endDate','lastTrxAll','totalTransaksi','selectYear','userKasir','monthsByQuarter'));
+    }
+
+    public function tablePenjualan($fromDate, $endDate){
+        $penjualan = DB::table('view_trx_method');
+        $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'date_trx','created_by'); 
+        $penjualan = $penjualan->where('status_by_store','>=','3');
+        $penjualan = $penjualan->whereBetween('date_trx',[$fromDate,$endDate]);
+        $penjualan = $penjualan->groupBy('date_trx','created_by');
+        $penjualan = $penjualan->get();
+
+        return view('Dashboard/displayLoadKasir', compact('penjualan'));
+    }
+
+    public function tableHutang($fromDate, $endDate){
+        return view('Dashboard/displayLoadHutang');
+    }
+    public function tablePembelian($fromDate, $endDate){
+        return view('Dashboard/displayLoadPembelian');
     }
 
     public function getTrxByKasir($kasir, $fromDate, $endDate){
@@ -191,7 +202,7 @@ class DashboardController extends Controller
             ->select(DB::raw('SUBSTRING(date_trx,6,2) as displayPeriode'), DB::raw('SUM(total_payment) as totalPayment'))
             ->where(DB::raw('SUBSTRING(date_trx,1,4)'),$year)
             ->groupBy(DB::raw('SUBSTRING(date_trx,6,2)'))
-            ->get();
+            ->get(); 
 
         $pembelian = DB::table('purchase_order')
             ->select(DB::raw('SUBSTRING(purchase_date,6,2) as displayPeriode'), DB::raw('SUM(sub_total) as totalPayment'))
