@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\QuarterHelper;
 use Carbon\Carbon;
-
+use Illuminate\Cache\RateLimiting\Limit;
 
 class DashboardController extends Controller
 {  
@@ -169,7 +169,14 @@ class DashboardController extends Controller
     }
 
     public function tableHutang($fromDate, $endDate){
-        return view('Dashboard/displayLoadHutang');
+        $hutangPelanggan = DB::table('view_customer_kredit')
+            ->select(DB::raw('SUM(nom_kredit) as nominalKredit'), 'customer_store')
+            ->where('nom_kredit','!=','0')
+            ->groupBy('customer_store')
+            ->orderBy('idtr_kredit','desc')
+            ->get();        
+
+        return view('Dashboard/displayLoadHutang',compact('hutangPelanggan'));
     }
     public function tablePembelian($fromDate, $endDate){
         return view('Dashboard/displayLoadPembelian');
