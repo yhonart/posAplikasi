@@ -21,10 +21,10 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary CLICK-AR" data-display="pembayaran"><i class="fa-solid fa-receipt"></i> Pembayaran</button>
-                <button type="button" class="btn btn-primary CLICK-AR" data-display="saldo"><i class="fa-solid fa-box-archive"></i> History</button>
-                <button type="button" class="btn btn-primary CLICK-AR" data-display="lapCustomer"><i class="fa-regular fa-folder-open"></i> Lap. Customer</button>
-                <button type="button" class="btn btn-primary CLICK-AR" data-display="setup"><i class="fa-solid fa-gear"></i> Setup</button>
+                <button type="button" class="btn btn-outline-primary font-weight-bold CLICK-AR" data-display="pembayaran"><i class="fa-solid fa-receipt"></i> Pembayaran</button>
+                <button type="button" class="btn btn-primary font-weight-bold CLICK-AR" data-display="saldo"><i class="fa-solid fa-box-archive"></i> History</button>
+                <button type="button" class="btn btn-default border-0 font-weight-bold CLICK-AR" data-display="lapCustomer"><i class="fa-regular fa-folder-open"></i> Lap. Customer</button>
+                <button type="button" class="btn btn-default border-0 font-weight-bold CLICK-AR" data-display="setup"><i class="fa-solid fa-gear"></i> Setup</button>
             </div>
         </div>
         <div class="row">
