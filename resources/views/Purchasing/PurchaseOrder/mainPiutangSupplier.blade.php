@@ -20,9 +20,9 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-info CLICK-AP font-weight-bold" data-display="inputPembayaran"><i class="fa-solid fa-file-invoice-dollar"></i> Pembayaran</button>
-                    <button type="button" class="btn btn-info CLICK-AP font-weight-bold" data-display="historyPembayaran"><i class="fa-solid fa-folder-open"></i> History</button>
-                    <button type="button" class="btn btn-info CLICK-AP font-weight-bold" data-display="dashboardPembayaran"><i class="fa-solid fa-chart-line"></i> Dashboard AP</button>
+                    <button type="button" class="btn btn-outline-primary font-weight-bold CLICK-AP" data-display="inputPembayaran"><i class="fa-solid fa-file-invoice-dollar"></i> Pembayaran</button>
+                    <button type="button" class="btn btn-primary font-weight-bold CLICK-AP " data-display="historyPembayaran"><i class="fa-solid fa-folder-open"></i> History</button>
+                    <button type="button" class="btn btn-default border-0 font-weight-bold CLICK-AP" data-display="dashboardPembayaran"><i class="fa-solid fa-chart-line"></i> Dashboard AP</button>
                 </div>
             </div>
             <div id="displayAP"></div>
