@@ -23,7 +23,7 @@
         <div class="row mb-2">
             <div class="col-12">
                 <button type="button" class="btn btn-outline-primary font-weight-bold  DIS-ONCLICK" data-display="listDataOpname"><i class="fa-solid fa-table-list"></i> List Data Opname</button>
-                <button type="button" class="btn btn-primary font-weight-bold  DIS-ONCLICK" data-display="listInputBarang"><i class="fa-solid fa-plus"></i> Buat Transaksi</button>
+                <button type="button" class="btn btn-primary font-weight-bold DIS-ONCLICK" data-display="listInputBarang"><i class="fa-solid fa-plus"></i> Buat Transaksi</button>
             </div>
         </div>
         <div class="row">

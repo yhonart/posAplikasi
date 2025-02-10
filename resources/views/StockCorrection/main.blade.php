@@ -22,8 +22,8 @@
     <div class="container-fluid"> 
         <div class="row mb-2">
             <div class="col-12">
-                <button class="btn bg-olive font-weight-bold  DIS-ONCLICK" data-display="listDataKoreksi"><i class="fa-solid fa-table-list"></i> List Dok. Koreksi</button>
-                <button class="btn bg-lightblue font-weight-bold  DIS-ONCLICK" data-display="listInputBarang"><i class="fa-solid fa-plus"></i> Entry Data</button>
+                <button class="btn btn-outline-primary font-weight-bold  DIS-ONCLICK" data-display="listDataKoreksi"><i class="fa-solid fa-table-list"></i> List Dok. Koreksi</button>
+                <button class="btn btn-primary font-weight-bold  DIS-ONCLICK" data-display="listInputBarang"><i class="fa-solid fa-plus"></i> Entry Data</button>
             </div>
         </div>
         <div class="row">
