@@ -57,8 +57,13 @@ class TrxKasKecilController extends Controller
             ->whereBetween('kas_date',[$lastWeekStartDate, $lastWeekEndDate])
             ->orderBy('idtr_kas','desc')
             ->first();
-            
-        $dateDana = $mDanaTrx->kas_date;
+        
+        if (!empty($mDanaTrx)) {
+            $dateDana = $mDanaTrx->kas_date;
+        }
+        else {
+            $dateDana = 0;
+        }
         $beforeFromDate = date("Y-m-d", strtotime("-1 day", strtotime($fromDate)));
         
 
