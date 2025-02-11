@@ -39,7 +39,6 @@
                 <div class="col-md-6">
                     <select name="KatProduk" id="KatProduk" class="form-control form-control-sm">
                         <option value="0" readonly>Pilih Kategori Produk</option>
-                        <option value="0" readonly></option>
                         @foreach($catProduct as $cp)
                             <option value="{{$cp->category_name}}">{{$cp->category_name}}</option>
                         @endforeach
