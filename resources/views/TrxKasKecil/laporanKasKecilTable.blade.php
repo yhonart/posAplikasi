@@ -3,7 +3,12 @@
     $debit = 0;
     $kredit = 0;
     $lastWeekSumDebit = $trxKasKecil->nominal;
-    $lastWeekSumModal = $mDanaTrx->nominal_modal;
+    if (empty($mDanaTrx)) {
+        $lastWeekSumModal = 0;
+    }
+    else {
+        $lastWeekSumModal = $mDanaTrx->nominal_modal;        
+    }
     $lastWeekSaldo = $lastWeekSumModal - $lastWeekSumDebit;
 ?>
 <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
