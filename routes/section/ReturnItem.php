@@ -18,5 +18,6 @@ Route::get('returnItem/returnHistory/detailHistory/{purchNumber}', [App\Http\Con
 Route::get('returnItem/returnHistory/approveTransaksi/{purchNumber}', [App\Http\Controllers\ReturnItemController::class, 'approveTransaksi']);
 
 Route::get('returnItem/returnNonInv', [App\Http\Controllers\ReturnItemController::class, 'returnNonInv']);
+Route::post('returnItem/returnNonInv/postDokumenReturn', [App\Http\Controllers\ReturnItemController::class, 'postDokumenReturn']);
 Route::get('returnItem/submitRetur/{poNumber}', [App\Http\Controllers\ReturnItemController::class, 'submitRetur']);
 ?>

@@ -426,6 +426,33 @@ class ReturnItemController extends Controller
         return view ('ReturnItem/displayReturnNonInv', compact('optionSupplier','countNumberRetur','returnNumber'));
     }
 
+    public function postDokumenReturn (Request $reqPostReturn){
+        $returnNumber = $reqPostReturn->numberDokumen;
+        $tglDokumen = $reqPostReturn->tglDokumen;
+        $supplier = $reqPostReturn->supplier;
+        $periode = date("mY");
+        $keterangan = $reqPostReturn->keterangan;
+        $createdBy = Auth::user()->name;
+
+        if ($supplier == '0') {
+            $msg = array('warning' => 'Anda belum memilih nama supplier');
+        }
+        else {
+            DB::table('tr_return_noninvoice')
+                ->insert([
+                    'number_return'=>$returnNumber,
+                    'date_trx'=>$tglDokumen,
+                    'supplier_id'=>$supplier,
+                    'description'=>$keterangan,
+                    'created_by'=>$createdBy,
+                    'status_trx'=>'1',
+                    'periode'=>$periode
+                ]);                
+            $msg = array('success' => 'Dokumen berhasil dimasukkan');
+        }
+        return response()->json($msg);
+    }
+
     public function submitRetur ($poNumber){
         DB::table('purchase_return')
             ->where([

@@ -14,7 +14,7 @@
                 <div class="form-group row">
                     <label for="tglDokumen" class="col-md-3">Tgl. Dokumen</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control form-control-sm datetimepicker-input" name="tglDokumen" id="tglDokumen">
+                        <input type="text" class="form-control form-control-sm" name="tglDokumen" id="tglDokumen">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -26,6 +26,12 @@
                                 <option value="{{$ops->idm_supplier}}">{{$ops->store_name}}</option>
                             @endforeach
                         </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="keterangan" class="col-md-3">Keterangan</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control from-control-sm" rows="3" name="keterangan" id="keterangan"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -55,7 +61,13 @@
                             contentType: false,
                             processData: false,
                             success : function (data) {
-                                functionLoadNonInvoice ();
+                                if (data.warning) {
+                                    alertify.success(data.warning);
+                                }  
+                                else{
+                                    alertify.success(data.success);
+                                    functionLoadNonInvoice ();
+                                }                          
                             }
                         })
                     });
