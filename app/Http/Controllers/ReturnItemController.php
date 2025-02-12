@@ -35,6 +35,30 @@ class ReturnItemController extends Controller
         }
         return $userAreaID;
     }
+
+    public function getNumber (){
+        $userName = Auth::user()->name;
+        $periode = date("mY");
+        $dateNoww = date("dmY");
+
+        $countNumber = DB::table('tr_return_noninvoice')
+            ->where([
+                ['created_by',$userName],
+                ['periode',$periode]
+            ])
+            ->count();
+
+        if ($countNumber == '0') {
+            $numberRN = 1;
+            $displayNumber = "RN".$dateNoww."-" . sprintf("%07d", $numberRN);
+        }
+        else{
+            $numberRN = $countNumber + 1;
+            $displayNumber = "RN".$dateNoww."-" . sprintf("%07d", $numberRN);
+        }
+
+        return $displayNumber;
+    }
     
     public function userApproval (){
         $userID = Auth::user()->id;
@@ -385,6 +409,7 @@ class ReturnItemController extends Controller
         $persName = Auth::user()->name;
         $dateNoww = date('Y-m-d');
         $status = 1;
+        $returnNumber = $this->getNumber();
 
         $countNumberRetur = DB::table('tr_return_noninvoice')
             ->where([
@@ -398,7 +423,7 @@ class ReturnItemController extends Controller
             ->where('supplier_status','1')
             ->get();
 
-        return view ('ReturnItem/displayReturnNonInv', compact('optionSupplier','countNumberRetur'));
+        return view ('ReturnItem/displayReturnNonInv', compact('optionSupplier','countNumberRetur','returnNumber'));
     }
 
     public function submitRetur ($poNumber){

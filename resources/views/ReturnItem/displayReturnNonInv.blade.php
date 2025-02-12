@@ -8,13 +8,13 @@
                 <div class="form-group row">
                     <label for="numberDokumen" class="col-md-3">No. Dokumen</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control form-control-sm" name="numberDokumen" id="numberDokumen">
+                        <input type="text" class="form-control form-control-sm" name="numberDokumen" id="numberDokumen" value="{{$returnNumber}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="tglDokumen" class="col-md-3">No. Dokumen</label>
+                    <label for="tglDokumen" class="col-md-3">Tgl. Dokumen</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control form-control-sm" name="tglDokumen" id="tglDokumen">
+                        <input type="text" class="form-control form-control-sm datetimepicker-input" name="tglDokumen" id="tglDokumen">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -35,7 +35,42 @@
                 </div>
             </form>
             <script>
+                $(function(){
+                    $( ".datetimepicker-input" ).datepicker({
+                        dateFormat: 'yy-mm-dd',
+                        autoclose: true,
+                        todayHighlight: true,
+                    });
+                });
+                $(document).ready(function () {
+                    $('#productSubmit').on('click', function(e){
+                        e.preventDefault();
+                        let data_form = new FormData(document.getElementById("formCreateDokRetur"));
+                        $.ajax({
+                            url : "{{route('returnItem')}}/returnNonInv/postDokumenReturn",
+                            type: 'post',
+                            data: data_form,
+                            async: true,
+                            cache: true,
+                            contentType: false,
+                            processData: false,
+                            success : function (data) {
+                                functionLoadNonInvoice ();
+                            }
+                        })
+                    });
 
+                    function functionLoadNonInvoice (){
+                        var pageLoad = "returnNonInv";
+                        $.ajax({
+                            type : 'get',
+                            url : "{{route('returnItem')}}/"+dataIndex,
+                            success : function(response){
+                                $("#displayInfo").html(response);
+                            }
+                        });
+                    } 
+                });
             </script>
         @else
             <div id="transaksiReturNonInvoice"></div>

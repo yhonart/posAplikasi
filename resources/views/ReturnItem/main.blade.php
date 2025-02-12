@@ -64,13 +64,13 @@
             e.preventDefault();
             let dataIndex = $(this).attr('data-click');
             $("#selectTransaksi").val('0');
-                $.ajax({
-                    type : 'get',
-                    url : "{{route('returnItem')}}/"+dataIndex,
-                    success : function(response){
-                        $("#displayInfo").html(response);
-                    }
-                });
+            $.ajax({
+                type : 'get',
+                url : "{{route('returnItem')}}/"+dataIndex,
+                success : function(response){
+                    $("#displayInfo").html(response);
+                }
+            });
         });
     });
 </script>
