@@ -24,7 +24,7 @@
             <div class="row mb-2">
                 <div class="col-md-12">
                     <button class="btn btn-outline-primary font-weight-bold onclick-submenu " data-click="returnHistory"><i class="fa-regular fa-folder-open"></i> Retur List</button>                     
-                    <button class="btn btn-primary font-weight-bold onclick-submenu " data-click="purchasingList"><i class="fa-solid fa-dolly"></i> Retur Item</button>
+                    <button class="btn btn-primary font-weight-bold onclick-submenu " data-click="purchasingList"><i class="fa-solid fa-dolly"></i> Retur by document</button>
                     <button class="btn btn-default border-0 font-weight-bold onclick-submenu " data-click="returnNonInv"><i class="fa-regular fa-folder-open"></i> Retur Non Invoice</button>                     
                 </div>
             </div>

@@ -382,7 +382,23 @@ class ReturnItemController extends Controller
     }
 
     public function returnNonInv (){
-        return view ('ReturnItem/displayReturnNonInv');
+        $persName = Auth::user()->name;
+        $dateNoww = date('Y-m-d');
+        $status = 1;
+
+        $countNumberRetur = DB::table('tr_return_noninvoice')
+            ->where([
+                ['created_by',$persName],
+                ['date_trx', $dateNoww],
+                ['status_trx',$status]
+            ])
+            ->count();
+
+        $optionSupplier = DB::table('m_supplier')
+            ->where('supplier_status','1')
+            ->get();
+
+        return view ('ReturnItem/displayReturnNonInv', compact('optionSupplier','countNumberRetur'));
     }
 
     public function submitRetur ($poNumber){
