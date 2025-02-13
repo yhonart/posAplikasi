@@ -367,14 +367,12 @@
 
         $("#metodePembayaran").change(function(){
             let findMethod = $(this).find(":selected").val();
-            const words = findMethod.split("|");
-            alert (words[0]);
-            if (words[0] === '4'){
+            if (findMethod === '4'){
                 $("#cardName").fadeOut('slow');
                 $("#cardNumber").fadeOut('slow');
                 $("#bankAccount").fadeIn('slow');
             }
-            else if (words[0] === '6'){
+            else if (findMethod === '6'){
                 $("#bankAccount").fadeOut('slow');
                 $("#cardName").fadeIn('slow');
                 $("#cardNumber").fadeIn('slow');
@@ -388,12 +386,13 @@
 
         $("#metodePembayaran1").change(function(){
             let findMethod = $(this).find(":selected").val();
-            if (findMethod === '4'){
+            const words = findMethod.split("|");
+            if (words[0] === '4'){
                 $("#cardName1").fadeOut('slow');
                 $("#cardNumber1").fadeOut('slow');
                 $("#bankAccount1").fadeIn('slow');
             }
-            else if (findMethod === '6'){
+            else if (words[0] === '6'){
                 $("#bankAccount1").fadeOut('slow');
                 $("#cardName1").fadeIn('slow');
                 $("#cardNumber1").fadeIn('slow');
