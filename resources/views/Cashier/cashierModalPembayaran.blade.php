@@ -126,7 +126,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <small class="text-danger">! Abaikan jika  menggunakan 2 metode pembayaran / pembayaran 0 atau kredit</small>
+                                    <a href="#radioMethod" class="btn btn-default border-0">2 Metode Pembayaran</a>
                                 </div>
                             </div>
                             @include('Global.global_spinner')
@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                             
-                            <div class="row">
+                            <div class="row" id="duaMetodePembayaran">
                                 <div class="col-12"> 
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="radioMethod" id="radioMethod" value="1" onclick="myFunctionChecked()">
