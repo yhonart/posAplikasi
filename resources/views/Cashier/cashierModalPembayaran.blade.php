@@ -39,16 +39,16 @@
                 <div class="row">
                     <div class="col-md-12">
                         <form id="formPembayaran">
-                            <input type="text" name="billPembayaran" id="billPembayaran" value="{{$noBill}}">
-                            <input type="text" name="memberID" id="memberID" value="{{$dataBilling->member_id}}">
-                            <input type="text" name="record" id="record" value="{{$cekRecord}}">
-                            <input type="text" name="cusName" id="cusName" value="{{$dataBilling->customer_name}}">                            
+                            <input type="hidden" name="billPembayaran" id="billPembayaran" value="{{$noBill}}">
+                            <input type="hidden" name="memberID" id="memberID" value="{{$dataBilling->member_id}}">
+                            <input type="hidden" name="record" id="record" value="{{$cekRecord}}">
+                            <input type="hidden" name="cusName" id="cusName" value="{{$dataBilling->customer_name}}">                            
                             @if($cekRecord=='0')
-                                <input type="text" name="lastBayar" id="lastBayar" value="0">
+                                <input type="hidden" name="lastBayar" id="lastBayar" value="0">
                             @else
-                                <input type="text" name="lastBayar" id="lastBayar" value="{{$cekTotalBayar->total_struk}}">
+                                <input type="hidden" name="lastBayar" id="lastBayar" value="{{$cekTotalBayar->total_struk}}">
                             @endif
-                            <input type="text" name="tBelanja" id="tBelanja" value="{{$totalBayar->totalBilling}}">
+                            <input type="hidden" name="tBelanja" id="tBelanja" value="{{$totalBayar->totalBilling}}">
                             
                             <div class="form-group row mb-1 d-flex align-items-center">
                                 <label class="col-md-4 text-right">HUTANG SEBELUMNYA</label>
@@ -71,7 +71,7 @@
                                     <input type="text" class="form-control form-control-lg  font-weight-bold" name="tPlusKredit" id="tPlusKredit" value="{{$tPlusKredit}}" readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <button class="btn btn-default btn-sm copy_nominal" id="copyButton" data-id="{{$tPlusKredit}}"><i class="fa-solid fa-copy"></i> Copy Nominal</button>
+                                    <button class="btn btn-outline-primary btn-sm copy_nominal" id="copyButton" data-id="{{$tPlusKredit}}"><i class="fa-solid fa-copy"></i> Copy Total Pembayaran</button>
                                 </div>
                             </div>
                             <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
@@ -125,7 +125,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#radioMethod" id="btnDuaMethod" class="btn btn-default border-0 font-weight-bold">Menggunakan 2 Metode Pembayaran</a>
+                                    <a href="#radioMethod" id="btnDuaMethod" class="btn btn-outline-primary border-0 font-weight-bold">Menggunakan 2 Metode Pembayaran</a>
                                 </div>
                             </div>
                             @include('Global.global_spinner')
