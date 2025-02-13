@@ -42,8 +42,7 @@
                             <input type="text" name="billPembayaran" id="billPembayaran" value="{{$noBill}}">
                             <input type="text" name="memberID" id="memberID" value="{{$dataBilling->member_id}}">
                             <input type="text" name="record" id="record" value="{{$cekRecord}}">
-                            <input type="text" name="cusName" id="cusName" value="{{$dataBilling->customer_name}}">
-                            <input type="text" name="tItem" id="tItem" value="{{$dataBilling->customer_name}}">
+                            <input type="text" name="cusName" id="cusName" value="{{$dataBilling->customer_name}}">                            
                             @if($cekRecord=='0')
                                 <input type="text" name="lastBayar" id="lastBayar" value="0">
                             @else
@@ -173,7 +172,7 @@
                             </div>
                             
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-md-12">
                                     <table class="table table-sm table-borderless" id="tableMethod" style="display:none;">
                                         <tbody id="recordMethod"></tbody>
                                         <tbody>
@@ -243,12 +242,12 @@
                                     </div>
                                 </div>                                
                                 <div class="col-md-3">
-                                    <a class="btn bg-success font-weight-bold btn-block" id="btnSimpanTrx">
+                                    <a class="btn btn-primary font-weight-bold btn-block" id="btnSimpanTrx">
                                         [Ctrl+S] Simpan & Cetak
                                     </a>
                                 </div>
                                 <div class="col-md-3">
-                                    <a class="btn bg-primary font-weight-bold btn-block" id="btnBatalTrx" data-dismiss="modal">
+                                    <a class="btn btn-default border-0 font-weight-bold btn-block" id="btnBatalTrx" data-dismiss="modal">
                                         [ESC] Tutup Pembayaran
                                     </a>  
                                 </div>
@@ -349,14 +348,32 @@
         }
     }
     $(document).ready(function() {  
+        $("#tBelanja").mask('000.000.000', {reverse: true});
+        $("#tPembayaran").mask('000.000.000', {reverse: true});
+        $("#nomSelisih").mask('000.000.000', {reverse: true});
+        $("#kredit").mask('000.000.000', {reverse: true});
+        $("#tPlusKredit").mask('000.000.000', {reverse: true});
+        $("#lastPayment").mask('000.000.000', {reverse: true});
+        $(".type-account").mask('000.000.000', {reverse: true});
+        
+        $("#tPlusKredit").on('input', computeBayar);
+        $("#tPembayaran").on('input', computeBayar);
+        $("#nomSelisih").on('input', computeBayar);
+        $("#ppn2").on('input', computeBayar);
+
+        let lastBayar = $("#lastBayar").val(),
+            tBelanja = $("#tBelanja").val(),
+            billNumber = "{{$noBill}}";
+
         $("#metodePembayaran").change(function(){
             let findMethod = $(this).find(":selected").val();
-            if (findMethod === '4'){
+            const words = findMethod.split("|");
+            if (words[0] === '4'){
                 $("#cardName").fadeOut('slow');
                 $("#cardNumber").fadeOut('slow');
                 $("#bankAccount").fadeIn('slow');
             }
-            else if (findMethod === '6'){
+            else if (words[0] === '6'){
                 $("#bankAccount").fadeOut('slow');
                 $("#cardName").fadeIn('slow');
                 $("#cardNumber").fadeIn('slow');
@@ -366,7 +383,8 @@
                 $("#cardName").hide();
                 $("#cardNumber").hide();
             }
-        })
+        });
+
         $("#metodePembayaran1").change(function(){
             let findMethod = $(this).find(":selected").val();
             if (findMethod === '4'){
@@ -384,20 +402,19 @@
                 $("#cardName1").hide();
                 $("#cardNumber1").hide();
             }
-        })
+        });
+
         $("#addPaymentMethod").on('click', function(){
             let methodName = $("#metodePembayaran").find(":selected").val(),
                 postNominal = $("#nominalTwoPayment").val(),
                 cardName = $("#cardName").val(),
                 cardNumber = $("#cardNumber").val(),
-                bankAccount = $("#bankAccount").val(),
-                billNumber = "{{$noBill}}",
-                totalBelanja = $("#tBelanja").val();
+                bankAccount = $("#bankAccount").val();
 
             $.ajax({
                 url: "{{route('Cashier')}}/buttonAction/postDataMethodPembayaran",
                 type: 'post',
-                data: {methodName:methodName,postNominal:postNominal,cardName:cardName,cardNumber:cardNumber,bankAccount:bankAccount,billNumber:billNumber,totalBelanja:totalBelanja},
+                data: {methodName:methodName,postNominal:postNominal,cardName:cardName,cardNumber:cardNumber,bankAccount:bankAccount,billNumber:billNumber,totalBelanja:tBelanja},
                 success: function (data) {
                     $("#recordMethod").load("{{route('Cashier')}}/buttonAction/loadDataMethod/"+billNumber);
                     $("#nominalTwoPayment").val("0");
@@ -405,19 +422,6 @@
             });
             
         });
-        
-        $("#tBelanja").mask('000.000.000', {reverse: true});
-        $("#tPembayaran").mask('000.000.000', {reverse: true});
-        $("#nomSelisih").mask('000.000.000', {reverse: true});
-        $("#kredit").mask('000.000.000', {reverse: true});
-        $("#tPlusKredit").mask('000.000.000', {reverse: true});
-        $("#lastPayment").mask('000.000.000', {reverse: true});
-        $(".type-account").mask('000.000.000', {reverse: true});
-        
-        $("#tPlusKredit").on('input', computeBayar);
-        $("#tPembayaran").on('input', computeBayar);
-        $("#nomSelisih").on('input', computeBayar);
-        $("#ppn2").on('input', computeBayar);
         
         function computeBayar(){
             let valBayar = "{{$totalBayar->totalBilling}}",
@@ -454,30 +458,29 @@
                 precision: 0,
     	        thousand: ".",
             }));
-        }
+        }       
         
-        $(".closePembayaran").on('click', function(){
+        $("#btnBatalTrx").click(function(){
+            event.preventDefault();
             window.location.reload();
-        });
+        })
         
         let billPembayaran = "{{$noBill}}",
             valBelanja = "{{$totalBayar->totalBilling}}",
             valHutang = "{{$nominalKredit}}",
             kreditLimit = "{{$dataBilling->kredit_limit}}";
         
-        $("#btnBatalTrx").click(function(){
-            event.preventDefault();
-            window.location.reload();
-        })
+
         var checkBoxLunas = document.getElementById("lunasiHutang"),
-            selisih = "{{$nilaiNextBayar}}";
-        var checkBox2 = document.getElementById("radioMethod");
+            selisih = "{{$nilaiNextBayar}}",
+            checkBox2 = document.getElementById("radioMethod");
+
         $("#btnSimpanTrx").click(function(){
             event.preventDefault();
+
             let typeCetak = $("#typeCetak").val(),
-                    totalPembayaran = $("#tPembayaran").val(),
-                    tBelanja = $("#tBelanja").val(),
-                    tKredit = $("#kredit").val();
+                totalPembayaran = $("#tPembayaran").val(), // Total Uang Pemberian Pelanggan
+                tKredit = $("#kredit").val(); // Hutang pelanggan sebelumnya
 
             let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
                     replaceKredit = tKredit.replace(/\./g, ""),
