@@ -113,9 +113,9 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    <input type="text" name="cardName1" id="cardName1" class="form-control " placeholder="Nama Bank" style="display:none;">
-                                    <input type="text" name="cardNumber1" id="cardNumber1" class="form-control " placeholder="Nomor Kartu" style="display:none;">
-                                    <select name="bankAccount1" id="bankAccount1" class="form-control " style="display:none;">
+                                    <input type="text" name="cardName1" id="cardName1" class="form-control mt-1" placeholder="Nama Bank" style="display:none;">
+                                    <input type="text" name="cardNumber1" id="cardNumber1" class="form-control mt-1" placeholder="Nomor Kartu" style="display:none;">
+                                    <select name="bankAccount1" id="bankAccount1" class="form-control mt-1" style="display:none;">
                                         <option value="0|0">NAMA BANK</option>
                                         @foreach($bankAccount as $bA)
                                             <option value="{{$bA->idm_payment}}|{{$bA->bank_name}}">
@@ -125,7 +125,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#radioMethod" id="btnDuaMethod" class="btn btn-default border-0 font-weight-bold">2 Metode Pembayaran</a>
+                                    <a href="#radioMethod" id="btnDuaMethod" class="btn btn-default border-0 font-weight-bold">Menggunakan 2 Metode Pembayaran</a>
                                 </div>
                             </div>
                             @include('Global.global_spinner')
