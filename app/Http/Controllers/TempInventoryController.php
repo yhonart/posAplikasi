@@ -924,4 +924,13 @@ class TempInventoryController extends Controller
                 'saldo'=>$saldo,
             ]);
     }
+
+    public function cencelPenjualan ($noTransaksi, $description){
+        DB::table('report_inv')
+            ->where('number_code',$noTransaksi)
+            ->update([
+                'status_trx'=>'0',
+                'notes'=>$description,
+            ]);
+    }
 }

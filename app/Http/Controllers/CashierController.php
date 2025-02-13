@@ -2686,7 +2686,9 @@ class CashierController extends Controller
                         'nom_kredit'=>$updateKredit
                     ]);
             }
-        } else {  // Mengubah status transaksi menjadi 0 /hapus
+        } 
+        else 
+        {  // Mengubah status transaksi menjadi 0 /hapus
             foreach ($prdList as $pest) {
                 $prodID = $pest->product_code;
                 $unit = $pest->unit;
@@ -2797,15 +2799,7 @@ class CashierController extends Controller
                             'stock_out' => $stockOut,
                             'saldo' => $c
                         ]);
-                    // $inInv = $qty;
-                    // $outInv = '0';
-                    // $createdBy = $deleteUser;
-                    // $prodId = $prodID;
-                    // $prodName = $p->product_name;
-                    // $loc = $p->location_id;
-                    // $description = "Hapus oleh : ".$deleteUser;
-                    // $this->TempInventoryController->insertLapInv ($noBill, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc);
-                }
+                }                
             }
 
             DB::table('tr_store')
@@ -2837,6 +2831,8 @@ class CashierController extends Controller
                 ->update([
                     'status' => '0'
                 ]);
+            $description = "Transaksi dibatalkan oleh : ".$deleteUser;
+            $this->TempInventoryController->cencelPenjualan ($noBill, $description);
         }
     }
 
