@@ -71,7 +71,7 @@
                                     <input type="text" class="form-control form-control-lg  font-weight-bold" name="tPlusKredit" id="tPlusKredit" value="{{$tPlusKredit}}" readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <button class="btn btn-outline-primary btn-sm copy_nominal" id="copyButton" data-id="{{$tPlusKredit}}"><i class="fa-solid fa-copy"></i> Copy Total Pembayaran</button>
+                                    <button class="btn btn-outline-primary border-0 copy_nominal" id="copyButton" data-id="{{$tPlusKredit}}"><i class="fa-solid fa-copy"></i> Copy Total Pembayaran</button>
                                 </div>
                             </div>
                             <div class="form-group row mb-1 d-flex align-items-center" id="bayar1">
