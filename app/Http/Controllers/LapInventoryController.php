@@ -155,7 +155,7 @@ class LapInventoryController extends Controller
                 ['status_trx','4'],
                 ['date_input',$today]
                 ])
-            ->orderBy('idr_inv','desc')
+            ->orderBy('idr_inv','asc')
             ->get();
 
         $mProduct = DB::table('m_product')
