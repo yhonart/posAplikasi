@@ -486,12 +486,9 @@
                     replaceKredit = tKredit.replace(/\./g, ""),
                     replacetBelanja = tBelanja.replace(/\./g, "");
             //alert(kreditLimit);
-
+            let hutangBelanja = '0';
             if (valBelanja > replaceTotalPembayaran) {
-                let hutangBelanja = parseInt(valBelanja) - parseInt(replaceTotalPembayaran);
-            }
-            else{
-                let hutangBelanja = '0';
+                hutangBelanja = parseInt(valBelanja) - parseInt(replaceTotalPembayaran);
             }
             let totalHutang = parseInt(replaceKredit) + parseInt(hutangBelanja), //Menjumlahkan hutang sebelumnya dengan hutang belanja sekarang!
                 totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replaceKredit);
