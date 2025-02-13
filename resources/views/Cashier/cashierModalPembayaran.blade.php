@@ -368,6 +368,7 @@
         $("#metodePembayaran").change(function(){
             let findMethod = $(this).find(":selected").val();
             const words = findMethod.split("|");
+            alert (words[0]);
             if (words[0] === '4'){
                 $("#cardName").fadeOut('slow');
                 $("#cardNumber").fadeOut('slow');
@@ -495,12 +496,12 @@
 
             if (kreditLimit === '0' &&  replaceTotalPembayaran < valBelanja) {
                 $(".notive-display").fadeIn();
-                $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit!");
+                $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit/tempo!");
             }
             else if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
                 alertify
-                .alert("Hutang Customer Sudah Melewati Limit !", function(){
-                    alertify.message('Transaksi di batalkan.');
+                .alert("Limit Kridit Pelanggan Telah Habis !", function(){
+                    alertify.message('Transaksi kredit di batalkan.');
                 }).set({title:"Konfirmasi Limit Hutang"});
             }
             // else if (replaceTotalPembayaran < replaceKredit && replaceTotalPembayaran > valBelanja) {
