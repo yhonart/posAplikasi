@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card card-purple">
     <div class="card-header">
         <h3 class="card-title">Form Retur Non Invoice</h3>
     </div>

@@ -1,4 +1,3 @@
-
 <table class="table table-sm table-valign-middle table-hover " id="dokTableRetur">
     <thead class="bg-gray-dark">
         <tr>

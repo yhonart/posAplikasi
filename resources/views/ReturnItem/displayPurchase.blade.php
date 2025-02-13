@@ -1,12 +1,17 @@
-<div class="card card-body table-responsive">
-    <div class="row mb-2">
-        <div class="col-md-4">
-            <input type="text" class="form-control " name="keyword" id="keyword" placeholder="Cari Nomor Transaksi / Supplier" autocomplate="off">
-        </div>
+<div class="card card-purple">
+    <div class="card-header">
+        <h3 class="card-title">List Dokumen Transaksi Pembelian</h3>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div id="displaySearchData"></div>
+    <div class="card-body table-responsive">
+        <div class="row mb-2">
+            <div class="col-md-4">
+                <input type="text" class="form-control " name="keyword" id="keyword" placeholder="Cari Nomor Transaksi / Supplier" autocomplate="off">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="displaySearchData"></div>
+            </div>
         </div>
     </div>
 </div>
