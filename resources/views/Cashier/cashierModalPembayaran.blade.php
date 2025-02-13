@@ -39,17 +39,17 @@
                 <div class="row">
                     <div class="col-md-12">
                         <form id="formPembayaran">
-                            <input type="hidden" name="billPembayaran" id="billPembayaran" value="{{$noBill}}">
-                            <input type="hidden" name="memberID" id="memberID" value="{{$dataBilling->member_id}}">
-                            <input type="hidden" name="record" id="record" value="{{$cekRecord}}">
-                            <input type="hidden" name="cusName" id="cusName" value="{{$dataBilling->customer_name}}">
-                            <input type="hidden" name="tItem" id="tItem" value="{{$dataBilling->customer_name}}">
+                            <input type="text" name="billPembayaran" id="billPembayaran" value="{{$noBill}}">
+                            <input type="text" name="memberID" id="memberID" value="{{$dataBilling->member_id}}">
+                            <input type="text" name="record" id="record" value="{{$cekRecord}}">
+                            <input type="text" name="cusName" id="cusName" value="{{$dataBilling->customer_name}}">
+                            <input type="text" name="tItem" id="tItem" value="{{$dataBilling->customer_name}}">
                             @if($cekRecord=='0')
-                                <input type="hidden" name="lastBayar" id="lastBayar" value="0">
+                                <input type="text" name="lastBayar" id="lastBayar" value="0">
                             @else
-                                <input type="hidden" name="lastBayar" id="lastBayar" value="{{$cekTotalBayar->total_struk}}">
+                                <input type="text" name="lastBayar" id="lastBayar" value="{{$cekTotalBayar->total_struk}}">
                             @endif
-                            <input type="hidden" name="tBelanja" id="tBelanja" value="{{$totalBayar->totalBilling}}">
+                            <input type="text" name="tBelanja" id="tBelanja" value="{{$totalBayar->totalBilling}}">
                             
                             <div class="form-group row mb-1 d-flex align-items-center">
                                 <label class="col-md-4 text-right">HUTANG SEBELUMNYA</label>
@@ -126,7 +126,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#radioMethod" class="btn btn-default border-0">2 Metode Pembayaran</a>
+                                    <a href="#radioMethod" id="btnDuaMethod" class="btn btn-default border-0 font-weight-bold">2 Metode Pembayaran</a>
                                 </div>
                             </div>
                             @include('Global.global_spinner')
@@ -267,14 +267,13 @@
 </div>
 
 <script>
-
     $(function () {
         let billNumber = "{{$noBill}}";
         $("#recordMethod").load("{{route('Cashier')}}/buttonAction/loadDataMethod/"+billNumber);
         $("#tPembayaran").focus().select();
         
     });
-
+    //Document Copy
     $(document).on('click','.copy_nominal',function(e){
         e.preventDefault();
         let timer = null;
