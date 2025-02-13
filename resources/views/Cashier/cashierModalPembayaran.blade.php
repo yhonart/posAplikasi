@@ -17,7 +17,7 @@
     <div class="col-12">
         <div class="card card-purple">
             <div class="card-header border-0">
-                <h3 class="card-title font-weight-bold">{{$dataBilling->customer_name}} Kredit Limi : {{$dataBilling->kredit_limit}}</h3>
+                <h3 class="card-title font-weight-bold">{{$dataBilling->customer_name}}</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                 </div>
@@ -487,8 +487,13 @@
                     replacetBelanja = tBelanja.replace(/\./g, "");
             //alert(kreditLimit);
 
-            let penguranganTunai = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
-                totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai),
+            if (valBelanja > replaceTotalPembayaran) {
+                let hutangBelanja = parseInt(valBelanja) - parseInt(replaceTotalPembayaran);
+            }
+            else{
+                let hutangBelanja = '0';
+            }
+            let totalHutang = parseInt(replaceKredit) + parseInt(hutangBelanja), //Menjumlahkan hutang sebelumnya dengan hutang belanja sekarang!
                 totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replaceKredit);
 
             if (kreditLimit === '0' &&  replaceTotalPembayaran < valBelanja) {
@@ -526,11 +531,11 @@
                     replaceKredit = tKredit.replace(/\./g, ""),
                     replacetBelanja = tBelanja.replace(/\./g, "");
 
-                let penguranganTunai = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
-                totalHutang = parseInt(replaceKredit) + parseInt(penguranganTunai),
-                totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replaceKredit);
+                let hutangBelanja = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
+                    totalHutang = parseInt(replaceKredit) + parseInt(hutangBelanja),
+                    totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replaceKredit);
                 
-                // alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + penguranganTunai + " / " + replaceTotalPembayaran + " / " + replaceKredit);
+                // alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + hutangBelanja + " / " + replaceTotalPembayaran + " / " + replaceKredit);
                 if (kreditLimit === '0' && replaceTotalPembayaran < valBelanja) {
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit!");
