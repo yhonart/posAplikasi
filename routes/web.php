@@ -32,10 +32,10 @@ Route::get('/', function () {
 Route::get('/forgot-password', function () {
     return view('auth.passwords.reset');
 })->middleware('guest')->name('password.request');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth', 'check_ajax']], function () {   
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/home/storeName', [App\Http\Controllers\HomeController::class, 'storeName']);
     Route::get('/home/changeCloseData', [App\Http\Controllers\HomeController::class, 'changeCloseData']);
     Route::get('/home/getMenu', [App\Http\Controllers\HomeController::class, 'getMenu']);
