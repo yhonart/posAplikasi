@@ -4,7 +4,7 @@
 <div class="card rounded">
     <div class="card-body login-card-body">
         <img src="{{asset('public/images/Logo1.png')}}" alt="" srcset="" class=" img-fluid">
-        <p class="login-box-msg mt-0">Integrated System</p>
+        <p class="login-box-msg mt-0">Store Apps</p>
         <hr>
         <form id="fromLogin" method="POST" action="{{ route('login') }}">
             @csrf   
