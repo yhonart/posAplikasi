@@ -121,19 +121,19 @@
                 //gunakan ajax biasa jika browser tidak support sendBeacon                
                 $.ajax({
                     type: 'POST',
-                    url: "{{route('home')}}/changeCloseData", // Ganti dengan route yang Anda inginkan
+                    url: "{{route('home')}}/changeCloseData",
                     data: {
-                        _token: $('meta[name="csrf-token"]').attr('content') // Tambahkan CSRF token Laravel
+                        _token: $('meta[name="csrf-token"]').attr('content')
                     },
-                    async: false // Penting untuk memastikan permintaan selesai sebelum halaman ditutup
+                    async: false
                 });
                 $.ajax({
                     type: 'POST',
-                    url: "{{ route('logout') }}", // Ganti dengan route yang Anda inginkan
+                    url: "{{ route('logout') }}",
                     data: {
-                        _token: $('meta[name="csrf-token"]').attr('content') // Tambahkan CSRF token Laravel
+                        _token: $('meta[name="csrf-token"]').attr('content')
                     },
-                    async: false // Penting untuk memastikan permintaan selesai sebelum halaman ditutup
+                    async: false
                 });
             } else {
                 navigator.sendBeacon("{{route('home')}}/changeCloseData", new FormData(document.querySelector('form')));
