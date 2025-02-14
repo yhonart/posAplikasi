@@ -131,7 +131,20 @@
           timer: 3000
         });
         window.addEventListener('beforeunload', function (e) {
-            navigator.sendBeacon('/logout-on-close', '_token=' + document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+            // Hanya jalankan jika bukan reload halaman
+            if (!navigator.sendBeacon) {
+                //gunakan ajax biasa jika browser tidak support sendBeacon
+                $.ajax({
+                type: 'POST',
+                url: '/logout-on-close', // Ganti dengan route yang Anda inginkan
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content') // Tambahkan CSRF token Laravel
+                },
+                async: false // Penting untuk memastikan permintaan selesai sebelum halaman ditutup
+                });
+            } else {
+                navigator.sendBeacon('/logout-on-close', new FormData(document.querySelector('form')));
+            }
         });
         
         // setTimeout(function () {
