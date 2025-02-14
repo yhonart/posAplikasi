@@ -105,7 +105,7 @@
                             <hr>
                             <div class="form-group row mb-1 d-flex align-items-center" id="divMethod1">
                                 <label class="col-md-4 text-right">METODE PEMBAYARAN</label>
-                                <div class="col-md-4">
+                                <div class="col-md-4" id="fieldOneMethode">
                                     <select name="metodePembayaran1" id="metodePembayaran1" class="form-control ">
                                         @foreach($paymentMethod as $pM)
                                             <option value="{{$pM->idm_payment_method}}|{{$pM->method_name}}">
@@ -419,8 +419,7 @@
                     $("#recordMethod").load("{{route('Cashier')}}/buttonAction/loadDataMethod/"+billNumber);
                     $("#nominalTwoPayment").val("0");
                 }
-            });
-            
+            });            
         });
         
         function computeBayar(){
@@ -597,7 +596,9 @@
     function myFunctionChecked() {
       var checkBox = document.getElementById("radioMethod");
       var tablePayment = document.getElementById("tableMethod");
+      var fieldOneMethode = document.getElementById("fieldOneMethode");
       checkBox.checked = true;
       tablePayment.style.display = "block";
+      fieldOneMethode.style.display = "none";
     }
 </script>
