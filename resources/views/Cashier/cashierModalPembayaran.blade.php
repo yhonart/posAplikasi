@@ -597,10 +597,7 @@
     function myFunctionChecked() {
       var checkBox = document.getElementById("radioMethod");
       var tablePayment = document.getElementById("tableMethod");
-      if (checkBox.checked == true){
-        tablePayment.style.display = "block";
-      } else {
-        tablePayment.style.display = "none";
-      }
+      checkBox.checked = true;
+      tablePayment.style.display = "block";
     }
 </script>
