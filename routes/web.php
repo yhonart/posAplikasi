@@ -32,8 +32,7 @@ Route::get('/', function () {
 Route::get('/forgot-password', function () {
     return view('auth.passwords.reset');
 })->middleware('guest')->name('password.request');
-
-// Route::group(['middleware' => ['auth', 'check_ajax']], function () {   
+ 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');    
     Route::get('/home/storeName', [App\Http\Controllers\HomeController::class, 'storeName']);
     Route::get('/home/changeCloseData', [App\Http\Controllers\HomeController::class, 'changeCloseData']);
@@ -163,6 +162,4 @@ Route::get('/forgot-password', function () {
     include __DIR__.'/section/kasKecil.php';
     include __DIR__.'/section/trxKasBesar.php';
     include __DIR__.'/section/reumbers.php';
-
-// });
 
