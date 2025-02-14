@@ -130,6 +130,9 @@
           showConfirmButton: false,
           timer: 3000
         });
+        window.addEventListener('beforeunload', function (e) {
+            navigator.sendBeacon('/logout-on-close', '_token=' + document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+        });
         
         // setTimeout(function () {
         //     if (window.___browserSync___ === undefined && Number(localStorage.getItem('AdminLTE:Demo:MessageShowed')) < Date.now()) {
