@@ -136,14 +136,14 @@
                 //gunakan ajax biasa jika browser tidak support sendBeacon
                 $.ajax({
                 type: 'POST',
-                url: '/logout-on-close', // Ganti dengan route yang Anda inginkan
+                url: "{{ route('logout') }}", // Ganti dengan route yang Anda inginkan
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content') // Tambahkan CSRF token Laravel
                 },
                 async: false // Penting untuk memastikan permintaan selesai sebelum halaman ditutup
                 });
             } else {
-                navigator.sendBeacon('/logout-on-close', new FormData(document.querySelector('form')));
+                navigator.sendBeacon("{{ route('logout') }}", new FormData(document.querySelector('form')));
             }
         });
         
