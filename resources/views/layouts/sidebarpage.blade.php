@@ -132,20 +132,20 @@
         });
         
         window.addEventListener('beforeunload', function (e) {
-        // Hanya jalankan jika bukan reload halaman
-        if (!navigator.sendBeacon) {
-            //gunakan ajax biasa jika browser tidak support sendBeacon
-            $.ajax({
-            type: 'POST',
-            url: "{{ route('logout') }}", // Ganti dengan route yang Anda inginkan
-            data: {
-                _token: $('meta[name="csrf-token"]').attr('content') // Tambahkan CSRF token Laravel
-            },
-            async: false // Penting untuk memastikan permintaan selesai sebelum halaman ditutup
-            });
-        } else {
-            navigator.sendBeacon("{{ route('logout') }}", new FormData(document.querySelector('form')));
-        }
+            // Hanya jalankan jika bukan reload halaman
+            if (!navigator.sendBeacon) {
+                //gunakan ajax biasa jika browser tidak support sendBeacon
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('logout') }}", // Ganti dengan route yang Anda inginkan
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content') // Tambahkan CSRF token Laravel
+                    },
+                    async: false // Penting untuk memastikan permintaan selesai sebelum halaman ditutup
+                });                
+            } else {
+                navigator.sendBeacon("{{ route('logout') }}", new FormData(document.querySelector('form')));
+            }
         });
         // setTimeout(function () {
         //     if (window.___browserSync___ === undefined && Number(localStorage.getItem('AdminLTE:Demo:MessageShowed')) < Date.now()) {

@@ -205,9 +205,15 @@ class HomeController extends Controller
         return view ('UnderMaintenance');
     }
 
-    public function changeCloseData(){
+    public function changeCloseData(Request $reqClear){
         $userName = Auth::user()->name;
 
+        DB::table('log_close_browser')
+            ->insert([
+                'close_date'=>now(),
+                'personal_name'=>$userName
+            ]);
+            
         //Cek apakah ada transaksi yang masih di proses.
         $selectTable = DB::table('tr_store')
             ->where([
