@@ -1,5 +1,4 @@
-<?php
-    $saldo = 0;
+<?php    
     $tMasuk = 0;
     $tKeluar = 0;
     $tSaldo = 0;
@@ -71,6 +70,7 @@
                                         $awal = $saldoawal * $mProduct->small_unit_val;
                                     }
                                     echo $saldoawal;
+                                    $saldo = $saldoawal;
                                     echo "</td>";
                                 echo "</tr>";
                             }                  
@@ -84,9 +84,8 @@
                                 <td class="text-right">{{number_format($dri->inv_in,'0',',','.')}}</td>
                                 <td class="text-right">{{number_format($dri->inv_out,'0',',','.')}}</td>
                                 <td class="text-right">
-                                    <?php
-                                        $firstSaldo += $saldoawal + $dri->inv_in;
-                                        $saldo -= $firstSaldo - $dri->inv_out;
+                                    <?php                                        
+                                        $saldo += $dri->inv_in - $dri->inv_out;
                                         $tMasuk += $dri->inv_in;
                                         $tKeluar += $dri->inv_out;                                    
                                     ?>
