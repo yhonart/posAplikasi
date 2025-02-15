@@ -17,6 +17,8 @@ Route::get('/forgot-password', function () {
     return view('auth.passwords.reset');
 })
 ->middleware('guest')->name('password.request');
+
+Route::group(['middleware' => ['auth', 'check_ajax']], function () {
     Route::get('/', function () {
         if (Auth::check()) {
             $hakakses = Auth::user()->hakakses;
@@ -28,12 +30,7 @@ Route::get('/forgot-password', function () {
                 return view('Cashier/maintenancePage', compact('checkArea'));
             }
         }
-        else{
-            return view('auth.login');
-        }
     });
-
-    Route::group(['middleware' => ['auth', 'check_ajax']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');    
     Route::get('/home/storeName', [App\Http\Controllers\HomeController::class, 'storeName']);
     Route::post('/home/changeCloseData', [App\Http\Controllers\HomeController::class, 'changeCloseData']);
