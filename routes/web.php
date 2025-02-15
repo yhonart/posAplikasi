@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Auth::routes();
 Route::get('/forgot-password', function () {
     return view('auth.passwords.reset');
-})->middleware('guest')->name('password.request');
+})
+->middleware('guest')->name('password.request');
+    Auth::routes(); 
     Route::get('/', function () {
         if (Auth::check()) {
             $hakakses = Auth::user()->hakakses;
@@ -32,7 +32,7 @@ Route::get('/forgot-password', function () {
             return view('auth.login');
         }
     });
-    
+
     Route::group(['middleware' => ['auth', 'check_ajax']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');    
     Route::get('/home/storeName', [App\Http\Controllers\HomeController::class, 'storeName']);
