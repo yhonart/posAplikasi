@@ -88,7 +88,7 @@
                                         $tMasuk += $dri->inv_in;
                                         $tKeluar += $dri->inv_out;                                    
                                     ?>
-                                    {{number_format($dri->saldo,'0',',','.')}}
+                                    {{number_format($saldo,'0',',','.')}}
                                 </td>
                             </tr>
                         @endforeach
