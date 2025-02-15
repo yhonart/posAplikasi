@@ -84,7 +84,8 @@
                                 <td class="text-right">{{number_format($dri->inv_out,'0',',','.')}}</td>
                                 <td class="text-right">
                                     <?php
-                                        $saldo += $dri->inv_in - $dri->inv_out;
+                                        $firstSaldo = $saldoawal + $dri->inv_in;
+                                        $saldo += $firstSaldo - $dri->inv_out;
                                         $tMasuk += $dri->inv_in;
                                         $tKeluar += $dri->inv_out;                                    
                                     ?>
