@@ -108,7 +108,7 @@
                                 <div class="col-md-4" id="fieldOneMethode">
                                     <select name="metodePembayaran1" id="metodePembayaran1" class="form-control ">
                                         @foreach($paymentMethod as $pM)
-                                            <option value="{{$pM->idm_payment_method}}|{{$pM->method_name}}">
+                                            <option value="{{$pM->idm_payment_method}}|{{$pM->method_name}}|{{$pM->category}}">
                                                 {{$pM->method_name}}
                                             </option>
                                         @endforeach
@@ -522,7 +522,11 @@
                 let typeCetak = $("#typeCetak").val(),
                     totalPembayaran = $("#tPembayaran").val(),
                     tBelanja = $("#tBelanja").val(),
-                    tKredit = $("#kredit").val();
+                    tKredit = $("#kredit").val(),
+                    methodPembayaran = $("#metodePembayaran1");
+
+                let words2 = methodPembayaran.split("|");
+
                 let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
                     replaceKredit = tKredit.replace(/\./g, ""),
                     replacetBelanja = tBelanja.replace(/\./g, "");
@@ -549,6 +553,14 @@
                 else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && parseInt(replaceTotalPembayaran) >= totalHarusDibayar && replaceKredit !== '0' && checkBoxLunas.checked == false) {
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
+                }
+                else if (words2[2] === "KREDIT" && parseInt(kreditLimit) === '0') {
+                    $(".notive-display").fadeIn();
+                    $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit");
+                }
+                else if (words2[2] === "KREDIT" && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit)) {
+                    $(".notive-display").fadeIn();
+                    $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit");
                 }
                 else {
                     inputPembayaran(billPembayaran, typeCetak);
