@@ -31,6 +31,9 @@ Route::get('/', function () {
             return view('Cashier/maintenancePage', compact('checkArea'));
         }
     }
+    else {
+        return view('auth.login');
+    }
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');    
 Route::get('/home/storeName', [App\Http\Controllers\HomeController::class, 'storeName']);
