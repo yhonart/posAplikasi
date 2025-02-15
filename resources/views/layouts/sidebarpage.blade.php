@@ -131,28 +131,21 @@
           timer: 3000
         });
         
-        window.addEventListener('beforeunload', function (e) {
-            // Hanya jalankan jika bukan reload halaman
-            alertify.confirm("Apakah anda ingin keluar dari aplikasi ?,",
-            function(){
-                if (!navigator.sendBeacon) {                
-                    $.ajax({
-                        type: 'POST',
-                        url: "{{ route('logout') }}",
-                        data: {
-                            _token: $('meta[name="csrf-token"]').attr('content') 
-                        },
-                        async: false 
-                    });                
-                } else {
-                    navigator.sendBeacon("{{ route('logout') }}", new FormData(document.querySelector('form')));
-                }
-                alertify.success('User Logout');
-            },
-            function(){
-                alertify.error('Cancel');
-            });
-        });
+        // window.addEventListener('beforeunload', function (e) {
+        //     // Hanya jalankan jika bukan reload halaman
+        //     if (!navigator.sendBeacon) {                
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: "{{ route('logout') }}",
+        //             data: {
+        //                 _token: $('meta[name="csrf-token"]').attr('content') 
+        //             },
+        //             async: false 
+        //         });                
+        //     } else {
+        //         navigator.sendBeacon("{{ route('logout') }}", new FormData(document.querySelector('form')));
+        //     }            
+        // });
         // setTimeout(function () {
         //     if (window.___browserSync___ === undefined && Number(localStorage.getItem('AdminLTE:Demo:MessageShowed')) < Date.now()) {
         //       localStorage.setItem('AdminLTE:Demo:MessageShowed', (Date.now()) + (15 * 60 * 1000))

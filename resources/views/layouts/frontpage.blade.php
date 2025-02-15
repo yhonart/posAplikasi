@@ -115,31 +115,31 @@
         //     });
         // });
 
-        window.addEventListener('beforeunload', function (e) {
-            // Hanya jalankan jika bukan reload halaman
-            if (!navigator.sendBeacon) {
-                //gunakan ajax biasa jika browser tidak support sendBeacon                
-                $.ajax({
-                    type: 'POST',
-                    url: "{{route('home')}}/changeCloseData",
-                    data: {
-                        _token: $('meta[name="csrf-token"]').attr('content')
-                    },
-                    async: false
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('logout') }}",
-                    data: {
-                        _token: $('meta[name="csrf-token"]').attr('content')
-                    },
-                    async: false
-                });
-            } else {
-                navigator.sendBeacon("{{route('home')}}/changeCloseData", new FormData(document.querySelector('form')));
-                navigator.sendBeacon("{{ route('logout') }}", new FormData(document.querySelector('form')));
-            }
-        });
+        // window.addEventListener('beforeunload', function (e) {
+        //     // Hanya jalankan jika bukan reload halaman
+        //     if (!navigator.sendBeacon) {
+        //         //gunakan ajax biasa jika browser tidak support sendBeacon                
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: "{{route('home')}}/changeCloseData",
+        //             data: {
+        //                 _token: $('meta[name="csrf-token"]').attr('content')
+        //             },
+        //             async: false
+        //         });
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: "{{ route('logout') }}",
+        //             data: {
+        //                 _token: $('meta[name="csrf-token"]').attr('content')
+        //             },
+        //             async: false
+        //         });
+        //     } else {
+        //         navigator.sendBeacon("{{route('home')}}/changeCloseData", new FormData(document.querySelector('form')));
+        //         navigator.sendBeacon("{{ route('logout') }}", new FormData(document.querySelector('form')));
+        //     }
+        // });
     </script>
     <script type="text/javascript">
     //override defaults
