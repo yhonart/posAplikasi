@@ -10,6 +10,7 @@
     $saldo1 = 0;
     $saldo2 = 0;
     $saldo3 = 0;
+    $firstSaldo = 0;
     if (!empty($lastSaldo)) {
         $saldoInv = $lastSaldo->stock;
     }
