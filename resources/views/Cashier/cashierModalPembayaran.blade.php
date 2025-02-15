@@ -534,7 +534,7 @@
                 let hutangBelanja = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
                     totalHutang = parseInt(replaceKredit) + parseInt(hutangBelanja),
                     totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replaceKredit);
-                
+                alert (words2[2]);
                 // alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + hutangBelanja + " / " + replaceTotalPembayaran + " / " + replaceKredit);
                 if (kreditLimit === '0' && replaceTotalPembayaran < valBelanja) {
                     $(".notive-display").fadeIn();
@@ -563,7 +563,7 @@
                     $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit");
                 }
                 else {
-                    inputPembayaran(billPembayaran, typeCetak);
+                    // inputPembayaran(billPembayaran, typeCetak);
                 }
                 // alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja+";"+totalHarusDibayar);
             }
