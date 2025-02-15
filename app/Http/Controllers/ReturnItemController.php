@@ -454,22 +454,36 @@ class ReturnItemController extends Controller
     }
 
     public function submitRetur ($poNumber){
-        DB::table('purchase_return')
+        $countReturn = DB::table('purchase_return')
             ->where([
                 ['purchase_number',$poNumber],
                 ['status','1']
             ])
-            ->update([
-                'status'=>'2'
-            ]);
+            ->count();
 
-        DB::table('purchase_point')
-            ->where([
-                ['purchase_number',$poNumber],
-                ['status','1']
-            ])
-            ->update([
-                'status'=>'2'
-            ]);
+        if ($countReturn == '0') {
+            $msg = array('warning' => 'Alert ! Belum ada item yang di retur. Silahkan cek kembali.');
+        }
+        else {
+            DB::table('purchase_return')
+                ->where([
+                    ['purchase_number',$poNumber],
+                    ['status','1']
+                ])
+                ->update([
+                    'status'=>'2'
+                ]);
+    
+            DB::table('purchase_point')
+                ->where([
+                    ['purchase_number',$poNumber],
+                    ['status','1']
+                ])
+                ->update([
+                    'status'=>'2'
+                ]);
+            $msg = array('success' => 'Transaksi berhasi tersimpan!');
+        }
+        return response()->json($msg);
     }
 }

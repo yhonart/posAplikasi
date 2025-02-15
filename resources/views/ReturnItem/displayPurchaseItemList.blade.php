@@ -116,7 +116,15 @@ $no = '1';
                     type : 'get',
                     url : "{{route('returnItem')}}/submitRetur/"+numberPO,
                     success : function(response){
-                        backToReturHistory();
+                        if (data.warning) {
+                            alertify
+                            .alert(data.warning, function(){
+                                alertify.message('OK');
+                            });
+                        }else{
+                            alertify.success(data.success);
+                            backToReturHistory();
+                        }
                     }
                 });                
             },
