@@ -566,11 +566,11 @@
                 }
                 else if (words2[2] === "KREDIT" && kreditLimit === '0') {
                     $(".notive-display").fadeIn();
-                    $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit "+kreditLimit);
+                    $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit !");
                 }
                 else if (words2[2] === "KREDIT" && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit)) {
                     $(".notive-display").fadeIn();
-                    $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit");
+                    $("#notiveDisplay").html("Nilai Hutang Melebihi Batas Limit Kredit Pelanggan !");
                 }
                 else {
                     // inputPembayaran(billPembayaran, typeCetak);
