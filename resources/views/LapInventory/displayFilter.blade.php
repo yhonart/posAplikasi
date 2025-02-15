@@ -86,7 +86,7 @@
                                 <td class="text-right">
                                     <?php
                                         $firstSaldo += $saldoawal + $dri->inv_in;
-                                        $saldo = $firstSaldo - $dri->inv_out;
+                                        $saldo .= $firstSaldo - $dri->inv_out;
                                         $tMasuk += $dri->inv_in;
                                         $tKeluar += $dri->inv_out;                                    
                                     ?>
