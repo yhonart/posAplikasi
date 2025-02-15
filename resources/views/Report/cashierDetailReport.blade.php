@@ -99,49 +99,42 @@
                 <tr>
                     <td colspan="11"><b>TUNAI & TEMPO</b></td>
                 </tr>
-            @foreach($tableMthodPayment as $tgR)
-                @if($tgR->method_name == '1' OR $tgR->method_name == '8')
+            @foreach($trxRecord as $record)
                 <tr>
                     <td>{{$no++}}</td>
-                    <td>{{$tgR->core_id_trx}}</td>
-                    <td>{{$tgR->date_trx}}</td>
-                    <td>{{$tgR->customer_store}}</td>
-                    <td class="text-right">
-                        {{number_format($tgR->total_struk,'0',',','.')}}
+                    <td>{{$record->billing_number}}</td>
+                    <td>{{date("d-M-Y", strtotime($record->tr_date))}}</td>
+                    <td>{{$record->customer_name}}</td>
+                    <td>{{number_format($record->t_bill,'0',',','.')}}</td>
+                    <td>
+                        @foreach($tableMthodPayment as $tgR)
+                            @if($tgR->core_id_trx == $record->billing_number AND $tgR->method_name == '1')
+                                {{number_format($tgR->total_struk,'0',',','.')}}
+                            @endif
+                            <?php
+                                // if($tgR->method_name <> '8'){
+                                // }
+                                $sumTunai += $nominalBayar;
+                                $sumTempo1 += $kurangBayar;
+                                $totalBelanjaTunai += $tgR->total_struk;
+                            ?>
+                        @endforeach
                     </td>
-                    <td class="text-right">   
-                        <?php
-                            if ($tgR->method_name == '1') {
-                                $nominalBayar = $tgR->nominal;
-                                echo number_format($tgR->nominal,'0',',','.');
-                            }
-                            else {
-                                $kurangBayar1 = $tgR->total_struk - $tgR->total_payment;
-                                $nominalBayar = $tgR->nominal - $kurangBayar1;
-                                echo number_format($nominalBayar,'0',',','.');
-                            }                        
-                        ?>
+                    <td>
+
+                    </td>
+                    <td>
+                        @foreach($tableMthodPayment as $tgr1)
+                            @if($tgr1->core_id_trx == $record->billing_number AND $tgr1->method_name == '8')
+                                {{number_format($tgr1->total_struk,'0',',','.')}}
+                            @endif
+                        @endforeach
                     </td>
                     <td></td>
-                    <td class="text-right">
-                        <?php
-                            $kurangBayar = $tgR->total_struk - $tgR->total_payment;                        
-                        ?>
-                        {{number_format($kurangBayar,'0',',','.')}}
-                    </td>
                     <td></td>
-                    <td></td>
-                    <td>{{$tgR->created_by}}</td>
+                    <td>{{$record->created_by}}</td>
                 </tr>
-                <?php
-                    // if($tgR->method_name <> '8'){
-                    // }
-                    $sumTunai += $nominalBayar;
-                    $sumTempo1 += $kurangBayar;
-                    $totalBelanjaTunai += $tgR->total_struk;
-                ?>
-                @endif
-            @endforeach
+            @endforeach            
                 <tr class="font-weight-bold bg-dark total">
                     <td colspan="4">TOTAL TUNAI & TEMPO</td>
                     <td class="text-right">{{number_format($totalBelanjaTunai,'0',',','.')}}</td>
@@ -162,7 +155,7 @@
                 @if($tgR1->method_name=='4')
                 <tr>
                     <td>{{$no++}}</td>
-                    <td>{{$tgR1->core_id_trx}}-{{$tgR1->idtr_method}}</td>
+                    <td>{{$tgR1->core_id_trx}}</td>
                     <td>{{$tgR1->date_trx}}</td>
                     <td>{{$tgR1->customer_store}}</td>
                     <td class="text-right">{{number_format($tgR1->total_struk,'0',',','.')}}</td>

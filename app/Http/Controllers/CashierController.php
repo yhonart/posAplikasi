@@ -3019,6 +3019,14 @@ class CashierController extends Controller
         $creditRecord = $creditRecord->whereBetween('date_trx', [$fromDate, $endDate]);
         $creditRecord = $creditRecord->get();
 
+        $trxRecord = DB::table('view_billing_action');
+        $trxRecord = $trxRecord->select('billing_number','tr_date','customer_name','t_bill','created_by');
+        if ($hakakses == '2') {
+            $trxRecord = $trxRecord->where('created_by', $createdBy);
+        }
+        $trxRecord = $trxRecord->where('status','>=','3');
+        $trxRecord = $trxRecord->get();
+
         $tableMthodPayment = DB::table('view_trx_method');
         $tableMthodPayment = $tableMthodPayment->whereBetween('date_trx', [$fromDate, $endDate]);
 
@@ -3049,7 +3057,7 @@ class CashierController extends Controller
         $pengeluaranKasir = $pengeluaranKasir->get();
 
 
-        $pdf = PDF::loadview('Report/cashierDetailReport', compact('fromDate', 'endDate', 'tableReport', 'trStore', 'bankTransaction', 'creditRecord', 'tableMthodPayment', 'hakakses', 'grndTotalPembelian','pengeluaranKasir'))->setPaper("A4", 'portrait');
+        $pdf = PDF::loadview('Report/cashierDetailReport', compact('trxRecord','fromDate', 'endDate', 'tableReport', 'trStore', 'bankTransaction', 'creditRecord', 'tableMthodPayment', 'hakakses', 'grndTotalPembelian','pengeluaranKasir'))->setPaper("A4", 'portrait');
         return $pdf->stream();
     }
 
