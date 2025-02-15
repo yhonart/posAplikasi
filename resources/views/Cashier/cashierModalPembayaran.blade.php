@@ -479,8 +479,10 @@
 
             let typeCetak = $("#typeCetak").val(),
                 totalPembayaran = $("#tPembayaran").val(), // Total Uang Pemberian Pelanggan
-                tKredit = $("#kredit").val(); // Hutang pelanggan sebelumnya
+                tKredit = $("#kredit").val(), // Hutang pelanggan sebelumnya
+                methodPembayaran = $("#metodePembayaran1").val();
 
+            let words2 = methodPembayaran.split("|");
             let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
                     replaceKredit = tKredit.replace(/\./g, ""),
                     replacetBelanja = tBelanja.replace(/\./g, "");
@@ -510,6 +512,14 @@
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
             }
+            else if (words2[2] === "KREDIT" && parseInt(kreditLimit) === '0') {
+                $(".notive-display").fadeIn();
+                $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit");
+            }
+            else if (words2[2] === "KREDIT" && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit)) {
+                $(".notive-display").fadeIn();
+                $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit");
+            }
             else {
                 inputPembayaran(billPembayaran, typeCetak);
             }            
@@ -523,7 +533,7 @@
                     totalPembayaran = $("#tPembayaran").val(),
                     tBelanja = $("#tBelanja").val(),
                     tKredit = $("#kredit").val(),
-                    methodPembayaran = $("#metodePembayaran1");
+                    methodPembayaran = $("#metodePembayaran1").val();
 
                 let words2 = methodPembayaran.split("|");
 
