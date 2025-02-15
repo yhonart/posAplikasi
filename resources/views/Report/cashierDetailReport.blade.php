@@ -283,7 +283,7 @@
         <tbody class="grand-total">
             <tr>
                 <?php
-                    $totalPenerimaan = $kreditRecord + $sumTunai;
+                    $totalPenerimaan = $grndTotalBayar + $kreditRecord;
                 ?>
                 <td colspan="4" class="text-right"><b>TOTAL PENERIMAAN KASIR</b> <small>GRND TOTAL BAYAR + GRND TOTAL BAYAR BON</small> :</td>
                 <td></td>
