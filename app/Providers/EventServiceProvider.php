@@ -27,7 +27,12 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //       
+        //     
+        \Illuminate\Support\Facades\Event::listen('session.writing', function ($request) {
+            if (session('logout_on_close')) {
+                session()->flush(); // Hapus semua data session
+            }
+        });  
     }
 
     /**
