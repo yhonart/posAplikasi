@@ -120,7 +120,7 @@ $no = '1';
                             alertify
                             .alert(data.warning, function(){
                                 alertify.message('OK');
-                            });
+                            }).set({title:"Alert"});
                         }else{
                             alertify.success(data.success);
                             backToReturHistory();

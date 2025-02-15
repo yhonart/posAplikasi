@@ -459,12 +459,101 @@ class ReturnItemController extends Controller
                 ['purchase_number',$poNumber],
                 ['status','1']
             ])
-            ->count();
+            ->count();       
 
         if ($countReturn == '0') {
-            $msg = array('warning' => 'Alert ! Belum ada item yang di retur. Silahkan cek kembali.');
+            $msg = array('warning' => 'Belum ada item yang di retur. Silahkan cek kembali.');
         }
         else {
+            $listReturn = DB::table('purchase_return as a')
+                ->select('a.*','b.store_name')
+                ->leftJoin('m_supplier as b', 'a.supplier_id','=','b.idm_supplier')
+                ->where([
+                    ['purchase_number',$poNumber],
+                    ['status','1']
+                ])
+                ->get();
+
+            // insert into report inventory
+            foreach ($listReturn as $val) {
+                $productID = $val->product_id;
+                $qty = $val->return;
+                $satuan = $val->satuan;
+                $dateInput = date("Y-m-d", strtotime($val->created_at));
+                $createdBy = $val->created_by;
+                
+                $warehouse = DB::table('purchase_list_order')  
+                    ->select('warehouse')              
+                    ->where([
+                        ['purchase_number',$poNumber],
+                        ['product_id',$productID],
+                        ['status','3']
+                        ])
+                    ->first();
+
+                //get volume per unit
+                $mProduct = DB::table('m_product')
+                    ->where('idm_data_product',$productID)
+                    ->first();
+
+                $volB = $mProduct->large_unit_val;
+                $volK = $mProduct->medium_unit_val;
+                $volKonv = $mProduct->small_unit_val;
+                $productName = $mProduct->product_name;
+
+                //get size code satuan terkecil yang digunakan. 
+                $mUnit = DB::table('m_product_unit')
+                    ->select('size_code','product_volume')
+                    ->where('core_id_product',$productID)
+                    ->orderBy('size_code','desc')
+                    ->first();
+
+                $sizeCodeDesc = $mUnit->size_code;
+
+                if ($sizeCodeDesc == '1') {
+                    $konvReport = $qty;                    
+                }
+                elseif ($sizeCodeDesc == '2') {
+                    if ($satuan == "BESAR") {
+                        $qtyReport1 = $qty * $volB;
+                        $qtyReport = (int)$qtyReport1;
+                    }
+                    elseif ($satuan == "KECIL") {
+                        $qtyReport = $qty;
+                    }
+                }
+                elseif ($sizeCodeDesc == '3') {
+                    if ($satuan == "BESAR") {
+                        $qtyReport1 = $qty * $volKonv;
+                        $qtyReport = (int)$qtyReport1;
+                    }
+                    elseif ($satuan == "KECIL") {
+                        $qtyReport1 = $qty * $volK;
+                        $qtyReport = (int)$qtyReport1;
+                    }
+                    elseif ($satuan == "KONV") {
+                        $qtyReport = $qty;
+                    }
+                }
+                $description = "Pengembalian Barang Ke Sup. ".$val->store_name;
+                DB::table('report_inv')
+                    ->insert([
+                        'date_input'=>$dateInput,
+                        'number_code'=>$poNumber,
+                        'product_id'=>$productID,
+                        'product_name'=>$productName,
+                        'satuan'=>$satuan,
+                        'satuan_code'=>$sizeCodeDesc,
+                        'description'=>$description,
+                        'inv_in'=>'0',
+                        'inv_out'=>$qtyReport,
+                        'saldo'=>'0',
+                        'created_by'=>$createdBy,
+                        'location'=>$warehouse->warehouse,
+                        'actual_input'=>$qty,
+                        'status_trx'=>'4'
+                    ]);
+            }
             DB::table('purchase_return')
                 ->where([
                     ['purchase_number',$poNumber],
@@ -482,6 +571,8 @@ class ReturnItemController extends Controller
                 ->update([
                     'status'=>'2'
                 ]);
+
+            
             $msg = array('success' => 'Transaksi berhasi tersimpan!');
         }
         return response()->json($msg);
