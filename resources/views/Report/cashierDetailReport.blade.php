@@ -109,9 +109,9 @@
                     <td>
                         @foreach($tableMthodPayment as $tgR)
                             @if($tgR->core_id_trx == $record->billing_number AND $tgR->method_name == '1')
-                                {{number_format($tgR->total_struk,'0',',','.')}}
+                                {{number_format($tgR->nominal,'0',',','.')}}
                                 <?php                                    
-                                    $totalBelanjaTunai += $tgR->total_struk;
+                                    $totalBelanjaTunai += $tgR->nominal;
                                 ?>
                             @endif
                         @endforeach
@@ -122,9 +122,9 @@
                     <td>
                         @foreach($tableMthodPayment as $tgr1)
                             @if($tgr1->core_id_trx == $record->billing_number AND $tgr1->method_name == '8')
-                                {{number_format($tgr1->total_struk,'0',',','.')}}
+                                {{number_format($tgr1->nominal,'0',',','.')}}
                                 <?php                                    
-                                    $sumTempo1 += $tgr1->total_struk;
+                                    $sumTempo1 += $tgr1->nominal;
                                 ?>
                             @endif
                         @endforeach
