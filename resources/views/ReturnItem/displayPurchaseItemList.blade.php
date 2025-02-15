@@ -115,7 +115,7 @@ $no = '1';
                 $.ajax({
                     type : 'get',
                     url : "{{route('returnItem')}}/submitRetur/"+numberPO,
-                    success : function(response){
+                    success : function(data){
                         if (data.warning) {
                             alertify
                             .alert(data.warning, function(){
