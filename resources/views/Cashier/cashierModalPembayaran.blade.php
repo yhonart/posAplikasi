@@ -564,9 +564,9 @@
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
                 }
-                else if (words2[2] === "KREDIT" && parseInt(kreditLimit) === '0') {
+                else if (words2[2] === "KREDIT" && kreditLimit === '0') {
                     $(".notive-display").fadeIn();
-                    $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit");
+                    $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit "+kreditLimit);
                 }
                 else if (words2[2] === "KREDIT" && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit)) {
                     $(".notive-display").fadeIn();
