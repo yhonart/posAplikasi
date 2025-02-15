@@ -483,6 +483,7 @@
                 methodPembayaran = $("#metodePembayaran1").val();
 
             let words2 = methodPembayaran.split("|");
+
             let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
                     replaceKredit = tKredit.replace(/\./g, ""),
                     replacetBelanja = tBelanja.replace(/\./g, "");
@@ -512,13 +513,13 @@
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
             }
-            else if (words2[2] === "KREDIT" && parseInt(kreditLimit) === '0') {
+            else if (words2[2] === "KREDIT" && kreditLimit === '0') {
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit");
             }
             else if (words2[2] === "KREDIT" && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit)) {
                 $(".notive-display").fadeIn();
-                $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit");
+                $("#notiveDisplay").html("Nilai Hutang Melebihi Batas Limit Kredit Pelanggan !");
             }
             else {
                 inputPembayaran(billPembayaran, typeCetak);
@@ -544,7 +545,7 @@
                 let hutangBelanja = parseInt(valBelanja) - parseInt(replaceTotalPembayaran),
                     totalHutang = parseInt(replaceKredit) + parseInt(hutangBelanja),
                     totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replaceKredit);
-                alert (words2[2]);
+
                 // alert (totalHutang+">"+kreditLimit+" / "+ valBelanja + " / " + hutangBelanja + " / " + replaceTotalPembayaran + " / " + replaceKredit);
                 if (kreditLimit === '0' && replaceTotalPembayaran < valBelanja) {
                     $(".notive-display").fadeIn();
@@ -573,7 +574,7 @@
                     $("#notiveDisplay").html("Nilai Hutang Melebihi Batas Limit Kredit Pelanggan !");
                 }
                 else {
-                    // inputPembayaran(billPembayaran, typeCetak);
+                    inputPembayaran(billPembayaran, typeCetak);
                 }
                 // alert(replaceTotalPembayaran+">="+replaceKredit+";"+valBelanja+";"+totalHarusDibayar);
             }
