@@ -3025,6 +3025,7 @@ class CashierController extends Controller
             $trxRecord = $trxRecord->where('created_by', $createdBy);
         }
         $trxRecord = $trxRecord->where('status','>=','3');
+        $trxRecord = $trxRecord->whereBetween('tr_date', [$fromDate, $endDate]);
         $trxRecord = $trxRecord->get();
 
         $tableMthodPayment = DB::table('view_trx_method');
