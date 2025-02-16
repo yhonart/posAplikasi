@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class PurchasingController extends Controller
 {
@@ -21,7 +22,20 @@ class PurchasingController extends Controller
         $this->TempUsersController = $tempUser;
         $this->TempKeuanganController = $tempKasBesar;
     }
-    
+
+    public function getMonday (){
+        $timezone = 'Asia/Jakarta';
+        Carbon::setLocale('id'); 
+
+        // Tentukan tanggal hari ini
+        $today = Carbon::now($timezone);
+
+        // Tentukan hari pertama minggu ini (Senin)
+        $firstDayOfThisWeek = $today->startOfWeek(Carbon::MONDAY);
+
+        return $firstDayOfThisWeek;
+    }
+
     public function userApproval (){
         $userID = Auth::user()->id;
         $cekUserGroup = DB::table('users_role')
@@ -156,6 +170,15 @@ class PurchasingController extends Controller
         $date = date('Y-m-d');
         $userName = Auth::user()->name;
         
+
+        //menentukan awal dan akhir dalam satu minggu ini.
+        $firstDayThisWeek = $this->getMonday();
+        $firstDayOfLastWeek = $firstDayThisWeek->copy()->subWeek();
+        $lastDayOfLastWeek = $firstDayOfLastWeek->copy()->endOfWeek(Carbon::SUNDAY);
+
+        $StartDate = date("Y-m-d", strtotime($firstDayOfLastWeek));
+        $endDate = date("Y-m-d",strtotime($lastDayOfLastWeek));
+
         $formActive = DB::table('purchase_order')
             ->where([
                 ['status','1'],
@@ -173,10 +196,37 @@ class PurchasingController extends Controller
 
         $bankTransfer = DB::table('m_company_payment')
             ->get();
+
+        $danaKasir = DB::table('tr_payment_record as a')
+            ->select(DB::raw('SUM(a.total_payment) as totKasir'), 'b.created_by')
+            ->leftJoin('tr_store as b','a.trx_code','=','b.billing_number')
+            ->where([
+                ['a.total_payment','!=','8'],
+                ['a.date_trx',$date]
+                ])
+            ->groupBy('b.created_by')
+            ->get();
+        
+        $mTrxKasKasir = DB::table('m_trx_kas_kasir')
+            ->first();
+            
+        $penggunaanDanaKasir = DB::table('tr_kas')
+                ->select(DB::raw('SUM(nominal) as nominal','kas_persName'))
+                ->where('trx_code','2')
+                ->whereBetween('kas_date',[$StartDate,$endDate])
+                ->groupBy('kas_persName')
+                ->first();
+
+        $penambahanDanaKasir = DB::table('tr_kas')
+                ->select(DB::raw('SUM(nominal_modal) as nominal_modal','kas_persName'))
+                ->where('trx_code','1')
+                ->whereBetween('kas_date',[$StartDate,$endDate])
+                ->groupBy('kas_persName')
+                ->first();
         
         $Role = $this->TempUsersController->userRole();
         
-        return view ('Purchasing/newPurchaseOrder', compact('bankTransfer','checkArea','formActive','nomor','supplier','numberPurchase'));
+        return view ('Purchasing/newPurchaseOrder', compact('danaKasir', 'mTrxKasKasir', 'penggunaanDanaKasir', 'penambahanDanaKasir', 'bankTransfer','checkArea','formActive','nomor','supplier','numberPurchase'));
     }
     
     public function notivePoint($suppID){

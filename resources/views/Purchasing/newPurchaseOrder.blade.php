@@ -1,4 +1,10 @@
-    
+<?php
+//menghitung kas 
+//Pengurangan kas modal dengan pengeluaran
+$totPengeluaran = $mTrxKasKasir->nominal - $penggunaanDanaKasir->nominal;
+$subTotalDana = $totPengeluaran + $penambahanDanaKasir->nominal_modal;
+?>
+
 @if($formActive == '0')
     <div class="card card-body">
         <form class="form" id="fromInputPembelian">
@@ -26,6 +32,19 @@
                                 @foreach($bankTransfer as $bt)
                                 <option value="{{$bt->idm_payment}}">{{$bt->bank_code}} xxx - {{substr($bt->account_number, 5)}}</option>
                                 @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" id="dana" style="display: none;">
+                        <div class="col-12">
+                            <label class="label">Sumber Dana</label>
+                            <select class="form-control form-control-sm select-2" name="sumberDana" id="sumberDana">
+                                <option value="0|0"> ==== </option>
+                                @foreach($danaKasir as $dK)
+                                    <option value="{{$dK->created_by}}|{{$dK->totKasir}}">{{$dK->created_by}} : {{number_format($dK->totKasir,'0',',','.')}}</option>
+                                @endforeach
+                                <option value="DanaKas|{{$subTotalDana}}">Dana Kas {{number_format($subTotalDana,'0',',','.')}}</option>
+                                <option value="1|1">Lain-Lain</option>
                             </select>
                         </div>
                     </div>
