@@ -1,8 +1,20 @@
 <?php
 //menghitung kas 
 //Pengurangan kas modal dengan pengeluaran
-$totPengeluaran = $mTrxKasKasir->nominal - $penggunaanDanaKasir->nominal;
-$subTotalDana = $totPengeluaran + $penambahanDanaKasir->nominal_modal;
+
+if (!empty($penggunaanDanaKasir)) {
+    $totPengeluaran = $mTrxKasKasir->nominal - $penggunaanDanaKasir->nominal;
+}
+else {
+    $totPengeluaran = '0';
+}
+if (!empty($penambahanDanaKasir)) {
+    $subTotalDana = $totPengeluaran + $penambahanDanaKasir->nominal_modal;
+}
+else{
+    $subTotalDana = $totPengeluaran;
+}
+
 ?>
 
 @if($formActive == '0')
