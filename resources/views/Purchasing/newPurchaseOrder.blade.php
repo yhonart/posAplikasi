@@ -6,7 +6,7 @@ if (!empty($penggunaanDanaKasir)) {
     $totPengeluaran = $mTrxKasKasir->nominal - $penggunaanDanaKasir->nominal;
 }
 else {
-    $totPengeluaran = '0';
+    $totPengeluaran = $mTrxKasKasir->nominal;
 }
 if (!empty($penambahanDanaKasir)) {
     $subTotalDana = $totPengeluaran + $penambahanDanaKasir->nominal_modal;
