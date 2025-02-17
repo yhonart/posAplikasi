@@ -361,6 +361,18 @@ class PurchasingController extends Controller
                 ->update([
                     'status'=>'2'
                     ]);
+
+            if ($methodPayment == '1') {
+                DB::table('purchase_dana_payment')
+                    ->insert([
+                        'kasir'=>$ketDana,
+                        'status'=>'1',
+                        'created_date'=>$hariIni,
+                        'trx_date'=>$dateDelivery,
+                        'purchase_number'=>$nomorPembelian,
+                        'saldo_kas'=>$nomDana
+                    ]);
+            }
             $msg = array('success' => 'Dokumen telah berhasil dimasukkan ...');
         }
         return response()->json($msg);
