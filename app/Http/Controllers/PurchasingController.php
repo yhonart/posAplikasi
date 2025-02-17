@@ -294,6 +294,9 @@ class PurchasingController extends Controller
         $ppn = $posPenerimaan->ppn;
         $nomPPN = $posPenerimaan->nomPPN;
         $bankAccount = $posPenerimaan->bankAccount;
+        $sumberDana = explode("|", $posPenerimaan->sumberDana);
+        $ketDana = $sumberDana[0];
+        $nomDana = $sumberDana[1];
         
         $periode = date("mY");
         $hariIni = date("Y-m-d");
@@ -350,6 +353,7 @@ class PurchasingController extends Controller
                     'created_by'=>$createdBy,
                     'status'=>'1',
                     'bank_account'=>$bankAccount,
+                    'description'=>$keterangan
                 ]);
                 
             DB::table('purchase_list_order')

@@ -18,153 +18,162 @@ else{
 ?>
 
 @if($formActive == '0')
-    <div class="card card-body">
-        <form class="form" id="fromInputPembelian">
-            <div class="row">
-                <div class="col-12 col-md-3">
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label class="label">NO. Transaksi</label>
-                            <input type="text" name="noTrx" id="noTrx" class="form-control form-control-sm " value="{{$nomor}}" readonly>
+    <div class="card card-indigo">
+        <div class="card-header border-0">
+            <h3 class="card-title">Tambah Dokumen Pembelian Baru</h3>
+        </div>
+        <div class="card-body">
+            <form class="form" id="fromInputPembelian">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="label">NO. Transaksi</label>
+                                <input type="text" name="noTrx" id="noTrx" class="form-control form-control-sm " value="{{$nomor}}" readonly>
+                            </div>
+                        </div>                    
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="label">Metode Pembayaran</label>
+                                <select class="form-control form-control-sm select-2" name="methodPayment" id="methodPayment">
+                                    <option value="0"></option>                                
+                                </select>
+                            </div>
                         </div>
-                    </div>                    
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label class="label">Metode Pembayaran</label>
-                            <select class="form-control form-control-sm select-2" name="methodPayment" id="methodPayment">
-                                <option value="0"></option>                                
-                            </select>
+                        <div class="form-group row" id="bankTransfer" style="display: none;">
+                            <div class="col-12">
+                                <label class="label">Bank Transfer</label>
+                                <select class="form-control form-control-sm select-2" name="bankAccount" id="bankAccount">
+                                    <option value="0"> ==== </option>
+                                    @foreach($bankTransfer as $bt)
+                                    <option value="{{$bt->idm_payment}}">{{$bt->bank_code}} xxx - {{substr($bt->account_number, 5)}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row" id="bankTransfer" style="display: none;">
-                        <div class="col-12">
-                            <label class="label">Bank Transfer</label>
-                            <select class="form-control form-control-sm select-2" name="bankAccount" id="bankAccount">
-                                <option value="0"> ==== </option>
-                                @foreach($bankTransfer as $bt)
-                                <option value="{{$bt->idm_payment}}">{{$bt->bank_code}} xxx - {{substr($bt->account_number, 5)}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row" id="dana" style="display: none;">
-                        <div class="col-12">
-                            <label class="label">Sumber Dana</label>
-                            <select class="form-control form-control-sm select-2" name="sumberDana" id="sumberDana">
-                                <option value="0|0"> ==== </option>
-                                @foreach($danaKasir as $dK)
-                                    <option value="{{$dK->created_by}}|{{$dK->totKasir}}">{{$dK->created_by}} : {{number_format($dK->totKasir,'0',',','.')}}</option>
-                                @endforeach
-                                <option value="DanaKas|{{$subTotalDana}}">Dana Kas {{number_format($subTotalDana,'0',',','.')}}</option>
-                                <option value="1|1">Lain-Lain</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3">
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label class="label">Supplier</label>
-                            <select class="form-control form-control-sm select-2" name="supplier" id="supplier">
-                                <option value="0" readonly>Pilih Supplier</option>
-                                @foreach($supplier as $s)
-                                    <option value="{{$s->idm_supplier}}">{{$s->store_name}}</option>
-                                @endforeach
-                            </select>
+                        <div class="form-group row" id="dana" style="display: none;">
+                            <div class="col-12">
+                                <label class="label">Sumber Dana</label>
+                                <select class="form-control form-control-sm select-2" name="sumberDana" id="sumberDana">
+                                    <option value="0|0"> ==== </option>
+                                    @foreach($danaKasir as $dK)
+                                        <option value="{{$dK->created_by}}|{{$dK->totKasir}}">{{$dK->created_by}} : {{number_format($dK->totKasir,'0',',','.')}}</option>
+                                    @endforeach
+                                    <option value="DanaKas|{{$subTotalDana}}">Dana Kas {{number_format($subTotalDana,'0',',','.')}}</option>
+                                    <option value="1|1">Lain-Lain</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label class="label">Tempo [Hari]</label>
-                            <input type="text" name="dayKredit" id="dayKredit" class="form-control form-control-sm " placeholder="Abaikan Jika Menggunakan Tunai/Transfer" autocomplete="off">
+                    <div class="col-12 col-md-3">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="label">Supplier</label>
+                                <select class="form-control form-control-sm select-2" name="supplier" id="supplier">
+                                    <option value="0" readonly>Pilih Supplier</option>
+                                    @foreach($supplier as $s)
+                                        <option value="{{$s->idm_supplier}}">{{$s->store_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="label">Tempo [Hari]</label>
+                                <input type="text" name="dayKredit" id="dayKredit" class="form-control form-control-sm " placeholder="Abaikan Jika Menggunakan Tunai/Transfer" autocomplete="off">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-md-3">
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label class="label">Nomor Surat Jalan</label>
-                            <input type="text" name="noSj" id="noSj" class="form-control form-control-sm " autocomplete="off">
+                    <div class="col-12 col-md-3">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="label">Nomor Surat Jalan</label>
+                                <input type="text" name="noSj" id="noSj" class="form-control form-control-sm " autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="label">No. Faktur</label>
+                                <input type="text" name="noFaktur" id="noFaktur" class="form-control form-control-sm " autocomplete="off">
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="label">Kirim Melalui</label>
+                                <input type="text" name="deliveryBy" id="deliveryBy" class="form-control form-control-sm " autocomplete="off" style="text-transform:uppercase">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="label">Tgl. Faktur</label>
+                                <input type="text" name="tglFaktur" id="tglFaktur" class="form-control form-control-sm datetimepicker-input " autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="label">Tgl. Pengiriman</label>
+                                <input type="text" name="dateDelivery" id="dateDelivery" class="form-control form-control-sm datetimepicker-input " autocomplete="off">
+                            </div>
+                        </div>                    
+                    </div>
+                </div>            
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row ml-2">
+                            <div class="col-3">
+                                <label class="label">Type PPN</label>
+                            </div>
+                            <div class="col-3">
+                                <input type="radio" name="ppn" id="ppn" class="form-check-input mr-2" checked value="1"><label class="form-check-label">Non PPN</label>
+                            </div>
+                            <div class="col-3">
+                                <input type="radio" name="ppn" id="ppn" class="form-check-input mr-2" value="2"><label class="form-check-label">PPN</label>
+                            </div>
+                            <div class="col-3">
+                                <input type="radio" name="ppn" id="ppn" class="form-check-input mr-2" value="3"><label class="form-check-label">Exclude PPN</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label class="label">No. Faktur</label>
-                            <input type="text" name="noFaktur" id="noFaktur" class="form-control form-control-sm " autocomplete="off">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label class="label">Keterangan</label>
-                            <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm " autocomplete="off">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3">
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label class="label">Kirim Melalui</label>
-                            <input type="text" name="deliveryBy" id="deliveryBy" class="form-control form-control-sm " autocomplete="off" style="text-transform:uppercase">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label class="label">Tgl. Faktur</label>
-                            <input type="text" name="tglFaktur" id="tglFaktur" class="form-control form-control-sm datetimepicker-input " autocomplete="off">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label class="label">Tgl. Pengiriman</label>
-                            <input type="text" name="dateDelivery" id="dateDelivery" class="form-control form-control-sm datetimepicker-input " autocomplete="off">
-                        </div>
-                    </div>                    
-                </div>
-            </div>            
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group row ml-2">
-                        <div class="col-3">
-                            <label class="label">Type PPN</label>
-                        </div>
-                        <div class="col-3">
-                            <input type="radio" name="ppn" id="ppn" class="form-check-input mr-2" checked value="1"><label class="form-check-label">Non PPN</label>
-                        </div>
-                        <div class="col-3">
-                            <input type="radio" name="ppn" id="ppn" class="form-check-input mr-2" value="2"><label class="form-check-label">PPN</label>
-                        </div>
-                        <div class="col-3">
-                            <input type="radio" name="ppn" id="ppn" class="form-check-input mr-2" value="3"><label class="form-check-label">Exclude PPN</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group row ml-2">
-                        <div class="col-md-3">
-                            <input type="text" class="form-control form-control-sm " name="nomPPN" id="nomPPN">
-                        </div>
-                        <label class="label col-md-3">%</label>
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-success btn-sm btn-block font-weight-bold elevation-2" id="submitPenerimaan">Simpan</button>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="spinner-border text-dark" role="status" id="spinnerSimpan" style="display:none;">
-                              <span class="sr-only">Loading...</span>
+                    <div class="col-md-6">
+                        <div class="form-group row ml-2">
+                            <div class="col-md-3">
+                                <input type="text" class="form-control form-control-sm " name="nomPPN" id="nomPPN">
+                            </div>
+                            <label class="label col-md-3">%</label>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-success btn-sm btn-block font-weight-bold elevation-2" id="submitPenerimaan">Simpan</button>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="spinner-border text-dark" role="status" id="spinnerSimpan" style="display:none;">
+                                  <span class="sr-only">Loading...</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <div class="label" id="point"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="label">Keterangan</label>
+                                <textarea class="form-control" rows="3" placeholder="Masukkan keterangan pembelian, atau keterangan penggunaan dana pembayaran apabila menggunakan dana lain-lain." name="keterangan" id="keterangan" autocomplete="off"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <div class="label" id="point"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 @else
     <div id="tableInputBarang"></div>

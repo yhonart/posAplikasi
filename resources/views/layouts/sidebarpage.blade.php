@@ -124,35 +124,35 @@
     </style>
 </head>
 <script>
-        var Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000
-        });
-        
-        // window.addEventListener('beforeunload', function (e) {
-        //     // Hanya jalankan jika bukan reload halaman
-        //     if (!navigator.sendBeacon) {                
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: "{{ route('logout') }}",
-        //             data: {
-        //                 _token: $('meta[name="csrf-token"]').attr('content') 
-        //             },
-        //             async: false 
-        //         });                
-        //     } else {
-        //         navigator.sendBeacon("{{ route('logout') }}", new FormData(document.querySelector('form')));
-        //     }            
-        // });
-        // setTimeout(function () {
-        //     if (window.___browserSync___ === undefined && Number(localStorage.getItem('AdminLTE:Demo:MessageShowed')) < Date.now()) {
-        //       localStorage.setItem('AdminLTE:Demo:MessageShowed', (Date.now()) + (15 * 60 * 1000))
-        //       // eslint-disable-next-line no-alert
-        //       alert('Sedang dilakukan update data master stock barang dan harga ')
-        //     }
-        //  }, 1000)
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    
+    // window.addEventListener('beforeunload', function (e) {
+    //     // Hanya jalankan jika bukan reload halaman
+    //     if (!navigator.sendBeacon) {                
+    //         $.ajax({
+    //             type: 'POST',
+    //             url: "{{ route('logout') }}",
+    //             data: {
+    //                 _token: $('meta[name="csrf-token"]').attr('content') 
+    //             },
+    //             async: false 
+    //         });                
+    //     } else {
+    //         navigator.sendBeacon("{{ route('logout') }}", new FormData(document.querySelector('form')));
+    //     }            
+    // });
+    // setTimeout(function () {
+    //     if (window.___browserSync___ === undefined && Number(localStorage.getItem('AdminLTE:Demo:MessageShowed')) < Date.now()) {
+    //       localStorage.setItem('AdminLTE:Demo:MessageShowed', (Date.now()) + (15 * 60 * 1000))
+    //       // eslint-disable-next-line no-alert
+    //       alert('Sedang dilakukan update data master stock barang dan harga ')
+    //     }
+    //  }, 1000)
 </script>
 <body class="hold-transition sidebar-mini layout-fixed sidebar-collapse text-sm">
     <div class="wrapper">
@@ -176,7 +176,7 @@
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
-                    </form>
+                    </form> 
                 </li>
             </ul>
         
