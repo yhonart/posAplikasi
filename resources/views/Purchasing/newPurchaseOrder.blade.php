@@ -14,6 +14,7 @@ if (!empty($penambahanDanaKasir)) {
 else{
     $subTotalDana = $totPengeluaran;
 }
+
 ?>
 
 @if($formActive == '0')
@@ -218,6 +219,7 @@ else{
             if (method === '1'){
                 $('#dayKredit').val("TUNAI");
                 $("#bankTransfer").fadeOut("slow");
+                $("#dana").fadeIn("slow");
             }
             else if (method === '2'){
                 $('#dayKredit').val("TRANSFER");
@@ -230,6 +232,7 @@ else{
             else{
                 $('#dayKredit').val(method);
                 $("#bankTransfer").fadeOut("slow");
+                $("#dana").fadeOut("slow");
             }
         });
         
