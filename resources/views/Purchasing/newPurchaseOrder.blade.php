@@ -14,7 +14,6 @@ if (!empty($penambahanDanaKasir)) {
 else{
     $subTotalDana = $totPengeluaran;
 }
-
 ?>
 
 @if($formActive == '0')
