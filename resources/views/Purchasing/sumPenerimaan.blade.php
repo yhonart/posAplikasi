@@ -37,8 +37,6 @@
         </div>
     </div>
 </form>
-
-
 <script>
     $(document).ready(function(){
         let routeIndex = "{{route('Purchasing')}}",

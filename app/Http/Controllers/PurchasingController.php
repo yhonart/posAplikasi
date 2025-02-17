@@ -370,7 +370,8 @@ class PurchasingController extends Controller
                         'created_date'=>$hariIni,
                         'trx_date'=>$dateDelivery,
                         'purchase_number'=>$nomorPembelian,
-                        'saldo_kas'=>$nomDana
+                        'saldo_kas'=>$nomDana,
+                        'kode_payment'=>'1'
                     ]);
             }
             $msg = array('success' => 'Dokumen telah berhasil dimasukkan ...');
@@ -537,6 +538,17 @@ class PurchasingController extends Controller
         
         if ($paymentMethod == '1' OR $paymentMethod == '2') {
             $this->TempKeuanganController->kasBesarPembelian ($subTotal, $updateBy, $purchaseCode);
+            //update purchase dana pembelian 
+            DB::table('purchase_dana_payment')
+                ->where([
+                    ['purchase_number',$noPO],
+                    ['kode_payment','1'],
+                    ['status','1']
+                ])
+                ->update([
+                    'nominal'=>$subTotal,
+                    'status'=>'2'
+                ]);
         }
     }
     
