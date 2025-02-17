@@ -3,10 +3,10 @@
 //Pengurangan kas modal dengan pengeluaran
 
 if (!empty($penggunaanDanaKasir)) {
-    $totPengeluaran = $mTrxKasKasir->nominal - $penggunaanDanaKasir->nominal;
+    $totPengeluaran = $mTrxKasKasir->nominal_dana - $penggunaanDanaKasir->nominal;
 }
 else {
-    $totPengeluaran = $mTrxKasKasir->nominal;
+    $totPengeluaran = $mTrxKasKasir->nominal_dana;
 }
 if (!empty($penambahanDanaKasir)) {
     $subTotalDana = $totPengeluaran + $penambahanDanaKasir->nominal_modal;
