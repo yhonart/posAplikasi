@@ -1,7 +1,10 @@
 <div class="row mb-2">
     <div class="col-md-12">
-        <button type="button" class="btn btn-light btn-sm mb-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <button type="button" class="btn btn-light btn-sm mb-1 font-weight-bold" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             <i class="fa-solid fa-pen-to-square"></i> Dokumen Pembelian
+        </button>
+        <button type="button" class="btn btn-outline-info">
+
         </button>
         <div class="collapse" id="collapseExample">
             <div class="card card-body">

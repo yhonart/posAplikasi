@@ -73,6 +73,12 @@ class LapInventoryController extends Controller
             $dataReportInv = $dataReportInv->orderBy('date_input','asc');
             $dataReportInv = $dataReportInv->orderBy('idr_inv','asc');
             $dataReportInv = $dataReportInv->get();
+        
+        $saldoInventory = DB::table('view_product_stock')
+            ->select('stock')
+            ->where('idm_data_product',$produk)
+            ->orderBy('size_code','desc')
+            ->first();
 
         $dataSaldoAwal = DB::table('report_inv');
             if($produk <> '0'){
@@ -102,7 +108,7 @@ class LapInventoryController extends Controller
             ->orderBy('size_code','desc')
             ->first();
         
-        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay','dataSaldoAwal','mProduct','lastSaldo','produk'));
+        return view ('LapInventory/displayFilter', compact('saldoInventory','dataReportInv','codeDisplay','dataSaldoAwal','mProduct','lastSaldo','produk'));
     }
 
     public function downloadKartuStock($produk, $fromDate, $endDate, $lokasi){

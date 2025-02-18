@@ -69,7 +69,7 @@
                                     else {
                                         $awal = $saldoawal * $mProduct->small_unit_val;
                                     }
-                                    echo $saldoawal;
+                                    echo $saldoInventory->stock;
                                     $saldo = $saldoawal;
                                     echo "</td>";
                                 echo "</tr>";
