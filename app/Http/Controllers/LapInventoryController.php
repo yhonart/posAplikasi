@@ -88,7 +88,7 @@ class LapInventoryController extends Controller
             $dataReportInv = $dataReportInv->get();
         
         $sumTrxKeluar = DB::table('report_inv')
-            ->select(DB::raw('sum(inv_out) as out'))
+            ->select(DB::raw('sum(inv_out) as inv_out'))
             ->where([
                 ['status_trx','4'],
                 ['inv_in','0'],
@@ -99,7 +99,7 @@ class LapInventoryController extends Controller
             ->first();
             
         $sumTrxMasuk = DB::table('report_inv')
-            ->select(DB::raw('sum(inv_in) as in'))
+            ->select(DB::raw('sum(inv_in) as inv_in'))
             ->where([
                 ['status_trx','4'],
                 ['inv_out','0'],
