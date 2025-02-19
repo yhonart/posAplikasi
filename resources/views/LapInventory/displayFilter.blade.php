@@ -43,33 +43,17 @@
                         <?php                           
                             $saldoawal = 0; 
                             $saldoHitung = 0;                       
-                            if (!empty($dataSaldoAwal)) {
+                            if (!empty($sumTrxMasuk) OR !empty($sumTrxKeluar)) {
                                 echo "<tr>";
-                                    echo "<td class='font-weight-bold'>".$dataSaldoAwal->date_input."</td>";
+                                    echo "<td class='font-weight-bold'>".$fromDate."</td>";
                                     echo "<td></td>";
                                     echo "<td></td>";
                                     echo "<td class='font-weight-bold'>Saldo Awal</td>";
                                     echo "<td class='text-right font-weight-bold'>0</td>";
                                     echo "<td class='text-right font-weight-bold'>0</td>";
                                     echo "<td class='text-right font-weight-bold'>";
-    
-                                    if ($dataSaldoAwal->inv_in == '0') {
-                                        $saldoawal = $dataSaldoAwal->saldo + $dataSaldoAwal->inv_out;
-                                    }
-                                    else {
-                                        $saldoawal = $dataSaldoAwal->saldo - $dataSaldoAwal->inv_in;
-                                    }
-    
-                                    if ($mProduct->medium_unit_val == '0') {
-                                        $awal = $saldoawal;
-                                    }
-                                    elseif ($mProduct->small_unit_val == '0') {
-                                        $awal = $saldoawal * $mProduct->medium_unit_val;
-                                    }
-                                    else {
-                                        $awal = $saldoawal * $mProduct->small_unit_val;
-                                    }
-                                    echo $saldoInventory->stock;
+                                    $saldoawal = $lastSaldo->stock + $sumTrxMasuk->in - $sumTrxKeluar->out;                                    
+                                    echo $saldoawal;
                                     $saldo = $saldoawal;
                                     echo "</td>";
                                 echo "</tr>";
