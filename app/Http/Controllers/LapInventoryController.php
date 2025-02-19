@@ -96,7 +96,7 @@ class LapInventoryController extends Controller
                 ['location',$lokasi]
             ])
             ->whereBetween('date_input',[$fromDate, $endDate])
-            ->orderBy('date_input', 'ascr')
+            ->orderBy('date_input', 'asc')
             ->orderBy('ider_inv','asc')
             ->first();
             
@@ -109,7 +109,7 @@ class LapInventoryController extends Controller
                 ['location',$lokasi]
             ])
             ->whereBetween('date_input',[$fromDate, $endDate])
-            ->orderBy('date_input', 'ascr')
+            ->orderBy('date_input', 'asc')
             ->orderBy('ider_inv','asc')
             ->first();        
 
