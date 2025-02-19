@@ -2584,7 +2584,7 @@ class CashierController extends Controller
     public function deleteAllTrx($noBill)
     {
         $deleteUser = Auth::user()->name;
-
+        $nom_payed = 0;
         //Check data apakah user melakukan return dari F10
         $countStatus = DB::table('tr_return_record')
             ->where([
@@ -2675,8 +2675,9 @@ class CashierController extends Controller
                 $trxKredit = DB::table('tr_kredit')
                     ->where('from_payment_code',$noBill)
                     ->first();
-
-                $nom_payed = $trxKredit->nom_payed;
+                if (!empty($trxKredit)) {
+                    $nom_payed = $trxKredit->nom_payed;
+                }
                 $updateKredit = $trxList->total - $nom_payed;
 
                 DB::table('tr_kredit')
