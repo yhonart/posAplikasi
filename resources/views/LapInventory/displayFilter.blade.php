@@ -52,7 +52,7 @@
                                     echo "<td class='text-right font-weight-bold'>0</td>";
                                     echo "<td class='text-right font-weight-bold'>0</td>";
                                     echo "<td class='text-right font-weight-bold'>";
-                                    $saldoawal1 = $lastSaldo->stock + $sumTrxKeluar->inv_out - $sumTrxMasuk->inv_in;
+                                    $saldoawal = $lastSaldo->stock + $sumTrxKeluar->inv_out - $sumTrxMasuk->inv_in;
                                     echo $saldoawal;
                                     $saldo = $saldoawal;
                                     echo "</td>";
