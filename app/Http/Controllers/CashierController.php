@@ -945,7 +945,10 @@ class CashierController extends Controller
             ]);
 
         DB::table('tr_store_prod_list')
-            ->where('from_payment_code', $noBilling)
+            ->where([
+                ['from_payment_code', $noBilling],
+                ['is_delete','0']
+                ])
             ->update([
                 'status' => '2'
             ]);
