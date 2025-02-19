@@ -18,14 +18,14 @@
     $hakakses = Auth::user()->hakakses;
 ?>
 <p id="notifAction"></p>
-<table class="table table-sm table-hover">
+<table class="table table-sm table-hover table-valign-middle table-hover">
     <thead>
         <tr>
-            <th>No. Trx</th>
+            <th>No.Transaksi</th>
             <th>Pelanggan</th>
-            <th>Last T.Barang</th>
-            <th>Last T.Nominal</th>
-            <th>Created By</th>
+            <th>Total Item</th>
+            <th>Total</th>
+            <th>Kasir</th>
             <th>Status</th>
             <th></th>
         </tr>

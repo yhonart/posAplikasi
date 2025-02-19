@@ -927,12 +927,21 @@ class CashierController extends Controller
                 ['status', '1']
             ])
             ->first();
+
+        $countBelanja = DB::table('tr_store_prod_list')
+            ->where([
+                ['from_payment_code', $noBilling],
+                ['status', '1']
+            ])
+            ->count();
+
         $totalBelanja = $sumBelanja->totalBelanja;
         DB::table('tr_store')
             ->where('billing_number', $noBilling)
             ->update([
                 't_bill' => $totalBelanja,
-                'status' => '2'
+                'status' => '2',
+                't_item' => $countBelanja
             ]);
 
         DB::table('tr_store_prod_list')
@@ -2655,7 +2664,10 @@ class CashierController extends Controller
                     );
 
                 DB::table('tr_store_prod_list')
-                    ->where('from_payment_code', $noBill)
+                    ->where([
+                        ['from_payment_code', $noBill],
+                        ['is_delete','0']
+                    ])
                     ->update([
                         'status' => $lastStatus,
                     ]);
