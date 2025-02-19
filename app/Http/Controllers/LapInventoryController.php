@@ -95,9 +95,7 @@ class LapInventoryController extends Controller
                 ['product_id',$produk],
                 ['location',$lokasi]
             ])
-            ->whereBetween('date_input',[$fromDate, $endDate])
-            ->orderBy('date_input', 'asc')
-            ->orderBy('ider_inv','asc')
+            ->whereBetween('date_input',[$fromDate, $endDate])            
             ->first();
             
         $sumTrxMasuk = DB::table('report_inv')
@@ -109,8 +107,6 @@ class LapInventoryController extends Controller
                 ['location',$lokasi]
             ])
             ->whereBetween('date_input',[$fromDate, $endDate])
-            ->orderBy('date_input', 'asc')
-            ->orderBy('ider_inv','asc')
             ->first();        
 
         $mProduct = DB::table('m_product')
