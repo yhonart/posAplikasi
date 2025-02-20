@@ -93,6 +93,7 @@
     $totalHargaDiscount = 0;
     $totalHargaJumlah = 0;
     $totalPotongan = 0;
+    $dodate = 0;
 ?>
 <table class="table-title">
     <tbody>
@@ -103,11 +104,15 @@
             <td>
                 @if($purchaseOrder->payment_methode == '1' OR $purchaseOrder->payment_methode == '2')
                     {{$purchaseOrder->tempo}} : 
-                    @if($purchaseOrder->bank_account <> '0')
+                @if($purchaseOrder->bank_account <> '0')
                     {{$purchaseOrder->bank_code}}-{{substr($purchaseOrder->account_number,'4')}}
                     @endif
                 @else
-                    Tempo : {{$purchaseOrder->tempo}}
+                    <?php
+                        $dodate = date("d/M/Y", strtotime("+".$purchaseOrder->tempo."day",strtotime($purchaseOrder->delivery_date)));
+                    ?>
+                    Tempo : {{$purchaseOrder->tempo}} <br>
+                    Tgl. Jatuh Tempo : {{$dodate}};
                 @endif
             </td>
             <td>Nomor Faktur</td>
@@ -131,14 +136,6 @@
         </tr>
     </tbody>
 </table>
-<div class="row">
-    <div class="col-md-4">
-        <dl class="row">
-            <dt class="col-md-4">Nomor Transaksi</dt>
-            <dd class="col-md-8">{{$purchaseOrder->purchase_number}}</dd>
-        </dl>
-    </div>
-</div>
 <?php
     $nomor = 1;
 ?>
