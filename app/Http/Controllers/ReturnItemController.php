@@ -221,7 +221,7 @@ class ReturnItemController extends Controller
     public function displayReturnItem($purchCode){    
         $dspReturn = DB::table('purchase_return as a')
             ->select('a.*','b.product_name')
-            ->leftJoin('m_product as b', 'a.product_id','=','b.idm_data_product')            
+            ->leftJoin('m_product as b', 'a.product_id','=','b.idm_data_product')
             ->where([
                 ['purchase_number',$purchCode],
                 ['status','>=','1']
@@ -268,6 +268,7 @@ class ReturnItemController extends Controller
         $stockAkhir = $reqReturn->saldo;
         $userName = Auth::user()->name;
         $keterangan = $reqReturn->keterangan;
+        $wh = $reqReturn->wh;
 
         $listLO = DB::table('purchase_list_order')
             ->where('id_lo',$id)
@@ -301,7 +302,8 @@ class ReturnItemController extends Controller
                 'created_by'=>$userName,
                 'status'=>'1',
                 'supplier_id'=>$supplierId,
-                'item_text'=>$keterangan
+                'item_text'=>$keterangan,
+                'wh'=>$location,
             ]);
             
         $nomReturn = $hrgSatuan * $qtyReturn;  
@@ -320,6 +322,7 @@ class ReturnItemController extends Controller
             ->where('core_id_product',$listLO->product_id)
             ->orderBy('size_code','desc')
             ->first();   
+
         $sizeCodeDesc = $mUnit->size_code;
         if ($sizeCodeDesc == '1') {
             $qtyReport = $qty;
