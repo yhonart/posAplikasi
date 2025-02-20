@@ -42,8 +42,7 @@
                     @endif
                     @if($approval >= '1' AND $approval >='1')
                         <button type="button" class="btn btn-sm btn-primary btnDetail elevation-1 " id="btnDetail" title="View Detail" data-opname="{{$summary->number_so}}">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <span class="tooltiptext">Ini adalah tooltip!</span>
+                            <i class="fa-solid fa-magnifying-glass"></i> Detail
                         </button>
                     @endif
                     @if($summary->status == '2')

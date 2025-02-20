@@ -120,53 +120,6 @@
             color: #0f172a;
             border-color: #e2e8f0;
         } 
-
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            cursor: pointer;
-            }
-
-            .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -60px;
-            opacity: 0;
-            transition: opacity 0.5s;
-            }
-
-            .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-            }
-
-            .tooltip .tooltiptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-            }
-
     </style>
 </head>
 <script>
