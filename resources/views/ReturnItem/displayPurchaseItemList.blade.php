@@ -162,7 +162,7 @@ $no = '1';
                     $("#wh").val(data.warehouse);
                     $("#stock").val(data.stock);
                     $("#unit").val(data.unit);
-                    $("#hiddenProdukID").val(data)
+                    $("#hiddenProdukID").val(data.produkID)
                 } else {
                     $("#qtyPbl").value = "0";
                     $("#idLo").value = "0";
