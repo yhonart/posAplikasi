@@ -394,9 +394,12 @@ class ReturnItemController extends Controller
 
         $purchaseReturn = DB::table('purchase_return as a')
             ->select('a.*','b.product_name','c.site_name')
-            ->where('a.purchase_number',$purchNumber)
             ->leftJoin('m_product as b','a.product_id','=','b.idm_data_product')
             ->leftJoin('m_site as c','c.idm_site','=','a.wh')
+            ->where([
+                ['a.purchase_number',$purchNumber],
+                ['a.status','!=','0']
+                ])
             ->get();
 
         return view ('ReturnItem/displayPurchaseDetailReturn', compact('purchNumber','purchaseOrder','purchaseListOrder','purchaseReturn'));
