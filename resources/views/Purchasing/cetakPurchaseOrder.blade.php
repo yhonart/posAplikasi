@@ -98,9 +98,9 @@
 <table class="table-title">
     <tbody>
         <tr>
-            <td>No. Transaksi</td>
+            <td><b>No. Transaksi</b></td>
             <td>{{$purchaseOrder->purchase_number}}</td>
-            <td>Metode Pembayaran</td>
+            <td><b>Metode Pembayaran</b></td>
             <td>
                 @if($purchaseOrder->payment_methode == '1' OR $purchaseOrder->payment_methode == '2')
                     {{$purchaseOrder->tempo}} : 
@@ -115,21 +115,21 @@
                     Tgl. Jatuh Tempo : {{$dodate}};
                 @endif
             </td>
-            <td>Nomor Faktur</td>
+            <td><b>Nomor Faktur</b></td>
             <td>{{$purchaseOrder->faktur_number}}</td>
-            <td>Tgl. Faktur</td>
+            <td><b>Tgl. Faktur</b></td>
             <td>{{$purchaseOrder->faktur_date}}</td>
         </tr>
         <tr>
-            <td>Supplier</td>
+            <td><b>Supplier</b></td>
             <td>
                 {{$purchaseOrder->store_name}}
                 <br>
                 <small>{{$purchaseOrder->address}}, {{$purchaseOrder->city}}</small>
             </td>
-            <td>Nomor SJ</td>
+            <td><b>Nomor SJ</b></td>
             <td>{{$purchaseOrder->do_number}}</td>
-            <td>Tgl. Pengiriman</td>
+            <td><b>Tgl. Pengiriman</b></td>
             <td>{{$purchaseOrder->delivery_date}}</td>
             <td></td>
             <td></td>
