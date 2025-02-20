@@ -38,8 +38,10 @@
                     <th>Produk</th>
                     <th>Qty</th>
                     <th>Satuan</th>
+                    <th>Warehouse</th>
                     <th class="text-right">Hrg.Satuan</th>
                     <th class="text-right">Total</th>
+                    <th>keterangan</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,8 +50,10 @@
                         <td>{{$pr->product_name}}</td>
                         <td>{{$pr->return}}</td>
                         <td>{{$pr->unit}}</td>
+                        <td>{{$pr->site_name}}</td>
                         <td class="text-right">{{number_format($pr->unit_price,'0',',','.')}}</td>
                         <td class="text-right">{{number_format($pr->total_price,'0',',','.')}}</td>
+                        <td>{{$pr->item_text}}</td>
                     </tr>
                 @endforeach
             </tbody>
