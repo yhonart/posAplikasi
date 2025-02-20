@@ -116,8 +116,16 @@ class ReturnItemController extends Controller
     }
 
     public function productAction ($prdID){
+        //select produk id berdasarkan id purchase list order
+        $selectItem = DB::table('purchase_list_order')
+            ->select('product_id')
+            ->where('id_lo',$prdID)
+            ->first();
+
+        $produkID = $selectItem->product_id;
+
         $satuanItem = DB::table('product_list_view')            
-            ->where('core_id_product',$prdID)
+            ->where('core_id_product',$produkID)
             ->get();
             
         return view ('ReturnItem/displaySelectSatuan', compact('satuanItem'));
@@ -177,20 +185,21 @@ class ReturnItemController extends Controller
         return response()->json(['error' => 'Product not found'], 404);
     }
     
-    public function prodListAction ($prdID, $numberPO){
+    public function prodListAction ($prdID, $numberPO){        
         $trxPmbl = DB::table('view_purchase_lo')
             ->where([
-                ['product_id',$prdID],
+                ['id_lo',$prdID],
                 ['purchase_number',$numberPO]
                 ])
             ->first();
 
         $satuan = $trxPmbl->size;
         $warehouse = $trxPmbl->warehouse;
+        $produkID = $trxPmbl->product_id;
 
         $mUnit = DB::table('view_product_stock')
             ->where([
-                ['idm_data_product',$prdID],
+                ['idm_data_product',$produkID],
                 ['product_size',$satuan],
                 ['location_id',$warehouse]
                 ])
@@ -204,6 +213,7 @@ class ReturnItemController extends Controller
             'warehouse' => $trxPmbl->site_name,            
             'stock' => $mUnit->stock,
             'unit' => $mUnit->product_satuan,
+            'produkID' =>$produkID,
         ]);
         return response()->json(['error' => 'Product not found'], 404);
     }

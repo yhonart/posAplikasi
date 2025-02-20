@@ -43,11 +43,12 @@ $no = '1';
                             <input type="hidden" name="idLo" id="idLo">
                             <input type="hidden" name="recive" id="recive">
                             <input type="hidden" name="unit" id="unit">
+                            <input type="text" name="hiddenProdukID" id="hiddenProdukID">
                             <input type="hidden" name="purchaseNumber" id="purchaseNumber" value="{{$numberpo}}">
                             <select class="form-control rounded-0 form-control-sm" name="selectProduct" id="selectProduct">
                                 <option value="0" readonly></option>
                                 @foreach($itemList as $tl)
-                                <option value="{{$tl->idm_data_product}}">{{$tl->product_name}}</option>
+                                <option value="{{$tl->id_lo}}">{{$tl->product_name}}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -161,6 +162,7 @@ $no = '1';
                     $("#wh").val(data.warehouse);
                     $("#stock").val(data.stock);
                     $("#unit").val(data.unit);
+                    $("#hiddenProdukID").val(data)
                 } else {
                     $("#qtyPbl").value = "0";
                     $("#idLo").value = "0";
@@ -176,7 +178,7 @@ $no = '1';
         
         satuan.addEventListener("change", function() {
             let satuanUnit = $(this).find(":selected").val(),
-                prdID = $("#selectProduct").val(),
+                prdID = $("#hiddenProdukID").val(),
                 idLo = $("#idLo").val();
             
             // alert(satuanUnit+" "+prdID+" "+idLo);
@@ -246,7 +248,7 @@ $no = '1';
         });
         
         function addActivityItem() {
-            let product = $("#selectProduct").val(),
+            let product = $("#hiddenProdukID").val(),
                 satuan = $("#satuan").val(),
                 qtyRetur = $("#qtyRetur").val(),
                 hargaSatuan = $("#hargaSatuan").val(),
