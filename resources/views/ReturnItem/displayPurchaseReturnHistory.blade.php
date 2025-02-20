@@ -34,9 +34,9 @@ $arrStatus = array(
                         </td>
                         <td class="text-right">
                             @if($hisReturn->status == '2')
-                                <button type="button" class="btn btn-sm btn-outline-success BTN-APPROVE font-weight-bold" data-purchase="{{$hisReturn->purchase_number}}">Approve</button>
+                                <button type="button" class="btn btn-sm btn-success BTN-APPROVE font-weight-bold" data-purchase="{{$hisReturn->purchase_number}}"><i class="fa-solid fa-check"></i></button>
                             @endif
-                            <button type="button" class="btn btn-sm btn-outline-info BTN-DETAIL font-weight-bold" data-purchase="{{$hisReturn->purchase_number}}">Detail</button>
+                            <button type="button" class="btn btn-sm btn-info BTN-DETAIL font-weight-bold" data-purchase="{{$hisReturn->purchase_number}}"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </td>
                     </tr>
                 @endforeach
