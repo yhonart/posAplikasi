@@ -43,7 +43,7 @@ $no = '1';
                             <input type="hidden" name="idLo" id="idLo">
                             <input type="hidden" name="recive" id="recive">
                             <input type="hidden" name="unit" id="unit">
-                            <input type="text" name="hiddenProdukID" id="hiddenProdukID">
+                            <input type="hidden" name="hiddenProdukID" id="hiddenProdukID">
                             <input type="hidden" name="purchaseNumber" id="purchaseNumber" value="{{$numberpo}}">
                             <select class="form-control rounded-0 form-control-sm" name="selectProduct" id="selectProduct">
                                 <option value="0" readonly></option>
