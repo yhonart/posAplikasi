@@ -394,6 +394,7 @@ class ReturnItemController extends Controller
 
         $purchaseReturn = DB::table('purchase_return as a')
             ->select('a.*','b.product_name')
+            ->where('purchase_number',$purchNumber)
             ->leftJoin('m_product as b','a.product_id','=','b.idm_data_product')
             ->get();
 
