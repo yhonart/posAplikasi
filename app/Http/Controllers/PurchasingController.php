@@ -536,8 +536,7 @@ class PurchasingController extends Controller
 
         $paymentMethod = $selectPurchase->payment_methode;
         
-        if ($paymentMethod == '1' OR $paymentMethod == '2') {
-            $this->TempKeuanganController->kasBesarPembelian ($subTotal, $updateBy, $purchaseCode);
+        if ($paymentMethod == '1' OR $paymentMethod == '2') {            
             //update purchase dana pembelian 
             DB::table('purchase_dana_payment')
                 ->where([
@@ -775,6 +774,9 @@ class PurchasingController extends Controller
             ->update([
                 'status'=>'3'
                 ]);
+        $updateBy = $idDataReport->created_by;
+        $subTotal = (int)$idDataReport->sub_total - (int)$idDataReport->total_potongan;
+        $this->TempKeuanganController->kasBesarPembelian ($subTotal, $updateBy, $dataEdit);
     }
 
     public function btnDelete ($dataDelete){
