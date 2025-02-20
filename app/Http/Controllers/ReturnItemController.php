@@ -414,6 +414,7 @@ class ReturnItemController extends Controller
             ->leftJoin('m_supplier as b', 'a.supplier_id','=','b.idm_supplier')
             ->groupBy('a.purchase_number','a.status')
             ->groupBy('b.store_name')
+            ->orderBy('id_return','desc')
             ->get();
 
         return view ('ReturnItem/displayPurchaseReturnHistory', compact('historyReturn'));

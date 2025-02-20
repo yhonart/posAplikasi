@@ -13,7 +13,7 @@ $arrStatus = array(
         <h3 class="card-title font-weight-bold">History Return</h3>
     </div>
     <div class="card-body">
-        <table class="table table-valign-middle table-hover">
+        <table class="table table-valign-middle table-hover table-sm text-sm">
             <thead class="bg-gray-dark">
                 <tr>
                     <th>Supplier</th>
