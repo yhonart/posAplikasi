@@ -13,7 +13,7 @@ $addSaldo = 0;
     <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered" id="tableKasBesar">
         <thead class="bg-gray-dark">
             <tr>
-                <th>Tanggals</th>
+                <th>Tanggal</th>
                 <th>Nomor</th>
                 <th>Keterangan</th>
                 <th>Debit</th>
@@ -31,7 +31,7 @@ $addSaldo = 0;
                     <td>{{number_format($lkb->kredit,'0',',','.')}}</td>
                     <td>
                         <?php
-                            $addSaldo += $lkb->debit;
+                            $addSaldo += $lkb->debit - $lkb->kredit;
                             echo number_format($addSaldo,'0',',','.');
                         ?>
                     </td>
