@@ -393,17 +393,14 @@ class StockopnameController extends Controller
                     ['product_size',$satuan]
                     ])
                 ->first();
-            $prodIDUnit = $dbUnit->idm_product_satuan;
-            
+            $prodIDUnit = $dbUnit->idm_product_satuan;            
             //insert data to inventori
             $insertInv = DB::table('inv_stock')
-                ->insert([
+                ->updateorInsert([
                     'product_id'=>$prodIDUnit,    
                     'location_id'=>$location,    
-                ]);
-                
-            $Lastid = DB::getPdo()->lastInsertId($insertInv);
-            
+                ]);                
+            $Lastid = DB::getPdo()->lastInsertId($insertInv);                       
             $cekProduct = DB::table('inv_list_opname')
             ->where([
                     ['sto_number',$noOpname],
@@ -411,8 +408,7 @@ class StockopnameController extends Controller
                     ['status','1'],
                     ['created_by',$createdBy]
                 ])
-            ->count();
-            
+            ->count();            
             $productUnit = DB::table('product_list_view as a')
                 ->select('a.*','b.location_id','b.stock','b.idinv_stock')
                 ->leftJoin('inv_stock as b','a.idm_product_satuan','b.product_id')
@@ -420,8 +416,7 @@ class StockopnameController extends Controller
                     ['a.core_id_product',$product],
                     ['b.location_id',$location]
                     ])
-                ->get();
-                
+                ->get();                
             if($cekProduct == '0' AND ($qty <> '0' AND $qty <> '')){
                 foreach($productUnit as $inputUnit){
                     DB::table('inv_list_opname')
