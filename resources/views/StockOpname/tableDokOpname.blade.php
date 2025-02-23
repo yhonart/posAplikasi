@@ -61,6 +61,9 @@
         @endforeach
     </tbody>
 </table>
+<p>
+    <small>* Data yang di tampilkan secara default berdasarkan data hari ini </small>
+</p>
 <script>
     $(function(){
         $("#listDocOpname").DataTable({
