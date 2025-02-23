@@ -596,6 +596,7 @@ class StockopnameController extends Controller
         //   Update Stock
         $updateBy = Auth::user()->name;
 
+        //get data list item opname dan left join nama product stock
         $listOpname = DB::table('inv_list_opname as a')            
             ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume','b.stock')
             ->leftJoin('view_product_stock as b', 'b.idinv_stock','=','a.inv_id')
@@ -615,12 +616,12 @@ class StockopnameController extends Controller
             ->count();
             
         if($countBarang == '0'){
-            $msg = array('warning'=>'ERROR!, Tidak ada product yang dimasukkan');
+            $msg = array('warning'=>'WARNING!, Mohon periksa kembali tidak ada item yang di masukkan.');
         }else{
             foreach($listOpname as $lop){
                 $opmSize = $lop->product_size; // Besar, Kecil, Konv
                 $opmQty = $lop->input_qty; // Qty yang di input
-                $opmSaldo = $lop->saldo_konv;
+                $opmSaldo = $lop->saldo_konv; // Qty input yang sudah di konversi ke volume terkecil.
                 $opmProduct = $lop->product_id;    
                 $readyStock = $lop->stock;
                 $opmVol = $lop->unit_volume;

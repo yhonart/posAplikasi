@@ -45,7 +45,7 @@
                         <button type="button" class="btn btn-sm btn-success btnApprove elevation-1 " title="Approve" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-check"></i></button>
                     @endif    
                     @if($summary->status == '2')
-                        <button type="button" class="btn btn-sm btn-danger btnDelete elevation-1 " title="Delete" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-trash"></i></button>
+                        <button type="button" class="btn btn-sm btn-danger btnDelete elevation-1 " title="Delete" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-xmark"></i></button>
                     @endif
                     @if($summary->status == '2')
                         <a class="btn btn-sm btn-info elevation-1  btnEdit" title="Edit Dokumen" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-pencil"></i></a>
