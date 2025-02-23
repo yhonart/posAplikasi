@@ -68,9 +68,9 @@
             timer_cari_member = null;
         
         $("#cariNamaPelanggan").change(function(){
-            let keyWord = $(this).find(":selected").val();
-            fromDate = $('#dariTanggal').val(),
-            endDate = $('#sampaiTanggal').val(),
+            let keyWord = $(this).find(":selected").val(),
+                fromDate = $('#dariTanggal').val(),
+                endDate = $('#sampaiTanggal').val();
             
             searchData(keyWord, fromDate, endDate, valAction);
         })

@@ -41,12 +41,9 @@
                 <td class="p-0">
                     <input type="text" name="formJumlah" id="formJumlah" class="form-control  prd-input form-control-sm" readonly>
                 </td>
-                <td class="p-0">
+                <td class="p-0" colspan="2">
                     <input type="hidden" name="formStockHidden" id="formStockHidden" class="form-control  form-control-sm" readonly>
                     <input type="text" name="formStock" id="formStock" class="form-control  prd-input form-control-sm" readonly>
-                </td>
-                <td>
-
                 </td>
             </tr>
         </form>
@@ -57,4 +54,22 @@
      $(function () {   
         $("#fieldProduk").val(null).focus();        
     });   
+    $(document).ready(function() {
+        let keyword = '0';
+
+        $("#fieldProduk").change(function(){
+            keyWord = $(this).find(":selected").val();            
+            searchData(keyWord);
+        });
+
+        function searchData(keyWord){  
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/cariProduk/"+keyWord,
+                success : function(response){
+                    $("#tableSelectProduk").html(response);
+                }
+            });
+        }
+    });
 </script>

@@ -219,7 +219,7 @@ class CashierController extends Controller
         return view('Cashier/cashierDisplayNominal', compact('countBelanja', 'nominalBelanja'));
     }
 
-    public function productList()
+    public function productListBackup()
     {
         $billNumber = $this->getInfoNumber();
         $productUnit = DB::table('m_unit')
@@ -239,6 +239,54 @@ class CashierController extends Controller
             ->get();
 
         return view('Cashier/cashierProductList', compact('productUnit', 'countProdList', 'productList', 'billNumber', 'countBill'));
+    }
+
+    public function productList()
+    {
+        $billNumber = $this->getInfoNumber(); 
+
+        return view('Cashier/cashierProductList', compact('billNumber'));
+    }
+    
+    public function cariProduk($keyword)
+    {
+        $barcode = "";
+        $billNumber = $this->getInfoNumber();       
+        $checkArea = $this->checkuserInfo();
+
+        $getBarcode = DB::table('m_product_unit')
+            ->where('set_barcode', $keyword)
+            ->first();           
+                
+        //Get customer.
+        if ($billNumber <> '0') {
+            $cusTrx = DB::table('tr_store as a')
+                ->select('a.member_id','b.customer_store','b.customer_type')
+                ->leftJoin('m_customers as b', 'a.member_id','=','b.idm_customer')
+                ->first();
+
+            if (!empty($getBarcode)) {
+                $barcode = $getBarcode->set_barcode;
+                $productList = DB::table('product_list_view');            
+                $productList = $productList->where('set_barcode', $keyword);
+                $productList = $productList->get();
+
+                return view('Cashier/maintenancePage', compact('checkArea'));
+
+            } else {
+                $productList = DB::table('product_list_view');
+                if ($keyword <> 0) {
+                    $productList = $productList->where('product_name', 'LIKE', '%' . $keyword . '%');
+                }
+                $productList = $productList->orderBy('product_name', 'ASC');
+                $productList = $productList->get();
+                return view('Cashier/cashierProductListKeyword', compact('productList','keyword'));
+            }
+        }
+        else {
+            $msg = array('warningCustomer' => 'Masukkan Nama Pelanggan/Member Terlebih Dahulu, Tekan [F1]');
+        }
+
     }
 
     public function inputSatuan($idPrd)
