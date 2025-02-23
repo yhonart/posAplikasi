@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-sm table-valign-middle table-hover ">
+                <table class="table table-sm table-valign-middle table-hover " id="tableInputBarang">
                     <thead class="bg-gray-dark">
                         <tr>
                             <th> # </th>
@@ -209,6 +209,7 @@
     });
     
     function addActivityItem() {
+        $("#tableInputBarang").fadeOut();
         let productInput = $("#product").val(),
             satuanInput = $("#satuan").val(),
             lastStockInput = $("#lastStock").val(),
@@ -221,6 +222,7 @@
             location = $("#location").val();
         let dataForm = {product:productInput,satuan:satuanInput,lastStock:lastStockInput,qty:qtyInput,total:totalInput,noOpname:noOpname,invID:invID,location:location,unitID:unitID,unitVol:unitVol};
         submitData(dataForm);
+        $("#tableInputBarang").fadeIn();
     }
     
     function submitData(dataForm){
