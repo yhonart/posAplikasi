@@ -8,8 +8,8 @@
             <div class="card-body table-responsive p-2">
                 <div class="row d-flex justify-content-end">
                     <div class="col-12">
-                        <button class="btn btn-sm btn-outline-default border-0 font-weight-bold pl-4" data-toggle="collapse" href="#collapseDocOpname" role="button" aria-expanded="false" aria-controls="collapseDocOpname"><i class="fa-solid fa-file-pen"></i>| Dok. Transaksi</button>
-                        <button class="btn btn-sm btn-light border-0 font-weight-bold pl-4 text-muted" id="cencelDocument" data-doc="{{$opnameNumber}}"><i class="fa-solid fa-xmark"></i>| Batalkan Transaksi</button>
+                        <button class="btn btn-sm btn-outline-info border-0 font-weight-bold pl-4" data-toggle="collapse" href="#collapseDocOpname" role="button" aria-expanded="false" aria-controls="collapseDocOpname"><i class="fa-solid fa-file-pen"></i> Dok. Transaksi</button>
+                        <button class="btn btn-sm btn-outline-danger border-0 font-weight-bold pl-4 text-muted" id="cencelDocument" data-doc="{{$opnameNumber}}"><i class="fa-solid fa-xmark"></i> Batalkan Transaksi</button>
                         <button class="btn btn-sm btn-success border-0 font-weight-bold pl-4" id="saveDocument"><i class="fa-regular fa-floppy-disk"></i>| Simpan Transaksi</button>
                     </div>
                 </div>
