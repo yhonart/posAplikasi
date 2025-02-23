@@ -66,9 +66,6 @@
                 if(keyword == ''){
                     keyword = '0';
                 }
-                if (customers == null) {
-                    customers = '0';
-                }
                 
             searchData(keyWord)}, 700)
         });
