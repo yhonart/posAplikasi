@@ -39,11 +39,11 @@
 
 <script>
     $(function(){
-        // $( ".datetimepicker-input" ).datepicker({
-        //     dateFormat: 'yy-mm-dd',
-        //     autoclose: true,
-        //     todayHighlight: true,
-        // });
+        $( ".datetimepicker-input" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
 
         var curr = new Date;
         var first = curr.getDate() - curr.getDay();
@@ -64,7 +64,7 @@
         let kasir = $("#namaKasir").val(),
             fromDate = $("#dariTanggal").val(),
             endDate = $("#sampaiTanggal").val();
-        alert (fromDate);
+
         tableAP(kasir, fromDate, endDate);
         
         $("#namaKasir").change(function(){
