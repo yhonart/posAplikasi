@@ -274,7 +274,7 @@
             <tr>
                 <td colspan="4" class="text-right">GRAND TOTAL KASIR :</td>
                 <?php
-                    $grndTotalBon = $sumTotalBon + $sumTransfer;
+                    $grndTotalBon = $totalBon + $sumTransfer;
                     $grndTotalKredit = $sumTempo1 + $sumKreditTf;
                     $grndTotalBelanja = $totalBelanjaTunai + $totalBelanjaTransfer;
                 ?>
