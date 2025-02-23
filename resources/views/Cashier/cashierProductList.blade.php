@@ -67,13 +67,13 @@
                     keyword = '0';
                 }
                 
-            searchData(keyWord)}, 700)
+            searchData(keyword)}, 700)
         });
 
-        function searchData(keyWord){  
+        function searchData(keyword){  
             $.ajax({
                 type : 'get',
-                url : "{{route('Cashier')}}/cariProduk/"+keyWord,
+                url : "{{route('Cashier')}}/cariProduk/"+keyword,
                 success : function(response){
                     $("#tableSelectProduk").html(response);
                 }
