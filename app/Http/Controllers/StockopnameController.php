@@ -175,7 +175,7 @@ class StockopnameController extends Controller
     
     public function submitStockOpname(Request $reqForm){
         $noStockOpname = $reqForm->noStockOpname;
-        $filterTanggal = $reqForm->filterTanggal;
+        $filterTanggal = $reqForm->dateOpname;
         $pilihLokasi = $reqForm->pilihLokasi;
         $description = $reqForm->description;
         $thisPeriode = date('mY', strtotime($filterTanggal));

@@ -933,4 +933,18 @@ class TempInventoryController extends Controller
                 'notes'=>$description,
             ]);
     }
+
+    public function transactionRecord ($createdBy, $description, $url, $process){
+        $browser = '';
+        DB::table('recording_transaction')
+            ->insert([
+                'description'=>$description,
+                'process'=>$process,
+                'url'=>$url,
+                'browser'=>$browser,
+                'created_date'=>now(),
+                'status'=>'1',
+                'created_by'=>$createdBy
+            ]);
+    }
 }

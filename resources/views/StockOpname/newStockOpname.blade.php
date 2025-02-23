@@ -18,7 +18,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="label">Tgl. Stok Opname</label>
-                                        <input type="text" name="filterTanggal" id="filterTanggal" class="form-control form-control-sm ">
+                                        <input type="text" name="dateOpname" id="dateOpname" class="form-control form-control-sm ">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -60,13 +60,13 @@
 <script>
     $( function() {
         var date = new Date();
-        $( "#filterTanggal" ).datepicker({
+        $( "#dateOpname" ).datepicker({
             dateFormat: 'yy-mm-dd',
             autoclose: true,
             todayHighlight: true,
             maxDate: date,
         });
-        $('#filterTanggal').datepicker("setDate",new Date());
+        $('#dateOpname').datepicker("setDate",new Date());
         disInputBarang();
     });
     
