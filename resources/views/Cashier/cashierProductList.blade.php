@@ -75,7 +75,7 @@
             let routeIndex = "{{route('Cashier')}}",
                 urlProductList = "productList",
                 panelProductList = $("#mainListProduct");
-                
+
             $.ajax({
                 type : 'get',
                 url : "{{route('Cashier')}}/cariProduk/"+keyword,
@@ -84,8 +84,8 @@
                         alertify
                         .alert(response.warningCustomer, function(){
                             alertify.message('OK');
-                            cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                         }).set({title:"Alert !"});
+                        cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                     }
                     else if(response.success){
                         alertify.success(response.success);
