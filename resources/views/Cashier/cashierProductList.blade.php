@@ -71,6 +71,7 @@
         });
 
         function searchData(keyword){  
+            alert (keyword);
             $.ajax({
                 type : 'get',
                 url : "{{route('Cashier')}}/cariProduk/"+keyword,
