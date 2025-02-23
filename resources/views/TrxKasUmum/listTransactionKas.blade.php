@@ -1,5 +1,5 @@
 <table class="table table-sm table-valig-middle table-hover" id="tableTrxKas">
-    <thead>
+    <thead class="bg-gray-dark">
         <tr>
             <th>No. Trx</th>
             <th>Tgl.</th>
