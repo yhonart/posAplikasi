@@ -80,6 +80,7 @@
                         alertify
                         .alert(response.warningCustomer, function(){
                             alertify.message('OK');
+                            loadTableData();
                         }).set({title:"Alert !"});
                     }
                     else if(response.success){
@@ -88,6 +89,15 @@
                     else{
                         $("#tableSelectProduk").html(response);
                     }
+                }
+            });
+        }
+        function loadTableData(){
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/productList/listTableTransaksi",
+                success : function(response){                
+                    $("#trLoadProduct").html(response);
                 }
             });
         }
