@@ -55,11 +55,22 @@
         $("#fieldProduk").val(null).focus();        
     });   
     $(document).ready(function() {
-        let keyword = '0';
+        let keyword = '0',
+            timer_cari_member = null;
 
-        $("#fieldProduk").change(function(){
-            keyWord = $(this).find(":selected").val();            
-            searchData(keyWord);
+        $("#fieldProduk").keyup(function (e) {
+            e.preventDefault();
+            clearTimeout(timer_cari_equipment); 
+            timer_cari_equipment = setTimeout(function(){                
+                let keyword = $("#fieldProduk").val().trim();
+                if(keyword == ''){
+                    keyword = '0';
+                }
+                if (customers == null) {
+                    customers = '0';
+                }
+                
+            searchData(keyWord)}, 700)
         });
 
         function searchData(keyWord){  
