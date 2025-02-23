@@ -141,7 +141,8 @@ class TrxKasUmumController extends Controller
                 'nominal'=>$kasNominal,
                 'file_name'=>$NameDoc,
                 'file_type'=>$TypeDoc,
-                'no_polisi'=>$nopol
+                'no_polisi'=>$nopol,
+                'trx_code'=>'2'
             ]);
     }
 

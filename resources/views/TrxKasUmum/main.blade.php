@@ -69,8 +69,7 @@
     $(document).ready(function() {
         let fromDate = $('#fromDate').val(),
             endDate = $('#endDate').val();
-
-        alert(fromDate);
+        
         searchData(fromDate, endDate);
 
         $("#fromDate").change(function(){
