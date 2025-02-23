@@ -71,7 +71,7 @@
         });
 
         function searchData(keyword){  
-            alert (keyword);
+            // alert (keyword);
             $.ajax({
                 type : 'get',
                 url : "{{route('Cashier')}}/cariProduk/"+keyword,
@@ -80,7 +80,7 @@
                         alertify
                         .alert(response.warningCustomer, function(){
                             alertify.message('OK');
-                        }).set({title:"Update"});
+                        }).set({title:"Alert !"});
                     }
                     else if(response.success){
                         alertify.success(response.success);
