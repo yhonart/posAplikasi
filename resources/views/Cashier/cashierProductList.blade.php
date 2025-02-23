@@ -72,6 +72,10 @@
 
         function searchData(keyword){  
             // alert (keyword);
+            let routeIndex = "{{route('Cashier')}}",
+                urlProductList = "productList",
+                panelProductList = $("#mainListProduct");
+                
             $.ajax({
                 type : 'get',
                 url : "{{route('Cashier')}}/cariProduk/"+keyword,
@@ -80,7 +84,7 @@
                         alertify
                         .alert(response.warningCustomer, function(){
                             alertify.message('OK');
-                            loadTableData();
+                            cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                         }).set({title:"Alert !"});
                     }
                     else if(response.success){
