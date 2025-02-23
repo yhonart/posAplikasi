@@ -39,11 +39,11 @@
 
 <script>
     $(function(){
-        $( ".datetimepicker-input" ).datepicker({
-            dateFormat: 'yy-mm-dd',
-            autoclose: true,
-            todayHighlight: true,
-        });
+        // $( ".datetimepicker-input" ).datepicker({
+        //     dateFormat: 'yy-mm-dd',
+        //     autoclose: true,
+        //     todayHighlight: true,
+        // });
 
         var curr = new Date;
         var first = curr.getDate() - curr.getDay();
