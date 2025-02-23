@@ -53,13 +53,13 @@
     });
 
     $(document).ready(function(){
-        let fromDate = '0',
-            endDate = '0',
+        let fromDate = $('#fromDate').val(),
+            endDate = $('#endDate').val(),
             status = '2';
         
         searchData(fromDate, endDate, status);
         $("#fromDate").change(function(){
-                fromDate = $('#fromDate').val();
+                fromDate = $(this).find(":selected").val();
                 endDate = $('#endDate').val();               
                 status = $('#status').val();
                 if(fromDate === '' || endDate === ''){
@@ -71,7 +71,7 @@
 
         $("#endDate").change(function(){
                 fromDate = $('#fromDate').val();
-                endDate = $('#endDate').val();
+                endDate = $(this).find(":selected").val();
                 status = $('#status').val();
                 if(fromDate === '' || endDate === ''){
                     fromDate = '0';
