@@ -110,10 +110,10 @@
                         @foreach($tableMthodPayment as $tgR)
                             @if($tgR->core_id_trx == $record->billing_number AND $tgR->method_name == '1')
                                 {{number_format($tgR->nominal,'0',',','.')}}
-                                <?php                                    
-                                    $totalBelanjaTunai += $tgR->nominal;
-                                ?>
                             @endif
+                            <?php                                    
+                                $totalBelanjaTunai += $tgR->nominal;
+                            ?>
                         @endforeach
                     </td>
                     <td>
