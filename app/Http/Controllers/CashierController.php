@@ -257,7 +257,7 @@ class CashierController extends Controller
         $getBarcode = DB::table('m_product_unit')
             ->where('set_barcode', $keyword)
             ->first();           
-        echo $billNumber." ".$barcode." ".$keyword;                
+        // echo $billNumber." ".$barcode." ".$keyword;                
         //Get customer.
         if ($billNumber <> '0') {
             $cusTrx = DB::table('tr_store as a')
@@ -286,7 +286,7 @@ class CashierController extends Controller
         else {
             $msg = array('warningCustomer' => 'Masukkan Nama Pelanggan/Member Terlebih Dahulu, Tekan [F1]');
         }
-
+        return response()->json($msg);
     }
 
     public function inputSatuan($idPrd)
