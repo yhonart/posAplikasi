@@ -16,13 +16,16 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-12">
-                <button class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('trxKasUmum')}}/tambahBiaya"><i class="fa-solid fa-plus"></i> Tambah Transaksi</button>
+                <button class="btn btn-outline-primary BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('trxKasUmum')}}/tambahBiaya"><i class="fa-solid fa-plus"></i> Tambah Transaksi</button>
                 <a class="btn btn-primary font-weight-bold" href="{{route('kasKecil')}}"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Kas Kecil</a>
             </div>
         </div>
         <div class="row d-flex justify-content-center mb-2">
             <div class="col-md-12">
                 <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">History Input Kas Kecil</h3>
+                    </div>
                     <div class="card-body">
                         <div class="row mb-2">                                
                             <div class="col-md-3">
@@ -67,6 +70,7 @@
         let fromDate = $('#fromDate').val(),
             endDate = $('#endDate').val();
 
+        alert(fromDate);
         searchData(fromDate, endDate);
 
         $("#fromDate").change(function(){
