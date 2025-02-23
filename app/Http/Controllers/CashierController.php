@@ -270,7 +270,8 @@ class CashierController extends Controller
                 $productList = DB::table('product_list_view');            
                 $productList = $productList->where('set_barcode', $keyword);
                 $productList = $productList->get();
-
+                
+                $msg = array('success' => 'Data Berhasil Dimasukkan.');
                 return view('Cashier/maintenancePage', compact('checkArea'));
 
             } else {

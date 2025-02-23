@@ -76,7 +76,18 @@
                 type : 'get',
                 url : "{{route('Cashier')}}/cariProduk/"+keyword,
                 success : function(response){
-                    $("#tableSelectProduk").html(response);
+                    if (response.warningCustomer) {
+                        alertify
+                        .alert(response.warningCustomer, function(){
+                            alertify.message('OK');
+                        }).set({title:"Update"});
+                    }
+                    else if(response.success){
+                        alertify.success(response.success);
+                    }
+                    else{
+                        $("#tableSelectProduk").html(response);
+                    }
                 }
             });
         }
