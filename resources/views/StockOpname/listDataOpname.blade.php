@@ -53,8 +53,8 @@
     });
 
     $(document).ready(function(){
-        let fromDate = $('#fromDate').val(),
-            endDate = $('#endDate').val(),
+        let fromDate = '0',
+            endDate = '0',
             status = '2';
         
         searchData(fromDate, endDate, status);
