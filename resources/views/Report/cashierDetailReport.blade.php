@@ -51,7 +51,7 @@
 </style>
 <?php
     $no = '1';
-    $sumTunai = '0';
+    $grndTotalBon = '0';
     $sumTransfer = '0';
     $sumTempo1 = '0';
     $sumTempo2 = '0';
@@ -67,6 +67,7 @@
     $totalBelanjaTunai = '0';
     $totalBelanjaTransfer = '0';
     $grndTotalBelanja = '0';
+    $totalBon = 0;
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -105,14 +106,21 @@
                     <td>{{$record->billing_number}}</td>
                     <td>{{date("d-M-Y", strtotime($record->tr_date))}}</td>
                     <td>{{$record->customer_name}}</td>
-                    <td>{{number_format($record->t_bill,'0',',','.')}}</td>
+                    <td>
+                        {{number_format($record->t_bill,'0',',','.')}}
+                        <?php
+                            $totalBon += $record->t_bill;
+                        ?>
+                    </td>
                     <td>
                         @foreach($tableMthodPayment as $tgR)
                             @if($tgR->core_id_trx == $record->billing_number AND $tgR->method_name == '1')
                                 {{number_format($tgR->nominal,'0',',','.')}}
-                            @endif
-                            <?php                                    
-                                $totalBelanjaTunai += $tgR->nominal;
+                            @endif                            
+                            <?php   
+                                if ($tgR->method_name == '1') {
+                                    $totalBelanjaTunai += $tgR->nominal;
+                                }                                 
                             ?>
                         @endforeach
                     </td>
@@ -136,10 +144,10 @@
             @endforeach            
                 <tr class="font-weight-bold bg-dark total">
                     <td colspan="4">TOTAL TUNAI & TEMPO</td>
-                    <td class="text-right">{{number_format($totalBelanjaTunai,'0',',','.')}}</td>
                     <td class="text-right">                    
-                        {{number_format($sumTunai,'0',',','.')}}
+                        {{number_format($totalBon,'0',',','.')}}
                     </td>
+                    <td class="text-right">{{number_format($totalBelanjaTunai,'0',',','.')}}</td>
                     <td></td>
                     <td class="text-right">{{number_format($sumTempo1,"0",',','.')}}</td>
                     <td></td>
@@ -266,13 +274,12 @@
             <tr>
                 <td colspan="4" class="text-right">GRAND TOTAL KASIR :</td>
                 <?php
-                    $grndTotalBayar = $sumTunai + $sumTransfer;
+                    $grndTotalBon = $sumTotalBon + $sumTransfer;
                     $grndTotalKredit = $sumTempo1 + $sumKreditTf;
                     $grndTotalBelanja = $totalBelanjaTunai + $totalBelanjaTransfer;
-                    $grndTotalPembelian2 = $totalBelanjaTunai + $totalBelanjaTransfer;
                 ?>
-                <td class="text-right">{{number_format($grndTotalPembelian2,'0',',','.')}}</td>
-                <td class="text-right">{{number_format($grndTotalBayar,'0',',','.')}}</td>
+                <td class="text-right">{{number_format($grndTotalBon,'0',',','.')}}</td>
+                <td class="text-right">{{number_format($grndTotalBelanja,'0',',','.')}}</td>
                 <td></td>
                 <td class="text-right">{{number_format($grndTotalKredit,'0',',','.')}}</td>
                 <td class="text-right">{{number_format($kreditRecord,'0',',','.')}}</td>
@@ -283,7 +290,7 @@
         <tbody class="grand-total">
             <tr>
                 <?php
-                    $totalPenerimaan = $grndTotalBayar + $kreditRecord;
+                    $totalPenerimaan = $grndTotalBelanja + $kreditRecord;
                 ?>
                 <td colspan="4" class="text-right"><b>TOTAL PENERIMAAN KASIR</b> <small>GRND TOTAL BAYAR + GRND TOTAL BAYAR BON</small> :</td>
                 <td></td>
