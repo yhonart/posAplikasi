@@ -64,7 +64,7 @@
         let kasir = $("#namaKasir").val(),
             fromDate = $("#dariTanggal").val(),
             endDate = $("#sampaiTanggal").val();
-
+        alert (fromDate);
         tableAP(kasir, fromDate, endDate);
         
         $("#namaKasir").change(function(){
