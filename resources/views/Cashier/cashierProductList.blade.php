@@ -56,7 +56,7 @@
     });   
     $(document).ready(function() {
         let keyword = '0',
-            timer_cari_member = null;
+            timer_cari_equipment = null;
 
         $("#fieldProduk").keyup(function (e) {
             e.preventDefault();
