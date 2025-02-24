@@ -287,7 +287,7 @@ class CashierController extends Controller
                 }
                 $productList = $productList->orderBy('product_name', 'ASC');
                 $productList = $productList->get();
-                return view('Cashier/cashierProductListKeyword', compact('productList','keyword','getPrice'));
+                return view('Cashier/cashierProductListKeyword', compact('productList','keyword','getPrice','cosGroup'));
             }
         }
         else {
