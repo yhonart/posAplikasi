@@ -301,6 +301,7 @@ class CashierController extends Controller
         $productListView = DB::table('product_list_view')
             ->where('idm_product_satuan',$dataID)
             ->first();
+            
         $product = $productListView->core_id_product;
         $unit = $productListView->product_satuan;
         $satuan = $productListView->product_size;
