@@ -70,7 +70,7 @@
                 searchData(keyword)
             }
             else{
-                $("#tableSelectProduk").style.display = "none";
+                $("#tableSelectProduk").fadeOut("slow");
             }               
         }, 700)
         });
