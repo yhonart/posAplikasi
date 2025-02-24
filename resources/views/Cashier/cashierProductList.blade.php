@@ -67,6 +67,7 @@
                     keyword = '0';
                 }
             if (keyword !== '0') {
+                $("#tableSelectProduk").fadeIn("slow");
                 searchData(keyword)
             }
             else{
