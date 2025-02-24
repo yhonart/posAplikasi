@@ -66,8 +66,10 @@
                 if(keyword == ''){
                     keyword = '0';
                 }
-                
-            searchData(keyword)}, 700)
+            if (keyword !== '0') {
+                searchData(keyword)
+            }                
+        }, 700)
         });
 
         function searchData(keyword){  
