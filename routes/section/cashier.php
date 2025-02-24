@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('Cashier/productList', [App\Http\Controllers\CashierController::class, 'productList']);
 //Cari Produk menggunakan keyword barcode atau nama produk.
 Route::get('Cashier/cariProduk/{keyword}', [App\Http\Controllers\CashierController::class, 'cariProduk']);
+Route::get('Cashier/inputItem/{dataID}/{billNumber}/{cusGroup}', [App\Http\Controllers\CashierController::class, 'inputItem']);
 
 // Select Condition With Product Selected
 Route::get('Cashier/productList/satuan/{prdID}', [App\Http\Controllers\CashierController::class, 'inputSatuan']);

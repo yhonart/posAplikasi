@@ -1,7 +1,7 @@
 @foreach($productList as $pL)
 <tr>
     <td colspan="2" class="p-0">
-        <button class="btn btn-default btn-block rounded-0 border-0 onClick-produk elevation-0 btn-sm text-primary font-weight-bold" data-id="{{$pL->idm_product_satuan}}">{{$pL->product_name}}</button>
+        <button class="btn btn-default btn-block rounded-0 border-0 onClick-produk elevation-0 btn-sm text-primary font-weight-bold text-left" data-id="{{$pL->idm_product_satuan}}">{{$pL->product_name}}</button>
     </td>
     <td class="p-0"></td class="p-0">
     <td class="p-0">
@@ -22,8 +22,16 @@
     $(document).ready(function() {
         $('.onClick-produk').on('click', function (e) {
             e.preventDefault();
-            let dataID = $(this).attr('data-id');
-            alert (dataID);
+            let dataID = $(this).attr('data-id'),
+                billNumber = "{{$billNumber}}",
+                cusGroup = "{{$cosGroup}}";
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/inputItem/"+dataID+"/"+billNumber+"/"+cusGroup,
+                success : function(response){                
+                    $("#DivContent").html(response);
+                }
+            });
         });
     });
 </script>

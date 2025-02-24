@@ -287,13 +287,60 @@ class CashierController extends Controller
                 }
                 $productList = $productList->orderBy('product_name', 'ASC');
                 $productList = $productList->get();
-                return view('Cashier/cashierProductListKeyword', compact('productList','keyword','getPrice','cosGroup'));
+                return view('Cashier/cashierProductListKeyword', compact('productList','keyword','getPrice','cosGroup','billNumber'));
             }
         }
         else {
             $msg = array('warningCustomer' => 'Masukkan Nama Pelanggan/Member Terlebih Dahulu, Tekan [F1]');
         }
         return response()->json($msg);
+    }
+
+    public function inputItem ($dataID, $billNumber, $cusGroup){
+        //Ambil data produk
+        $productListView = DB::table('product_list_view')
+            ->where('idm_product_satuan',$dataID)
+            ->first();
+        $product = $productListView->core_id_product;
+        $unit = $productListView->product_satuan;
+        $satuan = $productListView->product_size;
+        $priceOrder = $productListView->product_price_order;
+        $username = Auth::user()->name;
+
+        $getPrice = DB::table('m_product_price_sell')
+            ->where([
+                ['core_product_id',$product],
+                ['size_product',$satuan],
+                ['cos_group',$cusGroup]
+            ])
+            ->first();
+        $priceSell = $getPrice->price_sell;
+        //Cek ketersediaan item dengan barang yang sama
+        $countItem = DB::table('tr_store_prod_list')
+            ->where([
+                ['from_payment_code', $billNumber],
+                ['product_code',$product],
+                ['unit',$unit]
+            ])
+            ->count();
+
+        if ($countItem == '0') {
+            DB::table('tr_store_prod_list')
+                ->insert([
+                    'from_payment_code'=>$billNumber,
+                    'product_code'=>$product,
+                    'qty'=>'1',
+                    'unit'=>$unit,
+                    'satuan'=>$satuan,
+                    'unit_price'=>$priceSell,
+                    'disc'=>'0',
+                    't_price'=>$priceSell,
+                    'm_price'=>$priceOrder,
+                    'status'=>'1',
+                    'created_by'=>$username,
+                    'date'=> now(),
+                ]);
+        }
     }
 
     public function inputSatuan($idPrd)
