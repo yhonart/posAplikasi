@@ -10,12 +10,12 @@
     <td class="text-right p-0">
         @foreach($getPrice as $gp)
             {{$gp->core_product_price}} : {{$pL->idm_product_satuan}} <br>
-            @if($gp->core_product_price == $pL->idm_product_satuan)
+            @if($gp->core_product_price == $pL->idm_data_product AND $gp->size_product == $pL->product_size)
                 {{number_format($gp->price_sell,'0',',','.')}} {{$gp->cos_group}}
             @endif
         @endforeach
     </td>
-    <td class="p-0">{{$cosGroup}} / {{$pL->product_size}}</td>
+    <td class="p-0"></td>
     <td class="p-0"></td>
     <td class="p-0"></td>
 </tr>
