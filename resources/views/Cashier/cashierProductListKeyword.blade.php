@@ -18,4 +18,13 @@
     <td class="p-0"></td>
     <td class="p-0"></td>
 </tr>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.onClick-produk').on('click', function (e) {
+            e.preventDefault();
+            let dataID = $(this).attr('data-id');
+            alert (dataID);
+        });
+    });
+</script>
 @endforeach

@@ -103,12 +103,6 @@
             });
         }
 
-        $('.onClick-produk').on('click', function (e) {
-            e.preventDefault();
-            let dataID = $(this).attr('data-id');
-            alert (dataID);
-        });
-
         function loadTableData(){
             $.ajax({
                 type : 'get',
