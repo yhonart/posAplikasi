@@ -33,17 +33,17 @@
                     </select>
                 </td>
                 <td class="p-0">
-                    <input type="text" name="formHargaSatuan" id="formHargaSatuan" class="form-control  price-text prd-input form-control-sm" readonly>
+                    <input type="text" name="formHargaSatuan" id="formHargaSatuan" class="form-control form-control-sm form-control-border border-width-2" readonly>
                 </td>
                 <td class="p-0">
-                    <input type="text" name="formDisc" id="formDisc" class="form-control  prd-input form-control-sm" autocomplete="off" readonly>
+                    <input type="text" name="formDisc" id="formDisc" class="form-control form-control-sm form-control-border border-width-2" autocomplete="off" readonly>
                 </td>
                 <td class="p-0">
-                    <input type="text" name="formJumlah" id="formJumlah" class="form-control  prd-input form-control-sm" readonly>
+                    <input type="text" name="formJumlah" id="formJumlah" class="form-control form-control-sm form-control-border border-width-2" readonly>
                 </td>
                 <td class="p-0" colspan="2">
                     <input type="hidden" name="formStockHidden" id="formStockHidden" class="form-control  form-control-sm" readonly>
-                    <input type="text" name="formStock" id="formStock" class="form-control  prd-input form-control-sm" readonly>
+                    <input type="text" name="formStock" id="formStock" class="form-control form-control-sm form-control-border border-width-2" readonly>
                 </td>
             </tr>
         </form>
@@ -85,7 +85,7 @@
                         .alert(response.warningCustomer, function(){
                             alertify.message('OK');
                         }).set({title:"Alert !"});
-                        cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
+                        window.location.reload();
                     }
                     else if(response.success){
                         alertify.success(response.success);
