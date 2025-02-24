@@ -68,7 +68,10 @@
                 }
             if (keyword !== '0') {
                 searchData(keyword)
-            }                
+            }
+            else{
+                $("#tableSelectProduk").style.display = "none";
+            }               
         }, 700)
         });
 
