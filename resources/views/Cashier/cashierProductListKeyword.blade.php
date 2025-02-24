@@ -9,8 +9,19 @@
     <td class="p-0">
         {{$pL->product_satuan}}
     </td class="p-0">
+    <td class="text-right p-0">
+        @foreach($getPrice as $gp)
+            {{number_format($gp->price_sell,'0',',','.')}}
+        @endforeach
+    </td>
     <td class="p-0">
-        {{number_format($pL->product_price_order,'0',',','.')}}
+
+    </td>
+    <td class="p-0">
+
+    </td>
+    <td class="p-0">
+
     </td>
 </tr>
 @endforeach
