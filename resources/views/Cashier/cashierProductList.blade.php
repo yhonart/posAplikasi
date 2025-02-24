@@ -1,5 +1,5 @@
 <!--<p class="bg-danger p-1">Halaman ini sedang proses perbaikan 🙏</p>-->
-<table class="table table-sm table-valign-middle table-head-fixed table-hover " id="mainTablePrdList">
+<table class="table table-sm table-valign-middle table-head-fixed table-hover table-bordered" id="mainTablePrdList">
     <thead class="text-center">
         <tr>
             <th width="5%">No</th>
