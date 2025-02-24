@@ -278,7 +278,6 @@ class CashierController extends Controller
                 $cosGroup = $cusTrx->customer_type;
 
                 $getPrice = DB::table('m_product_price_sell')
-                    ->select('price_sell')
                     ->where('cos_group',$cosGroup)
                     ->get();
 

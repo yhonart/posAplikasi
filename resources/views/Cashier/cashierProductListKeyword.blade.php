@@ -11,7 +11,9 @@
     </td class="p-0">
     <td class="text-right p-0">
         @foreach($getPrice as $gp)
-            {{number_format($gp->price_sell,'0',',','.')}}
+            @if($gp->core_product_price == $pL->idm_product_satuan AND $gp->size_product == $pL->product_satuan)
+                {{number_format($gp->price_sell,'0',',','.')}}
+            @endif
         @endforeach
     </td>
     <td class="p-0">
