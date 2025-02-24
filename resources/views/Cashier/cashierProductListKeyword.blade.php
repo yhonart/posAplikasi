@@ -9,8 +9,8 @@
     </td class="p-0">
     <td class="text-right p-0">
         @foreach($getPrice as $gp)
+            {{number_format($gp->price_sell,'0',',','.')}} {{$gp->cos_group}}
             @if($gp->core_product_price == $pL->idm_product_satuan)
-                {{number_format($gp->price_sell,'0',',','.')}}
             @endif
         @endforeach
     </td>
