@@ -309,7 +309,7 @@ class CashierController extends Controller
 
         $getPrice = DB::table('m_product_price_sell')
             ->where([
-                ['core_product_id',$product],
+                ['core_product_price',$product],
                 ['size_product',$satuan],
                 ['cos_group',$cusGroup]
             ])
