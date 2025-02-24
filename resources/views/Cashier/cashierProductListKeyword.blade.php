@@ -29,7 +29,7 @@
                 type : 'get',
                 url : "{{route('Cashier')}}/inputItem/"+dataID+"/"+billNumber+"/"+cusGroup,
                 success : function(response){                
-                    $("#DivContent").html(response);
+                    loadTableData();
                 }
             });
         });
