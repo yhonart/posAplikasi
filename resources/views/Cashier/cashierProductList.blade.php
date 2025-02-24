@@ -55,6 +55,7 @@
         $("#fieldProduk").val(null).focus();        
     });   
     $(document).ready(function() {
+        loadTableData();
         let keyword = '0',
             timer_cari_equipment = null;
 
