@@ -299,14 +299,15 @@ class CashierController extends Controller
 
     public function inputItem ($dataID, $billNumber, $cusGroup){
         //Ambil data produk
-        $productListView = DB::table('product_list_view')
-            ->where('idm_product_satuan',$dataID)
+        $productListView = DB::table('view_product_stock')
+            ->where('idinv_stock',$dataID)
             ->first();
             
-        $product = $productListView->core_id_product;
+        $product = $productListView->idm_data_product;
         $unit = $productListView->product_satuan;
         $satuan = $productListView->product_size;
         $priceOrder = $productListView->product_price_order;
+        $stock = $productListView->stock;
         $username = Auth::user()->name;
 
         $getPrice = DB::table('m_product_price_sell')
@@ -340,6 +341,7 @@ class CashierController extends Controller
                     'm_price'=>$priceOrder,
                     'status'=>'1',
                     'created_by'=>$username,
+                    'stock'=>$stock,
                     'date'=> now(),
                 ]);
 
