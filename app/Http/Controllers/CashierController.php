@@ -341,6 +341,13 @@ class CashierController extends Controller
                     'created_by'=>$username,
                     'date'=> now(),
                 ]);
+
+            // Insert into laporan
+            $location = '3';
+            $prodQty = '1';
+            $description = "Penjualan ".$username;
+
+            $this->TempInventoryController->reportBarangKeluar($product, $satuan, $location, $prodQty, $description, $billNumber, $username);
         }
     }
 
