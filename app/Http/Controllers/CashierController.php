@@ -309,6 +309,7 @@ class CashierController extends Controller
         $priceOrder = $productListView->product_price_order;
         $stock = $productListView->stock;
         $username = Auth::user()->name;
+        $inputStock = $stock - 1;
 
         $getPrice = DB::table('m_product_price_sell')
             ->where([
@@ -342,7 +343,7 @@ class CashierController extends Controller
                     'm_price'=>$priceOrder,
                     'status'=>'1',
                     'created_by'=>$username,
-                    'stock'=>$stock,
+                    'stock'=>$inputStock,
                     'date'=> now(),
                 ]);
 
