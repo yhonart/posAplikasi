@@ -25,14 +25,39 @@
             let dataID = $(this).attr('data-id'),
                 billNumber = "{{$billNumber}}",
                 cusGroup = "{{$cosGroup}}";
+            let routeIndex = "{{route('Cashier')}}",
+                urlProductList = "productList",
+                panelProductList = $("#mainListProduct");
             $.ajax({
                 type : 'get',
                 url : "{{route('Cashier')}}/inputItem/"+dataID+"/"+billNumber+"/"+cusGroup,
                 success : function(response){                
-                    loadTableData();
+                    reloadTableItem();
+                    sumTotalBelanja(billNumber)
+                    cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                 }
             });
         });
+
+        function reloadTableItem(){
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/productList/listTableTransaksi",
+                success : function(response){                
+                    $("#trLoadProduct").html(response);
+                }
+            });
+        }
+            
+        function sumTotalBelanja(billNumber){
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/buttonAction/updateTotalBeanja/"+billCode,
+                success : function(response){
+                    $('#totalBelanja').html(response);
+                }
+            });
+        }
     });
 </script>
 @endforeach
