@@ -265,7 +265,7 @@ class CashierController extends Controller
                 ->leftJoin('m_customers as b', 'a.member_id','=','b.idm_customer')
                 ->first();            
 
-            if (!empty($getBarcode)) {
+            if (!empty($getBarcode)) { // Jika input data menggunakan barcode
                 $barcode = $getBarcode->set_barcode;
                 $productList = DB::table('product_list_view');            
                 $productList = $productList->where('set_barcode', $keyword);
@@ -274,19 +274,20 @@ class CashierController extends Controller
                 $msg = array('success' => 'Data Berhasil Dimasukkan.');
                 // return view('Cashier/maintenancePage', compact('checkArea'));
 
-            } else {
+            } else { // jika input menggunakan text
                 $cosGroup = $cusTrx->customer_type;
-
                 $getPrice = DB::table('m_product_price_sell')
                     ->where('cos_group',$cosGroup)
                     ->get();
 
-                $productList = DB::table('product_list_view');
+                $productList = DB::table('view_product_stock');
+                    $productList = $productList->where('location_id','3');
                 if ($keyword <> 0) {
                     $productList = $productList->where('product_name', 'LIKE', '%' . $keyword . '%');
                 }
                 $productList = $productList->orderBy('product_name', 'ASC');
                 $productList = $productList->get();
+                
                 return view('Cashier/cashierProductListKeyword', compact('productList','keyword','getPrice','cosGroup','billNumber'));
             }
         }

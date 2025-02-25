@@ -1,7 +1,7 @@
 @foreach($productList as $pL)
 <tr>
     <td colspan="2" class="p-0">
-        <button class="btn btn-default btn-block rounded-0 border-0 onClick-produk elevation-0 btn-sm text-primary font-weight-bold text-left" data-id="{{$pL->idm_product_satuan}}">{{$pL->product_name}} - {{$pL->idm_product_satuan}}</button>
+        <button class="btn btn-default btn-block rounded-0 border-0 onClick-produk elevation-0 btn-sm text-primary font-weight-bold text-left" data-id="{{$pL->idm_product_satuan}}">{{$pL->product_name}} - {{$pL->product_id}}</button>
     </td>
     <td class="p-0"></td class="p-0">
     <td class="p-0">
@@ -16,6 +16,7 @@
     </td>
     <td class="p-0"></td>
     <td class="p-0"></td>
+    <td class="p-0">{{$pL->stock}}</td>
     <td class="p-0"></td>
 </tr>
 <script type="text/javascript">
