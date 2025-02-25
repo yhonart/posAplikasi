@@ -53,7 +53,7 @@
         function sumTotalBelanja(billNumber){
             $.ajax({
                 type : 'get',
-                url : "{{route('Cashier')}}/buttonAction/updateTotalBeanja/"+billCode,
+                url : "{{route('Cashier')}}/buttonAction/updateTotalBeanja/"+billNumber,
                 success : function(response){
                     $('#totalBelanja').html(response);
                 }
