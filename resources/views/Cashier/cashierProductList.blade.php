@@ -99,8 +99,7 @@
                         window.location.reload();
                     }
                     else{
-                        // $("#tableSelectProduk").html(response);
-                        window.location.reload();
+                        $("#tableSelectProduk").html(response);                        
                     }
                 }
             });
