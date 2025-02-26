@@ -92,13 +92,14 @@
                         .alert(response.warningCustomer, function(){
                             alertify.message('OK');
                         }).set({title:"Alert !"});
-                        window.location.reload();
                     }
                     else if(response.success){
                         alertify.success(response.success);
+                        window.location.reload();
                     }
                     else{
-                        $("#tableSelectProduk").html(response);
+                        // $("#tableSelectProduk").html(response);
+                        window.location.reload();
                     }
                 }
             });
