@@ -812,29 +812,49 @@ class TempInventoryController extends Controller
         $countPrdReport = DB::table('report_inv')
             ->where([
                 ['date_input',$dokDate],
-                ['product_id',$productID]
+                ['number_code',$noTrx],
+                ['product_id',$productID],
+                ['satuan',$satuan],
+                ['satuan_code',$sizeCodeDesc]
             ])
             ->count();
-
-        DB::table('report_inv')
-            ->insert([
-                'date_input'=>$dokDate,
-                'number_code'=>$noTrx,
-                'product_id'=>$productID,
-                'product_name'=>$prodName,
-                'satuan'=>$satuan,
-                'satuan_code'=>$sizeCodeDesc,
-                'description'=>$description,
-                'inv_in'=>$invIn,
-                'inv_out'=>$invOut,
-                'saldo'=>$saldo,
-                'created_by'=>$userName,
-                'location'=>$location,
-                'last_saldo'=>$invStock->stock,
-                'vol_prd'=>'0',
-                'actual_input'=>$qty,
-                'status_trx'=>'4'
-            ]);
+        
+        if ($countPrdReport == '0') {
+            DB::table('report_inv')
+                ->insert([
+                    'date_input'=>$dokDate,
+                    'number_code'=>$noTrx,
+                    'product_id'=>$productID,
+                    'product_name'=>$prodName,
+                    'satuan'=>$satuan,
+                    'satuan_code'=>$sizeCodeDesc,
+                    'description'=>$description,
+                    'inv_in'=>$invIn,
+                    'inv_out'=>$invOut,
+                    'saldo'=>$saldo,
+                    'created_by'=>$userName,
+                    'location'=>$location,
+                    'last_saldo'=>$invStock->stock,
+                    'vol_prd'=>'0',
+                    'actual_input'=>$qty,
+                    'status_trx'=>'4'
+                ]);
+        }
+        else {
+            DB::table('report_inv')
+                ->where([
+                    ['date_input',$dokDate],
+                    ['number_code',$noTrx],
+                    ['product_id',$productID],
+                    ['satuan',$satuan],
+                    ['satuan_code',$sizeCodeDesc]
+                ]) 
+                ->update([
+                    'inv_out'=>$invOut,
+                    'saldo'=>$saldo,
+                    'actual_input'=>$qty
+                ]);
+        }
     }
 
     public function editReportItemKasir($docNumber, $prdID, $satuan, $qty, $location, $lastQty, $editVal)

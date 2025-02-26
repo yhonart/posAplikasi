@@ -205,7 +205,7 @@ class HomeController extends Controller
         return view ('UnderMaintenance');
     }
 
-    public function changeCloseData(Request $reqClear){
+    public function changeCloseData(){
         $userName = Auth::user()->name;
 
         DB::table('log_close_browser')

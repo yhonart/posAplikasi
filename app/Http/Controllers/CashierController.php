@@ -253,6 +253,7 @@ class CashierController extends Controller
         $barcode = "";
         $billNumber = $this->getInfoNumber();       
         $checkArea = $this->checkuserInfo();
+        $username = Auth::user()->name;
 
         $getBarcode = DB::table('m_product_unit')
             ->where('set_barcode', $keyword)
@@ -263,19 +264,100 @@ class CashierController extends Controller
             $cusTrx = DB::table('tr_store as a')
                 ->select('a.member_id','b.customer_store','b.customer_type')
                 ->leftJoin('m_customers as b', 'a.member_id','=','b.idm_customer')
-                ->first();            
+                ->where('billing_number',$billNumber)
+                ->first();       
+                 
+            $cosGroup = $cusTrx->customer_type;
 
             if (!empty($getBarcode)) { // Jika input data menggunakan barcode
                 $barcode = $getBarcode->set_barcode;
-                $productList = DB::table('product_list_view');            
+                $productList = DB::table('view_product_stock');            
                 $productList = $productList->where('set_barcode', $keyword);
-                $productList = $productList->get();
-                
+                $productList = $productList->first();
+
+                $product = $productList->idm_data_product;
+                $unit = $productList->product_satuan;
+                $satuan = $productList->product_size;
+                $priceOrder = $productList->product_price_order;
+                $stock = $productList->stock;
+                $inputStock = $stock - 1;
+
+                $getPrice = DB::table('m_product_price_sell')
+                    ->where([
+                        ['core_product_price',$product],
+                        ['size_product',$satuan],
+                        ['cos_group',$cosGroup]
+                    ])
+                    ->first();
+                $priceSell = $getPrice->price_sell;
+
+                $countItem = DB::table('tr_store_prod_list')
+                    ->where([
+                        ['from_payment_code', $billNumber],
+                        ['product_code',$product],
+                        ['unit',$unit],
+                        ['status','>=','1']
+                    ])
+                    ->count();
+
+                if ($countItem == '0') {
+                    DB::table('tr_store_prod_list')
+                        ->insert([
+                            'from_payment_code'=>$billNumber,
+                            'product_code'=>$product,
+                            'qty'=>'1',
+                            'unit'=>$unit,
+                            'satuan'=>$satuan,
+                            'unit_price'=>$priceSell,
+                            'disc'=>'0',
+                            't_price'=>$priceSell,
+                            'm_price'=>$priceOrder,
+                            'status'=>'1',
+                            'created_by'=>$username,
+                            'stock'=>$inputStock,
+                            'date'=> now(),
+                        ]);
+                }
+                else {
+                    $selectTrxItem = DB::table('tr_store_prod_list')
+                        ->where([
+                            ['from_payment_code', $billNumber],
+                            ['product_code',$product],
+                            ['unit',$unit],
+                            ['status','>=','1']
+                        ])
+                        ->first();
+
+                    $lastQty = $selectTrxItem->qty;
+                    $sumQty = $lastQty + 1;
+                    $lastHargaSatuan = $selectTrxItem->unit_price;
+                    $lastTotalHarga = $selectTrxItem->t_price;
+                    $updateHarga = $lastTotalHarga + $lastHargaSatuan;
+
+                    DB::table('tr_store_prod_list')
+                        ->where([
+                            ['from_payment_code', $billNumber],
+                            ['product_code',$product],
+                            ['unit',$unit],
+                            ['status','>=','1']
+                        ])
+                        ->update([
+                            'qty'=>$sumQty,
+                            't_price'=>$updateHarga,
+                            'stock'=>$inputStock,
+                        ]);
+                    
+                }
+                 // Insert into laporan
+                $location = '3';
+                $prodQty = '1';
+                $description = "Penjualan ".$username;                
+                $this->TempInventoryController->reportBarangKeluar($product, $satuan, $location, $prodQty, $description, $billNumber, $username);
+                $this->penguranganStock($product, $location, $satuan, $prodQty);
                 $msg = array('success' => 'Data Berhasil Dimasukkan.');
                 // return view('Cashier/maintenancePage', compact('checkArea'));
 
-            } else { // jika input menggunakan text
-                $cosGroup = $cusTrx->customer_type;
+            } else { // jika input menggunakan text                
                 $getPrice = DB::table('m_product_price_sell')
                     ->where('cos_group',$cosGroup)
                     ->get();
@@ -351,8 +433,18 @@ class CashierController extends Controller
             $location = '3';
             $prodQty = '1';
             $description = "Penjualan ".$username;
-
+            
             $this->TempInventoryController->reportBarangKeluar($product, $satuan, $location, $prodQty, $description, $billNumber, $username);
+            $this->penguranganStock($product, $location, $satuan, $prodQty);
+
+            DB::table('tr_temp_prod')
+            ->insert([
+                'bill_number'=>$billNumber,
+                'product_id'=>$product,
+                'status'=>'1',
+                'created_at'=>now(),
+                'created_by'=>$username
+            ]);
         }
     }
 
@@ -695,16 +787,7 @@ class CashierController extends Controller
                     $a1 = $stock1 * $vol1;
                     $a2 = $a1 - $prodQty;
                     $a3 = $a2 / $codeSatu->product_volume;
-                    $a = (int)$a3;                    
-                    // $a1 = $codeDua->stock / $codeDua->product_volume;
-                    // $b1 = $prodQty / $codeDua->product_volume;
-                    // $a2 = $a1 - $b1;
-                    // $a3 = $a2 / $codeSatu->product_volume;
-                    // if (empty($codeTiga)) {
-                    //     $a = (int)$a3;
-                    // } else {
-                    //     $a = (int)$a2;
-                    // }
+                    $a = (int)$a3;  
                 } elseif ($ds->size_code == '2') {
                     $a1 = $ds->stock - $prodQty;
                     $a = (int)$a1;
@@ -745,7 +828,7 @@ class CashierController extends Controller
             ->update([
                 'status' => '2'
             ]);
-    }
+    }    
 
     public function listTableTransaksi()
     {
@@ -3656,5 +3739,112 @@ class CashierController extends Controller
                 'created_at' => now(),
                 'created_by' => $actionBy
             ]);
+    }
+
+    // function update stock 
+    public function penguranganStock($productID, $location, $prodSatuan, $prodQty){
+        // Start Update Stock        
+        $dataStock = DB::table('view_product_stock')
+            ->where([
+                ['idm_data_product', $productID],
+                ['location_id', '3']
+            ])
+            ->get();
+
+        // Cek volume by kode size 2
+        $codeSatu = DB::table('view_product_stock')
+            ->where([
+                ['idm_data_product', $productID],
+                ['location_id', '3'],
+                ['size_code', '1'],
+            ])
+            ->first();
+
+        $codeDua = DB::table('view_product_stock')
+            ->where([
+                ['idm_data_product', $productID],
+                ['location_id', '3'],
+                ['size_code', '2'],
+            ])
+            ->first();
+
+        $codeTiga = DB::table('view_product_stock')
+            ->where([
+                ['idm_data_product', $productID],
+                ['location_id', '3'],
+                ['size_code', '3'],
+            ])
+            ->first();
+
+        $stock1 = $codeSatu->stock;
+        $vol1 = $codeSatu->product_volume;
+
+        if (!empty($codeDua)) {
+            $stock2 = $codeDua->stock;
+            $vol2 = $codeDua->product_volume;
+        }
+        else {
+            $stock2 = $stock1;
+            $vol2 = $vol1;            
+        }
+
+        if (!empty($codeTiga)) {
+            $stock3 = $codeTiga->stock;
+            $vol3 = $codeTiga->product_volume;
+        }
+        else {
+            $stock2 = $stock2;
+            $vol2 = $vol2;            
+        }
+
+        foreach ($dataStock as $ds) {
+            if ($prodSatuan == "BESAR") { // Jika yang dimasukkan adalah satuan Besar
+                if ($ds->size_code == '1') { // Jika kode dalam list 1
+                    $a = $ds->stock - $prodQty;
+                } elseif ($ds->size_code == '2') {
+                    $a1 = $prodQty * $vol1;
+                    $a = $ds->stock - $a1;
+                } elseif ($ds->size_code == '3') {
+                    $a1 = $ds->product_volume * $prodQty;
+                    $a = $ds->stock - $a1;
+                }
+            } elseif ($prodSatuan == "KECIL") { // Jika yang idmasukkan adalah satuan kecil
+                if ($ds->size_code == '1') { // Jika kode dalam list 1
+                    $a1 = $stock1 * $vol1;
+                    $a2 = $a1 - $prodQty;
+                    $a3 = $a2 / $codeSatu->product_volume;
+                    $a = (int)$a3;  
+                } elseif ($ds->size_code == '2') {
+                    $a1 = $ds->stock - $prodQty;
+                    $a = (int)$a1;
+                } elseif ($ds->size_code == '3') {
+                    $a1 = $prodQty * $vol2;
+                    $a2 = $stock3 - $a1;
+                    $a = (int)$a2;
+                }
+            } elseif ($prodSatuan == "KONV") {
+                $ab = $stock3 - $prodQty;
+
+                if ($ds->size_code == '1') { // Jika kode dalam list 1
+                    $a1 = $ab / $vol3;
+                    $a = (int)$a1;
+                } elseif ($ds->size_code == '2') {
+                    $a1 = $ab / $vol2;
+                    $a = (int)$a1;
+                } elseif ($ds->size_code == '3') {
+                    $a = $ds->stock - $prodQty;
+                }
+            }
+
+            DB::table('inv_stock')
+                ->where('idinv_stock', $ds->idinv_stock)
+                ->update([
+                    'location_id' => '3',
+                    'stock' => $a,
+                    'stock_out' => $prodQty,
+                    'saldo' => $a
+                ]);            
+        }
+        
     }
 }
