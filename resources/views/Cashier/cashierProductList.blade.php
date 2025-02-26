@@ -81,7 +81,8 @@
             // alert (keyword);
             let routeIndex = "{{route('Cashier')}}",
                 urlProductList = "productList",
-                panelProductList = $("#mainListProduct");
+                panelProductList = $("#mainListProduct"),
+                trxNumber = "{{$billNumber}}";
 
             $.ajax({
                 type : 'get',
@@ -96,7 +97,8 @@
                     }
                     else if(response.success){
                         alertify.success(response.success);
-                        window.location.reload();
+                        loadTableData();
+                        totalBelanja(trxNumber);
                     }
                     else{
                         $("#tableSelectProduk").html(response);                        
@@ -111,6 +113,16 @@
                 url : "{{route('Cashier')}}/productList/listTableTransaksi",
                 success : function(response){                
                     $("#trLoadProduct").html(response);
+                }
+            });
+        }
+
+        function totalBelanja(trxNumber){
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/buttonAction/updateTotalBeanja/"+trxNumber,
+                success : function(response){
+                    $('#totalBelanja').html(response);
                 }
             });
         }
