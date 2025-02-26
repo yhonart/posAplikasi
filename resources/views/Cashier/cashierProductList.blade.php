@@ -128,62 +128,62 @@
                 }
             });
         }
+        // Ambil elemen tabel
+        const table = document.getElementById('mainTablePrdList');
+    
+        // Inisialisasi indeks baris yang dipilih
+        let selectedRowIndex = -1;
+    
+        // Tambahkan event listener untuk tombol panah atas dan bawah
+        document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown') {
+            // Pilih baris berikutnya
+            if (selectedRowIndex < table.rows.length - 1) {
+            selectedRowIndex++;
+            selectRow(selectedRowIndex);
+            }
+        } else if (event.key === 'ArrowUp') {
+            // Pilih baris sebelumnya
+            if (selectedRowIndex > 0) {
+            selectedRowIndex--;
+            selectRow(selectedRowIndex);
+            }
+        } else if (event.key === 'Enter') {
+            // Input data pada baris yang dipilih
+            if (selectedRowIndex !== -1) {
+            inputData(selectedRowIndex);
+            }
+        }
+        });
+    
+        // Fungsi untuk memilih baris
+        function selectRow(index) {
+        // Hapus kelas 'selected' dari baris sebelumnya
+        const selectedRow = document.querySelector('.selected');
+        if (selectedRow) {
+            selectedRow.classList.remove('selected');
+        }
+    
+        // Tambahkan kelas 'selected' ke baris yang dipilih
+        table.rows[index].classList.add('selected');
+        }
+    
+        // Fungsi untuk input data
+        function inputData(index) {
+        // Ambil data dari baris yang dipilih
+        const row = table.rows[index];
+        const cells = row.cells;
+    
+        // Misalnya, tampilkan data dalam alert
+        let data = '';
+        for (let i = 0; i < cells.length; i++) {
+            data += cells[i].textContent + ' ';
+        }
+        alert('Data baris yang dipilih: ' + data);
+    
+        // Anda dapat mengganti alert dengan logika input data Anda sendiri
+        // Misalnya, menampilkan modal atau form untuk mengedit data
+        }
     });
 
-    // Ambil elemen tabel
-    const table = document.getElementById('mainTablePrdList');
-
-    // Inisialisasi indeks baris yang dipilih
-    let selectedRowIndex = -1;
-
-    // Tambahkan event listener untuk tombol panah atas dan bawah
-    document.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowDown') {
-        // Pilih baris berikutnya
-        if (selectedRowIndex < table.rows.length - 1) {
-        selectedRowIndex++;
-        selectRow(selectedRowIndex);
-        }
-    } else if (event.key === 'ArrowUp') {
-        // Pilih baris sebelumnya
-        if (selectedRowIndex > 0) {
-        selectedRowIndex--;
-        selectRow(selectedRowIndex);
-        }
-    } else if (event.key === 'Enter') {
-        // Input data pada baris yang dipilih
-        if (selectedRowIndex !== -1) {
-        inputData(selectedRowIndex);
-        }
-    }
-    });
-
-    // Fungsi untuk memilih baris
-    function selectRow(index) {
-    // Hapus kelas 'selected' dari baris sebelumnya
-    const selectedRow = document.querySelector('.selected');
-    if (selectedRow) {
-        selectedRow.classList.remove('selected');
-    }
-
-    // Tambahkan kelas 'selected' ke baris yang dipilih
-    table.rows[index].classList.add('selected');
-    }
-
-    // Fungsi untuk input data
-    function inputData(index) {
-    // Ambil data dari baris yang dipilih
-    const row = table.rows[index];
-    const cells = row.cells;
-
-    // Misalnya, tampilkan data dalam alert
-    let data = '';
-    for (let i = 0; i < cells.length; i++) {
-        data += cells[i].textContent + ' ';
-    }
-    alert('Data baris yang dipilih: ' + data);
-
-    // Anda dapat mengganti alert dengan logika input data Anda sendiri
-    // Misalnya, menampilkan modal atau form untuk mengedit data
-    }
 </script>
