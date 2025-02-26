@@ -97,9 +97,10 @@
                         }).set({title:"Alert !"});
                     }
                     else if(response.success){
-                        alertify.success(response.success);
+                        $("#fieldProduk").val('');
                         loadTableData(trxNumber);
                         totalBelanja(trxNumber);
+                        alertify.success(response.success);
                     }
                     else{
                         $("#tableSelectProduk").html(response);                        
