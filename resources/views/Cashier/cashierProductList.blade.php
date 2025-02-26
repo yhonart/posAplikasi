@@ -55,9 +55,11 @@
         $("#fieldProduk").val(null).focus();        
     });   
     $(document).ready(function() {
-        loadTableData();
         let keyword = '0',
-            timer_cari_equipment = null;
+        timer_cari_equipment = null,
+        trxNumber = "{{$billNumber}}";
+        
+        loadTableData(trxNumber);
 
         $("#fieldProduk").keyup(function (e) {
             e.preventDefault();
@@ -81,8 +83,7 @@
             // alert (keyword);
             let routeIndex = "{{route('Cashier')}}",
                 urlProductList = "productList",
-                panelProductList = $("#mainListProduct"),
-                trxNumber = "{{$billNumber}}";
+                panelProductList = $("#mainListProduct");
 
             $.ajax({
                 type : 'get',
