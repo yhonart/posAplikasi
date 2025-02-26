@@ -248,11 +248,9 @@ class CashierController extends Controller
         return view('Cashier/cashierProductList', compact('billNumber'));
     }
     
-    public function cariProduk($keyword)
+    public function cariProduk($keyword, $billNumber)
     {
         $barcode = "";
-        $billNumber = $this->getInfoNumber();       
-        $checkArea = $this->checkuserInfo();
         $username = Auth::user()->name;
 
         $getBarcode = DB::table('m_product_unit')
@@ -355,7 +353,6 @@ class CashierController extends Controller
                 $this->TempInventoryController->reportBarangKeluar($product, $satuan, $location, $prodQty, $description, $billNumber, $username);
                 $this->penguranganStock($product, $location, $satuan, $prodQty);
                 $msg = array('success' => 'Data Berhasil Dimasukkan.');
-                // return view('Cashier/maintenancePage', compact('checkArea'));
 
             } else { // jika input menggunakan text                
                 $getPrice = DB::table('m_product_price_sell')

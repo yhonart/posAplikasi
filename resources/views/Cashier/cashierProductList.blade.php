@@ -86,7 +86,7 @@
 
             $.ajax({
                 type : 'get',
-                url : "{{route('Cashier')}}/cariProduk/"+keyword,
+                url : "{{route('Cashier')}}/cariProduk/"+keyword+"/"+trxNumber,
                 success : function(response){
                     if (response.warningCustomer) {
                         alertify
