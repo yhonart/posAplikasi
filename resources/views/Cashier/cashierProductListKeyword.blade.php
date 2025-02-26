@@ -33,17 +33,17 @@
                 type : 'get',
                 url : "{{route('Cashier')}}/inputItem/"+dataID+"/"+billNumber+"/"+cusGroup,
                 success : function(response){                
-                    reloadTableItem();
+                    reloadTableItem(billNumber);
                     sumTotalBelanja(billNumber)
                     cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                 }
             });
         });
 
-        function reloadTableItem(){
+        function reloadTableItem(billNumber){
             $.ajax({
                 type : 'get',
-                url : "{{route('Cashier')}}/productList/listTableTransaksi",
+                url : "{{route('Cashier')}}/productList/listTableTransaksi/"+billNumber,
                 success : function(response){                
                     $("#trLoadProduct").html(response);
                 }

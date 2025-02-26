@@ -9,7 +9,7 @@ Route::get('Cashier/inputItem/{dataID}/{billNumber}/{cusGroup}', [App\Http\Contr
 Route::get('Cashier/productList/satuan/{prdID}', [App\Http\Controllers\CashierController::class, 'inputSatuan']);
 Route::get('Cashier/productList/hargaSatuan/{idSatuan}/{prdID}', [App\Http\Controllers\CashierController::class, 'hargaSatuan']);
 Route::get('Cashier/productList/prdResponse/{prdID}', [App\Http\Controllers\CashierController::class, 'prdResponse']);
-Route::get('Cashier/productList/listTableTransaksi', [App\Http\Controllers\CashierController::class, 'listTableTransaksi']);
+Route::get('Cashier/productList/listTableTransaksi/{billNumber}', [App\Http\Controllers\CashierController::class, 'listTableTransaksi']);
 Route::get('Cashier/productList/listTableInputPrd', [App\Http\Controllers\CashierController::class, 'listTableInputPrd']);
 Route::get('Cashier/productList/stockBarang/{idSatuan}/{prdID}', [App\Http\Controllers\CashierController::class, 'stoockBarang']);
 Route::post('Cashier/productList/postProduct', [App\Http\Controllers\CashierController::class, 'postProductList']);

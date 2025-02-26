@@ -830,19 +830,14 @@ class CashierController extends Controller
             ]);
     }    
 
-    public function listTableTransaksi()
+    public function listTableTransaksi($billNumber)
     {
-
-        $billNumber = $this->getInfoNumber();
-
-        $listTrProduct = DB::table('tr_store_prod_list as a')
-            ->select('a.*', 'b.product_name as productName')
-            ->leftJoin('m_product as b', 'a.product_code', '=', 'b.idm_data_product')
+        $listTrProduct = DB::table('trans_product_list_view')            
             ->where([
-                ['a.status', '1'],
+                ['status', '1'],
                 ['from_payment_code', $billNumber]
             ])
-            ->orderBy('a.list_id', 'asc')
+            ->orderBy('list_id', 'asc')
             ->get();
 
         $stock = DB::table('view_product_stock')
