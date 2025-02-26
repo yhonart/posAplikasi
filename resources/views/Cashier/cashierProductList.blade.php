@@ -91,6 +91,7 @@
                         alertify
                         .alert(response.warningCustomer, function(){
                             alertify.message('OK');
+                            window.location.reload();
                         }).set({title:"Alert !"});
                     }
                     else if(response.success){
