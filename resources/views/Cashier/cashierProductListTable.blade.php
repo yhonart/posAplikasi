@@ -7,7 +7,7 @@
         {{$noProdList++}}
     </td>
     <td class="text-xs">
-        {{$ltrp->productName}}
+        {{$ltrp->product_name}}
     </td>
     <td class="p-0">
         <input type="text" name="editQty[]" id="editQty{{$ltrp->list_id}}" class="form-control form-control-sm " value="{{$ltrp->qty}}" onchange="saveToPrdList(this,'tr_store_prod_list','qty','{{$ltrp->list_id}}','list_id','{{$ltrp->stock}}')" onfocus="this.select()" autocomplate="off">        
