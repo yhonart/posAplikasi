@@ -211,8 +211,7 @@
             $.ajax({
                 type : 'get',
                 url : "{{route('Cashier')}}/buttonAction/deleteAllTrx/"+no_Struck,
-                success : function(data){                  
-                    loadTableData(no_Struck);                
+                success : function(data){ 
                     window.location.reload();             
                 }
             });
@@ -293,8 +292,7 @@
                 $.ajax({
                     type : 'get',
                     url : "{{route('Cashier')}}/buttonAction/deleteAllTrx/"+no_Struck,
-                    success : function(data){                  
-                        loadTableData(no_Struck);                
+                    success : function(data){   
                         window.location.reload();             
                     }
                 });
@@ -305,8 +303,7 @@
             $.ajax({
                 type : 'get',
                 url : "{{route('Cashier')}}/buttonAction/updateToSave/"+no_Struck,
-                success : function(data){                  
-                    loadTableData(no_Struck);                
+                success : function(data){   
                     window.location.reload();             
                 }
             });
