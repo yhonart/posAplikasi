@@ -212,7 +212,7 @@
                 type : 'get',
                 url : "{{route('Cashier')}}/buttonAction/deleteAllTrx/"+no_Struck,
                 success : function(data){                  
-                    loadTableData();                
+                    loadTableData(no_Struck);                
                     window.location.reload();             
                 }
             });
@@ -294,7 +294,7 @@
                     type : 'get',
                     url : "{{route('Cashier')}}/buttonAction/deleteAllTrx/"+no_Struck,
                     success : function(data){                  
-                        loadTableData();                
+                        loadTableData(no_Struck);                
                         window.location.reload();             
                     }
                 });
@@ -306,7 +306,7 @@
                 type : 'get',
                 url : "{{route('Cashier')}}/buttonAction/updateToSave/"+no_Struck,
                 success : function(data){                  
-                    loadTableData();                
+                    loadTableData(no_Struck);                
                     window.location.reload();             
                 }
             });
