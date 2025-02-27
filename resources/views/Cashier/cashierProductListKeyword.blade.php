@@ -34,8 +34,8 @@
                 url : "{{route('Cashier')}}/inputItem/"+dataID+"/"+billNumber+"/"+cusGroup,
                 success : function(response){                
                     reloadTableItem(billNumber);
-                    sumTotalBelanja(billNumber)
-                    cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
+                    sumTotalBelanja(billNumber);
+                    // cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                 }
             });
         });

@@ -84,6 +84,7 @@
             }
         });
     }
+    
     function loadDataActive(){ 
         const routeIndex = "{{route('Cashier')}}",
             urlProductList = "productList",
