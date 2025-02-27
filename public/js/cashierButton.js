@@ -18,5 +18,25 @@ window.cashier_style = {
                 panelButtonForm.html(response);
             }           
         });
+    },
+
+    load_tableItem:function(trxNumber){
+        $.ajax({
+            type : 'get',
+            url : "{{route('Cashier')}}/productList/listTableTransaksi/"+trxNumber,
+            success : function(response){                
+                $("#trLoadProduct").html(response);
+            }
+        });
+    },
+
+    load_sumBelanja:function(trxNumber){
+        $.ajax({
+            type : 'get',
+            url : "{{route('Cashier')}}/buttonAction/updateTotalBeanja/"+trxNumber,
+            success : function(response){
+                $('#totalBelanja').html(response);
+            }
+        });
     }
 }

@@ -98,8 +98,8 @@
                     }
                     else if(response.success){
                         $("#fieldProduk").val('');
-                        loadTableData(trxNumber);
-                        totalBelanja(trxNumber);
+                        cashier_style.load_tableItem(trxNumber);
+                        cashier_style.load_sumBelanja(trxNumber);
                         alertify.success(response.success);
                     }
                     else{
