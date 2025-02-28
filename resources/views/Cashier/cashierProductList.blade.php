@@ -16,11 +16,11 @@
     <tbody id="trLoadProduct"></tbody>
     <tbody id="trInputProdut">
         <form id="formInputBarangKasir">            
+            <tr data-id="idForm">
             <input type="hidden" name="transNumber" id="transNumber" value="{{$billNumber}}">
             <input type="hidden" name="prodName" id="prodName" autocomplete="off" list="browsers">
             <input type="hidden" name="prodNameHidden1" id="prodNameHidden1">
             <input type="hidden" name="hargaModal" id="hargaModal">
-            <tr>
                 <td colspan="2" class="p-0">
                     <input type="text" class="form-control form-control-sm form-control-border border-width-2" name="fieldProduk" id="fieldProduk" placeholder="Scan Barcode Disini" autocomplete="off">
                 </td>
@@ -107,7 +107,66 @@
                 });
             }
         }
-        
+        document.addEventListener('DOMContentLoaded', function() {
+            const table = document.getElementById('listTableItemTrx');
+            const rows = table.querySelectorAll('tbody tr');
+            let selectedRowIndex = -1;                         
+            // Fungsi untuk menandai baris yang dipilih
+            function selectRow(index) {
+                if (selectedRowIndex !== -1) {
+                rows[selectedRowIndex].classList.remove('selected');
+                }
+                if (index >= 0 && index < rows.length) {
+                rows[index].classList.add('selected');
+                selectedRowIndex = index;
+                }
+            }
+
+            // Event listener untuk tombol panah atas dan bawah
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'ArrowDown') {
+                event.preventDefault(); // Mencegah scroll halaman
+                if (selectedRowIndex < rows.length - 1) {
+                    selectRow(selectedRowIndex + 1);
+                }
+                } else if (event.key === 'ArrowUp') {
+                event.preventDefault(); // Mencegah scroll halaman
+                if (selectedRowIndex > 0) {
+                    selectRow(selectedRowIndex - 1);
+                }
+                } else if (event.key === 'Enter' && selectedRowIndex !== -1) {
+                // Kirim data menggunakan AJAX
+                const selectedRow = rows[selectedRowIndex];
+                const id = selectedRow.dataset.id;
+                alert (id);
+                // Contoh penggunaan fetch API
+                // fetch('/proses_data', { // Ganti dengan URL endpoint Anda
+                //     method: 'POST',
+                //     headers: {
+                //     'Content-Type': 'application/json',
+                //     },
+                //     body: JSON.stringify({ id: id, nama: nama, email: email }),
+                // })
+                // .then(response => response.json())
+                // .then(data => {
+                //     console.log('Sukses:', data);
+                //     // Lakukan sesuatu dengan respons dari server
+                // })
+                // .catch((error) => {
+                //     console.error('Error:', error);
+                // });
+                }
+            });
+
+            // Styling untuk baris yang dipilih (opsional)
+            const style = document.createElement('style');
+            style.innerHTML = `
+                #myTable tbody tr.selected {
+                background-color:rgb(0, 87, 114);
+                }
+            `;
+            document.head.appendChild(style);
+        });
         function loadTableData(trxNumber){
             $.ajax({
                 type : 'get',
@@ -127,6 +186,7 @@
                 }
             });
         }
+        
     });
 
 </script>
