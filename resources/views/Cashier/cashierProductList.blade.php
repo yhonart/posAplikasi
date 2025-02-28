@@ -79,10 +79,10 @@
                 urlProductList = "productList",
                 panelProductList = $("#mainListProduct");
             if (keyword === '0' || keyword === '') {
-                $("#fieldProduk").fadeOut("slow");
+                $("#tableSelectProduk").fadeOut("slow");
             }
             else{
-                $("#fieldProduk").fadeIn("slow");
+                $("#tableSelectProduk").fadeIn("slow");
                 $.ajax({
                     type : 'get',
                     url : "{{route('Cashier')}}/cariProduk/"+keyword+"/"+trxNumber,
