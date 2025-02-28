@@ -69,13 +69,7 @@
                 if(keyword == ''){
                     keyword = '0';
                 }
-            if (keyword !== '0') {
-                $("#tableSelectProduk").fadeIn("slow");
-                searchData(keyword)
-            }
-            else{
-                $("#tableSelectProduk").fadeOut("slow");
-            }               
+            searchData(keyword)                         
         }, 700)
         });
 
@@ -84,29 +78,34 @@
             let routeIndex = "{{route('Cashier')}}",
                 urlProductList = "productList",
                 panelProductList = $("#mainListProduct");
-
-            $.ajax({
-                type : 'get',
-                url : "{{route('Cashier')}}/cariProduk/"+keyword+"/"+trxNumber,
-                success : function(response){
-                    if (response.warningCustomer) {
-                        alertify
-                        .alert(response.warningCustomer, function(){
-                            alertify.message('OK');
-                            window.location.reload();
-                        }).set({title:"Alert !"});
+            if (keyword === '0' || keyword === '') {
+                $("#fieldProduk").fadeOut("slow");
+            }
+            else{
+                $("#fieldProduk").fadeIn("slow");
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('Cashier')}}/cariProduk/"+keyword+"/"+trxNumber,
+                    success : function(response){
+                        if (response.warningCustomer) {
+                            alertify
+                            .alert(response.warningCustomer, function(){
+                                alertify.message('OK');
+                                window.location.reload();
+                            }).set({title:"Alert !"});
+                        }
+                        else if(response.success){
+                            $("#fieldProduk").val('');
+                            loadTableData(trxNumber);
+                            totalBelanja(trxNumber);
+                            alertify.success(response.success);
+                        }
+                        else{
+                            $("#tableSelectProduk").html(response);                        
+                        }
                     }
-                    else if(response.success){
-                        $("#fieldProduk").val('');
-                        loadTableData(trxNumber);
-                        totalBelanja(trxNumber);
-                        alertify.success(response.success);
-                    }
-                    else{
-                        $("#tableSelectProduk").html(response);                        
-                    }
-                }
-            });
+                });
+            }
         }
         
         function loadTableData(trxNumber){

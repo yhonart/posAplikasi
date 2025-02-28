@@ -308,8 +308,7 @@
                 }
             });
         }
-    }) 
-    
+    });    
     // INPUT TOTAL PENGEMBALIAN
     $('#tBayar').mask('000.000.000', {reverse: true});
     $('#tSelisih').mask('000.000.000', {reverse: true});
