@@ -36,7 +36,7 @@
                     reloadTableItem(billNumber);
                     sumTotalBelanja(billNumber);
                     $("#fieldProduk").val('');
-                    $("#fieldProduk").fadeOut("slow");
+                    $("#tableSelectProduk").fadeOut("slow");
                     // cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                 }
             });
