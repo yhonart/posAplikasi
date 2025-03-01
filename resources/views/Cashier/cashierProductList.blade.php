@@ -161,9 +161,9 @@
         
     });
     document.addEventListener('DOMContentLoaded', function() {
-    const table = document.getElementById('myTable');
-    const rows = table.querySelectorAll('tbody tr');
-    let selectedRowIndex = -1;
+        const table = document.getElementById('myTable');
+        const rows = table.querySelectorAll('tbody tr');
+        let selectedRowIndex = -1;
 
     // Fungsi untuk menandai baris yang dipilih
     function selectRow(index) {
@@ -179,12 +179,13 @@
     // Event listener untuk tombol panah atas dan bawah
     document.addEventListener('keydown', function(event) {
         if (event.key === 'ArrowDown') {
-        event.preventDefault(); // Mencegah scroll halaman
-        if (selectedRowIndex < rows.length - 1) {
-            selectRow(selectedRowIndex + 1);
-        }
+            event.preventDefault(); // Mencegah scroll halaman
+            if (selectedRowIndex < rows.length - 1) {
+                selectRow(selectedRowIndex + 1);
+            }
+            alert("Tombol Turun");
         } else if (event.key === 'ArrowUp') {
-        event.preventDefault(); // Mencegah scroll halaman
+            event.preventDefault(); // Mencegah scroll halaman
         if (selectedRowIndex > 0) {
             selectRow(selectedRowIndex - 1);
         }
