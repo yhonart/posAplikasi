@@ -1,61 +1,82 @@
-<div class="card card-body p-2 table-responsive">
-    <p class="font-weight-bold text-muted">Report Hari Ini : {{date("d-M-Y")}}</p>
-    <table class="table table-sm  table-valign-middle" id="labaRugiReport">
-        <thead class="bg-gray-dark">
-            <tr>
-                <th>Nama Barang</th>
-                <th>Satuan</th>
-                <th>Qty</th>
-                <th>Harga Jual</th>
-                <th>Harga Modal</th>
-                <th>Tot. Penj.(Rp)</th>
-                <th>Tot. Hpp</th>
-                <th>Laba/Rugi<br>(Selisih)</th>
-                <th>Laba/Rugi<br>(Margin)</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($mProduct as $mpd)
+<?php
+    $totHpp = 0;
+    $selisih = 0;
+    $margin = 0;
+?>
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            Tanggal Report
+        </div>
+    </div>
+    <div class="card-body p-2 table-responsive">
+        <table class="table table-sm  table-valign-middle" id="labaRugiReport">
+            <thead class="bg-gray-dark">
                 <tr>
-                    <td>
-                        <span title="{{$mpd->list_id}}">{{$mpd->product_name}}</span>                        
-                    </td>
-                    <td>{{$mpd->unit}}</td>
-                    <td>{{$mpd->qty}}</td>
-                    <td class="text-right">{{number_format($mpd->m_price,'0',',','.')}}</td>
-                    <td class="text-right">{{number_format($mpd->capital_price,'0',',','.')}}</td>
-                    <td class="text-right">{{number_format($mpd->t_price,'0',',','.')}}</td>
-                    <td class="text-right">
-                        <?php
-                            $totHpp = $mpd->capital_price * $mpd->qty;
-                            echo number_format($totHpp, '0',',','.');
-                        ?>
-                    </td>
-                    <td class="text-right">
-                        <?php
-                            $selisih = $mpd->t_price - $totHpp;
-                            echo number_format($selisih,'0',',','.');
-                        ?>
-                    </td>
-                    <td>
-
-                    </td>
+                    <th>Nama Barang</th>
+                    <th>Satuan</th>
+                    <th>Qty</th>
+                    <th class="text-right">Harga Jual</th>
+                    <th class="text-right">Harga Modal</th>
+                    <th class="text-right">Tot. Penj.(Rp)</th>
+                    <th class="text-right">Tot. Hpp</th>
+                    <th class="text-right">Laba/Rugi<br>(Selisih)</th>
+                    <th class="text-right">Laba/Rugi<br>(Margin)</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach($mProduct as $mpd)
+                    <tr>
+                        <td colspan="9" class="bg-info">
+                            <span title="{{$mpd->product_code}}">{{$mpd->product_name}}</span>                        
+                        </td>                        
+                    </tr>
+                    @foreach($detailItem as $dit)
+                        @if($dit->product_code == $mpd->product_code)
+                            <tr>
+                                <td>{{$dit->product_name}}</td>
+                                <td>{{$dit->unit}}</td>                                
+                                <td>{{$dit->qty}}</td>                                
+                                <td class="text-right">{{number_format($dit->unit_price,'0',',','.')}}</td>                                
+                                <td class="text-right">{{number_format($dit->m_price,'0',',','.')}}</td>                                
+                                <td class="text-right">{{number_format($dit->t_price,'0',',','.')}}</td>                                
+                                <td class="text-right">
+                                    <?php
+                                        $totHpp = $dit->m_price * $dit->qty;
+                                        echo number_format($totHpp,'0',',','.');
+                                    ?>
+                                </td>  
+                                <td class="text-right">
+                                    <?php
+                                        $selisih = $dit->unit_price - $dit->m_price;
+                                        echo number_format($selisih,'0',',','.');
+                                    ?>
+                                </td>                              
+                                <td class="text-right">
+                                    <?php
+                                        $margin = $selisih * $dit->qty;
+                                        echo number_format($margin,'0',',','.');
+                                    ?>
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 <script>
-$(function () {
-    $('#labaRugiReport').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-});
+// $(function () {
+//     $('#labaRugiReport').DataTable({
+//         "paging": true,
+//         "lengthChange": true,
+//         "searching": true,
+//         "ordering": true,
+//         "info": true,
+//         "autoWidth": false,
+//         "responsive": true,
+//     });
+// });
 </script>
 

@@ -52,7 +52,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-sm btn-info "><i class="fa-solid fa-filter"></i> Filter</button>
+                                <button type="button" class="btn btn-sm btn-info " id="reCallFilter"><i class="fa-solid fa-filter"></i> Filter</button>
                                 <button type="button" class="btn btn-sm btn-success " id="reportToExcel"><i class="fa-solid fa-file-excel"></i> Download Excel</button>
                                 <button type="button" class="btn btn-sm btn-danger " id="reportToPdf"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
                             </div>
@@ -76,17 +76,24 @@
             todayHighlight: true,
         });
         $('.datetimepicker-input').datepicker("setDate",new Date());
-
-        $.ajax({
-            url: "{{route('lapLabaRugi')}}/getDisplayAll",
-            type: 'GET',
-            success: function (response) {                
-                $("#displayFilterTable").html(response);
-            }
-        });
     });
 
-    $(document).ready(function(){        
+    $(document).ready(function(){   
+
+        let productName = '0',
+            fromDate = '0',
+            endDate = '0';
+
+        recallItem (productName, fromDate, endDate);
+            
+        $("#reCallFilter").on('click', function(){
+            let productName = $("#produk").val(),
+                fromDate = $("input[name=fromDate]").val(),
+                endDate = $("input[name=endDate]").val();
+
+            recallItem (productName, fromDate, endDate);
+        })
+        
         $("#reportToExcel").on('click', function(){
             let productName = $("#produk").val(),
                 fromDate = $("input[name=fromDate]").val(),
@@ -97,9 +104,19 @@
 
         $("#reportToPdf").on('click', function(){
             window.open("{{route('lapLabaRugi')}}/getDownloadPdf/"+productName+"/"+fromDate+"/"+endDate+"/"+tipeCetak,"_blank");
-        });
-        
+        }); 
+
+        function recallItem (productName, fromDate, endDate){
+            $.ajax({
+                url: "{{route('lapLabaRugi')}}/getDisplayAll/"+productName+"/"+fromDate+"/"+endDate,
+                type: 'GET',
+                success: function (response) {                
+                    $("#displayFilterTable").html(response);
+                }
+            });
+        }
     });
+
 
 </script>
 @endsection

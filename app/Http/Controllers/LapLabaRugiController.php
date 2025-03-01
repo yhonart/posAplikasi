@@ -17,19 +17,43 @@ class LapLabaRugiController extends Controller
         return view('lapLabaRugi/main', compact('mProduct'));
     }
 
-    public function getDisplayAll(){
+    public function getDisplayAll($prdID, $fromDate,$endDate){
         $today = date("Y-m-d");
-        $mProduct = DB::table('tr_store_prod_list as a')
-            ->select('a.*','b.product_name')
-            ->leftJoin('m_product as b', 'a.product_code','=','b.idm_data_product')
-            ->where([
-                ['a.date',$today],
-                ['status','4']
-                ])
-            ->orderBy('b.product_name','ASC')
-            ->get();
+        $mProduct = DB::table('trans_product_list_view');
+            $mProduct = $mProduct->select('product_name','product_code');
+            if ($prdID <> '0') {
+                $mProduct = $mProduct->where([
+                        ['product_code',$prdID]
+                ]);            
+            }
+            $mProduct = $mProduct->where('status','4');
+            if ($fromDate <> '0' OR $endDate <> '0'){
+                $mProduct = $mProduct->whereBetween('date',[$fromDate, $endDate]);
+            }
+            else {
+                $mProduct = $mProduct->where('date',$today);
+            }
+            $mProduct = $mProduct->orderBy('product_name','ASC');
+            $mProduct = $mProduct->groupBy('product_name');
+            $mProduct = $mProduct->get();
 
-        return view('lapLabaRugi/displayAllTable', compact('mProduct'));
+        $detailItem = DB::table('trans_product_list_view');            
+            if ($prdID <> '0') {
+                $detailItem = $detailItem->where([
+                        ['product_code',$prdID]
+                ]);            
+            }
+            $detailItem = $detailItem->where('status','4');
+            if ($fromDate <> '0' OR $endDate <> '0'){
+                $detailItem = $detailItem->whereBetween('date',[$fromDate, $endDate]);
+            }
+            else {
+                $detailItem = $detailItem->where('date',$today);
+            }
+            $detailItem = $detailItem->orderBy('product_name','ASC');
+            $detailItem = $detailItem->get();
+
+        return view('lapLabaRugi/displayAllTable', compact('mProduct','detailItem'));
     }
 
     public function getDownloadExcel($prdID, $fromDate, $endDate, $typeCetak){        
@@ -70,7 +94,6 @@ class LapLabaRugiController extends Controller
         $sumPrice = $sumPrice->orderBy('b.product_name','ASC');
         $sumPrice = $sumPrice->groupBy('a.product_code');
         $sumPrice = $sumPrice->get();
-
         
 
         return view('lapLabaRugi/getDownloadExcel', compact('mProduct','tableProduct','sumPrice','fromDate','endDate','mCompany'));
