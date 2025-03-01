@@ -176,9 +176,9 @@
         }
     }
 
-    // Event listener untuk tombol panah atas dan bawah
+    // Event listener untuk tombol panah atas dan bawah    
     document.addEventListener('keydown', function(event) {
-        if (event.key === 'ArrowDown') {
+        if (event.key === 'ArrowDown' || event.key === 40) {
             event.preventDefault(); // Mencegah scroll halaman
             if (selectedRowIndex < rows.length - 1) {
                 selectRow(selectedRowIndex + 1);
