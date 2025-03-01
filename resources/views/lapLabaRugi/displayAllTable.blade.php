@@ -27,7 +27,7 @@
             <tbody>
                 @foreach($mProduct as $mpd)
                     <tr>
-                        <td colspan="9" class="bg-info">
+                        <td colspan="9" class="bg-gray font-weight-bold">
                             <span title="{{$mpd->product_code}}">{{$mpd->product_name}}</span>                        
                         </td>                        
                     </tr>
