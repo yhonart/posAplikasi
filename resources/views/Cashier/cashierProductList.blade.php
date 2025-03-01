@@ -1,5 +1,10 @@
+<style>
+    td.active{
+    border:1px solid blue;font-weight:bold;color:yellow;background-color:red}
+    td{padding:5px;text-align:center}
+</style>
 <p class="bg-danger p-1">Halaman ini sedang proses perbaikan 🙏</p>
-<table id="myTable" border="1">
+<table id="navigate" border="1">
   <thead>
     <tr>
       <th>ID</th>
@@ -134,44 +139,58 @@
                 });
             }
         }
-        document.addEventListener('DOMContentLoaded', () => {
-            const table = document.getElementById('myTable');
-            const rows = table.getElementsByTagName('tr');
-            let selectedRowIndex = -1;
+        var active = 0;
+            $('#navigate td').each(function(idx){$(this).html(idx);});
+            rePosition();
 
-            function selectRow(index) {
-                if (selectedRowIndex >= 0) {
-                    rows[selectedRowIndex].classList.remove('selected');
-                }
-                selectedRowIndex = index;
-                if (selectedRowIndex >= 0) {
-                    rows[selectedRowIndex].classList.add('selected');
-                }
-            }
-
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'ArrowDown') {
-                    selectRow(Math.min(rows.length - 1, selectedRowIndex + 1));
-                } else if (event.key === 'ArrowUp') {
-                    selectRow(Math.max(0, selectedRowIndex - 1));
-                } else if (event.key === 'Enter' && selectedRowIndex >= 0) {
-                    const selectedRowData = rows[selectedRowIndex].innerText;
-                    sendData(selectedRowData);
-                }
+            $(document).keydown(function(e){
+                reCalculate(e);
+                rePosition();
+                return false;
+            });
+                
+            $('td').click(function(){
+            active = $(this).closest('table').find('td').index(this);
+            rePosition();
             });
 
-            function sendData(data) {
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', '/submit', true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        alert('Data submitted: ' + data);
-                    }
-                };
-                xhr.send(JSON.stringify({ rowData: data }));
+
+            function reCalculate(e){
+                var rows = $('#navigate tr').length;
+                var columns = $('#navigate tr:eq(0) td').length;
+                //alert(columns + 'x' + rows);
+                
+                if (e.keyCode == 37) { //move left or wrap
+                    active = (active>0)?active-1:active;
+                }
+                if (e.keyCode == 38) { // move up
+                    active = (active-columns>=0)?active-columns:active;
+                }
+                if (e.keyCode == 39) { // move right or wrap
+                active = (active<(columns*rows)-1)?active+1:active;
+                }
+                if (e.keyCode == 40) { // move down
+                    active = (active+columns<=(rows*columns)-1)?active+columns:active;
+                }
             }
-        });
+
+            function rePosition(){
+                $('.active').removeClass('active');
+                $('#navigate tr td').eq(active).addClass('active');
+                scrollInView();
+            }
+
+            function scrollInView(){
+                var target = $('#navigate tr td:eq('+active+')');
+                if (target.length)
+                {
+                    var top = target.offset().top;
+                    
+                    $('html,body').stop().animate({scrollTop: top-100}, 400);
+                    return false;
+                }
+            }
+
 
 
         function loadTableData(trxNumber){
