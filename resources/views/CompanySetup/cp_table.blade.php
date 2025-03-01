@@ -13,16 +13,8 @@
 <div class="content">
     <div class="container-fluid">            
         <div class="row">
-            <div class="col-12">
-                <?php
-                    if ($countCompany >= '1') {
-                        $count = "Disabled";
-                    }
-                    else{
-                        $count = "";
-                    }
-                ?>
-                <button class="btn bg-gradient-lightblue" id="btnCreate" {{$count}}>Input Nama Usaha</button>
+            <div class="col-12">                
+                <button class="btn btn-primary btn-sm font-weight-bold" id="btnCreate">Tambah Nama Usaha</button>
             </div>
         </div>
         <div class="row mt-2">

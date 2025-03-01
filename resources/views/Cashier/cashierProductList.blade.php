@@ -1,4 +1,31 @@
-<!--<p class="bg-danger p-1">Halaman ini sedang proses perbaikan 🙏</p>-->
+<p class="bg-danger p-1">Halaman ini sedang proses perbaikan 🙏</p>
+<table id="myTable">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nama</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-id="1" data-nama="John Doe" data-email="john@example.com">
+      <td>1</td>
+      <td>John Doe</td>
+      <td>john@example.com</td>
+    </tr>
+    <tr data-id="2" data-nama="Jane Smith" data-email="jane@example.com">
+      <td>2</td>
+      <td>Jane Smith</td>
+      <td>jane@example.com</td>
+    </tr>
+    <tr data-id="3" data-nama="Peter Jones" data-email="peter@example.com">
+      <td>3</td>
+      <td>Peter Jones</td>
+      <td>peter@example.com</td>
+    </tr>
+  </tbody>
+</table>
+
 <table class="table table-sm table-valign-middle table-head-fixed table-hover table-bordered" id="listTableItemTrx">
     <thead class="text-center">
         <tr>
@@ -108,7 +135,7 @@
             }
         }
         document.addEventListener('DOMContentLoaded', function() {
-            const table = document.getElementById('listTableItemTrx');
+            const table = document.getElementById('myTable');
             const rows = table.querySelectorAll('tbody tr');
             let selectedRowIndex = -1;                         
             // Fungsi untuk menandai baris yang dipilih
@@ -167,6 +194,8 @@
             `;
             document.head.appendChild(style);
         });
+
+
         function loadTableData(trxNumber){
             $.ajax({
                 type : 'get',
