@@ -37,6 +37,7 @@
                     sumTotalBelanja(billNumber);
                     $("#fieldProduk").val('');
                     $("#tableSelectProduk").fadeOut("slow");
+                    $("#fieldProduk").val(null).focus();
                     // cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                 }
             });
