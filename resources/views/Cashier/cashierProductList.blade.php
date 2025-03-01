@@ -4,7 +4,7 @@
     td{padding:5px;text-align:center}
 </style>
 <p class="bg-danger p-1">Halaman ini sedang proses perbaikan 🙏</p>
-<table id="navigate" border="1">
+<table id="navigate" border="1" class="first-element">
   <thead>
     <tr>
       <th>ID</th>
@@ -160,54 +160,50 @@
         }
         
     });
-    var active = 0;
-        $('#navigate td').each(function(idx){$(this).html(idx);});
-        rePosition();
-        $(document).keydown(function(e){
-            reCalculate(e);
-            rePosition();
-            return false;
-        });
-            
-        $('td').click(function(){
-            active = $(this).closest('table').find('td').index(this);
-            rePosition();
-        });
+    let start = document.querySelector('.first-element');
+    start.focus();
+    start.style.backgroundColor = '#50b988';
+    start.style.color = 'white';
 
+    const changeStyle = (sibling) => {
+    if (sibling !== null) {
+        start.focus();
+        start.style.backgroundColor = '';
+        start.style.color = '';
+        sibling.focus();
+        sibling.style.backgroundColor = '#50b988';
+        sibling.style.color = 'white';
+        start = sibling;
+    }
+    }
 
-        function reCalculate(e){
-            var rows = $('#navigate tr').length;
-            var columns = $('#navigate tr:eq(0) td').length;
-            //alert(columns + 'x' + rows);
-            
-            if (e.keyCode == 37) { //move left or wrap
-                active = (active>0)?active-1:active;
-            }
-            if (e.keyCode == 38) { // move up
-                active = (active-columns>=0)?active-columns:active;
-            }
-            if (e.keyCode == 39) { // move right or wrap
-            active = (active<(columns*rows)-1)?active+1:active;
-            }
-            if (e.keyCode == 40) { // move down
-                active = (active+columns<=(rows*columns)-1)?active+columns:active;
-            }
+    const checkKey = (event) => {
+    event = event || window.event;
+    const idx = start.cellIndex;
+
+    if (event.keyCode === 38) {
+        // up arrow
+        const previousRow = start.parentElement.previousElementSibling;
+        if (previousRow !== null) {
+        const previousSibling = previousRow.cells[idx];
+        changeStyle(previousSibling);
         }
-
-        function rePosition(){
-            $('.active').removeClass('active');
-            $('#navigate tr td').eq(active).addClass('active');
-            scrollInView();
+    } else if (event.keyCode === 40) {
+        // down arrow
+        const nextRow = start.parentElement.nextElementSibling;
+        if (nextRow !== null) {
+        const nextSibling = nextRow.cells[idx];
+        changeStyle(nextSibling);
         }
-
-        function scrollInView(){
-            var target = $('#navigate tr td:eq('+active+')');
-            if (target.length)
-            {
-                var top = target.offset().top;
-                
-                $('html,body').stop().animate({scrollTop: top-100}, 400);
-                return false;
-            }
-        }
+    } else if (event.keyCode === 37) {
+        // left arrow
+        const previousSibling = start.previousElementSibling;
+        changeStyle(previousSibling);
+    } else if (event.keyCode === 39) {
+        // right arrow
+        const nextsibling = start.nextElementSibling;
+        changeStyle(nextsibling);
+    }
+    }
+    document.onkeydown = checkKey;
 </script>
