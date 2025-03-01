@@ -1,5 +1,5 @@
 <p class="bg-danger p-1">Halaman ini sedang proses perbaikan 🙏</p>
-<table id="myTable">
+<table id="myTable" border="1">
   <thead>
     <tr>
       <th>ID</th>
@@ -134,65 +134,43 @@
                 });
             }
         }
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             const table = document.getElementById('myTable');
-            const rows = table.querySelectorAll('tbody tr');
-            let selectedRowIndex = -1;                         
-            // Fungsi untuk menandai baris yang dipilih
+            const rows = table.getElementsByTagName('tr');
+            let selectedRowIndex = -1;
+
             function selectRow(index) {
-                if (selectedRowIndex !== -1) {
-                rows[selectedRowIndex].classList.remove('selected');
+                if (selectedRowIndex >= 0) {
+                    rows[selectedRowIndex].classList.remove('selected');
                 }
-                if (index >= 0 && index < rows.length) {
-                rows[index].classList.add('selected');
                 selectedRowIndex = index;
+                if (selectedRowIndex >= 0) {
+                    rows[selectedRowIndex].classList.add('selected');
                 }
             }
 
-            // Event listener untuk tombol panah atas dan bawah
-            document.addEventListener('keydown', function(event) {
+            document.addEventListener('keydown', (event) => {
                 if (event.key === 'ArrowDown') {
-                event.preventDefault(); // Mencegah scroll halaman
-                if (selectedRowIndex < rows.length - 1) {
-                    selectRow(selectedRowIndex + 1);
-                }
+                    selectRow(Math.min(rows.length - 1, selectedRowIndex + 1));
                 } else if (event.key === 'ArrowUp') {
-                event.preventDefault(); // Mencegah scroll halaman
-                if (selectedRowIndex > 0) {
-                    selectRow(selectedRowIndex - 1);
-                }
-                } else if (event.key === 'Enter' && selectedRowIndex !== -1) {
-                // Kirim data menggunakan AJAX
-                const selectedRow = rows[selectedRowIndex];
-                const id = selectedRow.dataset.id;
-                alert (id);
-                // Contoh penggunaan fetch API
-                // fetch('/proses_data', { // Ganti dengan URL endpoint Anda
-                //     method: 'POST',
-                //     headers: {
-                //     'Content-Type': 'application/json',
-                //     },
-                //     body: JSON.stringify({ id: id, nama: nama, email: email }),
-                // })
-                // .then(response => response.json())
-                // .then(data => {
-                //     console.log('Sukses:', data);
-                //     // Lakukan sesuatu dengan respons dari server
-                // })
-                // .catch((error) => {
-                //     console.error('Error:', error);
-                // });
+                    selectRow(Math.max(0, selectedRowIndex - 1));
+                } else if (event.key === 'Enter' && selectedRowIndex >= 0) {
+                    const selectedRowData = rows[selectedRowIndex].innerText;
+                    sendData(selectedRowData);
                 }
             });
 
-            // Styling untuk baris yang dipilih (opsional)
-            const style = document.createElement('style');
-            style.innerHTML = `
-                #myTable tbody tr.selected {
-                background-color:rgb(0, 87, 114);
-                }
-            `;
-            document.head.appendChild(style);
+            function sendData(data) {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/submit', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        alert('Data submitted: ' + data);
+                    }
+                };
+                xhr.send(JSON.stringify({ rowData: data }));
+            }
         });
 
 
