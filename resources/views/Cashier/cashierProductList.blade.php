@@ -4,7 +4,7 @@
     td{padding:5px;text-align:center}
 </style>
 <p class="bg-danger p-1">Halaman ini sedang proses perbaikan 🙏</p>
-<table id="navigate" border="1" class="first-element">
+<table id="myTable" border="1">
   <thead>
     <tr>
       <th>ID</th>
@@ -160,50 +160,67 @@
         }
         
     });
-    let start = document.querySelector('.first-element');
-    start.focus();
-    start.style.backgroundColor = '#50b988';
-    start.style.color = 'white';
+    document.addEventListener('DOMContentLoaded', function() {
+    const table = document.getElementById('myTable');
+    const rows = table.querySelectorAll('tbody tr');
+    let selectedRowIndex = -1;
 
-    const changeStyle = (sibling) => {
-    if (sibling !== null) {
-        start.focus();
-        start.style.backgroundColor = '';
-        start.style.color = '';
-        sibling.focus();
-        sibling.style.backgroundColor = '#50b988';
-        sibling.style.color = 'white';
-        start = sibling;
-    }
-    }
-
-    const checkKey = (event) => {
-    event = event || window.event;
-    const idx = start.cellIndex;
-
-    if (event.keyCode === 38) {
-        // up arrow
-        const previousRow = start.parentElement.previousElementSibling;
-        if (previousRow !== null) {
-        const previousSibling = previousRow.cells[idx];
-        changeStyle(previousSibling);
+    // Fungsi untuk menandai baris yang dipilih
+    function selectRow(index) {
+        if (selectedRowIndex !== -1) {
+        rows[selectedRowIndex].classList.remove('selected');
         }
-    } else if (event.keyCode === 40) {
-        // down arrow
-        const nextRow = start.parentElement.nextElementSibling;
-        if (nextRow !== null) {
-        const nextSibling = nextRow.cells[idx];
-        changeStyle(nextSibling);
+        if (index >= 0 && index < rows.length) {
+        rows[index].classList.add('selected');
+        selectedRowIndex = index;
         }
-    } else if (event.keyCode === 37) {
-        // left arrow
-        const previousSibling = start.previousElementSibling;
-        changeStyle(previousSibling);
-    } else if (event.keyCode === 39) {
-        // right arrow
-        const nextsibling = start.nextElementSibling;
-        changeStyle(nextsibling);
     }
-    }
-    document.onkeydown = checkKey;
+
+    // Event listener untuk tombol panah atas dan bawah
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowDown') {
+        event.preventDefault(); // Mencegah scroll halaman
+        if (selectedRowIndex < rows.length - 1) {
+            selectRow(selectedRowIndex + 1);
+        }
+        } else if (event.key === 'ArrowUp') {
+        event.preventDefault(); // Mencegah scroll halaman
+        if (selectedRowIndex > 0) {
+            selectRow(selectedRowIndex - 1);
+        }
+        } else if (event.key === 'Enter' && selectedRowIndex !== -1) {
+        // Kirim data menggunakan AJAX
+        const selectedRow = rows[selectedRowIndex];
+        const id = selectedRow.dataset.id;
+        const nama = selectedRow.dataset.nama;
+        const email = selectedRow.dataset.email;
+
+        // Contoh penggunaan fetch API
+        fetch('/proses_data', { // Ganti dengan URL endpoint Anda
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: id, nama: nama, email: email }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Sukses:', data);
+            // Lakukan sesuatu dengan respons dari server
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        }
+    });
+
+    // Styling untuk baris yang dipilih (opsional)
+    const style = document.createElement('style');
+    style.innerHTML = `
+        #myTable tbody tr.selected {
+        background-color: #f0f0f0;
+        }
+    `;
+    document.head.appendChild(style);
+    });
 </script>
