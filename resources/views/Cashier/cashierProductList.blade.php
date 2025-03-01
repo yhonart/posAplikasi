@@ -1,4 +1,4 @@
-<p class="bg-danger p-1">Halaman ini sedang proses perbaikan 🙏</p>
+<!-- <p class="bg-danger p-1">Halaman ini sedang proses perbaikan 🙏</p> -->
 <table class="table table-sm table-valign-middle table-head-fixed table-hover table-bordered" id="listTableItemTrx">
     <thead class="text-center">
         <tr>
