@@ -16,7 +16,7 @@
 <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
 <hr>
 <div class="table-responsive">
-    <table class="table table-sm table-hover table-valign-mmiddle table-bordered" id="tableKasKecil">
+    <table class="table table-sm table-hover table-valign-middle" id="tableKasKecil">
         <thead class="bg-gray-dark">
             <tr>
                 <th>Tanggal</th>
@@ -70,7 +70,7 @@
                     <td>
                         {{$tbPengeluaran->no_polisi}}
                     </td>
-                    <td>{{$tbPengeluaran->kas_persCode}}#{{$tbPengeluaran->kas_persName}}</td>
+                    <td>{{$tbPengeluaran->kas_persName}}</td>
                     <td class="text-right font-weight-bold">
                         {{number_format($tbPengeluaran->nominal_modal,'0',',','.')}}
                     </td>
