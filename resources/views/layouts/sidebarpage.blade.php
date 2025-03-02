@@ -73,10 +73,10 @@
             background-color: #024a70;
             color: #fafaf9;
         }         */
-        .active { 
+        /* .active { 
             background-color: #f3f4f6 !important; 
             color: #111827; 
-        }      
+        }       */
         button:hover {  
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);  /* Enhanced shadow on hover */
         } 
