@@ -99,7 +99,7 @@ class HomeController extends Controller
         
         if($role == '1'){
             if ($userRoles == '1') {
-                return view('Dashboard/DashboardTransaksi', compact('userKasir'));
+                return view('Dashboard/mainAdminDashboard', compact('userKasir'));
             }
             else {
                 return view('Dashboard/WelcomeHome', compact('dbUser'));
