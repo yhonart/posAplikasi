@@ -213,7 +213,8 @@
                 if (customer == null) {
                     customer = '0';
                 }
-            window.open("{{route('Cashier')}}/buttonAction/trxReportRecapPdf/"+fromdate+"/"+enddate+"/"+customer, "_blank");
+                alert (customer);
+            // window.open("{{route('Cashier')}}/buttonAction/trxReportRecapPdf/"+fromdate+"/"+enddate+"/"+customer, "_blank");
         })
     });
     function funcDataPenjualan(fromdate, enddate, keyword, method, customers){        
