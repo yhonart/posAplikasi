@@ -4,14 +4,14 @@
     $margin = 0;
 ?>
 <div class="card">
-    <div class="card-header">
+    <div class="card-header border-0">
         <div class="card-title">
-            Tanggal Report
+            Ringkasan Laporan Produk
         </div>
     </div>
     <div class="card-body p-2 table-responsive">
-        <table class="table table-sm  table-valign-middle" id="labaRugiReport">
-            <thead class="bg-gray-dark">
+        <table class="table table-sm table-valign-middle table-hover" id="labaRugiReport">
+            <thead>
                 <tr>
                     <th>Nama Barang</th>
                     <th>Satuan</th>
