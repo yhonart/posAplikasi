@@ -36,6 +36,7 @@ Route::get('/', function () {
     }
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');    
+Route::get('/home/dashPenjualan', [App\Http\Controllers\HomeController::class, 'dashPenjualan']);    
 Route::get('/home/storeName', [App\Http\Controllers\HomeController::class, 'storeName']);
 Route::get('/home/changeCloseData', [App\Http\Controllers\HomeController::class, 'changeCloseData']);
 Route::get('/home/getMenu', [App\Http\Controllers\HomeController::class, 'getMenu']);

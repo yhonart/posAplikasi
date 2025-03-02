@@ -41,4 +41,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(function () {
+        let display = "dashPenjualan";
+        $.ajax({
+            type : 'get',
+            url : "{{route('home')}}/"+display,
+            success : function(response){
+                $("#displayAdminDashboard").html(response);
+            }
+        });
+    }); 
+</script>
 @endsection

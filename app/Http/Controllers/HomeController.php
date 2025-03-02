@@ -99,7 +99,7 @@ class HomeController extends Controller
         
         if($role == '1'){
             if ($userRoles == '1') {
-                return view('Dashboard/mainAdminDashboard', compact('userKasir'));
+                return view('Dashboard/DashboardTransaksi', compact('userKasir'));
             }
             else {
                 return view('Dashboard/WelcomeHome', compact('dbUser'));
@@ -112,6 +112,12 @@ class HomeController extends Controller
         //     $this->middleware('guest')->except('logout');
         //     return view ('auth/login');
         // }
+    }
+
+    public function dashPenjualan (){
+        $userKasir = DB::table('users')
+            ->get();
+        return view('Dashboard/DashboardTransaksi', compact('userKasir'));
     }
     
     public function searchingMenu ($keyword){
