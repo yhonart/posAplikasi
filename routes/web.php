@@ -44,6 +44,7 @@ Route::get('home/mainMenu', [App\Http\Controllers\HomeController::class, 'mainMe
 Route::get('home/GetGlobaDelete/WithDeleteId/{dataId}/{dataTb}/{dataCol}', [App\Http\Controllers\HomeController::class, 'GlobalDelete']);
 Route::post('home/GlobalLiveEditTable', [App\Http\Controllers\HomeController::class, 'GlobalEditTable']);
 Route::get('/home/searchingMenu/{keyword}', [App\Http\Controllers\HomeController::class, 'searchingMenu']);
+Route::get('home/displayPembelian', [App\Http\Controllers\DashboardController::class, 'displayPembelian']);
 
 Route::get('Stock', [App\Http\Controllers\StockListController::class, 'getMenu'])->name('Stock');
 Route::get('MoU', [App\Http\Controllers\MoUController::class, 'mainIndex'])->name('MoU');
@@ -71,7 +72,6 @@ Route::get('Dashboard/loadDataTransaksi/{fromDate}/{endDate}', [App\Http\Control
 Route::get('Dashboard/modalLogTrx/{noBill}', [App\Http\Controllers\DashboardController::class, 'modalLogTrx']);
 
 Route::get('Dashboard/garphPembelian/{year}/{quartal}', [App\Http\Controllers\DashboardController::class, 'garphPembelian']);
-Route::get('Dashboard/displayPembelian', [App\Http\Controllers\DashboardController::class, 'displayPembelian']);
 Route::get('Dashboard/displayOnTable/tablePenjualan/{fromDate}/{endDate}', [App\Http\Controllers\DashboardController::class, 'tablePenjualan']);
 Route::get('Dashboard/displayOnTable/tableHutang/{fromDate}/{endDate}', [App\Http\Controllers\DashboardController::class, 'tableHutang']);
 Route::get('Dashboard/displayOnTable/tablePembelian/{fromDate}/{endDate}', [App\Http\Controllers\DashboardController::class, 'tablePembelian']);

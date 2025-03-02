@@ -10,22 +10,13 @@
             <label class="form-label">s.d Tanggal</label>
             <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="sampaiTanggal" id="sampaiTanggal">
         </div>
-    </div>   
-    <div class="col-12 col-md-3">
-        <a href="#displayDashboardPurchasing" class="btn btn-success rounded-pill float-sm-right">Go to Purchase Info</a>                
-    </div>         
+    </div>       
 </div>
 <div class="row">
     <div class="col-12">
         <div id="loadDataDashboard"></div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div id="displayDashboardPurchasing"></div>
-    </div>
-</div>
-
 <script>
     $(function() {
         $( ".datetimepicker-input" ).datepicker({
@@ -34,14 +25,7 @@
             todayHighlight: true,
         });
         $('.datetimepicker-input').datepicker("setDate",new Date());
-        $('#searchDataReturn').val('').focus();
-        $.ajax({
-            type : 'get',
-            url : "{{route('Dashboard')}}/displayPembelian",
-            success : function(response){
-                $("#displayDashboardPurchasing").html(response);
-            }
-        });
+        $('#searchDataReturn').val('').focus();        
     });
     
     $(document).ready(function(){
