@@ -210,6 +210,9 @@
             let fromdate = $('#fromDatePenjualan').val(),
                 enddate = $('#endDatePenjualan').val(),
                 customer = $("#customer").val();
+                if (customer == null) {
+                    customer = '0';
+                }
             window.open("{{route('Cashier')}}/buttonAction/trxReportRecapPdf/"+fromdate+"/"+enddate+"/"+customer, "_blank");
         })
     });
