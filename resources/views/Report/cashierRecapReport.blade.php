@@ -83,7 +83,7 @@
     <tbody>
         <tr>
             <td>
-                @if($customer <> '0' OR $customer <> '' OR $customer <> null)
+                @if($customer <> '0' OR $customer <> '' OR $customer <> "null")
                     {{$customerIden->customer_store}} <small class="text-muted">{{$customerIden->address}}</small>
                 @else
                     Penjualan Dari Tgl {{$fromDate}} s.d {{$endDate}}
