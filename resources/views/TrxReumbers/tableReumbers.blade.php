@@ -36,7 +36,7 @@
                             <td>
                                 <a href="#" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
                                 @if($tr->status == '1')
-                                    <a href="#" class="btn btn-success btn-sm APPROVE" data-id="{{$tr->reumbers_id}}"><i class="fa-solid fa-check"></i></a>
+                                    <a href="#" class="btn btn-success btn-sm APPROVE" data-id="{{$tr->reumbers_id}}" id="btnApprove{{$tr->reumbers_id}}"><i class="fa-solid fa-check"></i></a>
                                 @endif
                             </td>
                         </tr>
@@ -69,7 +69,7 @@
                     url : "{{route('trxReumbers')}}/AppoveReumbers/"+dataId,
                     success : function(response){
                         $(".LOAD-SPINNER").fadeOut();
-                        $("#divPageProduct").html(response);
+                        $(this).closest("tr").find("#btnApprove"+dataID).animate({ opacity: "hide" }, "slow");
                     }
                 });
             },
