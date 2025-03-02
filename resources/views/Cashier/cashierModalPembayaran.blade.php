@@ -496,10 +496,11 @@
             let totalHutang = parseInt(replaceKredit) + parseInt(hutangBelanja), //Menjumlahkan hutang sebelumnya dengan hutang belanja sekarang!
                 totalHarusDibayar = parseInt(replacetBelanja) + parseInt(replaceKredit);
 
-            if (kreditLimit === '0' &&  replaceTotalPembayaran < valBelanja) {
-                $(".notive-display").fadeIn();
-                $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit/tempo!");
-                $(this).find(notivInfo).focus();
+            if (kreditLimit === '0' &&  replaceTotalPembayaran < valBelanja) {                
+                alertify
+                .alert("Pelanggan ini tidak dapat melakukan transaksi kredit/tempo!", function(){
+                    alertify.message('Transaksi kredit di batalkan.');
+                }).set({title:"Konfirmasi Limit Hutang"});
             }
             else if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
                 alertify
