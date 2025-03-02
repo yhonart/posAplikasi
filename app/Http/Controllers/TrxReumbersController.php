@@ -110,7 +110,7 @@ class TrxReumbersController extends Controller
         $lastWeekSaldo = $reqPosting->lastWeekSaldo;
         $nominalSaldo = (int)$lastWeekSaldo + (int)$nominal;
 
-        if ($akunBank == '0') {
+        if ($akunBank == '0' OR $fromAkunDana <> '1') {
             $fromDana = "Akun Penjualan";
             $nominalDana = $fromAkunDana;
         }
