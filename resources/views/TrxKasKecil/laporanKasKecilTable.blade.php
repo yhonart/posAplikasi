@@ -2,7 +2,6 @@
     $saldoTransaksi = 0;
     $debit = 0;
     $kredit = 0;
-    $nominalModal = 0;
     $lastWeekSumDebit = $trxKasKecil->nominal;
     if (empty($mDanaTrx)) {
         $lastWeekSumModal = 0;
@@ -11,6 +10,7 @@
         $lastWeekSumModal = $mDanaTrx->nominal_modal;        
     }
     $lastWeekSaldo = $lastWeekSumModal - $lastWeekSumDebit;
+    $todayIs = date("l");
 ?>
 <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
 <hr>
@@ -38,25 +38,21 @@
                     </td>
                     <td></td>
                     <td></td>
-                    <td class="text-right font-weight-bold">{{number_format($lastWeekSaldo,'0',',','.')}}</td>
+                    <td class="text-right font-weight-bold">                        
+                        {{number_format($lastWeekSaldo,'0',',','.')}}
+                    </td>
                     <td class="text-right font-weight-bold"></td>
-                    <td class="text-right font-weight-bold">{{number_format($lastWeekSaldo,'0',',','.')}}</td>
+                    <td class="text-right font-weight-bold">
+                        @if($lastWeekSaldo < $mTrxKas->nominal_dana)
+                            <a href="{{route('trxReumbers')}}">Create Reimburse {{$todayIs}}</a>
+                        @else
+                            {{number_format($lastWeekSaldo,'0',',','.')}}
+                        @endif
+                    </td>
                     <td></td>
                 </tr>
 
             @foreach($tablePengeluaran as $tbPengeluaran)
-                <?php
-                    $debit += $tbPengeluaran->nominal;
-                    $kredit += $tbPengeluaran->nominal_modal;
-                    $saldoTransaksi = $lastWeekSaldo - $debit;
-                    $nextSaldo = $saldoTransaksi + $kredit;
-                    if ($nextSaldo == 0) {
-                        $nominalModal =  number_format($mTrxKas->nominal_dana,'0',',','.');
-                    }
-                    else {
-                        $nominalModal =  number_format($nextSaldo,'0',',','.');
-                    }
-                ?>
                 <tr>
                     <td>{{date("d-M-y", strtotime($tbPengeluaran->kas_date))}}</td>
                     <td>
@@ -80,15 +76,17 @@
                     </td>
                     <td>{{$tbPengeluaran->kas_persCode}}#{{$tbPengeluaran->kas_persName}}</td>
                     <td class="text-right font-weight-bold">
-                        @if($tbPengeluaran->nominal_modal == '0')
-                            {{$nominalModal}}
-                        @else
-                            {{number_format($tbPengeluaran->nominal_modal,'0',',','.')}}
-                        @endif
+                        {{number_format($tbPengeluaran->nominal_modal,'0',',','.')}}
                     </td>
                     <td class="text-right">{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
                     <td class="text-right font-weight-bold">
-                        {{$nominalModal}}
+                        <?php
+                            $debit += $tbPengeluaran->nominal;
+                            $kredit += $tbPengeluaran->nominal_modal;
+                            $saldoTransaksi = $lastWeekSaldo - $debit;
+                            $nextSaldo = $saldoTransaksi + $kredit;
+                            echo number_format($nextSaldo,'0',',','.');    
+                        ?>
                     </td>
                     <td>{{$tbPengeluaran->file_name}}</td>
                 </tr>
