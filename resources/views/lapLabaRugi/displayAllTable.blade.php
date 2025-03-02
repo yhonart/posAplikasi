@@ -2,6 +2,7 @@
     $totHpp = 0;
     $selisih = 0;
     $margin = 0;
+    $sumHargaJual = 0;
 ?>
 <div class="card">
     <div class="card-header border-0">
@@ -37,7 +38,10 @@
                                 <td>{{$dit->product_name}}</td>
                                 <td>{{$dit->unit}}</td>                                
                                 <td>{{$dit->qty}}</td>                                
-                                <td class="text-right">{{number_format($dit->unit_price,'0',',','.')}}</td>                                
+                                <td class="text-right">
+                                    {{number_format($dit->unit_price,'0',',','.')}}
+                                    $sumHargaJual += $dit->unit_price;
+                                </td>                                
                                 <td class="text-right">{{number_format($dit->m_price,'0',',','.')}}</td>                                
                                 <td class="text-right">{{number_format($dit->t_price,'0',',','.')}}</td>                                
                                 <td class="text-right">
@@ -62,6 +66,15 @@
                         @endif
                     @endforeach
                 @endforeach
+                <tr>
+                    <td colspan="3">Total</td>
+                    <td>{{$sumHargaJual}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
     </div>
