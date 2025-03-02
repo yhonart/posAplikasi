@@ -28,19 +28,19 @@
             <div class="form-group row" id="bankName" style="display:none;">
                 <label for="danaTambahan" class="label col-md-3">Nama Bank</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control priceText" name="namaBank" id="namaBank">
+                    <input type="text" class="form-control" name="namaBank" id="namaBank">
                 </div>
             </div>
             <div class="form-group row" id="accountName" style="display:none;">
                 <label for="danaTambahan" class="label col-md-3">Nama Akun</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control priceText" name="namaAkun" id="namaAkun">
+                    <input type="text" class="form-control" name="namaAkun" id="namaAkun">
                 </div>
             </div>
             <div class="form-group row" id="accountNo" style="display:none;">
                 <label for="danaTambahan" class="label col-md-3">No.Akun <small class="muted">Optional</small></label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control priceText" name="nomorAkun" id="nomorAkun">
+                    <input type="text" class="form-control" name="nomorAkun" id="nomorAkun">
                 </div>
             </div>
             <div class="form-group row" style="display: none;">
