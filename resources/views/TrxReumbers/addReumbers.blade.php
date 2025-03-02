@@ -11,6 +11,7 @@
             <div class="card-body">
                 @if($dayNoww == $strHari)
                 <form id="formAddReumbers" autocomplete="off">                    
+                    <input type="hidden" class="form-control price-text font-weight-bold"  name="lastWeekSaldo" id="lastWeekSaldo" value="{{$lastWeekSaldo}}" readonly>
                     <div class="form-group row">
                         <label class="col-md-3">Nomor</label>
                         <div class="col-md-4">
@@ -42,17 +43,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3">Saldo Minggu Lalu</label>
-                        <div class="col-md-6">
-                        <input type="hidden" class="form-control price-text font-weight-bold"  name="lastWeekSaldo" id="lastWeekSaldo" value="{{$lastWeekSaldo}}" readonly>
-                            <span class="text-muted">* Dana diambil dari minggu lalu, mulai Tanggal : {{date("d-M-Y", strtotime($startDate))}} s.d {{date("d-M-Y", strtotime($endDate))}}</span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3">Nominal Ditambahkan</label>
+                        <label class="col-md-3">Nominal Pengembalian</label>
                         <div class="col-md-6">
                             <input type="text" class="form-control price-text" name="nominal" id="nominal" value="{{$penguranganKas}}">
-                            <span class="text-muted">* Dana diambil dari penggunaan minggu lalu, mulai Tanggal : {{date("d-M-Y", strtotime($startDate))}} s.d {{date("d-M-Y", strtotime($endDate))}}</span>
+                            <span class="text-muted">* Nominal diambil dari penggunaan minggu lalu, mulai Tanggal : {{date("d-M-Y", strtotime($startDate))}} s.d {{date("d-M-Y", strtotime($endDate))}}</span>
                         </div>
                     </div>
                     <div class="form-group row">
