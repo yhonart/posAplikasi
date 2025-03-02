@@ -2,6 +2,7 @@
     $saldoTransaksi = 0;
     $debit = 0;
     $kredit = 0;
+    $nominalModal = 0;
     $lastWeekSumDebit = $trxKasKecil->nominal;
     if (empty($mDanaTrx)) {
         $lastWeekSumModal = 0;
@@ -44,6 +45,18 @@
                 </tr>
 
             @foreach($tablePengeluaran as $tbPengeluaran)
+                <?php
+                    $debit += $tbPengeluaran->nominal;
+                    $kredit += $tbPengeluaran->nominal_modal;
+                    $saldoTransaksi = $lastWeekSaldo - $debit;
+                    $nextSaldo = $saldoTransaksi + $kredit;
+                    if ($nextSaldo == 0) {
+                        $nominalModal =  number_format($mTrxKas->nominal_dana,'0',',','.');
+                    }
+                    else {
+                        $nominalModal =  number_format($nextSaldo,'0',',','.');
+                    }
+                ?>
                 <tr>
                     <td>{{date("d-M-y", strtotime($tbPengeluaran->kas_date))}}</td>
                     <td>
@@ -67,17 +80,15 @@
                     </td>
                     <td>{{$tbPengeluaran->kas_persCode}}#{{$tbPengeluaran->kas_persName}}</td>
                     <td class="text-right font-weight-bold">
-                        {{number_format($tbPengeluaran->nominal_modal,'0',',','.')}}
+                        @if($tbPengeluaran->nominal_modal == '0')
+                            {{$nominalModal}}
+                        @else
+                            {{number_format($tbPengeluaran->nominal_modal,'0',',','.')}}
+                        @endif
                     </td>
                     <td class="text-right">{{number_format($tbPengeluaran->nominal,'0',',','.')}}</td>
                     <td class="text-right font-weight-bold">
-                        <?php
-                            $debit += $tbPengeluaran->nominal;
-                            $kredit += $tbPengeluaran->nominal_modal;
-                            $saldoTransaksi = $lastWeekSaldo - $debit;
-                            $nextSaldo = $saldoTransaksi + $kredit;
-                            echo number_format($nextSaldo,'0',',','.');    
-                        ?>
+                        {{$nominalModal}}
                     </td>
                     <td>{{$tbPengeluaran->file_name}}</td>
                 </tr>
