@@ -482,7 +482,8 @@
                 tKredit = $("#kredit").val(), // Hutang pelanggan sebelumnya
                 methodPembayaran = $("#metodePembayaran1").val();
 
-            let words2 = methodPembayaran.split("|");
+            let words2 = methodPembayaran.split("|"),
+                onePayment = $("#metodePembayaran").val();
 
             let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
                     replaceKredit = tKredit.replace(/\./g, ""),
@@ -513,11 +514,11 @@
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
             }
-            else if (words2[2] === "KREDIT" && kreditLimit === '0') {
+            else if ((words2[2] === "KREDIT" && kreditLimit === '0') || (onePayment === '8' && kreditLimit === '0')) {
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit");
             }
-            else if (words2[2] === "KREDIT" && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit)) {
+            else if ((words2[2] === "KREDIT" && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit)) || (onePayment === '8' && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit))) {
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Nilai Hutang Melebihi Batas Limit Kredit Pelanggan !");
             }

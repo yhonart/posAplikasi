@@ -1917,7 +1917,9 @@ class CashierController extends Controller
             ->count();
 
         $paymentMethod = DB::table('m_payment_method')
-            ->where('status', '1')
+            ->where([
+                ['status', '1']
+                ])
             ->get();
 
         $pengiriman = DB::table('m_delivery')
