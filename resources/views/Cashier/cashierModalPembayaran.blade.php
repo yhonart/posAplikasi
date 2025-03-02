@@ -481,7 +481,7 @@
                 totalPembayaran = $("#tPembayaran").val(), // Total Uang Pemberian Pelanggan
                 tKredit = $("#kredit").val(), // Hutang pelanggan sebelumnya
                 methodPembayaran = $("#metodePembayaran1").val();
-
+            var notivInfo = document.getElementById("notiveDisplay");
             let words2 = methodPembayaran.split("|"),
                 onePayment = $("#metodePembayaran").val();
 
@@ -499,6 +499,7 @@
             if (kreditLimit === '0' &&  replaceTotalPembayaran < valBelanja) {
                 $(".notive-display").fadeIn();
                 $("#notiveDisplay").html("Pelanggan ini tidak dapat melakukan transaksi kredit/tempo!");
+                $(this).find(notivInfo).focus();
             }
             else if (totalHutang > kreditLimit && kreditLimit !== '0' && replaceTotalPembayaran < valBelanja && checkBoxLunas.checked == false) {
                 alertify
@@ -511,16 +512,22 @@
             //     $("#notiveDisplay").html("Untuk pembayaran kurang dari nominal : Rp. "+tKredit+", gunakan menu PELUNASAN [F9] untuk pembayaran secara partial. Lakukan pembayaran TUNAI terlebih dahulu dengan nominal : Rp."+tBelanja+", kemudian bayar hutang secara partial.");
             // }
             else if (parseInt(replaceTotalPembayaran) >= parseInt(replaceKredit) && parseInt(replaceTotalPembayaran) >= totalHarusDibayar && replaceKredit !== '0' && checkBoxLunas.checked == false) {
-                $(".notive-display").fadeIn();
-                $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
+                alertify
+                .alert("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!", function(){
+                    alertify.message('Transaksi kredit di batalkan.');
+                }).set({title:"Konfirmasi Limit Hutang"});
             }
             else if ((words2[2] === "KREDIT" && kreditLimit === '0') || (onePayment === '8' && kreditLimit === '0')) {
-                $(".notive-display").fadeIn();
-                $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit");
+                alertify
+                .alert("Pelanggan Tidak Memilik Limit Kredit", function(){
+                    alertify.message('Transaksi kredit di batalkan.');
+                }).set({title:"Konfirmasi Limit Hutang"});
             }
             else if ((words2[2] === "KREDIT" && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit)) || (onePayment === '8' && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit))) {
-                $(".notive-display").fadeIn();
-                $("#notiveDisplay").html("Nilai Hutang Melebihi Batas Limit Kredit Pelanggan !");
+                alertify
+                .alert("Nilai Hutang Melebihi Batas Limit Kredit Pelanggan !", function(){
+                    alertify.message('Transaksi kredit di batalkan.');
+                }).set({title:"Konfirmasi Limit Hutang"});
             }
             else {
                 inputPembayaran(billPembayaran, typeCetak);
@@ -537,7 +544,8 @@
                     tKredit = $("#kredit").val(),
                     methodPembayaran = $("#metodePembayaran1").val();
 
-                let words2 = methodPembayaran.split("|");
+                let words2 = methodPembayaran.split("|"),
+                    onePayment = $("#metodePembayaran").val();
 
                 let replaceTotalPembayaran = totalPembayaran.replace(/\./g, ""),
                     replaceKredit = tKredit.replace(/\./g, ""),
@@ -566,11 +574,11 @@
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Wajib check list LUNASI HUTANG untuk pelunasan hutang sebelumnya!");
                 }
-                else if (words2[2] === "KREDIT" && kreditLimit === '0') {
+                else if ((words2[2] === "KREDIT" && kreditLimit === '0') || (onePayment === '8' && kreditLimit === '0')) {
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Pelanggan ini tidak memiliki limit kredit !");
                 }
-                else if (words2[2] === "KREDIT" && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit)) {
+                else if ((words2[2] === "KREDIT" && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit)) || (onePayment === '8' && parseInt(replaceTotalPembayaran) > parseInt(kreditLimit))) {
                     $(".notive-display").fadeIn();
                     $("#notiveDisplay").html("Nilai Hutang Melebihi Batas Limit Kredit Pelanggan !");
                 }
