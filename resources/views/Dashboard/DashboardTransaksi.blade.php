@@ -1,8 +1,3 @@
-@extends('layouts.sidebarpage')
-
-@section('content')
-
-
 <div class="row">
     <div class="col-6 col-md-3">
         <div class="form-group">
