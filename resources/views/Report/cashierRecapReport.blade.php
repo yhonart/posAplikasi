@@ -83,7 +83,11 @@
     <tbody>
         <tr>
             <td>
-                {{$customer}}                
+                @if($customer == '0' OR $customer == '')
+                    Penjualan Dari Tgl {{$fromDate}} s.d {{$endDate}}
+                @else
+                    {{$customerIden->customer_store}} <small class="text-muted">{{$customerIden->address}}</small>
+                @endif
             </td>
             <td class="text-right">{{number_format($tableReport->total_struk,'0',',','.')}}</td>
             <td class="text-right">{{number_format($tableReportTunai->total_payment,'0',',','.')}}</td>
