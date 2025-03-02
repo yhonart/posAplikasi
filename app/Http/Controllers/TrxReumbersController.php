@@ -108,7 +108,7 @@ class TrxReumbersController extends Controller
         $hariIni = date('Y-m-d');
         $akunBank = $reqPosting->fieldBank;
         $lastWeekSaldo = $reqPosting->lastWeekSaldo;
-        $nominalSaldo = $lastWeekSaldo + $nominal;
+        $nominalSaldo = (int)$lastWeekSaldo + (int)$nominal;
 
         if ($akunBank == '0') {
             $fromDana = "Akun Penjualan";
