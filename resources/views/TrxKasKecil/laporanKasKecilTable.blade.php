@@ -43,8 +43,10 @@
                     </td>
                     <td class="text-right font-weight-bold"></td>
                     <td class="text-right font-weight-bold">
-                        @if($lastWeekSaldo < $mTrxKas->nominal_dana)
-                            <a href="{{route('trxReumbers')}}">Create Reimburse {{$todayIs}}</a>
+                        @if($lastWeekSaldo < $mTrxKas->nominal_dana AND $todayIs == "Monday")
+                            <a href="{{route('trxReumbers')}}">Create Reimburse</a>
+                        @elseif ($lastWeekSaldo < $mTrxKas->nominal_dana AND $todayIs <> "Monday")
+                            <a href="#" class="CLIK-LAP">Tambah Optional Dana</a>
                         @else
                             {{number_format($lastWeekSaldo,'0',',','.')}}
                         @endif
