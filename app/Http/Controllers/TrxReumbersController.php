@@ -199,7 +199,8 @@ class TrxReumbersController extends Controller
                 'created_by'=>$creator,
                 'nominal'=>'0',
                 'sumber_dana'=>$sumber_dana,
-                'nominal_modal'=>$modal
+                'nominal_modal'=>$modal,
+                'trx_code'=>'1'
             ]);
     }
 }

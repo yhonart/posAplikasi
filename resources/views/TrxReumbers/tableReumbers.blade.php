@@ -61,6 +61,7 @@
         $(".dataTable").on('click','.APPROVE', function (e) {
             e.preventDefault();
             $(".LOAD-SPINNER").fadeIn();
+            $(this).closest("tr").find("#btnApprove"+dataID).animate({ opacity: "hide" }, "slow");
             let dataId = $(this).attr('data-id');
             alertify.confirm("Apakah anda yakin akan menyetujui transaksi ini ?",
             function(){
@@ -68,8 +69,7 @@
                     type : 'get',
                     url : "{{route('trxReumbers')}}/AppoveReumbers/"+dataId,
                     success : function(response){
-                        $(".LOAD-SPINNER").fadeOut();
-                        $(this).closest("tr").find("#btnApprove"+dataID).animate({ opacity: "hide" }, "slow");
+                        window.location.reload();
                     }
                 });
             },
