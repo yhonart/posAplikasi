@@ -17,7 +17,7 @@
 <hr>
 <div class="table-responsive">
     <table class="table table-sm table-hover table-valign-middle table-striped" id="tableKasKecil">
-        <thead class="bg-gray-dark">
+        <thead>
             <tr>
                 <th>Tanggal</th>
                 <th>Sub.Kategori</th>
