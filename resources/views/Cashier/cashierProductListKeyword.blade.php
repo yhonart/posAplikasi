@@ -19,6 +19,7 @@
     <td class="p-0 text-right">{{$pL->stock}}</td>
     <td class="p-0"></td>
 </tr>
+@endforeach
 <script type="text/javascript">
     $(document).ready(function() {
         $('.onClick-produk').on('click', function (e) {
@@ -64,4 +65,3 @@
         }
     });
 </script>
-@endforeach
