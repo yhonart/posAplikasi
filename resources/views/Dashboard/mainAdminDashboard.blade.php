@@ -46,7 +46,8 @@
     $(document).ready(function(){
         let route = "dashPenjualan",
             display = $("#displayAdminDashboard");
-
+        displayDashboard(display, route);
+        
         $('.BTN-CLICK').on('click', function (e) {
             e.preventDefault();
             let ell = $(this);
