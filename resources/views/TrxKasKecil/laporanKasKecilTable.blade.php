@@ -9,6 +9,7 @@
     else {
         $lastWeekSumModal = $mDanaTrx->nominal_modal;        
     }
+    
     $lastWeekSaldo = $lastWeekSumModal - $lastWeekSumDebit;
     $todayIs = date("l");
 ?>
@@ -42,18 +43,11 @@
                         {{number_format($lastWeekSaldo,'0',',','.')}}
                     </td>
                     <td class="text-right font-weight-bold"></td>
-                    <td class="text-right font-weight-bold">
-                        @if($lastWeekSaldo < $mTrxKas->nominal_dana AND $todayIs == "Monday")
-                            <a href="{{route('trxReumbers')}}">Create Reimburse</a>
-                        @elseif ($lastWeekSaldo < $mTrxKas->nominal_dana AND $todayIs <> "Monday")
-                            <a href="#" class="CLIK-LAP">Tambah Optional Dana</a>
-                        @else
-                            {{number_format($lastWeekSaldo,'0',',','.')}}
-                        @endif
+                    <td class="text-right font-weight-bold">                        
+                        {{number_format($lastWeekSaldo,'0',',','.')}}
                     </td>
                     <td></td>
                 </tr>
-
             @foreach($tablePengeluaran as $tbPengeluaran)
                 <tr>
                     <td>{{date("d-M-y", strtotime($tbPengeluaran->kas_date))}}</td>
