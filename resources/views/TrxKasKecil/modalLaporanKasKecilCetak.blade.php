@@ -1,6 +1,8 @@
 <div class="card">
-    <div class="card-header">
-        <h3 class="card-title">Tambah Dana Modal</h3>
+    <div class="card-header border-0">
+        <h3 class="card-title font-weight-bold">
+            Tambah Dana Modal <small class="text-muted">Dana darurat ini di tambahkan apabila saldo modal tidak mencukupi lagi.</small>
+        </h3>
     </div>
     <div class="card-body">
         <form id="formAddModalKas" autocomplete="off">
