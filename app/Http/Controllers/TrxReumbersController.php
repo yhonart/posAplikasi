@@ -163,7 +163,7 @@ class TrxReumbersController extends Controller
         DB::table('tr_reumbersment')
             ->where('reumbers_id',$idReumbers)
             ->update([
-                'status'=>'1'
+                'status'=>'2'
             ]);
 
         // Get Modal Terakhir 
