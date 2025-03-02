@@ -118,7 +118,7 @@
                                 {{number_format($tgR->nominal,'0',',','.')}}
                             @endif                            
                             <?php   
-                                if ($tgR->method_name == '1') {
+                                if ($tgR->core_id_trx == $record->billing_number AND $tgR->method_name == '1') {
                                     $totalBelanjaTunai += $tgR->nominal;
                                 }                                 
                             ?>
