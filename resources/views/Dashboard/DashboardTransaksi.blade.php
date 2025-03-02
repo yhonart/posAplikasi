@@ -1,54 +1,33 @@
 @extends('layouts.sidebarpage')
 
 @section('content')
-<div class="content-header">
-    <div class="container-fluid">
-    <!-- <div class="row">
-        <div class="col-12">
-            <div class="marquee">
-                <div id="marquee">
-                    <b>Last Update : Perbaikan Load & Hold di halaman kasir !</b>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <div class="row mb-2">
-        <div class="col-sm-6">
-        <h1 class="m-0">Dashboard</h1>
-        </div><!-- /.col -->
-    </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-</div>
 
-<div class="content">
-    <div class="container-fluid">                
-        <div class="row">
-            <div class="col-6 col-md-3">
-                <div class="form-group">
-                    <label class="form-label">Cari Dari Tanggal</label>
-                    <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="dariTanggal" id="dariTanggal">
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="form-group">
-                    <label class="form-label">s.d Tanggal</label>
-                    <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="sampaiTanggal" id="sampaiTanggal">
-                </div>
-            </div>   
-            <div class="col-12 col-md-3">
-                <a href="#displayDashboardPurchasing" class="btn btn-success rounded-pill float-sm-right">Go to Purchase Info</a>                
-            </div>         
+
+<div class="row">
+    <div class="col-6 col-md-3">
+        <div class="form-group">
+            <label class="form-label">Cari Dari Tanggal</label>
+            <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="dariTanggal" id="dariTanggal">
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div id="loadDataDashboard"></div>
-            </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="form-group">
+            <label class="form-label">s.d Tanggal</label>
+            <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="sampaiTanggal" id="sampaiTanggal">
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="displayDashboardPurchasing"></div>
-            </div>
-        </div>
+    </div>   
+    <div class="col-12 col-md-3">
+        <a href="#displayDashboardPurchasing" class="btn btn-success rounded-pill float-sm-right">Go to Purchase Info</a>                
+    </div>         
+</div>
+<div class="row">
+    <div class="col-12">
+        <div id="loadDataDashboard"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="displayDashboardPurchasing"></div>
     </div>
 </div>
 
@@ -115,4 +94,3 @@
         global_style.load_table(loadSpinner,routeIndex,tableData,displayData);
     });
 </script>
-@endsection
