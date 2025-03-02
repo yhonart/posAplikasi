@@ -22,7 +22,6 @@
             <div class="col-md-12">
                 <button type="button" class="btn btn-primary CLIK-LAP font-weight-bold" data-display="laporanKasKecil"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan</button>
                 <button type="button" class="btn btn-danger CLIK-LAP font-weight-bold" data-display="addModalKas"><i class="fa-solid fa-plus"></i> Tambah Modal Optional</button>
-                <button type="button" class="btn btn-default CLIK-LAP font-weight-bold" data-display="dashboardKasKecil"><i class="fa-solid fa-chart-line"></i> Dashboard</button>
             </div>
         </div>
         <div id="displayLap"></div>
