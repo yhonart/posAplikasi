@@ -38,6 +38,7 @@ class cpSetupController extends Controller
         $companyAddress = $reqNewCompany->companyAddress;
         $owner = $reqNewCompany->owner;
         $telefone = "+62".$reqNewCompany->telefone;
+        $location = $reqNewCompany->location;
 
         $countData = DB::table('m_company')
             ->count();
@@ -53,6 +54,7 @@ class cpSetupController extends Controller
                     'company_description'=>$companyDesc,
                     'owner'=>$owner,
                     'telefone'=>$telefone,
+                    'location'=>$location,
                 ]);
             $msg = array('success' => '✔ DATA BERHASIL DIMASUKKAN.');
         }

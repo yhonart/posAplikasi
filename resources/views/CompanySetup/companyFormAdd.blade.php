@@ -34,7 +34,7 @@
     </div>
     <div class="form-group row">
         <label for="location" class="col-md-4 form-label">Lokasi</label>
-        <div class="col-md-2">
+        <div class="col-md-8">
             <select name="location" id="location" class="form-control form-control-sm">
                 <option value="0">===</option>
                 @foreach($selectLocation as $sl)
