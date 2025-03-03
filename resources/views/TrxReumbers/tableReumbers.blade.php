@@ -61,8 +61,8 @@
         $(".dataTable").on('click','.APPROVE', function (e) {
             e.preventDefault();
             $(".LOAD-SPINNER").fadeIn();
-            $(this).closest("tr").find("#btnApprove"+dataID).animate({ opacity: "hide" }, "slow");
             let dataId = $(this).attr('data-id');
+            $(this).closest("tr").find("#btnApprove"+dataID).animate({ opacity: "hide" }, "slow");
             alert(dataId);
             // alertify.confirm("Apakah anda yakin akan menyetujui transaksi ini ?",
             // function(){
