@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class cpSetupController extends Controller
 {
@@ -13,17 +14,22 @@ class cpSetupController extends Controller
     }
 
     public function contentCompany (){
+        $userHakAkses = Auth::user()->hakakses;
         $dataCompany = DB::table('m_company')
             ->first();
 
         $countCompany = DB::table('m_company')
             ->count();
 
-        return view ('CompanySetup/cp_table', compact('dataCompany','countCompany'));
+        return view ('CompanySetup/cp_table', compact('dataCompany','countCompany','userHakAkses'));
     }
 
     public function formAddCompany (){
-        return view ('CompanySetup/companyFormAdd');
+        $selectLocation = DB::table('m_comp_loc')
+            ->where('is_delete','0')
+            ->get();
+
+        return view ('CompanySetup/companyFormAdd', compact('selectLocation'));
     }
 
     public function postNewCompany (Request $reqNewCompany){

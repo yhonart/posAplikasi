@@ -32,6 +32,17 @@
             <input type="text" name="telefone" id="telefone" class="form-control form-control-sm">
         </div>
     </div>
+    <div class="form-group row">
+        <label for="location" class="col-md-4 form-label">Lokasi</label>
+        <div class="col-md-2">
+            <select name="location" id="location" class="form-control form-control-sm">
+                <option value="0">===</option>
+                @foreach($selectLocation as $sl)
+                    <option value="{{$sl->location_id}}">{{$sl->location_name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
     <div class="form-group row"`>
         <div class="col-md-4">
             <button type="submit" class="btn btn-success font-weight-bold">Save</button>

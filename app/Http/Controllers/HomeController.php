@@ -122,11 +122,13 @@ class HomeController extends Controller
     
     public function searchingMenu ($keyword){
         $userID = Auth::user()->id;
+        $userHakAkses = Auth::user()->hakakses;        
         // echo $keyword;
         $searchSubMenu = DB::table('m_submenu')
             ->where('name_menu','like','%'.$keyword.'%')
             ->get();
 
+        //Get count user role superadmin
         $cekUserGroup = DB::table('users_role')
             ->where([
                 ['user_id',$userID],
@@ -164,10 +166,10 @@ class HomeController extends Controller
                 ->get(); 
         }
         if ($keyword == '0') {
-            return view('mainDivMenu', compact('mainMenu','subMenu','cekUserGroup')); 
+            return view('mainDivMenu', compact('mainMenu','subMenu','cekUserGroup','userHakAkses')); 
         }
         else {
-            return view('mainSearchMenu', compact('searchSubMenu','cekUserGroup')); 
+            return view('mainSearchMenu', compact('searchSubMenu','cekUserGroup','userHakAkses')); 
         }
 
     }

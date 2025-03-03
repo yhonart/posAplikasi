@@ -24,6 +24,8 @@ class User extends Authenticatable
         'password',
         'hakakses',
         'count_area',
+        'company',
+        'location'
     ];
 
     /**
