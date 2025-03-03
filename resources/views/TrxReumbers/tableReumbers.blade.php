@@ -63,19 +63,20 @@
             $(".LOAD-SPINNER").fadeIn();
             $(this).closest("tr").find("#btnApprove"+dataID).animate({ opacity: "hide" }, "slow");
             let dataId = $(this).attr('data-id');
-            alertify.confirm("Apakah anda yakin akan menyetujui transaksi ini ?",
-            function(){
-                $.ajax({
-                    type : 'get',
-                    url : "{{route('trxReumbers')}}/AppoveReumbers/"+dataId,
-                    success : function(response){
-                        window.location.reload();
-                    }
-                });
-            },
-            function(){
-                alertify.error('Cancel');
-            }).set({title:"Konfirmasi Persetujuan Transaksi"});
+            alert(dataId);
+            // alertify.confirm("Apakah anda yakin akan menyetujui transaksi ini ?",
+            // function(){
+            //     $.ajax({
+            //         type : 'get',
+            //         url : "{{route('trxReumbers')}}/AppoveReumbers/"+dataId,
+            //         success : function(response){
+            //             window.location.reload();
+            //         }
+            //     });
+            // },
+            // function(){
+            //     alertify.error('Cancel');
+            // }).set({title:"Konfirmasi Persetujuan Transaksi"});
         });
     });
 </script>
