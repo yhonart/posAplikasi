@@ -24,10 +24,10 @@ Route::get('/', function () {
     if (Auth::check()) {
         $hakakses = Auth::user()->hakakses;
         $checkArea = Auth::user()->count_area;
-        if($hakakses == '1'){            
+        if($hakakses == '1' OR $hakakses == '3'){            
             return view('Dashboard/mainAdminDashboard');
         }
-        elseif($hakakses == '2' OR $hakakses == '3'){
+        elseif($hakakses == '2'){
             return view('Cashier/maintenancePage', compact('checkArea'));
         }
     }

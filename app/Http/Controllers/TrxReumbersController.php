@@ -160,6 +160,7 @@ class TrxReumbersController extends Controller
     {
         $saldo = 0;
         $creator = Auth::user()->name;
+        // Update status ke aprove/ di setujui
         DB::table('tr_reumbersment')
             ->where('reumbers_id',$idReumbers)
             ->update([
