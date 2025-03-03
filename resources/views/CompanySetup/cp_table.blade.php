@@ -1,6 +1,9 @@
 @extends('layouts.sidebarpage')
 
 @section('content')
+<?php
+    $no = 1;
+?>
 <div class="content-header">
     <div class="container-fluid">
     <div class="row mb-2">
@@ -23,48 +26,44 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
+
                         <div class="row">
-                            <div class="col-12 col-md-6">
+                            <div class="col-md-12">
                                 <div id="DisplayFormInput"></div>
                             </div>
-                            <div class="col-12 col-md-6">
-                                @if(!empty($dataCompany))
-                                <dl class="row">
-                                    <dt class="col-4">Nama Usaha</dt>
-                                    <dd class="col-8">: {{$dataCompany->company_name}}</dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-4">Bidang Usaha</dt>
-                                    <dd class="col-8">: {{$dataCompany->company_description}}</dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-4">Alamat</dt>
-                                    <dd class="col-8">: {{$dataCompany->address}}</dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-4">Owner</dt>
-                                    <dd class="col-8">: {{$dataCompany->owner}}</dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-4">Contact Person</dt>
-                                    <dd class="col-8">: {{$dataCompany->telefone}}</dd>
-                                </dl>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <button type="button" id="btnDelete" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hapus Toko</button>
-                                    </div>
-                                </div>
-                                @else
-                                <div class="row">
-                                    <div class="col-12">
-                                    <div class="red-alert p-2 rounded rounded-2 notive-display">
-                                        <span class="font-weight-bold">Masukkan Nama Toko.</span>
-                                    </div>
-                                    </div>
-                                </div>
-                                @endif
-                            </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-sm table-valign-middle table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Kode Usaha</th>
+                                            <th>Nama Usaha</th>
+                                            <th>Telefone</th>
+                                            <th>Lokasi</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($dataCompany as $dc)
+                                            <tr>
+                                                <td>{{$no++}}</td>
+                                                <td>CPID{{$dc->idm_company}}</td>
+                                                <td>{{$dc->company_name}}</td>
+                                                <td>{{$dc->location_name}}</td>
+                                                <td>
+                                                    @if($userHakAkses == '3')
+                                                    <button type="button" id="btnDelete" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hapus Toko</button>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
             </div>

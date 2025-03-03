@@ -15,13 +15,21 @@ class cpSetupController extends Controller
 
     public function contentCompany (){
         $userHakAkses = Auth::user()->hakakses;
-        $dataCompany = DB::table('m_company')
-            ->first();
+        $company = Auth::user()->company;
+        $location = Auth::user()->location;
 
-        $countCompany = DB::table('m_company')
-            ->count();
+        $dataCompany = DB::table('m_company as a');
+        $dataCompany = $dataCompany->select('a.*','location_name');
+        $dataCompany = $dataCompany->leftJoin('m_company_loc b','b.location_id','=','a.location');
+        if ($userHakAkses <> '3') {
+            $dataCompany = $dataCompany->where([
+                ['idm_company',$company],
+                ['location',$location]
+            ]);
+        }
+        $dataCompany = $dataCompany->get();
 
-        return view ('CompanySetup/cp_table', compact('dataCompany','countCompany','userHakAkses'));
+        return view ('CompanySetup/cp_table', compact('dataCompany','userHakAkses'));
     }
 
     public function formAddCompany (){

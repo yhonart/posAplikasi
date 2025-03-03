@@ -45,7 +45,7 @@
     </div>
     <div class="form-group row"`>
         <div class="col-md-4">
-            <button type="submit" class="btn btn-success font-weight-bold">Save</button>
+            <button type="submit" class="btn btn-success font-weight-bold" id="submitBtn">Save</button>
         </div>        
         <div class="col-md-8">
             <div class="red-alert p-2 rounded rounded-2 notive-display" style="display:none;">
@@ -66,6 +66,7 @@
 
         $("form#formNewCompany").submit(function(event){
             event.preventDefault();
+            $("#submitBtn").fadeOut();
             $.ajax({
                 url : "{{route('CompanySetup')}}/companyDisplay/postNewCompany",
                 type : 'POST',
@@ -76,6 +77,7 @@
                 processData : false,
                 success : function (data) {
                     if (data.warning) {
+                        $("#submitBtn").fadeIn();
                         $(".notive-display").fadeIn();
                         $("#notiveDisplay").html(data.success);
                         alertNotive.removeClass('green-alert').addClass('red-alert');                        
