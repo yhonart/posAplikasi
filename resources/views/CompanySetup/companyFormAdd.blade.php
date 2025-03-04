@@ -85,7 +85,7 @@
                     if (data.warning) {
                         $("#submitBtn").fadeIn();
                         $(".notive-display").fadeIn();
-                        $("#notiveDisplay").html(data.success);
+                        $("#notiveDisplay").html(data.warning);
                         alertNotive.removeClass('green-alert').addClass('red-alert');                        
                     }
                     else{
