@@ -55,7 +55,7 @@
                         <label class="label col-2">Company & Lokasi</label>
                         <div class="col-4">
                             <select name="companyID" id="companyID" class="form-control form-control-sm">                                   
-                                @if($hakAkses == '3' AND (!empty($userCompany) OR $userCompany->company <> '0'))
+                                @if($hakAkses == '3' AND !empty($userCompany))
                                     <option value="{{$userCompany->company}}" readonly>{{$userCompany->company_name}}</option>
                                     @foreach($mCompany as $c)
                                     <option value="{{$c->idm_company}}">{{$c->company_name}} - {{$c->location_name}}</option>
