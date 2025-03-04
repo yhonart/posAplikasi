@@ -36,7 +36,7 @@
                                 @endif
                                 
                                 @if($hakAkses == '3')
-                                    <a class="btn  btn-success BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold" href="{{route('Personalia')}}/modalEditUser/{{$u->id}}"><i class="fa-solid fa-user-pen"></i> Edit Profile</a>
+                                    <a class="btn btn-success BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold" href="{{route('Personalia')}}/modalEditUser/{{$u->id}}"><i class="fa-solid fa-user-pen"></i> Edit Profile</a>
                                 @endif
                             </td>
                         </tr>
