@@ -273,7 +273,13 @@ class PersonaliaController extends Controller
         $id = $reqEditPersonalia->idUser;
         $utility = $reqEditPersonalia->utility;
         $noUtility = $reqEditPersonalia->noUtility;
-        
+        $company = $reqEditPersonalia->companyID;
+
+        $getCompany = DB::table('m_company')
+            ->where('idm_company',$company)
+            ->first();
+
+        $location = $getCompany->location;
         DB::table('users')
             ->where('id',$id)
             ->update([
@@ -282,6 +288,8 @@ class PersonaliaController extends Controller
                 'email'=>$email,
                 'utility'=>$utility,
                 'no_utility'=>$noUtility,
+                'company'=>$company,
+                'location'=>$location
                 ]);
     }
     

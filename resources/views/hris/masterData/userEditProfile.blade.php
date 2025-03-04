@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="label col-2">Company</label>
+                        <label class="label col-2">Company & Lokasi</label>
                         <div class="col-4">
                             <select name="companyID" id="companyID" class="form-control form-control-sm">
                                 @if($hakAkses == '3')
