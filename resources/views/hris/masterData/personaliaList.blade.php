@@ -28,13 +28,10 @@
                             <td>{{$u->name}}</td>
                             <td>{{$u->username}}</td>
                             <td>{{$u->site_name}}</td>
-                            <td>{{$hakAkses[$u->hakakses]}} {{$authHakAkses}}</td>
-                            <td class="text-right">
-                                @if($u->hakakses != '3')
-                                    <a class="btn  btn-info BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold" href="{{route('Personalia')}}/modalHakAkses/{{$u->id}}"><i class="fa-solid fa-shield-halved"></i> Hak Akses</a>
-                                    <a class="btn  btn-danger font-weight-bold DEL-PERSONALIA" href="#" data-id="{{$u->id}}"><i class="fa-solid fa-trash"></i> Delete</a>
-                                @endif
-                                
+                            <td>{{$hakAkses[$u->hakakses]}}</td>
+                            <td class="text-right">                                
+                                <a class="btn  btn-info BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold" href="{{route('Personalia')}}/modalHakAkses/{{$u->id}}"><i class="fa-solid fa-shield-halved"></i> Hak Akses</a>
+                                <a class="btn  btn-danger font-weight-bold DEL-PERSONALIA" href="#" data-id="{{$u->id}}"><i class="fa-solid fa-trash"></i> Delete</a>
                                 @if($authHakAkses == '3')
                                     <a class="btn btn-success BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold" href="{{route('Personalia')}}/modalEditUser/{{$u->id}}"><i class="fa-solid fa-user-pen"></i> Edit Profile</a>
                                 @endif
