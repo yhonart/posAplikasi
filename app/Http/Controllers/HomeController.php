@@ -28,7 +28,10 @@ class HomeController extends Controller
      //cek user role
 
     public function storeName (){
-        $storeName = DB::table('m_company')
+        $userID = Auth::user()->id;
+
+        $storeName = DB::table('view_user_comp_loc')
+            ->where('id',$userID)
             ->first();
 
         return view ('storeName', compact('storeName'));

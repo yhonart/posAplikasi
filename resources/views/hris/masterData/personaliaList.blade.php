@@ -10,8 +10,8 @@
 <div class="row">
     <div class="col-12">
         <div class="table-responsive">
-            <table class="table table-sm table-hover table-valign-middle " id="tablePersonalia">
-                <thead>
+            <table class="table table-sm table-hover table-valign-middle table-striped " id="tablePersonalia">
+                <thead class="font-weight-bold">
                     <tr>
                         <td>NO.</td>
                         <td>Nama</td>
