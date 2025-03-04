@@ -28,7 +28,7 @@
                             <td>{{$u->name}}</td>
                             <td>{{$u->username}}</td>
                             <td>{{$u->site_name}}</td>
-                            <td>{{$hakAkses[$u->hakakses]}} {{$u->hakakses}}</td>
+                            <td>{{$hakAkses[$u->hakakses]}} {{$hakAkses}}</td>
                             <td class="text-right">
                                 @if($u->hakakses != '3')
                                     <a class="btn  btn-info BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold" href="{{route('Personalia')}}/modalHakAkses/{{$u->id}}"><i class="fa-solid fa-shield-halved"></i> Hak Akses</a>
