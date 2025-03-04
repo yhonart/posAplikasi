@@ -1,8 +1,14 @@
 <form id="formNewCompany" autocomplete="off">
     <div class="form-group row">
-        <label class="col-md-4 form-label">Nama Perusahaan</label>
+        <label class="col-md-4 form-label">Nama Perusahaan *</label>
         <div class="col-md-8">
-            <input type="text" name="companyName" id="companyName" class="form-control form-control-sm uppercase">
+            <input type="text" name="companyName" id="companyName" class="form-control form-control-sm" style="text-transform: uppercase;" require>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-4 form-label">Kode Usaha *</label>
+        <div class="col-md-8">
+            <input type="text" name="companyCode" id="companyCode" class="form-control form-control-sm" style="text-transform: uppercase;" require>
         </div>
     </div>
     <div class="form-group row"`>

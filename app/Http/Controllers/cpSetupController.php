@@ -47,6 +47,7 @@ class cpSetupController extends Controller
         $owner = $reqNewCompany->owner;
         $telefone = "+62".$reqNewCompany->telefone;
         $location = $reqNewCompany->location;
+        $compCode = strtoupper($reqNewCompany->companyCode);
 
         $countData = DB::table('m_company')
             ->where([
