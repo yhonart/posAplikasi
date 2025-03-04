@@ -192,7 +192,7 @@ class PersonaliaController extends Controller
 
         $userCompany = DB::table('view_user_comp_loc')
             ->where([
-                ['id',$userID]
+                ['id',$id]
             ])
             ->first();
 
