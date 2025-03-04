@@ -55,7 +55,7 @@
                         <label class="label col-2">Company</label>
                         <div class="col-4">
                             <select name="companyID" id="companyID" class="form-control form-control-sm">
-                                @if(empty($userCompany))
+                                @if(empty($userCompany) AND $hakAkses != '3')
                                     <option value="0" disabled>Disabled</option>
                                 @elseif($hakAkses == '3')
                                     @foreach($mCompany as $c)
