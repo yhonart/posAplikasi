@@ -196,7 +196,7 @@ class PersonaliaController extends Controller
             ])
             ->first();
 
-        return view ('hris/masterData/userEditProfile', compact('tbUser','id','mCompany','userCompany'));
+        return view ('hris/masterData/userEditProfile', compact('tbUser','id','mCompany','userCompany','hakAkses'));
     }
     
     public function searchData ($keyword){
