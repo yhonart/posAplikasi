@@ -22,8 +22,8 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-sm table-valign-middle table-hover " id="tableInputBarang">
-                    <thead class="bg-gray-dark">
+                <table class="table table-sm table-valign-middle table-hover table-striped table-bordered" id="tableInputBarang">
+                    <thead>
                         <tr>
                             <th> # </th>
                             <th width="30%">Nama Barang</th>
@@ -36,12 +36,12 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="p-0 border">
+                            <td class="p-0">
                                 <input type="hidden" name="numberOpname" id="numberOpname" value="{{$opnameNumber}}">
                                 <input type="hidden" name="sumInputStock" id="sumInputStock" value="{{$sumStockOpname->inputStock}}">
                             </td>
                             <td class="p-0">
-                                <select class="form-control form-control-sm select2" name="product" id="product">
+                                <select class="form-control form-control-sm select2 rounded-0" name="product" id="product">
                                     <option value="0" readonly>-- Pilih Item --</option>
                                     @foreach($mProduct as $mp)
                                         <option value="{{$mp->idm_data_product}}">{{$mp->product_name}}</option>
@@ -49,18 +49,18 @@
                                 </select>
                             </td>
                             <td class="p-0">
-                                <select class="form-control form-control-sm " name="satuan" id="satuan">
+                                <select class="form-control form-control-sm rounded-0" name="satuan" id="satuan">
                                     <option value="0" readonly>-- Satuan --</option>
                                 </select>
                             </td>
                             <td class="p-0">
-                                <input type="text" name="qty" id="qty" class="form-control form-control-sm ">
+                                <input type="text" name="qty" id="qty" class="form-control form-control-sm rounded-0">
                             </td>
                             <td class="p-0">
-                                <input type="text" name="lastStock" id="lastStock" class="form-control form-control-sm " readonly>
+                                <input type="text" name="lastStock" id="lastStock" class="form-control form-control-sm rounded-0" readonly>
                             </td>
                             <td>
-                                <input type="text" name="total" id="total" class="form-control form-control-sm " readonly>
+                                <input type="text" name="total" id="total" class="form-control form-control-sm rounded-0" readonly>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-success  btn-sm elevation-1" id="submitItem"><i class="fa-solid fa-check"></i></button>
