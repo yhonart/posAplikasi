@@ -19,8 +19,8 @@
         0=>"bg-danger",
     );
 ?>
-<table class="table table-valign-middle table-hover " id="listDocOpname">
-    <thead class="bg-gray-dark">
+<table class="table table-valign-middle table-hover table-striped " id="listDocOpname">
+    <thead>
         <tr>
             <th>No. Dokumen</th>
             <th>Tanggal</th>
