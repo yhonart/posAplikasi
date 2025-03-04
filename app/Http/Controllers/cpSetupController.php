@@ -59,6 +59,9 @@ class cpSetupController extends Controller
         if ($countData>=1) {
             $msg = array('warning' => 'WARNING, Nama Perusahaan Sudah Ada !');        
         }
+        elseif ($companyName == "" OR $companyName == " " OR $compCode == "" OR $companyName == " ") {
+            $msg = array('warning' => 'WARNING, Nama Usaha & Kode Usaha Harus Diisi !');
+        }
         else{
             DB::table('m_company')
                 ->insert([
