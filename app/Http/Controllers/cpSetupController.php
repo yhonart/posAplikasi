@@ -68,6 +68,7 @@ class cpSetupController extends Controller
                     'owner'=>$owner,
                     'telefone'=>$telefone,
                     'location'=>$location,
+                    'company_code'=>$compCode
                 ]);
             $msg = array('success' => '✔ DATA BERHASIL DIMASUKKAN.');
         }
