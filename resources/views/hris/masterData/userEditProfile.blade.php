@@ -55,13 +55,15 @@
                         <label class="label col-2">Company & Lokasi</label>
                         <div class="col-4">
                             <select name="companyID" id="companyID" class="form-control form-control-sm">                                   
-                                @if($hakAkses == '3')
+                                @if($hakAkses == '3' AND (!empty($userCompany) OR $userCompany->company <> '0'))
+                                    <option value="{{$userCompany->company}}" readonly>{{$userCompany->company_name}}</option>
                                     @foreach($mCompany as $c)
                                     <option value="{{$c->idm_company}}">{{$c->company_name}} - {{$c->location_name}}</option>
                                     @endforeach
                                 @elseif(empty($userCompany) AND $hakAkses != '3')
                                     <option value="0" disabled>Disabled</option>
                                 @elseif($hakAkses == '3' AND (empty($userCompany) OR $userCompany->company == '0'))
+                                    <option value="0">== Empty Company ==</option>
                                     @foreach($mCompany as $c)
                                     <option value="{{$c->idm_company}}">{{$c->company_name}} - {{$c->location_name}}</option>
                                     @endforeach
