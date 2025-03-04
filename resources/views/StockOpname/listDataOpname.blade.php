@@ -4,37 +4,29 @@
     </div>
 </div>
 <div id="divTableOpname">
+    <div class="row mt-1 mb-2">
+        <div class="col-md-3">
+            <label for="" class="label">Dari Tgl.</label>
+            <input type="text" class="form-control form-control-sm datetimepicker-input " name="fromDate" id="fromDate" autocomplete="off">
+        </div>
+        <div class="col-md-3">
+            <label for="" class="label">Sd. Tgl.</label>
+            <input type="text" class="form-control form-control-sm datetimepicker-input " name="endDate" id="endDate" autocomplete="off">
+        </div>
+        <div class="col-md-3">
+            <label for="" class="label">Select Status</label>
+            <select name="status" id="status" class="form-control form-control-sm">
+                <option value="2">Submited</option>
+                <option value="1">Proses</option>
+                <option value="3">Disetujui</option>
+                <option value="0">Delete</option>
+            </select>                        
+        </div>
+    </div>
     <div class="row">
         <div class="col-12">
-            <div class="card">            
-                <div class="card-body table-responsive">
-                    <div class="card card-body">
-                        <div class="row mt-1 mb-2">
-                            <div class="col-md-3">
-                                <label for="" class="label">Dari Tgl.</label>
-                                <input type="text" class="form-control form-control-sm datetimepicker-input " name="fromDate" id="fromDate" autocomplete="off">
-                            </div>
-                            <div class="col-md-3">
-                                <label for="" class="label">Sd. Tgl.</label>
-                                <input type="text" class="form-control form-control-sm datetimepicker-input " name="endDate" id="endDate" autocomplete="off">
-                            </div>
-                            <div class="col-md-3">
-                                <label for="" class="label">Select Status</label>
-                                <select name="status" id="status" class="form-control form-control-sm">
-                                    <option value="2">Submited</option>
-                                    <option value="1">Proses</option>
-                                    <option value="3">Disetujui</option>
-                                    <option value="0">Delete</option>
-                                </select>                        
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12">
-                            <div id="displayTableOpname"></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="card card-body">
+                <div id="displayTableOpname"></div>
             </div>
         </div>
     </div>
