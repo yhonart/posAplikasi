@@ -3,7 +3,8 @@
     $hakAkses = array(
         1=>"Admin",
         2=>"Kasir",
-        3=>"Sales"
+        3=>"Administrator",
+        4=>"Sales"
     );
 ?>
 <div class="row">
@@ -29,9 +30,14 @@
                             <td>{{$u->site_name}}</td>
                             <td>{{$hakAkses[$u->hakakses]}}</td>
                             <td class="text-right">
-                              <a class="btn  btn-info BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold" href="{{route('Personalia')}}/modalHakAkses/{{$u->id}}"><i class="fa-solid fa-shield-halved"></i> Hak Akses</a>
-                              <a class="btn  btn-success BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold" href="{{route('Personalia')}}/modalEditUser/{{$u->id}}"><i class="fa-solid fa-user-pen"></i> Edit Profile</a>
-                              <a class="btn  btn-danger font-weight-bold DEL-PERSONALIA" href="#" data-id="{{$u->id}}"><i class="fa-solid fa-trash"></i> Delete</a>
+                                @if($u->hakakses != '3')
+                                    <a class="btn  btn-info BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold" href="{{route('Personalia')}}/modalHakAkses/{{$u->id}}"><i class="fa-solid fa-shield-halved"></i> Hak Akses</a>
+                                    <a class="btn  btn-danger font-weight-bold DEL-PERSONALIA" href="#" data-id="{{$u->id}}"><i class="fa-solid fa-trash"></i> Delete</a>
+                                @endif
+                                
+                                @if($hakAkses == '3')
+                                    <a class="btn  btn-success BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold" href="{{route('Personalia')}}/modalEditUser/{{$u->id}}"><i class="fa-solid fa-user-pen"></i> Edit Profile</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

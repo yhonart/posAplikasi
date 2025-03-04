@@ -2,7 +2,8 @@
     $arrayRole = array(
         1=>'Admin',
         2=>'Kasir',
-        3=>'Sales'
+        3=>'Administrator',
+        4=>'sales'
     );
     $arrayLevel = array(
         1=>'Super User',
