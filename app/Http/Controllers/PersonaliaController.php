@@ -200,7 +200,7 @@ class PersonaliaController extends Controller
     }
     
     public function searchData ($keyword){
-        $hakAkses = Auth::user()->hakakses;
+        $authHakAkses = Auth::user()->hakakses;
         $users = DB::table('users as a');
         $users = $users->select('a.*','b.*','c.*','d.site_name');
         $users = $users->leftJoin('users_area as b','a.id','=','b.user_id');
@@ -211,7 +211,7 @@ class PersonaliaController extends Controller
             }
         $users = $users->get();
 
-        return view ('hris/masterData/personaliaList', compact('users','hakAkses'));
+        return view ('hris/masterData/personaliaList', compact('users','authHakAkses'));
     }
     
     public function changeHakAkses (Request $reqChange){
