@@ -50,7 +50,7 @@
                                         @foreach($dataCompany as $dc)
                                             <tr>
                                                 <td>{{$no++}}</td>
-                                                <td>CPID{{$dc->idm_company}}</td>
+                                                <td>{{$dc->company_code}}-{{$dc->idm_company}}</td>
                                                 <td>{{$dc->company_name}}</td>
                                                 <td>{{$dc->telefone}}</td>
                                                 <td>{{$dc->location_name}}</td>
