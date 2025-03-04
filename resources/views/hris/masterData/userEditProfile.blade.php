@@ -52,6 +52,22 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="label col-2">Company</label>
+                        <div class="col-4">
+                            <select name="companyID" id="companyID" class="form-control form-control-sm">
+                                @if(empty($userCompany))
+                                    <option value="0" disabled>Disabled</option>
+                                @elseif($hakAkses == '3')
+                                    @foreach($mCompany as $c)
+                                    <option value="{{$c->idm_company}}">{{$c->company_name}} - {{$c->location_name}}</option>
+                                    @endforeach
+                                @else
+                                    <option value="{{$userCompany->company}}" readonly>{{$userCompany->company_name}}</option>
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col-2">
                             <button type="submit" class="btn btn-success btn-block btn-sm font-weight-bold">Simpan Profile</button>
                         </div>

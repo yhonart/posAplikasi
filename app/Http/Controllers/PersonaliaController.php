@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -131,7 +132,7 @@ class PersonaliaController extends Controller
         
         if($userHakAkses == '3'){
             $nameUser = DB::table('users')
-                ->where('id',$reqChange->id)
+                ->where('id',$addAuth->id)
                 ->first();
                 
             $countSales = DB::table('m_sales')
@@ -177,11 +178,25 @@ class PersonaliaController extends Controller
     }
     
     public function modalEditUser ($id){
+        $hakAkses = Auth::user()->hakakses;
+        $userID = Auth::user()->id;
+        $company = Auth::user()->company;
+        $location = Auth::user()->location;
+        
         $tbUser = DB::table('users')
             ->where('id',$id)
             ->first();
-            
-        return view ('hris/masterData/userEditProfile', compact('tbUser','id'));
+
+        $mCompany  = DB::table('view_company')            
+            ->get();
+
+        $userCompany = DB::table('view_user_comp_loc')
+            ->where([
+                ['id',$userID]
+            ])
+            ->first();
+
+        return view ('hris/masterData/userEditProfile', compact('tbUser','id','mCompany','userCompany'));
     }
     
     public function searchData ($keyword){
@@ -316,7 +331,7 @@ class PersonaliaController extends Controller
         $userID = $reqChangePass->userID;
         $email = $reqChangePass->email;
         $password = $reqChangePass->password;
-        $changePass = \Hash::make($password);
+        $changePass = Hash::make($password);
 
         //log change password;
         DB::table('password_resets')

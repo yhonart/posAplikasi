@@ -49,10 +49,14 @@ class cpSetupController extends Controller
         $location = $reqNewCompany->location;
 
         $countData = DB::table('m_company')
+            ->where([
+                ['company_name',$companyName],
+                ['location',$location]
+            ])
             ->count();
 
         if ($countData>=1) {
-            $msg = array('warning' => '! WARNING, Data nama perusahaan sudah ada, mohon hapus terlebih dahulu.');        
+            $msg = array('warning' => 'WARNING, Nama Perusahaan Sudah Ada !');        
         }
         else{
             DB::table('m_company')
