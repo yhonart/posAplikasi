@@ -142,8 +142,8 @@ $customerStatus = array(
             </div>
             <div class="form-group">
                 <button type="submit" id="submitCustomer" class="btn btn-success font-weight-bold ">Simpan</button>
-                <a class="DEL-CUS btn btn-outline-danger btn-sm float-right" href="#" data-id="{{$id}}" title="delete">
-                    <i class="fa-solid fa-trash-can"></i>
+                <a class="DEL-CUS btn btn-danger btn-sm" href="#" data-id="{{$id}}" title="delete">
+                    <i class="fa-solid fa-trash-can"></i> Hapus Customer
                 </a>
             </div>
         </form>

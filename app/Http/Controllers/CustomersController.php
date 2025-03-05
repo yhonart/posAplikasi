@@ -57,6 +57,7 @@ class CustomersController extends Controller
 
     public function PostNewCustomer (Request $reqPostCustomer){
         $cusNumber = $this->getCusCode();
+        $authUserCompany = Auth::user()->company;
 
         if ($reqPostCustomer->kreditLimit == '') {
             $addKreditLimit = '0';
@@ -87,6 +88,7 @@ class CustomersController extends Controller
                     'kredit_limit'=>$addKreditLimit,
                     'customer_status'=>'1',
                     'created_date'=>now(),
+                    'comp_id'=>$authUserCompany
                 ]);
             $msg = array('success'=>'<h5>SUCCESS</h5><br>Data Customer '.$reqPostCustomer->Customer." berhasil dimasukkan!");
         }
@@ -145,7 +147,6 @@ class CustomersController extends Controller
                 'kredit_limit'=>str_replace(".","",$reqPostEditCust->kreditLimit),
                 'updated_date'=>now(),
             ]);
-       
     }
 
     public function DeleteTable ($id){
