@@ -292,6 +292,7 @@ class StockListController extends Controller
         return back();
     }
     public function PostProduct(Request $reqProd){
+        $authUserComp = Auth::user()->company;
         $prodCode = strtoupper($reqProd->ProductCode);
         $prodName = strtoupper($reqProd->ProductName);
         $prodCategory = $reqProd->KatProduk;
@@ -361,7 +362,6 @@ class StockListController extends Controller
                 ->where([
                     ['core_id_product',$nextID],
                     ['size_code','3']
-
                 ])
                 ->first();
             
@@ -391,7 +391,8 @@ class StockListController extends Controller
                     'product_category'=>$prodCategory,
                     'large_unit_val'=>$volBesar,
                     'medium_unit_val'=>$volKecil,
-                    'small_unit_val'=>$volKonv
+                    'small_unit_val'=>$volKonv,
+                    'comp_id'=>$authUserComp
                 ]); 
                 
             $mUnit = DB::table('m_product_unit')
