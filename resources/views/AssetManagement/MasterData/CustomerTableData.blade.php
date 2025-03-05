@@ -12,7 +12,7 @@
             @foreach($customer as $c)
                 <tr>
                     <td>
-                        <a class="text-navy DETAIL-CUS" href="#" data-index="{{$c->idm_customer}}">
+                        <a class="btn btn-black btn-default border-0 DETAIL-CUS" href="#" data-index="{{$c->idm_customer}}">
                             {{$c->customer_store}}
                         </a>
                     </td>
