@@ -31,7 +31,8 @@ class StockListController extends Controller
     
     public function getProductCode (){
         $countUserCompany = $this->countAccessDok();
-        $authUserCompany = Auth::user()->id;
+        $authUserCompany = Auth::user()->company;
+        $authUserID = Auth::user()->id;
 
         if ($countUserCompany == '0') {
             $codeComp = "PID";
@@ -39,13 +40,19 @@ class StockListController extends Controller
         else {
             $codeCompany = DB::table('view_user_comp_loc')
                 ->select('company_code')
-                ->where('id',$authUserCompany)
+                ->where('id',$authUserID)
                 ->first();
             $codeComp = $codeCompany->company_code;
         }
 
-        $id=DB::select("SHOW TABLE STATUS LIKE 'm_product'");
-            $no=$id[0]->Auto_increment;
+        $countPrdID = DB::table('m_product')
+            ->where('comp_id',$authUserCompany)
+            ->count();
+
+        $no = (int)$countPrdID + 1;
+
+        // $id=DB::select("SHOW TABLE STATUS LIKE 'm_product'");
+        //     $no=$id[0]->Auto_increment;
         
         $productCode = "BR".$codeComp."-".sprintf("%05d",$no);  
         return $productCode;
