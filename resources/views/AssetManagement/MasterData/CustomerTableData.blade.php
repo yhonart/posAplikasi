@@ -11,8 +11,8 @@
         <tbody>
             @foreach($customer as $c)
                 <tr>
-                    <td>
-                        <a class="btn btn-block btn-default border-0 DETAIL-CUS" href="#" data-index="{{$c->idm_customer}}">
+                    <td class="p-0">
+                        <a class="btn btn-default btn-block rounded-0 border-0 elevation-0 btn-sm text-primary font-weight-bold text-left DETAIL-CUS" href="#" data-index="{{$c->idm_customer}}">
                             {{$c->customer_store}}
                         </a>
                     </td>
