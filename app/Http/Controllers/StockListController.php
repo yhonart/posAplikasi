@@ -31,7 +31,8 @@ class StockListController extends Controller
     
     public function getProductCode (){
         $countUserCompany = $this->countAccessDok();
-        $authUserCompany = Auth::user()->company;
+        $authUserCompany = Auth::user()->id;
+
         if ($countUserCompany == '0') {
             $codeComp = "PID";
         }
