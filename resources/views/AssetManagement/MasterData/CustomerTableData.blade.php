@@ -16,11 +16,6 @@
                             {{$c->customer_store}}
                         </a>
                     </td>
-                    <td>
-                        <a class="DEL-CUS btn btn-outline-danger btn-sm float-right" href="#" data-id="{{$c->idm_customer}}" title="delete">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </a>
-                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -42,18 +37,7 @@
             });
         }
         ajaxPaging();
-
-        $('.DEL-CUS').on('click', function () {
-            let el = $(this);
-            let dataID = el.attr('data-id');
-            $.ajax({
-                url: "{{route('Customers')}}/TableDataCustomer/DeleteTable/" + dataID,
-                type: 'GET',
-                success: function (data) {   
-                    window.location.reload();                
-                },                
-            });
-        });
+        
         $('.DETAIL-CUS').on('click', function () {
             let el = $(this);
             let dataID = el.attr('data-index');

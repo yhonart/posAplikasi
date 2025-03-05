@@ -142,6 +142,9 @@ $customerStatus = array(
             </div>
             <div class="form-group">
                 <button type="submit" id="submitCustomer" class="btn btn-success font-weight-bold ">Simpan</button>
+                <a class="DEL-CUS btn btn-outline-danger btn-sm float-right" href="#" data-id="{{$id}}" title="delete">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
             </div>
         </form>
     </div>
@@ -161,34 +164,45 @@ $customerStatus = array(
         });
     $(document).ready(function(){        
         let dataID = "{{$id}}";            
-            $("form#FormEditCustomer").submit(function(event){
-                event.preventDefault();                
-                $.ajax({
-                    url: "{{route('Customers')}}/TableDataCustomer/PostEditTable",
-                    type: 'POST',
-                    data: new FormData(this),
-                    async: true,
-                    cache: true,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        alertify
-                        .alert("Data berhasil telah di update, terima kasih.", function(){
-                            reloadEditForm(dataID);
-                        }).set({title:"Update"});
-                    },                
-                });
-                return false;
+        $("form#FormEditCustomer").submit(function(event){
+            event.preventDefault();                
+            $.ajax({
+                url: "{{route('Customers')}}/TableDataCustomer/PostEditTable",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    alertify
+                    .alert("Data berhasil telah di update, terima kasih.", function(){
+                        reloadEditForm(dataID);
+                    }).set({title:"Update"});
+                },                
             });
+            return false;
+        });
 
-            function reloadEditForm(dataID){        
+        function reloadEditForm(dataID){        
             $.ajax({
                 url: "{{route('Customers')}}/TableDataCustomer/EditTable/" + dataID,
                 type: 'GET',
                 success: function (response) {
                     $("#displayEditCos").html(response);
                 },                
-            });
+            });        
         }
+        $('.DEL-CUS').on('click', function () {
+            let el = $(this);
+            let dataID = el.attr('data-id');
+            $.ajax({
+                url: "{{route('Customers')}}/TableDataCustomer/DeleteTable/" + dataID,
+                type: 'GET',
+                success: function (data) {   
+                    window.location.reload();                
+                },                
+            });
+        });
     });
 </script>
