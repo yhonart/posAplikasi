@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class StockListController extends Controller
 {
@@ -17,12 +18,35 @@ class StockListController extends Controller
         $this->TempUsersController = $tempUser;
         $this->TempInventoryController = $tempInv;
     }
+
+    public function countAccessDok (){
+        $userID = Auth::user()->id;
+
+        $countUserComp = DB::table('view_user_comp_loc')
+            ->where('id',$userID)
+            ->count();
+
+        return $countUserComp;
+    }
     
     public function getProductCode (){
+        $countUserCompany = $this->countAccessDok();
+        $authUserCompany = Auth::user()->company;
+        if ($countUserCompany == '0') {
+            $codeComp = "PID";
+        }
+        else {
+            $codeCompany = DB::table('view_user_comp_loc')
+                ->select('company_code')
+                ->where('id',$authUserCompany)
+                ->first();
+            $codeComp = $codeCompany->company_code;
+        }
+
         $id=DB::select("SHOW TABLE STATUS LIKE 'm_product'");
             $no=$id[0]->Auto_increment;
         
-        $productCode = "BR".sprintf("%05d",$no);  
+        $productCode = "BR".$codeComp."-".sprintf("%05d",$no);  
         return $productCode;
     }
     public function getMenu () {
