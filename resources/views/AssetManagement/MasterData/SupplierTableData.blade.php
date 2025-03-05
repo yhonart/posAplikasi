@@ -1,12 +1,7 @@
 @php
     $no = 1;
 @endphp
-<table class="table table-valign-middle table-hover text-xs table-sm" id="tableSupplier">
-    <thead class="text-center bg-gray-dark">
-        <tr>
-            <th colspan="6">Klik pada nama supplier untuk menampilkan data</th>
-        </tr>
-    </thead>
+<table class="table table-valign-middle table-hover text-xs table-sm" id="tableSupplier">    
     <tbody>
         @foreach($supplier as $supp)
             <tr>
