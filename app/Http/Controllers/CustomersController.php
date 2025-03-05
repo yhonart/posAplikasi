@@ -4,9 +4,42 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CustomersController extends Controller
 {
+    public function countAccessDok (){
+        $userID = Auth::user()->id;
+
+        $countUserComp = DB::table('view_user_comp_loc')
+            ->where('id',$userID)
+            ->count();
+
+        return $countUserComp;
+    }
+
+    public function getCusCode (){
+        $countUserCompany = $this->countAccessDok();
+        $authUserID = Auth::user()->id;
+        $authUserCompany = Auth::user()->company;
+
+        if ($countUserCompany == '0') {
+            $codeComp = "ID";
+        }
+        else {
+            $codeCompany = DB::table('view_user_comp_loc')
+                ->select('company_code')
+                ->where('id',$authUserID)
+                ->first();
+            $codeComp = $codeCompany->company_code;
+        }
+        $countCusID = DB::table('m_customers')
+            ->where('comp_id',$authUserCompany)
+            ->count();
+        $no = (int)$countCusID + 1;
+        $customerCode = "CUS".$codeComp."-".sprintf("%05d",$no);  
+        return $customerCode;        
+    }    
     public function mainIndex (){
         return view ('AssetManagement/MasterData/CustomersIndex');
     }
@@ -23,6 +56,8 @@ class CustomersController extends Controller
     }
 
     public function PostNewCustomer (Request $reqPostCustomer){
+        $cusNumber = $this->getCusCode();
+
         if ($reqPostCustomer->kreditLimit == '') {
             $addKreditLimit = '0';
         }
@@ -36,6 +71,7 @@ class CustomersController extends Controller
         else{
             DB::table('m_customers')
                 ->insert([
+                    'customer_code'=>$cusNumber,
                     'customer_store'=>strtoupper($reqPostCustomer->Customer),
                     'address'=>$reqPostCustomer->Address,
                     'pic'=>$reqPostCustomer->pic,
@@ -58,10 +94,13 @@ class CustomersController extends Controller
     }
 
     public function TableDataCustomer ($keyword) {
+        $authUserComp = Auth::user()->company;
+
         $customer = DB::table('m_customers');
             if ($keyword <> 0) {
                 $customer = $customer->where('customer_store','LIKE','%'.$keyword.'%');
             }
+            $customer = $customer->where('comp_id',$authUserComp);
             $customer = $customer->paginate(50);
 
         return view ('AssetManagement/MasterData/CustomerTableData', compact('customer'));
