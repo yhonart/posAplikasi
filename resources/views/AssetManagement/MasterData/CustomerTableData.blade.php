@@ -7,7 +7,7 @@
             2=>"Non Member",
         );
     @endphp
-    <table class="table table-valign-middle table-hover text-xs table-sm">        
+    <table class="table table-valign-middle table-hover table-sm">        
         <tbody>
             @foreach($customer as $c)
                 <tr>

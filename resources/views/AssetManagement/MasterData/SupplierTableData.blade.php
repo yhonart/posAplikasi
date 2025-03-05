@@ -1,7 +1,7 @@
 @php
     $no = 1;
 @endphp
-<table class="table table-valign-middle table-hover text-xs table-sm" id="tableSupplier">    
+<table class="table table-valign-middle table-hover table-sm" id="tableSupplier">    
     <tbody>
         @foreach($supplier as $supp)
             <tr>
