@@ -60,7 +60,7 @@
         } else if (event.key === 'ArrowUp') {
             event.preventDefault(); // Mencegah scroll halaman
             let newIndex = selectedRowIndex - 1;
-            if (newIndex < 1) {
+            if (newIndex < 0) {
                 newIndex = rows.length - 1; // Ke baris terakhir
             }
             alert (newIndex);
