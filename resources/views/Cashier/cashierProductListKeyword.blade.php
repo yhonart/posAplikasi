@@ -3,7 +3,7 @@
         background-color: yellow;
     }
 </style>
-<table id="myTable">
+<table id="myTable" class="table">
     <tbody>
         @foreach($productList as $pL)
         <tr>
@@ -55,6 +55,7 @@
             if (newIndex >= rows.length) {
                 newIndex = 1; // Kembali ke baris pertama (setelah header)
             }
+            alert (newIndex);
             highlightRow(newIndex);
         } else if (event.key === 'ArrowUp') {
             event.preventDefault(); // Mencegah scroll halaman
@@ -62,6 +63,7 @@
             if (newIndex < 1) {
                 newIndex = rows.length - 1; // Ke baris terakhir
             }
+            alert (newIndex);
             highlightRow(newIndex);
         }
     });
