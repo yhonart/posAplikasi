@@ -48,8 +48,8 @@
             </tr>
         </form>
     </tbody>
-    <tbody id="tableSelectProduk"></tbody>
 </table>
+<div id="tableSelectProduk"></div>
 <script type="text/javascript">
      $(function () {   
         $("#fieldProduk").val(null).focus();
