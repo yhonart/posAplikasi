@@ -32,7 +32,7 @@
 <script>
     const table = document.getElementById('myTable');
     const rows = table.getElementsByTagName('tr');
-    let selectedRowIndex = 1;
+    let selectedRowIndex = -1;
     function highlightRow(index) {
         // Hapus sorotan dari baris sebelumnya
         if (selectedRowIndex >= 0 && rows[selectedRowIndex]) {
