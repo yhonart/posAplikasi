@@ -67,6 +67,8 @@
             highlightRow(newIndex);
         }
     });
+    // Sorot baris pertama (setelah header) saat halaman dimuat
+    highlightRow(1);
 </script>
 
 <script type="text/javascript">
