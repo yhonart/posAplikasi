@@ -74,7 +74,7 @@
                     console.log('ID yang dipilih:', selectedId);
                     $.ajax({
                         type : 'get',
-                        url : "{{route('Cashier')}}/inputItem/"+dataID+"/"+billNumber+"/"+cusGroup,
+                        url : "{{route('Cashier')}}/inputItem/"+selectedId+"/"+billNumber+"/"+cusGroup,
                         success : function(response){                
                             reloadTableItem(billNumber);
                             sumTotalBelanja(billNumber);
