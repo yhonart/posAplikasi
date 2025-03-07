@@ -1,4 +1,9 @@
-
+<style>
+    .highlight {
+        background-color: #211C84;
+        color: #F6F0F0;
+    }
+</style>
 <table id="myTable" class="table">
     <tbody>
         @foreach($productList as $pL)
