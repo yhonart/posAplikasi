@@ -62,7 +62,7 @@
                 }
                 // alert (newIndex);
                 highlightRow(newIndex);
-            } else if (event.key === 'Enter' && selectedRowIndex >= 0) {
+            } else if (event.key === 'Enter') {
                 const selectedRow = rows[selectedRowIndex];
                 const cells = selectedRow.getElementsByTagName('td');
                 const rowData = [];
