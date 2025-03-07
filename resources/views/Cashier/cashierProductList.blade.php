@@ -102,6 +102,7 @@
                             alertify.success(response.success);
                         }
                         else{
+                            $("#fieldProduk").val('');
                             $("#formQty").val(null).focus();
                             $("#tableSelectProduk").html(response);                            
                         }
