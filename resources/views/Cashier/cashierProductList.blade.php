@@ -101,7 +101,7 @@
                             alertify.success(response.success);
                         }
                         else{
-                            $("#tableSelectProduk").html(response);                        
+                            $("#tableSelectProduk").html(response).autofocus;                            
                         }
                     }
                 });
