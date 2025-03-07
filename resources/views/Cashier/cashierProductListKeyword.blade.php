@@ -7,7 +7,7 @@
 <table id="myTable" class="table">
     <tbody>
         @foreach($productList as $pL)
-        <tr>
+        <tr data-id="{{$pL->idinv_stock}}">
             <td colspan="2" class="p-0">
                 <button class="btn btn-default btn-block rounded-0 border-0 onClick-produk elevation-0 btn-sm text-primary font-weight-bold text-left" data-id="{{$pL->idinv_stock}}">{{$pL->product_name}}</button>
             </td>
@@ -62,6 +62,16 @@
                 }
                 // alert (newIndex);
                 highlightRow(newIndex);
+            } else if (event.key === 'Enter' && selectedRowIndex >= 0) {
+                // Kirim data baris yang dipilih
+                const selectedRow = rows[selectedRowIndex];
+                // const cells = selectedRow.getElementsByTagName('td');
+                // const rowData = [];
+                // for (let i = 0; i < cells.length; i++) {
+                //     rowData.push(cells[i].textContent);
+                // }
+                console.log('Data baris yang dipilih:', selectedRow);
+                // Di sini Anda bisa menambahkan logika untuk mengirim data ke server atau melakukan operasi lain
             }
         });
         // Sorot baris pertama (setelah header) saat halaman dimuat
