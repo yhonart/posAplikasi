@@ -65,40 +65,30 @@
             } else if (event.key === 'Enter' && selectedRowIndex >= 0) {
                 // Kirim data baris yang dipilih
                 const selectedId = rows[selectedRowIndex].getAttribute('data-id');
+                let billNumber = "{{$billNumber}}",
+                    cusGroup = "{{$cosGroup}}";
+                let routeIndex = "{{route('Cashier')}}",
+                    urlProductList = "productList",
+                    panelProductList = $("#mainListProduct");
                 if (selectedId) {
                     console.log('ID yang dipilih:', selectedId);
+                    $.ajax({
+                        type : 'get',
+                        url : "{{route('Cashier')}}/inputItem/"+dataID+"/"+billNumber+"/"+cusGroup,
+                        success : function(response){                
+                            reloadTableItem(billNumber);
+                            sumTotalBelanja(billNumber);
+                            $("#fieldProduk").val('');
+                            $("#tableSelectProduk").fadeOut("slow");
+                            $("#fieldProduk").val(null).focus();
+                            // cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
+                        }
+                    });
                 }
             }
         });
         // Sorot baris pertama (setelah header) saat halaman dimuat
         highlightRow(0);
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.onClick-produk').on('click', function (e) {
-            e.preventDefault();
-            let dataID = $(this).attr('data-id'),
-                billNumber = "{{$billNumber}}",
-                cusGroup = "{{$cosGroup}}";
-            let routeIndex = "{{route('Cashier')}}",
-                urlProductList = "productList",
-                panelProductList = $("#mainListProduct");
-            $.ajax({
-                type : 'get',
-                url : "{{route('Cashier')}}/inputItem/"+dataID+"/"+billNumber+"/"+cusGroup,
-                success : function(response){                
-                    reloadTableItem(billNumber);
-                    sumTotalBelanja(billNumber);
-                    $("#fieldProduk").val('');
-                    $("#tableSelectProduk").fadeOut("slow");
-                    $("#fieldProduk").val(null).focus();
-                    // cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
-                }
-            });
-        });
-
         function reloadTableItem(billNumber){
             $.ajax({
                 type : 'get',
