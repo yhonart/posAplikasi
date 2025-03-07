@@ -49,6 +49,7 @@
         </form>
     </tbody>
 </table>
+<input type="hidden" name="removeAutofocus" id="removeAutofocus">
 <div id="tableSelectProduk"></div>
 <script type="text/javascript">
      $(function () {   
@@ -101,7 +102,8 @@
                             alertify.success(response.success);
                         }
                         else{
-                            $("#tableSelectProduk").html(response).autofocus;                            
+                            $("#fieldProduk").val(null).focus();
+                            $("#removeAutofocus").html(response);                            
                         }
                     }
                 });
