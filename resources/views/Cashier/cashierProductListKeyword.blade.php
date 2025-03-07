@@ -9,7 +9,7 @@
         @foreach($productList as $pL)
         <tr data-id="{{$pL->idinv_stock}}">
             <td colspan="2" class="p-0">
-                <button class="btn btn-default btn-block rounded-0 border-0 onClick-produk elevation-0 btn-sm text-primary font-weight-bold text-left" data-id="{{$pL->idinv_stock}}">{{$pL->product_name}}</button>
+                {{$pL->product_name}}
             </td>
             <td class="p-0"></td class="p-0">
             <td class="p-0">
