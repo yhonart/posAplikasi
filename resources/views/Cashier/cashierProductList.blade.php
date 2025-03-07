@@ -102,8 +102,8 @@
                             alertify.success(response.success);
                         }
                         else{
-                            $("#fieldProduk").val(null).focus();
-                            $("#removeAutofocus").html(response);                            
+                            $("#removeAutofocus").val(null).focus();
+                            $("#tableSelectProduk").html(response);                            
                         }
                     }
                 });
