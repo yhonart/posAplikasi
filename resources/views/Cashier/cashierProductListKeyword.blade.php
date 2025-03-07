@@ -62,18 +62,19 @@
                     panelProductList = $("#mainListProduct");
                 if (selectedId) {
                     console.log('ID yang dipilih:', selectedId);
-                    $.ajax({
-                        type : 'get',
-                        url : "{{route('Cashier')}}/inputItem/"+selectedId+"/"+billNumber+"/"+cusGroup,
-                        success : function(response){                
-                            // reloadTableItem(billNumber);
-                            // sumTotalBelanja(billNumber);
-                            // $("#fieldProduk").val('');
-                            // $("#fieldProduk").val(null).focus();
-                            // $("#tableSelectProduk").fadeOut("slow");
-                            cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
-                        }
-                    });
+                    alert(selectedId);
+                    // $.ajax({
+                    //     type : 'get',
+                    //     url : "{{route('Cashier')}}/inputItem/"+selectedId+"/"+billNumber+"/"+cusGroup,
+                    //     success : function(response){                
+                    //         // reloadTableItem(billNumber);
+                    //         // sumTotalBelanja(billNumber);
+                    //         // $("#fieldProduk").val('');
+                    //         // $("#fieldProduk").val(null).focus();
+                    //         // $("#tableSelectProduk").fadeOut("slow");
+                    //         cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
+                    //     }
+                    // });
                 }
             }
         });
