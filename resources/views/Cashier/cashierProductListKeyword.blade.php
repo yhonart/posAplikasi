@@ -57,7 +57,7 @@
                 if (selectedId) {
                     console.log('ID yang dipilih:', selectedId);
                     alert(selectedRow);
-                    window.location.reload();
+                    clearLog();
                     // cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                     // $.ajax({
                     //     type : 'get',
