@@ -258,15 +258,15 @@ class CashierController extends Controller
             ->first();           
         // echo $billNumber." ".$barcode." ".$keyword;                
         //Get customer.
+        $cusTrx = DB::table('tr_store as a')
+            ->select('a.member_id','b.customer_store','b.customer_type')
+            ->leftJoin('m_customers as b', 'a.member_id','=','b.idm_customer')
+            ->where('billing_number',$billNumber)
+            ->first();       
+             
+        $cosGroup = $cusTrx->customer_type;
+        $memberID = $cusTrx->member_id;
         if ($billNumber <> '0') {
-            $cusTrx = DB::table('tr_store as a')
-                ->select('a.member_id','b.customer_store','b.customer_type')
-                ->leftJoin('m_customers as b', 'a.member_id','=','b.idm_customer')
-                ->where('billing_number',$billNumber)
-                ->first();       
-                 
-            $cosGroup = $cusTrx->customer_type;
-
             if (!empty($getBarcode)) { // Jika input data menggunakan barcode
                 $barcode = $getBarcode->set_barcode;
                 $productList = DB::table('view_product_stock');            
@@ -354,20 +354,20 @@ class CashierController extends Controller
                 $this->penguranganStock($product, $location, $satuan, $prodQty);
                 $msg = array('success' => 'Data Berhasil Dimasukkan.');
 
-            } else { // jika input menggunakan text                
-                $getPrice = DB::table('m_product_price_sell')
-                    ->where('cos_group',$cosGroup)
-                    ->get();
-
-                $productList = DB::table('view_product_stock');
-                    $productList = $productList->where('location_id','3');
+            } else { // jika input menggunakan text  
+                $productList = DB::table('view_customer_product_sell');
                 if ($keyword <> 0) {
                     $productList = $productList->where('product_name', 'LIKE', '%' . $keyword . '%');
                 }
+                $productList = $productList->where([
+                    ['idm_customer',$memberID],
+                    ['location_id','3'],
+                    ['customer_type',$cosGroup]
+                ]);
                 $productList = $productList->orderBy('product_name', 'ASC');
                 $productList = $productList->get();
                 
-                return view('Cashier/cashierProductListKeyword', compact('productList','keyword','getPrice','cosGroup','billNumber'));
+                return view('Cashier/cashierProductListKeyword', compact('productList','keyword','cosGroup','billNumber'));
             }
         }
         else {

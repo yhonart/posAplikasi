@@ -16,11 +16,7 @@
                 {{$pL->product_satuan}}
             </td class="p-0">
             <td class="text-right p-0">
-                @foreach($getPrice as $gp)
-                    @if($gp->core_product_price == $pL->idm_data_product AND $gp->size_product == $pL->product_size)
-                        {{number_format($gp->price_sell,'0',',','.')}}
-                    @endif
-                @endforeach
+                {{number_format($pL->price_sell,'0',',','.')}}
             </td>
             <td class="p-0"></td>
             <td class="p-0"></td>
@@ -66,6 +62,15 @@
                 }
                 // alert (newIndex);
                 highlightRow(newIndex);
+            } else if (event.key === 'Enter' && selectedRowIndex >= 0) {
+                const selectedRow = rows[selectedRowIndex];
+                const cells = selectedRow.getElementsByTagName('td');
+                const rowData = [];
+                for (let i = 0; i < cells.length; i++) {
+                    rowData.push(cells[i].textContent);
+                }
+                console.log('Data baris yang dipilih:', rowData);
+                
             }
         });
         // Sorot baris pertama (setelah header) saat halaman dimuat
