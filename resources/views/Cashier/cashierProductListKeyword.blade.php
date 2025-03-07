@@ -1,9 +1,3 @@
-<style>
-    .highlight {
-        background-color: #211C84;
-        color: #F6F0F0;
-    }
-</style>
 <table id="myTable" class="table">
     <tbody>
         @foreach($productList as $pL)
@@ -78,8 +72,16 @@
                 }
             }
         });
-        // Sorot baris pertama (setelah header) saat halaman dimuat
-        highlightRow(0);
+        // CSS untuk menandai baris yang dipilih
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .highlight {
+                background-color: #211C84;
+                color: #F6F0F0;
+            }
+        `;
+        document.head.appendChild(style);
+
         function reloadTableItem(billNumber){
             $.ajax({
                 type : 'get',
