@@ -64,7 +64,7 @@
                 highlightRow(newIndex);
             } else if (event.key === 'Enter' && selectedRowIndex >= 0) {
                 // Kirim data baris yang dipilih
-                const selectedId = rows[selectedRow].getAttribute('data-id');
+                const selectedId = rows[selectedRowIndex].getAttribute('data-id');
                 if (selectedId) {
                     console.log('ID yang dipilih:', selectedId);
                 }
