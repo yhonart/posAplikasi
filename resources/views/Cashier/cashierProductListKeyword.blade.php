@@ -30,41 +30,31 @@
     $(document).ready(function() {
         const table = document.getElementById('myTable');
         const rows = table.getElementsByTagName('tr');
-        let selectedRowIndex = -1;
+        let selectedRow = -1;
         function highlightRow(index) {
-            // Hapus sorotan dari baris sebelumnya
-            if (selectedRowIndex >= 0 && rows[selectedRowIndex]) {
-                rows[selectedRowIndex].classList.remove('highlight');
-            }    
-            // Tambahkan sorotan ke baris yang dipilih
+            if (selectedRow >= 0) {
+                rows[selectedRow].classList.remove('highlight');
+            }
             if (index >= 0 && index < rows.length) {
                 rows[index].classList.add('highlight');
-                selectedRowIndex = index;
-            } else {
-                selectedRowIndex = -1; // Reset jika indeks tidak valid
+                selectedRow = index;
             }
         }
         // Event listener untuk tombol panah atas dan bawah
         document.addEventListener('keydown', function(event) {
             if (event.key === 'ArrowDown') {
                 event.preventDefault(); // Mencegah scroll halaman
-                let newIndex = selectedRowIndex + 1;
-                if (newIndex >= rows.length) {
-                    newIndex = 1; // Kembali ke baris pertama (setelah header)
+                if (selectedRow < rows.length - 1) {
+                    highlightRow(selectedRow + 1);
                 }
-                // alert (newIndex);
-                highlightRow(newIndex);
             } else if (event.key === 'ArrowUp') {
                 event.preventDefault(); // Mencegah scroll halaman
-                let newIndex = selectedRowIndex - 1;
-                if (newIndex < 0) {
-                    newIndex = rows.length - 1; // Ke baris terakhir
+                if (selectedRow > 0) {
+                    highlightRow(selectedRow - 1);
                 }
-                // alert (newIndex);
-                highlightRow(newIndex);
-            } else if (event.key === 'Enter' && selectedRowIndex >= 0) {
+            } else if (event.key === 'Enter' && selectedRow >= 0) {
                 // Kirim data baris yang dipilih
-                const selectedId = rows[selectedRowIndex].getAttribute('data-id');
+                const selectedId = rows[selectedRow].getAttribute('data-id');
                 let billNumber = "{{$billNumber}}",
                     cusGroup = "{{$cosGroup}}";
                 let routeIndex = "{{route('Cashier')}}",
