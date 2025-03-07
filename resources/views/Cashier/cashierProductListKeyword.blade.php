@@ -1,5 +1,5 @@
 
-<table id="myTable" class="table">
+<table id="myTable" class="table table-hover">
     <tbody>
         @foreach($productList as $pL)
         <tr>
@@ -34,8 +34,7 @@
             // Hapus sorotan dari baris sebelumnya
             if (selectedRowIndex >= 0 && rows[selectedRowIndex]) {
                 rows[selectedRowIndex].classList.remove('highlight');
-            }
-    
+            }    
             // Tambahkan sorotan ke baris yang dipilih
             if (index >= 0 && index < rows.length) {
                 rows[index].classList.add('highlight');
@@ -52,7 +51,7 @@
                 if (newIndex >= rows.length) {
                     newIndex = 1; // Kembali ke baris pertama (setelah header)
                 }
-                alert (newIndex);
+                // alert (newIndex);
                 highlightRow(newIndex);
             } else if (event.key === 'ArrowUp') {
                 event.preventDefault(); // Mencegah scroll halaman
@@ -60,7 +59,7 @@
                 if (newIndex < 0) {
                     newIndex = rows.length - 1; // Ke baris terakhir
                 }
-                alert (newIndex);
+                // alert (newIndex);
                 highlightRow(newIndex);
             }
         });
