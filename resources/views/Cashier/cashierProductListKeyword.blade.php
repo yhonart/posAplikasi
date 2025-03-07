@@ -26,46 +26,46 @@
     </tbody>
 </table>
 <script>
-    $(document).ready(function() {
-        const table = document.getElementById('myTable');
-        const rows = table.getElementsByTagName('tr');
-        let selectedRowIndex = -1;
-        function highlightRow(index) {
-            // Hapus sorotan dari baris sebelumnya
-            if (selectedRowIndex >= 0 && rows[selectedRowIndex]) {
-                rows[selectedRowIndex].classList.remove('highlight');
-            }    
-            // Tambahkan sorotan ke baris yang dipilih
-            if (index >= 0 && index < rows.length) {
-                rows[index].classList.add('highlight');
-                selectedRowIndex = index;
-            } else {
-                selectedRowIndex = -1; // Reset jika indeks tidak valid
-            }
+    const table = document.getElementById('myTable');
+    const rows = table.getElementsByTagName('tr');
+    let selectedRowIndex = -1;
+    function highlightRow(index) {
+        // Hapus sorotan dari baris sebelumnya
+        if (selectedRowIndex >= 0 && rows[selectedRowIndex]) {
+            rows[selectedRowIndex].classList.remove('highlight');
+        }    
+        // Tambahkan sorotan ke baris yang dipilih
+        if (index >= 0 && index < rows.length) {
+            rows[index].classList.add('highlight');
+            selectedRowIndex = index;
+        } else {
+            selectedRowIndex = -1; // Reset jika indeks tidak valid
         }
-        // Event listener untuk tombol panah atas dan bawah
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowDown') {
-                event.preventDefault(); // Mencegah scroll halaman
-                let newIndex = selectedRowIndex + 1;
-                if (newIndex >= rows.length) {
-                    newIndex = 1; // Kembali ke baris pertama (setelah header)
-                }
-                // alert (newIndex);
-                highlightRow(newIndex);
-            } else if (event.key === 'ArrowUp') {
-                event.preventDefault(); // Mencegah scroll halaman
-                let newIndex = selectedRowIndex - 1;
-                if (newIndex < 0) {
-                    newIndex = rows.length - 1; // Ke baris terakhir
-                }
-                // alert (newIndex);
-                highlightRow(newIndex);
+    }
+    // Event listener untuk tombol panah atas dan bawah
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowDown') {
+            event.preventDefault(); // Mencegah scroll halaman
+            let newIndex = selectedRowIndex + 1;
+            if (newIndex >= rows.length) {
+                newIndex = 1; // Kembali ke baris pertama (setelah header)
             }
-        });
-        // Sorot baris pertama (setelah header) saat halaman dimuat
-        highlightRow(0);
+            // alert (newIndex);
+            highlightRow(newIndex);
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault(); // Mencegah scroll halaman
+            let newIndex = selectedRowIndex - 1;
+            if (newIndex < 0) {
+                newIndex = rows.length - 1; // Ke baris terakhir
+            }
+            // alert (newIndex);
+            highlightRow(newIndex);
+        }
     });
+    // Sorot baris pertama (setelah header) saat halaman dimuat
+    highlightRow(0);
+    // $(document).ready(function() {
+    // });
 </script>
 
 <script type="text/javascript">
