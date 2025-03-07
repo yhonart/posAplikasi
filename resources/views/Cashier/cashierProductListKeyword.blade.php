@@ -54,10 +54,11 @@
                 let routeIndex = "{{route('Cashier')}}",
                     urlProductList = "productList",
                     panelProductList = $("#mainListProduct");
+                    
+                console.log('ID yang dipilih:', selectedId);
+                alert(selectedId);
+                cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                 if (selectedId) {
-                    console.log('ID yang dipilih:', selectedId);
-                    alert(selectedId);
-                    cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                     // $.ajax({
                     //     type : 'get',
                     //     url : "{{route('Cashier')}}/inputItem/"+selectedId+"/"+billNumber+"/"+cusGroup,
