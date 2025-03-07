@@ -102,7 +102,7 @@
                             alertify.success(response.success);
                         }
                         else{
-                            $("#removeAutofocus").val(null).focus();
+                            $("#formQty").val(null).focus();
                             $("#tableSelectProduk").html(response);                            
                         }
                     }
