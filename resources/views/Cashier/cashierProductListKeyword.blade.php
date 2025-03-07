@@ -62,15 +62,6 @@
                 }
                 // alert (newIndex);
                 highlightRow(newIndex);
-            } else if (event.key === 'Enter') {
-                const selectedRow = rows[selectedRowIndex];
-                const cells = selectedRow.getElementsByTagName('td');
-                const rowData = [];
-                for (let i = 0; i < cells.length; i++) {
-                    rowData.push(cells[i].textContent);
-                }
-                console.log('Data baris yang dipilih:', rowData);
-                
             }
         });
         // Sorot baris pertama (setelah header) saat halaman dimuat
