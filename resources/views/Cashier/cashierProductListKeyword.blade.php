@@ -48,7 +48,7 @@
                 }
             } else if (event.key === 'Enter' && selectedRow >= 0) {
                 // Kirim data baris yang dipilih
-                const selectedId = rows[selectedRow].getAttribute('data-id');
+                let selectedId = rows[selectedRow].getAttribute('data-id');
                 let billNumber = "{{$billNumber}}",
                     cusGroup = "{{$cosGroup}}";
                 let routeIndex = "{{route('Cashier')}}",
