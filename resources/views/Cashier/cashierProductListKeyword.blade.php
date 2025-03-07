@@ -57,7 +57,7 @@
                 if (selectedId) {
                     console.log('ID yang dipilih:', selectedId);
                     alert(selectedRow);
-                    clearLog();
+                    selectedId.clear();
                     // cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                     // $.ajax({
                     //     type : 'get',
