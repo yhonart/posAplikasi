@@ -65,7 +65,7 @@
             }
         });
         // Sorot baris pertama (setelah header) saat halaman dimuat
-        // highlightRow(0);
+        highlightRow(0);
     });
 </script>
 
