@@ -65,12 +65,13 @@
             } else if (event.key === 'Enter' && selectedRowIndex >= 0) {
                 // Kirim data baris yang dipilih
                 const selectedRow = rows[selectedRowIndex];
+                let dataID = selectedRow.$(this).attr('data-id');
                 // const cells = selectedRow.getElementsByTagName('td');
                 // const rowData = [];
                 // for (let i = 0; i < cells.length; i++) {
                 //     rowData.push(cells[i].textContent);
                 // }
-                console.log('Data baris yang dipilih:', selectedRow);
+                console.log('Data baris yang dipilih:', dataID);
                 // Di sini Anda bisa menambahkan logika untuk mengirim data ke server atau melakukan operasi lain
             }
         });
