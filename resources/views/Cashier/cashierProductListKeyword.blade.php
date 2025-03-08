@@ -81,10 +81,10 @@
                             disDiscount.value = data.discount;
                             disJumlah.value = data.jumlah;
                             disStock.value = data.prdStock;
-                            hargaBeli.value = data.hrgModal;
-                            disQty.val().focus();
+                            hargaBeli.value = data.hrgModal;                            
                         }
-                    });                    
+                    }); 
+                    $("#disQty").val(null).focus();                   
                     // $.ajax({
                     //     type : 'get',
                     //     url : "{{route('Cashier')}}/inputItem/"+selectedId+"/"+billNumber+"/"+cusGroup,
