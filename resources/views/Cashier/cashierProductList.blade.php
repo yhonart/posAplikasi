@@ -89,8 +89,12 @@
     });   
     $(document).ready(function() {
         let keyword = '0',
-        timer_cari_equipment = null,
-        trxNumber = "{{$billNumber}}";
+            timer_cari_equipment = null,
+            trxNumber = "{{$billNumber}}";
+            
+        let routeIndex = "{{route('Cashier')}}",
+            urlProductList = "productList",
+            panelProductList = $("#mainListProduct");
         
         loadTableData(trxNumber);
 
@@ -202,12 +206,12 @@
         function addActivityItem() {
             let trxNumber = $("#transNumber").val(),
                 stockID = $("#stockID").val(),
-                cusGroup = $("#cusGroup").val();
+                cusGroup = $("#cusGroup").val();            
                 $.ajax({
                     type : 'get',
                     url : "{{route('Cashier')}}/inputItem/"+stockID+"/"+trxNumber+"/"+cusGroup,
                     success : function(response){
-                        loadTableData(trxNumber);
+                        cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                         totalBelanja(trxNumber);
                     }
                 });
