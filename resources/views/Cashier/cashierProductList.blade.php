@@ -213,6 +213,7 @@
                 $.ajax({
                     type : 'post',
                     url : "{{route('Cashier')}}/inputItem",
+                    data :  dataform,
                     success : function(response){
                         cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                         totalBelanja(trxNumber);
