@@ -395,8 +395,8 @@ class CashierController extends Controller
 
     public function inputItem (Request $postItem){
         //Ambil data produk
-        $dataID = $postItem->dataID;
-        $billNumber = $postItem->billNumber; 
+        $dataID = $postItem->stockID;
+        $billNumber = $postItem->trxNumber; 
         $cusGroup = $postItem->cusGroup;
         $qtySubmit = $postItem->qty;
 
