@@ -258,15 +258,14 @@ class CashierController extends Controller
             ->first();           
         // echo $billNumber." ".$barcode." ".$keyword;                
         //Get customer.
-        $cusTrx = DB::table('tr_store as a')
-            ->select('a.member_id','b.customer_store','b.customer_type')
-            ->leftJoin('m_customers as b', 'a.member_id','=','b.idm_customer')
-            ->where('billing_number',$billNumber)
-            ->first();       
-             
-        $cosGroup = $cusTrx->customer_type;
-        $memberID = $cusTrx->member_id;
         if ($billNumber <> '0') {
+            $cusTrx = DB::table('tr_store as a')
+                ->select('a.member_id','b.customer_store','b.customer_type')
+                ->leftJoin('m_customers as b', 'a.member_id','=','b.idm_customer')
+                ->where('billing_number',$billNumber)
+                ->first(); 
+            $cosGroup = $cusTrx->customer_type;
+            $memberID = $cusTrx->member_id;
             if (!empty($getBarcode)) { // Jika input data menggunakan barcode
                 $barcode = $getBarcode->set_barcode;
                 $productList = DB::table('view_product_stock');            
