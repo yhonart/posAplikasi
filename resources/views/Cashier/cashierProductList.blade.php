@@ -42,11 +42,42 @@
                     <input type="text" name="formJumlah" id="formJumlah" class="form-control form-control-sm form-control-border border-width-2" readonly>
                 </td>
                 <td class="p-0" colspan="2">
-                    <input type="hidden" name="formStockHidden" id="formStockHidden" class="form-control  form-control-sm" readonly>
+                    <input type="hidden" name="formStockHidden" id="formStockHidden" class="form-control form-control-sm" readonly>
                     <input type="text" name="formStock" id="formStock" class="form-control form-control-sm form-control-border border-width-2" readonly>
                 </td>
             </tr>
         </form>
+    </tbody>
+    <tbody id="disTbodyForm">
+        <tr>
+            <td>
+                <input type="hidden" name="hargaBeli" id="hargaBeli">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm form-control-border" name="disProduk" id="disProduk">
+            </td>
+            <td>
+                <input type="number" class="form-control form-control-sm form-control-border" name="disQty" id="disQty">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm form-control-border" name="disSatuan" id="disSatuan">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm form-control-border" name="disHarga" id="disHarga">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm form-control-border" name="disDiscount" id="disDiscount">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm form-control-border" name="disJumlah" id="disJumlah">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm form-control-border" name="disStock" id="disStock">
+            </td>
+            <td class="text-right">
+                <button class="btn btn-danger btn-flat btn-sm" id="delItem"><i class="fa-solid fa-xmark"></i></button>
+            </td>
+        </tr>
     </tbody>
 </table>
 <input type="hidden" name="removeAutofocus" id="removeAutofocus">

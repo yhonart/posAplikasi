@@ -389,6 +389,7 @@ class CashierController extends Controller
             'prdStock' => $getData->stock,
             'hrgModal' => $getData->product_price_order,
             'prodName' => $getData->product_name,
+            'satuan' => $getData->product_satuan,
         ]);
     }
 
