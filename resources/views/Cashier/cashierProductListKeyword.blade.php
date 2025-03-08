@@ -87,7 +87,7 @@
                             disStockAwal.value = data.prdStock;                            
                         }
                     }); 
-                    $("#disQty").focus().select();                   
+                    $("#disQty").focus("1").select();                   
                     $("#fieldProduk").val(null);
                     $("#stockID").val(selectedId);
                     $("#cusGroup").val(cusGroup);
