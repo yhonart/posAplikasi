@@ -366,13 +366,30 @@ class CashierController extends Controller
                 $productList = $productList->orderBy('product_name', 'ASC');
                 $productList = $productList->get();
                 
-                return view('Cashier/cashierProductListKeyword', compact('productList','keyword','cosGroup','billNumber'));
+                return view('Cashier/cashierProductListKeyword', compact('productList','keyword','cosGroup','billNumber','memberID'));
             }
         }
         else {
             $msg = array('warningCustomer' => 'Masukkan Nama Pelanggan/Member Terlebih Dahulu, Tekan [F1]');
         }
         return response()->json($msg);
+    }
+
+    public function selectResponse ($selectID, $memberID){
+        $getData = DB::table('view_customer_product_sell')
+            ->where([
+                ['idm_customer',$memberID],
+                ['idinv_stock',$selectID]
+            ])
+            ->first();
+
+        return response()->json([
+            'price' => $getData->price_sell,
+            'discount' => '0',
+            'prdStock' => $getData->stock,
+            'hrgModal' => $getData->product_price_order,
+            'prodName' => $getData->product_name,
+        ]);
     }
 
     public function inputItem ($dataID, $billNumber, $cusGroup){

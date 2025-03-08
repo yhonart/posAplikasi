@@ -1,7 +1,9 @@
 <table id="myTable" class="table">
     <tbody id="disTbodyForm">
         <tr>
-            <td></td>
+            <td>
+                <input type="hidden" name="hargaBeli" id="hargaBeli">
+            </td>
             <td>
                 <input type="text" class="form-control form-control-sm form-control-border" name="disProduk" id="disProduk">
             </td>
@@ -54,6 +56,15 @@
         const table = document.getElementById('myTable');
         const rows = table.getElementsByTagName('tr');
         let selectedRow = -1;
+        let hargaSatuan = document.getElementById("disHarga"),
+            hargaBeli = document.getElementById("hargaBeli"),
+            disQty = document.getElementById("disQty"),
+            disSatuan = document.getElementById("disSatuan"),
+            disDiscount = document.getElementById("disDiscount"),
+            disJumlah = document.getElementById("disJumlah"),
+            disStock = document.getElementById("disStock"),
+            disProduk = document.getElementById("disProduk");
+
         function highlightRow(index) {
             if (selectedRow >= 0) {
                 rows[selectedRow].classList.remove('highlight');
@@ -79,24 +90,31 @@
                 // Kirim data baris yang dipilih
                 let selectedId = rows[selectedRow].getAttribute('data-id');
                 let billNumber = "{{$billNumber}}",
-                    cusGroup = "{{$cosGroup}}";
+                    cusGroup = "{{$cosGroup}}",
+                    memberID = "{{$memberID}}";
                 let routeIndex = "{{route('Cashier')}}",
                     urlProductList = "productList",
                     panelProductList = $("#mainListProduct");
                 if (selectedId) {
-                    console.log('ID yang dipilih:', selectedId);                    
-                    $.ajax({
-                        type : 'get',
-                        url : "{{route('Cashier')}}/inputItem/"+selectedId+"/"+billNumber+"/"+cusGroup,
-                        success : function(response){                
-                            // reloadTableItem(billNumber);
-                            // sumTotalBelanja(billNumber);
-                            // $("#fieldProduk").val('');
-                            // $("#fieldProduk").val(null).focus();
-                            // $("#tableSelectProduk").fadeOut("slow");
-                            window.location.reload();
+                    fetch("{{route('Cashier')}}/selectResponse/" + selectedId + "/" + $memberID)
+                    .then(response => response.json())
+                    .then(data => {
+                        if ((data.price) || (data.satuan) || (data.jumlah) || (data.prdStock) || (data.prodName)) {
+                            hargaSatuan.value = accounting.formatMoney(data.price,{
+                                symbol: "",
+                                precision: 0,
+                                thousand: ".",
+                            });
+                            disProduk.value = data.prodName;
                         }
                     });
+                    // $.ajax({
+                    //     type : 'get',
+                    //     url : "{{route('Cashier')}}/inputItem/"+selectedId+"/"+billNumber+"/"+cusGroup,
+                    //     success : function(response){
+                    //         window.location.reload();
+                    //     }
+                    // });
                 }
             }
         });
