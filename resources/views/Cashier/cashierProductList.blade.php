@@ -48,7 +48,7 @@
             </tr>
         </form>
     </tbody>
-    <tbody id="disTbodyForm">
+    <tbody id="disTbodyForm" style="display: none;">
         <tr>
             <td>
                 <input type="hidden" name="hargaBeli" id="hargaBeli">

@@ -64,6 +64,8 @@
                 let routeIndex = "{{route('Cashier')}}",
                     urlProductList = "productList",
                     panelProductList = $("#mainListProduct");
+                $("#disTbodyForm").fadeIn("slow");
+                $("#tableSelectProduk").fadeOut("slow");
                 if (selectedId) {
                     fetch("{{route('Cashier')}}/selectResponse/" + selectedId + "/" + memberID)
                     .then(response => response.json())
@@ -80,8 +82,9 @@
                             disJumlah.value = data.jumlah;
                             disStock.value = data.prdStock;
                             hargaBeli.value = data.hrgModal;
+                            disQty.val().focus();
                         }
-                    });
+                    });                    
                     // $.ajax({
                     //     type : 'get',
                     //     url : "{{route('Cashier')}}/inputItem/"+selectedId+"/"+billNumber+"/"+cusGroup,
