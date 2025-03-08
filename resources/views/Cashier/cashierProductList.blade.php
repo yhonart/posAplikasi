@@ -147,25 +147,7 @@
                     }
                 });
             }
-        }
-        function loadTableData(trxNumber){
-            $.ajax({
-                type : 'get',
-                url : "{{route('Cashier')}}/productList/listTableTransaksi/"+trxNumber,
-                success : function(response){                
-                    $("#trLoadProduct").html(response);
-                }
-            });
-        }
-        function totalBelanja(trxNumber){
-            $.ajax({
-                type : 'get',
-                url : "{{route('Cashier')}}/buttonAction/updateTotalBeanja/"+trxNumber,
-                success : function(response){
-                    $('#totalBelanja').html(response);
-                }
-            });
-        }
+        }       
 
         $("#disQty").on('input', computeJumlah);
         function computeJumlah(){
@@ -225,9 +207,28 @@
                     type : 'get',
                     url : "{{route('Cashier')}}/inputItem/"+stockID+"/"+trxNumber+"/"+cusGroup,
                     success : function(response){
-                        window.location.reload();
+                        loadTableData(trxNumber);
+                        totalBelanja(trxNumber);
                     }
                 });
+        }
+        function loadTableData(trxNumber){
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/productList/listTableTransaksi/"+trxNumber,
+                success : function(response){                
+                    $("#trLoadProduct").html(response);
+                }
+            });
+        }
+        function totalBelanja(trxNumber){
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/buttonAction/updateTotalBeanja/"+trxNumber,
+                success : function(response){
+                    $('#totalBelanja').html(response);
+                }
+            });
         }
     });
     
