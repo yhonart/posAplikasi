@@ -9,7 +9,7 @@
             <th>Hrg.Satuan</th>
             <th>Disc</th>
             <th>Jumlah</th>
-            <th>Stock Barang</th>
+            <th>Stock</th>
             <th></th>
         </tr>
     </thead>
