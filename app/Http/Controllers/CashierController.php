@@ -419,7 +419,7 @@ class CashierController extends Controller
                 ['cos_group',$cusGroup]
             ])
             ->first();
-        $priceSell = $getPrice->price_sell;
+        $priceSell = $getPrice->price_sell * $qtySubmit;
         //Cek ketersediaan item dengan barang yang sama
         $countItem = DB::table('tr_store_prod_list')
             ->where([
@@ -449,13 +449,6 @@ class CashierController extends Controller
                 ]);
 
             // Insert into laporan
-            $location = '3';
-            $prodQty = '1';
-            $description = "Penjualan ".$username;
-            
-            $this->TempInventoryController->reportBarangKeluar($product, $satuan, $location, $prodQty, $description, $billNumber, $username);
-            $this->penguranganStock($product, $location, $satuan, $prodQty);
-
             DB::table('tr_temp_prod')
             ->insert([
                 'bill_number'=>$billNumber,
@@ -465,6 +458,11 @@ class CashierController extends Controller
                 'created_by'=>$username
             ]);
         }
+        $location = '3';
+        $prodQty = $qtySubmit;
+        $description = "Penjualan ".$username;
+        $this->TempInventoryController->reportBarangKeluar($product, $satuan, $location, $prodQty, $description, $billNumber, $username);
+        $this->penguranganStock($product, $location, $satuan, $prodQty);
     }
 
     public function inputSatuan($idPrd)
