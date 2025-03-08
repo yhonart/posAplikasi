@@ -87,13 +87,9 @@
                         }
                     }); 
                     $("#disQty").val("0").focus().select();                   
-                    // $.ajax({
-                    //     type : 'get',
-                    //     url : "{{route('Cashier')}}/inputItem/"+selectedId+"/"+billNumber+"/"+cusGroup,
-                    //     success : function(response){
-                    //         window.location.reload();
-                    //     }
-                    // });
+                    $("#fieldProduk").val(null);
+                    $("#stockID").val(selectedId);
+                    $("#cusGroup").val(cusGroup);
                 }
             }
         });

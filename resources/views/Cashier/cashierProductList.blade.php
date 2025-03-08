@@ -50,11 +50,11 @@
     </tbody>
     <tbody id="disTbodyForm" style="display: none;">
         <tr>
-            <td>
+            <td colspan="2">
                 <input type="hidden" name="hargaBeli" id="hargaBeli">
                 <input type="hidden" name="disStockAwal" id="disStockAwal">
-            </td>
-            <td>
+                <input type="text" name="stockID" id="stockID">
+                <input type="text" name="cusGroup" id="cusGroup">
                 <input type="text" class="form-control form-control-sm form-control-border" name="disProduk" id="disProduk" readonly>
             </td>
             <td>
@@ -93,6 +93,13 @@
         trxNumber = "{{$billNumber}}";
         
         loadTableData(trxNumber);
+
+        document.addEventListener('keydown', function(event) {  
+            if (event.key === 'F3') {
+                event.preventDefault();
+                $("#fieldProduk").val("").focus();
+            }
+        });
 
         $("#fieldProduk").keyup(function (e) {
             e.preventDefault();
@@ -150,7 +157,6 @@
                 }
             });
         }
-
         function totalBelanja(trxNumber){
             $.ajax({
                 type : 'get',
@@ -174,7 +180,55 @@
             }));
             $("#disStock").val(stockVal - qtyVal);
         }
-        
+
+        $("#disDiscount").on('input', computeDisc);
+        function computeDisc(){
+            let valHrgSatuan = $("#disHarga").val(),
+                valQty = $("#disQty").val(),
+                valDisc = $("#disDiscount").val(), 
+
+                inputHrgSatuan = valHrgSatuan.replace(/\./g, ""),
+                inputQty = valQty.replace(/\./g, "");
+                inputDisc = valDisc.replace(/\./g, "");
+
+            if (typeof inputDisc == "undefined" || typeof inputDisc == "0") {
+                return
+            }
+            let hrgAfterDis = parseInt(inputHrgSatuan) - parseInt(inputDisc);
+            $("#disJumlah").val(accounting.formatMoney(hrgAfterDis*inputQty,{
+                symbol: "",
+                precision: 0,
+                thousand: ".",
+            })); 
+        }
+
+        var qtyActivities = document.getElementById("disQty");
+        var discountActivites = document.getElementById("disDiscount");
+
+        qtyActivities.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
+        discountActivites.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
     });
+    function addActivityItem() {
+        let trxNumber = $("#transNumber").val(),
+            stockID = $("#stockID").val(),
+            cusGroup = $("#cusGroup").val();
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/inputItem/"+stockID+"/"+trxNumber+"/"+cusGroup,
+                success : function(response){
+                    window.location.reload();
+                }
+            });
+    }
     
 </script>
