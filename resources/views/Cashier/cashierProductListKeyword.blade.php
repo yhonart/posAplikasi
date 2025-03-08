@@ -1,4 +1,17 @@
 <table id="myTable" class="table">
+    <thead class="text-center" style="display: none;">
+        <tr>
+            <th width="5%">No</th>
+            <th width="20%">Nama Barang [F3]</th>
+            <th>Qty</th>
+            <th>Satuan</th>
+            <th>Hrg. Satuan</th>
+            <th>Disc</th>
+            <th>Jumlah</th>
+            <th>Stock</th>
+            <th></th>
+        </tr>
+    </thead>
     <tbody id="disTbodyForm">
         <tr>
             <td>
@@ -99,13 +112,18 @@
                     fetch("{{route('Cashier')}}/selectResponse/" + selectedId + "/" + memberID)
                     .then(response => response.json())
                     .then(data => {
-                        if ((data.price) || (data.satuan) || (data.jumlah) || (data.prdStock) || (data.prodName)) {
+                        if ((data.price) || (data.satuan) || (data.jumlah) || (data.prdStock) || (data.prodName) || (data.discount) || (data.hrgModal)) {
                             hargaSatuan.value = accounting.formatMoney(data.price,{
                                 symbol: "",
                                 precision: 0,
                                 thousand: ".",
                             });
                             disProduk.value = data.prodName;
+                            disSatuan.value = data.satuan;
+                            disDiscount.value = data.discount;
+                            disJumlah.value = data.jumlah;
+                            disStock.value = data.prdStock;
+                            hargaBeli.value = data.hrgModal;
                         }
                     });
                     // $.ajax({
