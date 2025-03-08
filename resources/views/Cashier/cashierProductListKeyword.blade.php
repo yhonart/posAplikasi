@@ -96,7 +96,7 @@
                     urlProductList = "productList",
                     panelProductList = $("#mainListProduct");
                 if (selectedId) {
-                    fetch("{{route('Cashier')}}/selectResponse/" + selectedId + "/" + $memberID)
+                    fetch("{{route('Cashier')}}/selectResponse/" + selectedId + "/" + memberID)
                     .then(response => response.json())
                     .then(data => {
                         if ((data.price) || (data.satuan) || (data.jumlah) || (data.prdStock) || (data.prodName)) {
