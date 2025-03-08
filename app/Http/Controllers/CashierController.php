@@ -453,8 +453,7 @@ class CashierController extends Controller
             $prodQty = $qtySubmit;
             $description = "Penjualan ".$username;
             $this->TempInventoryController->reportBarangKeluar($product, $satuan, $location, $prodQty, $description, $billNumber, $username);
-            $this->penguranganStock($product, $location, $satuan, $prodQty);
-            
+            $this->penguranganStock($product, $location, $satuan, $prodQty);            
             DB::table('tr_temp_prod')
             ->insert([
                 'bill_number'=>$billNumber,

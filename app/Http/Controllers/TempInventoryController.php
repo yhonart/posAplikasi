@@ -815,7 +815,8 @@ class TempInventoryController extends Controller
                 ['number_code',$noTrx],
                 ['product_id',$productID],
                 ['satuan',$satuan],
-                ['satuan_code',$sizeCodeDesc]
+                ['satuan_code',$sizeCodeDesc],
+                ['status_trx','!=','0']
             ])
             ->count();
         
