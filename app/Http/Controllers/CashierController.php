@@ -410,7 +410,7 @@ class CashierController extends Controller
         $priceOrder = $productListView->product_price_order;
         $stock = $productListView->stock;
         $username = Auth::user()->name;
-        $inputStock = $stock - 1;
+        $inputStock = $stock - $qtySubmit;
 
         $getPrice = DB::table('m_product_price_sell')
             ->where([
