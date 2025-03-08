@@ -438,7 +438,7 @@ class CashierController extends Controller
                     'qty'=>$qtySubmit,
                     'unit'=>$unit,
                     'satuan'=>$satuan,
-                    'unit_price'=>$priceSell,
+                    'unit_price'=>$getPrice->price_sell,
                     'disc'=>'0',
                     't_price'=>$priceSell,
                     'm_price'=>$priceOrder,
@@ -449,6 +449,12 @@ class CashierController extends Controller
                 ]);
 
             // Insert into laporan
+            $location = '3';
+            $prodQty = $qtySubmit;
+            $description = "Penjualan ".$username;
+            $this->TempInventoryController->reportBarangKeluar($product, $satuan, $location, $prodQty, $description, $billNumber, $username);
+            $this->penguranganStock($product, $location, $satuan, $prodQty);
+            
             DB::table('tr_temp_prod')
             ->insert([
                 'bill_number'=>$billNumber,
@@ -458,11 +464,6 @@ class CashierController extends Controller
                 'created_by'=>$username
             ]);
         }
-        $location = '3';
-        $prodQty = $qtySubmit;
-        $description = "Penjualan ".$username;
-        $this->TempInventoryController->reportBarangKeluar($product, $satuan, $location, $prodQty, $description, $billNumber, $username);
-        $this->penguranganStock($product, $location, $satuan, $prodQty);
     }
 
     public function inputSatuan($idPrd)
