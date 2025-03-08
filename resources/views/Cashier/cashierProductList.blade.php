@@ -6,7 +6,7 @@
             <th width="20%">Nama Barang [F3]</th>
             <th>Qty</th>
             <th>Satuan</th>
-            <th>Hrg. Satuan</th>
+            <th>Hrg.Satuan</th>
             <th>Disc</th>
             <th>Jumlah</th>
             <th>Stock</th>
