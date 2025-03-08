@@ -53,8 +53,8 @@
             <td colspan="2">
                 <input type="hidden" name="hargaBeli" id="hargaBeli">
                 <input type="hidden" name="disStockAwal" id="disStockAwal">
-                <input type="text" name="stockID" id="stockID">
-                <input type="text" name="cusGroup" id="cusGroup">
+                <input type="hidden" name="stockID" id="stockID">
+                <input type="hidden" name="cusGroup" id="cusGroup">
                 <input type="text" class="form-control form-control-sm form-control-border" name="disProduk" id="disProduk" readonly>
             </td>
             <td>
@@ -217,18 +217,18 @@
                 addActivityItem();
             }   
         });
+        function addActivityItem() {
+            let trxNumber = $("#transNumber").val(),
+                stockID = $("#stockID").val(),
+                cusGroup = $("#cusGroup").val();
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('Cashier')}}/inputItem/"+stockID+"/"+trxNumber+"/"+cusGroup,
+                    success : function(response){
+                        window.location.reload();
+                    }
+                });
+        }
     });
-    function addActivityItem() {
-        let trxNumber = $("#transNumber").val(),
-            stockID = $("#stockID").val(),
-            cusGroup = $("#cusGroup").val();
-            $.ajax({
-                type : 'get',
-                url : "{{route('Cashier')}}/inputItem/"+stockID+"/"+trxNumber+"/"+cusGroup,
-                success : function(response){
-                    window.location.reload();
-                }
-            });
-    }
     
 </script>
