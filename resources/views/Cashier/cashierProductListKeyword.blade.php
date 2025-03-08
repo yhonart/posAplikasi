@@ -67,6 +67,7 @@
                     panelProductList = $("#mainListProduct");
                 $("#disTbodyForm").fadeIn("slow");
                 $("#tableSelectProduk").fadeOut("slow");
+                $("#trInputProdut").fadeOut("slow");
                 if (selectedId) {
                     fetch("{{route('Cashier')}}/selectResponse/" + selectedId + "/" + memberID)
                     .then(response => response.json())
@@ -86,7 +87,7 @@
                             disStockAwal.value = data.prdStock;                            
                         }
                     }); 
-                    $("#disQty").val("0").focus().select();                   
+                    $("#disQty").focus().select();                   
                     $("#fieldProduk").val(null);
                     $("#stockID").val(selectedId);
                     $("#cusGroup").val(cusGroup);
