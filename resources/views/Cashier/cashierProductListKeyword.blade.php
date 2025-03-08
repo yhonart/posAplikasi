@@ -1,4 +1,33 @@
 <table id="myTable" class="table">
+    <tbody id="disTbodyForm">
+        <tr>
+            <td></td>
+            <td>
+                <input type="text" class="form-control form-control-sm form-control-border" name="disProduk" id="disProduk">
+            </td>
+            <td>
+                <input type="number" class="form-control form-control-sm form-control-border" name="disQty" id="disQty">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm form-control-border" name="disSatuan" id="disSatuan">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm form-control-border" name="disHarga" id="disHarga">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm form-control-border" name="disDiscount" id="disDiscount">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm form-control-border" name="disJumlah" id="disJumlah">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm form-control-border" name="disStock" id="disStock">
+            </td>
+            <td class="text-right">
+                <button class="btn btn-danger btn-flat btn-sm" id="delItem"><i class="fa-solid fa-xmark"></i></button>
+            </td>
+        </tr>
+    </tbody>
     <tbody>
         @foreach($productList as $pL)
         <tr data-id="{{$pL->idinv_stock}}">
