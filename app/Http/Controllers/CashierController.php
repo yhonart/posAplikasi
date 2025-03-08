@@ -393,8 +393,13 @@ class CashierController extends Controller
         ]);
     }
 
-    public function inputItem ($dataID, $billNumber, $cusGroup){
+    public function inputItem (Request $postItem){
         //Ambil data produk
+        $dataID = $postItem->dataID;
+        $billNumber = $postItem->billNumber; 
+        $cusGroup = $postItem->cusGroup;
+        $qtySubmit = $postItem->qty;
+
         $productListView = DB::table('view_product_stock')
             ->where('idinv_stock',$dataID)
             ->first();
@@ -430,7 +435,7 @@ class CashierController extends Controller
                 ->insert([
                     'from_payment_code'=>$billNumber,
                     'product_code'=>$product,
-                    'qty'=>'1',
+                    'qty'=>$qtySubmit,
                     'unit'=>$unit,
                     'satuan'=>$satuan,
                     'unit_price'=>$priceSell,

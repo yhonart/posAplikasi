@@ -91,7 +91,7 @@
         let keyword = '0',
             timer_cari_equipment = null,
             trxNumber = "{{$billNumber}}";
-            
+
         let routeIndex = "{{route('Cashier')}}",
             urlProductList = "productList",
             panelProductList = $("#mainListProduct");
@@ -206,10 +206,13 @@
         function addActivityItem() {
             let trxNumber = $("#transNumber").val(),
                 stockID = $("#stockID").val(),
-                cusGroup = $("#cusGroup").val();            
+                cusGroup = $("#cusGroup").val(),
+                qty = $("#disQty").val();   
+                
+            let dataform = {trxNumber:trxNumber,stockID:stockID,cusGroup:cusGroup,qty:qty};
                 $.ajax({
-                    type : 'get',
-                    url : "{{route('Cashier')}}/inputItem/"+stockID+"/"+trxNumber+"/"+cusGroup,
+                    type : 'post',
+                    url : "{{route('Cashier')}}/inputItem",
                     success : function(response){
                         cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
                         totalBelanja(trxNumber);
