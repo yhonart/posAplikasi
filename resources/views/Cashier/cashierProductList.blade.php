@@ -52,27 +52,28 @@
         <tr>
             <td>
                 <input type="hidden" name="hargaBeli" id="hargaBeli">
+                <input type="hidden" name="disStockAwal" id="disStockAwal">
             </td>
             <td>
-                <input type="text" class="form-control form-control-sm form-control-border" name="disProduk" id="disProduk">
+                <input type="text" class="form-control form-control-sm form-control-border" name="disProduk" id="disProduk" readonly>
             </td>
             <td>
                 <input type="number" class="form-control form-control-sm form-control-border" name="disQty" id="disQty">
             </td>
             <td>
-                <input type="text" class="form-control form-control-sm form-control-border" name="disSatuan" id="disSatuan">
+                <input type="text" class="form-control form-control-sm form-control-border" name="disSatuan" id="disSatuan" readonly>
             </td>
             <td>
-                <input type="text" class="form-control form-control-sm form-control-border" name="disHarga" id="disHarga">
+                <input type="text" class="form-control form-control-sm form-control-border" name="disHarga" id="disHarga" readonly>
             </td>
             <td>
                 <input type="text" class="form-control form-control-sm form-control-border" name="disDiscount" id="disDiscount">
             </td>
             <td>
-                <input type="text" class="form-control form-control-sm form-control-border" name="disJumlah" id="disJumlah">
+                <input type="text" class="form-control form-control-sm form-control-border" name="disJumlah" id="disJumlah" readonly>
             </td>
             <td>
-                <input type="text" class="form-control form-control-sm form-control-border" name="disStock" id="disStock">
+                <input type="text" class="form-control form-control-sm form-control-border" name="disStock" id="disStock" readonly>
             </td>
             <td class="text-right">
                 <button class="btn btn-danger btn-flat btn-sm" id="delItem"><i class="fa-solid fa-xmark"></i></button>
@@ -158,6 +159,20 @@
                     $('#totalBelanja').html(response);
                 }
             });
+        }
+
+        $("#disQty").on('input', computeJumlah);
+        function computeJumlah(){
+            let qtyVal = $("#disQty").val(),
+                stockVal = $("#disStockAwal").val(),
+                valPriceUnit = $("#disHarga").val(),
+                priceVal = valPriceUnit.replace(/\./g, "");
+            $("#disJumlah").val(accounting.formatMoney(priceVal * qtyVal,{
+                symbol: "",
+                precision: 0,
+                thousand: ".",
+            }));
+            $("#disStock").val(stockVal - qtyVal);
         }
         
     });

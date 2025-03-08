@@ -32,6 +32,7 @@
             disDiscount = document.getElementById("disDiscount"),
             disJumlah = document.getElementById("disJumlah"),
             disStock = document.getElementById("disStock"),
+            disStockAwal = document.getElementById("disStockAwal"),
             disProduk = document.getElementById("disProduk");
 
         function highlightRow(index) {
@@ -79,12 +80,13 @@
                             disProduk.value = data.prodName;
                             disSatuan.value = data.satuan;
                             disDiscount.value = data.discount;
-                            disJumlah.value = data.jumlah;
+                            disJumlah.value = data.hrgModal;
                             disStock.value = data.prdStock;
                             hargaBeli.value = data.hrgModal;                            
+                            disStockAwal.value = data.prdStock;                            
                         }
                     }); 
-                    $("#disQty").val(null).focus();                   
+                    $("#disQty").val("0").focus().select();                   
                     // $.ajax({
                     //     type : 'get',
                     //     url : "{{route('Cashier')}}/inputItem/"+selectedId+"/"+billNumber+"/"+cusGroup,
