@@ -252,6 +252,7 @@ class CashierController extends Controller
     {
         $barcode = "";
         $username = Auth::user()->name;
+        $company = Auth::user()->company;
 
         $getBarcode = DB::table('m_product_unit')
             ->where('set_barcode', $keyword)
@@ -361,7 +362,8 @@ class CashierController extends Controller
                 $productList = $productList->where([
                     ['idm_customer',$memberID],
                     ['location_id','3'],
-                    ['customer_type',$cosGroup]
+                    ['customer_type',$cosGroup],
+                    ['comp_id',$company]
                 ]);
                 $productList = $productList->orderBy('product_name', 'ASC');
                 $productList = $productList->get();
