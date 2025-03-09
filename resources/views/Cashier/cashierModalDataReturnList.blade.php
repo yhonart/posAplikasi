@@ -75,8 +75,8 @@
                                 {{$ldN->billing_number}}
                             </a>
                         </td>
-                        <td class="bg-light">
-                            <input type="text" class="form-control form-control-sm form-control-border date-change" name="editDate" value="{{$ldN->tr_date}}" onchange="saveChangeDate(this,'tr_store','tr_date','{{$ldN->tr_store_id}}','tr_store_id','{{$ldN->billing_number}}')">
+                        <td class="bg-warning">
+                            <input type="text" class="form-control form-control-sm date-change rounded-0" name="editDate" value="{{$ldN->tr_date}}" onchange="saveChangeDate(this,'tr_store','tr_date','{{$ldN->tr_store_id}}','tr_store_id','{{$ldN->billing_number}}')">
                         </td>
                         <td>{{$ldN->customer_name}}</td>
                         <td class="text-right font-weight-bold">{{number_format($ldN->t_bill,'0',',','.')}}</td>

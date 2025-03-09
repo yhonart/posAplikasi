@@ -32,12 +32,10 @@
                     <div class="col-12">
                         <p id="adminWarning"></p>
                         <div id="divDataReturn"></div>
-                        <p class="alert-default-info">
-                            <ul>
-                                <li>Secara default akan menampilkan data berdasarkan tanggal hari ini</li>
-                                <li>Pilih tanggal, untuk melakukan edit/perubahan tanggal.</li>
-                            </ul>
-                        </p>
+                        <ul class="blue-alert">
+                            <li>Secara default akan menampilkan data berdasarkan tanggal hari ini</li>
+                            <li>Pilih tanggal, untuk melakukan edit/perubahan tanggal.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
