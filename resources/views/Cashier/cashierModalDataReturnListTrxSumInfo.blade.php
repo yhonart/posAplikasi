@@ -115,8 +115,7 @@
         let trxCode = "{{$trxID}}",
             qty = $('#qtyEdit'),
             satuan = $('#unitEdit'),
-            hrgSatuan = $('#unitPriceEdit'),
-            ;
+            hrgSatuan = $('#unitPriceEdit');
         $(editTableObj).css("background","#FFF");
         $.ajax({
             url: "{{route('Cashier')}}/buttonAction/dataPenjualan/postEditItem",
