@@ -1553,7 +1553,9 @@ class CashierController extends Controller
 
     public function modalDataPelunasan()
     {
+        $company = Auth::user()->company;
         $dbMCustomer = DB::table('m_customers')
+            ->where('comp_id',$company)
             ->get();
 
         return view('Cashier/cashierModalDataPelunasan', compact('dbMCustomer'));

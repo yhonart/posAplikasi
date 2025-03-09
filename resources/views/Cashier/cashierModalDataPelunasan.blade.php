@@ -7,14 +7,13 @@
                     <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-            <div class="card-body">
-                <p class="text-muted">*Pilih nama pelanggan untuk input pembayaran kredit</p>
+            <div class="card-body">                
                 <div class="row">
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <input type="hidden" name="actionCode" id="actionCode" value="1">
                             <label class="form-label">Cari</label>
-                            <select class="form-control form-control-sm" id="cariNamaPelanggan" class="form-control form-control-sm select-pelanggan">
+                            <select id="cariNamaPelanggan" class="form-control form-control-sm select-pelanggan">
                                 <option value="0" readonly>Nama Pelanggan</option>
                                 @foreach($dbMCustomer as $dcs)
                                 <option value="{{$dcs->idm_customer }}">{{$dcs->customer_store}}</option>
@@ -36,7 +35,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12">                        
                         <div id="divDataPelunasan"></div>
                     </div>
                 </div>
