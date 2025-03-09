@@ -11,12 +11,6 @@
                 <div class="row mb-2">
                     <div class="col-12 col-md-3">
                         <div class="form-group">
-                            <label>Cari</label>
-                            <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info" name="searchDataReturn" id="searchDataReturn" placeholder="Nomor transaksi atau nama pelanggan" autocomplete="off"/>                            
-                        </div>
-                    </div>                    
-                    <div class="col-12 col-md-3">
-                        <div class="form-group">
                             <label>Dari Tanggal</label>
                             <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="fromDateReturn" id="fromDateReturn"/>                            
                         </div>
@@ -27,15 +21,17 @@
                             <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info datetimepicker-input" name="endDateReturn" id="endDateReturn"/>                            
                         </div>
                     </div>
+                    <div class="col-12 col-md-3">
+                        <div class="form-group">
+                            <label>Cari</label>
+                            <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info" name="searchDataReturn" id="searchDataReturn" placeholder="Nomor transaksi atau nama pelanggan" autocomplete="off"/>                            
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <p id="adminWarning"></p>
-                        <div id="divDataReturn"></div>
-                        <ul class="blue-alert">
-                            <li>Secara default akan menampilkan data berdasarkan tanggal hari ini</li>
-                            <li>Pilih tanggal, untuk melakukan edit/perubahan tanggal.</li>
-                        </ul>
+                        <div id="divDataReturn"></div>                        
                     </div>
                 </div>
             </div>

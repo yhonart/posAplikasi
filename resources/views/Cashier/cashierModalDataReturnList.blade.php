@@ -59,7 +59,10 @@
             <thead class="text-center">
                 <tr>
                     <th>No. Transaksi</th>
-                    <th><i class="fa-solid fa-pen-to-square"></i> Tanggal</th>
+                    <th>
+                        <i class="fa-solid fa-pen-to-square"></i> Tanggal
+                        <br><small>Edit tanggal transaksi di sini</small>
+                    </th>
                     <th>Pelanggan</th>
                     <th>Total Transaksi (Rp.)</th>
                     <th>Pembayaran</th>
@@ -75,7 +78,7 @@
                                 {{$ldN->billing_number}}
                             </a>
                         </td>
-                        <td class="bg-warning">
+                        <td>
                             <input type="text" class="form-control form-control-sm date-change rounded-0" name="editDate" value="{{$ldN->tr_date}}" onchange="saveChangeDate(this,'tr_store','tr_date','{{$ldN->tr_store_id}}','tr_store_id','{{$ldN->billing_number}}')">
                         </td>
                         <td>{{$ldN->customer_name}}</td>
