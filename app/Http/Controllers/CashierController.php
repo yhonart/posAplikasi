@@ -887,6 +887,7 @@ class CashierController extends Controller
         $billNumber = $this->getInfoNumber();
         $createdName = Auth::user()->name;
         $hakAkses = Auth::user()->hakakses;
+        $company = Auth::user()->company;
 
         if ($hakAkses == '1' and $countReturn >= '1') {
             $checkActiveBtn = '1';
@@ -909,7 +910,10 @@ class CashierController extends Controller
             ->count();
         
         $members = DB::table('m_customers')
-            ->where('customer_status', '1')
+            ->where([
+                ['customer_status', '1'],
+                ['comp_id',$company]
+                ])
             ->orWhere('customer_status', '2')
             ->get();
 
