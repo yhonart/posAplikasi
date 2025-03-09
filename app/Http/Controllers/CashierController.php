@@ -1253,6 +1253,7 @@ class CashierController extends Controller
         $createdBy = Auth::user()->name;
         $userID = Auth::user()->id;
         $hakakses = Auth::user()->hakakses;
+        $company = Auth::user()->company;
         $area = $this->checkuserInfo();
 
         // echo $fromdate."=".$enddate."=".$keyword."=".$method;
@@ -1284,7 +1285,8 @@ class CashierController extends Controller
         }
         $listDataSelling = $listDataSelling->where([
             ['a.status', '!=', '1'],
-            ['a.status', '!=', '2']
+            ['a.status', '!=', '2'],
+            ['a.comp_id',$company]
         ]);
         $listDataSelling = $listDataSelling->orderBy('a.billing_number', 'asc');
         $listDataSelling = $listDataSelling->get();

@@ -8,8 +8,7 @@
         4=>"Completed",
     );
 ?>
-<div id="dataPaginate">
-    
+<div id="dataPaginate">    
     <div class="row">
         <div class="col-12 table-responsive">
             <table class="table table-sm table-striped table-hover table-valign-middle text-xs " id="tableTransaksi">
