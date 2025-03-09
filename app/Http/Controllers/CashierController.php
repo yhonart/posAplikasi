@@ -1566,6 +1566,7 @@ class CashierController extends Controller
         // echo $keyword."/".$fromDate."/".$endDate;
         $fields = ['from_payment_code', 'customer_store'];
         $periode = date("ym");
+        $company = Auth::user()->company;
 
         $countDataPinjaman = DB::table('view_customer_kredit')
             ->where('from_member_id', $keyword)
@@ -1590,6 +1591,7 @@ class CashierController extends Controller
         } elseif ($fromDate <> '0' and $endDate <> '0') {
             $dataPinjaman = $dataPinjaman->whereBetween('created_at', [$fromDate, $endDate]);
         }
+        $dataPinjaman = $dataPinjaman->where('comp_id',$company);
         $dataPinjaman = $dataPinjaman->get();
 
         $datPinjaman = $dataPinjaman;
