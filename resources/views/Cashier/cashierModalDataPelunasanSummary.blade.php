@@ -3,9 +3,9 @@
     $grandTotalBayar = '0';
     $grandSaldoKredit = '0';
 @endphp
-<div class="card card-body table-responsive p-0" style="height:500px;">    
-    <table class="table table-valign-middle table-hover table-bordered table-sm">
-        <thead class="bg-gray-dark">
+<div class="card card-body table-responsive p-0 text-xs" style="height:500px;">    
+    <table class="table table-valign-middle table-hover table-sm">
+        <thead>
             <tr>
                 <th>Nama Pelanggan</th>
                 <th>Nomor Faktur</th>
@@ -34,10 +34,7 @@
         </tbody>
         <tbody class="bg-light">
             <tr>
-                <td class="font-weight-bold">Grand Total</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="font-weight-bold" colspan="3">Grand Total</td>
                 <td class="font-weight-bold"><i class="fa-solid fa-rupiah-sign float-left"></i> <span class="float-right">{{number_format($grandTotalKredit,'0',',','.')}}</span></td>
                 <td class="font-weight-bold"><i class="fa-solid fa-rupiah-sign float-left"></i> <span class="float-right">{{number_format($grandTotalBayar,'0',',','.')}}</span></td>
                 <td class="font-weight-bold"><i class="fa-solid fa-rupiah-sign float-left"></i> <span class="float-right">{{number_format($grandSaldoKredit,'0',',','.')}}</span></td>
