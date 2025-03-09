@@ -7,7 +7,6 @@
     <table class="table table-valign-middle table-hover">
         <thead class="bg-gray-dark">
             <tr>
-                <th></th>
                 <th>Nama Pelanggan</th>
                 <th>Nomor Faktur</th>
                 <th>Tgl. Faktur</th>
@@ -19,7 +18,6 @@
         <tbody>
             @foreach($datPinjaman as $dpn)
                 <tr>
-                    <td></td>
                     <td>{{$dpn->customer_store}}</td>
                     <td>{{$dpn->from_payment_code}}</td>
                     <td>{{date('d-M-Y', strtotime($dpn->created_at))}}</td>
