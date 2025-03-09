@@ -1817,6 +1817,7 @@ class CashierController extends Controller
         $userID = Auth::user()->id;
         $createdBy = Auth::user()->name;
         $hakakses = Auth::user()->hakakses;
+        $company = Auth::user()->company;
 
         $listDataNumber = DB::table('view_billing_action as a');
         $listDataNumber = $listDataNumber->select('a.*', 'b.method_name', 'trx_method');
@@ -1835,7 +1836,8 @@ class CashierController extends Controller
         $listDataNumber = $listDataNumber->where([
             ['a.status', '!=', '1'],
             ['a.status', '!=', '2'],
-            ['a.status', '!=', '0']
+            ['a.status', '!=', '0'],
+            ['a.comp_id',$company]
         ]);
         $listDataNumber = $listDataNumber->orderBy('a.billing_number', 'asc');
         $listDataNumber = $listDataNumber->get();

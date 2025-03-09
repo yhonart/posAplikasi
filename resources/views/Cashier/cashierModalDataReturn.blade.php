@@ -12,7 +12,7 @@
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <label>Cari</label>
-                            <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info" name="searchDataReturn" id="searchDataReturn" placeholder="Nomor transaksi atau nama pelanggan"/>                            
+                            <input type="text" class="form-control form-control-sm form-control-border border-width-2 border-info" name="searchDataReturn" id="searchDataReturn" placeholder="Nomor transaksi atau nama pelanggan" autocomplete="off"/>                            
                         </div>
                     </div>                    
                     <div class="col-12 col-md-3">
@@ -32,6 +32,12 @@
                     <div class="col-12">
                         <p id="adminWarning"></p>
                         <div id="divDataReturn"></div>
+                        <p class="blue-alert">
+                            <ul>
+                                <li>Secara default akan menampilkan data berdasarkan tanggal hari ini</li>
+                                <li>Pilih tanggal, untuk melakukan edit/perubahan tanggal.</li>
+                            </ul>
+                        </p>
                     </div>
                 </div>
             </div>
