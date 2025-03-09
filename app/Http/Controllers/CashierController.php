@@ -1645,7 +1645,9 @@ class CashierController extends Controller
 
     public function listDataPinjaman()
     {
+        $company = Auth::user()->company;
         $datPinjaman = DB::table('view_customer_kredit')
+            ->where('comp_id',$company)
             ->get();
 
         return view('Cashier/cashierModalDataPelunasanSummary', compact('datPinjaman'));
