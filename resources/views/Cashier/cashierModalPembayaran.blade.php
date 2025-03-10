@@ -248,7 +248,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <a class="btn btn-default border-0 font-weight-bold btn-block" id="btnBatalTrx" data-dismiss="modal">
-                                        [ESC] Tutup Pembayaran
+                                        [ESC] Batalkan Pembayaran
                                     </a>  
                                 </div>
                             </div>
