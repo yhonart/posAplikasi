@@ -266,11 +266,14 @@
 </div>
 
 <script>
+    jQuery(function($) {
+        $('#modal-global-large').on('shown.bs.modal', function() {
+            $('input[name="tPembayaran"]').focus().select();
+        });
+    });
     $(function () {
         let billNumber = "{{$noBill}}";
-        $("#recordMethod").load("{{route('Cashier')}}/buttonAction/loadDataMethod/"+billNumber);
-        $("#tPembayaran").focus().select();
-        
+        $("#recordMethod").load("{{route('Cashier')}}/buttonAction/loadDataMethod/"+billNumber); 
     });
     //Document Copy
     $(document).on('click','.copy_nominal',function(e){

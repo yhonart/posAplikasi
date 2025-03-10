@@ -3085,15 +3085,20 @@ class CashierController extends Controller
         $today = date("Y-m-d");
         $hakakses = Auth::user()->hakakses;
         $persName = Auth::user()->name;
+        $company = Auth::user()->company;
 
         $dataSaved = DB::table('view_trx_store');
         if ($hakakses == '1') {
-            $dataSaved = $dataSaved->where("status", '2');
+            $dataSaved = $dataSaved->where([
+                ["status", '2'],
+                ['comp_id',$company]
+            ]);
         }
         else {
             $dataSaved = $dataSaved->where([
                 ["status", '2'],
-                ['created_by',$persName]
+                ['created_by',$persName],
+                ['comp_id',$company]
             ]);
         }
         $dataSaved = $dataSaved->whereBetween("tr_date", [$fromDate, $endDate]);
@@ -3231,6 +3236,7 @@ class CashierController extends Controller
     {
         $createdBy = Auth::user()->name;
         $hakakses = Auth::user()->hakakses;
+        $company = Auth::user()->company;
 
         $tableReport = DB::table("trx_record_view as a");
         $tableReport = $tableReport->leftJoin("tr_kredit as b", 'a.trx_code', '=', 'b.from_payment_code');
