@@ -3457,8 +3457,8 @@ class CashierController extends Controller
     {
         // $datBilling = $reqUnlock->dataId;
         // $datAction = $reqUnlock->dataAction;
-        // $userName = $reqUnlock->userName;
-        // $password = $reqUnlock->passInput;
+        $userName = $reqUnlock->userName;
+        $password = $reqUnlock->passInput;
         // $actionBy = Auth::user()->name;
         // $countActiveDisplay = $this->checkTrxActive();
 
@@ -3480,13 +3480,8 @@ class CashierController extends Controller
         //     ])
         //     ->get();
         
-        $credential = $reqUnlock->validate([
-            'userName' => ['required', 'userName'],
-            'passInput' => ['required']
-        ]);
-
-        if (Auth::attempt($credential)) {
-            $msg = array('success' => 'Nice Konfirmasi Berhasil !');
+        if (Auth::attempt(['username' => $userName, 'password' => $password, 'hakakses' => 1])) {
+            // Authentication was successful...
         }
         
         // if ($countAkun == '0') {
