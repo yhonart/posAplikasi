@@ -3481,7 +3481,10 @@ class CashierController extends Controller
         //     ->get();
         
         if (Auth::attempt(['username' => $userName, 'password' => $password, 'hakakses' => 1])) {
-            // Authentication was successful...
+            $msg = array('success' => 'Nice, anda adalah administrator');
+        }
+        else {
+            $msg = array('warning' => 'Anda bukan admin editor, silahkan hubungi administrator');
         }
         
         // if ($countAkun == '0') {
