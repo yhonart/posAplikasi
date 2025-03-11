@@ -3455,12 +3455,12 @@ class CashierController extends Controller
 
     public function unlockReturn(Request $reqUnlock)
     {
-        // $datBilling = $reqUnlock->dataId;
-        // $datAction = $reqUnlock->dataAction;
+        $datBilling = $reqUnlock->dataId;
+        $datAction = $reqUnlock->dataAction;
         $userName = $reqUnlock->userName;
         $password = $reqUnlock->passInput;
-        // $actionBy = Auth::user()->name;
-        // $countActiveDisplay = $this->checkTrxActive();
+        $actionBy = Auth::user()->name;
+        $countActiveDisplay = $this->checkTrxActive();
 
         // $countAkun = DB::table('admin_token as a')
         //     ->leftJoin('users as b', 'b.id', '=', 'a.user_id')
@@ -3481,10 +3481,153 @@ class CashierController extends Controller
         //     ->get();
         
         if (Auth::attempt(['username' => $userName, 'password' => $password, 'hakakses' => 1])) {
+            $cekStatusTrx = DB::table('tr_store')
+                ->where([
+                    ['billing_number', $datBilling]
+                ])
+                ->first();
+
+            // INSERT DATA RETURN
+            DB::table('tr_return_record')
+                ->insert([
+                    'trx_code' => $datBilling,
+                    'last_payment' => $cekStatusTrx->t_pay,
+                    'new_payment' => $cekStatusTrx->t_pay,
+                    'return_date' => now(),
+                    'update_by' => $actionBy,
+                    'last_status_trx' => $cekStatusTrx->status,
+                ]);
+            if ($datAction == '1') { // DELETE TRANSAKSI
+                //UPDATE STOCK
+                // $trPrdList = DB::table('tr_store')
+                //     ->where('billing_number', $datBilling)
+                //     ->get();
+                // foreach ($trPrdList as $keyPrd) {
+
+                // }
+                $dataTransaksi = DB::table('tr_store_prod_list')
+                    ->where('from_payment_code', $datBilling)
+                    ->get();
+
+                $paymentMethod = DB::table('trx_record_view')
+                    ->select('method_name', 'bank_name', 'bank_code')
+                    ->where('trx_code', $datBilling)
+                    ->first();
+
+                foreach ($dataTransaksi as $iDelete) {
+                    DB::table('tr_delete_record')
+                        ->insert([
+                            'trx_code' => $iDelete->from_payment_code,
+                            'prod_code' => $iDelete->product_code,
+                            'qty' => $iDelete->qty,
+                            'unit' => $iDelete->unit,
+                            'unit_price' => $iDelete->unit_price,
+                            'disc' => $iDelete->disc,
+                            't_price' => $iDelete->t_price,
+                            'deleted_by' => $actionBy,
+                            'payment_method' => $paymentMethod->method_name,
+                            'bank_name' => $paymentMethod->bank_name,
+                            'bank_card' => $paymentMethod->bank_code,
+                        ]);
+                    $productID = $iDelete->product_code;
+                    $qty = $iDelete->qty;
+                    $satuan = $iDelete->satuan;
+                    $location = '3';
+
+                    $this->TempInventoryController->tambahStock($productID, $qty, $satuan, $location);
+                }
+
+                DB::table('tr_store')
+                    ->where('billing_number', $datBilling)
+                    ->update([
+                        'is_delete' => '1',
+                        'status' => '0'
+                    ]);
+
+                DB::table('tr_store_prod_list')
+                    ->where('from_payment_code', $datBilling)
+                    ->update([
+                        'status' => '0',
+                    ]);
+
+                DB::table('tr_payment_record')
+                    ->where('trx_code', $datBilling)
+                    ->update([
+                        'status' => '0'
+                    ]);
+
+                DB::table('tr_payment_method')
+                    ->where('core_id_trx', $datBilling)
+                    ->update([
+                        'status' => '0'
+                    ]);
+
+                DB::table('tr_kredit')
+                    ->where('from_payment_code', $datBilling)
+                    ->update([
+                        'status' => '0'
+                    ]);
+                
+                DB::table('report_inv')
+                    ->where('number_code',$datBilling)
+                    ->delete();
+                    
+            } elseif ($datAction == '2') {
+                $countAc = DB::table('tr_store')
+                    ->where([
+                        ['status', '1'],
+                        ['created_by', $actionBy]
+                    ])
+                    ->count();
+
+                if ($countAc >= '1') {
+                    //Jika ada data yang masih aktif di display user maka akan di update ke data hold
+                    DB::table('tr_store')
+                        ->where('status', '1')
+                        ->update([
+                            'status' => '2',
+                        ]);
+
+                    DB::table('tr_store_prod_list')
+                        ->where('status', '1')
+                        ->update([
+                            'status' => '2',
+                        ]);
+                }
+
+                //Rubah status menjadi 1
+                DB::table('tr_store')
+                    ->where('billing_number', $datBilling)
+                    ->update([
+                        'status' => '1',
+                        'return_by' => $actionBy
+                    ]);
+
+                DB::table('tr_store_prod_list')
+                    ->where([
+                        ['from_payment_code', $datBilling],
+                        ['is_delete','!=','1']
+                        ])
+                    ->update([
+                        'status' => '1',
+                    ]);
+
+                DB::table('tr_payment_record')
+                    ->where('trx_code', $datBilling)
+                    ->update([
+                        'status' => "0"
+                    ]);
+            }
+            // NOTE :: Jika $datAction == 1 melakukan penghapusan transaksi
+            // jika $datAction == 2 menampilkan item pada display transaksi kasir. 
+
             $msg = array('success' => 'Nice, anda adalah administrator');
         }
+        elseif ($countActiveDisplay >= '1') {
+            $msg = array('warning' => 'Mohon lakukan HOLD pada transaksi yang sedang ada pada tampilan kasir saat ini !');
+        }
         else {
-            $msg = array('warning' => 'Anda bukan admin editor, silahkan hubungi administrator');
+            $msg = array('warning' => 'Username dan Password yang anda masukkan salah, silahkan periksa kembali !');
         }
         
         // if ($countAkun == '0') {
