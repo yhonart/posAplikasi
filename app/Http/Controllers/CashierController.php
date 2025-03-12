@@ -3486,8 +3486,8 @@ class CashierController extends Controller
             ->first();
 
         if (!empty($checkUser)) {
-            $password = $checkUser->password;
-            $passCheck = Hash::check($password);
+            $adminPass = $checkUser->password;
+            $passCheck = Hash::check($password, $adminPass);
             if ($passCheck == true) {
                 $msg = array('success' => 'password check is true');
             }
