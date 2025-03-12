@@ -17,19 +17,19 @@
             <div class="col-md-12">
                 <div class="btn-group">
                     <button type="button" class="btn btn-default btn-flat BTN-CLICK" data-link="dashPenjualan">
-                        Penjualan
+                        <i class="fa-solid fa-shop"></i> Penjualan Toko
                     </button>
                     <button type="button" class="btn btn-default btn-flat BTN-CLICK" data-link="displayPembelian">
-                        Pembelian
+                        <i class="fa-solid fa-cart-arrow-down"></i> Pembelian
                     </button>
                     <button type="button" class="btn btn-default btn-flat BTN-CLICK" data-link="dashHutangPelanggan">
-                        Hutang Pelanggan
+                        <i class="fa-solid fa-file-invoice-dollar"></i> Hutang Pelanggan
                     </button>
                     <button type="button" class="btn btn-default btn-flat BTN-CLICK" data-link="dashHutangToko">
-                        Hutang Toko
+                        <i class="fa-solid fa-file-invoice"></i> Hutang Toko
                     </button>
                     <button type="button" class="btn btn-default btn-flat BTN-CLICK" data-link="dashLaporanKeuangan">
-                        Laporan Keuangan
+                        <i class="fa-solid fa-file-lines"></i> Laporan Keuangan
                     </button>
                 </div>
             </div>
