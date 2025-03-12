@@ -198,8 +198,7 @@
                     }
                     else if(data.success){
                         if(dataAction === '2'){
-                            // window.location.reload();
-                            $("#notifDisplay").html(data.success);
+                            window.location.reload();                            
                         }
                         else{
                             $("#notifDisplay").html(data.success);
