@@ -99,18 +99,28 @@ class DashboardController extends Controller
         $thisPeriode = date("m-Y");
         $tglSekarang = date("Y-m-d");
         $hariIni = Carbon::now();
+        $company = Auth::user()->company;
         
+        //Total Pendapatan Penjualan
         $lastTrxAll = DB::table('trx_record_view');
         $lastTrxAll = $lastTrxAll->select(DB::raw('SUM(total_struk) as totalAll'));        
-        $lastTrxAll=$lastTrxAll->where('status_by_store','>=','3');
+        $lastTrxAll=$lastTrxAll->where([
+            ['status_by_store','>=','3'],
+            ['comp_id',$company]
+        ]);
         $lastTrxAll=$lastTrxAll->whereBetween('date_trx',[$fromDate, $endDate]);
         $lastTrxAll=$lastTrxAll->first();
-            
+
+        //Total / Count Penjualan            
         $countTransaksi = DB::table('trx_record_view');
-        $countTransaksi = $countTransaksi->where('status_by_store','>=','3');
+        $countTransaksi = $countTransaksi->where([
+            ['status_by_store','>=','3'],
+            ['comp_id',$company]
+        ]);
         $countTransaksi = $countTransaksi->whereBetween('date_trx',[$fromDate, $endDate]);
         $countTransaksi = $countTransaksi->count();
-            
+        
+        //Sedang tidak digunakan
         $lastTrxTransfer = DB::table('tr_payment_record as a');
         $lastTrxTransfer = $lastTrxTransfer->select(DB::raw('SUM(a.total_payment) as totalPayment'));
         $lastTrxTransfer = $lastTrxTransfer->leftJoin('tr_store as b','a.trx_code','=','b.billing_number');
@@ -118,29 +128,40 @@ class DashboardController extends Controller
         $lastTrxTransfer = $lastTrxTransfer->whereBetween('a.date_trx',[$fromDate, $endDate]);
         $lastTrxTransfer = $lastTrxTransfer->first();
             
+        //On Process
         $lastTrxonProcess = DB::table('view_billing_action');
-        $lastTrxonProcess = $lastTrxonProcess->where('status','1');
+        $lastTrxonProcess = $lastTrxonProcess->where([
+            ['status','1'],
+            ['comp_id',$company]
+        ]);
         $lastTrxonProcess = $lastTrxonProcess->whereBetween('tr_date',[$fromDate, $endDate]);
         $lastTrxonProcess = $lastTrxonProcess->count();
             
+        //Total Kredit
         $lastTrxKredit = DB::table('tr_kredit as a');
-        $lastTrxKredit = $lastTrxKredit->leftJoin('tr_store as b','a.from_payment_code','=','b.billing_number');
+        $lastTrxKredit = $lastTrxKredit->leftJoin('view_billing_action as b','a.from_payment_code','=','b.billing_number');
+        $lastTrxKredit = $lastTrxKredit->where('b.comp_id',$company);
         $lastTrxKredit = $lastTrxKredit->whereBetween('a.created_at',[$fromDate, $endDate]);
         $lastTrxKredit = $lastTrxKredit->count();           
         
+        //Pilih tahun untuk dashboard penjualan vs pembelian
         $selectYear = DB::table('tr_payment_record as a');        
         $selectYear = $selectYear->select(DB::raw('DATE_FORMAT(a.date_trx,"%Y") as years'));
-        $selectYear =$selectYear->leftJoin('tr_store as b','a.trx_code','=','b.billing_number');
+        $selectYear = $selectYear->leftJoin('view_billing_action as b','a.trx_code','=','b.billing_number');
+        $selectYear = $selectYear->where('b.comp_id',$company);
         $selectYear = $selectYear->groupBy(DB::raw('DATE_FORMAT(a.date_trx,"%Y")'));
         $selectYear = $selectYear->orderBy(DB::raw('DATE_FORMAT(a.date_trx,"%Y")'), 'desc');
         $selectYear = $selectYear->get();
 
         $userKasir = DB::table('users')
+            ->where('company',$company)
             ->get();
-            
+
+        // Data Transaksi            
         $totalTransaksi = DB::table('view_billing_action');
         $totalTransaksi = $totalTransaksi->where([
-                ['is_return','!=','1']
+                ['is_return','!=','1'],
+                ['comp_id',$company]
         ]);
         $totalTransaksi = $totalTransaksi->whereBetween('tr_date',[$fromDate, $endDate]);
         $totalTransaksi = $totalTransaksi->count();
@@ -150,7 +171,8 @@ class DashboardController extends Controller
         $getInfoKas = DB::table('tr_kas')
             ->where([
                 ['trx_code','1'],
-                ['kas_date',$tglSekarang]
+                ['kas_date',$tglSekarang],
+                ['comp_id',$company]
             ])
             ->count();
 
