@@ -207,9 +207,10 @@
             let trxNumber = $("#transNumber").val(),
                 stockID = $("#stockID").val(),
                 cusGroup = $("#cusGroup").val(),
-                qty = $("#disQty").val();   
+                qty = $("#disQty").val(),
+                customer = "{{$viewBilling->customer_name}}";   
                 
-            let dataform = {trxNumber:trxNumber,stockID:stockID,cusGroup:cusGroup,qty:qty};
+            let dataform = {trxNumber:trxNumber,stockID:stockID,cusGroup:cusGroup,qty:qty,customer:customer};
                 $.ajax({
                     type : 'post',
                     url : "{{route('Cashier')}}/inputItem",

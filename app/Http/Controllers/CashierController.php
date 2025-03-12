@@ -244,8 +244,12 @@ class CashierController extends Controller
     public function productList()
     {
         $billNumber = $this->getInfoNumber(); 
+        $viewBilling = DB::table('view_billing_action')
+            ->select('customer_name')
+            ->where('billing_number',$billNumber)
+            ->first();
 
-        return view('Cashier/cashierProductList', compact('billNumber'));
+        return view('Cashier/cashierProductList', compact('billNumber','viewBilling'));
     }
     
     public function cariProduk($keyword, $billNumber)
@@ -401,6 +405,7 @@ class CashierController extends Controller
         $billNumber = $postItem->trxNumber; 
         $cusGroup = $postItem->cusGroup;
         $qtySubmit = $postItem->qty;
+        $customerName = $postItem->customer;
 
         $productListView = DB::table('view_product_stock')
             ->where('idinv_stock',$dataID)
@@ -453,7 +458,7 @@ class CashierController extends Controller
             // Insert into laporan
             $location = '3';
             $prodQty = $qtySubmit;
-            $description = "Penjualan ".$username;
+            $description = "Penjualan ".$customerName;
             $this->TempInventoryController->reportBarangKeluar($product, $satuan, $location, $prodQty, $description, $billNumber, $username);
             $this->penguranganStock($product, $location, $satuan, $prodQty);            
             DB::table('tr_temp_prod')
