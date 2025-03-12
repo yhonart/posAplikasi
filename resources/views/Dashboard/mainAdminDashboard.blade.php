@@ -16,19 +16,19 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-flat BTN-CLICK" data-link="dashPenjualan">
+                    <button type="button" class="btn btn-default btn-flat BTN-CLICK border-0" data-link="dashPenjualan">
                         <i class="fa-solid fa-shop"></i> Penjualan Toko
                     </button>
-                    <button type="button" class="btn btn-default btn-flat BTN-CLICK" data-link="displayPembelian">
+                    <button type="button" class="btn btn-default btn-flat BTN-CLICK border-0" data-link="displayPembelian">
                         <i class="fa-solid fa-cart-arrow-down"></i> Pembelian
                     </button>
-                    <button type="button" class="btn btn-default btn-flat BTN-CLICK" data-link="dashHutangPelanggan">
+                    <button type="button" class="btn btn-default btn-flat BTN-CLICK border-0" data-link="dashHutangPelanggan">
                         <i class="fa-solid fa-file-invoice-dollar"></i> Hutang Pelanggan
                     </button>
-                    <button type="button" class="btn btn-default btn-flat BTN-CLICK" data-link="dashHutangToko">
+                    <button type="button" class="btn btn-default btn-flat BTN-CLICK border-0" data-link="dashHutangToko">
                         <i class="fa-solid fa-file-invoice"></i> Hutang Toko
                     </button>
-                    <button type="button" class="btn btn-default btn-flat BTN-CLICK" data-link="dashLaporanKeuangan">
+                    <button type="button" class="btn btn-default btn-flat BTN-CLICK border-0" data-link="dashLaporanKeuangan">
                         <i class="fa-solid fa-file-lines"></i> Laporan Keuangan
                     </button>
                 </div>
