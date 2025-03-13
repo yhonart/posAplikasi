@@ -143,7 +143,7 @@ class RemainingController extends Controller
     }
     
     public function searchByKeyword($keyword, $filOption, $lokasi){
-        
+        $company = Auth::user()->company;
         $mProduct = DB::table('view_product_stock');
             $mProduct = $mProduct->select(DB::raw('DISTINCT(product_name) as product_name'), 'idm_data_product');
             if($keyword <> '0' AND $lokasi <> '0'){
@@ -177,6 +177,7 @@ class RemainingController extends Controller
                     ['size_code','3']
                     ]);
             }
+            $mProduct = $mProduct->where('comp_id',$company);
             $mProduct = $mProduct->orderBy('product_name','asc');
             $mProduct = $mProduct->paginate(20);
 
@@ -187,6 +188,7 @@ class RemainingController extends Controller
 
         $tbCekStockBarang = DB::table('view_product_stock')
             ->select(DB::raw('SUM(stock) as stock'),'core_id_product','product_price_order')
+            ->where('comp_id',$company)
             ->groupBy('core_id_product','product_price_order')
             ->orderBy('size_code','desc')
             ->get();
@@ -224,6 +226,7 @@ class RemainingController extends Controller
                 ['b.product_name', 'like', '%' . $keyword .'%']
                 ]);
         }
+        $totalStock = $totalStock->where('comp_id',$company);
         $totalStock = $totalStock->groupBy('b.idm_data_product');
         $totalStock = $totalStock->get();
             
@@ -236,11 +239,13 @@ class RemainingController extends Controller
                     $join->on('b.size_code','=','subquery.max_code');
                 }
             )
+            ->where('comp_id',$company)
             ->groupBy('b.idm_data_product')
             ->get();
         
         return view('RemainingStock/displayFilteringProduct', compact('getDescSizeCode','tbCekStockBarang','mProduct','totalStock','saldoStock','valKecil','mUnit','valBesar'));
     }
+    
     public function downloadData($keyword, $filOption, $lokasi){
             
         $mProduct = DB::table('view_product_stock as a');
