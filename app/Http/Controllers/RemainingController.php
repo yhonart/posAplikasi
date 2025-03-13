@@ -69,6 +69,7 @@ class RemainingController extends Controller
         $endNamaBarang = $reqFilData->endNamaBarang;
         // echo $fromNamaBarang."-".$endNamaBarang;
         $todayDate = date('Y-m-d');
+        $company = Auth::user()->company;
             
         $mProduct = DB::table('view_product_stock');
         if($pilihLokasi <> '0'){
@@ -80,7 +81,7 @@ class RemainingController extends Controller
         if($fromNamaBarang<>'0' AND $endNamaBarang<>'0'){
             $mProduct = $mProduct->whereBetween('product_name',[$fromNamaBarang,$endNamaBarang]);
         }
-        
+        $mProduct = $mProduct->where('comp_id',$company);
         $mProduct = $mProduct->groupBy('product_name');
         $mProduct = $mProduct->orderBy('product_name','asc');
         $mProduct = $mProduct->orderBy('site_name','asc');
@@ -97,7 +98,10 @@ class RemainingController extends Controller
             ->get();
             
         $tbCekStockBarang = DB::table('view_product_stock')
-            ->where('location_id',$pilihLokasi)
+            ->where([
+                ['location_id',$pilihLokasi],
+                ['comp_id',$company]
+                ])            
             ->get();
             
         $mUnit = DB::table('m_product_unit')
@@ -115,6 +119,7 @@ class RemainingController extends Controller
                     $join->on('b.size_code','=','subquery.max_code');
                 }
             );
+            $totalStock = $totalStock->where('comp_id',$company);
             $totalStock=$totalStock->groupBy('b.idm_data_product');
             $totalStock=$totalStock->get();
             
@@ -130,6 +135,7 @@ class RemainingController extends Controller
                     $join->on('b.size_code','=','subquery.min_stock');
                 }
             );
+            $saldoStock = $saldoStock->where('comp_id',$company);
             $saldoStock=$saldoStock->groupBy('b.idm_data_product');
             $saldoStock=$saldoStock->get();
         
