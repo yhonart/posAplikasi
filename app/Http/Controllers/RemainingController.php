@@ -247,7 +247,7 @@ class RemainingController extends Controller
     }
     
     public function downloadData($keyword, $filOption, $lokasi){
-            
+        $company = Auth::user()->company;
         $mProduct = DB::table('view_product_stock as a');
             $mProduct = $mProduct->select('a.size_code', 'a.idm_data_product','a.product_code','a.product_name','a.product_satuan');
             $mProduct = $mProduct->join(
@@ -288,11 +288,13 @@ class RemainingController extends Controller
                     ['a.size_code','3']
                     ]);
             }
+            $mProduct = $mProduct->where('comp_id',$company);
             $mProduct = $mProduct->groupBy('a.idm_data_product');
             $mProduct = $mProduct->orderBy('a.product_name','asc');
             $mProduct = $mProduct->get();
         
         $tbCekStockBarang = DB::table('view_product_stock')
+            ->where('comp_id',$company)
             ->get();
             
         $mUnit = DB::table('m_product_unit')
@@ -328,6 +330,7 @@ class RemainingController extends Controller
                 ['b.product_name', 'like', '%' . $keyword .'%']
                 ]);
         }
+        $totalStock = $totalStock->where('comp_id',$company);
         $totalStock = $totalStock->groupBy('b.idm_data_product');
         $totalStock = $totalStock->get();
             
@@ -340,6 +343,7 @@ class RemainingController extends Controller
                     $join->on('b.size_code','=','subquery.max_code');
                 }
             )
+            ->where('comp_id',$company)
             ->groupBy('b.idm_data_product')
             ->get();
         
