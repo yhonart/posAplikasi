@@ -325,18 +325,21 @@ class DashboardController extends Controller
         $thisPeriode = date('mY');
         $todayDate = date('Y-m-d');
         $day30Ago = date('Y-m-d', strtotime('-30 days'));
+        $company = Auth::user()->company;
         
         $sumTunai = DB::table('purchase_order')
             ->select(DB::raw('SUM(sub_total) as totalTunai'))
             ->where([
                 ['periode',$thisPeriode],
                 ['payment_methode','1'],
-                ['status','3']
+                ['status','3'],
+                ['comp_id',$company]
             ])
             ->orWhere([
                 ['periode',$thisPeriode],
                 ['payment_methode','2'],
-                ['status','3']
+                ['status','3'],
+                ['comp_id',$company]
             ])
             ->first();
         
@@ -345,7 +348,8 @@ class DashboardController extends Controller
             ->where([
                 ['payment_methode','3'],
                 ['payment_status','!=','4'],
-                ['status','3']
+                ['status','3'],
+                ['comp_id',$company]
             ])
             ->first();
             
@@ -354,7 +358,8 @@ class DashboardController extends Controller
             ->whereBetween('purchase_date',[$day30Ago,$todayDate])
             ->where([
                 ['payment_methode','3'],
-                ['payment_status','4']
+                ['payment_status','4'],
+                ['comp_id',$company]
             ])
             ->first();
             
@@ -362,9 +367,11 @@ class DashboardController extends Controller
             ->select(DB::raw('DATEDIFF(CURDATE(), purchase_date) AS jumlahHari'), 'sub_total','tempo')
             ->where([
                 ['payment_methode','3'],
-                ['payment_status','!=','4']
+                ['payment_status','!=','4'],
+                ['comp_id',$company]
                 ])
             ->get();
+            
         return view('Dashboard/DashboardPurchasing', compact('checkArea','sumTunai','sumHutang','doDate','sum30Ago'));
     }
 }
