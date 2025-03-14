@@ -196,9 +196,14 @@ class DashboardController extends Controller
     }
 
     public function tableHutang($fromDate, $endDate){
+        $company = Auth::user()->company;
+
         $hutangPelanggan = DB::table('view_customer_kredit')
             ->select(DB::raw('SUM(nom_kredit) as nominalKredit'), 'customer_store')
-            ->where('nom_kredit','!=','0')
+            ->where([
+                ['nom_kredit','!=','0'],
+                ['comp_id',$company]
+                ])
             ->groupBy('customer_store')
             ->orderBy('idtr_kredit','desc')
             ->get();        
@@ -206,9 +211,12 @@ class DashboardController extends Controller
         return view('Dashboard/displayLoadHutang',compact('hutangPelanggan'));
     }
     public function tablePembelian($fromDate, $endDate){
-
+        $company = Auth::user()->company;
         $pembelian = DB::table('view_purchase_order')
-            ->where('status','3')            
+            ->where([
+                ['status','3'],
+                ['comp_id',$company]
+                ])            
             ->orderBy('id_purchase','desc')
             ->limit(10)
             ->get(); 
