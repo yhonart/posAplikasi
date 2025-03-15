@@ -823,11 +823,14 @@ class StockopnameController extends Controller
     }
     
     public function editOpname($idparam){
+        $company = Auth::user()->company;
+
         $docOpname = DB::table('inv_stock_opname')
             ->where('number_so',$idparam)
             ->first();
             
         $mProduct = DB::table('m_product')
+            ->where('comp_id',$company)
             ->get();
             
         $listOpname = DB::table('inv_list_opname as a')
