@@ -11,7 +11,7 @@
                         <div class="d-flex flex-row-reverse">
                             <button class="btn btn-sm btn-default border-0 text-info font-weight-bold ml-2" data-toggle="collapse" href="#collapseDocOpname" role="button" aria-expanded="false" aria-controls="collapseDocOpname"><i class="fa-solid fa-file-pen"></i> Dok. Transaksi</button>
                             <button class="btn btn-sm btn-default border-0 text-danger font-weight-bold ml-2" id="cencelDocument" data-doc="{{$opnameNumber}}"><i class="fa-solid fa-xmark"></i> Batalkan Transaksi</button>
-                            <button class="btn btn-sm btn-success border-0 font-weight-bold" id="saveDocument ml-2"><i class="fa-regular fa-floppy-disk"></i> Simpan Transaksi</button>
+                            <button class="btn btn-sm btn-success border-0 font-weight-bold ml-2" id="saveDocument"><i class="fa-regular fa-floppy-disk"></i> Simpan Transaksi</button>
                         </div>
                     </div>
                 </div>
