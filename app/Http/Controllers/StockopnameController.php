@@ -27,25 +27,35 @@ class StockopnameController extends Controller
         $dateNumber = date('dmy');
         $userName = Auth::user()->name;
         $date = date('Y-m-d');
+        $company = Auth::user()->company;
         
+        $compCode = DB::table('m_company')
+            ->where('idm_company',$company)
+            ->first();
+        $noCompCode = $compCode->company_code;
         //Verifikasi data dengan tanggal dan user input yang sama dan status 1 (on proses). 
         $countVerifikasiData = DB::table('inv_stock_opname')
             ->where([
                 ['date_input',$date],
                 ['created_by',$userName],
-                ['status','1']
+                ['status','1'],
+                ['comp_id',$company]
                 ])
             ->count();
 
         $countPeriode = DB::table('inv_stock_opname')
             ->where([
-                ['periode',$thisPeriode]
+                ['periode',$thisPeriode],
+                ['comp_id',$company]
                 ])
             ->count();
 
         //cek data transaksi yang di delete.
         $deletedNumber = DB::table('inv_stock_opname')
-            ->where('status','0')
+            ->where([
+                ['status','0'],
+                ['comp_id',$company]
+                ])
             ->first();
             
         // Jika verifikasi tidak ditemukan
@@ -53,17 +63,17 @@ class StockopnameController extends Controller
             // Jika periode ditemukan
             if($countPeriode == '0'){
                 $stp = '1';
-                $nostp = "STP-".$dateNumber."-".sprintf("%07d",$stp);
+                $nostp = "STP".$noCompCode."".$dateNumber."-".sprintf("%07d",$stp);
             }else{
                 $stp = $countPeriode + 1;
-                $nostp = "STP-".$dateNumber."-".sprintf("%07d",$stp);
+                $nostp = "STP".$noCompCode."".$dateNumber."-".sprintf("%07d",$stp);
             }                
         }
         // Jika data ditemukan.
         else{
             if(empty($deletedNumber)){
                 $stp = $countPeriode+1;
-                $nostp = "STP-".$dateNumber."-".sprintf("%07d",$stp);
+                $nostp = "STP".$noCompCode."".$dateNumber."-".sprintf("%07d",$stp);
             }
             else{
                 $nostp = $deletedNumber->number_so;
