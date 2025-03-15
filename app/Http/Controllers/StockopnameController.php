@@ -173,8 +173,11 @@ class StockopnameController extends Controller
                 ->leftJoin('m_site as b','a.loc_so','=','b.idm_site')
                 ->where('number_so',$opnameNumber)
                 ->first();
+
+            $lokasi = DB::table('m_site')
+                ->get();
                 
-            return view('StockOpname/newStockOpnameBarang', compact('mProduct','opnameNumber','sumStockOpname','countOpname','stockOpname','mSite'));
+            return view('StockOpname/newStockOpnameBarang', compact('mProduct','opnameNumber','sumStockOpname','countOpname','stockOpname','mSite','lokasi'));
         }
     }
     

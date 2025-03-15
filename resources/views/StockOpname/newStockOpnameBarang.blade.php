@@ -33,6 +33,7 @@
                                     <th width="30%">Nama Barang</th>
                                     <th>Satuan</th>
                                     <th>Qty. Opname</th>
+                                    <th>Lokasi</th>
                                     <th>Stok Sebelumnya</th>
                                     <th>Selisih</th>
                                     <th></th>
@@ -55,6 +56,13 @@
                                     <td class="p-0">
                                         <select class="form-control form-control-sm rounded-0" name="satuan" id="satuan">
                                             <option value="0" readonly>-- Satuan --</option>
+                                        </select>
+                                    </td>
+                                    <td class="p-0">
+                                        <select name="lokasi" id="lokasi" class="form-control form-control-sm rounded-0">
+                                            @foreach($lokasi as $l)
+                                                <option value="{{$l->idm_site}}">{{$l->site_name}}</option>
+                                            @endforeach
                                         </select>
                                     </td>
                                     <td class="p-0">
