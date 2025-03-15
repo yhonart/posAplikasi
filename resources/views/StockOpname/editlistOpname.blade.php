@@ -4,12 +4,14 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-md-12">
-                        <a href="#" class="btn btn-sm border-0 bg-light font-weight-bold" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            <i class="fa-regular fa-file"></i> Edit Dokumen
-                        </a>
-                        <a href="#" class="btn btn-sm border-0 bg-light font-weight-bold" id="submitButton">
-                            <i class="fa-regular fa-floppy-disk"></i> Simpan Perubahan
-                        </a>
+                        <div class="d-flex flex-row-reverse">
+                            <a href="#" class="btn btn-sm btn-default border-0 text-info font-weight-bold ml-2" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                <i class="fa-regular fa-file"></i> Dok. Transaksi
+                            </a>
+                            <a href="#" class="btn btn-sm btn-success border-0 font-weight-bold ml-2" id="submitButton">
+                                <i class="fa-regular fa-floppy-disk"></i> Simpan Perubahan
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -25,7 +27,6 @@
                         </div>
                     </div>
                 </div>
-                <hr>
                 <div class="row">
                     <div class="col-12">
                         <div class="table-reponsive" style="height:700px">
@@ -35,6 +36,7 @@
                                         <th></th>
                                         <th width="30%">Nama Barang</th>
                                         <th>Satuan</th>
+                                        <th>Lokasi</th>
                                         <th>Qty. Opname</th>
                                         <th>Stok Sebelumnya</th>
                                         <th>Selisih</th>

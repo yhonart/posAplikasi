@@ -24,7 +24,6 @@
         <tr>
             <th>No. Dokumen</th>
             <th>Tanggal</th>
-            <th>Lokasi</th>
             <th>User Input</th>
             <th>Status</th>
             <th></th>
