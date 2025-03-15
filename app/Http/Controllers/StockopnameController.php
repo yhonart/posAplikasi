@@ -615,8 +615,6 @@ class StockopnameController extends Controller
             ->select('loc_so','date_so')
             ->where('number_so',$idOpname)
             ->first(); 
-
-        $location = $locOpname->loc_so; 
         $dateInput = $locOpname->date_so;         
         
         $countBarang = DB::table('inv_list_opname')
@@ -634,6 +632,7 @@ class StockopnameController extends Controller
                 $readyStock = $lop->stock;
                 $opmVol = $lop->unit_volume;
                 $selisih = $lop->selisih;
+                $location = $lop->loc_id; 
 
                 $selectUnit = DB::table('m_product_unit')
                     ->where('core_id_product',$opmProduct)
