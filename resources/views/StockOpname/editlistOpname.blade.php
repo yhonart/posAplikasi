@@ -97,7 +97,7 @@
 <script>
     $(function(){
         $('#addProduct').select2({
-          theme: 'bootstrap'
+          theme: 'bootstrap4'
         });
         $("#addProduct").focus();
         loadListData();
