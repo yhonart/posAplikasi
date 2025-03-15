@@ -254,7 +254,7 @@
             invID = $("#invID").val(),
             unitID = $("#unitID").val(),
             unitVol = $("#unitVol").val(),
-            location = $("#location").val();
+            location = $("#lokasi").val();
         let dataForm = {product:productInput,satuan:satuanInput,lastStock:lastStockInput,qty:qtyInput,total:totalInput,noOpname:noOpname,invID:invID,location:location,unitID:unitID,unitVol:unitVol};
         submitData(dataForm);
         $("#tableInputBarang").fadeIn();
