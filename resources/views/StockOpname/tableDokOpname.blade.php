@@ -34,7 +34,6 @@
             <tr>                
                 <td>{{$summary->number_so}}</td>
                 <td>{{date("d-M-y",strtotime($summary->date_so))}}</td>
-                <td>{{$summary->site_name}}</td>
                 <td>{{$summary->created_by}}</td>
                 <td>                    
                     <span class="{{$bgColor[$summary->status]}} pl-2 pr-2 pt-1 pb-1 rounded-pill font-weight-bold text-xs">{{$araystatus[$summary->status]}}</span>
