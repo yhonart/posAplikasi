@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SuplayerController extends Controller
@@ -44,10 +45,13 @@ class SuplayerController extends Controller
     }
 
     public function tableSupplier ($keyWord){
+        $company = Auth::user()->company;
+
         $supplier = DB::table('m_supplier');
         if($keyWord <> '0'){
             $supplier = $supplier->where('store_name','like','%'.$keyWord.'%');
         }
+            $supplier = $supplier->where('comp_id',$company);
             $supplier = $supplier->orderBy('store_name','asc');
             $supplier = $supplier->get();
         
