@@ -84,7 +84,7 @@
                                 </select>
                             </td>
                             <td class="p-0">
-                                <select class="form-control form-control-sm val-reset " name="location" id="location">
+                                <select class="form-control form-control-sm val-reset form-control-border rounded-0 " name="location" id="location">
                                     <option value="0">..</option>
                                     @foreach($mSite as $site)
                                         <option value="{{$site->idm_site}}">{{$site->site_name}}</option>
@@ -92,24 +92,24 @@
                                 </select>
                             </td>
                             <td class="p-0">
-                                <select class="form-control form-control-sm val-reset " name="satuan" id="satuan">
+                                <select class="form-control form-control-sm val-reset form-control-border rounded-0" name="satuan" id="satuan">
                                     <option value="0"></option>
                                 </select>
                             </td>
                             <td class="p-0">
-                                <select class="form-control form-control-sm val-reset " name="t_type" id="t_type">
+                                <select class="form-control form-control-sm val-reset form-control-border rounded-0" name="t_type" id="t_type">
                                     <option value="D">Debit</option>
                                     <option value="K">Kredit</option>
                                 </select>
                             </td>
                             <td class="p-0">
-                                <input type="number" class="form-control form-control-sm val-reset " name="qty" id="qty" autocomplate="off">
+                                <input type="number" class="form-control form-control-sm val-reset form-control-border rounded-0" name="qty" id="qty" autocomplate="off">
                             </td>
                             <td class="p-0">
-                                <input type="number" class="form-control form-control-sm val-reset " name="lastStock" id="lastStock" readonly>
+                                <input type="number" class="form-control form-control-sm val-reset form-control-border rounded-0" name="lastStock" id="lastStock" readonly>
                             </td>
                             <td class="p-0">
-                                <input type="text" class="form-control form-control-sm val-reset " name="tPerbaikan" id="tPerbaikan" readonly>
+                                <input type="text" class="form-control form-control-sm val-reset form-control-border rounded-0" name="tPerbaikan" id="tPerbaikan" readonly>
                             </td>
                             <td>
                                 <button class="btn btn-default  btn-sm elevation-1" id="addItemKorek"><i class="fa-solid fa-check"></i></button>
