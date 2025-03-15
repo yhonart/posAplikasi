@@ -41,6 +41,7 @@ class SuplayerController extends Controller
         $suppLevel = $reqPostSup->Level;
         $suppStatus = $reqPostSup->Status;
         $kode = $reqPostSup->kode;
+        $company = Auth::user()->company;
 
         DB::table('m_supplier')
             ->insert([
@@ -56,6 +57,7 @@ class SuplayerController extends Controller
                 'level'=>$suppLevel,
                 'supplier_status'=>$suppStatus,
                 'created_at'=>now(),
+                'comp_id'=>$company
             ]);
     }
 
