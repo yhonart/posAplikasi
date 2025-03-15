@@ -8,6 +8,9 @@
     <td>{{$lBarang->product_name}}</td>
     <td>{{$lBarang->product_satuan}}</td>
     <td>
+        {{$lBarang->site_name}}
+    </td>
+    <td>
         {{$lBarang->input_qty}}
     </td>
     <td>{{$lBarang->last_stock}}</td>

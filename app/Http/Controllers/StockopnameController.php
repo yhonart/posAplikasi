@@ -566,8 +566,7 @@ class StockopnameController extends Controller
                     ['a.sto_number',$noOpname],    
                     ['a.created_by',$createdBy]
                 ])
-                ->get();
-            
+                ->get();            
         }
       
         return view('StockOpname/listTableInputBarang', compact('listBarang'));
