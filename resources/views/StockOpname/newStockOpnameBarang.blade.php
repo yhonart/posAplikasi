@@ -6,11 +6,13 @@
     <div class="col-12">
         <div class="card">            
             <div class="card-body table-responsive p-2">
-                <div class="row d-flex justify-content-end">
+                <div class="row">
                     <div class="col-12">
-                        <button class="btn btn-sm btn-default border-0 text-info font-weight-bold" data-toggle="collapse" href="#collapseDocOpname" role="button" aria-expanded="false" aria-controls="collapseDocOpname"><i class="fa-solid fa-file-pen"></i> Dok. Transaksi</button>
-                        <button class="btn btn-sm btn-default border-0 text-danger font-weight-bold" id="cencelDocument" data-doc="{{$opnameNumber}}"><i class="fa-solid fa-xmark"></i> Batalkan Transaksi</button>
-                        <button class="btn btn-sm btn-success border-0 font-weight-bold" id="saveDocument"><i class="fa-regular fa-floppy-disk"></i>| Simpan Transaksi</button>
+                        <div class="d-flex flex-row-reverse">
+                            <button class="btn btn-sm btn-default border-0 text-info font-weight-bold" data-toggle="collapse" href="#collapseDocOpname" role="button" aria-expanded="false" aria-controls="collapseDocOpname"><i class="fa-solid fa-file-pen"></i> Dok. Transaksi</button>
+                            <button class="btn btn-sm btn-default border-0 text-danger font-weight-bold" id="cencelDocument" data-doc="{{$opnameNumber}}"><i class="fa-solid fa-xmark"></i> Batalkan Transaksi</button>
+                            <button class="btn btn-sm btn-success border-0 font-weight-bold" id="saveDocument"><i class="fa-regular fa-floppy-disk"></i>| Simpan Transaksi</button>
+                        </div>
                     </div>
                 </div>
                 <div class="row mb-2">
