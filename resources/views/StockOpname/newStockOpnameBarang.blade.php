@@ -26,7 +26,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table table-sm table-valign-middle table-hover table-striped" id="tableInputBarang">
+                        <table class="table  table-sm table-hover table-valign-middle text-nowrap" id="tableInputBarang">
                             <thead>
                                 <tr>
                                     <th> # </th>
@@ -98,7 +98,9 @@
 
 <script>
     $(function(){
-        $('#product').select2();
+        $('#product').select2({
+            width: 'resolve'
+        });
         $("#product").focus();
         loadListData();
         let paramId = "{{$opnameNumber}}";
