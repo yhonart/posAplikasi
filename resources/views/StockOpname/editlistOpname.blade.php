@@ -55,7 +55,7 @@
                                             <input type="hidden" class="form-control" name="location" id="location" value="{{$docOpname->loc_so}}">                                            
                                         </td>
                                         <td class="p-0">
-                                            <select class="form-control  rounded-0" name="addProduct" id="addProduct">
+                                            <select class="form-control form-control-md rounded-0" name="addProduct" id="addProduct">
                                                 <option value="0">...</option>
                                                 @foreach($mProduct as $mp)
                                                 <option value="{{$mp->idm_data_product}}">{{$mp->product_name}}</option>
@@ -63,18 +63,18 @@
                                             </select>
                                         </td>
                                         <td class="p-0">
-                                            <select class="form-control  rounded-0" name="satuan" id="satuan">
+                                            <select class="form-control form-control-md rounded-0" name="satuan" id="satuan">
                                                 <option value="0">...</option>
                                             </select>
                                         </td>
                                         <td class="p-0">
-                                            <input type="number" class="form-control  rounded-0" name="qty" id="qty">
+                                            <input type="number" class="form-control form-control-md rounded-0" name="qty" id="qty">
                                         </td>
                                         <td class="p-0">
-                                            <input type="text" class="form-control  rounded-0" name="lastStock" id="lastStock" readonly>
+                                            <input type="text" class="form-control form-control-md rounded-0" name="lastStock" id="lastStock" readonly>
                                         </td>
                                         <td class="p-0">
-                                            <input type="text" name="total" id="total" class="form-control  rounded-0" readonly>
+                                            <input type="text" name="total" id="total" class="form-control form-control-md rounded-0" readonly>
                                         </td>
                                         <td></td>
                                     </tr>
