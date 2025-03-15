@@ -446,6 +446,7 @@ class StockopnameController extends Controller
                             'created_by'=>$createdBy,
                             'unit_volume'=>$inputUnit->product_volume,
                             'status'=>'1',
+                            'loc_id'=>$location
                         ]);
                 }
                 $msg = array('success'=>'<h4>SUCCESS</h4> Produk berhasil dimasukkan! '.$product);
@@ -525,7 +526,8 @@ class StockopnameController extends Controller
                         'unit_volume'=>$unitVol,
                         'created_by'=>$createdBy,
                         'status'=>'1',
-                        'display'=>$display
+                        'display'=>$display,
+                        'loc_id'=>$location
                     ]);               
                 
                 $msg = array('success'=>'<h4>SUCCESS</h4> Produk berhasil dimasukkan! ');
