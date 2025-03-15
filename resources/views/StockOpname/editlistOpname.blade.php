@@ -63,18 +63,18 @@
                                             </select>
                                         </td>
                                         <td class="p-0">
-                                            <select class="form-control form-control-border" name="satuan" id="satuan">
+                                            <select class="form-control form-control-border form-control-sm" name="satuan" id="satuan">
                                                 <option value="0">...</option>
                                             </select>
                                         </td>
                                         <td class="p-0">
-                                            <input type="number" class="form-control" name="qty" id="qty">
+                                            <input type="number" class="form-control form-control-border form-control-sm" name="qty" id="qty">
                                         </td>
                                         <td class="p-0">
-                                            <input type="text" class="form-control" name="lastStock" id="lastStock" readonly>
+                                            <input type="text" class="form-control form-control-border form-control-sm" name="lastStock" id="lastStock" readonly>
                                         </td>
                                         <td class="p-0">
-                                            <input type="text" name="total" id="total" class="form-control" readonly>
+                                            <input type="text" name="total" id="total" class="form-control form-control-border form-control-sm" readonly>
                                         </td>
                                         <td></td>
                                     </tr>
@@ -97,8 +97,7 @@
 <script>
     $(function(){
         $('#addProduct').select2({
-          theme: 'bootstrap4',
-          width: 'resolve'
+          theme: 'bootstrap'
         });
         $("#addProduct").focus();
         loadListData();
