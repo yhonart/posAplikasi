@@ -64,10 +64,10 @@
     <script src="{{asset('public/dazbuild/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
     <script src="{{asset('public/dazbuild/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
     <style>
-        /* [class^='select2'] {
+        [class^='select2'] {
           border-radius: 0px !important;
           font-size: 15px;
-        } */  
+        }
         
         /* table.dataTable tbody tr:hover{
             background-color: #024a70;
