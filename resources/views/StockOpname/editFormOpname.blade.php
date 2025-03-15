@@ -11,18 +11,7 @@
                 <label>Tgl. Dokumen</label>
                 <input type="text" name="filterTanggal" id="filterTanggal" class="form-control form-control-sm" value="{{$docOpname2->date_so}}">
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label>Lokasi</label>
-                <select class="form-control form-control-sm" name="pilihLokasi">
-                    <option value="{{$docOpname2->loc_so}}">{{$docOpname2->site_name}}</option>
-                    @foreach($mLoc as $mS)
-                        <option value="{{$mS->idm_site}}">{{$mS->site_name}}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
+        </div>        
         <div class="col-md-3">
             <div class="form-group">
                 <label>Keterangan</label>

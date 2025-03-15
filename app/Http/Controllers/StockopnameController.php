@@ -306,7 +306,6 @@ class StockopnameController extends Controller
    public function submitUpdateStockOpname(Request $reqUpdateForm){
        $noStockOpname = $reqUpdateForm->noStockOpname;
        $filterTanggal = $reqUpdateForm->filterTanggal;
-       $pilihLokasi = $reqUpdateForm->pilihLokasi;
        $description = $reqUpdateForm->description;
        $thisPeriode = date('mY');
        $createdBy = Auth::user()->name;
@@ -315,7 +314,6 @@ class StockopnameController extends Controller
             ->where('number_so',$noStockOpname)
             ->update([
                 'date_so'=>$filterTanggal,
-                'loc_so'=>$pilihLokasi,
                 'description'=>$description,
                 'updated_by'=>$createdBy,
             ]);
