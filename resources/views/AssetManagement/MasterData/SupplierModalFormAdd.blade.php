@@ -8,6 +8,12 @@
     <div class="card-body">
         <form id="formAddSupplier">
             <div class="form-group row">
+                <label class="form-label col-md-4 text-right">Kode Supplier</label>
+                <div class="col-md-4">
+                    <input type="text" name="kode" id="kode" class="form-control form-control-sm text-uppercase " value="{{$kodeSupplier}}" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
                 <label class="form-label col-md-4 text-right">Nama Supplier</label>
                 <div class="col-md-4">
                     <input type="text" name="Supplier" id="Supplier" class="form-control form-control-sm text-uppercase ">

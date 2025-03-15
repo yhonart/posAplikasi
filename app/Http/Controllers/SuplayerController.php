@@ -8,12 +8,25 @@ use Illuminate\Support\Facades\DB;
 
 class SuplayerController extends Controller
 {
+    public function getCodeSupplier (){
+        $company = Auth::user()->company;
+        //cek jumlah supplier dalam company yang sama.
+        $countSupByComp = DB::table('m_supplier')
+            ->where('comp_id',$company)
+            ->count();
+
+        $no = $countSupByComp + 1;
+        $code = "SUP.".sprintf("%07d", $no);
+
+        return $code;
+    }
     public function mainIndex (){
         return view ('AssetManagement/MasterData/SupplierIndex');
     }
 
     public function AddSupliyer (){
-        return view ('AssetManagement/MasterData/SupplierModalFormAdd');
+        $kodeSupplier = $this->getCodeSupplier();
+        return view ('AssetManagement/MasterData/SupplierModalFormAdd', compact('kodeSupplier'));
     }
 
     public function PostNewSupplier (Request $reqPostSup){
@@ -27,9 +40,11 @@ class SuplayerController extends Controller
         $suppSalesman = $reqPostSup->Salesman;
         $suppLevel = $reqPostSup->Level;
         $suppStatus = $reqPostSup->Status;
+        $kode = $reqPostSup->kode;
 
         DB::table('m_supplier')
             ->insert([
+                'supplier_code'=> $kode,
                 'store_name'=> $suppName,
                 'phone_number'=>$suppPhone,
                 'address'=>$suppAddress,
