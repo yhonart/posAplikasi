@@ -66,7 +66,7 @@
     <style>
         [class^='select2'] {
           border-radius: 0px !important;
-          font-size: 12px;
+          /* font-size: 12px; */
         }
         
         /* table.dataTable tbody tr:hover{
