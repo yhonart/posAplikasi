@@ -7,7 +7,7 @@
 ?>
 <div class="card card-body table-responsive">
     <table class="table table-sm table-valign-middle table-hover">
-        <thead class="bg-purple">
+        <thead>
             <tr>
                 <th>No.</th>
                 <th>Kode</th>
@@ -24,16 +24,8 @@
                     <td>{{$lD->delivery_name}}</td>
                     <td>{{$araystatus[$lD->status]}}</td>
                     <td class="text-right">
-                        <div class="btn-group">
-                            <button type="button btn-sm" class="btn btn-default" data-toggle="dropdown">
-                                <i class="fa-solid fa-bars"></i>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                <a class="dropdown-item BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Delivery')}}/tableDataDelivery/editMenu/{{$lD->idm_delivery}}">Edit</a>
-                                <a class="dropdown-item DELETE-ITEM" href="#" id-del="{{$lD->idm_delivery}}" id-name="{{$lD->delivery_name}}">Delete (Permanently)</a> 
-                            </div>
-                        </div>
+                        <a class=" btn btn-sm btn-info BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Delivery')}}/tableDataDelivery/editMenu/{{$lD->idm_delivery}}">Edit</a>
+                        <a class=" btn btn-sm btn-danger dropdown-item DELETE-ITEM" href="#" id-del="{{$lD->idm_delivery}}" id-name="{{$lD->delivery_name}}">Delete (Permanently)</a>                         
                     </td>
                 </tr>
             @endforeach

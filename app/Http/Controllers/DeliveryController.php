@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DeliveryController extends Controller
@@ -15,7 +16,10 @@ class DeliveryController extends Controller
         return view ('Delivery/newFormDelivery');
     }
     public function tableDataDelivery(){
+        $company = Auth::user()->company;
+
         $listDelivery = DB::table('m_delivery')
+            ->where('comp_id',$company)
             ->get();
             
         return view ('Delivery/tableDataDelivery', compact('listDelivery'));
@@ -25,7 +29,8 @@ class DeliveryController extends Controller
         $codeDelivery = $postReq->codeDelivery;
         $nameDelivery = $postReq->nameDelivery;
         $keterangan = $postReq->keterangan;
-        
+        $company = Auth::user()->company;
+
         if($nameDelivery == ""){
             $msg = array('warning'=>'Field Nama Harus Diisi !');
         }
@@ -35,6 +40,7 @@ class DeliveryController extends Controller
                     'delivery_code'=>$codeDelivery,
                     'delivery_name'=>$nameDelivery,
                     'disc'=>$keterangan,
+                    'comp_id'=>$company
                 ]);
             $msg = array('success'=>$nameDelivery.' Berhasil ditambahkan');
         }
