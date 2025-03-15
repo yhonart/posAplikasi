@@ -23,17 +23,6 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="label">Lokasi Barang</label>
-                                        <select class="form-control form-control-sm " name="pilihLokasi">
-                                            <option value="0">Semua Lokasi</option>
-                                            @foreach($mSite as $ls)
-                                            <option value="{{$ls->idm_site}}">{{$ls->site_name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
                                         <label class="label">Keterangan</label>
                                         <textarea class="form-control " rows="4" placeholder="Enter ..." name="description" id="description"></textarea>
                                     </div>

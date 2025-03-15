@@ -83,8 +83,7 @@ class StockopnameController extends Controller
     }
     
     public function activeNumber(){
-        $userName = Auth::user()->name;
-        
+        $userName = Auth::user()->name;        
         $countopname = DB::table('inv_stock_opname')
             ->where([
                 ['created_by',$userName],
@@ -186,12 +185,12 @@ class StockopnameController extends Controller
     public function submitStockOpname(Request $reqForm){
         $noStockOpname = $reqForm->noStockOpname;
         $filterTanggal = $reqForm->dateOpname;
-        $pilihLokasi = $reqForm->pilihLokasi;
         $description = $reqForm->description;
         $thisPeriode = date('mY', strtotime($filterTanggal));
         $today = date("Y-m-d");
         $createdBy = Auth::user()->name;
         $dateNumber = date('dmy',strtotime($filterTanggal));
+        $company = Auth::user()->company;
 
         if ($filterTanggal == $today) {
             $thisNumber = $noStockOpname;
@@ -227,10 +226,10 @@ class StockopnameController extends Controller
                     'number_so'=>$thisNumber,
                     'periode'=>$thisPeriode,
                     'date_so'=>$filterTanggal,
-                    'loc_so'=>$pilihLokasi,
                     'description'=>$description,
                     'created_by'=>$createdBy,
-                    'date_input'=>now()
+                    'date_input'=>now(),
+                    'comp_id'=>$company
                 ]);
         }
         else{
@@ -239,7 +238,6 @@ class StockopnameController extends Controller
                 ->update([
                     'periode'=>$thisNumber,
                     'date_so'=>$filterTanggal,
-                    'loc_so'=>$pilihLokasi,
                     'description'=>$description,
                     'created_by'=>$createdBy,
                     'status'=>'1',
