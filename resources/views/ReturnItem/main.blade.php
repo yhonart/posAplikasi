@@ -5,13 +5,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">          
-                    <h1 class="m-0">Retur Barang</h1>
+                    <h1 class="m-0">Pengembalian Barang</h1>
                 </div> 
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                       <li class="breadcrumb-item"><a href="#"><i class="fa-solid fa-house"></i></a></li>
                       <li class="breadcrumb-item">Pembelian</li>
-                      <li class="breadcrumb-item">Retur Barang</li>
+                      <li class="breadcrumb-item">Pengembalian Barang</li>
                     </ol>
                  </div>          
             </div>
@@ -23,9 +23,9 @@
             @if($checkArea <> 0)
             <div class="row mb-2">
                 <div class="col-md-12">
-                    <button class="btn btn-outline-primary font-weight-bold onclick-submenu " data-click="returnHistory"><i class="fa-regular fa-folder-open"></i> Retur List</button>                     
-                    <button class="btn btn-primary font-weight-bold onclick-submenu " data-click="purchasingList"><i class="fa-solid fa-dolly"></i> Retur by document</button>
-                    <button class="btn btn-default border-0 font-weight-bold onclick-submenu " data-click="returnNonInv"><i class="fa-regular fa-folder-open"></i> Retur Non Invoice</button>                     
+                    <button class="btn btn-outline-primary font-weight-bold onclick-submenu " data-click="returnHistory"><i class="fa-regular fa-folder-open"></i> History</button>                     
+                    <button class="btn btn-primary font-weight-bold onclick-submenu " data-click="purchasingList"><i class="fa-solid fa-dolly"></i> Dokumen Pembelian</button>
+                    <button class="btn btn-default border-0 font-weight-bold onclick-submenu " data-click="returnNonInv"><i class="fa-regular fa-folder-open"></i> Pengembalian Non Invoice</button>                     
                 </div>
             </div>
             <div class="row">
