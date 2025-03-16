@@ -26,7 +26,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table  table-sm table-hover table-valign-middle text-nowrap" id="tableInputBarang">
+                        <table class="table table-bordered table-striped table-valign-middle text-nowrap" id="tableInputBarang">
                             <thead>
                                 <tr>
                                     <th> # </th>
