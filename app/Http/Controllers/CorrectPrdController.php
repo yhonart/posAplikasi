@@ -38,7 +38,7 @@ class CorrectPrdController extends Controller
     }
     
     public function numberSO(){
-        $thisPeriode = date('mY');
+        $thisPeriode = date('my');
         $company = Auth::user()->company;
 
         $countPeriode = DB::table('inv_correction')
@@ -55,7 +55,7 @@ class CorrectPrdController extends Controller
         $cmpcode = $mcomp->company_code;
         if($countPeriode=='0'){
             $stp = '1';
-            $nostp = "K".$cmpcode."-".$thisPeriode."-".sprintf("%07d",$stp);
+            $nostp = "K".$cmpcode."-".$thisPeriode."".sprintf("%07d",$stp);
         }
         else{
             $deletedNumber = DB::table('inv_correction')
@@ -67,7 +67,7 @@ class CorrectPrdController extends Controller
             
             if(empty($deletedNumber)){
                 $stp = $countPeriode+1;
-                $nostp = "K".$cmpcode."-".$thisPeriode."-".sprintf("%07d",$stp);
+                $nostp = "K".$cmpcode."-".$thisPeriode."".sprintf("%07d",$stp);
             }
             else{
                 $nostp = $deletedNumber->number;
@@ -139,6 +139,7 @@ class CorrectPrdController extends Controller
 
    public function filterByDate($fromDate, $endDate, $status)
    {
+        $company = Auth::user()->company;
         $listOnProces = DB::table('inv_correction')
             ->whereBetween("status", ['1', '2'])
             ->get();
@@ -148,6 +149,7 @@ class CorrectPrdController extends Controller
         if ($fromDate <> '0' OR $endDate <> '0') {
             $lisDatKoreksi = $lisDatKoreksi->whereBetween("dateInput", [$fromDate, $endDate]);
         }
+        $lisDatKoreksi = $lisDatKoreksi->where('comp_id',$company);
         $lisDatKoreksi = $lisDatKoreksi->limit(100);
         $lisDatKoreksi = $lisDatKoreksi->get();
 
