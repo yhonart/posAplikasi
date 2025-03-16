@@ -143,7 +143,7 @@ class MutasibarangController extends Controller
         $tableMoving = DB::table('inv_moving');
         $tableMoving=$tableMoving->where([
             ['status',$status],
-            ['comop_id',$company]
+            ['comp_id',$company]
         ]);
         if ($fromDate<>'0' OR $endDate<>'0') {
             $tableMoving=$tableMoving->whereBetween('date_moving',[$fromDate,$endDate]);
