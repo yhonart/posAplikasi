@@ -3,10 +3,10 @@
 ?>
 @foreach($listMutasi as $lsm)
     <tr>
-        <td class="border border-1 text-center">{{$noListMutasi++}}</td>
-        <td class="border border-1">{{$lsm->product_name}}</td>
-        <td class="border border-1">{{$lsm->product_satuan}}</td>
-        <td class="border border-1">{{$lsm->last_stock}}</td>
+        <td class="text-center">{{$noListMutasi++}}</td>
+        <td>{{$lsm->product_name}}</td>
+        <td>{{$lsm->product_satuan}}</td>
+        <td>{{$lsm->last_stock}}</td>
         <td class="p-0">
             <input type="number" name="editJumlah" id="editJumlah" value="{{$lsm->stock_taken}}" onchange="saveUpdateMutasi(this,'inv_moving_list','stock_taken','{{$lsm->idm_list}}','idm_list')" class="form-control form-control-sm " onfocus="this.select()">
             
@@ -14,7 +14,7 @@
         <td class="p-0">
             <input type="text" name="editNote" id="editNote" value="{{$lsm->notes}}" class="form-control form-control-sm " onchange="saveUpdateMutasi(this,'inv_moving_list','notes','{{$lsm->idm_list}}','idm_list')" onfocus="this.select()">
         </td>
-        <td class="p-0 border border-1">
+        <td class="p-0 ">
             <button class="btn btn-sm btn-danger DELETE-ITEM  float-right" data-id="{{$lsm->idm_list}}"><i class="fa-solid fa-circle-xmark"></i></button>
         </td>
     </tr>
