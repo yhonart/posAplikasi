@@ -7,6 +7,13 @@ $arrStatus = array(
     3=>"Di Setujui",
     4=>"Sudah Digunakan"
 );
+$arrBgStatus = array(
+    0=>"bg-danger",
+    1=>"bg-warning",
+    2=>"bg-info",
+    3=>"bg-success",
+    4=>"bg-primary"
+);
 ?>
 <div class="card card-purple">
     <div class="card-header border-0">
@@ -30,7 +37,7 @@ $arrStatus = array(
                         <td>{{$hisReturn->purchase_number}}</td>
                         <td class="text-right">{{number_format($hisReturn->price,'0',',','.')}}</td>
                         <td class="text-right">
-                            <span class="bg-light border border-success pl-2 pr-2 pt-1 pb-1 rounded-pill">{{$arrStatus[$hisReturn->status]}}</span>
+                            <span class="badge {{$arrBgStatus[$hisReturn->status]}}">{{$arrStatus[$hisReturn->status]}}</span>                            
                         </td>
                         <td class="text-right">
                             @if($hisReturn->status == '2')
