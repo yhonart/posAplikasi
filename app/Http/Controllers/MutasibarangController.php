@@ -210,9 +210,9 @@ class MutasibarangController extends Controller
             ->count();
 
         $mProduct = DB::table('m_product')
+            ->where('comp_id',$company)
             ->orderBy([
-                ['product_name','asc'],
-                ['comp_id',$company]
+                ['product_name','asc']
                 ])
             ->get();
 
