@@ -54,7 +54,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-bordered table-striped table-valign-middle text-nowrap table-sm">
+            <table class="table table-striped table-valign-middle text-nowrap table-sm">
                 <thead>
                     <tr>
                         <th>No</th>
