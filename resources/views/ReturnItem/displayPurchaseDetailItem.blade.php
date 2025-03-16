@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card card-body">
             <table class="table table-sm table-valign-middle table-hover">
-                <thead class="bg-gray-dark">
+                <thead>
                     <tr>
                         <th>Nama Barang</th>
                         <th>Satuan</th>

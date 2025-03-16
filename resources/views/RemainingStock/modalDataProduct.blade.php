@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <table class="tabale table-sm  table-striped table-valign-middle text-nowrap" width="100%">
-                <thead class="bg-gray-dark">
+                <thead>
                     <tr>
                         <th>Kode Barang</th>
                         <th>Nama Barang</th>

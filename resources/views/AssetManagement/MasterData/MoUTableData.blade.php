@@ -2,7 +2,7 @@
     $no = 1;
 @endphp
 <table class="table table-hover table-valign-middle table-sm" id="tableDataMou">
-    <thead class="bg-gray-dark">
+    <thead>
         <tr>
             <th>No.</th>
             <th>Kategori</th>

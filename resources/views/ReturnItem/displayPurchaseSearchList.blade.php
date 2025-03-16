@@ -1,5 +1,5 @@
 <table class="table table-sm table-valign-middle table-hover " id="dokTableRetur">
-    <thead class="bg-gray-dark">
+    <thead>
         <tr>
             <th>No. Pembelian</th>
             <th>Tgl. Pengiriman</th>

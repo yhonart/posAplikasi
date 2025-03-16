@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col-md-12">
                 <table class="table  table-sm table-hover" id="dataOnClick">
-                    <thead class="bg-gray-dark font-weight-bold text-center">
+                    <thead>
                         <tr>
                             <td>No.</td>
                             <td>Kode Transaksi</td>

@@ -7,7 +7,7 @@ header("Content-Disposition: attachment; filename=LaporanKasKecil".$fromDate."_"
 ?>
 
 <table border="1" cellpadding="0" cellspacing="0" style="width:100%">
-    <thead class="bg-gray-dark">
+    <thead>
         <tr>
             <td>Tanggal</td>
             <td>Sub.Kategori</td>

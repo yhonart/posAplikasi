@@ -1,5 +1,5 @@
 <table class="table table-sm table-valign-middle table-hover " id="detailPembelianBarang">
-    <thead class="bg-gray-dark">
+    <thead>
         <tr>
             <th>Nama Barang</th>
             <th>Satuan</th>

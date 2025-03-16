@@ -4,7 +4,7 @@
     $totalBayar = 0;
 ?>
 <table class="table text-nowrap table-hover table-valign-middle table-sm">
-    <thead class="font-weight-bold">
+    <thead>
         <tr>
             <td>Tanggal</td>
             <td>Nama Supplier</td>

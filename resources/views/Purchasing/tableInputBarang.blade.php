@@ -10,7 +10,7 @@
             <p id="notifLoading" class="bg-danger p-2" style="display:none;">Proses Load Data</p>
             <input type="hidden" name="inputNoPo" id="inputNoPo" value="{{$statusPurchase->purchase_number}}">
             <table class="table table-sm table-hover table-valign-middle animate__animated animate__fadeIn" id="tableInputBarang">
-                <thead class="bg-indigo">
+                <thead>
                     <tr>
                         <th width="5%">No</th>
                         <th width="20%">Nama Barang</th>

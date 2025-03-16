@@ -1,5 +1,5 @@
 <table class="table table-sm table-valign-middle table-head-fixed table-striped">
-    <thead class="text-center">
+    <thead>
         <tr>
             <th style="width:30%">Nama Barang [F3]</th>
             <th style="width:10%">Qty</th>

@@ -5,7 +5,7 @@
 @else
     <div class="card card-body table-responsive">
         <table class="table table-sm table-valign-middle">
-            <thead class="bg-gray-dark">
+            <thead>
                 <tr>
                     <th>Nomor</th>
                     <th>Suplier</th>

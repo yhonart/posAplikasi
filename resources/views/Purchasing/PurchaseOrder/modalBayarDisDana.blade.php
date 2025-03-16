@@ -1,5 +1,5 @@
 <table class="table table-sm table-valign-middle">
-    <thead class="bg-info">
+    <thead>
         <tr>
             <th>Kasir</th>
             <th>Dana Tertarik</th>

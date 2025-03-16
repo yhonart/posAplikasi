@@ -1,5 +1,5 @@
 <table class="table table-sm table-align-middle text-nowrap table-hover" id="tableListAP">
-    <thead class="bg-gray-dark">
+    <thead>
         <tr>
             <th>Nomor</th>
             <th>Tgl. Penerimaan</th>

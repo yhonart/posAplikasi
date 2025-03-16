@@ -1,5 +1,5 @@
 <table class="table table-sm tabl-valign-middle table-hover" id="tableKreditFaktur">
-    <thead class="bg-gray-dark">
+    <thead>
         <tr>
             <th>Nomor</th>
             <th>Tgl. Pembayaran</th>

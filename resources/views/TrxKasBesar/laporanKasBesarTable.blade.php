@@ -11,7 +11,7 @@ $addSaldo = 0;
 <hr>
 <div class="table-responsive">
     <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered" id="tableKasBesar">
-        <thead class="bg-gray-dark">
+        <thead>
             <tr>
                 <th>Tanggal</th>
                 <th>Nomor</th>

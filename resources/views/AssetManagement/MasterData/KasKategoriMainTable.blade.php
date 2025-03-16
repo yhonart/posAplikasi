@@ -2,7 +2,7 @@
     $noK = '1';
 ?>
 <table class="table table-sm table-valign-middle  table-hover text-sm">
-    <thead class="font-weight-bold">
+    <thead>
         <tr>
             <td>No.</td>
             <td>Nama Kategori</td>

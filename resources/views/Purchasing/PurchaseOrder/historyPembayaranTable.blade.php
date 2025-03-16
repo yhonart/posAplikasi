@@ -1,5 +1,5 @@
 <table class="table table-sm table-valign-middle" id="tableHistory">
-    <thead class="bg-gray-dark">
+    <thead>
         <tr>
             <th>Nomor</th>
             <th>Tanggal</th>

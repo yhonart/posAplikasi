@@ -1,6 +1,6 @@
 <div class="table-responsive" style="height: 700px;">
     <table class="table table-valign-middle table-sm ">
-        <thead class="bg-gray-dark">
+        <thead>
             <tr>
                 <td>Kode Pelanggan</td>
                 <td>Nama Pelanggan</td>

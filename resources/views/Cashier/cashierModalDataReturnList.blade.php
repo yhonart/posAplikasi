@@ -56,7 +56,7 @@
 <div class="row">
     <div class="col-12 table-responsive">
         <table class="table table-sm text-sm table-hover table-valign-middle text-nowrap">
-            <thead class="text-center">
+            <thead>
                 <tr>
                     <th>No. Transaksi</th>
                     <th>

@@ -39,7 +39,7 @@
     </div>
     <div class="card-body table-responsive" style="height:500px;">
         <table class="table  table-sm table-hover" id="dataByKasir">
-            <thead class="bg-gray-dark font-weight-bold text-center">
+            <thead>
                 <tr>
                     <td>No.</td>
                     <td>Kode Transaksi</td>

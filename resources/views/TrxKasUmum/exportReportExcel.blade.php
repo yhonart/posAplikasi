@@ -54,7 +54,7 @@
     }
 </style>
 <table class="styled-table" width="100%" border="1">
-    <thead class="text-center">
+    <thead>
         <tr>
             <th colspan="9"><h5><b>REKAP BIAYA TOKO</b></h5></th>
         </tr>

@@ -1,5 +1,5 @@
 <table class="table table-sm table-valign-middle" id="tableLapKreditCustomer">
-    <thead class="bg-gray-dark">
+    <thead>
         <tr>
             <th>Nama Customers</th>
             <th>No. Transaksi</th>

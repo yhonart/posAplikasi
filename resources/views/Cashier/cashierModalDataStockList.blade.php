@@ -1,6 +1,6 @@
 <div class="table-responsive">
     <table class="table table-sm table-hover ">
-        <thead class="bg-indigo">
+        <thead>
             <tr>
                 <td>Nama Produk</td>
                 @foreach($headerSize as $headS1)

@@ -28,7 +28,7 @@
             @if($codeDisplay == '1')
                 <!-- display table menggunakan filtering data  -->
                 <table class="table table-valign-middle table-hover" id="tableDisplayLap">
-                    <thead class="bg-gray-dark">
+                    <thead>
                         <tr>
                             <th>Tanggal</th>
                             <th>Nomor Bukti</th>
@@ -90,7 +90,7 @@
                     <span class="font-weight-bold"><i class="fa-solid fa-circle-info"></i> Secara default, data yang di tampilkan adalah transaksi data hari ini. Silahkan gunakan filter data untuk menampilkan per item.</span>
                 </div>
                 <table class="table table-valign-middle table-hover">
-                    <thead class="bg-gray-dark">
+                    <thead>
                         <tr>
                             <th>Tanggal</th>
                             <th>Nomor Bukti</th>

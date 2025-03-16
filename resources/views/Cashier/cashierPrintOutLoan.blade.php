@@ -31,7 +31,7 @@
 <div class="row">
     <div class="col-12">
         <table class="table table-sm table-bordered table-valign-middle">
-            <thead class="bg-gray-dark font-weight-bold">
+            <thead>
                 <tr>
                     <th class="text-center">No.</th>
                     <th class="text-right">Qty</th>
@@ -127,7 +127,7 @@
 <div class="row">
     <div class="col-12">
         <table class="table table-borderless">
-            <thead class="text-center">
+            <thead>
                 <tr>
                     <td>Hormat Kami</td>
                     <td>Tanda Terima</td>

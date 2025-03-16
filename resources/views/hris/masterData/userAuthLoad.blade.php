@@ -14,7 +14,7 @@
 <div class="row mb-2">
     <div class="col-12">
         <table class="table table-sm table-hover table-valign-middle">
-            <thead class="text-center bg-primary">
+            <thead>
                 <tr>
                     <th>User Area</th>
                     <th>User Hak Akses</th>

@@ -22,7 +22,7 @@ $no = '1';
         <div class="card card-body table-responsive p-0">
             <p class="text-muted pl-2 pt-2">* Gunakan "TAB" untuk pindah kolom</p>
             <table class="table table-sm table-valign-middle table-hover text-nowrap" id="listTableItem">
-                <thead class="bg-gray-dark">
+                <thead>
                     <tr>
                         <th>Nama Barang</th>
                         <th>Qty. Beli</th>

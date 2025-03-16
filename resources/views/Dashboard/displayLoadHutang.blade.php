@@ -8,7 +8,7 @@
     </div>
 </div>
 <table class="table text-nowrap table-hover table-valign-middle table-sm">
-    <thead class="font-weight-bold">
+    <thead>
         <tr>
             <td>No.</td>
             <td>Nama Pelanggan</td>

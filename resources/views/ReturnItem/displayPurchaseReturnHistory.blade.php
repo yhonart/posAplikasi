@@ -14,7 +14,7 @@ $arrStatus = array(
     </div>
     <div class="card-body">
         <table class="table table-valign-middle table-hover table-sm text-sm">
-            <thead class="bg-gray-dark">
+            <thead>
                 <tr>
                     <th>Supplier</th>
                     <th>Purchase Number</th>
