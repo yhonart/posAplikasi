@@ -207,6 +207,7 @@ class CorrectPrdController extends Controller
        $description = $reqForm->description;
        $thisPeriode = date('mY');
        $createdBy = Auth::user()->name;
+       $company = Auth::user()->company;
        
        //cek ketersediaan data
        $countNumber = DB::table('inv_correction')
@@ -221,6 +222,7 @@ class CorrectPrdController extends Controller
                     'dateInput'=>$filterTanggal,
                     'notes'=>$description,
                     'created_by'=>$createdBy,
+                    'comp_id'=>$company
                 ]);
         }
         else{
@@ -320,7 +322,7 @@ class CorrectPrdController extends Controller
         $qty = $reqSubmit->qty;
         $lastStock = $reqSubmit->lastStock;
         $tPerbaikan = $reqSubmit->tPerbaikan;
-        $createdBy = Auth::user()->name;
+        $createdBy = Auth::user()->name;        
         
         //cek ketersediaan item pada list item koreksi. 
         $countItem = DB::table('inv_list_correction')
