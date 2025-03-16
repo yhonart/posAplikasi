@@ -39,14 +39,23 @@ class CorrectPrdController extends Controller
     
     public function numberSO(){
         $thisPeriode = date('mY');
-        
+        $company = Auth::user()->company;
+
         $countPeriode = DB::table('inv_correction')
-            ->where('periode',$thisPeriode)
+            ->where([
+                ['periode',$thisPeriode],
+                ['comp_id',$company]
+                ])
             ->count();
-            
+
+        $mcomp = DB::table('m_company')
+            ->select('company_code')
+            ->where('idm_company',$company)
+            ->first();
+        $cmpcode = $mcomp->company_code;
         if($countPeriode=='0'){
             $stp = '1';
-            $nostp = "KRS-".$thisPeriode."-".sprintf("%07d",$stp);
+            $nostp = "K".$cmpcode."-".$thisPeriode."-".sprintf("%07d",$stp);
         }
         else{
             $deletedNumber = DB::table('inv_correction')
@@ -58,7 +67,7 @@ class CorrectPrdController extends Controller
             
             if(empty($deletedNumber)){
                 $stp = $countPeriode+1;
-                $nostp = "KRS-".$thisPeriode."-".sprintf("%07d",$stp);
+                $nostp = "K".$cmpcode."-".$thisPeriode."-".sprintf("%07d",$stp);
             }
             else{
                 $nostp = $deletedNumber->number;
