@@ -45,7 +45,9 @@ class LapInventoryController extends Controller
     }
     
     public function formFiltering(){
+        $company = Auth::user()->company;
         $mProduct = DB::table('m_product')
+            ->where('comp_id',$company)
             ->orderBy('product_name','asc')
             ->get();
             
