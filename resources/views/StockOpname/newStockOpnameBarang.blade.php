@@ -46,7 +46,7 @@
                                         <input type="hidden" name="sumInputStock" id="sumInputStock" value="{{$sumStockOpname->inputStock}}">
                                     </td>
                                     <td class="p-0">
-                                        <select class="form-control form-control-sm select2 rounded-0" name="product" id="product">
+                                        <select class="form-control form-control-sm select2" name="product" id="product">
                                             <option value="0" readonly>-- Pilih Item --</option>
                                             @foreach($mProduct as $mp)
                                                 <option value="{{$mp->idm_data_product}}">{{$mp->product_name}}</option>
@@ -54,25 +54,25 @@
                                         </select>
                                     </td>
                                     <td class="p-0">
-                                        <select class="form-control form-control-sm rounded-0" name="satuan" id="satuan">
+                                        <select class="form-control form-control-sm form-control-border rounded-0" name="satuan" id="satuan">
                                             <option value="0" readonly>-- Satuan --</option>
                                         </select>
                                     </td>
                                     <td class="p-0">
-                                        <select name="lokasi" id="lokasi" class="form-control form-control-sm rounded-0">
+                                        <select name="lokasi" id="lokasi" class="form-control form-control-sm form-control-border rounded-0">
                                             @foreach($lokasi as $l)
                                                 <option value="{{$l->idm_site}}">{{$l->site_name}}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td class="p-0">
-                                        <input type="text" name="qty" id="qty" class="form-control form-control-sm rounded-0">
+                                        <input type="text" name="qty" id="qty" class="form-control form-control-sm form-control-border rounded-0">
                                     </td>
                                     <td class="p-0">
-                                        <input type="text" name="lastStock" id="lastStock" class="form-control form-control-sm rounded-0" readonly>
+                                        <input type="text" name="lastStock" id="lastStock" class="form-control form-control-sm form-control-border rounded-0" readonly>
                                     </td>
                                     <td>
-                                        <input type="text" name="total" id="total" class="form-control form-control-sm rounded-0" readonly>
+                                        <input type="text" name="total" id="total" class="form-control form-control-sm form-control-border rounded-0" readonly>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-success  btn-sm elevation-1" id="submitItem"><i class="fa-solid fa-check"></i></button>

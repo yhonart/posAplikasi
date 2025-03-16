@@ -4,23 +4,25 @@
 <div class="card card-body p-2 table-responsive">
     <div class="row mb-2">
         <div class="col-md-12">
-            <form id="formSubmitReportKoreksi">
-                <div class="form-group">
-                    <input type="hidden" class="form-control form-control-sm" name="sumQty" id="sumQty" value="{{$sumKoreksi->qty}}" readonly>
-                </div>
-                <div class="form-group">
-                    <input type="hidden" class="form-control form-control-sm" name="sumStock" id="sumStock" value="{{$sumKoreksi->stock}}" readonly>
-                </div>
-                <div class="form-group">
-                    <input type="hidden" class="form-control form-control-sm" name="t_item" id="t_item" value="{{$sumKoreksi->countKrs}}" readonly>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-outline-info border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        <i class="fa-solid fa-file-pen"></i> Dokumen Koreksi
-                    </button>
-                    <button type="submit" class="btn btn-outline-success border-0 font-weight-bold" id="submitButton"><i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan</button>
-                </div>
-            </form>
+            <div class="d-flex flex-row-reverse">
+                <form id="formSubmitReportKoreksi">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" name="sumQty" id="sumQty" value="{{$sumKoreksi->qty}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" name="sumStock" id="sumStock" value="{{$sumKoreksi->stock}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" name="t_item" id="t_item" value="{{$sumKoreksi->countKrs}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-outline-info border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa-solid fa-file-pen"></i> Dokumen Koreksi
+                        </button>
+                        <button type="submit" class="btn btn-outline-success border-0 font-weight-bold" id="submitButton"><i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
             <div class="collapse" id="collapseExample">
                 <form class="form" id="formEditKoreksi">
                     <div class="form-group row">
