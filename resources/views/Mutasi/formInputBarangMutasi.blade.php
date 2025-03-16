@@ -53,21 +53,21 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select class="form-control form-control-sm " name="satuan" id="satuan">
+                                    <select class="form-control form-control-sm rounded-0 form-control-border" name="satuan" id="satuan">
                                         <option value="0"></option>
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control form-control-sm " name="lastStock" id="lastStock" readonly>
+                                    <input type="number" class="form-control form-control-sm rounded-0 form-control-border" name="lastStock" id="lastStock" readonly>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control form-control-sm " name="qty" id="qty" autocomplete="off">
+                                    <input type="number" class="form-control form-control-sm rounded-0 form-control-border" name="qty" id="qty" autocomplete="off">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control form-control-sm " name="keterangan" id="keterangan" autocomplete="off">
+                                    <input type="text" class="form-control form-control-sm rounded-0 form-control-border" name="keterangan" id="keterangan" autocomplete="off">
                                 </td>
                                 <td>
-                                    <button class="btn border-0 elevation-0 btn-default " id="btnSubmit"><i class="fa-solid fa-check"></i></button>
+                                    <button class="btn border-0 elevation-0 btn-default rounded-0 form-control-border" id="btnSubmit"><i class="fa-solid fa-check"></i></button>
                                 </td>
                             </tr>
                         </form>
