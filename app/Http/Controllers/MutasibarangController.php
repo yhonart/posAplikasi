@@ -211,9 +211,7 @@ class MutasibarangController extends Controller
 
         $mProduct = DB::table('m_product')
             ->where('comp_id',$company)
-            ->orderBy([
-                ['product_name','asc']
-                ])
+            ->orderBy('product_name','asc')
             ->get();
 
         $tbMutasiL = DB::table('inv_moving')
