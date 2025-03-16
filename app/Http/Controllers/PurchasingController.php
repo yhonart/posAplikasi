@@ -105,6 +105,61 @@ class PurchasingController extends Controller
         return $nomorPembelian;
     }
 
+    public function purchaseNumber ($date){
+        $thisMonth = date("mY");
+        $name = Auth::user()->name;
+        $company = Auth::user()->company;
+        $monthNumber = date("my");
+
+        $getCompany = DB::table('m_company')
+            ->where('idm_company',$company)
+            ->first();
+        
+        $cmpCode = $getCompany->company_code;
+        $poNumber = DB::table('purchase_order')
+            ->select('purchase_number')
+            ->where([
+                ['purchase_date',$date],
+                ['created_by',$name],
+                ['status','1'],
+                ['comp_id',$company]
+                ])
+            ->count();
+            
+        if($poNumber == '0'){
+            $numberByDate = DB::table('purchase_order')
+                ->select('purchase_number')
+                ->where([
+                        ['periode',$thisMonth]
+                    ])
+                ->count();
+                
+                if($numberByDate=="0"){
+                    $no = '1';
+                    $nomorPembelian = "P".$cmpCode.$monthNumber."-".sprintf("%07d",$no);
+                }
+                else{
+                    $no = $numberByDate + 1;
+                    $nomorPembelian = "P".$cmpCode.$monthNumber."-".sprintf("%07d",$no);
+                }
+        }
+        else{
+            $numberExisting = DB::table('purchase_order')
+                ->select('purchase_number')
+                ->where([
+                    ['purchase_date',$date],
+                    ['created_by',$name],
+                    ['status','1'],
+                    ['comp_id',$company]
+                    ])
+                ->first();
+                
+            $no = $poNumber;
+            $nomorPembelian = $numberExisting->purchase_number;
+        }            
+        return $nomorPembelian;
+    }
+
     public function mainPurch(){
         $checkArea = $this->TempUsersController->checkuserInfo();
         $approval = $this->userApproval();
@@ -286,12 +341,13 @@ class PurchasingController extends Controller
     }
     
     public function displayItemReturn($suppID){
+        $company = Auth::user()->company;
         $itemReturn = DB::table('purchase_return as a')
             ->select('a.*','b.product_name')
             ->leftJoin('m_product as b','a.product_id','=','b.idm_data_product')
             ->where([
-                ['supplier_id', $suppID],
-                ['status','1']
+                ['a.supplier_id', $suppID],
+                ['a.status','1']
             ])
             ->get();
 
@@ -299,11 +355,11 @@ class PurchasingController extends Controller
     }
     
     public function cencelInput($idNo){
-        $listDataPrd = DB::table('purchase_list_order')
+        DB::table('purchase_list_order')
             ->where('purchase_number',$idNo)
             ->delete();
             
-        $listDataPrd = DB::table('purchase_order')
+        DB::table('purchase_order')
             ->where('purchase_number',$idNo)
             ->delete();
     }
@@ -325,30 +381,20 @@ class PurchasingController extends Controller
         $sumberDana = explode("|", $posPenerimaan->sumberDana);
         $ketDana = $sumberDana[0];
         $nomDana = $sumberDana[1];
-        
         $periode = date("mY");
         $hariIni = date("Y-m-d");
         $monthNumber = date("dmy", strtotime($dateDelivery));
-
+        
         $createdBy = Auth::user()->name;
-        //Get nomor dokumen
-        $countNomorDok = DB::table('purchase_order')
-            ->where('purchase_date',$dateDelivery)
-            ->count();
+        $company = Auth::user()->company;        
 
         if ($dateDelivery <> $hariIni) {
-            if ($countNomorDok == 0) {
-                $no = '1';
-                $nomorPembelian = "PB-".$monthNumber."-".sprintf("%07d",$no);
-            }
-            else {
-                $no = $countNomorDok + 1;
-                $nomorPembelian = "PB-".$monthNumber."-".sprintf("%07d",$no);
-            }
+            $nomorPembelian = $this->purchaseNumber($dateDelivery);
         }
         else {
             $nomorPembelian = $noTrx;
         }
+        
         if($supplier == '0'){
             $msg = array('warning' => 'Nama supplier belum ada !');
         }
@@ -381,7 +427,8 @@ class PurchasingController extends Controller
                     'created_by'=>$createdBy,
                     'status'=>'1',
                     'bank_account'=>$bankAccount,
-                    'description'=>$keterangan
+                    'description'=>$keterangan,
+                    'comp_id'=>$company
                 ]);
                 
             DB::table('purchase_list_order')
@@ -409,8 +456,10 @@ class PurchasingController extends Controller
     
     public function tableInputBarang($dokNumber){
         $userCreated = Auth::user()->name;
+        $company = Auth::user()->company;
         
         $prodName = DB::table('m_product')
+            ->where('comp_id',$company)
             ->orderBy('product_name','asc')
             ->get();
             
@@ -421,7 +470,6 @@ class PurchasingController extends Controller
             ->select('status','purchase_number', 'store_name')
             ->where([
                 ['purchase_number',$dokNumber]
-                // ['created_by',$userCreated]
                 ])
             ->first();
             
@@ -581,9 +629,13 @@ class PurchasingController extends Controller
     
     public function tablePenerimaan($status, $fromDate, $endDate){
         $approval = $this->userApproval();
+        $company = Auth::user()->company;
 
         $listTablePem = DB::table('view_purchase_order');
-        $listTablePem = $listTablePem->where('status',$status);
+        $listTablePem = $listTablePem->where([
+            ['status',$status],
+            ['comp_id',$company]
+        ]);
             if ($fromDate <> '0' AND $endDate <> '0') {
                 $listTablePem = $listTablePem->whereBetween('purchase_date',[$fromDate,$endDate]);
             }
