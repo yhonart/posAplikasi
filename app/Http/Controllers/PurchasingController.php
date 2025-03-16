@@ -51,16 +51,22 @@ class PurchasingController extends Controller
     public function poNumber (){
         $thisMonth = date("mY");
         $name = Auth::user()->name;
-        $monthNumber = date("dmy");
+        $company = Auth::user()->company;
+        $monthNumber = date("my");
         $date = date('Y-m-d');
         
+        $getCompany = DB::table('m_company')
+            ->where('idm_company',$company)
+            ->first();
         
+        $cmpCode = $getCompany->company_code;
         $poNumber = DB::table('purchase_order')
             ->select('purchase_number')
             ->where([
                 ['purchase_date',$date],
                 ['created_by',$name],
-                ['status','1']
+                ['status','1'],
+                ['comp_id',$company]
                 ])
             ->count();
             
@@ -74,11 +80,11 @@ class PurchasingController extends Controller
                 
                 if($numberByDate=="0"){
                     $no = '1';
-                    $nomorPembelian = "PB-".$monthNumber."-".sprintf("%07d",$no);
+                    $nomorPembelian = "P".$cmpCode.$monthNumber."-".sprintf("%07d",$no);
                 }
                 else{
                     $no = $numberByDate + 1;
-                    $nomorPembelian = "PB-".$monthNumber."-".sprintf("%07d",$no);
+                    $nomorPembelian = "P".$cmpCode.$monthNumber."-".sprintf("%07d",$no);
                 }
         }
         else{
@@ -87,7 +93,8 @@ class PurchasingController extends Controller
                 ->where([
                     ['purchase_date',$date],
                     ['created_by',$name],
-                    ['status','1']
+                    ['status','1'],
+                    ['comp_id',$company]
                     ])
                 ->first();
                 
@@ -103,9 +110,14 @@ class PurchasingController extends Controller
         $approval = $this->userApproval();
         $nomor = $this->poNumber();
         $todayDate = date('Y-m-d');
+        $company = Auth::user()->company;
+
         $selectTrx = DB::table('view_purchase_order')
             ->select('purchase_number','store_name')
-            ->where('faktur_date','$todayDate')
+            ->where([
+                ['faktur_date','$todayDate'],
+                ['comp_id',$company]
+                ])
             ->orderBy('id_purchase','desc')
             ->get();
             
@@ -169,7 +181,7 @@ class PurchasingController extends Controller
         $code = '2';
         $date = date('Y-m-d');
         $userName = Auth::user()->name;
-        
+        $company = Auth::user()->company;        
 
         //menentukan awal dan akhir dalam satu minggu ini.
         $firstDayThisWeek = $this->getMonday();
@@ -183,18 +195,26 @@ class PurchasingController extends Controller
             ->where([
                 ['status','1'],
                 ['created_by',$userName],
-                ['purchase_date',$date]
+                ['purchase_date',$date],
+                ['comp_id', $company]
                 ])
             ->count();
             
         $numberPurchase = DB::table('purchase_order')
-            ->where('status','1')
+            ->where([
+                ['status','1'],
+                ['created_by',$userName],
+                ['purchase_date',$date],
+                ['comp_id', $company]
+                ])
             ->first();
             
         $supplier = DB::table('m_supplier')
+            ->where('comp_id',$company)
             ->get();
 
         $bankTransfer = DB::table('m_company_payment')
+            ->where('comp_id',$company)
             ->get();
 
         $danaKasir = DB::table('tr_payment_record as a')
@@ -202,24 +222,32 @@ class PurchasingController extends Controller
             ->leftJoin('tr_store as b','a.trx_code','=','b.billing_number')
             ->where([
                 ['a.total_payment','!=','8'],
-                ['a.date_trx',$date]
+                ['a.date_trx',$date],
+                ['b.comp_id',$company]
                 ])
             ->groupBy('b.created_by')
             ->get();
         
         $mTrxKasKasir = DB::table('m_trx_kas_kasir')
+            ->where('comp_id',$company)
             ->first();
             
         $penggunaanDanaKasir = DB::table('tr_kas')
                 ->select(DB::raw('SUM(nominal) as nominal','kas_persName'))
-                ->where('trx_code','2')
+                ->where([
+                    ['trx_code','2'],
+                    ['comp_id',$company]
+                    ])
                 ->whereBetween('kas_date',[$StartDate,$endDate])
                 ->groupBy('kas_persName')
                 ->first();
 
         $penambahanDanaKasir = DB::table('tr_kas')
                 ->select(DB::raw('SUM(nominal_modal) as nominal_modal','kas_persName'))
-                ->where('trx_code','1')
+                ->where([
+                    ['trx_code','1'],
+                    ['comp_id',$company]
+                    ])
                 ->whereBetween('kas_date',[$StartDate,$endDate])
                 ->groupBy('kas_persName')
                 ->first();
