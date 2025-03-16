@@ -39,20 +39,30 @@ class MutasibarangController extends Controller
     
     public function numberMutasi(){
         $thisPeriode = date('my');
+        $company = Auth::user()->company;
         
         $countPeriode = DB::table('inv_moving')
-            ->where('periode',$thisPeriode)
+            ->where([
+                ['periode',$thisPeriode],
+                ['comp_id',$company]
+                ])
             ->count();
+
+        $companycode = DB::table('m_company')
+            ->where('idm_company',$company)
+            ->first();
+
+        $cmpid = $companycode->company_code;
             
         if($countPeriode=='0'){
             $pag = '1';
-            $nopag = "PAG-".$thisPeriode."-".sprintf("%07d",$pag);
+            $nopag = "M".$cmpid."".$thisPeriode."-".sprintf("%07d",$pag);
         }
         else{
             
             //cek deleted number
             $pag = $countPeriode+1;
-            $nopag = "PAG-".$thisPeriode."-".sprintf("%07d",$pag);
+            $nopag = "M".$cmpid."".$thisPeriode."-".sprintf("%07d",$pag);
             
             // $deletedNumber = DB::table('inv_moving')
             //     ->where('status','0')
@@ -128,8 +138,13 @@ class MutasibarangController extends Controller
     {
         $approval = $this->userApproval();
         $userArea = $this->checkuserInfo();
+        $company = Auth::user()->company;
+
         $tableMoving = DB::table('inv_moving');
-        $tableMoving=$tableMoving->where('status',$status);
+        $tableMoving=$tableMoving->where([
+            ['status',$status],
+            ['comop_id',$company]
+        ]);
         if ($fromDate<>'0' OR $endDate<>'0') {
             $tableMoving=$tableMoving->whereBetween('date_moving',[$fromDate,$endDate]);
         }
@@ -146,10 +161,15 @@ class MutasibarangController extends Controller
     public function getTableInputProduct (){
         $countActive = $this->countNumberActive();
         $number = $this->showNumberActive();
+        $company = Auth::user()->company;
+
         $location = '0';
 
         $mProduct = DB::table('m_product')
-            ->orderBy('product_name','asc')
+            ->orderBy([
+                ['product_name','asc'],
+                ['comp_id',$company]
+                ])
             ->get();
             
         $tbMutasiL = DB::table('inv_moving')
@@ -176,6 +196,7 @@ class MutasibarangController extends Controller
         $countActive = $this->countNumberActive();
         $numberAct = $this->showNumberActive();
         $userID = Auth::user()->name;
+        $company = Auth::user()->company;
 
         $mLoc = DB::table('m_site')
             ->get();
@@ -183,12 +204,16 @@ class MutasibarangController extends Controller
         $counInvMoving = DB::table('inv_moving')
             ->where([
                 ['status','1'],
-                ['created_by',$userID] 
+                ['created_by',$userID] ,
+                ['comp_id',$company]
                 ])
             ->count();
 
         $mProduct = DB::table('m_product')
-            ->orderBy('product_name','asc')
+            ->orderBy([
+                ['product_name','asc'],
+                ['comp_id',$company]
+                ])
             ->get();
 
         $tbMutasiL = DB::table('inv_moving')
@@ -217,6 +242,7 @@ class MutasibarangController extends Controller
         $description = $reqPostMutasi->description;
         $userID = Auth::user()->name;
         $thisPeriode = date('my');
+        $company = Auth::user()->company;
         
         DB::table('inv_moving')
             ->insert([
@@ -228,6 +254,7 @@ class MutasibarangController extends Controller
                 'created_by'=>$userID,
                 'periode'=>$thisPeriode,
                 'status'=>'1',
+                'comp_id'=>$company
             ]);
     }
     
