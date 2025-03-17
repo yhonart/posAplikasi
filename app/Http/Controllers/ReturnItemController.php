@@ -433,7 +433,8 @@ class ReturnItemController extends Controller
         $dateNoww = date('Y-m-d');
         $status = 1;
         $returnNumber = $this->getNumber();
-
+        $company = Auth::user()->company;
+        
         $countNumberRetur = DB::table('tr_return_noninvoice')
             ->where([
                 ['created_by',$persName],
@@ -443,7 +444,7 @@ class ReturnItemController extends Controller
             ->count();
 
         $optionSupplier = DB::table('m_supplier')
-            ->where('supplier_status','1')
+            ->where([['supplier_status','1'],['comp_id',$company]])
             ->get();
 
         return view ('ReturnItem/displayReturnNonInv', compact('optionSupplier','countNumberRetur','returnNumber'));
