@@ -414,9 +414,11 @@ class ReturnItemController extends Controller
     }
 
     public function returnHistory (){
+        $company = Auth::user()->company;
         $historyReturn = DB::table('purchase_return as a')
             ->select(DB::raw('SUM(a.total_price) as price'),'a.purchase_number','b.store_name','a.status')
             ->leftJoin('m_supplier as b', 'a.supplier_id','=','b.idm_supplier')
+            ->where('b.comp_id',$company)
             ->groupBy('a.purchase_number','a.status')
             ->groupBy('b.store_name')
             ->orderBy('id_return','desc')
