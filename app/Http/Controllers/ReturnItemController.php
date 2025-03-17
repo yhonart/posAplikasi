@@ -83,6 +83,7 @@ class ReturnItemController extends Controller
     }
     
     public function searchData($keyword){
+        $company = Auth::user()->company;
         $row = ['purchase_number','store_name'];
         $tbPurchase = DB::table('view_purchase_order');
         if($keyword <> '0'){
@@ -94,7 +95,7 @@ class ReturnItemController extends Controller
                 }
             });
         }
-        $tbPurchase = $tbPurchase->where('status','>=','3');
+        $tbPurchase = $tbPurchase->where([['status','>=','3'],['comp_id',$company]]);
         $tbPurchase = $tbPurchase->orderBy('id_purchase','desc');
         $tbPurchase = $tbPurchase->get();
             
