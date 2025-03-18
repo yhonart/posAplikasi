@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-sm btn-success font-weight-bold"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+                        <button type="submit" class="btn btn-sm btn-success font-weight-bold" id="productSubmit"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
                     </div>
                 </div>
             </form>
