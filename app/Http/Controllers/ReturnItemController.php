@@ -611,4 +611,18 @@ class ReturnItemController extends Controller
         }
         return response()->json($msg);
     }
+
+    public function displayInputItemNonInv(){
+        
+        #region Declaration
+            $user = Auth::user()->name;
+            $company = Auth::user()->company;
+            $status = 1;
+            $dateTrx = date("Y-m-d");        
+        #endregion
+
+        #region get active return item by user and company
+        echo $company;
+        #endregion
+    }
 }

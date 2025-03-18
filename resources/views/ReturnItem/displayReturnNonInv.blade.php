@@ -62,7 +62,7 @@
                             processData: false,
                             success : function (data) {
                                 if (data.warning) {
-                                    alertify.success(data.warning);
+                                    alertify.error(data.warning);
                                 }  
                                 else{
                                     alertify.success(data.success);
@@ -71,12 +71,11 @@
                             }
                         })
                     });
-
                     function functionLoadNonInvoice (){
                         var pageLoad = "returnNonInv";
                         $.ajax({
                             type : 'get',
-                            url : "{{route('returnItem')}}/"+dataIndex,
+                            url : "{{route('returnItem')}}/"+pageLoad,
                             success : function(response){
                                 $("#displayInfo").html(response);
                             }
@@ -86,6 +85,17 @@
             </script>
         @else
             <div id="transaksiReturNonInvoice"></div>
+            <script>
+                $(document).ready(function(){
+                    $.ajax({
+                        type : 'get',
+                        url : "{{route('returnItem')}}/displayInputItemNonInv",
+                        success : function(response){
+                            $("#transaksiReturNonInvoice").html(response);
+                        }
+                    });
+                });
+            </script>
         @endif
     </div>
 </div>

@@ -20,4 +20,5 @@ Route::get('returnItem/returnHistory/approveTransaksi/{purchNumber}', [App\Http\
 Route::get('returnItem/returnNonInv', [App\Http\Controllers\ReturnItemController::class, 'returnNonInv']);
 Route::post('returnItem/returnNonInv/postDokumenReturn', [App\Http\Controllers\ReturnItemController::class, 'postDokumenReturn']);
 Route::get('returnItem/submitRetur/{poNumber}', [App\Http\Controllers\ReturnItemController::class, 'submitRetur']);
+Route::get('returnItem/displayInputItemNonInv', [App\Http\Controllers\ReturnItemController::class, 'displayInputItemNonInv']);
 ?>
