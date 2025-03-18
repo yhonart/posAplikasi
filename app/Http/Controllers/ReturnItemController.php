@@ -622,7 +622,21 @@ class ReturnItemController extends Controller
         #endregion
 
         #region get active return item by user and company
-        echo $company;
+            $getNumber = DB::table('tr_return_noninvoice')
+                ->select('number_return')
+                ->where([
+                    ['created_by',$user],
+                    ['status_trx',$status],
+                    ['comp_id',$company],
+                    ['date_trx',$dateTrx],
+                ])
+                ->first();
+
+            $returnNumber = $getNumber->number_return;
         #endregion
+
+        #region
+
+        return view ('ReturnItem/displayReturnNonInvInputItem', compact('returnNumber'));
     }
 }
