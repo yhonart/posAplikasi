@@ -13,4 +13,16 @@
             <th>Keterangan</th>
         </tr>
     </thead>
+    <tbody>
+        <tr>
+            <td>
+                <select name="produk" id="produk" class="form-control form-control-sm">
+                    <option value="0"> === </option>
+                    @foreach($listProduk as $lp)
+                        <option value="{{$lp->productID}}">{{$lp->product_name}}</option>
+                    @endforeach
+                </select>
+            </td>
+        </tr>
+    </tbody>
 </table>

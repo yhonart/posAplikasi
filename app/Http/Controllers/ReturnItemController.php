@@ -622,7 +622,7 @@ class ReturnItemController extends Controller
 
         #region get active return item by user and company
             $getNumber = DB::table('tr_return_noninvoice')
-                ->select('number_return')
+                ->select('number_return','supplier_id')
                 ->where([
                     ['created_by',$user],
                     ['status_trx',$status],
@@ -632,9 +632,15 @@ class ReturnItemController extends Controller
                 ->first();
 
             $returnNumber = $getNumber->number_return;
+            $supplierID = $getNumber->supplier_id;
         #endregion
 
-        #region
+        #region get info product by supplier
+            $listProduk = DB::table('view_purchase_lo')
+                ->select(DB::raw('DISTINCT(product_id) as productID'),'product_name')
+                ->where('supplier_id',$supplierID)
+                ->get();
+        #endregion
 
         return view ('ReturnItem/displayReturnNonInvInputItem', compact('returnNumber'));
     }
