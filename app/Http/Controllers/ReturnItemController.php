@@ -465,6 +465,7 @@ class ReturnItemController extends Controller
         $periode = date("mY");
         $keterangan = $reqPostReturn->keterangan;
         $createdBy = Auth::user()->name;
+        $company = Auth::user()->company;
 
         if ($supplier == '0') {
             $msg = array('warning' => 'Anda belum memilih nama supplier');
@@ -478,7 +479,8 @@ class ReturnItemController extends Controller
                     'description'=>$keterangan,
                     'created_by'=>$createdBy,
                     'status_trx'=>'1',
-                    'periode'=>$periode
+                    'periode'=>$periode,
+                    'comp_id'=>$company
                 ]);                
             $msg = array('success' => 'Dokumen berhasil dimasukkan');
         }
