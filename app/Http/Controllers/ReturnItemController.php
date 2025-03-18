@@ -39,7 +39,6 @@ class ReturnItemController extends Controller
     public function getNumber (){
         $userName = Auth::user()->name;
         $periode = date("mY");
-        $dateNoww = date("dmY");
         $company = Auth::user()->company;
 
         $getCompany = DB::table('m_company')
@@ -58,11 +57,11 @@ class ReturnItemController extends Controller
 
         if ($countNumber == '0') {
             $numberRN = 1;
-            $displayNumber = "RNI".$compCode.$dateNoww."-" . sprintf("%04d", $numberRN);
+            $displayNumber = "RNI".$compCode.$periode."-" . sprintf("%04d", $numberRN);
         }
         else{
             $numberRN = $countNumber + 1;
-            $displayNumber = "RNI".$compCode.$dateNoww."-" . sprintf("%04d", $numberRN);
+            $displayNumber = "RNI".$compCode.$periode."-" . sprintf("%04d", $numberRN);
         }
 
         return $displayNumber;
