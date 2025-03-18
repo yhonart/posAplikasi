@@ -51,7 +51,7 @@ class ReturnItemController extends Controller
             ->where([
                 ['created_by',$userName],
                 ['periode',$periode],
-                ['comp_id',$compCode]
+                ['comp_id',$company]
             ])
             ->count();
 
