@@ -25,7 +25,7 @@
                 </select>
             </td>
             <td>
-                <input type="number" name="qty" id="qty" class="form_control form-control-sm form-control-border">
+                <input type="number" name="qty" id="qty" class="form-control form-control-sm form-control-border">
             </td>
             <td>
                 <select name="satuan" id="satuan" class="form-control form-control-sm form-control-border">
@@ -38,22 +38,22 @@
                 </select>
             </td>
             <td>
-                <input type="text" name="hrgSatuan" id="hrgSatuan" class="form_control form-control-sm form-control-border">
+                <input type="text" name="hrgSatuan" id="hrgSatuan" class="form-control form-control-sm form-control-border">
             </td>
             <td>
-                <input type="text" name="point" id="point" class="form_control form-control-sm form-control-border">
+                <input type="text" name="point" id="point" class="form-control form-control-sm form-control-border">
             </td>
             <td>
-                <input type="text" name="stockAwal" id="stockAwal" class="form_control form-control-sm form-control-border">
+                <input type="text" name="stockAwal" id="stockAwal" class="form-control form-control-sm form-control-border">
             </td>
             <td>
-                <input type="text" name="stockAkhir" id="stockAkhir" class="form_control form-control-sm form-control-border">
+                <input type="text" name="stockAkhir" id="stockAkhir" class="form-control form-control-sm form-control-border">
             </td>
             <td>
-                <input type="text" name="keterangan" id="keterangan" class="form_control form-control-sm form-control-border">
+                <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm form-control-border">
             </td>
             <td>
-                
+
             </td>
         </tr>
     </tbody>
