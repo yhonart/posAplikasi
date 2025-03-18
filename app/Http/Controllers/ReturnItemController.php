@@ -40,21 +40,29 @@ class ReturnItemController extends Controller
         $userName = Auth::user()->name;
         $periode = date("mY");
         $dateNoww = date("dmY");
+        $company = Auth::user()->company;
+
+        $getCompany = DB::table('m_company')
+            ->where('idm_company',$company)
+            ->first();
+
+        $compCode = $getCompany->company_code;
 
         $countNumber = DB::table('tr_return_noninvoice')
             ->where([
                 ['created_by',$userName],
-                ['periode',$periode]
+                ['periode',$periode],
+                ['comp_id',$compCode]
             ])
             ->count();
 
         if ($countNumber == '0') {
             $numberRN = 1;
-            $displayNumber = "RN".$dateNoww."-" . sprintf("%07d", $numberRN);
+            $displayNumber = "RNI".$compCode.$dateNoww."-" . sprintf("%07d", $numberRN);
         }
         else{
             $numberRN = $countNumber + 1;
-            $displayNumber = "RN".$dateNoww."-" . sprintf("%07d", $numberRN);
+            $displayNumber = "RNI".$compCode.$dateNoww."-" . sprintf("%07d", $numberRN);
         }
 
         return $displayNumber;

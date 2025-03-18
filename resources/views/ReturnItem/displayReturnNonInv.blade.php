@@ -1,6 +1,6 @@
 <div class="card card-purple">
     <div class="card-header">
-        <h3 class="card-title">Form Retur Non Invoice</h3>
+        <h3 class="card-title">Pengembalian Non Invoice</h3>
     </div>
     <div class="card-body">
         @if($countNumberRetur == '0')
@@ -14,7 +14,7 @@
                 <div class="form-group row">
                     <label for="tglDokumen" class="col-md-3">Tgl. Dokumen</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control form-control-sm" name="tglDokumen" id="tglDokumen">
+                        <input type="text" class="form-control form-control-sm datetimepicker-input" name="tglDokumen" id="tglDokumen">
                     </div>
                 </div>
                 <div class="form-group row">
