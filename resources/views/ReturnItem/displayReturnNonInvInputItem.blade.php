@@ -52,9 +52,6 @@
             <td>
                 <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm form-control-border">
             </td>
-            <td>
-
-            </td>
         </tr>
     </tbody>
 </table>
