@@ -642,6 +642,6 @@ class ReturnItemController extends Controller
                 ->get();
         #endregion
 
-        return view ('ReturnItem/displayReturnNonInvInputItem', compact('returnNumber'));
+        return view ('ReturnItem/displayReturnNonInvInputItem', compact('returnNumber','listProduk'));
     }
 }
