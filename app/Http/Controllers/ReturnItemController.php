@@ -58,11 +58,11 @@ class ReturnItemController extends Controller
 
         if ($countNumber == '0') {
             $numberRN = 1;
-            $displayNumber = "RNI".$compCode.$dateNoww."-" . sprintf("%07d", $numberRN);
+            $displayNumber = "RNI".$compCode.$dateNoww."-" . sprintf("%04d", $numberRN);
         }
         else{
             $numberRN = $countNumber + 1;
-            $displayNumber = "RNI".$compCode.$dateNoww."-" . sprintf("%07d", $numberRN);
+            $displayNumber = "RNI".$compCode.$dateNoww."-" . sprintf("%04d", $numberRN);
         }
 
         return $displayNumber;
