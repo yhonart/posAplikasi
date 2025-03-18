@@ -62,7 +62,10 @@
                             processData: false,
                             success : function (data) {
                                 if (data.warning) {
-                                    alertify.error(data.warning);
+                                    alertify
+                                    .alert(data.warning, function(){
+                                        alertify.message('OK');
+                                    }).set({title:"Warning Input Data !"});
                                 }  
                                 else{
                                     alertify.success(data.success);
