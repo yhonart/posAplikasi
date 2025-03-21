@@ -158,7 +158,7 @@
                 thousand: ".",
             })); 
         }
-
+        alert (trxNumber);
         var qtyActivities = document.getElementById("formQty");
         var discountActivites = document.getElementById("formDisc");
 
@@ -180,7 +180,7 @@
                 let stockID = $("#stockID").val(),
                     cusGroup = $("#cusGroup").val(),
                     qty = $("#formQty").val(),
-                    customer = "{{$viewBilling->customer_name}}";
+                    customer = "0";
                     
                 let dataform = {trxNumber:trxNumber,stockID:stockID,cusGroup:cusGroup,qty:qty,customer:customer};
                     $.ajax({
