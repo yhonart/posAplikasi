@@ -88,7 +88,7 @@
                                 precision: 0,
                                 thousand: ".",
                             });
-                            disStock.value = data.prdStock;
+                            formStock.value = data.prdStock;
                             hargaBeli.value = data.hrgModal;                            
                             disStockAwal.value = data.prdStock;                            
                         }
