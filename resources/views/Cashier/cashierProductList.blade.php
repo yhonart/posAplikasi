@@ -180,12 +180,12 @@
                 qty = $("#formQty").val();
 
             if (trxNumber === '0') {
-                customer = "0";
+                customer = "1";
             }
             else{
-                customer = "{{$viewBilling->customer_name}}";
+                customer = trxNumber;
             }
-                
+            alert (customer);
             let dataform = {trxNumber:trxNumber,stockID:stockID,cusGroup:cusGroup,qty:qty,customer:customer};
                 $.ajax({
                     type : 'post',
