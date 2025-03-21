@@ -420,7 +420,7 @@ class CashierController extends Controller
         $billNumber = $postItem->trxNumber; 
         $cusGroup = $postItem->cusGroup;
         $qtySubmit = $postItem->qty;
-        
+
         $getCustomer = DB::table('view_billing_action')
             ->select('customer_name')
             ->where('billing_number',$billNumber)
@@ -928,7 +928,7 @@ class CashierController extends Controller
                 ['status','1'],
                 ['created_by',$createdName]
             ])
-            ->count();
+            ->count(); 
 
         $countRerun = DB::table('tr_store')
             ->where([
@@ -1018,6 +1018,7 @@ class CashierController extends Controller
         $areaID = $this->checkuserInfo();
         
         $createdBy = Auth::user()->name;
+        $company = Auth::user()->company;
 
         $t_Bill = "0";
         $pelanggan = $reqPostBill->pelanggan;
@@ -1082,6 +1083,7 @@ class CashierController extends Controller
                         'created_date' => now(),
                         'tr_date' => $dateTrx,
                         'created_by' => $createdBy,
+                        'comp_id' => $company
                     ]);
             } else {
                 DB::table('tr_store')
@@ -1104,7 +1106,8 @@ class CashierController extends Controller
                         'created_date' => now(),
                         'tr_date' => $dateTrx,
                         'is_delete' => '0',
-                        'is_return' => '0'
+                        'is_return' => '0',
+                        'comp_id' => $company
                     ]);
             }
         }
