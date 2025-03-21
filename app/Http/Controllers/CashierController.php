@@ -378,7 +378,6 @@ class CashierController extends Controller
                 if ($keyword <> 0) {
                     $productList = $productList->where([
                         ['product_name', 'LIKE', '%' . $keyword . '%'],
-                        ['comp_id',$company]
                     ]);
                 }
                 $productList = $productList->where([
