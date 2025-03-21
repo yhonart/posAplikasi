@@ -175,16 +175,15 @@
             }   
         });
         function addActivityItem() {
-            let trxNumber = $("#transNumber").val(),
-                stockID = $("#stockID").val(),
+            let stockID = $("#stockID").val(),
                 cusGroup = $("#cusGroup").val(),
                 qty = $("#formQty").val();
 
-            if (trxNumber !== "0") {
-                customer = "{{$viewBilling->customer_name}}";
+            if (trxNumber === '0') {
+                customer = "0";
             }
             else{
-                customer = "0";
+                customer = "{{$viewBilling->customer_name}}";
             }
                 
             let dataform = {trxNumber:trxNumber,stockID:stockID,cusGroup:cusGroup,qty:qty,customer:customer};
