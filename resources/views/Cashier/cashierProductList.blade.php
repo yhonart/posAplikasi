@@ -158,11 +158,11 @@
                 thousand: ".",
             })); 
         }
-        alert (trxNumber);
+
         var qtyActivities = document.getElementById("formQty");
         var discountActivites = document.getElementById("formDisc");
 
-        if (trxNumber !== '0') {
+        if (trxNumber !== '0' || trxNumber !== 0) {
             qtyActivities.addEventListener('keydown', function(event) {  
                 if (event.keyCode === 13) {
                     event.preventDefault();
@@ -180,7 +180,7 @@
                 let stockID = $("#stockID").val(),
                     cusGroup = $("#cusGroup").val(),
                     qty = $("#formQty").val(),
-                    customer = "0";
+                    customer = "{{$viewBilling->customer_name}}";
                     
                 let dataform = {trxNumber:trxNumber,stockID:stockID,cusGroup:cusGroup,qty:qty,customer:customer};
                     $.ajax({
