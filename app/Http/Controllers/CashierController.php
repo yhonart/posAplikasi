@@ -258,7 +258,7 @@ class CashierController extends Controller
     public function productList()
     {
         $billNumber = $this->getInfoNumber(); 
-
+        
         $viewBilling = DB::table('view_billing_action')
             ->select('customer_name')
             ->where('billing_number',$billNumber)
