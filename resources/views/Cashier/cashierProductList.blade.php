@@ -23,7 +23,7 @@
                 <input type="hidden" name="hargaModal" id="hargaModal">
                 <input type="hidden" name="hargaBeli" id="hargaBeli">
                 <input type="hidden" name="formStockAwal" id="formStockAwal">
-                <input type="hidden" name="stockID" id="stockID">
+                <input type="text" name="stockID" id="stockID">
                 <input type="hidden" name="cusGroup" id="cusGroup">
                 <td colspan="2" class="p-0">
                     <input type="text" class="form-control form-control-sm form-control-border border-width-2" name="fieldProduk" id="fieldProduk" placeholder="Scan Barcode Disini" autocomplete="off">
