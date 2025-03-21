@@ -27,7 +27,7 @@
         let selectedRow = -1;
         let hargaSatuan = document.getElementById("disHarga"),
             hargaBeli = document.getElementById("hargaBeli"),
-            disQty = document.getElementById("disQty"),
+            disQty = document.getElementById("formQty"),
             disSatuan = document.getElementById("disSatuan"),
             disDiscount = document.getElementById("disDiscount"),
             disJumlah = document.getElementById("disJumlah"),
@@ -87,7 +87,7 @@
                             disStockAwal.value = data.prdStock;                            
                         }
                     }); 
-                    $("#disQty").val("1").focus().select();                   
+                    $("#formQty").val("1").focus().select();                   
                     $("#fieldProduk").val(null);
                     $("#stockID").val(selectedId);
                     $("#cusGroup").val(cusGroup);

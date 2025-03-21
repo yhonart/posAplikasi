@@ -25,7 +25,7 @@
                     <input type="text" class="form-control form-control-sm form-control-border border-width-2" name="fieldProduk" id="fieldProduk" placeholder="Scan Barcode Disini" autocomplete="off">
                 </td>
                 <td class="p-0">
-                    <input type="number" name="formQty" id="formQty" class="form-control form-control-sm form-control-border border-width-2" autocomplete="off" readonly>
+                    <input type="number" name="formQty" id="formQty" class="form-control form-control-sm form-control-border border-width-2" autocomplete="off">
                 </td>
                 <td class="p-0">
                     <select name="formSatuan" id="formSatuan" class="form-control  form-control-sm form-control-border border-width-2" readonly>
@@ -48,6 +48,7 @@
             </tr>
         </form>
     </tbody>
+
     <tbody id="disTbodyForm" style="display: none;">
         <tr>
             <td colspan="2">
