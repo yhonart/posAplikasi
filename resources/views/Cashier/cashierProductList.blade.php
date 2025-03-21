@@ -178,8 +178,13 @@
             let trxNumber = $("#transNumber").val(),
                 stockID = $("#stockID").val(),
                 cusGroup = $("#cusGroup").val(),
-                qty = $("#formQty").val(),
-                customer = "{{$viewBilling->customer_name}}";   
+                qty = $("#formQty").val();
+            if (trxNumber !== 0) {
+                customer = "{{$viewBilling->customer_name}}";
+            }
+            else{
+                customer = 0;
+            }
                 
             let dataform = {trxNumber:trxNumber,stockID:stockID,cusGroup:cusGroup,qty:qty,customer:customer};
                 $.ajax({
