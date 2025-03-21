@@ -46,7 +46,14 @@ class CashierController extends Controller
         $thisDate = date("dmy");
         $toDay = date("Y-m-d");
         $username = Auth::user()->name;
+        $company = Auth::user()->company;
 
+        $getCodeCompany = DB::table('m_company')
+            ->select('company_code')
+            ->where('idm_company',$company)
+            ->first();
+
+        $compCode = $getCodeCompany->company_code;
         //Cek apakah ada nomor transaksi dari proses F4
         $countReturn = DB::table('tr_store')
             ->where([
@@ -54,7 +61,8 @@ class CashierController extends Controller
                 ['is_return', '1'],
                 ['status', '0'],
                 ['tr_date', $toDay],
-                ['return_by',$username]
+                ['return_by',$username],
+                ['comp_id',$company]
             ])
             ->count();
         
@@ -64,16 +72,17 @@ class CashierController extends Controller
             $countTrx = DB::table("tr_store")
                 ->where([
                     ['store_id', $areaID],
-                    ['tr_date', $toDay]
+                    ['tr_date', $toDay],
+                    ['comp_id', $company]
                 ])
                 ->count();
 
             if ($countTrx == '0') {
                 $no = "1";
-                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
+                $pCode = "P". $compCode . $thisDate . "-" . sprintf("%07d", $no);
             } else {
                 $no = $countTrx + 1;
-                $pCode = "P" . $thisDate . "-" . sprintf("%07d", $no);
+                $pCode = "P". $compCode . $thisDate . "-" . sprintf("%07d", $no);
             }
         } else {
             $selectNumber = DB::table('tr_store')
