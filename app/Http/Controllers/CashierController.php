@@ -376,7 +376,10 @@ class CashierController extends Controller
             } else { // jika input menggunakan text  
                 $productList = DB::table('view_customer_product_sell');
                 if ($keyword <> 0) {
-                    $productList = $productList->where('product_name', 'LIKE', '%' . $keyword . '%');
+                    $productList = $productList->where([
+                        ['product_name', 'LIKE', '%' . $keyword . '%'],
+                        ['comp_id',$company]
+                    ]);
                 }
                 $productList = $productList->where([
                     ['idm_customer',$memberID],
