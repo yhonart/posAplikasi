@@ -426,7 +426,7 @@ class CashierController extends Controller
             ->where('billing_number',$billNumber)
             ->first();
 
-        $customerName = $getCustomer->customer;
+        $customerName = $getCustomer->customer_name;
 
         $productListView = DB::table('view_product_stock')
             ->where('idinv_stock',$dataID)
