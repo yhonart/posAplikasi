@@ -162,38 +162,36 @@
         var qtyActivities = document.getElementById("formQty");
         var discountActivites = document.getElementById("formDisc");
 
-        if (trxNumber !== '0' || trxNumber !== 0) {
-            qtyActivities.addEventListener('keydown', function(event) {  
-                if (event.keyCode === 13) {
-                    event.preventDefault();
-                    addActivityItem();
-                }   
-            });
-            discountActivites.addEventListener('keydown', function(event) {  
-                if (event.keyCode === 13) {
-                    event.preventDefault();
-                    addActivityItem();
-                }   
-            });
-            
-            function addActivityItem() {
-                let stockID = $("#stockID").val(),
-                    cusGroup = $("#cusGroup").val(),
-                    qty = $("#formQty").val(),
-                    customer = "{{$viewBilling->customer_name}}";
-                    
-                let dataform = {trxNumber:trxNumber,stockID:stockID,cusGroup:cusGroup,qty:qty,customer:customer};
-                    $.ajax({
-                        type : 'post',
-                        url : "{{route('Cashier')}}/inputItem",
-                        data :  dataform,
-                        success : function(response){
-                            cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
-                            totalBelanja(trxNumber);
-                        }
-                    });
-            }
+        qtyActivities.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
+        discountActivites.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
+        
+        function addActivityItem() {
+            let stockID = $("#stockID").val(),
+                cusGroup = $("#cusGroup").val(),
+                qty = $("#formQty").val();
+                
+            let dataform = {trxNumber:trxNumber,stockID:stockID,cusGroup:cusGroup,qty:qty};
+                $.ajax({
+                    type : 'post',
+                    url : "{{route('Cashier')}}/inputItem",
+                    data :  dataform,
+                    success : function(response){
+                        cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
+                        totalBelanja(trxNumber);
+                    }
+                });
         }
+
         function loadTableData(trxNumber){
             $.ajax({
                 type : 'get',

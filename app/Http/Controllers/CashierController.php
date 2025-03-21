@@ -258,7 +258,7 @@ class CashierController extends Controller
     public function productList()
     {
         $billNumber = $this->getInfoNumber(); 
-        
+
         $viewBilling = DB::table('view_billing_action')
             ->select('customer_name')
             ->where('billing_number',$billNumber)
@@ -420,7 +420,13 @@ class CashierController extends Controller
         $billNumber = $postItem->trxNumber; 
         $cusGroup = $postItem->cusGroup;
         $qtySubmit = $postItem->qty;
-        $customerName = $postItem->customer;
+        
+        $getCustomer = DB::table('view_billing_action')
+            ->select('customer_name')
+            ->where('billing_number',$billNumber)
+            ->first();
+
+        $customerName = $getCustomer->customer;
 
         $productListView = DB::table('view_product_stock')
             ->where('idinv_stock',$dataID)
