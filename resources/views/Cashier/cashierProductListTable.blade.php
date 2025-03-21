@@ -28,7 +28,7 @@
         {{$ltrp->stock}}
     </td>
     <td class="text-right p-0">
-        <button type="button" class="btn btn-sm btn-danger DELETE-LIST elevation-1 " data-id="{{$ltrp->list_id}}"><i class="fa-solid fa-xmark"></i></button>
+        <button type="button" class="btn btn-sm btn-danger DELETE-LIST elevation-1 btn-block btn-flat " data-id="{{$ltrp->list_id}}"><i class="fa-solid fa-xmark"></i></button>
     </td>
 </tr>
 @endforeach
