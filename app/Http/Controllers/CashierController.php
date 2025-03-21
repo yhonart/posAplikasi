@@ -153,10 +153,13 @@ class CashierController extends Controller
         $area = $this->checkuserInfo();
         $hakAkses = Auth::user()->hakakses;
         $dateDB = date("Y-m-d");
+        $company = Auth::user()->company;
+
         $countReturnNumber = DB::table('tr_store')
             ->where([
                 ['status','1'],
                 ['return_by',$username],
+                ['comp_id',$company]
             ])
             ->count();
         if ($countReturnNumber == '0') {
@@ -164,7 +167,8 @@ class CashierController extends Controller
                 ->where([
                     ['store_id', $area],
                     ['status', '1'],
-                    ['created_by', $username]
+                    ['created_by', $username],
+                    ['comp_id',$company]
                 ])
                 ->first();
         }
@@ -173,7 +177,8 @@ class CashierController extends Controller
                 ->where([
                     ['store_id', $area],
                     ['status', '1'],
-                    ['return_by', $username]
+                    ['return_by', $username],
+                    ['comp_id',$company]
                 ])
                 ->first();
         }
