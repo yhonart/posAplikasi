@@ -65,9 +65,9 @@
                 let routeIndex = "{{route('Cashier')}}",
                     urlProductList = "productList",
                     panelProductList = $("#mainListProduct");
-                $("#disTbodyForm").fadeIn("slow");
+                // $("#disTbodyForm").fadeIn("slow");
                 $("#tableSelectProduk").fadeOut("slow");
-                $("#trInputProdut").fadeOut("slow");
+                // $("#trInputProdut").fadeOut("slow");
                 if (selectedId) {
                     fetch("{{route('Cashier')}}/selectResponse/" + selectedId + "/" + memberID)
                     .then(response => response.json())
