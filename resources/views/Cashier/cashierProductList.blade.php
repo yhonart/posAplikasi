@@ -33,7 +33,7 @@
                     <input type="number" name="formQty" id="formQty" class="form-control form-control-sm form-control-border border-width-2" autocomplete="off">
                 </td>
                 <td class="p-0">
-                    <input type="text" id="formSatuan" class="form-control  form-control-sm form-control-border border-width-2">
+                    <input type="text" id="formSatuan" class="form-control  form-control-sm form-control-border border-width-2" readonly>
                 </td>
                 <td class="p-0">
                     <input type="text" name="formHargaSatuan" id="formHargaSatuan" class="form-control form-control-sm form-control-border border-width-2" readonly>
