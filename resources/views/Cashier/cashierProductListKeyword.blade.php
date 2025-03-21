@@ -62,11 +62,13 @@
                 let billNumber = "{{$billNumber}}",
                     cusGroup = "{{$cosGroup}}",
                     memberID = "{{$memberID}}";
+
                 let routeIndex = "{{route('Cashier')}}",
                     urlProductList = "productList",
                     panelProductList = $("#mainListProduct");
-                // $("#disTbodyForm").fadeIn("slow");
                 $("#tableSelectProduk").fadeOut("slow");
+                $("#disProduk").fadeIn("slow");
+                $("#fieldProduk").fadeOut("slow");
                 // $("#trInputProdut").fadeOut("slow");
                 if (selectedId) {
                     fetch("{{route('Cashier')}}/selectResponse/" + selectedId + "/" + memberID)

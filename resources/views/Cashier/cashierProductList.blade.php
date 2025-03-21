@@ -22,7 +22,7 @@
                 <input type="hidden" name="prodNameHidden1" id="prodNameHidden1">
                 <input type="hidden" name="hargaModal" id="hargaModal">
                 <input type="hidden" name="hargaBeli" id="hargaBeli">
-                <input type="hidden" name="disStockAwal" id="disStockAwal">
+                <input type="hidden" name="formStockAwal" id="formStockAwal">
                 <input type="hidden" name="stockID" id="stockID">
                 <input type="hidden" name="cusGroup" id="cusGroup">
                 <td colspan="2" class="p-0">
@@ -52,36 +52,6 @@
                 </td>
             </tr>
         </form>
-    </tbody>
-
-    <tbody id="disTbodyForm" style="display: none;">
-        <tr>
-            <td colspan="2">
-                
-                
-            </td>
-            <td>
-                <input type="number" class="form-control form-control-sm form-control-border" name="disQty" id="disQty">
-            </td>
-            <td>
-                <input type="text" class="form-control form-control-sm form-control-border" name="disSatuan" id="disSatuan" readonly>
-            </td>
-            <td>
-                <input type="text" class="form-control form-control-sm form-control-border" name="disHarga" id="disHarga" readonly>
-            </td>
-            <td>
-                <input type="text" class="form-control form-control-sm form-control-border" name="disDiscount" id="disDiscount">
-            </td>
-            <td>
-                <input type="text" class="form-control form-control-sm form-control-border" name="disJumlah" id="disJumlah" readonly>
-            </td>
-            <td>
-                <input type="text" class="form-control form-control-sm form-control-border" name="disStock" id="disStock" readonly>
-            </td>
-            <td class="text-right">
-                <button class="btn btn-danger btn-flat btn-sm" id="delItem"><i class="fa-solid fa-xmark"></i></button>
-            </td>
-        </tr>
     </tbody>
 </table>
 <input type="hidden" name="removeAutofocus" id="removeAutofocus">
@@ -156,25 +126,25 @@
             }
         }       
 
-        $("#disQty").on('input', computeJumlah);
+        $("#formQty").on('input', computeJumlah);
         function computeJumlah(){
-            let qtyVal = $("#disQty").val(),
-                stockVal = $("#disStockAwal").val(),
-                valPriceUnit = $("#disHarga").val(),
+            let qtyVal = $("#formQty").val(),
+                stockVal = $("#formStockAwal").val(),
+                valPriceUnit = $("#formHargaSatuan").val(),
                 priceVal = valPriceUnit.replace(/\./g, "");
-            $("#disJumlah").val(accounting.formatMoney(priceVal * qtyVal,{
+            $("#formJumlah").val(accounting.formatMoney(priceVal * qtyVal,{
                 symbol: "",
                 precision: 0,
                 thousand: ".",
             }));
-            $("#disStock").val(stockVal - qtyVal);
+            $("#formStock").val(stockVal - qtyVal);
         }
 
-        $("#disDiscount").on('input', computeDisc);
+        $("#formDisc").on('input', computeDisc);
         function computeDisc(){
-            let valHrgSatuan = $("#disHarga").val(),
-                valQty = $("#disQty").val(),
-                valDisc = $("#disDiscount").val(), 
+            let valHrgSatuan = $("#formHargaSatuan").val(),
+                valQty = $("#formQty").val(),
+                valDisc = $("#formDisc").val(), 
 
                 inputHrgSatuan = valHrgSatuan.replace(/\./g, ""),
                 inputQty = valQty.replace(/\./g, "");
@@ -184,15 +154,15 @@
                 return
             }
             let hrgAfterDis = parseInt(inputHrgSatuan) - parseInt(inputDisc);
-            $("#disJumlah").val(accounting.formatMoney(hrgAfterDis*inputQty,{
+            $("#formJumlah").val(accounting.formatMoney(hrgAfterDis*inputQty,{
                 symbol: "",
                 precision: 0,
                 thousand: ".",
             })); 
         }
 
-        var qtyActivities = document.getElementById("disQty");
-        var discountActivites = document.getElementById("disDiscount");
+        var qtyActivities = document.getElementById("formQty");
+        var discountActivites = document.getElementById("formDisc");
 
         qtyActivities.addEventListener('keydown', function(event) {  
             if (event.keyCode === 13) {
@@ -210,7 +180,7 @@
             let trxNumber = $("#transNumber").val(),
                 stockID = $("#stockID").val(),
                 cusGroup = $("#cusGroup").val(),
-                qty = $("#disQty").val(),
+                qty = $("#formQty").val(),
                 customer = "{{$viewBilling->customer_name}}";   
                 
             let dataform = {trxNumber:trxNumber,stockID:stockID,cusGroup:cusGroup,qty:qty,customer:customer};
