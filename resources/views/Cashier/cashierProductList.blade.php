@@ -17,7 +17,7 @@
     <tbody id="trInputProdut">
         <form id="formInputBarangKasir">            
             <tr data-id="idForm">
-                <input type="hidden" name="transNumber" id="transNumber" value="{{$billNumber}}">
+                <input type="text" name="transNumber" id="transNumber" value="{{$billNumber}}">
                 <input type="hidden" name="prodName" id="prodName" autocomplete="off" list="browsers">
                 <input type="hidden" name="prodNameHidden1" id="prodNameHidden1">
                 <input type="hidden" name="hargaModal" id="hargaModal">
@@ -179,12 +179,8 @@
                 stockID = $("#stockID").val(),
                 cusGroup = $("#cusGroup").val(),
                 qty = $("#formQty").val();
-            if (trxNumber !== 0) {
-                customer = "{{$viewBilling->customer_name}}";
-            }
-            else{
-                customer = 0;
-            }
+                customer = "0";
+            
                 
             let dataform = {trxNumber:trxNumber,stockID:stockID,cusGroup:cusGroup,qty:qty,customer:customer};
                 $.ajax({
