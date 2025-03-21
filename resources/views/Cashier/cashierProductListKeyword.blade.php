@@ -25,13 +25,13 @@
         const table = document.getElementById('myTable');
         const rows = table.getElementsByTagName('tr');
         let selectedRow = -1;
-        let hargaSatuan = document.getElementById("disHarga"),
+        let hargaSatuan = document.getElementById("formHargaSatuan"),
             hargaBeli = document.getElementById("hargaBeli"),
-            disQty = document.getElementById("formQty"),
-            disSatuan = document.getElementById("disSatuan"),
-            disDiscount = document.getElementById("disDiscount"),
-            disJumlah = document.getElementById("disJumlah"),
-            disStock = document.getElementById("disStock"),
+            formQty = document.getElementById("formQty"),
+            formSatuan = document.getElementById("formSatuan"),
+            formDisc = document.getElementById("formDisc"),
+            formJumlah = document.getElementById("formJumlah"),
+            formStock = document.getElementById("formStock"),
             disStockAwal = document.getElementById("disStockAwal"),
             disProduk = document.getElementById("disProduk");
 
@@ -79,9 +79,13 @@
                                 thousand: ".",
                             });
                             disProduk.value = data.prodName;
-                            disSatuan.value = data.satuan;
-                            disDiscount.value = data.discount;
-                            disJumlah.value = data.hrgModal;
+                            formSatuan.value = data.satuan;
+                            formDisc.value = data.discount;
+                            formJumlah.value = accounting.formatMoney(data.price,{
+                                symbol: "",
+                                precision: 0,
+                                thousand: ".",
+                            });
                             disStock.value = data.prdStock;
                             hargaBeli.value = data.hrgModal;                            
                             disStockAwal.value = data.prdStock;                            

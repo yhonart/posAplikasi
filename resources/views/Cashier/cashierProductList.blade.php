@@ -17,18 +17,23 @@
     <tbody id="trInputProdut">
         <form id="formInputBarangKasir">            
             <tr data-id="idForm">
-            <input type="hidden" name="transNumber" id="transNumber" value="{{$billNumber}}">
-            <input type="hidden" name="prodName" id="prodName" autocomplete="off" list="browsers">
-            <input type="hidden" name="prodNameHidden1" id="prodNameHidden1">
-            <input type="hidden" name="hargaModal" id="hargaModal">
+                <input type="hidden" name="transNumber" id="transNumber" value="{{$billNumber}}">
+                <input type="hidden" name="prodName" id="prodName" autocomplete="off" list="browsers">
+                <input type="hidden" name="prodNameHidden1" id="prodNameHidden1">
+                <input type="hidden" name="hargaModal" id="hargaModal">
+                <input type="hidden" name="hargaBeli" id="hargaBeli">
+                <input type="hidden" name="disStockAwal" id="disStockAwal">
+                <input type="hidden" name="stockID" id="stockID">
+                <input type="hidden" name="cusGroup" id="cusGroup">
                 <td colspan="2" class="p-0">
                     <input type="text" class="form-control form-control-sm form-control-border border-width-2" name="fieldProduk" id="fieldProduk" placeholder="Scan Barcode Disini" autocomplete="off">
+                    <input type="text" class="form-control form-control-sm form-control-border" name="disProduk" id="disProduk" style="display: none;" readonly>
                 </td>
                 <td class="p-0">
                     <input type="number" name="formQty" id="formQty" class="form-control form-control-sm form-control-border border-width-2" autocomplete="off">
                 </td>
                 <td class="p-0">
-                    <select name="formSatuan" id="formSatuan" class="form-control  form-control-sm form-control-border border-width-2" readonly>
+                    <select name="formSatuan" id="formSatuan" class="form-control  form-control-sm form-control-border border-width-2">
                         <option value="0"></option>
                     </select>
                 </td>
@@ -36,7 +41,7 @@
                     <input type="text" name="formHargaSatuan" id="formHargaSatuan" class="form-control form-control-sm form-control-border border-width-2" readonly>
                 </td>
                 <td class="p-0">
-                    <input type="text" name="formDisc" id="formDisc" class="form-control form-control-sm form-control-border border-width-2" autocomplete="off" readonly>
+                    <input type="text" name="formDisc" id="formDisc" class="form-control form-control-sm form-control-border border-width-2" autocomplete="off" >
                 </td>
                 <td class="p-0">
                     <input type="text" name="formJumlah" id="formJumlah" class="form-control form-control-sm form-control-border border-width-2" readonly>
@@ -52,11 +57,8 @@
     <tbody id="disTbodyForm" style="display: none;">
         <tr>
             <td colspan="2">
-                <input type="hidden" name="hargaBeli" id="hargaBeli">
-                <input type="hidden" name="disStockAwal" id="disStockAwal">
-                <input type="hidden" name="stockID" id="stockID">
-                <input type="hidden" name="cusGroup" id="cusGroup">
-                <input type="text" class="form-control form-control-sm form-control-border" name="disProduk" id="disProduk" readonly>
+                
+                
             </td>
             <td>
                 <input type="number" class="form-control form-control-sm form-control-border" name="disQty" id="disQty">
