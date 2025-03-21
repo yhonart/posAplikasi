@@ -32,7 +32,7 @@
             formDisc = document.getElementById("formDisc"),
             formJumlah = document.getElementById("formJumlah"),
             formStock = document.getElementById("formStock"),
-            disStockAwal = document.getElementById("disStockAwal"),
+            disStockAwal = document.getElementById("formStockAwal"),
             disProduk = document.getElementById("disProduk");
 
         function highlightRow(index) {
