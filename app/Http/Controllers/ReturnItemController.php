@@ -642,6 +642,11 @@ class ReturnItemController extends Controller
                 ->get();
         #endregion
 
-        return view ('ReturnItem/displayReturnNonInvInputItem', compact('returnNumber','listProduk'));
+        // Get data warehouse
+            $warehouse = DB::table('m_site')
+                ->where('site_status','1')
+                ->get();
+
+        return view ('ReturnItem/displayReturnNonInvInputItem', compact('returnNumber','listProduk','warehouse'));
     }
 }
