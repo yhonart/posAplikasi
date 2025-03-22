@@ -3,8 +3,8 @@
         <tr>
             <th>#</th>
             <th>Nama Barang</th>
-            <th>Qty</th>
             <th>Satuan</th>
+            <th>Qty</th>
             <th>WH</th>
             <th>Hrg.Satuan</th>
             <th>Point</th>
