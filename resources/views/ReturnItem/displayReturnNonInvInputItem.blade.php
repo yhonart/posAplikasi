@@ -25,12 +25,12 @@
                 </select>
             </td>
             <td>
-                <input type="number" name="qty" id="qty" class="form-control form-control-sm form-control-border">
-            </td>
-            <td>
                 <select name="satuan" id="satuan" class="form-control form-control-sm form-control-border">
                     <option value="0"> === </option>
                 </select>
+            </td>
+            <td>
+                <input type="number" name="qty" id="qty" class="form-control form-control-sm form-control-border">
             </td>
             <td>
                 <select name="warehouse" id="warehouse" class="form-control form-control-sm form-control-border">
@@ -55,3 +55,20 @@
         </tr>
     </tbody>
 </table>
+<script>
+    $(document).ready(function(){
+        $("#produk").focus();
+        let qtyBeli = document.getElementById("qty");
+        
+        $("#produk").change(function(){
+            let productID = $(this).find(":selected").val();
+            $.ajax({
+                type : 'get',
+                url : "{{route('returnItem')}}/productAction/" + productID,
+                success : function(response){  
+                    $("#satuan").html(response).focus();
+                }
+            });
+        });
+    });
+</script>
