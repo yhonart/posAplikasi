@@ -709,7 +709,6 @@ class ReturnItemController extends Controller
             ->select('product_price_order')
             ->where([
                 ['idm_data_product',$prodID],
-                ['location_id',$warehouse],
                 ['product_size',$satuan]
             ])
             ->first();
