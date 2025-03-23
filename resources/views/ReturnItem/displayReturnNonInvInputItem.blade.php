@@ -3,8 +3,8 @@
         <tr>
             <th>#</th>
             <th>Nama Barang</th>
-            <th>WH</th>
             <th>Satuan</th>
+            <th>Warehouse</th>
             <th>Qty</th>
             <th>Hrg.Satuan</th>
             <th>Point</th>
@@ -23,18 +23,18 @@
                 <input type="hidden" name="hiddenProdukID" id="hiddenProdukID">
             </td>
             <td>
-                <select name="produk" id="produk" class="form-control form-control-sm">
-                    <option value="0"> === </option>
-                    @foreach($listProduk as $lp)
-                        <option value="{{$lp->productID}}">{{$lp->product_name}}</option>
-                    @endforeach
-                </select>
-            </td>
-            <td>
                 <select name="warehouse" id="warehouse" class="form-control form-control-sm form-control-border">
                     <option value="0">  </option>
                     @foreach($warehouse as $wh)
                         <option value="{{$wh->idm_site}}">{{$wh->site_name}}</option>
+                    @endforeach
+                </select>
+            </td>
+            <td>
+                <select name="produk" id="produk" class="form-control form-control-sm">
+                    <option value="0"> === </option>
+                    @foreach($listProduk as $lp)
+                        <option value="{{$lp->productID}}">{{$lp->product_name}}</option>
                     @endforeach
                 </select>
             </td>
@@ -78,7 +78,7 @@
                 type : 'get',
                 url : "{{route('returnItem')}}/productAction/" + productID,
                 success : function(response){  
-                    $("#warehouse").html(response).focus();
+                    $("#satuan").html(response).focus();
                 }
             });
         });
@@ -121,6 +121,6 @@
             });
         });
 
-        
+
     });
 </script>
