@@ -3,6 +3,6 @@
         <option value="{{$itemSatuan->product_size}}">{{$itemSatuan->product_satuan}}</option>
     @endforeach
     @foreach($otherSize as $os)
-        <option value="{{$itemSatuan->unit_note}}">{{$itemSatuan->unit_note}}</option>
+        <option value="{{$os->unit_note}}">{{$os->unit_note}}</option>
     @endforeach
 </select>
