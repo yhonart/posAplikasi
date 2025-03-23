@@ -68,7 +68,9 @@
     $(document).ready(function(){
         $("#produk").focus();
         let qtyBeli = document.getElementById("qty"),
-            satuan = document.getElementById("satuan");
+            satuan = document.getElementById("satuan"),
+            warehouse = document.getElementById("warehouse"),
+            satuanHrg = document.getElementById("hrgSatuan");
         
         $("#produk").change(function(){
             let productID = $(this).find(":selected").val();
@@ -76,13 +78,49 @@
                 type : 'get',
                 url : "{{route('returnItem')}}/productAction/" + productID,
                 success : function(response){  
-                    $("#satuan").html(response).focus();
+                    $("#warehouse").html(response).focus();
+                }
+            });
+        });
+        
+        $("#warehouse").change(function(){
+            let thisWarehouse = $(this).find(":selected").val(),
+                productID = $("#produk").val(),
+                satuan = $("#satuan").val();
+
+            fetch("{{route('returnItem')}}/warehouseSelected/" + thisWarehouse + "/" + productID + "/" + satuan)
+            .then(response = response.json())
+            .then(data => {
+                if (data.hrgSatuan || data.stockAwal) {
+                    satuanHrg.value = accounting.formatMoney(data.price,{
+                        symbol: "",
+                        precision: 0,
+                        thousand: ".",
+                    });
+                    $("#stockAwal").val(data.stockAwal);                                  
                 }
             });
         });
 
         satuan.addEventListener("change", function(){
-            
+            let productID = $("#produk").val(),
+                thisWarehouse = $("#warehouse").val(),
+                satuan = $("#satuan").val();            
+
+            fetch("{{route('returnItem')}}/warehouseSelected/" + thisWarehouse + "/" + productID + "/" + satuan)
+            .then(response = response.json())
+            .then(data => {
+                if (data.hrgSatuan || data.stockAwal) {
+                    satuanHrg.value = accounting.formatMoney(data.price,{
+                        symbol: "",
+                        precision: 0,
+                        thousand: ".",
+                    });
+                    $("#stockAwal").val(data.stockAwal);                                  
+                }
+            });
         });
+
+        
     });
 </script>

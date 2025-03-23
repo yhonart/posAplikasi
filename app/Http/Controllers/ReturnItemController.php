@@ -66,6 +66,39 @@ class ReturnItemController extends Controller
 
         return $displayNumber;
     }
+
+    public function getProcessNumber (){
+        $userName = Auth::user()->name;
+        $dateNoww = date("d-m-Y");
+        $company = Auth::user()->company;
+
+        $countProc = DB::table('tr_return_noninvoice')
+            ->where([
+                ['created_by',$userName],
+                ['date_trx', $dateNoww],
+                ['status_trx','1'],
+                ['comp_id',$company]
+            ])
+            ->count();
+
+        if ($countProc == '1') {
+            $getNumber = DB::table('tr_return_noninvoice')
+                ->where([
+                    ['created_by',$userName],
+                    ['date_trx', $dateNoww],
+                    ['status_trx','1'],
+                    ['comp_id',$company]
+                ])
+                ->first();
+
+            $numberReturn = $getNumber->number_return;
+        }
+        else{
+            $numberReturn = 0;
+        }
+
+        return $numberReturn;
+    }
     
     public function userApproval (){
         $userID = Auth::user()->id;
@@ -446,7 +479,8 @@ class ReturnItemController extends Controller
             ->where([
                 ['created_by',$persName],
                 ['date_trx', $dateNoww],
-                ['status_trx',$status]
+                ['status_trx',$status],
+                ['comp_id',$company]
             ])
             ->count();
 
@@ -648,5 +682,47 @@ class ReturnItemController extends Controller
                 ->get();
 
         return view ('ReturnItem/displayReturnNonInvInputItem', compact('returnNumber','listProduk','warehouse'));
+    }
+
+    public function warehouseSelected ($warehouse, $prodID, $satuan){
+        $numberTrx = $this->getProcessNumber();
+
+        //get id supplier.
+        $getSupplier = DB::table('tr_return_noninvoice')
+            ->where('number_trx',$numberTrx)
+            ->first();
+
+        $supplierID = $getSupplier->supplier_id;
+
+        //get harga pembelian sesuai dengan pada saat pembelian barang
+        $getHarga = DB::table('view_purchase_lo')
+            ->select('unit_price')
+            ->where([
+                ['supplier_id',$supplierID],
+                ['idm_data_product',$prodID],
+                ['satuan',$satuan],
+                ['status','>','2']
+                ])
+            ->first();
+
+        $hargaBeli = $getHarga->unit_price;
+
+        //get stock
+        $getStock = DB::table('view_product_stock')
+            ->select('stock')
+            ->where([
+                ['idm_data_product',$prodID],
+                ['location_id',$warehouse],
+                ['product_size',$satuan]
+            ])
+            ->first();
+        
+        $stock = $getStock->stock;
+
+        return response()->json([
+            'hrgSatuan' => $hargaBeli,
+            'stockAwal' => $stock
+        ]);
+        return response()->json(['error' => 'Product not found'], 404);
     }
 }
