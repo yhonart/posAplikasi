@@ -146,7 +146,7 @@
         $("#qty").on('input', computePoint);
         $("#hrgSatuan").on('input', computePoint);
 
-        function computeDisc(){
+        function computePoint(){
             let inputQty = $("#qty").val(),
                 valHrgSatuan = $("#hrgSatuan").val(),
                 ReplaceHrgSatuan = valHrgSatuan.replace(/\./g, ""),
