@@ -1,5 +1,4 @@
 <div class="table-responsive">
-
     <table class="table table-sm table-valign-middle text-nowrap">
         <thead>
             <tr>
@@ -22,7 +21,7 @@
                     <input type="hidden" name="idLo" id="idLo">
                     <input type="hidden" name="recive" id="recive">
                     <input type="hidden" name="unit" id="unit">
-                    <input type="hidden" name="hiddenProdukID" id="hiddenProdukID">
+                    <input type="hidden" name="hiddenProdukID" id="hiddenProdukID">                    
                 </td>
                 <td>
                     <select name="produk" id="produk" class="form-control form-control-sm">
@@ -200,17 +199,26 @@
                 point = $("#point").val(),
                 stockAwal = $("#stockAwal").val(),
                 stockAkhir = $("#stockAkhir").val(),
-                keterangan = $("#keterangan").val();
+                keterangan = $("#keterangan").val(),
+                returnNumber = "{{$returnNumber}}",
+                supplierID = "{{$supplierID}}";
 
             let dataForm = {productID:productID, satuan:satuan, warehouse:warehouse, qty:qty, hrgSatuan:hrgSatuan, point:point,
-                stockAwal:stockAwal, stockAkhir:stockAkhir, keterangan:keterangan
+                stockAwal:stockAwal, stockAkhir:stockAkhir, keterangan:keterangan, returnNumber:returnNumber, supplierID:supplierID
             }
 
             sendData(dataForm);
         }
 
         function sendData(dataForm){
-
+            $.ajax({
+                type : 'post',
+                url : "{{route('returnItem')}}/postItemReturnNonInvoice",
+                data :  dataform,
+                success : function(data){                  
+                    getDataRetur();
+                }
+            });
         }
     });
 </script>

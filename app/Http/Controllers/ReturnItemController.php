@@ -691,7 +691,7 @@ class ReturnItemController extends Controller
                 ->where('site_status','1')
                 ->get();
 
-        return view ('ReturnItem/displayReturnNonInvInputItem', compact('returnNumber','listProduk','warehouse'));
+        return view ('ReturnItem/displayReturnNonInvInputItem', compact('returnNumber','listProduk','warehouse','supplierID'));
     }
 
     public function warehouseSelected ($warehouse, $prodID, $satuan){
@@ -765,6 +765,54 @@ class ReturnItemController extends Controller
     }
 
     public function postItemReturnNonInvoice (Request $reqItem){
+        $productID = $reqItem->productID;
+        $satuan = $reqItem->satuan;
+        $warehouse = $reqItem->warehouse;
+        $qty = $reqItem->qty;
+        $hrgSatuan = $reqItem->hrgSatuan;
+        $point = $reqItem->point;
+        $stockAwal = $reqItem->stockAwal;
+        $stockAkhir = $reqItem->stockAkhir;
+        $keterangan = $reqItem->keterangan;
+        $returnNumber = $reqItem->returnNumber;
+        $supplierID = $reqItem->supplierID;
+        
+        $getSatuan = DB::table('view_product_stock')
+            ->where([
+                ['core_id_product',$productID],
+                ['product_size',$satuan],
+                ['location_id',$warehouse]
+            ])
+            ->first();
 
+        $unit = $getSatuan->product_satuan;
+        $company = Auth::user()->company;
+        $user = Auth::user()->user;
+        
+        DB::table('purchase_return')
+            ->insert([
+                'purchase_number'=>'0',
+                'return_number'=>$returnNumber,
+                'list_order_id'=>'0',
+                'product_id'=>$productID,
+                'satuan'=>$satuan,
+                'unit'=>$unit,
+                'received'=>'0',
+                'return'=>$qty,
+                'total_item'=>'0',
+                'unit_price'=>$hrgSatuan,
+                'total_price'=>$point,
+                'stock_awal'=>$stockAwal,
+                'stock_akhir'=>$stockAkhir,
+                'created_at'=>now(),
+                'created_by'=>$user,
+                'status'=>'1',
+                'supplier_id'=>$supplierID,
+                'item_text'=>$keterangan,
+                'wh'=>$warehouse,
+                'comp_id'=>$company
+            ]);
+
+        //change Qty
     }
 }

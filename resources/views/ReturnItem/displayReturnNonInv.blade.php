@@ -87,7 +87,19 @@
                 });
             </script>
         @else
-            <div id="transaksiReturNonInvoice"></div>
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <div>
+                        <button type="button" class="btn btn-success btn-sm" id="simpanDok" >Simpan</button>
+                        <button type="button" class="btn btn-danger btn-sm" id="rejectDok">Batalkan</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="transaksiReturNonInvoice"></div>
+                </div>
+            </div>
             <script>
                 $(document).ready(function(){
                     $.ajax({
