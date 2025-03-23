@@ -700,7 +700,7 @@ class ReturnItemController extends Controller
             ->where([
                 ['supplier_id',$supplierID],
                 ['idm_data_product',$prodID],
-                ['satuan',$satuan],
+                ['size',$satuan],
                 ['status','>','2']
                 ])
             ->first();
