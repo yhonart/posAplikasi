@@ -695,17 +695,26 @@ class ReturnItemController extends Controller
         $supplierID = $getSupplier->supplier_id;
 
         //get harga pembelian sesuai dengan pada saat pembelian barang
-        $getHarga = DB::table('view_purchase_lo')
-            ->select('unit_price')
+        // $getHarga = DB::table('view_purchase_lo')
+        //     ->select('unit_price')
+        //     ->where([
+        //         ['supplier_id',$supplierID],
+        //         ['idm_data_product',$prodID],
+        //         ['size',$satuan],
+        //         ['status','>','2']
+        //         ])
+        //     ->first();
+
+        $getHarga = DB::table('view_product_stock')
+            ->select('product_price_order')
             ->where([
-                ['supplier_id',$supplierID],
                 ['idm_data_product',$prodID],
-                ['size',$satuan],
-                ['status','>','2']
-                ])
+                ['location_id',$warehouse],
+                ['product_size',$satuan]
+            ])
             ->first();
 
-        $hargaBeli = $getHarga->unit_price;
+        $hargaBeli = $getHarga->product_price_order;
 
         //get stock
         $getStock = DB::table('view_product_stock')
