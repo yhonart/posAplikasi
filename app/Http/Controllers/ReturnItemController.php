@@ -588,7 +588,7 @@ class ReturnItemController extends Controller
                 $sizeCodeDesc = $mUnit->size_code;
 
                 if ($sizeCodeDesc == '1') {
-                    $konvReport = $qty;                    
+                    $qtyReport = $qty;                    
                 }
                 elseif ($sizeCodeDesc == '2') {
                     if ($satuan == "BESAR") {
@@ -762,5 +762,9 @@ class ReturnItemController extends Controller
             'stockAwal' => $stock
         ]);
         return response()->json(['error' => 'Product not found'], 404);
+    }
+
+    public function postItemReturnNonInvoice (Request $reqItem){
+
     }
 }
