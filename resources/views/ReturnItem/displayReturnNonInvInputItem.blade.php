@@ -165,7 +165,8 @@
 
         var activitiesQty = document.getElementById("qty"),
             activitiesHarga = document.getElementById("hrgSatuan"),
-            activitiesStockAkhir = document.getElementById("stockAkhir");
+            activitiesStockAkhir = document.getElementById("stockAkhir"),
+            activitiesKeterangan = document.getElementById("keterangan");
 
         activitiesQty.addEventListener('keydown', function(event) {  
             if (event.keyCode === 13) {
@@ -180,6 +181,12 @@
             }   
         });
         activitiesStockAkhir.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
+        activitiesKeterangan.addEventListener('keydown', function(event) {  
             if (event.keyCode === 13) {
                 event.preventDefault();
                 addActivityItem();
