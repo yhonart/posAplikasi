@@ -716,8 +716,13 @@ class ReturnItemController extends Controller
                 ['product_size',$satuan]
             ])
             ->first();
-        
-        $stock = $getStock->stock;
+
+        if ($warehouse == 0 OR empty($getStock)) {
+            $stock = '0';
+        }
+        else {
+            $stock = $getStock->stock;
+        }
 
         return response()->json([
             'hrgSatuan' => $hargaBeli,
