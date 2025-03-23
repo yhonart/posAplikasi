@@ -95,7 +95,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.hrgSatuan || data.stockAwal) {
-                    satuanHrg.value = accounting.formatMoney(data.price,{
+                    satuanHrg.value = accounting.formatMoney(data.hrgSatuan,{
                         symbol: "",
                         precision: 0,
                         thousand: ".",
@@ -114,7 +114,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.hrgSatuan || data.stockAwal) {
-                    satuanHrg.value = accounting.formatMoney(data.price,{
+                    satuanHrg.value = accounting.formatMoney(data.hrgSatuan,{
                         symbol: "",
                         precision: 0,
                         thousand: ".",
