@@ -81,8 +81,25 @@
                 type : 'get',
                 url : "{{route('returnItem')}}/productAction/" + productID,
                 success : function(response){  
-                    $("#satuan").html(response).focus();
+                    $("#satuan").html(response);
                 }
+            });
+
+            let thisWarehouse = $("#warehouse").val(),
+                satuan = $("#satuan").val();
+
+            fetch("{{route('returnItem')}}/warehouseSelected/" + thisWarehouse + "/" + productID + "/" + satuan)
+            .then(response => response.json())
+            .then(data => {
+                if (data.hrgSatuan || data.stockAwal) {
+                    satuanHrg.value = accounting.formatMoney(data.hrgSatuan,{
+                        symbol: "",
+                        precision: 0,
+                        thousand: ".",
+                    });
+                    $("#stockAwal").val(data.stockAwal);                                  
+                }
+                $("#satuan").focus();
             });
         });
         
