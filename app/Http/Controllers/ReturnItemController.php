@@ -812,7 +812,16 @@ class ReturnItemController extends Controller
                 'wh'=>$warehouse,
                 'comp_id'=>$company
             ]);
+    }
 
-        //change Qty
+    public function itemReturnNonInv($returnNumber){
+        $getItem = DB::table('purchase_return as a')
+            ->select('a.*','b.product_name','c.site_name')
+            ->join('m_product as b', 'b.idm_data_product','=','a.product_id')
+            ->join('m_site as c', 'c.idm_site','=','a.wh')
+            ->where('return_number',$returnNumber)
+            ->get();
+
+        return view ('ReturnItem/displayReturnNonInvTableItem', compact('getItem'));
     }
 }

@@ -2,7 +2,6 @@
     <table class="table table-sm table-valign-middle text-nowrap">
         <thead>
             <tr>
-                <th>#</th>
                 <th>Nama Barang</th>
                 <th>Satuan</th>
                 <th>Warehouse</th>
@@ -17,13 +16,10 @@
         <tbody>
             <tr>
                 <td>
-                    #
                     <input type="hidden" name="idLo" id="idLo">
                     <input type="hidden" name="recive" id="recive">
                     <input type="hidden" name="unit" id="unit">
                     <input type="hidden" name="hiddenProdukID" id="hiddenProdukID">                    
-                </td>
-                <td>
                     <select name="produk" id="produk" class="form-control form-control-sm">
                         <option value="0"> === </option>
                         @foreach($listProduk as $lp)
@@ -64,6 +60,7 @@
                 </td>
             </tr>
         </tbody>
+        <tbody id="tableItemNonInvoice"></tbody>
     </table>
 </div>
 <script>
@@ -207,16 +204,26 @@
                 stockAwal:stockAwal, stockAkhir:stockAkhir, keterangan:keterangan, returnNumber:returnNumber, supplierID:supplierID
             }
 
-            sendData(dataForm);
+            sendData(dataForm, returnNumber);
         }
 
-        function sendData(dataForm){
+        function sendData(dataForm, returnNumber){            
             $.ajax({
                 type : 'post',
                 url : "{{route('returnItem')}}/postItemReturnNonInvoice",
                 data :  dataform,
                 success : function(data){                  
-                    getDataRetur();
+                    getDataReturNonInvoice(returnNumber);
+                }
+            });
+        }
+
+        function getDataReturNonInvoice(returnNumber){
+            $.ajax({
+                type : 'get',
+                url : "{{route('returnItem')}}/purchasingList/itemReturnNonInv/"+returnNumber,
+                success : function(response){
+                    $("#tableItemNonInvoice").html(response);
                 }
             });
         }
