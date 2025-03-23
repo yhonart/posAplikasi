@@ -704,12 +704,22 @@ class ReturnItemController extends Controller
         //         ['status','>','2']
         //         ])
         //     ->first();
-
+        if ($satuan == '0') {
+            $getProductSize = DB::table('m_product_unit')
+                ->select('product_size')
+                ->where('core_id_product',$prodID)
+                ->orderBy('size_code','asc')
+                ->first();
+            $prodSize = $getProductSize->product_size;
+        }
+        else {
+            $prodSize = $satuan;
+        }
         $getHarga = DB::table('view_product_stock')
             ->select('product_price_order')
             ->where([
                 ['idm_data_product',$prodID],
-                ['product_size',$satuan]
+                ['product_size',$prodSize]
             ])
             ->first();
 
@@ -721,7 +731,7 @@ class ReturnItemController extends Controller
             ->where([
                 ['idm_data_product',$prodID],
                 ['location_id',$warehouse],
-                ['product_size',$satuan]
+                ['product_size',$prodSize]
             ])
             ->first();
 
