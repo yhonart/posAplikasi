@@ -156,7 +156,7 @@
                 return
             }
 
-            let point = parseInt(inputHrgSatuan) * parseInt(inputQty),
+            let point = parseInt(ReplaceHrgSatuan) * parseInt(inputQty),
                 stockAkhir = parseInt(valStockAwal) - parseInt(inputQty);
 
             $("#point").val(accounting.formatMoney(point,{
@@ -164,7 +164,7 @@
                 precision: 0,
                 thousand: ".",
             }));
-            $("#stockAkhir").val(saldo);
+            $("#stockAkhir").val(stockAkhir);
         }
 
         var activitiesQty = document.getElementById("qty"),
@@ -210,7 +210,7 @@
         }
 
         function sendData(dataForm){
-            
+
         }
     });
 </script>
