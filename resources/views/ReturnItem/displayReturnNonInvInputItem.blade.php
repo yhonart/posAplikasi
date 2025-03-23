@@ -92,7 +92,7 @@
                 satuan = $("#satuan").val();
 
             fetch("{{route('returnItem')}}/warehouseSelected/" + thisWarehouse + "/" + productID + "/" + satuan)
-            .then(response = response.json())
+            .then(response => response.json())
             .then(data => {
                 if (data.hrgSatuan || data.stockAwal) {
                     satuanHrg.value = accounting.formatMoney(data.price,{
@@ -111,7 +111,7 @@
                 satuan = $("#satuan").val();            
 
             fetch("{{route('returnItem')}}/warehouseSelected/" + thisWarehouse + "/" + productID + "/" + satuan)
-            .then(response = response.json())
+            .then(response => response.json())
             .then(data => {
                 if (data.hrgSatuan || data.stockAwal) {
                     satuanHrg.value = accounting.formatMoney(data.price,{
