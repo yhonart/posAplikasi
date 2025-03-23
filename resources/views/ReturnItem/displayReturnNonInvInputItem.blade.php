@@ -46,7 +46,7 @@
                     </select>
                 </td>
                 <td>
-                    <input type="number" name="qty" id="qty" class="form-control form-control-sm form-control-border">
+                    <input type="number" name="qty" id="qty" class="form-control form-control-sm form-control-border" autocomplete="off">
                 </td>            
                 <td>
                     <input type="text" name="hrgSatuan" id="hrgSatuan" class="form-control form-control-sm form-control-border">
@@ -143,6 +143,74 @@
             });
         });
 
+        $("#qty").on('input', computePoint);
+        $("#hrgSatuan").on('input', computePoint);
 
+        function computeDisc(){
+            let inputQty = $("#qty").val(),
+                valHrgSatuan = $("#hrgSatuan").val(),
+                ReplaceHrgSatuan = valHrgSatuan.replace(/\./g, ""),
+                valStockAwal = $("#stockAwal").val();
+
+            if (typeof inputQty == "undefined" || typeof inputQty == "0") {
+                return
+            }
+
+            let point = parseInt(inputHrgSatuan) * parseInt(inputQty),
+                stockAkhir = parseInt(valStockAwal) - parseInt(inputQty);
+
+            $("#point").val(accounting.formatMoney(point,{
+                symbol: "",
+                precision: 0,
+                thousand: ".",
+            }));
+            $("#stockAkhir").val(saldo);
+        }
+
+        var activitiesQty = document.getElementById("qty"),
+            activitiesHarga = document.getElementById("hrgSatuan"),
+            activitiesStockAkhir = document.getElementById("stockAkhir");
+
+        activitiesQty.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
+        activitiesHarga.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
+        activitiesStockAkhir.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
+
+        function addActivityItem (){
+            // Get value
+            let productID = $("#produk").val(),
+                satuan = $("#satuan").val(),
+                warehouse = $("#warehouse").val(),
+                qty = $("#qty").val(),
+                hrgSatuan = $("#hrgSatuan").val(),
+                point = $("#point").val(),
+                stockAwal = $("#stockAwal").val(),
+                stockAkhir = $("#stockAkhir").val(),
+                keterangan = $("#keterangan").val();
+
+            let dataForm = {productID:productID, satuan:satuan, warehouse:warehouse, qty:qty, hrgSatuan:hrgSatuan, point:point,
+                stockAwal:stockAwal, stockAkhir:stockAkhir, keterangan:keterangan
+            }
+
+            sendData(dataForm);
+        }
+
+        function sendData(dataForm){
+            
+        }
     });
 </script>
