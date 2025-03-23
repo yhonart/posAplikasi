@@ -179,7 +179,7 @@ class ReturnItemController extends Controller
         $otherSize = DB::table('m_unit')
             ->get();
             
-        return view ('ReturnItem/displaySelectSatuan', compact('satuanItem','otherSize'));
+        return view ('ReturnItem/displaySelectSatuanOthers', compact('satuanItem','otherSize'));
     }
     
     public function satuanAction ($satuan, $prdID, $idLo){
