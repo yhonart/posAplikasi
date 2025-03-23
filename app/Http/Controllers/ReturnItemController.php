@@ -175,8 +175,11 @@ class ReturnItemController extends Controller
         $satuanItem = DB::table('product_list_view')            
             ->where('core_id_product',$prdID)
             ->get();
+
+        $otherSize = DB::table('m_unit')
+            ->get();
             
-        return view ('ReturnItem/displaySelectSatuan', compact('satuanItem'));
+        return view ('ReturnItem/displaySelectSatuan', compact('satuanItem','otherSize'));
     }
     
     public function satuanAction ($satuan, $prdID, $idLo){
@@ -729,8 +732,13 @@ class ReturnItemController extends Controller
                 ['product_size',$prodSize]
             ])
             ->first();
-
-        $hargaBeli = $getHarga->product_price_order;
+        
+        if (!empty($getHarga)) {
+            $hargaBeli = $getHarga->product_price_order;
+        }
+        else {
+            $hargaBeli = '0';
+        }
 
         //get stock
         $getStock = DB::table('view_product_stock')
