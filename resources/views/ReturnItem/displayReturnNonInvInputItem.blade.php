@@ -23,14 +23,6 @@
                 <input type="hidden" name="hiddenProdukID" id="hiddenProdukID">
             </td>
             <td>
-                <select name="warehouse" id="warehouse" class="form-control form-control-sm form-control-border">
-                    <option value="0">  </option>
-                    @foreach($warehouse as $wh)
-                        <option value="{{$wh->idm_site}}">{{$wh->site_name}}</option>
-                    @endforeach
-                </select>
-            </td>
-            <td>
                 <select name="produk" id="produk" class="form-control form-control-sm">
                     <option value="0"> === </option>
                     @foreach($listProduk as $lp)
@@ -41,6 +33,14 @@
             <td>
                 <select name="satuan" id="satuan" class="form-control form-control-sm form-control-border">
                     <option value="0"> === </option>
+                </select>
+            </td>
+            <td>
+                <select name="warehouse" id="warehouse" class="form-control form-control-sm form-control-border">
+                    <option value="0">  </option>
+                    @foreach($warehouse as $wh)
+                        <option value="{{$wh->idm_site}}">{{$wh->site_name}}</option>
+                    @endforeach
                 </select>
             </td>
             <td>
