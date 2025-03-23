@@ -689,7 +689,7 @@ class ReturnItemController extends Controller
 
         //get id supplier.
         $getSupplier = DB::table('tr_return_noninvoice')
-            ->where('number_trx',$numberTrx)
+            ->where('number_return',$numberTrx)
             ->first();
 
         $supplierID = $getSupplier->supplier_id;
