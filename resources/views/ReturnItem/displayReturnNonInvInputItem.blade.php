@@ -55,7 +55,7 @@
                     <input type="text" name="point" id="point" class="form-control form-control-sm form-control-border">
                 </td>
                 <td>
-                    <input type="text" name="stockAwal" id="stockAwal" class="form-control form-control-sm form-control-border">
+                    <input type="text" name="stockAwal" id="stockAwal" class="form-control form-control-sm form-control-border" readonly>
                 </td>
                 <td>
                     <input type="text" name="stockAkhir" id="stockAkhir" class="form-control form-control-sm form-control-border">
@@ -102,6 +102,7 @@
                     });
                     $("#stockAwal").val(data.stockAwal);                                  
                 }
+                $("#qty").focus();
             });
         });
 
@@ -119,7 +120,8 @@
                         precision: 0,
                         thousand: ".",
                     });
-                    $("#stockAwal").val(data.stockAwal);                                  
+                    $("#stockAwal").val(data.stockAwal);  
+                    $("#warehouse").focus();                                
                 }
             });
         });
