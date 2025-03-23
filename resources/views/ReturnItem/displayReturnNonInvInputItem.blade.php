@@ -79,7 +79,7 @@
             let productID = $(this).find(":selected").val();
             $.ajax({
                 type : 'get',
-                url : "{{route('returnItem')}}/productAction/" + productID,
+                url : "{{route('returnItem')}}/productActionNonInv/" + productID,
                 success : function(response){  
                     $("#satuan").html(response);
                 }

@@ -171,6 +171,13 @@ class ReturnItemController extends Controller
             
         return view ('ReturnItem/displaySelectSatuan', compact('satuanItem'));
     }
+    public function productActionNonInv ($prdID){        
+        $satuanItem = DB::table('product_list_view')            
+            ->where('core_id_product',$prdID)
+            ->get();
+            
+        return view ('ReturnItem/displaySelectSatuan', compact('satuanItem'));
+    }
     
     public function satuanAction ($satuan, $prdID, $idLo){
         $wh = DB::table('view_purchase_lo')
