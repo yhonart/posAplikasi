@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-sm table-valign-middle text-nowrap">
+    <table class="table table-sm table-valign-middle text-nowrap table-hover">
         <thead>
             <tr>
                 <th>Nama Barang</th>
@@ -11,6 +11,7 @@
                 <th>Stock Awal</th>
                 <th>Stock Akhir</th>
                 <th>Keterangan</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -58,6 +59,7 @@
                 <td>
                     <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm form-control-border">
                 </td>
+                <td></td>
             </tr>
         </tbody>
         <tbody id="tableItemNonInvoice"></tbody>
