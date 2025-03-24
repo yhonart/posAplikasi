@@ -434,7 +434,7 @@ class ReturnItemController extends Controller
             ]);
     }
 
-    public function detailHistory ($purchNumber){
+    public function detailHistory ($purchNumber, $dataReturn){
         $purchaseOrder = DB::table('view_purchase_order')
             ->where('purchase_number',$purchNumber)
             ->first();
@@ -443,15 +443,23 @@ class ReturnItemController extends Controller
             ->where('purchase_number',$purchNumber)
             ->get();
 
-        $purchaseReturn = DB::table('purchase_return as a')
-            ->select('a.*','b.product_name','c.site_name')
-            ->leftJoin('m_product as b','a.product_id','=','b.idm_data_product')
-            ->leftJoin('m_site as c','c.idm_site','=','a.wh')
-            ->where([
-                ['a.purchase_number',$purchNumber],
-                ['a.status','!=','0']
-                ])
-            ->get();
+        $purchaseReturn = DB::table('purchase_return as a');
+        $purchaseReturn = $purchaseReturn->select('a.*','b.product_name','c.site_name');
+        $purchaseReturn = $purchaseReturn->leftJoin('m_product as b','a.product_id','=','b.idm_data_product');
+        $purchaseReturn = $purchaseReturn->leftJoin('m_site as c','c.idm_site','=','a.wh');
+            if ($purchNumber == '0') {
+                $purchaseReturn = $purchaseReturn->where([
+                    ['a.return_number',$purchNumber],
+                    ['a.status','!=','0']
+                ]);          
+            }
+            else {
+                $purchaseReturn = $purchaseReturn->where([
+                    ['a.purchase_number',$purchNumber],
+                    ['a.status','!=','0']
+                ]);
+            }
+            $purchaseReturn = $purchaseReturn->get();
 
         return view ('ReturnItem/displayPurchaseDetailReturn', compact('purchNumber','purchaseOrder','purchaseListOrder','purchaseReturn'));
     }

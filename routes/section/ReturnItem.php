@@ -14,8 +14,8 @@ Route::get('returnItem/purchasingList/detailItem/{purchCode}', [App\Http\Control
 Route::get('returnItem/purchasingList/deleteItem/{id}', [App\Http\Controllers\ReturnItemController::class, 'deleteItem']);
 
 Route::get('returnItem/returnHistory', [App\Http\Controllers\ReturnItemController::class, 'returnHistory']);
-Route::get('returnItem/returnHistory/detailHistory/{purchNumber}', [App\Http\Controllers\ReturnItemController::class, 'detailHistory']);
-Route::get('returnItem/returnHistory/approveTransaksi/{purchNumber}', [App\Http\Controllers\ReturnItemController::class, 'approveTransaksi']);
+Route::get('returnItem/returnHistory/detailHistory/{purchNumber}/{dataReturn}', [App\Http\Controllers\ReturnItemController::class, 'detailHistory']);
+Route::get('returnItem/returnHistory/approveTransaksi/{purchNumber}/{dataReturn}', [App\Http\Controllers\ReturnItemController::class, 'approveTransaksi']);
 
 Route::get('returnItem/returnNonInv', [App\Http\Controllers\ReturnItemController::class, 'returnNonInv']);
 Route::post('returnItem/returnNonInv/postDokumenReturn', [App\Http\Controllers\ReturnItemController::class, 'postDokumenReturn']);

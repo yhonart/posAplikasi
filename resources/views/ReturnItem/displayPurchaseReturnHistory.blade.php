@@ -49,9 +49,9 @@ $arrBgStatus = array(
                         </td>
                         <td class="text-right">
                             @if($hisReturn->status == '2')
-                                <button type="button" class="btn btn-sm btn-success BTN-APPROVE font-weight-bold" data-purchase="{{$hisReturn->purchase_number}}"><i class="fa-solid fa-check"></i></button>
+                                <button type="button" class="btn btn-sm btn-success BTN-APPROVE font-weight-bold" data-purchase="{{$hisReturn->purchase_number}}" data-return = "{{$hisReturn->return_number}}"><i class="fa-solid fa-check"></i></button>
                             @endif
-                            <button type="button" class="btn btn-sm btn-info BTN-DETAIL font-weight-bold" data-purchase="{{$hisReturn->purchase_number}}"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="button" class="btn btn-sm btn-primary BTN-DETAIL font-weight-bold" data-purchase="{{$hisReturn->purchase_number}}" data-return = "{{$hisReturn->return_number}}"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </td>
                     </tr>
                 @endforeach
@@ -64,10 +64,11 @@ $arrBgStatus = array(
         $(".BTN-DETAIL").on('click', function (e) {
             e.preventDefault();
             let el = $(this),
-                purchaseReturn = el.attr('data-purchase');                
+                purchaseReturn = el.attr('data-purchase'),
+                dataReturn = el.attr('data-return');                
                 $.ajax({
                     type : 'get',
-                    url : "{{route('returnItem')}}/returnHistory/detailHistory/"+purchaseReturn,
+                    url : "{{route('returnItem')}}/returnHistory/detailHistory/"+purchaseReturn+"/"+dataReturn,
                     success : function(response){
                         $("#displayInfo").html(response);
                     }
@@ -76,10 +77,11 @@ $arrBgStatus = array(
         $(".BTN-APPROVE").on('click', function (e) {
             e.preventDefault();
             let el = $(this),
-                purchaseReturn = el.attr('data-purchase');                
+                purchaseReturn = el.attr('data-purchase'),
+                dataReturn = el.attr('data-return');                
                 $.ajax({
                     type : 'get',
-                    url : "{{route('returnItem')}}/returnHistory/approveTransaksi/"+purchaseReturn,
+                    url : "{{route('returnItem')}}/returnHistory/approveTransaksi/"+purchaseReturn+"/"+dataReturn,
                     success : function(response){
                         window.location.reload();
                     }
