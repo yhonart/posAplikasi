@@ -24,5 +24,5 @@ Route::get('returnItem/displayInputItemNonInv', [App\Http\Controllers\ReturnItem
 Route::get('returnItem/warehouseSelected/{warehouse}/{productID}/{satuan}', [App\Http\Controllers\ReturnItemController::class, 'warehouseSelected']);
 Route::get('returnItem/productActionNonInv/{productID}', [App\Http\Controllers\ReturnItemController::class, 'productActionNonInv']);
 Route::post('returnItem/postItemReturnNonInvoice', [App\Http\Controllers\ReturnItemController::class, 'postItemReturnNonInvoice']);
-Route::get('returnItem/itemReturnNonInv/{returnNumber}', [App\Http\Controllers\ReturnItemController::class, 'postItemReturnNonInvoice']);
+Route::get('returnItem/purchasingList/itemReturnNonInv/{returnNumber}', [App\Http\Controllers\ReturnItemController::class, 'itemReturnNonInv']);
 ?>
