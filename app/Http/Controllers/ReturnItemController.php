@@ -841,7 +841,7 @@ class ReturnItemController extends Controller
             ->first();
 
         foreach ($item as $i) {
-            $sumNomReturn += $item->total_price;
+            $sumNomReturn += $i->total_price;
             $countItem = $nomItem++;
 
             $mProduct = DB::table('m_product')
