@@ -69,7 +69,10 @@
         let qtyBeli = document.getElementById("qty"),
             satuan = document.getElementById("satuan"),
             warehouse = document.getElementById("warehouse"),
-            satuanHrg = document.getElementById("hrgSatuan");
+            satuanHrg = document.getElementById("hrgSatuan"),
+            returnNumber = "{{$returnNumber}}";
+        
+        getDataReturNonInvoice(returnNumber);
         
         $("#produk").change(function(){
             let productID = $(this).find(":selected").val();

@@ -772,7 +772,7 @@ class ReturnItemController extends Controller
         $hrgSatuan = str_replace(".","",$reqItem->hrgSatuan);
         $point = $reqItem->point;
         $stockAwal = $reqItem->stockAwal;
-        $stockAkhir = $reqItem->stockAkhir;
+        $stockAkhir = $reqItem->stockAkhir; 
         $keterangan = $reqItem->keterangan;
         $returnNumber = $reqItem->returnNumber;
         $supplierID = $reqItem->supplierID;
