@@ -89,9 +89,9 @@
         @else
             <div class="row mb-2">
                 <div class="col-md-12">
-                    <div>
-                        <button type="button" class="btn btn-success btn-sm" id="simpanDok" >Simpan</button>
-                        <button type="button" class="btn btn-danger btn-sm" id="rejectDok">Batalkan</button>
+                    <div class="d-flex flex-row-reverse">
+                        <button type="button" class="btn btn-success btn-sm" id="simpanDok" ><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+                        <button type="button" class="btn btn-danger btn-sm" id="rejectDok"><i class="fa-solid fa-xmark"></i> Batalkan</button>
                     </div>
                 </div>
             </div>
