@@ -470,7 +470,7 @@ class ReturnItemController extends Controller
             ->select(DB::raw('SUM(a.total_price) as price'),'a.purchase_number','b.store_name','a.status','a.return_number')
             ->leftJoin('m_supplier as b', 'a.supplier_id','=','b.idm_supplier')
             ->where('b.comp_id',$company)
-            ->groupBy('a.purchase_number','a.status')
+            ->groupBy('a.purchase_number','a.status','a.return_number')
             ->groupBy('b.store_name')
             ->orderBy('id_return','desc')
             ->get();
