@@ -769,7 +769,7 @@ class ReturnItemController extends Controller
         $satuan = $reqItem->satuan;
         $warehouse = $reqItem->warehouse;
         $qty = $reqItem->qty;
-        $hrgSatuan = $reqItem->hrgSatuan;
+        $hrgSatuan = str_replace(".","",$reqItem->hrgSatuan);
         $point = $reqItem->point;
         $stockAwal = $reqItem->stockAwal;
         $stockAkhir = $reqItem->stockAkhir;
