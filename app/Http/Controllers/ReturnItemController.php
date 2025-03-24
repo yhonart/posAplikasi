@@ -861,34 +861,43 @@ class ReturnItemController extends Controller
 
             $sizeCodeDesc = $mUnit->size_code;
             if ($sizeCodeDesc == '1') {
-                $qtyReport = $i->qty;
+                $qtyReport = $i->return;
             }
             elseif ($sizeCodeDesc == '2') {
                 if ($i->satuan == "BESAR") {
-                    $qtyReport1 = $i->qty * $volB;
+                    $qtyReport1 = $i->return * $volB;
                     $qtyReport = (int)$qtyReport1;
                 }
                 elseif ($i->satuan == "KECIL") {
-                    $qtyReport = $i->qty;
+                    $qtyReport = $i->return;
                 }
             }
             elseif ($sizeCodeDesc == '3') {
                 if ($i->satuan == "BESAR") {
-                    $qtyReport1 = $i->qty * $volKonv;
+                    $qtyReport1 = $i->return * $volKonv;
                     $qtyReport = (int)$qtyReport1;
                 }
                 elseif ($i->satuan == "KECIL") {
-                    $qtyReport1 = $i->qty * $volK;
+                    $qtyReport1 = $i->return * $volK;
                     $qtyReport = (int)$qtyReport1;
                 }
                 elseif ($i->satuan == "KONV") {
-                    $qtyReport = $i->qty;
+                    $qtyReport = $i->return;
                 }
             }
             $productID = $i->product_id;
             $location = $i->wh;
             $stockAkhir = $i->stock_akhir;
             $satuan = $i->satuan;
+            DB::table('purchase_return')
+                ->where([
+                    ['return_number',$returnNumber],
+                    ['status','1'],
+                    ['product_id',$productID]
+                    ])
+                ->update([
+                    'return_konv'=>$qtyReport
+                ]);
 
             $this->TempInventoryController->stockControl($productID, $location, $stockAkhir, $satuan);
             #endregion
@@ -902,7 +911,16 @@ class ReturnItemController extends Controller
                 'nom_usage' => '0',
                 'nom_saldo' => '0',
                 'total_item' => $countItem,
-                'status'=>'1',
-            ]);          
+                'status'=>'2',
+            ]); 
+            
+        DB::table('purchase_return')
+            ->where([
+                ['return_number',$returnNumber],
+                ['status','1']
+                ])
+            ->update([
+                'status'=>'2'
+            ]);
     }
 }
