@@ -1,3 +1,4 @@
+@if($purchNumber != '0')
 <div class="card">
     <div class="card-header">
         <h3 class="card-title font-weight-bold text-info">Rincian Pembelian</h3>
@@ -27,6 +28,8 @@
         </table>
     </div>
 </div>
+@endif
+
 <div class="card">
     <div class="card-header">
         <h3 class="card-title font-weight-bold text-info">Rincian Pengembalian/Retur</h3>
