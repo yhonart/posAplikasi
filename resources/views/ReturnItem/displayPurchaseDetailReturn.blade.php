@@ -1,7 +1,7 @@
 @if($purchNumber != '0')
-<div class="card">
+<div class="card card-fuchsia">
     <div class="card-header">
-        <h3 class="card-title font-weight-bold text-info">Rincian Pembelian</h3>
+        <h3 class="card-title font-weight-bold">Rincian Pembelian</h3>
     </div>
     <div class="card-body">
         <table class="table table-sm table-valign-middle table-hover">
