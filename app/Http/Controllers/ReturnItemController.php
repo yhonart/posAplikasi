@@ -828,7 +828,6 @@ class ReturnItemController extends Controller
     public function submitTransaksiReturn ($returnNumber){
         //Identifikasi transaksi return 
         $sumNomReturn = 0;
-        $nomItem = 0;
         $item = DB::table('purchase_return')
             ->where([
                 ['return_number',$returnNumber],
@@ -836,91 +835,105 @@ class ReturnItemController extends Controller
                 ])
             ->get();
 
-        $dokReturn = DB::table('tr_return_noninvoice')
-            ->where('number_return',$returnNumber)
-            ->first();
-
-        foreach ($item as $i) {
-            $sumNomReturn += $i->total_price;
-            $countItem = $nomItem++;
-
-            $mProduct = DB::table('m_product')
-                ->where('idm_data_product',$i->product_id)
-                ->first();
-
-            $volB = $mProduct->large_unit_val;
-            $volK = $mProduct->medium_unit_val;
-            $volKonv = $mProduct->small_unit_val;
-
-            #region Get satuan konversi produk
-            $mUnit = DB::table('m_product_unit')
-                ->select('size_code','product_volume')
-                ->where('core_id_product',$i->product_id)
-                ->orderBy('size_code','desc')
-                ->first();   
-
-            $sizeCodeDesc = $mUnit->size_code;
-            if ($sizeCodeDesc == '1') {
-                $qtyReport = $i->return;
-            }
-            elseif ($sizeCodeDesc == '2') {
-                if ($i->satuan == "BESAR") {
-                    $qtyReport1 = $i->return * $volB;
-                    $qtyReport = (int)$qtyReport1;
-                }
-                elseif ($i->satuan == "KECIL") {
-                    $qtyReport = $i->return;
-                }
-            }
-            elseif ($sizeCodeDesc == '3') {
-                if ($i->satuan == "BESAR") {
-                    $qtyReport1 = $i->return * $volKonv;
-                    $qtyReport = (int)$qtyReport1;
-                }
-                elseif ($i->satuan == "KECIL") {
-                    $qtyReport1 = $i->return * $volK;
-                    $qtyReport = (int)$qtyReport1;
-                }
-                elseif ($i->satuan == "KONV") {
-                    $qtyReport = $i->return;
-                }
-            }
-            $productID = $i->product_id;
-            $location = $i->wh;
-            $stockAkhir = $i->stock_akhir;
-            $satuan = $i->satuan;
-            DB::table('purchase_return')
-                ->where([
-                    ['return_number',$returnNumber],
-                    ['status','1'],
-                    ['product_id',$productID]
-                    ])
-                ->update([
-                    'return_konv'=>$qtyReport
-                ]);
-
-            $this->TempInventoryController->stockControl($productID, $location, $stockAkhir, $satuan);
-            #endregion
-        }
-        DB::table('purchase_point')
-            ->insert([
-                'purchase_number'=> '0',
-                'return_number'=> $returnNumber,
-                'supplier_id'=> $dokReturn->supplier_id,
-                'nom_return'=> $sumNomReturn,
-                'nom_usage' => '0',
-                'nom_saldo' => '0',
-                'total_item' => $countItem,
-                'status'=>'2',
-            ]); 
-            
-        DB::table('purchase_return')
+        $countItem = DB::table('purchase_return')
             ->where([
                 ['return_number',$returnNumber],
                 ['status','1']
                 ])
-            ->update([
-                'status'=>'2'
-            ]);
+            ->count();
+
+        $dokReturn = DB::table('tr_return_noninvoice')
+            ->where('number_return',$returnNumber)
+            ->first();
+        
+        if ($countItem == '0') {
+            $msg = array('warning' => 'Anda belum memasukkan item yang akan di retur ke supplier');
+        }
+        else {
+            
+            foreach ($item as $i) {
+                $sumNomReturn += $i->total_price;
+    
+                $mProduct = DB::table('m_product')
+                    ->where('idm_data_product',$i->product_id)
+                    ->first();
+    
+                $volB = $mProduct->large_unit_val;
+                $volK = $mProduct->medium_unit_val;
+                $volKonv = $mProduct->small_unit_val;
+    
+                #region Get satuan konversi produk
+                $mUnit = DB::table('m_product_unit')
+                    ->select('size_code','product_volume')
+                    ->where('core_id_product',$i->product_id)
+                    ->orderBy('size_code','desc')
+                    ->first();   
+    
+                $sizeCodeDesc = $mUnit->size_code;
+                if ($sizeCodeDesc == '1') {
+                    $qtyReport = $i->return;
+                }
+                elseif ($sizeCodeDesc == '2') {
+                    if ($i->satuan == "BESAR") {
+                        $qtyReport1 = $i->return * $volB;
+                        $qtyReport = (int)$qtyReport1;
+                    }
+                    elseif ($i->satuan == "KECIL") {
+                        $qtyReport = $i->return;
+                    }
+                }
+                elseif ($sizeCodeDesc == '3') {
+                    if ($i->satuan == "BESAR") {
+                        $qtyReport1 = $i->return * $volKonv;
+                        $qtyReport = (int)$qtyReport1;
+                    }
+                    elseif ($i->satuan == "KECIL") {
+                        $qtyReport1 = $i->return * $volK;
+                        $qtyReport = (int)$qtyReport1;
+                    }
+                    elseif ($i->satuan == "KONV") {
+                        $qtyReport = $i->return;
+                    }
+                }
+                $productID = $i->product_id;
+                $location = $i->wh;
+                $stockAkhir = $i->stock_akhir;
+                $satuan = $i->satuan;
+                DB::table('purchase_return')
+                    ->where([
+                        ['return_number',$returnNumber],
+                        ['status','1'],
+                        ['product_id',$productID]
+                        ])
+                    ->update([
+                        'return_konv'=>$qtyReport
+                    ]);
+    
+                $this->TempInventoryController->stockControl($productID, $location, $stockAkhir, $satuan);
+                #endregion
+            }
+            DB::table('purchase_point')
+                ->insert([
+                    'purchase_number'=> '0',
+                    'return_number'=> $returnNumber,
+                    'supplier_id'=> $dokReturn->supplier_id,
+                    'nom_return'=> $sumNomReturn,
+                    'nom_usage' => '0',
+                    'nom_saldo' => '0',
+                    'total_item' => $countItem,
+                    'status'=>'2',
+                ]); 
+                
+            DB::table('purchase_return')
+                ->where([
+                    ['return_number',$returnNumber],
+                    ['status','1']
+                    ])
+                ->update([
+                    'status'=>'2'
+                ]);
+            $msg = array('success' => 'Sukses data berhasil di submit.');
+        }
+        return response()->json($msg);
     }
 }

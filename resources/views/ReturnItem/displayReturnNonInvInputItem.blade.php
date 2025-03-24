@@ -262,8 +262,17 @@
                 type:'get',
                 url:"{{route('returnItem')}}/purchasingList/submitTransaksiReturn/"+idparam,
                 dataType: 'html',
-                success:function(response){
-                    window.location.reload();
+                success:function(data){
+                    if (data.warning) {
+                        alertify
+                        .alert(data.warning, function(){
+                            alertify.message('OK');
+                        });
+                    }
+                    else{
+                        alertify.message(data.success);
+                        window.location.reload();
+                    }
                 }
             });
         });
