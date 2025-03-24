@@ -449,7 +449,7 @@ class ReturnItemController extends Controller
         $purchaseReturn = $purchaseReturn->leftJoin('m_site as c','c.idm_site','=','a.wh');
             if ($purchNumber == '0') {
                 $purchaseReturn = $purchaseReturn->where([
-                    ['a.return_number',$purchNumber],
+                    ['a.return_number',$dataReturn],
                     ['a.status','!=','0']
                 ]);          
             }
