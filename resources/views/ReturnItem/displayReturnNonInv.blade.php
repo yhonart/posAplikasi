@@ -86,15 +86,7 @@
                     } 
                 });
             </script>
-        @else
-            <div class="row mb-2">
-                <div class="col-md-12">
-                    <div class="d-flex flex-row-reverse">
-                        <button type="button" class="btn btn-success btn-sm ml-2" id="simpanDok" ><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
-                        <button type="button" class="btn btn-danger btn-sm ml-2" id="rejectDok"><i class="fa-solid fa-xmark"></i> Batalkan</button>
-                    </div>
-                </div>
-            </div>
+        @else            
             <div class="row">
                 <div class="col-md-12">
                     <div id="transaksiReturNonInvoice"></div>

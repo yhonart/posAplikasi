@@ -1,69 +1,82 @@
-<div class="table-responsive">
-    <table class="table table-sm table-valign-middle text-nowrap table-hover">
-        <thead>
-            <tr>
-                <th>Nama Barang</th>
-                <th>Satuan</th>
-                <th>Warehouse</th>
-                <th>Qty</th>
-                <th>Hrg.Satuan</th>
-                <th>Point</th>
-                <th>Stock Awal</th>
-                <th>Stock Akhir</th>
-                <th>Keterangan</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <input type="hidden" name="idLo" id="idLo">
-                    <input type="hidden" name="recive" id="recive">
-                    <input type="hidden" name="unit" id="unit">
-                    <input type="hidden" name="hiddenProdukID" id="hiddenProdukID">                    
-                    <select name="produk" id="produk" class="form-control form-control-sm">
-                        <option value="0"> === </option>
-                        @foreach($listProduk as $lp)
-                            <option value="{{$lp->productID}}">{{$lp->product_name}}</option>
-                        @endforeach
-                    </select>
-                </td>
-                <td>
-                    <select name="satuan" id="satuan" class="form-control form-control-sm form-control-border">
-                        <option value="0"> === </option>
-                    </select>
-                </td>
-                <td>
-                    <select name="warehouse" id="warehouse" class="form-control form-control-sm form-control-border">
-                        <option value="0">  </option>
-                        @foreach($warehouse as $wh)
-                            <option value="{{$wh->idm_site}}">{{$wh->site_name}}</option>
-                        @endforeach
-                    </select>
-                </td>
-                <td>
-                    <input type="number" name="qty" id="qty" class="form-control form-control-sm form-control-border" autocomplete="off">
-                </td>            
-                <td>
-                    <input type="text" name="hrgSatuan" id="hrgSatuan" class="form-control form-control-sm form-control-border">
-                </td>
-                <td>
-                    <input type="text" name="point" id="point" class="form-control form-control-sm form-control-border">
-                </td>
-                <td>
-                    <input type="text" name="stockAwal" id="stockAwal" class="form-control form-control-sm form-control-border" readonly>
-                </td>
-                <td>
-                    <input type="text" name="stockAkhir" id="stockAkhir" class="form-control form-control-sm form-control-border">
-                </td>
-                <td>
-                    <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm form-control-border">
-                </td>
-                <td></td>
-            </tr>
-        </tbody>
-        <tbody id="tableItemNonInvoice"></tbody>
-    </table>
+<div class="row mb-2">
+    <div class="col-md-12">
+        <div class="d-flex flex-row-reverse">
+            <button type="button" class="btn btn-info btn-sm ml-2" id="editDok" data-id="{{$returnNumber}}"><i class="fa-solid fa-pen-to-square"></i> Dokumen</button>
+            <button type="button" class="btn btn-success btn-sm ml-2" id="simpanDok" data-id="{{$returnNumber}}"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+            <button type="button" class="btn btn-danger btn-sm ml-2" id="rejectDok" data-id="{{$returnNumber}}"><i class="fa-solid fa-xmark"></i> Batalkan</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-sm table-valign-middle text-nowrap table-hover" id="tableItemReturn">
+                <thead>
+                    <tr>
+                        <th>Nama Barang</th>
+                        <th>Satuan</th>
+                        <th>Warehouse</th>
+                        <th>Qty</th>
+                        <th>Hrg.Satuan</th>
+                        <th>Point</th>
+                        <th>Stock Awal</th>
+                        <th>Stock Akhir</th>
+                        <th>Keterangan</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="idLo" id="idLo">
+                            <input type="hidden" name="recive" id="recive">
+                            <input type="hidden" name="unit" id="unit">
+                            <input type="hidden" name="hiddenProdukID" id="hiddenProdukID">                    
+                            <select name="produk" id="produk" class="form-control form-control-sm">
+                                <option value="0"> === </option>
+                                @foreach($listProduk as $lp)
+                                    <option value="{{$lp->productID}}">{{$lp->product_name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <select name="satuan" id="satuan" class="form-control form-control-sm form-control-border">
+                                <option value="0"> === </option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="warehouse" id="warehouse" class="form-control form-control-sm form-control-border">
+                                <option value="0">  </option>
+                                @foreach($warehouse as $wh)
+                                    <option value="{{$wh->idm_site}}">{{$wh->site_name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" name="qty" id="qty" class="form-control form-control-sm form-control-border" autocomplete="off">
+                        </td>            
+                        <td>
+                            <input type="text" name="hrgSatuan" id="hrgSatuan" class="form-control form-control-sm form-control-border">
+                        </td>
+                        <td>
+                            <input type="text" name="point" id="point" class="form-control form-control-sm form-control-border">
+                        </td>
+                        <td>
+                            <input type="text" name="stockAwal" id="stockAwal" class="form-control form-control-sm form-control-border" readonly>
+                        </td>
+                        <td>
+                            <input type="text" name="stockAkhir" id="stockAkhir" class="form-control form-control-sm form-control-border">
+                        </td>
+                        <td>
+                            <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm form-control-border">
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tbody id="tableItemNonInvoice"></tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <script>
     $(document).ready(function(){
@@ -239,5 +252,20 @@
                 }
             });
         }
+
+        $("#simpanDok").on('click', function(e){
+            var element = $(this);
+            var  idparam = element.attr("data-id");
+            $("#tableItemReturn").fadeOut();
+            $("#simpanDok").fadeOut();
+            $.ajax({
+                type:'get',
+                url:"{{route('returnItem')}}/purchasingList/submitTransaksiReturn/"+idparam,
+                dataType: 'html',
+                success:function(response){
+                    window.location.reload();
+                }
+            });
+        });
     });
 </script>

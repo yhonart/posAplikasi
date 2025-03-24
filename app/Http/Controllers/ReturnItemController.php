@@ -824,4 +824,85 @@ class ReturnItemController extends Controller
 
         return view ('ReturnItem/displayReturnNonInvTableItem', compact('getItem'));
     }
+
+    public function submitTransaksiReturn ($returnNumber){
+        //Identifikasi transaksi return 
+        $sumNomReturn = 0;
+        $nomItem = 0;
+        $item = DB::table('purchase_return')
+            ->where([
+                ['return_number',$returnNumber],
+                ['status','1']
+                ])
+            ->get();
+
+        $dokReturn = DB::table('tr_return_noninvoice')
+            ->where('number_return',$returnNumber)
+            ->first();
+
+        foreach ($item as $i) {
+            $sumNomReturn += $item->total_price;
+            $countItem = $nomItem++;
+
+            $mProduct = DB::table('m_product')
+                ->where('idm_data_product',$i->product_id)
+                ->first();
+
+            $volB = $mProduct->large_unit_val;
+            $volK = $mProduct->medium_unit_val;
+            $volKonv = $mProduct->small_unit_val;
+
+            #region Get satuan konversi produk
+            $mUnit = DB::table('m_product_unit')
+                ->select('size_code','product_volume')
+                ->where('core_id_product',$i->product_id)
+                ->orderBy('size_code','desc')
+                ->first();   
+
+            $sizeCodeDesc = $mUnit->size_code;
+            if ($sizeCodeDesc == '1') {
+                $qtyReport = $i->qty;
+            }
+            elseif ($sizeCodeDesc == '2') {
+                if ($i->satuan == "BESAR") {
+                    $qtyReport1 = $i->qty * $volB;
+                    $qtyReport = (int)$qtyReport1;
+                }
+                elseif ($i->satuan == "KECIL") {
+                    $qtyReport = $i->qty;
+                }
+            }
+            elseif ($sizeCodeDesc == '3') {
+                if ($i->satuan == "BESAR") {
+                    $qtyReport1 = $i->qty * $volKonv;
+                    $qtyReport = (int)$qtyReport1;
+                }
+                elseif ($i->satuan == "KECIL") {
+                    $qtyReport1 = $i->qty * $volK;
+                    $qtyReport = (int)$qtyReport1;
+                }
+                elseif ($i->satuan == "KONV") {
+                    $qtyReport = $i->qty;
+                }
+            }
+            $productID = $i->product_id;
+            $location = $i->wh;
+            $stockAkhir = $i->stock_akhir;
+            $satuan = $i->satuan;
+
+            $this->TempInventoryController->stockControl($productID, $location, $stockAkhir, $satuan);
+            #endregion
+        }
+        DB::table('purchase_point')
+            ->insert([
+                'purchase_number'=> '0',
+                'return_number'=> $returnNumber,
+                'supplier_id'=> $dokReturn->supplier_id,
+                'nom_return'=> $sumNomReturn,
+                'nom_usage' => '0',
+                'nom_saldo' => '0',
+                'total_item' => $countItem,
+                'status'=>'1',
+            ]);          
+    }
 }
