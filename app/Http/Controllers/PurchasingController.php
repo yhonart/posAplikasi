@@ -874,7 +874,7 @@ class PurchasingController extends Controller
     }
     
     public function Bayar ($supplier, $fromDate, $endDate){
-
+        $company = Auth::user()->company;
         $supKredit = DB::table('purchase_kredit as a');
         $supKredit = $supKredit->select('a.*','b.store_name');
         $supKredit = $supKredit->leftJoin('m_supplier as b', 'a.supplier_id','=','b.idm_supplier');
@@ -896,6 +896,7 @@ class PurchasingController extends Controller
                 ['selisih','!=','0']
             ]);
         }
+        $supKredit = $supKredit->where('comp_id',$company);
         $supKredit = $supKredit->get();
             
         return view ('Purchasing/PurchaseOrder/tableListBayar', compact('supKredit'));
@@ -1350,7 +1351,9 @@ class PurchasingController extends Controller
     }
 
     public function inputPembayaran (){
+        $company = Auth::user()->company;
         $mSupplier = DB::table('m_supplier')
+            ->where('com_id',$company)
             ->get();
 
         return view('Purchasing/PurchaseOrder/pembayaran', compact('mSupplier'));
