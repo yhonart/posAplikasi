@@ -149,7 +149,9 @@ class LoanMaintenanceController extends Controller
 
     public function saldoFaktur($pelanggan, $fromDate, $endDate){
         // echo $pelanggan." ".$fromDate." ".$endDate;
+        $company = Auth::user()->company;
         $historyFaktur = DB::table('view_payment_kredit');
+            $historyFaktur = $historyFaktur->where('comp_id',$company);
             if ($pelanggan <> 0) {
                 $historyFaktur = $historyFaktur->where('member_id',$pelanggan);
             }
@@ -163,13 +165,15 @@ class LoanMaintenanceController extends Controller
     }
 
     public function saldoCustomer($pelanggan){
+        $company = Auth::user()->company;
         $sumSaldoCustomer = DB::table('view_customer_kredit');
-            $sumSaldoCustomer=$sumSaldoCustomer->select(DB::raw('DISTINCT(from_member_id) as distctMember'), DB::raw('SUM(nominal)as nominal'), DB::raw('SUM(nom_payed) as nomPayed'), DB::raw('SUM(nom_kredit) as saldoKredit'), 'customer_store', 'from_payment_code','created_at','kredit_limit');
+            $sumSaldoCustomer = $sumSaldoCustomer->select(DB::raw('DISTINCT(from_member_id) as distctMember'), DB::raw('SUM(nominal)as nominal'), DB::raw('SUM(nom_payed) as nomPayed'), DB::raw('SUM(nom_kredit) as saldoKredit'), 'customer_store', 'from_payment_code','created_at','kredit_limit');
             if ($pelanggan <> 0) {
-                $sumSaldoCustomer=$sumSaldoCustomer->where('from_member_id',$pelanggan);
+                $sumSaldoCustomer = $sumSaldoCustomer->where('from_member_id',$pelanggan);
             }
-            $sumSaldoCustomer=$sumSaldoCustomer->orderBy('idtr_kredit','desc');
-            $sumSaldoCustomer=$sumSaldoCustomer->get();
+            $sumSaldoCustomer = $sumSaldoCustomer->where('comp_id',$company);
+            $sumSaldoCustomer = $sumSaldoCustomer->orderBy('idtr_kredit','desc');
+            $sumSaldoCustomer = $sumSaldoCustomer->get();
         return view('HutangCustomers/saldoKreditCustomer', compact('sumSaldoCustomer'));
     }
 
