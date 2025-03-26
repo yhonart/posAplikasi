@@ -34,7 +34,10 @@ class LoanMaintenanceController extends Controller
     }
 
     public function pembayaran (){
+        $company = Auth::user()->company;
+
         $dbMCustomer = DB::table('m_customers')
+            ->where('comp_id',$company)
             ->get();
 
         return view('HutangCustomers/pembayaran', compact('dbMCustomer'));
