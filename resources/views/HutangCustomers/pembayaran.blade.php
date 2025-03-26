@@ -15,7 +15,7 @@
                     </select>
                 </div>
             </div>
-            
+
             <div class="col-6 col-md-3">
                 <div class="form-group">
                     <label class="form-label">Dari Tanggal</label>
@@ -38,7 +38,6 @@
                     </div>
                     <span>Please Wait ....</span>
                 </div>
-                <div id="divDataPelunasan"></div>
             </div>
         </div>
         <div class="row">
@@ -48,6 +47,7 @@
         </div>
     </div>
 </div>
+<div id="divDataPelunasan"></div>
 <script>
     $(function() {
         $( ".datetimepicker-input" ).datepicker({
