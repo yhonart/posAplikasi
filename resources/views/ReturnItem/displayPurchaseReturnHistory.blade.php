@@ -23,9 +23,9 @@ $arrBgStatus = array(
         <table class="table table-valign-middle table-hover table-sm text-sm">
             <thead>
                 <tr>
-                    <th>Dok.Number</th>
-                    <th>Supplier</th>
                     <th>Purchase Number</th>
+                    <th>No.Non Invoice</th>
+                    <th>Supplier</th>
                     <th class="text-right">Point Belanja</th>
                     <th class="text-right">Status</th>
                     <th class="text-right">#</th>
@@ -35,7 +35,6 @@ $arrBgStatus = array(
                 @foreach($historyReturn as $hisReturn)
                     <tr>
                         <td>{{$hisReturn->return_number}}</td>
-                        <td>{{$hisReturn->store_name}}</td>
                         <td>
                             @if($hisReturn->purchase_number == '0')
                                 Retur Non Invoice.
@@ -43,6 +42,7 @@ $arrBgStatus = array(
                                 {{$hisReturn->purchase_number}}
                             @endif
                         </td>
+                        <td>{{$hisReturn->store_name}}</td>
                         <td class="text-right">{{number_format($hisReturn->price,'0',',','.')}}</td>
                         <td class="text-right">
                             <span class="badge {{$arrBgStatus[$hisReturn->status]}}">{{$arrStatus[$hisReturn->status]}}</span>                            

@@ -321,6 +321,7 @@ class ReturnItemController extends Controller
         $userName = Auth::user()->name;
         $keterangan = $reqReturn->keterangan;
         $wh = $reqReturn->wh;
+        $returnNumber = $this->getNumber();
 
         $listLO = DB::table('purchase_list_order')
             ->where('id_lo',$id)
@@ -341,6 +342,7 @@ class ReturnItemController extends Controller
         DB::table('purchase_return')
             ->insert([
                 'purchase_number'=>$purchaseNumber,
+                'return_number'=>'0',
                 'list_order_id'=>$id,
                 'product_id'=>$prdId,
                 'satuan'=>$satuan,
