@@ -1353,7 +1353,7 @@ class PurchasingController extends Controller
     public function inputPembayaran (){
         $company = Auth::user()->company;
         $mSupplier = DB::table('m_supplier')
-            ->where('com_id',$company)
+            ->where('comp_id',$company)
             ->get();
 
         return view('Purchasing/PurchaseOrder/pembayaran', compact('mSupplier'));
