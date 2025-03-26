@@ -44,20 +44,24 @@ class LoanMaintenanceController extends Controller
     }
 
     public function saldo (){
+        $company = Auth::user()->company;
         $dbMCustomer = DB::table('m_customers')
+            ->where('comp_id',$company)
             ->get();
 
         return view('HutangCustomers/saldoKredit', compact('dbMCustomer'));
     }
     public function lapCustomer (){
+        $company = Auth::user()->company;
         $dbMCustomer = DB::table('m_customers')
+            ->where('comp_id',$company)
             ->get();
 
         return view('HutangCustomers/lapCustomers', compact('dbMCustomer'));
     }
     public function laporanCustomer($keyword, $fromDate, $endDate){
         // echo $keyword." ".$fromDate." ".$endDate;
-
+        $company = Auth::user()->company;
         $dbTableKredit = DB::table('view_customer_kredit');
         if ($keyword <> 0) {
             $dbTableKredit = $dbTableKredit->where('from_member_id', $keyword);
@@ -65,20 +69,25 @@ class LoanMaintenanceController extends Controller
         if ($fromDate <> 0 OR $endDate <> 0) {
             $dbTableKredit = $dbTableKredit->whereBetween('created_at',[$fromDate,$endDate]);
         }
+        $dbTableKredit = $dbTableKredit->where('comp_id',$company);
         $dbTableKredit = $dbTableKredit->limit(100);
         $dbTableKredit = $dbTableKredit->get();
 
         return view('HutangCustomers/lapCustomersTable', compact('dbTableKredit'));
     }
     public function setup (){
+        $company = Auth::user()->company;
         $dbMCustomer = DB::table('m_customers')
+            ->where('comp_id',$company)
             ->get();
 
         return view('HutangCustomers/setupKredit', compact('dbMCustomer'));
     }
 
     public function setupPelanggan ($keyword){
+        $company = Auth::user()->company;
         $customerListTrx = DB::table('m_customers');
+        $customerListTrx = $customerListTrx->where('comp_id', $company);
         if ($keyword <> '0') {
             $customerListTrx = $customerListTrx->where('idm_customer',$keyword);
         }
