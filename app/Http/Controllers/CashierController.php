@@ -2452,6 +2452,7 @@ class CashierController extends Controller
         $bankAccountName = $getBankAccount[1];
         $accountCusNumber = $dataPembayaran->cardNumber1;
         $accountCusName = $dataPembayaran->cardName1;
+        $company = Auth::user()->company;
 
         $description = "";
         $transaction = "";
@@ -2604,7 +2605,8 @@ class CashierController extends Controller
                     'last_payment' => $lastPayment,
                     'new_payment' => $tBelanja,
                     'return_date' => now(),
-                    'update_by' => $updateBy
+                    'update_by' => $updateBy,
+                    'comp_id' => $company
                 ]);
 
             if ($countMethod == '0') {
@@ -2702,7 +2704,8 @@ class CashierController extends Controller
                     'total_struk' => $tBelanja,
                     'total_payment' => $paymentRec,
                     'trx_method' => $mBayar,
-                    'status' => '4'
+                    'status' => '4',
+                    'comp_id' => $company
                 ]);
         } else {
             DB::table('tr_payment_record')
@@ -3417,6 +3420,7 @@ class CashierController extends Controller
 
     public function trxReportRecapExcel($fromDate, $endDate)
     {
+        $company = Auth::user()->company;
         $prdTrx = DB::table('trans_product_list_view as a')
             ->leftJoin('view_billing_action as c', 'a.from_payment_code', '=', 'c.billing_number')
             ->where([
