@@ -1258,6 +1258,8 @@ class CashierController extends Controller
     public function modalDataPenjualan()
     {
         $area = $this->checkuserInfo();
+        $company = Auth::user()->company;
+
         $method = DB::table('m_payment_method')
             ->get();
         $mydate = date("Y-m-d");
@@ -1265,12 +1267,16 @@ class CashierController extends Controller
         $cekClosing = DB::table('tr_payment_record')
             ->where([
                 ['date_trx', $mydate],
-                ['status', '5']
+                ['status', '5'],
+                ['comp_id',$company]
             ])
             ->count();
 
         $pelanggan = DB::table('m_customers')
-            ->where('customer_status','1')
+            ->where([
+                ['customer_status','1'],
+                ['comp_id',$company]
+                ])
             ->get();
 
         return view('Cashier/cashierModalDataPenjualan', compact('method', 'cekClosing', 'area','pelanggan'));
@@ -2761,6 +2767,7 @@ class CashierController extends Controller
 
         $createdBy = Auth::user()->name;
         $hakakses = Auth::user()->hakakses;
+        $company = Auth::user()->company;
 
 
         $trStore = DB::table('view_billing_action')
@@ -2777,6 +2784,7 @@ class CashierController extends Controller
             ->get();
 
         $companyName = DB::table('m_company')
+            ->where('idm_company',$company)
             ->first();
 
         $status = $trStore->status;
