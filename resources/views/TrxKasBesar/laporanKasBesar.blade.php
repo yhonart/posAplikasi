@@ -1,4 +1,4 @@
-<div class="card card-body">
+<div class="card card-body text-xs">
     <div class="row">
         <div class="col-md-12">
             <p>* Range Tanggal Dalam 1 Minggu</p>

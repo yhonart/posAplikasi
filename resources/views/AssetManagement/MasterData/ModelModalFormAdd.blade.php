@@ -7,7 +7,7 @@
                     <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <form id="FormNewModel">
                     <div class="form-group row">
                         <label for="CatName" class="col-sm-4 col-form-label">Kode Model <span class="text-danger">*</span></label>

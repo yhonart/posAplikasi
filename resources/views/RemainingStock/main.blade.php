@@ -23,13 +23,13 @@
         <div class="row mt-2">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body text-xs">
                         <a class="btn btn-success mb-2 mt-1 " data-toggle="collapse" href="#collapseSatuan" role="button" aria-expanded="false" aria-controls="collapseSatuan">
                             <i class="fa-solid fa-filter"></i> Filtering
                         </a>
                         <div class="collapse" id="collapseSatuan">
                             <div class="card border border-info">
-                                <div class="card-body">
+                                <div class="card-body text-xs">
                                     <form class="form" id="formFilterBarang">
                                         <div class="form-group row">
                                             <label class="label col-6 col-md-2">Start Tanggal</label>

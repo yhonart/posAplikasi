@@ -20,7 +20,7 @@
                     <div class="alert alert-primary" role="alert">
                         *Pilih nama pelanggan untuk input pembayaran kredit !
                     </div>                       
-                    <div class="card card-body">
+                    <div class="card card-body text-xs">
                         <div class="row">
                             <div class="col-12 col-md-3">
                                 <div class="form-group">

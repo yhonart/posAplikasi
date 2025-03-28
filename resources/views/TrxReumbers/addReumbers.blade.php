@@ -8,7 +8,7 @@
             <div class="card-header">
                 <h3 class="card-title">Tambah Dana Pengembalian</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 @if($dayNoww == $strHari)
                 <form id="formAddReumbers" autocomplete="off">                    
                     <input type="hidden" class="form-control price-text font-weight-bold"  name="lastWeekSaldo" id="lastWeekSaldo" value="{{$lastWeekSaldo}}" readonly>

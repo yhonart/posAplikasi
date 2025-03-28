@@ -4,7 +4,7 @@
             <div class="card-header">
                 <h3 class="card-title">Tambah Kategori</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="row">
                     <div class="col-md-12">
                         <form id="formAddKategoriKas">

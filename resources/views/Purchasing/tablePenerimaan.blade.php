@@ -14,7 +14,7 @@ $total = 0;
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-body p-2 table-responsive" style="height:700px;">
+            <div class="card-body text-xs p-2 table-responsive" style="height:700px;">
                 <table class="table table-sm table-valign-middle table-hover" id="tableListPembelian">
                     <thead>
                         <tr>

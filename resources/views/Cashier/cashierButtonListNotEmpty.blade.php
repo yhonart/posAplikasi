@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-body">
+    <div class="card-body text-xs">
         <dl class="row">
             <dd class="col-12">
                 <div id="totalBelanja"></div>

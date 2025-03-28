@@ -3,7 +3,7 @@
     <div class="card-header">
         <h3 class="card-title font-weight-bold">Rincian Item Pembelian</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <table class="table table-sm table-valign-middle table-hover">
             <thead>
                 <tr>
@@ -34,7 +34,7 @@
     <div class="card-header">
         <h3 class="card-title font-weight-bold">Rincian Item Pengembalian/Retur</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <table class="table table-sm table-valign-middle table-hover">
             <thead>
                 <tr>

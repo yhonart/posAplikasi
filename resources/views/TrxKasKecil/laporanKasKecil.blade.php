@@ -26,7 +26,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-body table-responsive">
+        <div class="card card-body text-xs table-responsive">
             <div id="tableFilter"></div>
         </div>
     </div>

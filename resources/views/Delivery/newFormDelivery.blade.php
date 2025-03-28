@@ -1,4 +1,4 @@
-<div class="card card-body">
+<div class="card card-body text-xs">
     <form class="form" id="formDelivery">
         <div class="form-group row">
             <label class="col-md-4">Kode/Akun Delivery</label>

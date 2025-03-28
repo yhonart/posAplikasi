@@ -2,7 +2,7 @@
     <div class="card-header border-0">
         <h3 class="card-title">History Pembayaran</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">

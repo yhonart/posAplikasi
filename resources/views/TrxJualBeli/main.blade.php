@@ -17,7 +17,7 @@
         <div class="row d-flex justify-content-center mb-2">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body text-xs">
                         <form id="formFilteringData">
                             <div class="row">
                                 <div class="col-md-3">

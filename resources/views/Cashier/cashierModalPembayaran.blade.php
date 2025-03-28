@@ -23,7 +23,7 @@
                 </div>
             </div>
             
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="row mb-1">
                     <div class="col-md-12">
                         <p class="notive-display bg-danger p-2 rounded rounded-2 elevation-2 font-weight-bold" id="notiveDisplay" style="display:none;"></p>

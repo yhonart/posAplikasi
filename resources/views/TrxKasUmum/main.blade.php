@@ -26,7 +26,7 @@
                     <div class="card-header">
                         <h3 class="card-title">History Input Kas Kecil</h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body text-xs">
                         <div class="row mb-2">                                
                             <div class="col-md-3">
                                 <label for="" class="label">Dari Tgl.</label>

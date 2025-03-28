@@ -9,7 +9,7 @@
                     </button>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <p>body </p>
             </div>
         </div>

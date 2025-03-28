@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-3">
         <div class="sticky-top mb-3">
-            <div class="card card-body  pr-1 pl-1">
+            <div class="card card-body text-xs  pr-1 pl-1">
                 <div class="row">    
                     <div class="col-12">
                         <div class="form-group">
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="col-12 col-md-9">
-        <div class="card card-body">
+        <div class="card card-body text-xs">
             <div id="detailProduct"></div>
         </div>
     </div>

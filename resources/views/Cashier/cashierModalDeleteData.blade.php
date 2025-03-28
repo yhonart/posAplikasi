@@ -7,7 +7,7 @@
                     <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="alert alert-danger alert-dismissible mb-2 border-0">
                   <h5><i class="icon fas fa-ban"></i> Alert!, Apakah anda yakin akan menghapus data transaksi {{$idTrx}}</h5>
                   Data akan terhapus dari transaksi dan no transaksi dapat digunakan kembali. Tekan <b>Ya</b> untuk menghapus, tekan <b>Tidak</b> untuk membatalkannya.

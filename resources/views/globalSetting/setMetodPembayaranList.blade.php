@@ -5,7 +5,7 @@
             <div class="card-header">
                 <h3 class="card-title font-weight-bold">Metode Pembayaran</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <table class="table table-sm table-valign-middle">
                     <thead>
                         <tr>
@@ -34,7 +34,7 @@
             <div class="card-header">
                 <h3 class="card-title font-weight-bold">Bank Account</h3>
             </div>
-            <div class="card-body table-responsive">
+            <div class="card-body text-xs table-responsive">
                 <table class="table table-sm table-valign-middle text-nowrap">
                     <thead>
                         <tr>

@@ -20,7 +20,7 @@
         <div class="row mt-2">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body text-xs">
                         @include('Global.global_spinner')
                         <div id="displayTableModel"></div>
                     </div>

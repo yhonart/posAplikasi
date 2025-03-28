@@ -7,7 +7,7 @@
             </button>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <div class="row">
             <div class="col-md-12">
                 <h6 class="font-weight-bold text-muted">Riwayat Pengembalian/Retur Barang</h6>
@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="collapse" id="collapseInvoice">
-                    <div class="card card-body">
+                    <div class="card card-body text-xs">
                         <p class="text-muted"><i class="fa-solid fa-circle-info"></i> Pilih beberapa nomor pembelian, kemudian klik simpan.</p>
                         <table class="table table-sm table-valign-middle table-hover">
                             <thead>

@@ -2,7 +2,7 @@
     <div class="card-header" data-card-widget="collapse">
         <h3 class="card-title font-weight-bold">Deskripsi Pembelian</h3>        
     </div>
-    <div class="card-body">        
+    <div class="card-body text-xs">        
         <form id="formMainCreatePO">
         <div class="row">
             <div class="col-12 col-md-6">
@@ -92,7 +92,7 @@
     </div>
 </div>
 <div class="card">
-    <div class="card-body table-responsive" style="height:400px">
+    <div class="card-body text-xs table-responsive" style="height:400px">
         <div id="tableInputBarang"></div>
     </div>
 </div>

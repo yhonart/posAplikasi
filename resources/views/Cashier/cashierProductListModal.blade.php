@@ -5,7 +5,7 @@
             <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i></button>
         </div>
     </div>
-    <div class="card-body">        
+    <div class="card-body text-xs">        
         <form id="FormAddProductSale">            
             <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}">
             <input type="hidden" name="billNumber" id="billNumber" value="{{ $billNumber }}">

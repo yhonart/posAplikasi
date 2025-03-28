@@ -69,7 +69,7 @@ $statusBarang = array(
 </a>
 <div class="collapse" id="collapseSatuan">
     <div class="card border border-info">
-        <div class="card-body table-responsive">
+        <div class="card-body text-xs table-responsive">
             <table class="table table-sm table-borderless p-0">
                 <tbody>
                     <tr>
@@ -161,7 +161,7 @@ $statusBarang = array(
 </a>
 <div class="collapse" id="collapseExample">
     <div class="card border border-info">
-        <div class="card-body">
+        <div class="card-body text-xs">
             <table class="table table-borderless">
                 <tbody>
                     <tr>

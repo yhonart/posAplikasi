@@ -4,7 +4,7 @@
             <div class="card-header">
                 <h3 class="card-title">Detail Penerimaan Barang</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <table class="table table-sm table-borderless">
                     <tbody>
                         <tr>

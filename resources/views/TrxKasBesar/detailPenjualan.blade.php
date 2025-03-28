@@ -25,7 +25,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-md-12">
-                <div class="card card-body table-responsive">
+                <div class="card card-body text-xs table-responsive">
                     <table class="table table-sm table-valign-middle table-hover">
                         <thead>
                             <tr>

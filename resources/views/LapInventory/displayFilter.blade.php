@@ -24,7 +24,7 @@
 ?>
 <div class="row">
     <div class="col-12">
-        <div class="card card-body table-responsive" style="height:700px;">
+        <div class="card card-body text-xs table-responsive" style="height:700px;">
             @if($codeDisplay == '1')
                 <!-- display table menggunakan filtering data  -->
                 <table class="table table-valign-middle table-hover" id="tableDisplayLap">

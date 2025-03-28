@@ -2,7 +2,7 @@
     <div class="card-header">
         <h3 class="card-title">Edit Metode Pembayaran</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <form id="formEditPembayaran">
             <input type="hidden" name="idMethod" value="{{$dbMstrMethod->idm_payment_method}}">
             <div class="form-group row">

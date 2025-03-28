@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12">
-        <div class="card card-body" id="cardNewForm">
+        <div class="card card-body text-xs" id="cardNewForm">
             <form id="formEntryMutasi">
                 <div class="form-group row">
                     <label class="label col-md-3">No. Mutasi</label>

@@ -7,7 +7,7 @@ $arayDK = array(
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-body p-2 table-responsive">
+        <div class="card card-body text-xs p-2 table-responsive">
             <div class="row mb-2">
                 <div class="col-md-12">                    
                     <button class="btn btn-default btn-sm font-weight-bold border-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -18,7 +18,7 @@ $arayDK = array(
             <div class="row mb-2">
                 <div class="col-md-6">
                     <div class="collapse" id="collapseExample">
-                    <div class="card card-body border border-info elevation-0">
+                    <div class="card card-body text-xs border border-info elevation-0">
                         <dl class="row">
                             <dt class="col-md-2">No Dokumen</dt>
                             <dd class="col-md-4">: {{$dokumenKoreksi->number}}</dd>

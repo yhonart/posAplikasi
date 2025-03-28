@@ -4,7 +4,7 @@
             <div class="card-header">
                 <h3 class="card-title">Pembelian Belum Dibayar</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="row">
                     <div class="col-2"><i class="fa-solid fa-rupiah-sign"></i></div>
                     <div class="col-10 text-right">
@@ -22,7 +22,7 @@
             <div class="card-header">
                 <h3 class="card-title">Pembelian Jatuh Tempo</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="row">
                     <div class="col-2"><i class="fa-solid fa-rupiah-sign"></i></div>
                     <div class="col-10 text-right">
@@ -48,7 +48,7 @@
             <div class="card-header">
                 <h3 class="card-title">Pelunasan 30 Hari Terakhir</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="row">
                     <div class="col-2"><i class="fa-solid fa-rupiah-sign"></i></div>
                     <div class="col-10">
@@ -64,7 +64,7 @@
             <div class="card-header">
                 <h3 class="card-title">Pembayaran Tunai/Transfer</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="row">
                     <div class="col-2"><i class="fa-solid fa-rupiah-sign"></i></div>
                     <div class="col-10">

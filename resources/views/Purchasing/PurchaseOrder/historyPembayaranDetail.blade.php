@@ -4,10 +4,10 @@
             <div class="card-header">
                 <h3 class="card-title">RINCIAN PEMBELIAN</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card card-body border-info">
+                        <div class="card card-body text-xs border-info">
                             <p class="font-weight-bold text-primary">Rincian Pembelian</p>
                             <dl class="row">
                                 <dt class="col-md-4">No. Pembelian</dt>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card card-body">
+                        <div class="card card-body text-xs">
                             <p class="font-weight-bold text-primary">RINCIAN PEMBAYARAN</p>
                             <dl class="row">
                                 <dt class="col-md-4">No. Pembayaran</dt>

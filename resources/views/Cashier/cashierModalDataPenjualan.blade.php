@@ -10,7 +10,7 @@
                 <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
             </div>
         </div>
-        <div class="card-body text-center">
+        <div class="card-body text-xs text-center">
             <p class="font-weight-bold text-danger">Ooppss..! user area anda bukan di "KASIR"</p>
         </div>
     </div>
@@ -25,7 +25,7 @@
                     <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="row">
                     <div class="col-8">
                         <div id="divDataPenjualan"></div>

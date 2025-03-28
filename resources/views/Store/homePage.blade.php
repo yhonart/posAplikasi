@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-xs">
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-xs">
                             <div id="homeDisplayStore"></div>
                         </div>
                     </div>

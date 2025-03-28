@@ -18,7 +18,7 @@
                     <div class="card-header border-0">
                         <h3 class="card-title font-weight-bold">Main Kategori</h3>
                     </div>
-                    <div class="card-body table-responsive" style="height: 500px;">
+                    <div class="card-body text-xs table-responsive" style="height: 500px;">
                         <div class="row mb-2">
                             <div class="col-md-12">
                                 <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('kasKategori')}}/addKategori">Tambah Kategori</button>
@@ -37,7 +37,7 @@
                     <div class="card-header border-0">
                         <h3 class="card-title font-weight-bold">Sub Kategori</h3>
                     </div>
-                    <div class="card-body table-responsive" style="height: 500px;">
+                    <div class="card-body text-xs table-responsive" style="height: 500px;">
                         <div class="row mb-2">
                             <div class="col-md-12">
                                 <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('kasKategori')}}/addSubKategori">Tambah Sub Kategori</button>

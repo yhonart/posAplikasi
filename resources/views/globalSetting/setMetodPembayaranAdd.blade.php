@@ -2,7 +2,7 @@
     <div class="card-header">
         <h3 class="card-title">Tambah Metode Pembayaran</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <form id="formMetodePembayaran">
             <div class="form-group row">
                 <label class="col-md-4">Metode Pembayaran</label>

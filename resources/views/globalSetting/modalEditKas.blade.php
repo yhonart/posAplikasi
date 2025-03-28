@@ -1,6 +1,6 @@
 <div class="row p-1">
     <div class="col-12">
-        <div class="card card-body">
+        <div class="card card-body text-xs">
             <form id="formEditKasKasir">
                 <input type="hidden" name="idMKasir" value="{{$kasirInfo->idm_kas}}">
                 <div class="form-group row">

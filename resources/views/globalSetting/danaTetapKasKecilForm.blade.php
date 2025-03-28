@@ -2,7 +2,7 @@
     <div class="card-header">
         <h3 class="text-header">Setup Modal Transaksi</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <form id="formAddModal">
             <div class="form-group row">
                 <label for="nominalModal" class="col-md-4">Nominal</label>

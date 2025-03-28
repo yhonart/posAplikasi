@@ -14,7 +14,7 @@
             </li>
         </ul>
         </div>
-        <div class="card-body">
+        <div class="card-body text-xs">
         <div class="tab-content" id="custom-tabs-one-tabContent">
             <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
                 <div id="detailAllFunction"></div>

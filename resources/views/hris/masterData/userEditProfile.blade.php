@@ -10,7 +10,7 @@
                     <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <form id="formEditProfile">
                     <input type="hidden" name="idUser" id="idUser" value="{{$id}}">
                     <div class="form-group row">
@@ -86,7 +86,7 @@
                     Ganti Password
                 </button>
                 <div class="collapse" id="collapseExample">
-                    <div class="card card-body">
+                    <div class="card card-body text-xs">
                         <form id="formGantiPassword">
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">

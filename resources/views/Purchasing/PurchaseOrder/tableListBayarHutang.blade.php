@@ -1,4 +1,4 @@
-<div class="card card-body table-responsive p-0">
+<div class="card card-body text-xs table-responsive p-0">
     <table class="table table-sm table-align-middle text-nowrap table-hover ">
         <thead>
             <tr>

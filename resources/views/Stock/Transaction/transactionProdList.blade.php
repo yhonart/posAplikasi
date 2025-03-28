@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="sticky-top mb-3">
-                <div class="card card-body table-responsive p-0" style="height:500px;">
+                <div class="card card-body text-xs table-responsive p-0" style="height:500px;">
                     <table class="table table-valign-middle table-hover text-sm table-sm">
                         <tbody>
                             @foreach($productList as $pl)

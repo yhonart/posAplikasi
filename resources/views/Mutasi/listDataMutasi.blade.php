@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body table-responsive">
+                <div class="card-body text-xs table-responsive">
                     <div class="row mt-1 mb-2">
                         <div class="col-md-3">
                             <label for="" class="label">Dari Tanggal.</label>

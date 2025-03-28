@@ -2,7 +2,7 @@
     <div class="card-header">
         <h3 class="card-title">Pengembalian Non Invoice</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         @if($countNumberRetur == '0')
             <form id="formCreateDokRetur">
                 <div class="form-group row">

@@ -4,7 +4,7 @@
             <div class="card-header">
                 <h3 class="card-title">Tambah Sub Kategori</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="row">
                     <div class="col-md-12">
                         <form id="formAddSubKategori">
@@ -45,7 +45,7 @@
                             </div>
                         </form>
                         <div class="collapse" id="collapseExample">
-                            <div class="card card-body">
+                            <div class="card card-body text-xs">
                             Dokumen memmbutuhkan lampiran pendukung atau tidak. Jika <b>"Ya"</b> maka ketika input dokumen wajib melampirkan dokumen pendukung lainnya, jika <b>"Tidak"</b> maka tidak perlu melampirkan dokumen pendukung.
                             </div>
                         </div>

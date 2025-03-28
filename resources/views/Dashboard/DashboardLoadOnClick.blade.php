@@ -37,7 +37,7 @@
             </button>
         </div>
     </div>
-    <div class="card-body table-responsive">        
+    <div class="card-body text-xs table-responsive">        
         <div class="row">
             <div class="col-md-12">
                 <table class="table  table-sm table-hover" id="dataOnClick">

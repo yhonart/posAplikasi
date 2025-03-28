@@ -1,7 +1,7 @@
 <?php
     $no = '1';
 ?>
-<div class="card card-body">
+<div class="card card-body text-xs">
     <div class="row">
         <div class="col-lg-8">
             <table class="table table-sm table-valign-middle">
@@ -45,7 +45,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-body">
+                    <div class="card card-body text-xs">
                         <form id="formUpdateDok">
                             <div class="form-group row">
                                 <label class="col-md-4">Tgl. Trx</label>

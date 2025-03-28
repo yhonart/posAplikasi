@@ -8,7 +8,7 @@
             <div class="col-12 col-lg-8 pr-0">
                 @include('Global.global_spinner')
                 <div class="card">
-                    <div class="card-body p-0 table-responsive" style="height:700px;">                        
+                    <div class="card-body text-xs p-0 table-responsive" style="height:700px;">                        
                         <div id="mainListProduct"></div>
                     </div>
                 </div>

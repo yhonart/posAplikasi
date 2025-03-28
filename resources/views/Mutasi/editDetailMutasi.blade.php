@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col-12">
         <div class="collapse" id="collapseExample">
-            <div class="card card-body">
+            <div class="card card-body text-xs">
             <input type="hidden" name="numberMutasi" id="numberMutasi" value="{{$tbMutasi->number}}">
             <div id="editDocMutasi"></div>
           </div>
@@ -20,7 +20,7 @@
 </div>
 <div class="row">
     <div class="col-12">
-        <div class="card card-body">
+        <div class="card card-body text-xs">
             <form class="form mb-2" id="formSubmitUpdate">
                 <div class="form-group">
                 </div>

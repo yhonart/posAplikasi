@@ -5,7 +5,7 @@
             <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <form id="FormAddUnit">
             <div class="form-group row">
                 <label for="MoUInitial" class="form-label col-md-4 text-right">Inisial Satuan</label>

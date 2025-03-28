@@ -2,7 +2,7 @@
     <div class="card-header">
         <h3 class="text-title">Edit Limit Kredit Pelanggan</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <dl class="row">
             <dt class="col-md-3">Nama Toko/Pelanggan</dt>
             <dd class="col-md-4">: {{$selectCustomer->customer_store}}</dd>

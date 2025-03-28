@@ -4,7 +4,7 @@
 <hr>
 <div class="row mt-2">
     <div class="col-12">
-        <div class="card card-body table-responsive" style="height: 600px;">
+        <div class="card card-body text-xs table-responsive" style="height: 600px;">
             <div class="row mb-2">
                 <div class="col-md-12">
                 <button class="btn btn-sm bg-light border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -13,7 +13,7 @@
                 <div class="row mt-2">
                     <div class="col-12">
                         <div class="collapse" id="collapseExample">
-                            <div class="card card-body">
+                            <div class="card card-body text-xs">
                                 <dl class="row mb-1">
                                     <dt class="col-4">No Stock Opname</dt>
                                     <dd class="col-4">{{$detailOpname->number_so}}</dd>

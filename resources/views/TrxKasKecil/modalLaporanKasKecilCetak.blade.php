@@ -4,7 +4,7 @@
             Tambah Dana Modal <small class="text-muted">Dana darurat ini di tambahkan apabila saldo modal tidak mencukupi lagi.</small>
         </h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <form id="formAddModalKas" autocomplete="off">
             <div class="form-group row">
                 <label for="danaTambahan" class="label col-md-3">Nominal</label>

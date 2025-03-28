@@ -36,7 +36,7 @@
                     <div class="card-header card-primary card-outline">
                         <h3 class="text-title">Welcome Back</h3>
                     </div>
-                    <div class="card-body box-profile">
+                    <div class="card-body text-xs box-profile">
                         <div class="text-center">
                             <img class="profile-user-img img-fluid img-circle"
                                 src="{{asset('public/images/profile.png')}}"

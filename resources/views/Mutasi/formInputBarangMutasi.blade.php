@@ -13,7 +13,7 @@
 <div class="row mb-2">
     <div class="col-12">
         <div class="collapse" id="collapseExample">
-          <div class="card card-body">
+          <div class="card card-body text-xs">
             <div id="editDocMutasi"></div>
           </div>
         </div>
@@ -21,7 +21,7 @@
 </div>
 <div class="row">
     <div class="col-12">
-        <div class="card card-body table-responsive p-1">
+        <div class="card card-body text-xs table-responsive p-1">
             <table class="table table-sm table-valign-middle ">
                 <thead>
                     <tr>

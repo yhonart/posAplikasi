@@ -1,4 +1,4 @@
-<div class="card card-body table-responsive">
+<div class="card card-body text-xs table-responsive">
     <div class="row">
         <div class="col-12">
             <table class="tabale table-sm  table-striped table-valign-middle text-nowrap" width="100%">

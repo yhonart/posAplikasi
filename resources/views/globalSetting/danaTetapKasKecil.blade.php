@@ -24,7 +24,7 @@
         <div class="row mt-2">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body table-responsive p-0">
+                    <div class="card-body text-xs table-responsive p-0">
                         <table class="table table-valign-middle table-hover">
                             <thead>
                                 <tr>

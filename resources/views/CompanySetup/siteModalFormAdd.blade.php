@@ -5,7 +5,7 @@
             <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <form id="FormAddSite" autocomplete="off">
             <div class="form-group row">
                 <label for="" class="col-md-4">Kode Lokasi</label>

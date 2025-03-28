@@ -19,11 +19,11 @@
 
 ?>
 @if($dataTrx == '0')
-    <div class="card card-body">
+    <div class="card card-body text-xs">
         <span>Tidak ada jenis transaksi yang dipilih!</span>
     </div>
 @else
-    <div class="card card-body table-responsive">
+    <div class="card card-body text-xs table-responsive">
         <table class="table table-sm table-valign-middle table-hover" id="dataTablePenjualan">
             <thead>
                 <tr>

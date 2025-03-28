@@ -24,7 +24,7 @@
 <div class="row d-flex justify-content-center">
     <div class="col-lg-4">
         <div class="card border border-danger" id="cardConfirmPassword" style="display:none;">
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <form class="from" id="formKonfirmAdmin">
                     <div class="form-group row">
                         <div class="col-12">

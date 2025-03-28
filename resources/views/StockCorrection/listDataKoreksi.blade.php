@@ -11,7 +11,7 @@
 
 <div id="divTabelDataKoreksi">
     <div class="card table-responsive p-1">        
-        <div class="card-body">  
+        <div class="card-body text-xs">  
             <div class="row mt-1 mb-2">
                 <div class="col-md-3">
                     <label for="" class="label">Dari Tgl.</label>

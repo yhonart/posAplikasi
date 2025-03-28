@@ -10,7 +10,7 @@
             Ringkasan Laporan Produk
         </div>
     </div>
-    <div class="card-body p-2 table-responsive">
+    <div class="card-body text-xs p-2 table-responsive">
         <table class="table table-sm table-valign-middle table-hover" id="labaRugiReport">
             <thead>
                 <tr>

@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card card-info card-outline">
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="row mb-2">
                     <div class="col-md-12">
                         <div class="d-flex flex-row-reverse">

@@ -101,7 +101,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="tab-content" id="custom-tabs-one-tabContent">
                     <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
                         <div class="row">
@@ -151,7 +151,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="card-body p-0 table-responsive">
+            <div class="card-body text-xs p-0 table-responsive">
                 <div class="tab-content" id="custom-tabs-one-tabContent">
                     <div class="tab-pane fade show active" id="tabs-display-on-click" role="tabpanel" aria-labelledby="tabs-one-penjualan-tab">
                         <div class="row">

@@ -6,7 +6,7 @@
 </div>  
 <div class="row">
     <div class="col-12">
-        <div class="card card-body p-0 table-responsive">
+        <div class="card card-body text-xs p-0 table-responsive">
             <p id="notifLoading" class="bg-danger p-2" style="display:none;">Proses Load Data</p>
             <input type="hidden" name="inputNoPo" id="inputNoPo" value="{{$statusPurchase->purchase_number}}">
             <table class="table table-sm table-hover table-valign-middle animate__animated animate__fadeIn" id="tableInputBarang">

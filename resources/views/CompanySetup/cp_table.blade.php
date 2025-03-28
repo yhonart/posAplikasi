@@ -25,7 +25,7 @@
         <div class="row mt-2">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body text-xs">
 
                         <div class="row">
                             <div class="col-md-12">

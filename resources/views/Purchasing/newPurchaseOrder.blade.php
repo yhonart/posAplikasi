@@ -22,7 +22,7 @@ else{
         <div class="card-header border-0">
             <h3 class="card-title">Tambah Dokumen Pembelian Baru</h3>
         </div>
-        <div class="card-body">
+        <div class="card-body text-xs">
             <form class="form" id="fromInputPembelian">
                 <div class="row">
                     <div class="col-12 col-md-3">

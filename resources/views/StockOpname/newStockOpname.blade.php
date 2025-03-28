@@ -4,7 +4,7 @@
             <div class="card-header border-0">
                 <h3 class="card-title font-weight-bold">Input Item Stock Opname</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <div class="row mb-2">
                     <div class="col-12">
                         <form class="form" id="formInputOpname">

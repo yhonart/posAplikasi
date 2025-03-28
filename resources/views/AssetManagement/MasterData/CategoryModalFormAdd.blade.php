@@ -7,7 +7,7 @@
                     <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body text-xs">
                 <form id="FormNewCategory" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label for="categoryCode" class="col-sm-6 col-form-label">Kode Kategori</label>

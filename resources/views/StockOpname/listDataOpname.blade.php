@@ -25,7 +25,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <div class="card card-body">
+            <div class="card card-body text-xs">
                 <div id="displayTableOpname"></div>
             </div>
         </div>

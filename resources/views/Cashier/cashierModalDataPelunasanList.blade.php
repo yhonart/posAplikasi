@@ -100,7 +100,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card card-body">
+            <div class="card card-body text-xs">
                 <form id="formPiutangPelanggan">
                     <input type="hidden" name="periode" value="{{$periode}}">
                     <input type="hidden" name="numbering" value="{{$numbering}}">

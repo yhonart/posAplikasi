@@ -2,7 +2,7 @@
     <div class="card-header">
         <h3 class="card-title">Tambah Akun Pembayaran</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <form id="formEditAkunBank">
             <input type="hidden" name="idAkun" id="idAkun" value="{{$id}}">
             <div class="form-group row">

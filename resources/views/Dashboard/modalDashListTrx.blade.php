@@ -18,7 +18,7 @@
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-body teble-responsive">
+        <div class="card card-body text-xs teble-responsive">
             <p>Log Data Transaksi</p>
             <table class="table table-sm table-valign-middle">
                 <thead>

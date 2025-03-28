@@ -5,7 +5,7 @@
     <div class="card-header">
         <h3 class="card-title">Tambah Transaksi Biaya Operasional</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <div class="row p-1">
             <div class="col-md-12">
                 <form class="form" id="formTambahBiaya" autocomplete="off" enctype="multipart/form-data">

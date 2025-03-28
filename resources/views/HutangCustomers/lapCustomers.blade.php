@@ -2,7 +2,7 @@
     <div class="card-header">
         <h3 class="card-title">Laporan All Customers</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <div class="row">
             <div class="col-6 col-md-3">
                 <div class="form-group">

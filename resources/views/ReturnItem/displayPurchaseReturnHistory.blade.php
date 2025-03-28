@@ -19,7 +19,7 @@ $arrBgStatus = array(
     <div class="card-header border-0">
         <h3 class="card-title font-weight-bold">History Return</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body text-xs">
         <table class="table table-valign-middle table-hover table-sm text-sm">
             <thead>
                 <tr>

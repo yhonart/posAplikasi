@@ -3,7 +3,7 @@
 ?>
 <div class="row">
     <div class="col-12">
-        <div class="card card-body border border-info">
+        <div class="card card-body text-xs border border-info">
             <div class="row mb-2">
                 <div class="col-12 col-md-6">
                     <button class="btn btn-default mb-2 border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">

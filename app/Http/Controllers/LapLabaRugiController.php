@@ -10,8 +10,9 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class LapLabaRugiController extends Controller
 {
     public function mainPage(){
-
+        $company = Auth::user()->company;
         $mProduct = DB::table('m_product')
+            ->where('comp_id',$company)
             ->get();
 
         return view('lapLabaRugi/main', compact('mProduct'));
@@ -19,6 +20,7 @@ class LapLabaRugiController extends Controller
 
     public function getDisplayAll($prdID, $fromDate,$endDate){
         $today = date("Y-m-d");
+        $company = Auth::user()->company;
         $mProduct = DB::table('trans_product_list_view');
             $mProduct = $mProduct->select('product_name','product_code');
             if ($prdID <> '0') {

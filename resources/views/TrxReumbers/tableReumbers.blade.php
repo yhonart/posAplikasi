@@ -7,7 +7,7 @@
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-body">
+        <div class="card card-body text-xs">
             <table class="table table-sm table-valign-middle table-hover" id="tableRiwayatPengembalian">
                 <thead>
                     <tr>

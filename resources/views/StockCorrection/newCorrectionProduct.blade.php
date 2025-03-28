@@ -1,7 +1,7 @@
 <?php
     $selisih = '';
 ?>
-<div class="card card-body p-2 table-responsive">
+<div class="card card-body text-xs p-2 table-responsive">
     <div class="row mb-2">
         <div class="col-md-12">
             <div class="d-flex flex-row-reverse">

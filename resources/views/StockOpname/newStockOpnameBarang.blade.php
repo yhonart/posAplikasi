@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card">            
-            <div class="card-body table-responsive p-2">
+            <div class="card-body text-xs table-responsive p-2">
                 <div class="row">
                     <div class="col-12">
                         <div class="d-flex flex-row-reverse">
@@ -18,7 +18,7 @@
                 <div class="row mb-2">
                     <div class="col-12">
                         <div class="collapse" id="collapseDocOpname">
-                            <div class="card card-body">
+                            <div class="card card-body text-xs">
                                 <div id="displayDivDocument"></div>                               
                             </div>
                         </div>

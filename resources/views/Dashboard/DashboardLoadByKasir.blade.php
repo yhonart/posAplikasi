@@ -37,7 +37,7 @@
             </button>
         </div>
     </div>
-    <div class="card-body table-responsive" style="height:500px;">
+    <div class="card-body text-xs table-responsive" style="height:500px;">
         <table class="table  table-sm table-hover" id="dataByKasir">
             <thead>
                 <tr>

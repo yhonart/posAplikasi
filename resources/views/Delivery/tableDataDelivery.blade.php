@@ -5,7 +5,7 @@
         2=>"Not Active"
     );
 ?>
-<div class="card card-body table-responsive">
+<div class="card card-body text-xs table-responsive">
     <table class="table table-sm table-valign-middle table-hover">
         <thead>
             <tr>

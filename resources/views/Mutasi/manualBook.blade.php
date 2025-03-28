@@ -1,4 +1,4 @@
-<div class="card card-body">
+<div class="card card-body text-xs">
     <h3>Alur kerja menggunakan mutasi barang</h3>
     <div class="row">
         <div class="col-md-12">

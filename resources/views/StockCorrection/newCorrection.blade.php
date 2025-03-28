@@ -1,4 +1,4 @@
-<div class="card card-body" id="cardAddDocCorrection">
+<div class="card card-body text-xs" id="cardAddDocCorrection">
     <form class="form" id="formInputKoreksi">
         <div class="form-group row">
             <label class="label col-6 col-md-2">No. Koreksi</label>

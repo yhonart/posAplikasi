@@ -19,7 +19,7 @@
                     <a href="{{route('Customers')}}/downloadAllCustomer" class="btn btn-success font-weight-bold" target="_blank"><i class="fa-solid fa-file-excel"></i> Download</a>
                 </div>
                 <input type="text" name="searchCustomer" id="searchCustomer" class="form-control mb-1 " placeholder="Cari nama pelanggan" autofocus>
-                <div class="card card-body p-0 table-responsive " style="height:700px;">
+                <div class="card card-body text-xs p-0 table-responsive " style="height:700px;">
                     @include('Global.global_spinner')
                     <div id="displayTableCustomers"></div>
                 </div>

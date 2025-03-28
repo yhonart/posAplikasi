@@ -7,7 +7,7 @@
                     <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-            <div class="card-body">                
+            <div class="card-body text-xs">                
                 <div class="row">
                     <div class="col-12 col-md-3">
                         <div class="form-group">
