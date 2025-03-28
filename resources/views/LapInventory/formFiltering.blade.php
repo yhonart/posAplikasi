@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
-                <label class="label">Produk Item</label>
+                <label class="label">Produk</label>
                 <select class="form-control form-control-sm " name="produk" id="produk">
                     <option value="0" readonly>Pilih Barang</option>
                     @foreach($mProduct as $mp)
@@ -14,7 +14,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label class="label">Lokasi</label>
-                <select class="form-control form-control-sm " name="lokasi" id="lokasi">
+                <select class="form-control form-control-sm rounded-0 " name="lokasi" id="lokasi">
                     <option value="0" readonly>Pilih Lokasi</option>
                     @foreach($mSite as $ms)
                     <option value="{{$ms->idm_site}}">{{$ms->site_name}}</option>
@@ -25,19 +25,19 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label class="label">Dari Tanggal</label>
-                <input class="form-control form-control-sm  datetimepicker-input" name="fromDate" id="fromDate">
+                <input class="form-control form-control-sm rounded-0  datetimepicker-input" name="fromDate" id="fromDate">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 <label class="label">s/d Tanggal</label>
-                <input class="form-control form-control-sm  datetimepicker-input" name="endDate" id="endDate">
+                <input class="form-control form-control-sm rounded-0  datetimepicker-input" name="endDate" id="endDate">
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <button type="submit" id="submitFilter" class="btn btn-info  btn-sm"><i class="fa-solid fa-filter"></i> Filter</button>
+            <button type="submit" id="submitFilter" class="btn btn-info  btn-sm"><i class="fa-solid fa-filter"></i> Filter Barang</button>
             <button type="button" class="btn  btn-sm btn-danger" id="reportToPDF"><i class="fa-solid fa-file-pdf"></i> Cetak Kartu Stock</button>
             <div class="spinner-border spinner-border-sm text-dark" role="status" id="spinnerFilter" style="display:none;">
               <span class="sr-only">Loading...</span>
@@ -73,11 +73,19 @@
     $(document).ready(function(){
         $("form#formFilterReport").submit(function(event){
             let valLocation = $("#lokasi").find(":selected").val();
+            let produk = $("#produk").find(":selected").val();
             event.preventDefault();
             $("#spinnerFilter").fadeIn();
             if (valLocation === '0') {
                 alertify
-                .alert("Mohon pilih lokasi terlebih dahulu. "+valLocation, function(){
+                .alert("Mohon Pilih Lokasi Yang Ingin Ditampilkan !"+valLocation, function(){
+                    alertify.message('OK');
+                }).set({title:"Notifikasi"});
+                $("#spinnerFilter").fadeOut();
+            }
+            else if (produk === '0') {
+                alertify
+                .alert("Mohon Pilih Nama Produk Terlebih Dahulu !"+valLocation, function(){
                     alertify.message('OK');
                 }).set({title:"Notifikasi"});
                 $("#spinnerFilter").fadeOut();
