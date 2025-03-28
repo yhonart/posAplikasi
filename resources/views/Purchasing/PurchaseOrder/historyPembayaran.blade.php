@@ -18,13 +18,13 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="formDateHistory" class="label">Dari Tanggal</label>
-                    <input type="text" class="form-control datetimepicker-input" name="formDateHistory" id="formDateHistory">
+                    <input type="text" class="form-control form-control-sm rounded-0 datetimepicker-input" name="formDateHistory" id="formDateHistory">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="endDateHistory" class="label">Sampai Tanggal</label>
-                    <input type="text" class="form-control datetimepicker-input roundedd-0" name="endDateHistory" id="endDateHistory">
+                    <input type="text" class="form-control form-control-sm rounded-0 datetimepicker-input roundedd-0" name="endDateHistory" id="endDateHistory">
                 </div>
             </div>
             <div class="col-md-3">

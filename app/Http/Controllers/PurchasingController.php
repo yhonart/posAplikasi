@@ -1388,7 +1388,9 @@ class PurchasingController extends Controller
     }
 
     public function historyPembayaran (){
+        $company = Auth::user()->company;
         $mSupplier = DB::table('m_supplier')
+            ->where('comp_id',$company)
             ->get();
 
         return view('Purchasing/PurchaseOrder/historyPembayaran', compact('mSupplier'));
