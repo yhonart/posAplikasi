@@ -30,7 +30,7 @@
             <div class="col-md-3">
                 <div class="from-group">
                     <label for="status" class="label">Status</label>
-                    <select name="status" id="status" class="form-control">
+                    <select name="status" id="status" class="form-control form-control-sm rounded-0">
                         <option value="0">All</option>
                         <option value="4">Lunas</option>
                         <option value="1">Outstanding</option>
