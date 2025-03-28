@@ -541,6 +541,7 @@ class ReturnItemController extends Controller
     }
 
     public function submitRetur ($poNumber){
+        $company = Auth::user()->company;
         $countReturn = DB::table('purchase_return')
             ->where([
                 ['purchase_number',$poNumber],
@@ -638,7 +639,8 @@ class ReturnItemController extends Controller
                         'created_by'=>$createdBy,
                         'location'=>$warehouse->warehouse,
                         'actual_input'=>$qty,
-                        'status_trx'=>'4'
+                        'status_trx'=>'4',
+                        'comp_id'=>$company
                     ]);
             }
             DB::table('purchase_return')

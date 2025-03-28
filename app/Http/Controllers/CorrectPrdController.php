@@ -460,7 +460,8 @@ class CorrectPrdController extends Controller
    
    public function approvalKoreksi($number){
        $userName = Auth::user()->name;
-       
+       $company = Auth::user()->company;
+
        //get item koreksi
         $inv = DB::table('inv_list_correction as a')
             ->select('a.*','b.product_size','b.product_satuan','b.size_code','b.product_volume')
@@ -623,7 +624,8 @@ class CorrectPrdController extends Controller
                 'last_saldo'=>$i->stock,
                 'vol_prd'=>$i->product_volume,
                 'actual_input'=>$i->input_qty,
-                'status_trx'=>'4'
+                'status_trx'=>'4',
+                'comp_id'=>$company
             ]);            
         } 
        

@@ -603,6 +603,7 @@ class StockopnameController extends Controller
         //   echo $idOpname;
         //   Update Stock
         $updateBy = Auth::user()->name;
+        $company = Auth::user()->company;
 
         //get data list item opname dan left join nama product stock
         $listOpname = DB::table('inv_list_opname as a')            
@@ -723,7 +724,8 @@ class StockopnameController extends Controller
                     'last_saldo'=>$readyStock,
                     'vol_prd'=>$opmVol,
                     'actual_input'=>$opmQty,
-                    'status_trx'=>'4'
+                    'status_trx'=>'4',
+                    'comp_id'=>$company
                 ]);
 
                 //Update Stock

@@ -196,7 +196,8 @@ class TempInventoryController extends Controller
     }
     
     public function insertLapInv ($numberCode, $description, $inInv, $outInv, $createdBy, $prodId, $prodName, $satuan, $loc){
-        
+        $company = Auth::user()->company;
+
         $findSatuan = DB::table('m_product_unit')
             ->select('product_satuan', 'idm_product_satuan','product_volume','size_code')
             ->where([
@@ -309,7 +310,8 @@ class TempInventoryController extends Controller
                     'last_saldo'=>$lastSaldo,
                     'vol_prd'=>$inputValVol,
                     'actual_input'=>$actualInput,
-                    'status_trx'=>$statusTrx
+                    'status_trx'=>$statusTrx,
+                    'comp_id'=>$company
                     ]);
         }
         else {
@@ -656,6 +658,7 @@ class TempInventoryController extends Controller
 
     public function reportBarangMasuk($productID, $invID, $satuan, $location, $qty, $description, $noTrx, $userName, $dateInput)
     {
+        $company = Auth::user()->company;
         //Perhitungan Konversi
         $invStock = DB::table('view_product_stock')
             ->select(DB::raw('DISTINCT(idm_data_product) as prodid'),'stock')
@@ -738,13 +741,15 @@ class TempInventoryController extends Controller
                 'last_saldo'=>$lastStock,
                 'vol_prd'=>'0',
                 'actual_input'=>$qty,
-                'status_trx'=>'4'
+                'status_trx'=>'4',
+                'comp_id'=>$company
             ]);
 
     }
 
     public function reportBarangKeluar($productID, $satuan, $location, $qty, $description, $noTrx, $userName)
     {
+        $company = Auth::user()->company;
         //Perhitungan Konversi
         $invStock = DB::table('view_product_stock')
             ->select(DB::raw('DISTINCT(idm_data_product) as prodid'),'stock')
@@ -838,7 +843,8 @@ class TempInventoryController extends Controller
                     'last_saldo'=>$invStock->stock,
                     'vol_prd'=>'0',
                     'actual_input'=>$qty,
-                    'status_trx'=>'4'
+                    'status_trx'=>'4',
+                    'comp_id'=>$company
                 ]);
         }
         else {

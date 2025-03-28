@@ -526,6 +526,7 @@ class MutasibarangController extends Controller
    
    public function pickup($idParam){
         $updateBy = Auth::user()->name;
+        $company = Auth::user()->company;
 
         // get list data berdasarkan asal barang
         $listProduk = DB::table('inv_moving_list as a')
@@ -644,7 +645,8 @@ class MutasibarangController extends Controller
                         'last_saldo'=>$lastStock,
                         'vol_prd'=>$sizeCode,
                         'actual_input'=>$takenStock,
-                        'status_trx'=>'4'
+                        'status_trx'=>'4',
+                        'comp_id'=>$company
                     ]);
             }
 

@@ -723,6 +723,8 @@ class PurchasingController extends Controller
     }
     
     public function btnApprove($dataEdit){
+        $company = Auth::user()->company;
+
         $dblp = DB::table('view_purchase_lo')
             ->where('purchase_number',$dataEdit)
             ->get();
@@ -829,7 +831,8 @@ class PurchasingController extends Controller
                         'vol_prd'=>$volPrd,
                         'last_saldo'=>$pl->stock_awal,
                         'actual_input'=>$pl->qty,
-                        'status_trx'=>'4'
+                        'status_trx'=>'4',
+                        'comp_id'=>$company
                     ]);
             //UPDATE STOCK;            
             $updateInv = $this->TempInventoryController->tambahStock($productID, $qtyInput, $satuan, $location);
