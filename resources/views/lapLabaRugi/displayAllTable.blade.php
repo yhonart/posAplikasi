@@ -3,6 +3,11 @@
     $selisih = 0;
     $margin = 0;
     $sumHargaJual = 0;
+    $sumMargin = 0;
+    $sumSelisih = 0;
+    $sumTotHpp = 0;
+    $sumMPrice = 0;
+    $sumTPrice = 0;
 ?>
 <div class="card">
     <div class="card-header border-0">
@@ -44,24 +49,38 @@
                                         $sumHargaJual += $dit->unit_price;
                                     @endphp
                                 </td>                                
-                                <td class="text-right">{{number_format($dit->m_price,'0',',','.')}}</td>                                
-                                <td class="text-right">{{number_format($dit->t_price,'0',',','.')}}</td>                                
+                                <td class="text-right">
+                                    {{number_format($dit->m_price,'0',',','.')}}
+                                    @php
+                                        $sumMPrice += $dit->m_price;
+                                    @endphp
+                                </td>                                
+                                <td class="text-right">
+                                    {{number_format($dit->t_price,'0',',','.')}}
+                                    @php
+                                        $sumTPrice += $dit->t_price;
+                                    @endphp
+
+                                </td>                                
                                 <td class="text-right">
                                     <?php
                                         $totHpp = $dit->m_price * $dit->qty;
                                         echo number_format($totHpp,'0',',','.');
+                                        $sumTotHpp += $totHpp;
                                     ?>
                                 </td>  
                                 <td class="text-right">
                                     <?php
                                         $selisih = $dit->unit_price - $dit->m_price;
                                         echo number_format($selisih,'0',',','.');
+                                        $sumSelisih  += $selisih;
                                     ?>
                                 </td>                              
                                 <td class="text-right">
                                     <?php
                                         $margin = $selisih * $dit->qty;
                                         echo number_format($margin,'0',',','.');
+                                        $sumMargin += $margin;
                                     ?>
                                 </td>
                             </tr>
@@ -73,11 +92,11 @@
                 <tr>
                     <td colspan="3" class="font-weight-bold">Total</td>
                     <td class=" text-right font-weight-bold">{{number_format($sumHargaJual,'0',',','.')}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class=" text-right font-weight-bold">{{number_format($sumMPrice,'0',',','.')}}</td>
+                    <td class=" text-right font-weight-bold">{{number_format($sumTPrice,'0',',','.')}}</td>
+                    <td class=" text-right font-weight-bold">{{number_format($sumTotHpp,'0',',','.')}}</td>
+                    <td class=" text-right font-weight-bold">{{number_format($sumSelisih,'0',',','.')}}</td>
+                    <td class=" text-right font-weight-bold">{{number_format($sumMargin,'0',',','.')}}</td>
                 </tr>
             </tbody>
         </table>
