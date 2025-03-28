@@ -3354,17 +3354,20 @@ class CashierController extends Controller
 
     public function cashierReportRecapPdf($fromDate, $endDate, $customer)
     {        
+        $company = Auth::user()->company;
+
         $tableReport = DB::table("trx_record_view as a");
         $tableReport = $tableReport->select(DB::raw('SUM(total_struk) as total_struk'), DB::raw('SUM(total_payment) as total_payment'));
         $tableReport = $tableReport->leftJoin("tr_kredit as b", 'a.trx_code', '=', 'b.from_payment_code');
-        $tableReport = $tableReport->where([
-                ['a.status','!=','0']
-        ]);
         if ($customer <> '0') {
             $tableReport = $tableReport->where([
-                    ['a.member_id',$customer]
+                ['a.member_id',$customer]
             ]);
         }
+        $tableReport = $tableReport->where([
+                ['a.status','!=','0'],
+                ['a.comp_id',$company]
+        ]);
         $tableReport = $tableReport->whereBetween('a.date_trx', [$fromDate, $endDate]);
         $tableReport = $tableReport->first();
 
@@ -3372,7 +3375,8 @@ class CashierController extends Controller
         $tableReportTunai = $tableReportTunai->select(DB::raw('SUM(total_struk) as total_struk'), DB::raw('SUM(total_payment) as total_payment'));
         $tableReportTunai = $tableReportTunai->leftJoin("tr_kredit as b", 'a.trx_code', '=', 'b.from_payment_code');
         $tableReportTunai = $tableReportTunai->where([
-                ['a.status','!=','0']
+                ['a.status','!=','0'],
+                ['a.comp_id',$company]
         ]);
         if ($customer <> '0') {
             $tableReportTunai = $tableReportTunai->where([
@@ -3383,8 +3387,9 @@ class CashierController extends Controller
         $tableReportTunai = $tableReportTunai->where('a.trx_method', '1');
         $tableReportTunai = $tableReportTunai->first();
 
-        $trStore = DB::table("tr_store_prod_list")
+        $trStore = DB::table("tr_store_prod_list_view")
             ->select('t_price', 'from_payment_code')
+            ->where('comp_id',$company)
             ->whereBetween('date', [$fromDate, $endDate])
             ->get();
 
@@ -3393,7 +3398,8 @@ class CashierController extends Controller
         $bankTransaction = $bankTransaction->whereBetween('date_trx', [$fromDate, $endDate]);
         $bankTransaction = $bankTransaction->where([
                 ['status','!=','0'],
-                ['trx_method', '4']
+                ['trx_method', '4'],
+                ['comp_id',$company]
         ]);
         if ($customer <> '0') {
             $bankTransaction = $bankTransaction->where([
@@ -3407,11 +3413,15 @@ class CashierController extends Controller
         if ($customer <> '0') {
             $creditRecord = $creditRecord->where('member_id',$customer);
         }
+        $creditRecord = $creditRecord->where('comp_id',$company);
         $creditRecord = $creditRecord->whereBetween('date_trx', [$fromDate, $endDate]);
         $creditRecord = $creditRecord->first();   
         
         $customerIden = DB::table('m_customers')
-            ->where('idm_customer',$customer)
+            ->where([
+                ['idm_customer',$customer],
+                ['comp_id',$company]
+                ])
             ->first();
 
         $pdf = PDF::loadview('Report/cashierRecapReport', compact('fromDate', 'endDate', 'tableReport', 'trStore', 'bankTransaction', 'creditRecord', 'tableReportTunai','customer','customerIden'))->setPaper("A4", 'portrait');
@@ -3425,7 +3435,8 @@ class CashierController extends Controller
             ->leftJoin('view_billing_action as c', 'a.from_payment_code', '=', 'c.billing_number')
             ->where([
                 ['a.status', '>=', '3'],
-                ['c.status','>=','3']
+                ['c.status','>=','3'],
+                ['a.comp_id',$company]
                 ])
             ->whereBetween('c.tr_date', [$fromDate, $endDate])
             ->get();
@@ -3433,19 +3444,26 @@ class CashierController extends Controller
         $tempTPrice = DB::table('trans_product_list_view as a')
             ->select(DB::raw('SUM(a.t_price) as sumTPrice'), 'c.billing_number')
             ->leftJoin('view_billing_action as c', 'a.from_payment_code', '=', 'c.billing_number')
-            ->where('a.status', '>=', '3')
+            ->where([
+                ['a.status', '>=', '3'],
+                ['comp_id',$company]
+                ])
             ->groupBy('a.from_payment_code')
             ->whereBetween('a.date', [$fromDate, $endDate])
             ->get();
 
         $cosGroup = DB::table('m_cos_group')
-            ->where('group_status','1')
+            ->where('group_status','1'  )
             ->get();
 
         $paymentMethod = DB::table('tr_payment_method as a')
             ->select('a.core_id_trx','b.method_name','a.nominal','b.idm_payment_method')
             ->leftJoin('m_payment_method as b','a.method_name','=','b.idm_payment_method')
-            ->where('a.status','1')
+            ->join('tr_store c','c.billing_number','a.core_id_trx')
+            ->where([
+                ['a.status','1'],
+                ['c.comp_id',$company]
+                ])
             ->get();
         
         $countPerTrx = DB::table('tr_payment_method as a')
@@ -3454,7 +3472,9 @@ class CashierController extends Controller
             ->groupBy('a.core_id_trx')
             ->get();
 
-        $Supplier = DB::table('supplier_item')
+        $Supplier = DB::table('supplier_item a')
+            ->select('a.*','b.address')
+            ->join('m_supplier b','b.idm_supplier','=','b.supplier_id')
             ->get();        
 
         return view('Report/cashierRecapExcel', compact('prdTrx', 'tempTPrice','cosGroup','paymentMethod','countPerTrx','Supplier'));
@@ -3462,9 +3482,13 @@ class CashierController extends Controller
 
     public function clickListProduk($dataTrx, $trxType)
     {
+        $company = Auth::user()->company;
         // CHECK DATA SEBELUMNYA ADA YANG AKTIF ATAU TIDAK 
         $countAc = DB::table('tr_store')
-            ->where('status', '1')
+            ->where([
+                ['status', '1'],
+                ['comp_id',$company]
+                ])
             ->count();
 
         if ($countAc >= '1') {
