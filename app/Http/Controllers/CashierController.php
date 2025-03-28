@@ -3387,7 +3387,7 @@ class CashierController extends Controller
         $tableReportTunai = $tableReportTunai->where('a.trx_method', '1');
         $tableReportTunai = $tableReportTunai->first();
 
-        $trStore = DB::table("tr_store_prod_list_view")
+        $trStore = DB::table("trans_product_list_view")
             ->select('t_price', 'from_payment_code')
             ->where('comp_id',$company)
             ->whereBetween('date', [$fromDate, $endDate])
