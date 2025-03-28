@@ -69,8 +69,8 @@
                     @endforeach
                 @endforeach
                 <tr>
-                    <td colspan="3">Total</td>
-                    <td>{{$sumHargaJual}}</td>
+                    <td colspan="3" class="font-weight-bold">Total</td>
+                    <td class=" text-right font-weight-bold">{{$sumHargaJual}}</td>
                     <td></td>
                     <td></td>
                     <td></td>
