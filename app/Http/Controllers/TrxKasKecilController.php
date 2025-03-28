@@ -152,6 +152,10 @@ class TrxKasKecilController extends Controller
     public function boxContentDana(){
         $company = Auth::user()->company;
 
-        return view('TrxKasKecil/mainBoxContentDana');
+        $modalFixed = DB::table('m_trx_kas_kasir')
+            ->where('comp_id',$company)
+            ->first();
+
+        return view('TrxKasKecil/mainBoxContentDana', compact('modalFixed'));
     }
 }
