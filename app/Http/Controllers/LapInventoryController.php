@@ -62,6 +62,7 @@ class LapInventoryController extends Controller
         $fromDate = $postFilter->fromDate;
         $endDate = $postFilter->endDate;
         $lokasi = $postFilter->lokasi;
+        $company = Auth::user()->company;
         
         // $dataSaldoAwal = DB::table('report_inv');
         //     if($produk <> '0'){
@@ -130,6 +131,28 @@ class LapInventoryController extends Controller
         return view ('LapInventory/displayFilter', compact('sumTrxMasuk','sumTrxKeluar', 'dataReportInv','codeDisplay','mProduct','lastSaldo','produk','fromDate'));
     }
 
+    public function getFilter($produk){
+        $today = date("Y-m-d");
+        $company = Auth::user()->company;
+        
+        $dataReportInv = DB::table('report_inv')
+            ->where([
+                ['status_trx','4'],
+                ['date_input',$today],
+                ['comp_id',$company]
+                ])
+            ->orderBy('idr_inv','asc')
+            ->get();
+
+        $mProduct = DB::table('m_product')
+            ->select('idm_data_product','large_unit_val','medium_unit_val','small_unit_val')
+            ->where('comp_id',$company)
+            ->get();
+        
+        $codeDisplay = '2'; 
+        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay','mProduct','produk'));
+    }
+
     public function downloadKartuStock($produk, $fromDate, $endDate, $lokasi){
         
         $dataReportInv = DB::table('report_inv');
@@ -170,25 +193,6 @@ class LapInventoryController extends Controller
 
         $pdf = PDF::loadview('LapInventory/displayKartuStok', compact('dataReportInv','codeDisplay','dataSaldoAwal','mProduct','locData','fromDate','endDate'))->setPaper("A4", 'portrait');
 		return $pdf->stream();     
-    }
-    
-    public function getFilter($produk){
-        $today = date("Y-m-d");
-
-        $dataReportInv = DB::table('report_inv')
-            ->where([
-                ['status_trx','4'],
-                ['date_input',$today]
-                ])
-            ->orderBy('idr_inv','asc')
-            ->get();
-
-        $mProduct = DB::table('m_product')
-            ->select('idm_data_product','large_unit_val','medium_unit_val','small_unit_val')
-            ->get();
-        
-        $codeDisplay = '2'; 
-        return view ('LapInventory/displayFilter', compact('dataReportInv','codeDisplay','mProduct','produk'));
     }
     
 }
