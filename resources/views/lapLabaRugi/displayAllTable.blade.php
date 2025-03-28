@@ -68,9 +68,11 @@
                         @endif
                     @endforeach
                 @endforeach
+            </tbody>
+            <tbody class=" bg-blue">
                 <tr>
                     <td colspan="3" class="font-weight-bold">Total</td>
-                    <td class=" text-right font-weight-bold">{{$sumHargaJual}}</td>
+                    <td class=" text-right font-weight-bold">{{$number_format(sumHargaJual,'0',',','.')}}</td>
                     <td></td>
                     <td></td>
                     <td></td>
