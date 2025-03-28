@@ -21,9 +21,10 @@
         <div class="row mb-2">
             <div class="col-md-12">
                 <button type="button" class="btn btn-primary CLIK-LAP font-weight-bold" data-display="laporanKasKecil"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan</button>
-                <button type="button" class="btn btn-danger CLIK-LAP font-weight-bold" data-display="addModalKas"><i class="fa-solid fa-plus"></i> Tambah Optional Dana</button>
+                <button type="button" class="btn btn-danger CLIK-LAP font-weight-bold" data-display="addModalKas"><i class="fa-solid fa-plus"></i> Tambah Dana Kas</button>
             </div>
         </div>
+        <div id="displaySumDana"></div>
         <div id="displayLap"></div>
     </div>
 </div>
@@ -33,10 +34,18 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    $(function(){
+        $.ajax({
+            type : 'get',
+            url : "{{route('kasKecil')}}/boxContentDana",
+            success : function(response){
+                $('#displaySumDana').html(response);
+            }
+        });
+    })
     $(document).ready(function(){
-        let display = "laporanKasKecil";
+        let display = "laporanKasKecil";        
         displayOnClick(display);
-
         document.querySelectorAll(".CLIK-LAP").forEach(function(button) { 
             button.onclick = function() {
                 document.querySelectorAll(".CLIK-LAP").forEach(function(btn) 
@@ -63,6 +72,7 @@
                 }
             });
         }
+        
     });
 </script>
 @endsection

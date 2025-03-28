@@ -148,4 +148,10 @@ class TrxKasKecilController extends Controller
             ]);
         return back();
     }
+
+    public function boxContentDana(){
+        $company = Auth::user()->company;
+
+        return view('TrxKasKecil/mainBoxContentDana');
+    }
 }

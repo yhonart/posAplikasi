@@ -14,13 +14,13 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="dariTanggal" class="label">Dari Tanggal</label>
-            <input type="text" class="form-control datetimepicker-input" name="dariTanggal" id="dariTanggal">
+            <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" name="dariTanggal" id="dariTanggal">
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
             <label for="sampaiTanggal" class="label">Sampai Tanggal</label>
-            <input type="text" class="form-control datetimepicker-input roundedd-0" name="sampaiTanggal" id="sampaiTanggal">
+            <input type="text" class="form-control datetimepicker-input rounded-0 form-control-sm" name="sampaiTanggal" id="sampaiTanggal">
         </div>
     </div>
 </div>

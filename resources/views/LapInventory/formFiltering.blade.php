@@ -78,14 +78,14 @@
             $("#spinnerFilter").fadeIn();
             if (valLocation === '0') {
                 alertify
-                .alert("Mohon Pilih Lokasi Yang Ingin Ditampilkan !"+valLocation, function(){
+                .alert("Mohon Pilih Lokasi Yang Ingin Ditampilkan !", function(){
                     alertify.message('OK');
                 }).set({title:"Notifikasi"});
                 $("#spinnerFilter").fadeOut();
             }
             else if (produk === '0') {
                 alertify
-                .alert("Mohon Pilih Nama Produk Terlebih Dahulu !"+valLocation, function(){
+                .alert("Mohon Pilih Nama Produk Terlebih Dahulu !", function(){
                     alertify.message('OK');
                 }).set({title:"Notifikasi"});
                 $("#spinnerFilter").fadeOut();
