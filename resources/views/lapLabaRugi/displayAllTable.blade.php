@@ -40,7 +40,9 @@
                                 <td>{{$dit->qty}}</td>                                
                                 <td class="text-right">
                                     {{number_format($dit->unit_price,'0',',','.')}}
-                                    $sumHargaJual += $dit->unit_price;
+                                    @php
+                                        $sumHargaJual += $dit->unit_price;
+                                    @endphp
                                 </td>                                
                                 <td class="text-right">{{number_format($dit->m_price,'0',',','.')}}</td>                                
                                 <td class="text-right">{{number_format($dit->t_price,'0',',','.')}}</td>                                
