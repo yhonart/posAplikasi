@@ -151,11 +151,20 @@ class TrxKasKecilController extends Controller
 
     public function boxContentDana(){
         $company = Auth::user()->company;
+        $dateNow = Carbon::now();
+        $dayNow = date('l', strtotime($dateNow));
 
-        $modalFixed = DB::table('m_trx_kas_kasir')
-            ->where('comp_id',$company)
-            ->first();
+        if ($dayNow == "Monday") {
+            $modalFixed = DB::table('m_trx_kas_kasir')
+                ->where('comp_id',$company)
+                ->first();
+            $compFixedDana = $modalFixed->nominal_dana;
+        }
+        else {
+            $compFixedDana = 0;
+        }
 
-        return view('TrxKasKecil/mainBoxContentDana', compact('modalFixed'));
+
+        return view('TrxKasKecil/mainBoxContentDana', compact('compFixedDana'));
     }
 }
