@@ -45,15 +45,22 @@ class TrxKasKecilController extends Controller
         $lastWeekStartDate = date("Y-m-d", strtotime($firstDayOfLastWeek));
         $lastWeekEndDate = date("Y-m-d", strtotime($lastDayOfLastWeek));
         
+        $company = Auth::user()->company;
         //sum transaksi minggu lalu :
         $trxKasKecil = DB::table('tr_kas')
             ->select(DB::raw('SUM(nominal) as nominal'))
-            ->where('trx_code','2')
+            ->where([
+                ['trx_code','2'],
+                ['comp_id',$company]
+                ])
             ->whereBetween('kas_date',[$lastWeekStartDate, $lastWeekEndDate])
             ->first(); 
 
         $mDanaTrx = DB::table('tr_kas')
-            ->where('trx_code','1')
+            ->where([
+                ['trx_code','1'],
+                ['comp_id',$company]
+                ])
             ->whereBetween('kas_date',[$lastWeekStartDate, $lastWeekEndDate])
             ->orderBy('idtr_kas','desc')
             ->first();
@@ -70,7 +77,8 @@ class TrxKasKecilController extends Controller
         $getAllTransaksi = DB::table('tr_kas')
             ->select(DB::raw("SUM('nominal') as nominal"))
             ->where([
-                ['trx_code','2']
+                ['trx_code','2'],
+                ['comp_id',$company]
             ])
             ->whereBetween('kas_date',[$dateDana,$beforeFromDate])
             ->first();
@@ -81,24 +89,29 @@ class TrxKasKecilController extends Controller
                 ['kas_persCode',$kasir]
             ]);
         }
+        $tablePengeluaran = $tablePengeluaran->where('comp_id',$company);
         $tablePengeluaran = $tablePengeluaran->whereBetween('kas_date', [$fromDate, $endDate]);
         $tablePengeluaran = $tablePengeluaran->get();
 
         $mTrxKas = DB::table('m_trx_kas_kasir')
+            ->where('comp_id',$company)
             ->first();
 
         return view('TrxKasKecil/laporanKasKecilTable', compact('tablePengeluaran','mDanaTrx','fromDate','endDate','trxKasKecil','mTrxKas'));
     }
     public function cetakKasKecil($kasir, $fromDate, $endDate){
         // echo $kasir;
+        $company = Auth::user()->company;
         $tablePengeluaran = DB::table('view_trx_kas');
         if ($kasir <> '0') {
             $tablePengeluaran = $tablePengeluaran->where('kas_persCode',$kasir);
         }
+        $tablePengeluaran = $tablePengeluaran->where('comp_id',$company);
         $tablePengeluaran = $tablePengeluaran->whereBetween('kas_date', [$fromDate, $endDate]);
         $tablePengeluaran = $tablePengeluaran->get();
 
         $mDanaTrx = DB::table('m_trx_kas_kasir')
+            ->where('comp_id',$company)
             ->orderBy('m_id_dana','desc')
             ->first();
 
@@ -107,13 +120,15 @@ class TrxKasKecilController extends Controller
     public function addModalKas()
     {
         $noww = date("Y-m-d");
+        $company = Auth::user()->company;
 
         $sumberDana = DB::table('tr_payment_record as a')
             ->select(DB::raw('SUM(a.total_payment) as totKasir'), 'b.created_by')
             ->leftJoin('tr_store as b','a.trx_code','=','b.billing_number')
             ->where([
                 ['a.total_payment','!=','8'],
-                ['a.date_trx',$noww]
+                ['a.date_trx',$noww],
+                ['comp_id',$company]
                 ])
             ->groupBy('b.created_by')
             ->get();
@@ -130,6 +145,7 @@ class TrxKasKecilController extends Controller
         $namaBank = $reqPostAddModal->namaBank;
         $namaAkun = $reqPostAddModal->namaAkun;
         $nomorAkun = $reqPostAddModal->nomorAkun;
+        $company = Auth::user()->company;
 
         DB::table('tr_kas')
             ->insert([
@@ -144,7 +160,8 @@ class TrxKasKecilController extends Controller
                 'bank_code'=>$namaBank,               
                 'no_akun'=>$nomorAkun,               
                 'sumber_lain'=>$namaAkun,
-                'trx_code'=>'2'
+                'trx_code'=>'2',
+                'comp_id'=>$company
             ]);
         return back();
     }
@@ -153,18 +170,18 @@ class TrxKasKecilController extends Controller
         $company = Auth::user()->company;
         $dateNow = Carbon::now();
         $dayNow = date('l', strtotime($dateNow));
-
+        
+        $modalFixed = DB::table('m_trx_kas_kasir')
+            ->where('comp_id',$company)
+            ->first();
+            
         if ($dayNow == "Monday") {
-            $modalFixed = DB::table('m_trx_kas_kasir')
-                ->where('comp_id',$company)
-                ->first();
             $compFixedDana = $modalFixed->nominal_dana;
         }
         else {
             $compFixedDana = 0;
         }
-
-
+        
         return view('TrxKasKecil/mainBoxContentDana', compact('compFixedDana'));
     }
 }
