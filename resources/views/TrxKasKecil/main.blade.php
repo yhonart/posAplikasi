@@ -20,7 +20,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary CLIK-LAP font-weight-bold" data-display="laporanKasKecil"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan</button>
+                <button type="button" class="btn btn-primary CLIK-LAP font-weight-bold" data-display="laporanKasKecil"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Dana</button>
                 <button type="button" class="btn btn-danger CLIK-LAP font-weight-bold" data-display="addModalKas"><i class="fa-solid fa-plus"></i> Tambah Dana Kas</button>
             </div>
         </div>
