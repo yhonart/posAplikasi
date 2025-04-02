@@ -44,6 +44,7 @@
         var firstDate = new Date(curr.setDate(first));
         var lastDate = new Date(curr.setDate(last));
 
+        alert (first);
         $('#dariTanggal').datepicker("setDate",firstDate);
         $('#sampaiTanggal').datepicker("setDate",lastDate);
         
