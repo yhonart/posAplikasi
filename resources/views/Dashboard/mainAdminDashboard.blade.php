@@ -29,7 +29,7 @@
                         <i class="fa-solid fa-file-invoice"></i> Hutang Toko
                     </button>
                     <button type="button" class="btn btn-default btn-flat BTN-CLICK border-0" data-link="dashLaporanKeuangan">
-                        <i class="fa-solid fa-file-lines"></i> Laporan Keuangan
+                        <i class="fa-solid fa-file-lines"></i> Laporan Keuangan ku
                     </button>
                 </div>
             </div>
