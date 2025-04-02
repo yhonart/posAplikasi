@@ -31,7 +31,7 @@ class TrxKasUmumController extends Controller
             ->get();
         
         $mAdmin = DB::table('users')
-            ->where('comp_id',$company)
+            ->where('company',$company)
             ->get();
 
         $selectOption = DB::table('m_subcategory_kas')
