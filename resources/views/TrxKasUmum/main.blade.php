@@ -20,29 +20,24 @@
                 <a class="btn btn-primary font-weight-bold" href="{{route('kasKecil')}}"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Kas Kecil</a>
             </div>
         </div>
-        <div class="row d-flex justify-content-center mb-2">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="" class="label">Dari Tgl.</label>
+                <input type="text" class="form-control form-control-sm datetimepicker-input " name="fromDate" id="fromDate" autocomplete="off">
+            </div>
+            <div class="col-md-3">
+                <label for="" class="label">Sd. Tgl.</label>
+                <input type="text" class="form-control form-control-sm datetimepicker-input " name="endDate" id="endDate" autocomplete="off">
+            </div>
+        </div>
+        <div class="row mb-2">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">History Input Kas Kecil</h3>
+                    <div class="card-header border-0">
+                        <button type="button" class="btn btn-success btn-sm download-laporan" id="downloadExcel" export-type="excel"><i class="fa-solid fa-file-excel"></i> Download Excel</button>
+                        <button type="button" class="btn btn-danger btn-sm download-laporan" id="downloadPdf" export-type="pdf"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>                        
                     </div>
-                    <div class="card-body text-xs">
-                        <div class="row mb-2">                                
-                            <div class="col-md-3">
-                                <label for="" class="label">Dari Tgl.</label>
-                                <input type="text" class="form-control form-control-sm datetimepicker-input " name="fromDate" id="fromDate" autocomplete="off">
-                            </div>
-                            <div class="col-md-3">
-                                <label for="" class="label">Sd. Tgl.</label>
-                                <input type="text" class="form-control form-control-sm datetimepicker-input " name="endDate" id="endDate" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button type="button" class="btn btn-success btn-sm download-laporan" id="downloadExcel" export-type="excel"><i class="fa-solid fa-file-excel"></i> Download Excel</button>
-                                <button type="button" class="btn btn-danger btn-sm download-laporan" id="downloadPdf" export-type="pdf"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
-                            </div>
-                        </div> 
+                    <div class="card-body text-xs"> 
                         <div class="row">
                             <div class="col-md-12">                
                                 <div id="actionDisplay"></div>
