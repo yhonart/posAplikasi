@@ -34,7 +34,7 @@ class TrxKasKecilController extends Controller
     }
 
     public function tableLaporan($kasir, $fromDate, $endDate){
-        // echo $fromDate."/".$endDate;
+        echo $fromDate."/".$endDate;
         $firstDayThisWeek = $this->getMonday();
         // Tentukan hari pertama dari minggu
         $firstDayOfLastWeek = $firstDayThisWeek->copy()->subWeek();
