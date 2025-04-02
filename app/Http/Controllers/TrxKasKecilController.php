@@ -34,7 +34,7 @@ class TrxKasKecilController extends Controller
     }
 
     public function tableLaporan($kasir, $fromDate, $endDate){
-        echo $fromDate."/".$endDate;
+        // echo $fromDate."/".$endDate;
         $firstDayThisWeek = $this->getMonday();
         // Tentukan hari pertama dari minggu
         $firstDayOfLastWeek = $firstDayThisWeek->copy()->subWeek();
@@ -90,7 +90,7 @@ class TrxKasKecilController extends Controller
             ]);
         }
         $tablePengeluaran = $tablePengeluaran->where('comp_id',$company);
-        // $tablePengeluaran = $tablePengeluaran->whereBetween('kas_date', [$fromDate, $endDate]);
+        $tablePengeluaran = $tablePengeluaran->whereBetween('kas_date', [$fromDate, $endDate]);
         $tablePengeluaran = $tablePengeluaran->get();
 
         $mTrxKas = DB::table('m_trx_kas_kasir')
