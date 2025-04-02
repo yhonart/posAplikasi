@@ -2,12 +2,14 @@
     $saldoTransaksi = 0;
     $debit = 0;
     $kredit = 0;
+
     $lastWeekSumDebit = $trxKasKecil->nominal;
+
     if (empty($mDanaTrx)) {
-        $lastWeekSumModal = 0;
+        $lastWeekSumModal = $mTrxKas->nominal_dana;
     }
     else {
-        $lastWeekSumModal = $mDanaTrx->nominal_modal;        
+        $lastWeekSumModal = $mTrxKas->nominal_dana + $mDanaTrx->nominal_modal;        
     }
     
     $lastWeekSaldo = $lastWeekSumModal - $lastWeekSumDebit;

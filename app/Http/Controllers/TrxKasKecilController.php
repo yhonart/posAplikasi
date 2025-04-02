@@ -27,7 +27,9 @@ class TrxKasKecilController extends Controller
     }
 
     public function laporanKasKecil(){
+        $company = Auth::user()->company;
         $userKasir = DB::table('users')
+            ->where('company',$company)
             ->get();
 
         return view('TrxKasKecil/laporanKasKecil', compact('userKasir'));
@@ -71,6 +73,7 @@ class TrxKasKecilController extends Controller
         else {
             $dateDana = 0;
         }
+        
         $beforeFromDate = date("Y-m-d", strtotime("-1 day", strtotime($fromDate)));
         
 
