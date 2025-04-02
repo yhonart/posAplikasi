@@ -97,7 +97,7 @@ class TrxKasKecilController extends Controller
             ->where('comp_id',$company)
             ->first();
 
-        return view('TrxKasKecil/laporanKasKecilTable', compact('tablePengeluaran','mDanaTrx','fromDate','endDate','trxKasKecil','mTrxKas'));
+        return view('TrxKasKecil/laporanKasKecilTable', compact('tablePengeluaran','mDanaTrx','fromDate','endDate','trxKasKecil','mTrxKas','company'));
     }
     public function cetakKasKecil($kasir, $fromDate, $endDate){
         // echo $kasir;

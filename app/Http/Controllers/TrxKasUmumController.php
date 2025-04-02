@@ -17,17 +17,21 @@ class TrxKasUmumController extends Controller
     public function tambahBiaya()
     {
         $todayInfo = date("Y-m-d");
-
+        $company = Auth::user()->company;
         $kasKategori = DB::table('m_category_kas')
             ->where('status','1')
             ->orderBy('cat_name','asc')
             ->get();
 
         $mStaff = DB::table('m_sales')
-            ->where('sales_status','1')
+            ->where([
+                ['sales_status','1'],
+                ['comp_id',$company]
+                ])
             ->get();
         
         $mAdmin = DB::table('users')
+            ->where('comp_id',$company)
             ->get();
 
         $selectOption = DB::table('m_subcategory_kas')
