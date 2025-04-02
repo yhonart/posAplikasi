@@ -20,7 +20,7 @@
                 <a class="btn btn-primary font-weight-bold" href="{{route('kasKecil')}}"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Kas Kecil</a>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-md-3">
                 <label for="" class="label">Dari Tgl.</label>
                 <input type="text" class="form-control form-control-sm datetimepicker-input " name="fromDate" id="fromDate" autocomplete="off">
