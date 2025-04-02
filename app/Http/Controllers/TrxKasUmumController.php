@@ -112,6 +112,7 @@ class TrxKasUmumController extends Controller
         $kasNominal = str_replace(".", "", $reqAddPembiayaan->nominal);
         $mFile = $reqAddPembiayaan->docLampiran;
         $nopol = $reqAddPembiayaan->nopol;
+        $company = Auth::user()->company;
 
         $splitPers = explode("|",$kasPersonal);
         $persCode = $splitPers[0];
@@ -146,7 +147,8 @@ class TrxKasUmumController extends Controller
                 'file_name'=>$NameDoc,
                 'file_type'=>$TypeDoc,
                 'no_polisi'=>$nopol,
-                'trx_code'=>'2'
+                'trx_code'=>'2',
+                'comp_id'=>$company
             ]);
     }
 
