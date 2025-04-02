@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-md-8 col-12">          
-                <h1 class="m-0">Transaksi Pengeluaran <small>Biaya Operasional</small></h1>
+                <h1 class="m-0 animate__animated animate__slideInDown">Kas Kecil <small>Biaya Operasional</small></h1>
             </div>          
         </div>
     </div>
@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-12">
-                <button class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('trxKasUmum')}}/tambahBiaya"><i class="fa-solid fa-plus"></i> Tambah Transaksi</button>
+                <button class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG border-0  font-weight-bold" href="{{route('trxKasUmum')}}/tambahBiaya"><i class="fa-solid fa-plus"></i> Tambah Transaksi</button>
                 <a class="btn btn-outline-primary border-0 font-weight-bold" href="{{route('kasKecil')}}"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Kas Kecil</a>
             </div>
         </div>
