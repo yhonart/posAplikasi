@@ -16,8 +16,8 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-12">
-                <button class="btn btn-outline-primary BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('trxKasUmum')}}/tambahBiaya"><i class="fa-solid fa-plus"></i> Tambah Transaksi</button>
-                <a class="btn btn-primary font-weight-bold" href="{{route('kasKecil')}}"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Kas Kecil</a>
+                <button class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('trxKasUmum')}}/tambahBiaya"><i class="fa-solid fa-plus"></i> Tambah Transaksi</button>
+                <a class="btn btn-outline-light font-weight-bold" href="{{route('kasKecil')}}"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Kas Kecil</a>
             </div>
         </div>
         <div class="row mb-2">
