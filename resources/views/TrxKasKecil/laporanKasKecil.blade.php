@@ -39,12 +39,12 @@
         });
 
         var curr = new Date;
-        var first = curr.getDate() - curr.getDay();
+        var first = curr.getDay();
         var last = first + 6;
         var firstDate = new Date(curr.setDate(first));
         var lastDate = new Date(curr.setDate(last));
 
-        alert (last);
+        alert (first);
         $('#dariTanggal').datepicker("setDate",firstDate);
         $('#sampaiTanggal').datepicker("setDate",lastDate);
         
