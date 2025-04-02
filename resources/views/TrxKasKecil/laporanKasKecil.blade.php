@@ -39,7 +39,7 @@
         });
 
         var curr = new Date;
-        var first = curr.getDate() - curr.getDay() - curr.getMonth();
+        var first = curr.getDate();
         var last = first + 6;
         var firstDate = new Date(curr.setDate(first));
         var lastDate = new Date(curr.setDate(last));
