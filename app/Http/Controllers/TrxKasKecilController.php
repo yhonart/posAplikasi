@@ -89,7 +89,7 @@ class TrxKasKecilController extends Controller
                 ['kas_persCode',$kasir]
             ]);
         }
-        $tablePengeluaran = $tablePengeluaran->where('comp_id',$company);
+        // $tablePengeluaran = $tablePengeluaran->where('comp_id',$company);
         $tablePengeluaran = $tablePengeluaran->whereBetween('kas_date', [$fromDate, $endDate]);
         $tablePengeluaran = $tablePengeluaran->get();
 
