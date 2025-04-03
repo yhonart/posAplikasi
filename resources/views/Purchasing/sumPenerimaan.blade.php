@@ -21,7 +21,7 @@
                 <div class="col-md-2">
                     <div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend bg-success">
-                            <span class="input-group-text">Item</span>
+                            <span class="input-group-text bg-success">Item</span>
                         </div>
                         <input class="form-control border-2 border-success" name="subTotalSatuan" id="subTotalSatuan" value="{{number_format($sumTransaction->countProduct,'0',',','.')}}" readonly>
                     </div>
