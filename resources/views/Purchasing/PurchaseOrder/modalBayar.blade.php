@@ -70,7 +70,7 @@
                         </select>                        
                     </div>
                     <label class="col-md-3 BANK" style="display: none;">Nomor Akun Bank</label>
-                    <div class="col-md-3 BANK">
+                    <div class="col-md-3 BANK" style="display: none;">
                         <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber" placeholder="Silahkan masukkan akun bank lainnya">
                     </div>
                 </div>
