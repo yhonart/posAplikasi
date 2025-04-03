@@ -958,6 +958,7 @@ class PurchasingController extends Controller
     public function modalMethod ($id){  
         $dateNow = date("Y-m-d");
         $dateNo = date("mY");
+        $company = Auth::user()->company;
 
         $datPayment = DB::table('purchase_kredit as a')
             ->select('a.*','b.store_name')
@@ -967,17 +968,23 @@ class PurchasingController extends Controller
         
         $payNumber = DB::table('purchase_kredit_payment')
             ->where([
-                ['payment_date',$dateNow]
+                ['payment_date',$dateNow],
+                ['comp_id',$company]
             ])
             ->count();
+        $compCode = DB::table('m_company')
+            ->where('idm_company', $company)
+            ->first();
+
+        $compC = $compCode->company_code;
 
         if ($payNumber == 0) {
             $no = 1;
-            $numberTrx = "AP".$dateNo."-".sprintf("%07d", $no);
+            $numberTrx = "AP-". $compC . $dateNo ."-". sprintf("%07d", $no);
         }
         else {
             $no = $payNumber+1;
-            $numberTrx = "AP".$dateNo."-".sprintf("%07d", $no);
+            $numberTrx = "AP-". $compC . $dateNo ."-". sprintf("%07d", $no);
         }
 
         $purchaseNumber = $datPayment->number_dok;
@@ -992,12 +999,18 @@ class PurchasingController extends Controller
             ->select(DB::raw('SUM(t_pay) AS kasUmum'), 'created_by')
             ->where([
                 ['tr_date',$dateNow],
-                ['status','4']
+                ['status','4'],
+                ['comp_id',$company]
             ])
             ->groupBy('created_by')
             ->get();
-            
-        return view ('Purchasing/PurchaseOrder/modalBayar', compact('tbPayment','datPayment','id','numberTrx','sumberKas'));
+
+        $accountBank = DB::table('m_company_payment')
+            ->where('comp_id',$company)
+            ->get();
+
+
+        return view ('Purchasing/PurchaseOrder/modalBayar', compact('tbPayment','datPayment','id','numberTrx','sumberKas','accountBank'));
     }
     
     public function postModalPembayaran (Request $reqPostPayment){        

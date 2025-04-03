@@ -59,14 +59,19 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row TRANSFER" style="display: none;">
-                    <label class="col-md-3">Nama Akun Bank</label>
-                    <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm" name="accountName" id="accountName" placeholder="Jika menggunnakan selain tunai">
+                <div class="form-group row">
+                    <label class="col-md-3 TRANSFER" style="display: none;">Nama Akun Bank</label>
+                    <div class="col-md-3 TRANSFER" style="display: none;">
+                        <select name="accountName" id="accountName" class="form-control form-control-sm">
+                            @foreach($accountBank as $accBank)
+                            <option value="{{$accBank->idm_payment}}">{{$accBank->idm_payment}}</option>
+                            @endforeach
+                            <option value="0">Akun Lainnya</option>
+                        </select>                        
                     </div>
-                    <label class="col-md-3">Nomor Akun Bank</label>
-                    <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber" placeholder="Jika menggunnakan selain tunai">
+                    <label class="col-md-3 BANK" style="display: none;">Nomor Akun Bank</label>
+                    <div class="col-md-3 BANK">
+                        <input type="text" class="form-control form-control-sm" name="accountNumber" id="accountNumber" placeholder="Silahkan masukkan akun bank lainnya">
                     </div>
                 </div>
                 <hr>
@@ -141,7 +146,7 @@
     	        thousand: ".",
             }));
         }
-        
+
         $("#method").change(function(){
             let method = $(this).val();
             if (method === "TRANSFER") {
@@ -149,6 +154,15 @@
             }
             else{
                 $(".TRANSFER").fadeOut("slow");
+            }
+        })
+        $("#accountName").change(function(){
+            let method = $(this).val();
+            if (method === "0") {
+                $(".BANK").fadeIn("slow");
+            }
+            else{
+                $(".BANK").fadeOut("slow");
             }
         })
 
