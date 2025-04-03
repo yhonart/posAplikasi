@@ -6,8 +6,9 @@
                 <input type="hidden" name="idKredit" value="{{$datPayment->idp_kredit}}">
                 <div class="from-group row">
                     <label class="col-md-3">Supplier</label>
-                    <div class="col-md-3">
-                        <input type="text" class="form-control form-control-sm font-weight-bold" name="supplier" id="supplier" value="{{$datPayment->store_name}}" readonly>
+                    <div class="col-md-3 text-right">
+                        <input type="hidden" class="form-control form-control-sm font-weight-bold" name="supplier" id="supplier" value="{{$datPayment->store_name}}" readonly>
+                        <span class=" font-weight-bold"> {{$datPayment->store_name}}</span>
                     </div>
                 </div>
                 <div class="form-group row">
