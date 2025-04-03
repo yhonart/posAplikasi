@@ -12,35 +12,33 @@
 </div>
 <div class="row mb-2">
     <div class="col-md-12">
-        <div class="card card-body animate__animated animate__fadeIn">
-            <form class="form" >
-                <div class="form-group row">
-                    <div class="col-md-3">
-                        <input type="hidden" name="purchaseCode" id="purchaseCode" value="{{$trxPO}}">
-                        <input class="form-control form-control-sm " name="noPO" id="noPO" placeholder="Nomor PO">
-                    </div>
-                    <div class="col-md-2">
-                        <div class="input-group input-group-sm mb-3 ">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Item</span>
-                            </div>
-                            <input class="form-control" name="subTotalSatuan" id="subTotalSatuan" value="{{number_format($sumTransaction->countProduct,'0',',','.')}}">
+        <form class="form animate__animated animate__fadeIn" >
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <input type="hidden" name="purchaseCode" id="purchaseCode" value="{{$trxPO}}">
+                    <input class="form-control form-control-sm border-info " name="noPO" id="noPO" placeholder="Nomor PO">
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group input-group-sm mb-3 border-indigo-500 ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Item</span>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="input-group input-group-sm mb-3 ">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa-solid fa-rupiah-sign"></i></span>
-                            </div>
-                            <input class="form-control font-weight-bold" name="subTotal" id="subTotal" value="{{number_format($sumTransaction->subTotal,'0',',','.')}}">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn  btn-success btn-sm font-weight-bold elevation-1" id="simpanPenerimaan"><i class="fa-solid fa-cart-shopping"></i> Simpan Pembelian</button>
+                        <input class="form-control" name="subTotalSatuan" id="subTotalSatuan" value="{{number_format($sumTransaction->countProduct,'0',',','.')}}">
                     </div>
                 </div>
-            </form>
-        </div>
+                <div class="col-md-3">
+                    <div class="input-group input-group-sm mb-3 ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa-solid fa-rupiah-sign"></i></span>
+                        </div>
+                        <input class="form-control font-weight-bold" name="subTotal" id="subTotal" value="{{number_format($sumTransaction->subTotal,'0',',','.')}}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn  btn-success btn-sm font-weight-bold elevation-1" id="simpanPenerimaan"><i class="fa-solid fa-cart-shopping"></i> Simpan Pembelian</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
