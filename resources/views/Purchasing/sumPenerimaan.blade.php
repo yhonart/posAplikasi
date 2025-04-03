@@ -2,10 +2,7 @@
     <div class="col-md-12">
         <button type="button" class="btn btn-light btn-sm mb-1 font-weight-bold" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             <i class="fa-solid fa-pen-to-square"></i> Dokumen Pembelian
-        </button>
-        <button type="button" class="btn btn-outline-info">
-
-        </button>
+        </button>        
         <div class="collapse" id="collapseExample">
             <div class="card card-body text-xs">
                 <div id="displayCollapseDokumen"></div>
@@ -13,33 +10,40 @@
         </div>
     </div>
 </div>
-<form class="form animate__animated animate__fadeIn" >
-    <div class="form-group row">
-        <div class="col-md-3">
-            <input type="hidden" name="purchaseCode" id="purchaseCode" value="{{$trxPO}}">
-            <input class="form-control form-control-sm " name="noPO" id="noPO" placeholder="Nomor PO">
-        </div>
-        <div class="col-md-2">
-            <div class="input-group input-group-sm mb-3 ">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Item</span>
+<div class="row mb-2">
+    <div class="col-md-12">
+        <div class="card card-body animate__animated animate__fadeIn">
+            <form class="form" >
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <input type="hidden" name="purchaseCode" id="purchaseCode" value="{{$trxPO}}">
+                        <input class="form-control form-control-sm " name="noPO" id="noPO" placeholder="Nomor PO">
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group input-group-sm mb-3 ">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Item</span>
+                            </div>
+                            <input class="form-control" name="subTotalSatuan" id="subTotalSatuan" value="{{number_format($sumTransaction->countProduct,'0',',','.')}}">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm mb-3 ">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa-solid fa-rupiah-sign"></i></span>
+                            </div>
+                            <input class="form-control font-weight-bold" name="subTotal" id="subTotal" value="{{number_format($sumTransaction->subTotal,'0',',','.')}}">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn  btn-success btn-sm font-weight-bold elevation-1" id="simpanPenerimaan"><i class="fa-solid fa-cart-shopping"></i> Simpan Pembelian</button>
+                    </div>
                 </div>
-                <input class="form-control" name="subTotalSatuan" id="subTotalSatuan" value="{{number_format($sumTransaction->countProduct,'0',',','.')}}">
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="input-group input-group-sm mb-3 ">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa-solid fa-rupiah-sign"></i></span>
-                </div>
-                <input class="form-control font-weight-bold" name="subTotal" id="subTotal" value="{{number_format($sumTransaction->subTotal,'0',',','.')}}">
-            </div>
-        </div>
-        <div class="col-md-3">
-            <button type="button" class="btn  btn-success btn-sm font-weight-bold elevation-1" id="simpanPenerimaan"><i class="fa-solid fa-cart-shopping"></i> Simpan Pembelian</button>
+            </form>
         </div>
     </div>
-</form>
+</div>
+
 <script>
     $(document).ready(function(){
         let routeIndex = "{{route('Purchasing')}}",
