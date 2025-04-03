@@ -19,19 +19,19 @@
                     <input class="form-control form-control-sm border-info " name="noPO" id="noPO" placeholder="Nomor PO">
                 </div>
                 <div class="col-md-2">
-                    <div class="input-group input-group-sm mb-3 border-2 border-success">
+                    <div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Item</span>
                         </div>
-                        <input class="form-control" name="subTotalSatuan" id="subTotalSatuan" value="{{number_format($sumTransaction->countProduct,'0',',','.')}}" readonly>
+                        <input class="form-control border-2 border-success" name="subTotalSatuan" id="subTotalSatuan" value="{{number_format($sumTransaction->countProduct,'0',',','.')}}" readonly>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="input-group input-group-sm mb-3 border-2 border-danger ">
+                    <div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa-solid fa-rupiah-sign"></i></span>
                         </div>
-                        <input class="form-control font-weight-bold" name="subTotal" id="subTotal" value="{{number_format($sumTransaction->subTotal,'0',',','.')}}" readonly>
+                        <input class="form-control font-weight-bold border-2 border-danger text-danger" name="subTotal" id="subTotal" value="{{number_format($sumTransaction->subTotal,'0',',','.')}}" readonly>
                     </div>
                 </div>
                 <div class="col-md-3">
