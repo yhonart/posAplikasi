@@ -1,5 +1,5 @@
 <div class="card card-body text-xs table-responsive p-1">
-    <table class="table table-sm table-align-middle text-nowrap table-hover" id="tableListAP">
+    <table class="table table-sm table-valign-middle text-nowrap table-hover" id="tableListAP">
         <thead>
             <tr>
                 <th>Nomor</th>

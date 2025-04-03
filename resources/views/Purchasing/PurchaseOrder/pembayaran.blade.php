@@ -1,9 +1,4 @@
 <div class="row">
-    <div class="col-md-12">
-        <span>*Pilih nama supplier untuk melakukan pembayaran hutang</span>
-    </div>
-</div>
-<div class="row">
     <div class="col-md-3">
         <div class="form-group">
             <label for="supName" class="label">Supplier</label>
