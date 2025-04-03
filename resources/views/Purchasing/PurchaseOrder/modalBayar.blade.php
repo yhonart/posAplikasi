@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3">AP Number</label>
+                    <label class="col-md-3">Nomor Pembayaran</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm font-weight-bold" name="apNumber" id="apNumber" value="{{$numberTrx}}" readonly>
                     </div>
@@ -46,11 +46,11 @@
                     <div class="col-md-3">
                         <select class="form-control form-control-sm" name="method" id="method">
                             <option value="TUNAI">TUNAI</option>
-                            <option value="TRANSFER">TRANSFER</option>
+                            <option value="TRANSFER">TRANSFER/QRIS</option>
                         </select>
                     </div>
-                    <label class="col-md-3">Akun Pembayaran</label>
-                    <div class="col-md-3">
+                    <label class="col-md-3 TRANSFER" style="display: none;">Akun Pembayaran</label>
+                    <div class="col-md-3 TRANSFER" style="display: none;">
                         <select class="form-control form-control-sm" name="account" id="account">
                             <option value="">....</option>
                             <option value="BANK">BANK</option>
@@ -59,7 +59,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row TRANSFER" style="display: none;">
                     <label class="col-md-3">Nama Akun Bank</label>
                     <div class="col-md-3">
                         <input type="text" class="form-control form-control-sm" name="accountName" id="accountName" placeholder="Jika menggunnakan selain tunai">
@@ -141,6 +141,16 @@
     	        thousand: ".",
             }));
         }
+        
+        $("#method").change(function(){
+            let method = $(this).val();
+            if (method === "TRANSFER") {
+                $(".TRANSFER").fadeIn("slow");
+            }
+            else{
+                $(".TRANSFER").fadeOut("slow");
+            }
+        })
 
         $("#sumberDana").change(function(){
             let kasir = $(this).val(),
