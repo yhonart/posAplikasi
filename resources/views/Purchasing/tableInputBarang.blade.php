@@ -1,81 +1,84 @@
-<hr>
-<div class="row mb-1">
-    <div class="col-12">
-        <div id="tableSum"></div>
-    </div>
-</div>  
 <div class="row">
-    <div class="col-12">
-        <div class="card card-body text-xs p-0 table-responsive">
-            <p id="notifLoading" class="bg-danger p-2" style="display:none;">Proses Load Data</p>
-            <input type="hidden" name="inputNoPo" id="inputNoPo" value="{{$statusPurchase->purchase_number}}">
-            <table class="table table-sm table-hover table-valign-middle animate__animated animate__fadeIn" id="tableInputBarang">
-                <thead>
-                    <tr>
-                        <th width="5%">No</th>
-                        <th width="20%">Nama Barang</th>
-                        <th width="10%">Satuan</th>
-                        <th>Qty</th>
-                        <th>Harga Satuan</th>
-                        <th>Dis Rp.</th>
-                        <th>Jumlah</th>
-                        <th>Gudang</th>
-                        <th>Stok Awal</th>
-                        <th>Stok Akhir</th>
-                        <th>#</th>
-                    </tr>
-                </thead>
-                @if(empty($statusPurchase) OR $statusPurchase->status <> '3')
-                <tbody>
-                    <td class="p-0">
-                    </td>
-                    <td class="p-0">
-                        <select name="selectProduct" id="selectProduct" class="form-control form-control-sm">
-                            <option value="0">---</option>
-                            @foreach($prodName as $pN)
-                                <option value="{{$pN->idm_data_product}}">{{$pN->product_name}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td class="p-0">
-                        <select name="satuan" id="satuan" class="form-control form-control-sm ">
-                            <option value="0">---</option>
-                        </select>
-                    </td>
-                    
-                    <td class="p-0">
-                        <input type="number" class="form-control form-control-sm " name="inputQty" id="inputQty" placeholder="Qty" autocomplete="off">
-                    </td>
-                    <td class="p-0">
-                        <input type="text" class="form-control form-control-sm " name="inputHrgSatuan" id="inputHrgSatuan" placeholder="Harga Satuan"autocomplete="off">
-                    </td>
-                    <td class="p-0">
-                        <input type="text" class="form-control form-control-sm " name="inputDiscount" id="inputDiscount" placeholder="Discount" autocomplete="off">
-                    </td>
-                    <td class="p-0">
-                        <input type="text" class="form-control form-control-sm " name="inputJumlah" id="inputJumlah" placeholder="Jumlah" autocomplete="off" readonly>
-                    </td>
-                    <td class="p-0">
-                        <select name="selectGudang" id="selectGudang" class="form-control form-control-sm ">
-                            <option value="0">---</option>
-                            @foreach($warehouse as $wh)
-                                <option value="{{$wh->idm_site}}">{{$wh->site_name}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td class="p-0">
-                        <input type="number" class="form-control form-control-sm " name="stockAwal" id="stockAwal" readonly>
-                    </td>
-                    <td class="p-0">
-                        <input type="number" class="form-control form-control-sm " name="stockAkhir" id="stockAkhir" placeholder="Stok Akhir" readonly>
-                    </td>
-                    <td class="p-0">
-                        <button class="btn border-0 elevation-0 btn-default " id="btnSubmit"><i class="fa-solid fa-check"></i></button>
-                    </td>
-                </tbody>
-                @endif
-                <tbody id="tableListBarang"></tbody>
-            </table>
+    <div class="col-md-12">
+        <div class="card card-body p-1 table-responsive">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="tableSum"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p id="notifLoading" class="bg-danger p-2" style="display:none;">Proses Load Data</p>
+                    <input type="hidden" name="inputNoPo" id="inputNoPo" value="{{$statusPurchase->purchase_number}}">
+                    <table class="table table-sm text-xs table-hover table-valign-middle animate__animated animate__fadeIn" id="tableInputBarang">
+                        <thead>
+                            <tr>
+                                <th width="5%">No</th>
+                                <th width="20%">Nama Barang</th>
+                                <th width="10%">Satuan</th>
+                                <th>Qty</th>
+                                <th>Harga Satuan</th>
+                                <th>Dis Rp.</th>
+                                <th>Jumlah</th>
+                                <th>Gudang</th>
+                                <th>Stok Awal</th>
+                                <th>Stok Akhir</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        @if(empty($statusPurchase) OR $statusPurchase->status <> '3')
+                        <tbody>
+                            <td class="p-0">
+                            </td>
+                            <td class="p-0">
+                                <select name="selectProduct" id="selectProduct" class="form-control form-control-sm">
+                                    <option value="0">---</option>
+                                    @foreach($prodName as $pN)
+                                        <option value="{{$pN->idm_data_product}}">{{$pN->product_name}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td class="p-0">
+                                <select name="satuan" id="satuan" class="form-control form-control-sm ">
+                                    <option value="0">---</option>
+                                </select>
+                            </td>
+                            
+                            <td class="p-0">
+                                <input type="number" class="form-control form-control-sm " name="inputQty" id="inputQty" placeholder="Qty" autocomplete="off">
+                            </td>
+                            <td class="p-0">
+                                <input type="text" class="form-control form-control-sm " name="inputHrgSatuan" id="inputHrgSatuan" placeholder="Harga Satuan"autocomplete="off">
+                            </td>
+                            <td class="p-0">
+                                <input type="text" class="form-control form-control-sm " name="inputDiscount" id="inputDiscount" placeholder="Discount" autocomplete="off">
+                            </td>
+                            <td class="p-0">
+                                <input type="text" class="form-control form-control-sm " name="inputJumlah" id="inputJumlah" placeholder="Jumlah" autocomplete="off" readonly>
+                            </td>
+                            <td class="p-0">
+                                <select name="selectGudang" id="selectGudang" class="form-control form-control-sm ">
+                                    <option value="0">---</option>
+                                    @foreach($warehouse as $wh)
+                                        <option value="{{$wh->idm_site}}">{{$wh->site_name}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td class="p-0">
+                                <input type="number" class="form-control form-control-sm " name="stockAwal" id="stockAwal" readonly>
+                            </td>
+                            <td class="p-0">
+                                <input type="number" class="form-control form-control-sm " name="stockAkhir" id="stockAkhir" placeholder="Stok Akhir" readonly>
+                            </td>
+                            <td class="p-0">
+                                <button class="btn border-0 elevation-0 btn-default " id="btnSubmit"><i class="fa-solid fa-check"></i></button>
+                            </td>
+                        </tbody>
+                        @endif
+                        <tbody id="tableListBarang"></tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
