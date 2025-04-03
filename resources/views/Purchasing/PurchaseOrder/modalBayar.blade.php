@@ -63,8 +63,9 @@
                     <label class="col-md-3 TRANSFER" style="display: none;">Nama Akun Bank</label>
                     <div class="col-md-3 TRANSFER" style="display: none;">
                         <select name="accountName" id="accountName" class="form-control form-control-sm">
+                            <option value="">....</option>
                             @foreach($accountBank as $accBank)
-                            <option value="{{$accBank->idm_payment}}">{{$accBank->idm_payment}}</option>
+                            <option value="{{$accBank->idm_payment}}">{{$accBank->bank_code}}-{{$accBank->bank_name}}</option>
                             @endforeach
                             <option value="0">Akun Lainnya</option>
                         </select>                        
