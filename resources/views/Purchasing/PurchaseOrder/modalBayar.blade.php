@@ -119,6 +119,7 @@
     $(document).ready(function(){
         $('#nominalKredit').mask('000.000.000', {reverse: true});
         $('#nominal').mask('000.000.000', {reverse: true});
+        $('#nominalPayed').mask('000.000.000', {reverse: true});
         $("#nominal").focus().select();
         $("#nominal").on('input', computBayar);
         
