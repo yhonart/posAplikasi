@@ -53,7 +53,7 @@ class TrxReumbersController extends Controller
 
         $dateNow = date('Y-m-d');
         $thisNumber = $this->reumbersNumber();
-
+        $company = Auth::user()->company;
         $mStaff = DB::table('m_sales')
             ->where('sales_status','1')
             ->get();
@@ -66,7 +66,10 @@ class TrxReumbersController extends Controller
 
         $akunTrs = DB::table('lap_kas_besar')
             ->select(DB::raw('SUM(debit) AS debit'))
-            ->where('trx_code','1')
+            ->where([
+                ['trx_code','1'],
+                ['comp_id',$company]
+                ])
             ->whereBetween('trx_date',[$startDate, $endDate])
             ->get();
 

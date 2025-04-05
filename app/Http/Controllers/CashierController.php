@@ -1706,6 +1706,7 @@ class CashierController extends Controller
     public function postPelunasan(Request $reqPostPelunasan)
     {
         $userCretor = Auth::user()->name;
+        $company = Auth::user()->company;
         $periode = $reqPostPelunasan->periode;
         $idPelanggan = $reqPostPelunasan->idPelanggan;
         $numbering = $reqPostPelunasan->numbering;
@@ -1770,6 +1771,7 @@ class CashierController extends Controller
                 'created_date'=>now(),
                 'trx_number'=>$nomorBukti,
                 'trx_code'=>'1',
+                'comp_id' => $company
             ]);
         
     }

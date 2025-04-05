@@ -265,7 +265,7 @@ class HomeController extends Controller
     {
         // get transaksi item per day
         $keterangan = '';
-
+        $company = Auth::user()->company;
         $penjualan = DB::table('view_trx_method');
         $penjualan = $penjualan->select(DB::raw('SUM(nominal) as paymentCus'),'date_trx','created_by'); 
         $penjualan = $penjualan->where('status_by_store','>=','3');
@@ -287,7 +287,8 @@ class HomeController extends Controller
                     'kredit'=>'0',
                     'saldo'=>$debit,
                     'created_date'=>now(),
-                    'trx_code'=>'1'
+                    'trx_code'=>'1',
+                    'comp_id' => $company
                 ]);
         }
     }
