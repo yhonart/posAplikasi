@@ -152,7 +152,7 @@
 </head>
 <body class="hold-transition layout-top-nav layout-fixed">
     <div class="wrapper">
-        <nav class="main-header navbar navbar-expand-md navbar-purple navbar-light">
+        <nav class="main-header navbar navbar-expand-md navbar-purple navbar-dark">
             <div class="container">
                 <a href="{{url('/')}}" class="navbar-brand">                    
                     <span class="brand-text font-weight-bold"><i class="fa-solid fa-store"></i> KASIR</span>
