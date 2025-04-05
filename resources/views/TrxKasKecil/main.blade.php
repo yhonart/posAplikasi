@@ -24,7 +24,6 @@
                 <button type="button" class="btn btn-danger CLIK-LAP font-weight-bold" data-display="addModalKas"><i class="fa-solid fa-plus"></i> Tambah Dana Kas</button>
             </div>
         </div>
-        <div id="displaySumDana"></div>
         <div id="displayLap"></div>
     </div>
 </div>
