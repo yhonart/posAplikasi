@@ -152,19 +152,11 @@
 </head>
 <body class="hold-transition layout-top-nav layout-fixed">
     <div class="wrapper">
-        <nav class="main-header navbar navbar-expand-md navbar-light navbar-dark bg-purple">
+        <nav class="main-header navbar navbar-expand-md navbar-purple navbar-light">
             <div class="container">
-                <a href="{{url('/')}}" class="navbar-brand">
-                    <!--<img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
+                <a href="{{url('/')}}" class="navbar-brand">                    
                     <span class="brand-text font-weight-bold"><i class="fa-solid fa-store"></i> KASIR</span>
-                </a>
-                
-                <!--<ul class="navbar-nav">-->
-                <!--    <li class="nav-item">-->
-                <!--        <a href="index3.html" class="nav-link"></a>-->
-                <!--    </li>-->
-                <!--</ul>-->
-                
+                </a>                
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#" role="button">
@@ -175,7 +167,7 @@
             </div>
         </nav>
         
-        <div class="content-wrapper">
+        <div class="content-wrapper bg-white">
             @yield('content')
         </div>
         
