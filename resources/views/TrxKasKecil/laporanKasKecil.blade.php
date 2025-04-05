@@ -102,6 +102,7 @@
                 type : 'get',
                 url : "{{route('kasKecil')}}/cetakKasKecil/0/" + fromDate + "/" + endDate,
                 success : function(response){
+                    var url = window.URL.createObjectURL(response);
                     window.URL.revokeObjectURL(url);
                 }
             });
