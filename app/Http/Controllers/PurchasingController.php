@@ -859,7 +859,9 @@ class PurchasingController extends Controller
                 ]);
         $updateBy = $idDataReport->created_by;
         $subTotal = (int)$idDataReport->sub_total - (int)$idDataReport->total_potongan;
-        $this->TempKeuanganController->kasBesarPembelian ($subTotal, $updateBy, $dataEdit);
+        if ($idDataReport->payment_methode == '1' OR $idDataReport->payment_methode == '2') {
+            $this->TempKeuanganController->kasBesarPembelian ($subTotal, $updateBy, $dataEdit);
+        }
     }
 
     public function btnDelete ($dataDelete){
@@ -1065,6 +1067,8 @@ class PurchasingController extends Controller
             ->update([
                 'payment_status'=>$status    
             ]);
+
+        $this->TempKeuanganController->kasBesarPembelian ($nominal, $createdBy, $purchaseNumber);
     }
 
     public function postSumberDana(Request $reqPostDana){
