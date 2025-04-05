@@ -11,11 +11,11 @@
         </div>
         <div class="col-md-3">
             <label for="dariTanggal" class="label">Dari Tanggal</label>
-            <input type="text" class="form-control datetimepicker-input" name="dariTanggal" id="dariTanggal">
+            <input type="text" class="form-control form-control-sm datetimepicker-input" name="dariTanggal" id="dariTanggal">
         </div>
         <div class="col-md-3">
             <label for="sampaiTanggal" class="label">Sampai Tanggal</label>
-            <input type="text" class="form-control datetimepicker-input roundedd-0" name="sampaiTanggal" id="sampaiTanggal">
+            <input type="text" class="form-control form-control-sm datetimepicker-input roundedd-0" name="sampaiTanggal" id="sampaiTanggal">
         </div>
         <div class="col-md-3" style="display: none;">
             <a href="#" class="btn btn-success btn-sm" id="downloadReport"><i class="fa-solid fa-file-excel"></i> Download Excel</a>

@@ -7,10 +7,8 @@ $saldoPembelian = 0;
 $sumPembelian = 0;
 $addSaldo = 0;
 ?>
-
-<hr>
 <div class="table-responsive">
-    <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-bordered" id="tableKasBesar">
+    <table class="table table-sm table-hover table-valign-mmiddle text-nowrap table-striped" id="tableKasBesar">
         <thead>
             <tr>
                 <th>Tanggal</th>
