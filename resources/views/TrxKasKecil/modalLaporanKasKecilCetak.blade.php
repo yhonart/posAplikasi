@@ -1,5 +1,5 @@
-<div class="card">
-    <div class="card-header border-0">
+<div class="card card-outline card-info">
+    <div class="card-header">
         <h3 class="card-title font-weight-bold">
             Tambah Dana Modal <small class="text-muted">Dana darurat ini di tambahkan apabila saldo modal tidak mencukupi lagi.</small>
         </h3>
