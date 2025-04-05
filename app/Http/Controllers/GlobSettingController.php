@@ -36,27 +36,33 @@ class GlobSettingController extends Controller
     public function postNewNominal(Request $reqPostNom){
         $userKasir = $reqPostNom->selectPersonil;
         $nominalKas = $reqPostNom->nominalKas;
+        $company = Auth::user()->company;
 
         if ($nominalKas <> '' OR $nominalKas <> '0') {
             DB::table('m_set_kas')
                 ->insert([
                     'personal_id'=>$userKasir,
                     'nominal'=>$nominalKas,
+                    'comp_id'=>$company
                 ]);
         }
     }
     
     public function tableSetKasKasir(){
+        $company = Auth::user()->company;
         $tbKasKasir = DB::table('m_set_kas as a')
             ->leftJoin('users as b','a.personal_id','=','b.id')
+            ->where('a.comp_id',$company)
             ->get();
             
         return view ('globalSetting/tableKasKasir', compact('tbKasKasir'));
     }
 
     public function editKasKasir($idKasir){
+        $company = Auth::user()->company;
         $kasirInfo = DB::table('m_set_kas as a')
             ->leftJoin('users as b','a.personal_id','=','b.id')
+            ->where('a.comp_id',$company)
             ->first();
 
         return view ('globalSetting/modalEditKas', compact('kasirInfo'));
