@@ -1,5 +1,5 @@
 <div class="form-group row">
-    <div class="col-md-3">
+    <div class="col-md-3" style="display: none;">
         <label for="namaKasir" class="label">Kasir</label>
         <select name="namaKasir" id="namaKasir" class="form-control form-control-sm">
             <option value="0">====</option>
