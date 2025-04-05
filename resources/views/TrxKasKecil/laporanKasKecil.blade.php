@@ -1,31 +1,23 @@
-<div class="row">
-    <div class="col-md-3" style="display: none;">
-        <div class="form-group">
-            <label for="namaKasir" class="label">Kasir</label>
-            <select name="namaKasir" id="namaKasir" class="form-control form-control-sm">
-                <option value="0">====</option>
-                @foreach($userKasir as $uk)
-                    <option value="{{$uk->id}}">{{$uk->name}}</option>
-                @endforeach
-            </select>
-        </div>
+<div class="form-group row">
+    <div class="col-md-3">
+        <label for="namaKasir" class="label">Kasir</label>
+        <select name="namaKasir" id="namaKasir" class="form-control form-control-sm">
+            <option value="0">====</option>
+            @foreach($userKasir as $uk)
+                <option value="{{$uk->id}}">{{$uk->name}}</option>
+            @endforeach
+        </select>
     </div>
     <div class="col-md-3">
-        <div class="form-group">
-            <label for="dariTanggal" class="label">Dari Tanggal</label>
-            <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" name="dariTanggal" id="dariTanggal">
-        </div>
+        <label for="dariTanggal" class="label">Dari Tanggal</label>
+        <input type="text" class="form-control form-control-sm datetimepicker-input rounded-0" name="dariTanggal" id="dariTanggal">
     </div>
     <div class="col-md-3">
-        <div class="form-group">
-            <label for="sampaiTanggal" class="label">Sampai Tanggal</label>
-            <input type="text" class="form-control datetimepicker-input rounded-0 form-control-sm" name="sampaiTanggal" id="sampaiTanggal">
-        </div>
+        <label for="sampaiTanggal" class="label">Sampai Tanggal</label>
+        <input type="text" class="form-control datetimepicker-input rounded-0 form-control-sm" name="sampaiTanggal" id="sampaiTanggal">
     </div>
     <div class="col-md-3">
-        <div class="form-group">
-            <a href="#" class="btn btn-success font-weight-bold btn-sm" id="downloadReport" style="position:absolute; left:0%; bottom:0%"><i class="fa-solid fa-file-excel"></i> Download Laporan</a>
-        </div>
+        <a href="#" class="btn btn-success font-weight-bold btn-sm" id="downloadReport" style="position:absolute; left:0%; bottom:0%"><i class="fa-solid fa-file-excel"></i> Download Laporan</a>
     </div>
 </div>
 <div class="row">
