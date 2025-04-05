@@ -15,7 +15,7 @@
     $lastWeekSaldo = $lastWeekSumModal - $lastWeekSumDebit;
     $todayIs = date("l");
 ?>
-<a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
+<a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-light btn-sm text-success border-0"><i class="fa-solid fa-file-excel"></i> Download Laporan</a>
 <hr>
 <div class="table-responsive">
     <table class="table table-sm table-hover table-valign-middle table-striped" id="tableKasKecil">
