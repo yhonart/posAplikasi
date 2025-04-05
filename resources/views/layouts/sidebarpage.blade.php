@@ -261,7 +261,7 @@
                 </nav>
             </div>
         </aside>
-        <div class="content-wrapper bg-light">            
+        <div class="content-wrapper bg-white">            
             <div class="row bg-light text-center p-2" id="displayNotif" style="display: none;">
                 <div class="col-md-12">
                     <div class="spinner-grow spinner-grow-sm text-warning" role="status">
