@@ -22,6 +22,11 @@
             <input type="text" class="form-control datetimepicker-input rounded-0 form-control-sm" name="sampaiTanggal" id="sampaiTanggal">
         </div>
     </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <a href="{{$fromDate}}/{{$endDate}}" class="btn btn-success font-weight-bold btn-flat" id="downloadReport"><i class="fa-solid fa-file-excel"></i> Download Laporan</a>
+        </div>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -95,6 +100,20 @@
                 }
             });
         }
+
+        $("#downloadReport").on('click', function(e){
+            e.preventDefault();
+            let fromDate = $("#dariTanggal").val(),
+                endDate = $("#sampaiTanggal").val();
+
+            $.ajax({
+                type : 'get',
+                url : "{{route('kasKecil')}}/cetakKasKecil/0/" + fromDate + "/" + endDate,
+                success : function(response){
+                    window.URL.revokeObjectURL(url);
+                }
+            });
+        })
 
     });
 </script>

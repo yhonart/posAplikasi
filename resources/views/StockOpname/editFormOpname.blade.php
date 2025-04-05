@@ -60,8 +60,8 @@
         });
         
         $('#btnClose').on('click', function (e) {
-            let loadDiv = "listInputBarang";
             e.preventDefault();
+            let loadDiv = "listInputBarang";
             loadDisplay(loadDiv);
         });
         
