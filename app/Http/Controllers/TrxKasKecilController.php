@@ -131,7 +131,7 @@ class TrxKasKecilController extends Controller
             ->where([
                 ['a.total_payment','!=','8'],
                 ['a.date_trx',$noww],
-                ['comp_id',$company]
+                ['a.comp_id',$company]
                 ])
             ->groupBy('b.created_by')
             ->get();
