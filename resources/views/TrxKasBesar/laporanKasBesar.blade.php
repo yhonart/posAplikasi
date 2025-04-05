@@ -1,35 +1,26 @@
-<div class="card card-body text-xs">
-    <div class="row">
-        <div class="col-md-12">
-            <p>* Range Tanggal Dalam 1 Minggu</p>
-        </div>
-    </div>
-    <div class="row">
+<div class="card card-body text-xs card-info card-outline">
+    <div class="form-group row">
         <div class="col-md-3" style="display: none;">
-            <div class="form-group">
-                <label for="namaKasir" class="label">Kasir</label>
-                <select name="namaKasir" id="namaKasir" class="form-control form-control-sm">
-                    <option value="0">====</option>
-                    @foreach($userKasir as $uk)
-                        <option value="{{$uk->name}}">{{$uk->name}}</option>
-                    @endforeach
-                </select>
-            </div>
+            <label for="namaKasir" class="label">Kasir</label>
+            <select name="namaKasir" id="namaKasir" class="form-control form-control-sm">
+                <option value="0">====</option>
+                @foreach($userKasir as $uk)
+                    <option value="{{$uk->name}}">{{$uk->name}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="col-md-3">
-            <div class="form-group">
-                <label for="dariTanggal" class="label">Dari Tanggal</label>
-                <input type="text" class="form-control datetimepicker-input" name="dariTanggal" id="dariTanggal">
-            </div>
+            <label for="dariTanggal" class="label">Dari Tanggal</label>
+            <input type="text" class="form-control datetimepicker-input" name="dariTanggal" id="dariTanggal">
         </div>
         <div class="col-md-3">
-            <div class="form-group">
-                <label for="sampaiTanggal" class="label">Sampai Tanggal</label>
-                <input type="text" class="form-control datetimepicker-input roundedd-0" name="sampaiTanggal" id="sampaiTanggal">
-            </div>
+            <label for="sampaiTanggal" class="label">Sampai Tanggal</label>
+            <input type="text" class="form-control datetimepicker-input roundedd-0" name="sampaiTanggal" id="sampaiTanggal">
+        </div>
+        <div class="col-md-3" style="display: none;">
+            <a href="#" class="btn btn-success btn-sm" id="downloadReport"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
         </div>
     </div>
-    
     <div class="row">
         <div class="col-md-12">
             <div id="tableFilter"></div>
@@ -102,6 +93,14 @@
                 }
             });
         }
+
+        $("#downloadReport").on('click', function(e){
+            e.preventDefault();
+            let fromDate = $("#dariTanggal").val(),
+                endDate = $("#sampaiTanggal").val();
+            
+            window.open("{{route('kasBesar')}}/tableLaporan/0/"+fromDate+"/"+endDate, "_blank");            
+        })
 
     });
 </script>
