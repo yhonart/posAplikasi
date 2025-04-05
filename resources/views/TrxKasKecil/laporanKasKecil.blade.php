@@ -24,7 +24,7 @@
     </div>
     <div class="col-md-3">
         <div class="form-group">
-            <a href="{{$fromDate}}/{{$endDate}}" class="btn btn-success font-weight-bold btn-flat" id="downloadReport"><i class="fa-solid fa-file-excel"></i> Download Laporan</a>
+            <a href="#" class="btn btn-success font-weight-bold btn-sm" id="downloadReport"><i class="fa-solid fa-file-excel"></i> Download Laporan</a>
         </div>
     </div>
 </div>
