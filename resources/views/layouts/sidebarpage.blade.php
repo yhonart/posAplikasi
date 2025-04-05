@@ -160,7 +160,7 @@
         <div class="preloader flex-column justify-content-center align-items-center">
             <img src="{{asset('public/images/loadPage.gif')}}" alt="AdminLTELogo" height="60" width="60">
           </div>
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light border-0">
+        <nav class="main-header navbar navbar-expand navbar-purple  navbar-light border-0">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -229,7 +229,7 @@
             </ul>
         </nav>
         
-        <aside class="main-sidebar sidebar-dark-purple elevation-1">
+        <aside class="main-sidebar sidebar-light-purple elevation-1">
             <!-- Brand Logo -->
             <a href="{{route('home')}}" class="brand-link"> 
             <img src="{{asset('public/images/favicon_dazira/favicon-32x32.png')}}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">     
