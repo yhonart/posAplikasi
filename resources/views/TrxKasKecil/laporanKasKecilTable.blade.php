@@ -106,11 +106,6 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success font-weight-bold btn-flat"><i class="fa-solid fa-file-excel"></i> Download Laporan</a>
-    </div>
-</div>
 <script>
      $(function(){        
         $("#tableKasKecil").DataTable({

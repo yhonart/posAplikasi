@@ -22,6 +22,11 @@
             <input type="text" class="form-control datetimepicker-input rounded-0 form-control-sm" name="sampaiTanggal" id="sampaiTanggal">
         </div>
     </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <a href="{{route('kasKecil')}}/cetakKasKecil/0/{{$fromDate}}/{{$endDate}}" class="btn btn-success font-weight-bold btn-flat"><i class="fa-solid fa-file-excel"></i> Download Laporan</a>
+        </div>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-12">
