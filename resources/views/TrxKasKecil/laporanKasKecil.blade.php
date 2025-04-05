@@ -97,15 +97,8 @@
             e.preventDefault();
             let fromDate = $("#dariTanggal").val(),
                 endDate = $("#sampaiTanggal").val();
-
-            $.ajax({
-                type : 'get',
-                url : "{{route('kasKecil')}}/cetakKasKecil/0/" + fromDate + "/" + endDate,
-                success : function(response){
-                    var url = window.URL.createObjectURL(response);
-                    window.URL.revokeObjectURL(url);
-                }
-            });
+            
+            window.open("{{route('kasKecil')}}/cetakKasKecil/0/"+fromDate+"/"+endDate, "_blank");            
         })
 
     });
