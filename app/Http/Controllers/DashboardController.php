@@ -369,7 +369,7 @@ class DashboardController extends Controller
             ->leftJoin('purchase_order as b','b.number_dok','=','a.purchase_number')
             ->whereBetween('a.update_kredit',[$day30Ago,$todayDate])
             ->where([                
-                ['a.comp_id',$company]
+                ['b.comp_id',$company]
             ])
             ->first();
             
