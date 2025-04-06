@@ -356,14 +356,11 @@ class DashboardController extends Controller
             ])
             ->first();
         
-        $sumHutang = DB::table('purchase_order')
-            ->select(DB::raw('SUM(sub_total) as totalTunai'))
+        $sumHutang = DB::table('pruchase_kredit as a')
+            ->select(DB::raw('SUM(selisih) as totalTunai'))
+            ->leftJoin('purchase_order b','b.purchase_order','=','a.number_dok')
             ->where([
-                ['payment_methode','!=','1'],
-                ['payment_methode','!=','2'],
-                ['payment_status','!=','4'],
-                ['status','3'],
-                ['comp_id',$company]
+                ['b.comp_id',$company]
             ])
             ->first();
             
