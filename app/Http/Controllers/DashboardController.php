@@ -359,7 +359,8 @@ class DashboardController extends Controller
         $sumHutang = DB::table('purchase_order')
             ->select(DB::raw('SUM(sub_total) as totalTunai'))
             ->where([
-                ['payment_methode','3'],
+                ['payment_methode','!=','1'],
+                ['payment_methode','!=','2'],
                 ['payment_status','!=','4'],
                 ['status','3'],
                 ['comp_id',$company]
