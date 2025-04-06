@@ -356,7 +356,7 @@ class DashboardController extends Controller
             ])
             ->first();
         
-        $sumHutang = DB::table('pruchase_kredit as a')
+        $sumHutang = DB::table('purchase_kredit as a')
             ->select(DB::raw('SUM(selisih) as totalTunai'))
             ->leftJoin('purchase_order b','b.purchase_order','=','a.number_dok')
             ->where([
