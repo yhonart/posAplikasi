@@ -377,7 +377,8 @@ class DashboardController extends Controller
         $doDate = DB::table('view_purchase_order')
             ->select(DB::raw('DATEDIFF(CURDATE(), purchase_date) AS jumlahHari'), 'sub_total','tempo')
             ->where([
-                ['payment_methode','3'],
+                ['payment_methode','!=','1'],
+                ['payment_methode','!=','2'],
                 ['payment_status','!=','4'],
                 ['comp_id',$company]
                 ])
