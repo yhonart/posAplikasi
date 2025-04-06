@@ -603,7 +603,8 @@ class PurchasingController extends Controller
             ->where('number_dok',$purchaseCode)
             ->update([
                 'kredit'=>$subTotal,
-                'selisih'=>$subTotal
+                'selisih'=>$subTotal,
+                'update_kredit'=>now()
             ]);
 
         $selectPurchase = DB::table('purchase_order')
@@ -1041,7 +1042,8 @@ class PurchasingController extends Controller
             ->update([
                 'payed'=>$nominalPayed,
                 'selisih'=>$selisih,
-                'last_payed'=>$nominal
+                'last_payed'=>$nominal,
+                'update_kredit'=>now()
             ]);
 
         DB::table('purchase_kredit_payment')

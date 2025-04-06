@@ -357,20 +357,19 @@ class DashboardController extends Controller
             ->first();
         
         $sumHutang = DB::table('purchase_kredit as a')
-            ->select(DB::raw('SUM(selisih) as totalTunai'))
+            ->select(DB::raw('SUM(a.selisih) as totalTunai'))
             ->leftJoin('purchase_order as b','b.purchase_number','=','a.number_dok')
             ->where([
                 ['b.comp_id',$company]
             ])
             ->first();
             
-        $sum30Ago = DB::table('purchase_order')
-            ->select(DB::raw('SUM(sub_total) as totalTunai'))
-            ->whereBetween('purchase_date',[$day30Ago,$todayDate])
-            ->where([
-                ['payment_methode','3'],
-                ['payment_status','4'],
-                ['comp_id',$company]
+        $sum30Ago = DB::table('purchase_kredit as a')
+            ->select(DB::raw('SUM(a.payed) as totalTunai'))
+            ->leftJoin('purchase_order as b','b.number_dok','=','a.purchase_number')
+            ->whereBetween('a.update_kredit',[$day30Ago,$todayDate])
+            ->where([                
+                ['a.comp_id',$company]
             ])
             ->first();
             
