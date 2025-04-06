@@ -366,7 +366,7 @@ class DashboardController extends Controller
             
         $sum30Ago = DB::table('purchase_kredit as a')
             ->select(DB::raw('SUM(a.payed) as totalTunai'))
-            ->leftJoin('purchase_order as b','b.number_dok','=','a.purchase_number')
+            ->leftJoin('purchase_order as b','b.purchase_number','=','a.number_dok')
             ->whereBetween('a.update_kredit',[$day30Ago,$todayDate])
             ->where([                
                 ['b.comp_id',$company]
