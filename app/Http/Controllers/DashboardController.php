@@ -358,7 +358,7 @@ class DashboardController extends Controller
         
         $sumHutang = DB::table('purchase_kredit as a')
             ->select(DB::raw('SUM(selisih) as totalTunai'))
-            ->leftJoin('purchase_order b','b.purchase_order','=','a.number_dok')
+            ->leftJoin('purchase_order as b','b.purchase_order','=','a.number_dok')
             ->where([
                 ['b.comp_id',$company]
             ])
