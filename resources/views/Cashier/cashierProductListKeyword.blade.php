@@ -2,7 +2,7 @@
     <tbody>
         @foreach($productList as $pL)
         <tr data-id="{{$pL->idinv_stock}}">
-            <td class="p-0" colspan="3" width="40%">
+            <td class="p-0" colspan="3" width="35%">
                 {{$pL->product_name}}
             </td>
             <td class="p-0">
