@@ -1,4 +1,4 @@
-<table id="myTable" class="table table-bordered text-nowrap">
+<table id="myTable" class="table table-striped">
     <thead>
         <tr>
             <th>Nama Barang</th>
@@ -10,7 +10,7 @@
     <tbody>
         @foreach($productList as $pL)
         <tr data-id="{{$pL->idinv_stock}}">
-            <td colspan="2" class="p-0">
+            <td class="p-0">
                 {{$pL->product_name}}
             </td>
             <td class="p-0">
