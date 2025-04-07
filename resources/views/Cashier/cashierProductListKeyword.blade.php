@@ -1,4 +1,4 @@
-<table id="myTable" class="table table-sm table-bordered">    
+<table id="myTable" class="table table-valign-middle">    
     <tbody>
         @foreach($productList as $pL)
         <tr data-id="{{$pL->idinv_stock}}">
