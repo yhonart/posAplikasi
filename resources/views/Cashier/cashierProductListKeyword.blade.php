@@ -5,7 +5,7 @@
             <td class="p-0" colspan="3" width="37%">
                 {{$pL->product_name}}
             </td>
-            <td class="p-0" width="30%">
+            <td class="p-0" width="20%">
                 {{$pL->product_satuan}}
             </td class="p-0">
             <td class="text-right p-0">
