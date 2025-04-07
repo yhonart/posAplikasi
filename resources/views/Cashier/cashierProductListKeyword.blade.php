@@ -1,4 +1,4 @@
-<div class="card card-body border border-1 border-info rounded-0 p-0">
+<div class="card card-body border border-1 border-info rounded-0 p-1">
     <table id="myTable" class="table table-sm">
         <thead>
             <tr>
