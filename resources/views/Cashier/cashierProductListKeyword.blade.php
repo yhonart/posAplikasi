@@ -20,10 +20,7 @@
             <td class="p-0">
             <input type="number" name="qt3" id="qt3" class="form-control form-control-sm" autocomplete="off" disabled>
             </td>
-            <td class="p-0 text-right">{{$pL->stock}}</td>
-            <td class="p-0">
-            <input type="number" name="qt4" id="qt4" class="form-control form-control-sm" autocomplete="off" disabled>
-            </td>
+            <td class="p-0 text-right" colspan="2">{{$pL->stock}}</td>            
         </tr>
         @endforeach
     </tbody>
