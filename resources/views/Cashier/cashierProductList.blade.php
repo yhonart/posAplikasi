@@ -1,59 +1,68 @@
 <!-- <p class="bg-danger p-1">Halaman ini sedang proses perbaikan 🙏</p> -->
-<table class="table table-sm table-valign-middle table-head-fixed table-hover table-bordered animate__animated animate__fadeIn" id="listTableItemTrx">
-    <thead>
-        <tr>
-            <th width="5%">No</th>
-            <th width="20%">Nama Barang [F3]</th>
-            <th>Qty</th>
-            <th>Satuan</th>
-            <th>Hrg.Satuan</th>
-            <th>Disc</th>
-            <th>Jumlah</th>
-            <th>Stock</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody id="trLoadProduct"></tbody>
-    <tbody id="trInputProdut">
-        <form id="formInputBarangKasir">            
-            <tr data-id="idForm">
-                <input type="hidden" name="transNumber" id="transNumber" value="{{$billNumber}}">
-                <input type="hidden" name="prodName" id="prodName" autocomplete="off" list="browsers">
-                <input type="hidden" name="prodNameHidden1" id="prodNameHidden1">
-                <input type="hidden" name="hargaModal" id="hargaModal">
-                <input type="hidden" name="hargaBeli" id="hargaBeli">
-                <input type="hidden" name="formStockAwal" id="formStockAwal">
-                <input type="hidden" name="stockID" id="stockID">
-                <input type="hidden" name="cusGroup" id="cusGroup">
-                <td colspan="2" class="p-0">
-                    <input type="text" class="form-control form-control-sm form-control-border border-width-2" name="fieldProduk" id="fieldProduk" placeholder="Scan Barcode Disini" autocomplete="off">
-                    <input type="text" class="form-control form-control-sm form-control-border" name="disProduk" id="disProduk" style="display: none;" readonly>
-                </td>
-                <td class="p-0">
-                    <input type="number" name="formQty" id="formQty" class="form-control form-control-sm form-control-border border-width-2" autocomplete="off">
-                </td>
-                <td class="p-0">
-                    <input type="text" id="formSatuan" class="form-control  form-control-sm form-control-border border-width-2" readonly>
-                </td>
-                <td class="p-0">
-                    <input type="text" name="formHargaSatuan" id="formHargaSatuan" class="form-control form-control-sm form-control-border border-width-2" readonly>
-                </td>
-                <td class="p-0">
-                    <input type="text" name="formDisc" id="formDisc" class="form-control form-control-sm form-control-border border-width-2" autocomplete="off" >
-                </td>
-                <td class="p-0">
-                    <input type="text" name="formJumlah" id="formJumlah" class="form-control form-control-sm form-control-border border-width-2" readonly>
-                </td>
-                <td class="p-0" colspan="2">
-                    <input type="hidden" name="formStockHidden" id="formStockHidden" class="form-control form-control-sm" readonly>
-                    <input type="text" name="formStock" id="formStock" class="form-control form-control-sm form-control-border border-width-2" readonly>
-                </td>
-            </tr>
-        </form>
-    </tbody>
-</table>
-<input type="hidden" name="removeAutofocus" id="removeAutofocus">
-<div id="tableSelectProduk"></div>
+<div class="row">
+    <div class="col-md-12">
+
+        <table class="table table-sm table-valign-middle table-head-fixed table-hover table-bordered animate__animated animate__fadeIn" id="listTableItemTrx">
+            <thead>
+                <tr>
+                    <th width="5%">No</th>
+                    <th width="20%">Nama Barang [F3]</th>
+                    <th>Qty</th>
+                    <th>Satuan</th>
+                    <th>Hrg.Satuan</th>
+                    <th>Disc</th>
+                    <th>Jumlah</th>
+                    <th>Stock</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="trLoadProduct"></tbody>
+            <tbody id="trInputProdut">
+                <form id="formInputBarangKasir">            
+                    <tr data-id="idForm">
+                        <input type="hidden" name="transNumber" id="transNumber" value="{{$billNumber}}">
+                        <input type="hidden" name="prodName" id="prodName" autocomplete="off" list="browsers">
+                        <input type="hidden" name="prodNameHidden1" id="prodNameHidden1">
+                        <input type="hidden" name="hargaModal" id="hargaModal">
+                        <input type="hidden" name="hargaBeli" id="hargaBeli">
+                        <input type="hidden" name="formStockAwal" id="formStockAwal">
+                        <input type="hidden" name="stockID" id="stockID">
+                        <input type="hidden" name="cusGroup" id="cusGroup">
+                        <td colspan="2" class="p-0">
+                            <input type="text" class="form-control form-control-sm form-control-border border-width-2" name="fieldProduk" id="fieldProduk" placeholder="Scan Barcode Disini" autocomplete="off">
+                            <input type="text" class="form-control form-control-sm form-control-border" name="disProduk" id="disProduk" style="display: none;" readonly>
+                        </td>
+                        <td class="p-0">
+                            <input type="number" name="formQty" id="formQty" class="form-control form-control-sm form-control-border border-width-2" autocomplete="off">
+                        </td>
+                        <td class="p-0">
+                            <input type="text" id="formSatuan" class="form-control  form-control-sm form-control-border border-width-2" readonly>
+                        </td>
+                        <td class="p-0">
+                            <input type="text" name="formHargaSatuan" id="formHargaSatuan" class="form-control form-control-sm form-control-border border-width-2" readonly>
+                        </td>
+                        <td class="p-0">
+                            <input type="text" name="formDisc" id="formDisc" class="form-control form-control-sm form-control-border border-width-2" autocomplete="off" >
+                        </td>
+                        <td class="p-0">
+                            <input type="text" name="formJumlah" id="formJumlah" class="form-control form-control-sm form-control-border border-width-2" readonly>
+                        </td>
+                        <td class="p-0" colspan="2">
+                            <input type="hidden" name="formStockHidden" id="formStockHidden" class="form-control form-control-sm" readonly>
+                            <input type="text" name="formStock" id="formStock" class="form-control form-control-sm form-control-border border-width-2" readonly>
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <input type="hidden" name="removeAutofocus" id="removeAutofocus">
+        <div id="tableSelectProduk"></div>
+    </div>
+</div>
 <script type="text/javascript">
      $(function () {   
         $("#fieldProduk").val(null).focus();

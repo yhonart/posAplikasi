@@ -1,4 +1,12 @@
 <table id="myTable" class="table table-bordered text-nowrap">
+    <thead>
+        <tr>
+            <th>Nama Barang</th>
+            <th>Satuan</th>
+            <th>Harga Satuan</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
     <tbody>
         @foreach($productList as $pL)
         <tr data-id="{{$pL->idinv_stock}}">
@@ -6,20 +14,11 @@
                 {{$pL->product_name}}
             </td>
             <td class="p-0">
-                <input type="number" name="qt1" id="qt1" class="form-control form-control-sm" autocomplete="off" disabled>
-            </td>
-            <td class="p-0">
                 {{$pL->product_satuan}}
             </td class="p-0">
             <td class="text-right p-0">
                 {{number_format($pL->price_sell,'0',',','.')}}
-            </td>
-            <td class="p-0">
-            <input type="number" name="qt2" id="qt2" class="form-control form-control-sm" autocomplete="off" disabled>
-            </td>
-            <td class="p-0">
-            <input type="number" name="qt3" id="qt3" class="form-control form-control-sm" autocomplete="off" disabled>
-            </td>
+            </td>            
             <td class="p-0 text-right" colspan="2">{{$pL->stock}}</td>            
         </tr>
         @endforeach
