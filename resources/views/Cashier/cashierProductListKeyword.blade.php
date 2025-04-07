@@ -1,29 +1,31 @@
-<table id="myTable" class="table table-sm">
-    <thead>
-        <tr>
-            <th>Nama Barang</th>
-            <th>Satuan</th>
-            <th>Harga Satuan</th>
-            <th>Stock</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($productList as $pL)
-        <tr data-id="{{$pL->idinv_stock}}">
-            <td class="p-0">
-                {{$pL->product_name}}
-            </td>
-            <td class="p-0">
-                {{$pL->product_satuan}}
-            </td class="p-0">
-            <td class="text-right p-0">
-                {{number_format($pL->price_sell,'0',',','.')}}
-            </td>            
-            <td class="p-0 text-right" colspan="2">{{$pL->stock}}</td>            
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+<div class="card card-body border border-1 border-info rounded-0 p-0">
+    <table id="myTable" class="table table-sm">
+        <thead>
+            <tr>
+                <th>Nama Barang</th>
+                <th>Satuan</th>
+                <th>Harga Satuan</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($productList as $pL)
+            <tr data-id="{{$pL->idinv_stock}}">
+                <td class="p-0">
+                    {{$pL->product_name}}
+                </td>
+                <td class="p-0">
+                    {{$pL->product_satuan}}
+                </td class="p-0">
+                <td class="text-right p-0">
+                    {{number_format($pL->price_sell,'0',',','.')}}
+                </td>            
+                <td class="p-0 text-right" colspan="2">{{$pL->stock}}</td>            
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 <script>
     $(document).ready(function() {
         const table = document.getElementById('myTable');
