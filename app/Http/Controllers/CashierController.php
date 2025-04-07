@@ -289,7 +289,10 @@ class CashierController extends Controller
             if (!empty($getBarcode)) { // Jika input data menggunakan barcode
                 $barcode = $getBarcode->set_barcode;
                 $productList = DB::table('view_product_stock');            
-                $productList = $productList->where('set_barcode', $keyword);
+                $productList = $productList->where([
+                    ['set_barcode', $keyword],
+                    ['comp_id',$company]
+                ]);
                 $productList = $productList->first();
 
                 $product = $productList->idm_data_product;
