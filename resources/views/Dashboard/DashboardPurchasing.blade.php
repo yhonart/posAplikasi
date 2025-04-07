@@ -59,10 +59,10 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-3"> 
         <div class="card card-success card-outline">
             <div class="card-header">
-                <h3 class="card-title">Pembayaran Tunai/Transfer</h3>
+                <h3 class="card-title">Tunai/Transfer {{date('M-Y')}}</h3>
             </div>
             <div class="card-body text-xs">
                 <div class="row">

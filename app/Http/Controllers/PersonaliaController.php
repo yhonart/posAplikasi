@@ -200,6 +200,7 @@ class PersonaliaController extends Controller
     }
     
     public function searchData ($keyword){
+        $company = Auth::user()->company;
         $authHakAkses = Auth::user()->hakakses;
         $users = DB::table('users as a');
         $users = $users->select('a.*','b.*','c.*','d.site_name');
@@ -209,6 +210,7 @@ class PersonaliaController extends Controller
             if ($keyword <> 0) {
                 $users = $users->where('name','LIKE','%'.$keyword.'%');
             }
+        $users = $users->where('company',$company);
         $users = $users->get();
 
         return view ('hris/masterData/personaliaList', compact('users','authHakAkses'));
