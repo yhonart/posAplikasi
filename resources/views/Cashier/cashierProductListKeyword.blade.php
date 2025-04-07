@@ -5,7 +5,9 @@
             <td colspan="2" class="p-0">
                 {{$pL->product_name}}
             </td>
-            <td class="p-0"></td class="p-0">
+            <td class="p-0">
+                <input type="number" name="qt" id="qt" class="form-control form-control-sm" autocomplete="off" disabled>
+            </td>
             <td class="p-0">
                 {{$pL->product_satuan}}
             </td class="p-0">
