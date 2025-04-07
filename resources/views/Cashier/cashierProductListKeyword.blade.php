@@ -6,7 +6,7 @@
                 {{$pL->product_name}}
             </td>
             <td class="p-0">
-                <input type="number" name="qt" id="qt" class="form-control form-control-sm" autocomplete="off" disabled>
+                <input type="number" name="qt1" id="qt1" class="form-control form-control-sm" autocomplete="off" disabled>
             </td>
             <td class="p-0">
                 {{$pL->product_satuan}}
@@ -14,10 +14,16 @@
             <td class="text-right p-0">
                 {{number_format($pL->price_sell,'0',',','.')}}
             </td>
-            <td class="p-0"></td>
-            <td class="p-0"></td>
+            <td class="p-0">
+            <input type="number" name="qt2" id="qt2" class="form-control form-control-sm" autocomplete="off" disabled>
+            </td>
+            <td class="p-0">
+            <input type="number" name="qt3" id="qt3" class="form-control form-control-sm" autocomplete="off" disabled>
+            </td>
             <td class="p-0 text-right">{{$pL->stock}}</td>
-            <td class="p-0"></td>
+            <td class="p-0">
+            <input type="number" name="qt4" id="qt4" class="form-control form-control-sm" autocomplete="off" disabled>
+            </td>
         </tr>
         @endforeach
     </tbody>
