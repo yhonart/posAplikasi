@@ -210,7 +210,9 @@ class PersonaliaController extends Controller
             if ($keyword <> 0) {
                 $users = $users->where('name','LIKE','%'.$keyword.'%');
             }
-        $users = $users->where('company',$company);
+        if ($authHakAkses <> '3') {
+            $users = $users->where('company',$company);
+        }
         $users = $users->get();
 
         return view ('hris/masterData/personaliaList', compact('users','authHakAkses'));
