@@ -28,7 +28,10 @@ class LapLabaRugiController extends Controller
                         ['product_code',$prdID]
                 ]);            
             }
-            $mProduct = $mProduct->where('status','4');
+            $mProduct = $mProduct->where([
+                ['status','4'],
+                ['comp_id',$company]
+            ]);
             if ($fromDate <> '0' OR $endDate <> '0'){
                 $mProduct = $mProduct->whereBetween('date',[$fromDate, $endDate]);
             }
@@ -45,7 +48,10 @@ class LapLabaRugiController extends Controller
                         ['product_code',$prdID]
                 ]);            
             }
-            $detailItem = $detailItem->where('status','4');
+            $detailItem = $detailItem->where([
+                ['status','4'],
+                ['comp_id',$company]
+            ]);
             if ($fromDate <> '0' OR $endDate <> '0'){
                 $detailItem = $detailItem->whereBetween('date',[$fromDate, $endDate]);
             }
