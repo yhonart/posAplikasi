@@ -1,4 +1,4 @@
-<table id="myTable" class="table table-striped">
+<table id="myTable" class="table table-sm">
     <thead>
         <tr>
             <th>Nama Barang</th>
