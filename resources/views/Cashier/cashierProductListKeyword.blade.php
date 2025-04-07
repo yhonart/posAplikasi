@@ -1,4 +1,4 @@
-<table id="myTable" class="table table-bordered">
+<table id="myTable" class="table table-bordered text-nowrap">
     <tbody>
         @foreach($productList as $pL)
         <tr data-id="{{$pL->idinv_stock}}">
