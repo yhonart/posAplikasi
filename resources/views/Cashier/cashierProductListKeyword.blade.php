@@ -1,12 +1,4 @@
-<table id="myTable" class="table table-sm">
-    <thead>
-        <tr>
-            <th>Nama Barang</th>
-            <th>Satuan</th>
-            <th>Harga Satuan</th>
-            <th>Stock</th>
-        </tr>
-    </thead>
+<table id="myTable" class="table table-sm">    
     <tbody>
         @foreach($productList as $pL)
         <tr data-id="{{$pL->idinv_stock}}">
