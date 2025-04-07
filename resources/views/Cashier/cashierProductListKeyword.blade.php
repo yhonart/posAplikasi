@@ -5,10 +5,10 @@
             <td class="p-0" colspan="3" width="37%">
                 {{$pL->product_name}}
             </td>
-            <td class="p-0" width="10%">
+            <td class="p-0" width="12%">
                 {{$pL->product_satuan}}
-            </td class="p-0">
-            <td class="text-right p-0">
+            </td>
+            <td class="text-right p-0" width="12%">
                 {{number_format($pL->price_sell,'0',',','.')}}
             </td>            
             <td class="p-0 text-right" colspan="2">{{$pL->stock}}</td>            
