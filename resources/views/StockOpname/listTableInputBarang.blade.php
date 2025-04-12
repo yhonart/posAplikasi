@@ -8,10 +8,10 @@
     <td>{{$lBarang->product_name}}</td>
     <td>{{$lBarang->product_satuan}}</td>
     <td>
-        {{$lBarang->site_name}}
+        {{$lBarang->input_qty}}
     </td>
     <td>
-        {{$lBarang->input_qty}}
+        {{$lBarang->site_name}}
     </td>
     <td>{{$lBarang->last_stock}}</td>
     <td>

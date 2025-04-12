@@ -55,8 +55,11 @@
                                     </td>
                                     <td class="p-0">
                                         <select class="form-control form-control-sm form-control-border rounded-0" name="satuan" id="satuan">
-                                            <option value="0" readonly>-- Satuan --</option>
+                                            <option value="0" readonly></option>
                                         </select>
+                                    </td>
+                                    <td class="p-0">
+                                        <input type="text" name="qty" id="qty" class="form-control form-control-sm form-control-border rounded-0">
                                     </td>
                                     <td class="p-0">
                                         <select name="lokasi" id="lokasi" class="form-control form-control-sm form-control-border rounded-0">
@@ -64,10 +67,7 @@
                                                 <option value="{{$l->idm_site}}">{{$l->site_name}}</option>
                                             @endforeach
                                         </select>
-                                    </td>
-                                    <td class="p-0">
-                                        <input type="text" name="qty" id="qty" class="form-control form-control-sm form-control-border rounded-0">
-                                    </td>
+                                    </td>                                    
                                     <td class="p-0">
                                         <input type="text" name="lastStock" id="lastStock" class="form-control form-control-sm form-control-border rounded-0" readonly>
                                     </td>
