@@ -75,7 +75,7 @@
                                         <input type="text" name="total" id="total" class="form-control form-control-sm form-control-border rounded-0" readonly>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-success  btn-sm elevation-1" id="submitItem"><i class="fa-solid fa-check"></i></button>
+                                        <button type="button" class="btn btn-success btn-sm elevation-1 btn-flat btn-block" id="submitItem"><i class="fa-solid fa-check"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -155,6 +155,7 @@
                 })
             }
         });  
+        
         lokasi.addEventListener("change", function(){
             $(".LOAD-SPINNER").fadeIn();
             let satuanVal = $("#satuan").val(),

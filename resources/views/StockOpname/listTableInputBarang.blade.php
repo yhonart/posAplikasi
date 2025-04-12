@@ -14,14 +14,13 @@
         {{$lBarang->site_name}}
     </td>
     <td>
-        <input type="hidden" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputLastStock" id="inputLastStock">
-        {{$lBarang->last_stock}}
+        <input type="text" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputLastStock" id="inputLastStock" readonly>        
     </td>
     <td>
         <input type="number" class="form-control form-control-border form-control-sm" value="{{$lBarang->selisih}}" name="inputSelisih" id="inputSelisih" readonly>        
     </td>
     <td>
-        <button type="button" class="btn btn-danger btn-sm elevation-1  btn-delete" data-id="{{$lBarang->idm_data_product}}"><i class="fa-solid fa-xmark"></i></button>
+        <button type="button" class="btn btn-danger btn-sm elevation-1 btn-delete btn-flat btn-block" data-id="{{$lBarang->idm_data_product}}"><i class="fa-solid fa-xmark"></i></button>
     </td>
 </tr>
 @endforeach
