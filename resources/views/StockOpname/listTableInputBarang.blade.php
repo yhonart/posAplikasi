@@ -8,14 +8,17 @@
     <td>{{$lBarang->product_name}}</td>
     <td>{{$lBarang->product_satuan}}</td>
     <td>
-        {{$lBarang->input_qty}}
+        <input type="number" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputQty" id="inputQty">        
     </td>
     <td>
         {{$lBarang->site_name}}
     </td>
-    <td>{{$lBarang->last_stock}}</td>
     <td>
-        {{$lBarang->selisih}}
+        <input type="hindden" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputLastStock" id="inputLastStock">
+        {{$lBarang->last_stock}}
+    </td>
+    <td>
+        <input type="number" class="form-control form-control-border form-control-sm" value="{{$lBarang->selisih}}" name="inputSelisih" id="inputSelisih" readonly>        
     </td>
     <td>
         <button type="button" class="btn btn-danger btn-sm elevation-1  btn-delete" data-id="{{$lBarang->idm_data_product}}"><i class="fa-solid fa-xmark"></i></button>

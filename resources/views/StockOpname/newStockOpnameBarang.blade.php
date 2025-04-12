@@ -59,7 +59,7 @@
                                         </select>
                                     </td>
                                     <td class="p-0">
-                                        <input type="text" name="qty" id="qty" class="form-control form-control-sm form-control-border rounded-0">
+                                        <input type="text" name="qty" id="qty" class="form-control form-control-sm form-control-border rounded-0" autocomplete="off">
                                     </td>
                                     <td class="p-0">
                                         <select name="lokasi" id="lokasi" class="form-control form-control-sm form-control-border rounded-0">
