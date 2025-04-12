@@ -107,10 +107,8 @@ class StockListController extends Controller
             ->get();
 
         $nextID = DB::table('m_product')
-            ->select('idm_data_product')
             ->where('comp_id',$company)
-            ->orderBy('idm_data_product','DESC')
-            ->first();
+            ->count();
 
         $nextIdSatuan = DB::table('m_product_unit')
             ->select('idm_product_satuan')

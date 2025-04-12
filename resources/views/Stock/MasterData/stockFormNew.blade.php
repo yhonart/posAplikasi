@@ -1,9 +1,9 @@
 <?php
-    if (empty($nextID)) {
+    if ($nextID == 0) {
         $nextIdVal = '1';
     }
     else {
-        $nextIdVal = $nextID->idm_data_product + 1;
+        $nextIdVal = $nextID + 1;
     }
 
     if (empty($nextIdSatuan)) {
