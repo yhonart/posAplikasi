@@ -14,7 +14,7 @@
         {{$lBarang->site_name}}
     </td>
     <td>
-        <input type="hindden" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputLastStock" id="inputLastStock">
+        <input type="hidden" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputLastStock" id="inputLastStock">
         {{$lBarang->last_stock}}
     </td>
     <td>
