@@ -569,6 +569,30 @@ class StockopnameController extends Controller
       
         return view('StockOpname/listTableInputBarang', compact('listBarang'));
    }
+
+   public function liveEditTable (Request $reqEditId){
+    $colID = $reqEditId->idChange;
+    $dataID = $reqEditId->id;
+    $valData = $reqEditId->editval;
+
+    //get data 
+    $getItem = DB::table('inv_list_opname')
+        ->where($colID,'=',$dataID)
+        ->first();
+
+    $lastInput = $getItem->input_qty;
+    $lastStock = $getItem->last_stock;
+    $selisih = $getItem->selisih;
+
+    $newSelisih = $lastStock - $valData;
+
+    DB::table('inv_list_opname')
+        ->where($colID,'=',$dataID)
+        ->update([
+            'input_qty' => $valData,
+            'selisih' => $newSelisih
+        ]);
+   }
    
    public function modalEditBarang($idlist){
        $listBarang = DB::table('inv_list_opname')

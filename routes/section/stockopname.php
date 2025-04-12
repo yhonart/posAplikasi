@@ -21,6 +21,7 @@ Route::post('stockOpname/listInputBarang/submitOpnameReport', [App\Http\Controll
 Route::post('stockOpname/listInputBarang/modalEditBarang/{idlist}', [App\Http\Controllers\StockopnameController::class, 'modalEditBarang']);
 Route::get('stockOpname/listInputBarang/deleteBarang/{idlist}', [App\Http\Controllers\StockopnameController::class, 'deleteBarang']);
 Route::get('stockOpname/listInputBarang/editDocumentOpname/{idParam}', [App\Http\Controllers\StockopnameController::class, 'editDocumentOpname']);
+Route::post('stockOpname/listInputBarang/liveEditTable', [App\Http\Controllers\StockopnameController::class, 'liveEditTable']);
 
 Route::post('stockOpname/saveToEditTable', [App\Http\Controllers\StockopnameController::class, 'saveToEditTable']);
 

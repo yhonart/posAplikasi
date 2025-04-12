@@ -8,16 +8,16 @@
     <td>{{$lBarang->product_name}}</td>
     <td>{{$lBarang->product_satuan}}</td>
     <td>
-        <input type="number" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputQty" id="inputQty">        
+        <input type="number" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputQty" id="inputQty" onchange="saveToDatabase(this,'{{$ldb->id_list}}','id_list')">        
     </td>
     <td>
         {{$lBarang->site_name}}
     </td>
     <td>
-        <input type="text" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputLastStock" id="inputLastStock" readonly>        
+        <input type="text" class="form-control form-control-border form-control-sm text-center" value="{{$lBarang->input_qty}}" name="inputLastStock" id="inputLastStock" readonly>        
     </td>
     <td>
-        <input type="number" class="form-control form-control-border form-control-sm" value="{{$lBarang->selisih}}" name="inputSelisih" id="inputSelisih" readonly>        
+        <input type="number" class="form-control form-control-border form-control-sm text-center" value="{{$lBarang->selisih}}" name="inputSelisih" id="inputSelisih" readonly>        
     </td>
     <td>
         <button type="button" class="btn btn-danger btn-sm elevation-1 btn-delete btn-flat btn-block" data-id="{{$lBarang->idm_data_product}}"><i class="fa-solid fa-xmark"></i></button>
@@ -34,6 +34,7 @@
         $(editableObj).focus().select();
     }
     var loadDiv = "listInputBarang";
+    
     function saveToDatabase(editableObj,tablename,column,id,ideqm,idprd) {
         $(editableObj).css("background","#FFF url({{asset('public/images/loadericon.gif')}}) no-repeat right");
         $.ajax({
@@ -60,6 +61,20 @@
             }
         });
     });
+
+    function saveToDatabase(editableObj,id,idChange) {
+        $("#notifLoading").fadeIn("slow");
+        $.ajax({
+            url: "{{route('stockOpname')}}/listInputBarang/liveEditTable",
+            type: "POST",
+            data:'&editval='+editableObj.value+'&id='+id+'&idChange='+idChange,            
+            success: function(data){
+                alertify.success('Data Berhasil Terupdate');
+                $("#notifLoading").fadeOut("slow");
+                loadDisplay(loadDiv)
+            }
+        });
+    }
     
     function loadDisplay(loadDiv){
         $.ajax({
@@ -70,4 +85,6 @@
             }
         });
     } 
+
+    
 </script>
