@@ -13,18 +13,19 @@
         0=>"text-danger",
     );
     $bgColor = array(
-        1=>"bg-warning",
-        2=>"bg-primary",
-        3=>"bg-success",
-        0=>"bg-danger",
+        1=>"badge-warning",
+        2=>"badge-primary",
+        3=>"badge-success",
+        0=>"badge-danger",
     );
 ?>
-<table class="table table-valign-middle table-hover table-striped " id="listDocOpname">
+<table class="table table-sm table-valign-middle table-hover " id="listDocOpname">
     <thead>
         <tr>
             <th>No. Dokumen</th>
             <th>Tanggal</th>
             <th>User Input</th>
+            <th>Keterangan</th>
             <th>Status</th>
             <th></th>
         </tr>
@@ -35,8 +36,9 @@
                 <td>{{$summary->number_so}}</td>
                 <td>{{date("d-M-y",strtotime($summary->date_so))}}</td>
                 <td>{{$summary->created_by}}</td>
-                <td>                    
-                    <span class="{{$bgColor[$summary->status]}} pl-2 pr-2 pt-1 pb-1 rounded-pill font-weight-bold text-xs">{{$araystatus[$summary->status]}}</span>
+                <td>{{$summary->description}}</td>
+                <td>          
+                    <small class="badge {{$bgColor[$summary->status]}}">{{$araystatus[$summary->status]}}</small> 
                 </td>
                 <td class="text-right">
                     @if($approval >= '1' AND $summary->status == '2' AND $summary->t_input_stock<>'')
