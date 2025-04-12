@@ -19,7 +19,8 @@
             <div class="form-group row">
                 <label for="PrdNextID" class="form-label col-md-3">ID Data</label>
                 <div class="col-md-6">
-                    <input type="text" name="PrdNextID" id="PrdNextID" style="text-transform: uppercase" class="form-control form-control-sm font-weight-bold" value="{{$next_id}}" readonly>
+                    <input type="hidden" name="PrdNextID" id="PrdNextID" style="text-transform: uppercase" class="form-control form-control-sm font-weight-bold" value="{{$next_id}}" readonly>
+                    <input type="text" name="PrdNextID" id="PrdNextID" style="text-transform: uppercase" class="form-control form-control-sm font-weight-bold" value="{{$nextIdVal}}" readonly>
                 </div>
             </div>
             <div class="form-group row">

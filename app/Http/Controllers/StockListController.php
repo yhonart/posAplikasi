@@ -91,7 +91,8 @@ class StockListController extends Controller
 
     public function AddProduct(){
         $productCode = $this->getProductCode();
-        
+        $company = Auth::user()->company;
+
         $catProduct = DB::table('m_asset_category')
             ->where('category_status',1)
             ->get();
@@ -107,6 +108,7 @@ class StockListController extends Controller
 
         $nextID = DB::table('m_product')
             ->select('idm_data_product')
+            ->where('comp_id',$company)
             ->orderBy('idm_data_product','DESC')
             ->first();
 
@@ -120,7 +122,8 @@ class StockListController extends Controller
             ->get();
             
         $id=DB::select("SHOW TABLE STATUS LIKE 'm_product'");
-            $next_id=$id[0]->Auto_increment;
+            
+        $next_id=$id[0]->Auto_increment;
 
         return view ('Stock/MasterData/stockFormNew', compact('catProduct', 'unit','manufacture','product','nextID','nextIdSatuan','listGroup','productCode','next_id'));
     }
