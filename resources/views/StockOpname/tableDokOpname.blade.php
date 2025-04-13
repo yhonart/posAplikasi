@@ -26,7 +26,7 @@
             <th>Tanggal</th>
             <th>User Input</th>
             <th>Keterangan</th>
-            <th>Status</th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
