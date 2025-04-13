@@ -5,8 +5,8 @@
             <button class="btn btn-default btn-sm font-weight-bold border-0" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <i class="fa-solid fa-file-pen"></i> Dokumen Mutasi
             </button>
-            <button type="submit" class="btn btn-success font-weight-bold btn-sm ml-2 border-0" id="submitDataMutasi" data-number="{{$numberAct}}"><i class="fa-solid fa-circle-check"></i> Simpan Transaksi</button>    
             <input type="hidden" class="form-control form-control-sm text-right" name="sumTotalMutasi" id="sumTotalMutasi" value="{{$sumMutasi->totalMoving}}">
+            <button type="submit" class="btn btn-success font-weight-bold btn-sm ml-2 border-0" id="submitDataMutasi" data-number="{{$numberAct}}"><i class="fa-solid fa-circle-check"></i> Simpan Transaksi</button>    
         </div>
     </div>
 </div>
