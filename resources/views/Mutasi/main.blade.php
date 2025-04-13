@@ -22,8 +22,8 @@
     <div class="container-fluid"> 
         <div class="row mt-2 mb-2">
             <div class="col-12">
-                <button type="button" class="btn btn-outline-primary font-weight-bold BTN-CLICK" data-display="tableDataMutasi">List Dokumen Mutasi</button>
-                <button type="button" class="btn btn-primary font-weight-bold BTN-CLICK" data-display="formEntryMutasi">Entri Mutasi</button>
+                <button type="button" class="btn btn-outline-primary font-weight-bold BTN-CLICK" data-display="tableDataMutasi"> List Dokumen Mutasi</button>
+                <button type="button" class="btn btn-primary font-weight-bold BTN-CLICK" data-display="formEntryMutasi"> Tambah Transaksi</button>
             </div>
         </div>
         <div class="row">
