@@ -7,6 +7,13 @@
         3=>"Disetujui",
         4=>"Diterima"
     );
+    $bgColor = array(
+        0=>"bg-danger",
+        1=>"bg-info",
+        2=>"bg-primary",
+        3=>"bg-warning",
+        4=>"bg-success"
+    );
 ?>
 <table class="table table-sm table-valign-middle table-hover " id="tableDokMutasi">
     <thead>
@@ -43,7 +50,7 @@
                 </td>
                 <td>{{$tm->created_by}}</td>
                 <td class="text-right">
-                    <span class="bg-success pl-2 pr-2 pt-1 pb-1 rounded-pill text-xs">{{$statusDokumen[$tm->status]}}</span>
+                    <span class="{{$bgColor[$tm->status]}} pl-2 pr-2 pt-1 pb-1 rounded-pill text-xs">{{$statusDokumen[$tm->status]}}</span>
                 </td>
                 <td class="text-right">
                     @if($tm->status <> '0')
