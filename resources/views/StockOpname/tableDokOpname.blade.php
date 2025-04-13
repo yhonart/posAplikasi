@@ -26,7 +26,7 @@
             <th>Tanggal</th>
             <th>User Input</th>
             <th>Keterangan</th>
-            <th></th>
+            <th>Status</th>
             <th></th>
         </tr>
     </thead>
@@ -37,7 +37,10 @@
                 <td>{{date("d-M-y",strtotime($summary->date_so))}}</td>
                 <td>{{$summary->created_by}}</td>
                 <td>{{$summary->description}}</td>
-                <td class="text-right">
+                <td class="text-right">   
+                    <span class="{{$bgColor[$summary->status]}} pl-2 pr-2 pt-1 pb-1 rounded-pill text-xs">{{$araystatus[$summary->status]}}</span>                    
+                </td>
+                <td>
                     @if($approval >= '1' AND $summary->status == '2' AND $summary->t_input_stock<>'')
                         <button type="button" class="btn btn-sm btn-success btnApprove elevation-1 " title="Approve" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-check"></i></button>
                     @endif    
@@ -52,9 +55,6 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     @endif
-                </td>
-                <td>   
-                    <span class="{{$bgColor[$summary->status]}} pl-2 pr-2 pt-1 pb-1 rounded-pill text-xs">{{$araystatus[$summary->status]}}</span>                    
                 </td>
             </tr>
         @endforeach
