@@ -56,9 +56,9 @@
             type: "POST",
             data:'&editval='+editableObj.value+'&id='+id+'&idChange='+idChange,            
             success: function(data){
-                alertify.success('Data Berhasil Terupdate');
                 $("#notifLoading").fadeOut("slow");
-                alertify.success('Data Berhasil Dirubah');
+                alertify.success('Data Berhasil Terupdate');
+                loadListData();
             }
         });
     }
