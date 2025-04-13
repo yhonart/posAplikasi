@@ -5,7 +5,7 @@
         1=>"Sedang Proses",
         2=>"Submited",
         3=>"Disetujui",
-        4=>"Barang Di Terima"
+        4=>"Diterima"
     );
 ?>
 <table class="table table-sm table-valign-middle table-hover " id="tableDokMutasi">
@@ -43,7 +43,7 @@
                 </td>
                 <td>{{$tm->created_by}}</td>
                 <td class="text-right">
-                    <span class="bg-success pl-1 pr-1 pt-1 pb-1 rounded-pill text-xs">{{$statusDokumen[$tm->status]}}</span>
+                    <span class="bg-success pl-2 pr-2 pt-1 pb-1 rounded-pill text-xs">{{$statusDokumen[$tm->status]}}</span>
                 </td>
                 <td class="text-right">
                     @if($tm->status <> '0')
