@@ -8,10 +8,11 @@
     <td>{{$lBarang->product_name}}</td>
     <td>{{$lBarang->product_satuan}}</td>
     <td>
+        <input type="hidden" name="opnameNumber" id="opnameNumber" value="{{$lBarang->sto_number}}">
         <input type="number" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputQty" id="inputQty" onchange="saveToDatabase(this,'{{$lBarang->id_list}}','id_list')">        
     </td>
     <td>
-        {{$lBarang->site_name}} KK
+        {{$lBarang->site_name}}
     </td>
     <td>
         <input type="text" class="form-control form-control-border form-control-sm text-center" value="{{$lBarang->input_qty}}" name="inputLastStock" id="inputLastStock" readonly>        
@@ -35,20 +36,6 @@
     }
     var loadDiv = "listInputBarang";
     
-    function saveToDatabase(editableObj,tablename,column,id,ideqm,idprd) {
-        $(editableObj).css("background","#FFF url({{asset('public/images/loadericon.gif')}}) no-repeat right");
-        $.ajax({
-            url: "{{route('stockOpname')}}/saveToEditTable",
-            type: "POST",
-            data:'tableName='+tablename+'&column='+column+'&editVal='+editableObj.value+'&id='+id+'&tableId='+ideqm+'&prdId='+idprd,
-            success: function(data){
-                $(editableObj).css("background","#FDFDFD");
-                alertify.success('Data Berhasil Dirubah');
-                loadDisplay(loadDiv);
-            }
-        });
-    }
-    
     $('.btn-delete').on('click', function () {
         var element = $(this);
         var  idparam = element.attr("data-id");
@@ -71,7 +58,19 @@
             success: function(data){
                 alertify.success('Data Berhasil Terupdate');
                 $("#notifLoading").fadeOut("slow");
-                loadDisplay(loadDiv)
+                alertify.success('Data Berhasil Dirubah');
+            }
+        });
+    }
+
+    function loadListData(){
+        let noOpname = $("#opnameNumber").val(),
+            codeDisplay = '1';
+        $.ajax({
+            type : 'get',
+            url : "{{route('stockOpname')}}/listInputBarang/listBarang/"+noOpname+"/"+codeDisplay,
+            success : function(response){
+                $('#listOpnamePrd').html(response);
             }
         });
     }
