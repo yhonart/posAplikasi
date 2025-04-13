@@ -585,7 +585,7 @@ class StockopnameController extends Controller
     $selisih = $getItem->selisih;
     $product = $getItem->product_id;
     $satuan = $getItem->product_size;
-    $newSelisih = $lastStock - $valData;
+    $newSelisih = $valData - $lastStock;
 
     // Hitung saldo konversi
     $mUnit = DB::table('m_product_unit')
