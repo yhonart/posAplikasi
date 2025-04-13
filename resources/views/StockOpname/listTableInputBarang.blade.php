@@ -8,7 +8,7 @@
     <td>{{$lBarang->product_name}}</td>
     <td>{{$lBarang->product_satuan}}</td>
     <td>
-        <input type="number" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputQty" id="inputQty" onchange="saveToDatabase(this,'{{$ldb->id_list}}','id_list')">        
+        <input type="number" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputQty" id="inputQty" onchange="saveToDatabase(this,'{{$lBarang->id_list}}','id_list')">        
     </td>
     <td>
         {{$lBarang->site_name}}
