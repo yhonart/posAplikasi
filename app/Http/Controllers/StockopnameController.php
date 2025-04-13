@@ -583,14 +583,56 @@ class StockopnameController extends Controller
     $lastInput = $getItem->input_qty;
     $lastStock = $getItem->last_stock;
     $selisih = $getItem->selisih;
-
+    $product = $getItem->product_id;
+    $satuan = $getItem->product_size;
     $newSelisih = $lastStock - $valData;
 
+    // Hitung saldo konversi
+    $mUnit = DB::table('m_product_unit')
+        ->select('size_code','product_volume','product_satuan')
+        ->where('core_id_product',$product)
+        ->orderBy('size_code','desc')
+        ->first();
+    $sizeCodeDesc = $mUnit->size_code;
+
+    $mProduct = DB::table('m_product')                
+        ->where('idm_data_product',$product)
+        ->first();
+    $volB = $mProduct->large_unit_val;
+    $volK = $mProduct->medium_unit_val;
+    $volKonv = $mProduct->small_unit_val;
+
+    if ($sizeCodeDesc == '1') {
+        $inputSaldo = $valData;
+    }
+    elseif ($sizeCodeDesc == '2') {
+        if ($satuan == "BESAR") {
+            $i = $valData * $volB;
+            $inputSaldo = (int)$i;
+        }
+        elseif ($satuan == "KECIL") {
+            $inputSaldo = $valData;
+        }
+    }
+    elseif ($sizeCodeDesc == '3') {
+        if ($satuan == "BESAR") {
+            $i = $valData * $volKonv;
+            $inputSaldo = (int)$i;
+        }
+        elseif ($satuan == "KECIL") {
+            $i = $valData * $volK;
+            $inputSaldo = (int)$i;
+        }
+        elseif ($satuan == "KONV") {
+            $inputSaldo = $valData;
+        }
+    }
     DB::table('inv_list_opname')
         ->where($colID,'=',$dataID)
         ->update([
             'input_qty' => $valData,
-            'selisih' => $newSelisih
+            'selisih' => $newSelisih,
+            'saldo_konv' => $inputSaldo
         ]);
    }
    
