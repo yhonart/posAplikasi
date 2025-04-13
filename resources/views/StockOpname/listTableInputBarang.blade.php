@@ -11,7 +11,7 @@
         <input type="number" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputQty" id="inputQty" onchange="saveToDatabase(this,'{{$lBarang->id_list}}','id_list')">        
     </td>
     <td>
-        {{$lBarang->site_name}}
+        {{$lBarang->site_name}} KK
     </td>
     <td>
         <input type="text" class="form-control form-control-border form-control-sm text-center" value="{{$lBarang->input_qty}}" name="inputLastStock" id="inputLastStock" readonly>        

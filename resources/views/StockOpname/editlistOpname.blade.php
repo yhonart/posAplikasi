@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-reponsive" style="height:700px">
-                            <table class="table table-sm " id="tableEditList">
+                            <table class="table table-sm table-valign-middle" id="tableEditList">
                                 <thead>
                                     <tr>
                                         <th></th>
