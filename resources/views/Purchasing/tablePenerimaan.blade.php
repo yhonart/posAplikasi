@@ -86,14 +86,14 @@ $total = 0;
                                     @if($ltp->status =='2' AND $approval >= '1')
                                         <button class="btn btn-success btn-sm font-weight-bold BTN-APPROVE" id="purchaseApprove{{$ltp->id_purchase}}" data-number="{{$ltp->purchase_number}}" data-id="{{$ltp->id_purchase}}" title="Setujui"><i class="fa-solid fa-check"></i></button>
                                     @endif
-                                    @if($approval >= '1')
+                                    @if($approval >= '1' and $ltp->status == '2')
                                         <button class="btn btn-danger btn-sm font-weight-bold BTN-DELETE" data-number="{{$ltp->purchase_number}}" title="Hapus Item"><i class="fa-solid fa-xmark"></i></button>
                                     @endif
                                     @if($ltp->status =='2')
                                         <button class="btn btn-info btn-sm font-weight-bold BTN-EDIT" data-number="{{$ltp->purchase_number}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
                                     @endif
                                         <button class="btn btn-warning btn-sm font-weight-bold CETAK" data-number="{{$ltp->purchase_number}}" title="Cetak Transaksi"><i class="fa-solid fa-print"></i></button>
-                                        <button class="btn btn-warning btn-sm font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}" ><i class="fa-solid fa-magnifying-glass"></i></button>
+                                        <button class="btn btn-info btn-sm font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}" ><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </td>
                             </tr>
                         @endforeach
