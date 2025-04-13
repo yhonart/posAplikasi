@@ -24,7 +24,7 @@
             <th>Lokasi Asal</th>
             <th>Lokasi Tujuan</th>
             <th>User Input</th>
-            <th>Status</th>
+            <th class="text-right">Status</th>
             <th></th>
         </tr>
     </thead>
@@ -52,7 +52,7 @@
                 <td class="text-right">
                     <span class="{{$bgColor[$tm->status]}} pl-2 pr-2 pt-1 pb-1 rounded-pill text-xs">{{$statusDokumen[$tm->status]}}</span>
                 </td>
-                <td class="text-right">
+                <td>
                     @if($tm->status <> '0')
                         @if($approval >= '1' AND $tm->status == '2')
                             <button type="button" class="btn btn-sm btn-success btnApprove font-weight-bold" id="btnApprove{{$tm->idinv_moving}}" title="Kirim Barang" data-opname="{{$tm->number}}" data-id="{{$tm->idinv_moving}}"><i class="fa-solid fa-check"></i></button>
@@ -85,7 +85,7 @@
             "lengthChange": false, 
             "autoWidth": false,
             "dom": 'Bfrtip',
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
     $(document).ready(function(){
