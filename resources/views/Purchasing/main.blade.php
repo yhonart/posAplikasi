@@ -28,7 +28,7 @@
                     <button class="btn btn-outline-primary font-weight-bold onclick-submenu border-0 " data-click="dataPurchasing" id="productIn"><i class="fa-solid fa-file"></i> List Pembelian</button>
                     <a href="{{route('returnItem')}}" class="btn btn-default font-weight-bold border-0 ml-1"><i class="fa-solid fa-rotate-left"></i> Pengembalian Barang</a>                                         
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" style="display: none;">
                     <select class="form-control " name="selectTransaksi" id="selectTransaksi">
                         <option value="0" readonly>Pilih transaksi hari ini.</option>
                         <option value="1" readonly>Transaksi Baru</option>
