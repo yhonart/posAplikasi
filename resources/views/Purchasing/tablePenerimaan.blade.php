@@ -39,10 +39,8 @@ $total = 0;
                         @foreach($listTablePem as $ltp)                            
                             <tr>
                                 <td>{{$ltp->delivery_date}}</td>
-                                <td>
-                                    <a href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}" class="font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG">
-                                        <i class="fa-solid fa-binoculars" ></i> {{$ltp->purchase_number}}
-                                    </a>
+                                <td>                                    
+                                    {{$ltp->purchase_number}}
                                 </td>
                                 <td>
                                     {{$ltp->store_name}}
@@ -95,6 +93,7 @@ $total = 0;
                                         <button class="btn btn-info btn-sm font-weight-bold BTN-EDIT" data-number="{{$ltp->purchase_number}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
                                     @endif
                                         <button class="btn btn-warning btn-sm font-weight-bold CETAK" data-number="{{$ltp->purchase_number}}" title="Cetak Transaksi"><i class="fa-solid fa-print"></i></button>
+                                        <button class="btn btn-warning btn-sm font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Purchasing')}}/modalPenerimaanPO/{{$ltp->purchase_number}}" ><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </td>
                             </tr>
                         @endforeach
