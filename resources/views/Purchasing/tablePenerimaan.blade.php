@@ -8,6 +8,12 @@ $statusDokumen = array(
     2=>"Diperiksa",
     3=>"Disetujui"
 );
+$bgColor = array(
+    1=>"bg-warning",
+    2=>"bg-primary",
+    3=>"bg-success",
+    0=>"bg-danger",
+);
 $total = 0;
 // $potonganBayar = 0;
 ?>
@@ -76,7 +82,7 @@ $total = 0;
                                     @endif
                                 </td>
                                 <td class="text-right">
-                                    <span class="badge bg-warning">{{$statusDokumen[$ltp->status]}}</span>
+                                    <span class="{{$bgColor[$ltp->status]}} pl-2 pr-2 pt-1 pb-1 rounded-pill text-xs">{{$statusDokumen[$ltp->status]}}</span>
                                 </td>
                                 <td class="text-right">
                                     @if($ltp->status =='2' AND $approval >= '1')

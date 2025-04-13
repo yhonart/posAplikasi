@@ -84,8 +84,7 @@
             let dataIndex = $(this).attr('data-click');
             $("#selectTransaksi").val('0');
             viewData(dataIndex);
-        });
-        
+        });        
         $("#selectTransaksi").change(function(){
             let findTrx = $(this).find(":selected").val();
             if(findTrx === '1' || findTrx === '0'){
