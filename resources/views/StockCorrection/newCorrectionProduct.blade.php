@@ -19,7 +19,7 @@
                         <button class="btn btn-outline-info border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             <i class="fa-solid fa-file-pen"></i> Dokumen Koreksi
                         </button>
-                        <button type="submit" class="btn btn-outline-success border-0 font-weight-bold" id="submitButton"><i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan</button>
+                        <button type="submit" class="btn btn-success border-0 font-weight-bold" id="submitButton"><i class="fa-solid fa-floppy-disk"></i> Simpan Koreksi Item</button>
                     </div>
                 </form>
             </div>
