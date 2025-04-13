@@ -6,11 +6,11 @@
         3=>"Disetujui",
         0=>"Deleted",
     );
-    $textColor = array(
-        1=>"text-info",
-        2=>"text-warning",
-        3=>"text-success",
-        0=>"text-danger",
+    $bgColor = array(
+        1=>"bg-warning",
+        2=>"bg-primary",
+        3=>"bg-success",
+        0=>"bg-danger",
     );
 ?>
 <table class="table table-sm table-valign-middle table-hover " id="tableDataKoreksi">
@@ -32,7 +32,7 @@
                 <td>{{$ldk->notes}}</td>
                 <td>{{$ldk->created_by}}</td>
                 <td class="text-right">
-                    <span class="bg-light border border-1 border-info pl-2 pr-2 pt-1 pb-1 rounded-pill font-weight-bold text-xs">{{$araystatus[$ldk->status]}}</span>
+                    <span class="{{$bgColor[$ldk->status]}} pl-2 pr-2 pt-1 pb-1 rounded-pill text-xs">{{$araystatus[$ldk->status]}}</span>
                 </td>
                 <td class="text-right">
                     @if($ldk->status <> '0' AND $ldk->status <> '1')

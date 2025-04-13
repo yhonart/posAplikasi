@@ -13,10 +13,10 @@
         0=>"text-danger",
     );
     $bgColor = array(
-        1=>"badge-warning",
-        2=>"badge-primary",
-        3=>"badge-success",
-        0=>"badge-danger",
+        1=>"bg-warning",
+        2=>"bg-primary",
+        3=>"bg-success",
+        0=>"bg-danger",
     );
 ?>
 <table class="table table-sm table-valign-middle table-hover " id="listDocOpname">
@@ -26,7 +26,7 @@
             <th>Tanggal</th>
             <th>User Input</th>
             <th>Keterangan</th>
-            <th>Status</th>
+            <th class="text-right">Status</th>
             <th></th>
         </tr>
     </thead>
