@@ -43,7 +43,7 @@
                 </td>
                 <td>{{$tm->created_by}}</td>
                 <td class="text-right">
-                    <p class="badge bg-success">{{$statusDokumen[$tm->status]}}</p>                    
+                    <span class="bg-light border border-1 border-info pl-2 pr-2 pt-1 pb-1 rounded-pill font-weight-bold text-xs">{{$statusDokumen[$tm->status]}}</span>
                 </td>
                 <td class="text-right">
                     @if($tm->status <> '0')
