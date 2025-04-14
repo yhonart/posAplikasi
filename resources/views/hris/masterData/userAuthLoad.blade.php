@@ -6,7 +6,7 @@
         4=>'sales'
     );
     $arrayLevel = array(
-        1=>'Super User',
+        1=>'Super Admin',
         2=>'Admin SPV',
         3=>'Admin Staff',
     );
