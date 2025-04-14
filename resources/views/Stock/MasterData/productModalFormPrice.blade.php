@@ -253,6 +253,7 @@ $statusBarang = array(
         <h5 class="text-info">Gambar Produk</h5>
     </div>
 </div>
+@if($mProduct->file_name != "")
 <div class="row mt-1">
     <div class="col-md-12">
         <img class="img-fluid pad" src="{{asset('public/images/Upload/Product')}}/{{$id}}/{{$mProduct->file_name}}" alt="Photo" width="30%">
@@ -260,6 +261,7 @@ $statusBarang = array(
         <button type="button" class="btn btn-danger btn-sm" id="btnDeleteImage">Hapus Gambar</button>
     </div>
 </div>
+@endif
 <script>
     $.ajaxSetup({
         headers: {
