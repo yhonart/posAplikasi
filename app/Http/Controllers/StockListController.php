@@ -304,8 +304,14 @@ class StockListController extends Controller
         $TypeDoc = "";
 
         $productCheck = DB::table('m_product')
-            ->where('product_code',$prodCode)
-            ->orWhere('product_name',$prodName)
+            ->where([
+                ['product_code',$prodCode],
+                ['comp_id',$authUserComp]
+                ])
+            ->orWhere([
+                ['product_name',$prodName],
+                ['comp_id',$authUserComp]
+                ])
             ->count();
 
         $id=DB::select("SHOW TABLE STATUS LIKE 'm_product'");

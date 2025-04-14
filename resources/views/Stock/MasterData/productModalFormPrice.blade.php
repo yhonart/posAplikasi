@@ -248,6 +248,11 @@ $statusBarang = array(
     </div>
 </div>
 </form>
+<div class="row">
+    <div class="col-md-12">
+        <img class="img-fluid pad" src="{{asset('public/images/Upload/Product')}}/{{$id}}" alt="Photo">
+    </div>
+</div>
 <script>
     $.ajaxSetup({
         headers: {
