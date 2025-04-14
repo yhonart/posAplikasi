@@ -285,14 +285,14 @@ class PersonaliaController extends Controller
                 DB::table('users_group')
                     ->insert([
                         'user_id'=>$reqChange->id,
-                        'role_code'=>$reqChange->changeLevel
+                        'group_code'=>$reqChange->changeLevel
                         ]);
             }
             elseif ($reqChange->changeLevel == '1' AND $countGroup >= '1') {
                 DB::table('users_group')
                     ->where('user_id',$reqChange->id)
                     ->update([
-                        'role_code'=>$reqChange->changeLevel
+                        'group_code'=>$reqChange->changeLevel
                         ]);
             }
             else {
