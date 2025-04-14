@@ -248,9 +248,16 @@ $statusBarang = array(
     </div>
 </div>
 </form>
-<div class="row">
+<div class="row mt-2">
+    <div class="col-md-12">
+        <h5 class="text-info">Gambar Produk</h5>
+    </div>
+</div>
+<div class="row mt-1">
     <div class="col-md-12">
         <img class="img-fluid pad" src="{{asset('public/images/Upload/Product')}}/{{$id}}/{{$mProduct->file_name}}" alt="Photo" width="30%">
+        <br>
+        <button type="button" class="btn btn-danger btn-sm" id="btnDeleteImage">Hapus Gambar</button>
     </div>
 </div>
 <script>
@@ -291,6 +298,20 @@ $statusBarang = array(
                     funcLoad(routeID);
                 }
             });
+        });
+
+        $('#btnDeleteImage').on('click', function () {
+            alertify.alert('Fungsi delete gambar belum dapat digunakan !').set('frameless', true); 
+            // let element = $(this) ;
+            // let id = element.attr("data-id");
+            // let routeID = "{{$id}}";
+            // $.ajax({
+            //     type : 'get',
+            //     url : "{{route('Stock')}}/ProductMaintenance/deleteUnit/"+id,
+            //     success : function(response){
+            //         funcLoad(routeID);
+            //     }
+            // });
         });
         
         let el_addUnit = $('.BTN-ADD-UNIT');
