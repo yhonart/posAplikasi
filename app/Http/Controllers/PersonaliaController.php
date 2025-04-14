@@ -35,6 +35,7 @@ class PersonaliaController extends Controller
         $lokasi = $userData->lokasi;
         $levelAdmin = $userData->levelAdmin;
         $password = Hash::make($userData->password);
+
         $nextId = DB::select("SHOW TABLE STATUS LIKE 'users'")[0]->Auto_increment; 
         
         DB::table('users_area')
@@ -59,8 +60,14 @@ class PersonaliaController extends Controller
                 'password'=>$password,
                 'hakakses'=>$hakAkses
             ]);
-        
-            
+
+        if ($levelAdmin == '1') {
+            DB::table('users_group')
+                ->insert([
+                    'user_id'=>$nextId,
+                    'group_code'=>$levelAdmin
+                ]);
+        }
         
     }
     public function delPersonalia ($id) {
@@ -250,6 +257,7 @@ class PersonaliaController extends Controller
         }
         
         if($reqChange->changeLevel<>'0'){
+
             $countLevel = DB::table('users_role')
                 ->where('user_id',$reqChange->id)
                 ->count();
@@ -267,6 +275,30 @@ class PersonaliaController extends Controller
                     ->update([
                         'role_code'=>$reqChange->changeLevel
                         ]);
+            }
+
+            $countGroup = DB::table('users_group')
+                ->where('user_id',$reqChange->id)
+                ->count();
+
+            if ($reqChange->changeLevel == '1' AND $countGroup == '0') {
+                DB::table('users_group')
+                    ->insert([
+                        'user_id'=>$reqChange->id,
+                        'role_code'=>$reqChange->changeLevel
+                        ]);
+            }
+            elseif ($reqChange->changeLevel == '1' AND $countGroup >= '1') {
+                DB::table('users_group')
+                    ->where('user_id',$reqChange->id)
+                    ->update([
+                        'role_code'=>$reqChange->changeLevel
+                        ]);
+            }
+            else {
+                DB::table('users_group')
+                    ->where('user_id',$reqChange->id)
+                    ->delete();
             }
         }
     }
