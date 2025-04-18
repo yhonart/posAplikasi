@@ -631,17 +631,24 @@ class PurchasingController extends Controller
     public function tablePenerimaan($status, $fromDate, $endDate){
         $approval = $this->userApproval();
         $company = Auth::user()->company;
+        $noww = date("Y-m-d");
 
         $listTablePem = DB::table('view_purchase_order');
-        $listTablePem = $listTablePem->where([
-            ['status',$status],
-            ['comp_id',$company]
-        ]);
-            if ($fromDate <> '0' AND $endDate <> '0') {
-                $listTablePem = $listTablePem->whereBetween('purchase_date',[$fromDate,$endDate]);
-            }
-            $listTablePem = $listTablePem->orderBy('id_purchase','desc');
-            $listTablePem = $listTablePem->get();
+        if ($fromDate <> '0' AND $endDate <> '0') {
+            $listTablePem = $listTablePem->where([
+                ['status',$status],
+                ['comp_id',$company]
+            ]);
+            $listTablePem = $listTablePem->whereBetween('purchase_date',[$fromDate,$endDate]);
+        }
+        else {
+            $listTablePem = $listTablePem->where([
+                ['comp_id',$company],
+                ['purchase_date',$noww]
+            ]);
+        }
+        $listTablePem = $listTablePem->orderBy('id_purchase','desc');
+        $listTablePem = $listTablePem->get();
 
         //Chek potongan
         $detailPotongan = DB::table('purchase_point')

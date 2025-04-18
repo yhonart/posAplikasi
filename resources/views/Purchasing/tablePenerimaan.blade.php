@@ -79,10 +79,10 @@ $total = 0;
                                     <span class="text-success font-weight-bold">{{$ltp->tempo}}</span>
                                     @endif
                                 </td>
-                                <td class="text-right">
+                                <td>
                                     <span class="{{$bgColor[$ltp->status]}} pl-2 pr-2 pt-1 pb-1 rounded-pill text-xs">{{$statusDokumen[$ltp->status]}}</span>
                                 </td>
-                                <td>
+                                <td class="text-right">
                                     @if($ltp->status =='2' AND $approval >= '1')
                                         <button class="btn btn-success btn-sm font-weight-bold BTN-APPROVE" id="purchaseApprove{{$ltp->id_purchase}}" data-number="{{$ltp->purchase_number}}" data-id="{{$ltp->id_purchase}}" title="Setujui"><i class="fa-solid fa-check"></i></button>
                                     @endif
