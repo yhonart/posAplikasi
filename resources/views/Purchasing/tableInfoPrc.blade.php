@@ -17,6 +17,7 @@
         <div class="form-group">
             <label for="status" class="label">Status Dok.</label>
             <select name="status" id="status" class="form-control form-control-sm">
+                <option value="4">All-Status</option>
                 <option value="2">Submited</option>
                 <option value="1">Sedang Proses</option>
                 <option value="0">Dihapus</option>
