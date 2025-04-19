@@ -16,14 +16,58 @@
 <div class="row">
     <div class="col-12 p-0">
         <form id="FormNewProduct" autocomplete="off">
-            
+            <div class="form-group row">
+                <label for="PrdNextID" class="form-label col-md-3">ID Data</label>
+                <div class="col-md-6">
+                    <input type="hidden" name="PrdNextID" id="PrdNextID" style="text-transform: uppercase" class="form-control form-control-sm font-weight-bold" value="{{$next_id}}" readonly>
+                    <input type="text" name="nextID" id="nextID" style="text-transform: uppercase" class="form-control form-control-sm font-weight-bold" value="{{$nextIdVal}}" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="ProductCode" class="form-label col-md-3">Kode Barang</label>
+                <div class="col-md-6">
+                    <input type="text" name="ProductCode" id="ProductCode" style="text-transform: uppercase" class="form-control form-control-sm font-weight-bold" value="{{$productCode}}" readonly>
+                </div>
+            </div>
             <div class="form-group row">
                 <label for="ProductName" class="form-label col-md-3">Nama Barang <sup class="font-weight-bold text-danger">*</sup></label>
                 <div class="col-md-6">
                     <input type="text" name="ProductName" id="ProductName" style="text-transform: uppercase" class="form-control form-control-sm">                    
                 </div>
             </div>
-            
+            <div class="form-group row">
+                <label for="KodeBarang" class="form-label col-md-3">Kategori Produk <sup class="font-weight-bold text-danger">*</sup></label>
+                <div class="col-md-6">
+                    <select name="KatProduk" id="KatProduk" class="form-control form-control-sm">
+                        <option value="0" readonly>Pilih Kategori Produk</option>
+                        @foreach($catProduct as $cp)
+                            <option value="{{$cp->category_name}}">{{$cp->category_name}}</option>
+                        @endforeach
+                    </select>
+                </div>  
+                            
+            </div>
+            <div class="form-group row">
+                <label for="SmallBarcode" class="form-label col-md-3">Brand </label>
+                <div class="col-md-6">
+                    <select name="brand" id="brand" class="form-control form-control-sm">
+                        <option value="0" readonly>Kategori Brand</option>
+                        @foreach($manufacture as $mnf)
+                            <option value="{{$mnf->manufacture_code}}">{{$mnf->manufacture_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG btn-sm " href="{{route('M_Manufacture')}}/AddManufacture"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="SmallBarcode" class="form-label col-md-3">Set Minimum Stock <sup class="font-weight-bold text-danger">*</sup></label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control form-control-sm" name="setMinimum" id="setMinimum">
+                    <p><small>* Disarankan untuk dimasukkan quantity terkecil/konversi dari produk</small></p>
+                </div>
+            </div>
             <hr>
             <!--Pengaturan stock dan volume barang-->
             <p class="text-info font-weight-bold">Pengaturan Volume dan Satuan :</p>
