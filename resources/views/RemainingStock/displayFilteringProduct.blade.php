@@ -17,10 +17,10 @@
             @foreach($mProduct as $mp)
                 <tr>
                     <td>
-                        <span class="float-right"><i class="fa-solid fa-eye"></i></span>
                         <a class="text-info float-left font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('remainingStock')}}/detailInfoStock/{{$mp->idm_data_product}}">{{$mp->product_name}}</a>
                     </td>
                     <td>
+                        <!-- Sisa Stock Besar/Kecil/Konversi  -->
                         <?php
                             foreach($totalStock as $tStock){
                                 if($tStock->idm_data_product == $mp->idm_data_product){

@@ -64,10 +64,12 @@ class CustomersController extends Controller
         }
         else {
             $addKreditLimit = str_replace(".","",$reqPostCustomer->kreditLimit);            
-        }
-
+        }            
         if($reqPostCustomer->Customer == "" OR $reqPostCustomer->Customer==" "){
             $msg = array('warning'=>'<h5>Nama Customer harus diisi</h5>');
+        }
+        elseif ($reqPostCustomer->paymentType == "Tempo" && ($reqPostCustomer->kreditLimit == '' || $reqPostCustomer->kreditLimit == '0')) {
+            $msg = array('warning'=>'<h5>Customer dengan type pembayaran "Tempo" wajib mengisi "Limit Kredit"</h5>');
         }
         else{
             DB::table('m_customers')
