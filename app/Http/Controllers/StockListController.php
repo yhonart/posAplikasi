@@ -95,6 +95,7 @@ class StockListController extends Controller
 
         $catProduct = DB::table('m_asset_category')
             ->where('category_status',1)
+            ->orderBy('category_name','asc')
             ->get();
         $unit = DB::table('m_unit')
             ->orderBy('unit_note','ASC')
