@@ -18,7 +18,7 @@
                 <td class="p-0"><b>{{$mPrd->product_satuan}}/</b><small>{{$mPrd->product_size}}</small></td>
                 <td class="p-0">
                     @if($mPrd->size_code == '1' OR $mPrd->product_price_sell == "")
-                        <input class="form-control form-control-sm  EDIT-PRICE" name="editPriceOrder" id="eeditPriceOrder" value="{{$mPrd->product_price_order}}" onchange="saveToDatabase(this,'m_product_unit','product_price_order','{{$mPrd->idm_product_satuan}}','idm_product_satuan','{{$mPrd->core_id_product}}')">
+                        <input class="form-control form-control-sm EDIT-PRICE" name="editPriceOrder" id="editPriceOrder" value="{{$mPrd->product_price_order}}" onchange="saveToDatabase(this,'m_product_unit','product_price_order','{{$mPrd->idm_product_satuan}}','idm_product_satuan','{{$mPrd->core_id_product}}')">
                     @else
                         <input class="form-control form-control-sm text-right  EDIT-PRICE" value="{{$mPrd->product_price_order}}" readonly>
                     @endif
@@ -33,8 +33,7 @@
                     </td>
                 @endforeach
                 <td class="p-0">
-                    <button type="button" class="btn btn-sm btn-danger DELETE-PRICE-SIZE float-right " data-id="{{$mPrd->core_id_product}}" data-size="{{$mPrd->product_size}}"><i class="fa-solid fa-xmark"></i></button>
-                    
+                    <button type="button" class="btn btn-sm btn-danger DELETE-PRICE-SIZE float-right " data-id="{{$mPrd->core_id_product}}" data-size="{{$mPrd->product_size}}"><i class="fa-solid fa-xmark"></i></button>                    
                 </td>
             </tr>
         @endforeach
@@ -64,8 +63,19 @@ $(".DELETE-PRICE-SIZE").on('click', function(e){
 function saveToDatabase(editTableObj,tableName,column,id,tableID,idProd) {
     let idInput = "{{$idPrd}}";
     alert("ok");
-    
-} 
+    $.ajax({
+        url: "{{route('Stock')}}/ProductMaintenance/postEditProduct",
+        type: "POST",
+        data:'tableName='+tableName+'&column='+column+'&editVal='+editTableObj.value+'&id='+id+'&tableID='+tableID+'&idProd='+idProd,
+        success: function(data){
+            //funcTableHrg(idInput);
+            // Toast.fire({
+            //     icon: 'success',
+            //     title: column
+            // })
+        }
+    });
+}; 
 function funcTableHrg(dataIdProd){      
     $.ajax({
         type : 'get',
