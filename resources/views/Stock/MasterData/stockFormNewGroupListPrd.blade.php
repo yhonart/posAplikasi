@@ -69,10 +69,11 @@ function saveToDatabase(editTableObj,tableName,column,id,tableID,idProd) {
         data:'tableName='+tableName+'&column='+column+'&editVal='+editTableObj.value+'&id='+id+'&tableID='+tableID+'&idProd='+idProd,
         success: function(data){
             //funcTableHrg(idInput);
-            Toast.fire({
-                icon: 'success',
-                title: column
-            })
+            // Toast.fire({
+            //     icon: 'success',
+            //     title: column
+            // })
+            alert("ok");
         }
     });
 } 
