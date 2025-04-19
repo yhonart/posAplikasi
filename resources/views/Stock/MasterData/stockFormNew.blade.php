@@ -35,6 +35,20 @@
                     <input type="text" name="ProductName" id="ProductName" style="text-transform: uppercase" class="form-control form-control-sm">                    
                 </div>
             </div>
+            <div class="form-group row">
+                <label for="KodeBarang" class="form-label col-md-3">Kategori Produk <sup class="font-weight-bold text-danger">*</sup></label>
+                <div class="col-md-6">
+                    <select name="KatProduk" id="KatProduk" class="form-control form-control-sm">
+                        <option value="0" readonly>Pilih Kategori Produk</option>
+                        @foreach($catProduct as $cp)
+                            <option value="{{$cp->category_name}}">{{$cp->category_name}}</option>
+                        @endforeach
+                    </select>
+                </div>  
+                <div class="col-md-3">
+                    <button class="btn btn-info btn-sm BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('M_Category')}}/AddCategory"><i class="fa-solid fa-plus"></i></button>
+                </div>             
+            </div>
             
             <div class="form-group row">
                 <label for="SmallBarcode" class="form-label col-md-3">Set Minimum Stock <sup class="font-weight-bold text-danger">*</sup></label>
