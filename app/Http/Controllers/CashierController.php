@@ -4080,7 +4080,7 @@ class CashierController extends Controller
                 if ($ds->size_code == '1') { // Jika kode dalam list 1
                     $a1 = $stock1 * $vol1;
                     $a2 = $a1 - $prodQty;
-                    $a3 = $a2 / $codeSatu->product_volume;
+                    $a3 = $a2 / $vol1;
                     $a = (int)$a3;  
                 } elseif ($ds->size_code == '2') {
                     $a1 = $ds->stock - $prodQty;
