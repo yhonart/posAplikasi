@@ -50,7 +50,7 @@
             <div class="form-group row">
                 <label for="SmallBarcode" class="form-label col-md-3">Brand </label>
                 <div class="col-md-6">
-                    <select name="brand" id="brand" class="form-control form-control-sm">
+                    <select name="brand" id="brandKode" class="form-control form-control-sm">
                         <option value="0" readonly>Kategori Brand</option>
                         @foreach($manufacture as $mnf)
                             <option value="{{$mnf->manufacture_code}}">{{$mnf->manufacture_name}}</option>
