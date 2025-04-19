@@ -76,7 +76,7 @@ function saveToDatabase(editTableObj,tableName,column,id,tableID,idProd) {
         }
     });
 } 
-function funcTableHrg(dataIdProd){        
+function funcTableHrg(dataIdProd){      
     $.ajax({
         type : 'get',
         url : "{{route('Stock')}}/AddProduct/prodCategoryInput/"+dataIdProd,
