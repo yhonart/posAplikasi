@@ -45,21 +45,21 @@
                         @endforeach
                     </select>
                 </div>  
-                            
+                <div class="col-md-3">
+                    <button class="btn btn-info btn-sm BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold" href="{{route('M_Category')}}/AddCategory"><i class="fa-solid fa-plus"></i></button>
+                </div>             
             </div>
             <div class="form-group row">
                 <label for="SmallBarcode" class="form-label col-md-3">Brand </label>
                 <div class="col-md-6">
-                    <select name="brand" id="brandKode" class="form-control form-control-sm">
+                    <select name="brand" id="brand" class="form-control form-control-sm">
                         <option value="0" readonly>Kategori Brand</option>
                         @foreach($manufacture as $mnf)
                             <option value="{{$mnf->manufacture_code}}">{{$mnf->manufacture_name}}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-3">
-                    <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG btn-sm " href="{{route('M_Manufacture')}}/AddManufacture"><i class="fa-solid fa-plus"></i></button>
-                </div>
+                
             </div>
             <div class="form-group row">
                 <label for="SmallBarcode" class="form-label col-md-3">Set Minimum Stock <sup class="font-weight-bold text-danger">*</sup></label>
@@ -181,11 +181,14 @@
         </form>
     </div>
 </div>
+
+
 <div class="row">
     <div class="col-12 red-alert p-2 rounded rounded-2 mb-2 notive-display" style="display:none;">
         <span class="font-weight-bold" id="notiveDisplay" ></span>
     </div>
 </div>
+
 <script>    
     $(function(){
         $('.select2').select2({
@@ -233,7 +236,8 @@
                 priceOrder = $("input[name=priceOrder]").val(),
                 priceSell = $("input[name=priceSell]").val(),
                 cosGroup = $('#cosGroup').find(":selected").val(),
-                id = $("input[name=PrdNextID]").val();                
+                id = $("input[name=PrdNextID]").val();
+                
                 $.ajax({
                     type : 'post',
                     url : "{{route('Stock')}}/AddProduct/PostProductSetGrouping",
