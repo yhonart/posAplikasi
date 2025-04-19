@@ -9,8 +9,7 @@
         <div id="divListProduct"></div>
     </div>
 </div>
-<script>
-    
+<script>    
     $(document).ready(function() {
         let keyWord = 0;
         searchData(keyWord);
