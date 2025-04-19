@@ -72,7 +72,7 @@ class CustomersController extends Controller
             $msg = array('warning'=>'<h5>Customer dengan type pembayaran "Tempo" wajib mengisi "Limit Kredit"</h5>');
         }
         elseif ($reqPostCustomer->Address || $reqPostCustomer->City) {
-            $msg = array('warning'=>'<h5>Customer dengan type pembayaran "Tempo" wajib mengisi "Limit Kredit"</h5>');
+            $msg = array('warning'=>'<h5>"Alamat dan Kota Pelanggan" wajib diisi!</h5>');
             # code...
         }
         elseif ($reqPostCustomer->paymentType == "0" || $reqPostCustomer->paymentType == "") {
