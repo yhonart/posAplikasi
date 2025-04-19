@@ -63,19 +63,8 @@ $(".DELETE-PRICE-SIZE").on('click', function(e){
 });
 function saveToDatabase(editTableObj,tableName,column,id,tableID,idProd) {
     let idInput = "{{$idPrd}}";
-    $.ajax({
-        url: "{{route('Stock')}}/ProductMaintenance/postEditProduct",
-        type: "POST",
-        data:'tableName='+tableName+'&column='+column+'&editVal='+editTableObj.value+'&id='+id+'&tableID='+tableID+'&idProd='+idProd,
-        success: function(data){
-            //funcTableHrg(idInput);
-            // Toast.fire({
-            //     icon: 'success',
-            //     title: column
-            // })
-            alert("ok");
-        }
-    });
+    alert("ok");
+    
 } 
 function funcTableHrg(dataIdProd){      
     $.ajax({

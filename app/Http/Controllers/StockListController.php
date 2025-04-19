@@ -663,7 +663,7 @@ class StockListController extends Controller
                     $coloumn => $editVal    
                 ]);
         }
-        // return back();
+        return back();
     }
     public function PostNewProductPrice(Request $reqNewPrice){
         $HppLg = $reqNewPrice->priceLg;
