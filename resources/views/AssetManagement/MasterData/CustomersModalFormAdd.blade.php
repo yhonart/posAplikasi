@@ -8,19 +8,19 @@
     <div class="card-body text-xs">
         <form id="FormAddCustomer">
             <div class="form-group row">
-                <label class="form-label col-md-4 text-right">Nama Pelanggan</label>
+                <label class="form-label col-md-4 text-right">Nama Pelanggan <span class="text-danger">*</span> </label>
                 <div class="col-md-4">
                     <input type="text" name="Customer" id="Customer" class="form-control form-control-sm text-uppercase ">
                 </div>
             </div>
             <div class="form-group row">
-                <label class="form-label col-md-4 text-right">Alamat</label>
+                <label class="form-label col-md-4 text-right">Alamat <span class="text-danger">*</span></label>
                 <div class="col-md-4">
                     <input type="text" name="Address" id="Address" class="form-control form-control-sm ">
                 </div>
             </div>
             <div class="form-group row">
-                <label class="form-label col-md-4 text-right">Kota</label>
+                <label class="form-label col-md-4 text-right">Kota <span class="text-danger">*</span></label>
                 <div class="col-md-4">
                     <input type="text" name="City" id="City" class="form-control form-control-sm ">
                 </div>
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="form-label col-md-4 text-right">Tipe Pembayaran</label>
+                <label class="form-label col-md-4 text-right">Tipe Pembayaran <span class="text-danger">*</span></label>
                 <div class="col-md-4">
                     <select name="paymentType" id="paymentType" class="form-control form-control-sm ">
                         <option value="0" readonly></option>
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="form-label col-md-4 text-right">Tipe Penjualan</label>
+                <label class="form-label col-md-4 text-right">Tipe Penjualan <span class="text-danger">*</span></label>
                 <div class="col-md-4">
                     <select name="typePenjualan" id="typePenjualan" class="form-control form-control-sm ">
                         @foreach($cosGroup as $cg)
