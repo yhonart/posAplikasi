@@ -45,9 +45,7 @@
                         @endforeach
                     </select>
                 </div>  
-                <div class="col-md-3">
-                    <button class="btn btn-info btn-sm BTN-OPEN-MODAL-GLOBAL-LG font-weight-bold" href="{{route('M_Category')}}/AddCategory"><i class="fa-solid fa-plus"></i></button>
-                </div>             
+                            
             </div>
             <div class="form-group row">
                 <label for="SmallBarcode" class="form-label col-md-3">Brand </label>
