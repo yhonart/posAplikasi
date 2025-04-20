@@ -25,7 +25,6 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Nama Pelanggan</th>
                     <th>No.<br>Faktur</th>
                     <th>Tgl.<br>Faktur</th>
                     <th>Tgl.<br>Jatuh Tempo</th>
@@ -46,10 +45,7 @@
                             <div class="btn-group">                            
                                 <button class="btn btn-info btn-sm BTN-DETAIL border-light" data-id="{{$dP->idtr_kredit}}"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
-                        </td>
-                        <td>
-                            {{$dP->customer_store}}
-                        </td>
+                        </td>                        
                         <td>{{$dP->from_payment_code}}</td>
                         <td>{{$dP->created_at}}</td>
                         <td>
@@ -59,8 +55,7 @@
                             ?>
                             {{$doDate}}
                         </td>
-                        <td>
-                            test
+                        <td>                            
                             <input type="hidden" name="nominalFaktur[]" id="nominalFaktur{{$dP->idtr_kredit}}" value="{{$dP->nom_kredit}}">
                             <input type="text" name="selisihBayar" id="selisihBayar" value="{{number_format($dP->nominal,'0',',','.')}}" class="form-control form-control-sm form-control-border editInput nominal-selisih font-weight-bold" readonly>
                         </td>
@@ -78,6 +73,7 @@
                             @endif
                         </td>
                         <td>
+                            <td></td>
                             <div class="form-group">
                                 <div class="form-check">
                                 <input class="form-check-input" type="radio" name="checkHutang" value="{{$dP->idtr_kredit}}">
