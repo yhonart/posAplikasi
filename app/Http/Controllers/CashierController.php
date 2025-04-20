@@ -3477,7 +3477,7 @@ class CashierController extends Controller
             ->groupBy('a.core_id_trx')
             ->get();
 
-        $Supplier = DB::table('supplier_item a')
+        $Supplier = DB::table('supplier_item as a')
             ->select('a.*','b.address')
             ->join('m_supplier b','b.idm_supplier','=','b.supplier_id')
             ->get();        
