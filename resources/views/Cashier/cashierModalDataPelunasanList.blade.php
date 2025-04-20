@@ -73,7 +73,7 @@
                             @endif
                         </td>
                         <td>
-                            <td></td>
+                            test 
                             <div class="form-group">
                                 <div class="form-check">
                                 <input class="form-check-input" type="radio" name="checkHutang" value="{{$dP->idtr_kredit}}">
