@@ -28,8 +28,8 @@
                     <th>No.<br>Faktur</th>
                     <th>Tgl.<br>Faktur</th>
                     <th>Tgl.<br>Jatuh Tempo</th>
-                    <th>Kredit</th>
-                    <th>
+                    <th class="text-right">Kredit</th>
+                    <th class="text-right">
                         Di Bayar
                         <br>
                         <small>Gunakan ENTER untuk input nominal.</small>
@@ -57,14 +57,14 @@
                         </td>
                         <td>                            
                             <input type="hidden" name="nominalFaktur[]" id="nominalFaktur{{$dP->idtr_kredit}}" value="{{$dP->nom_kredit}}">
-                            <input type="text" name="selisihBayar" id="selisihBayar" value="{{number_format($dP->nominal,'0',',','.')}}" class="form-control form-control-sm form-control-border editInput nominal-selisih font-weight-bold" readonly>
+                            <input type="text" name="selisihBayar" id="selisihBayar" value="{{number_format($dP->nominal,'0',',','.')}}" class="form-control form-control-sm form-control-border editInput nominal-selisih font-weight-bold text-right" readonly>
                         </td>
                         <td>                            
                             @if($dP->nom_payed == $dP->nominal)
                                 {{number_format($dP->nom_payed,'0',',','.')}}
                             @elseif($dP->status == '1')
                                 @if(empty($getLastRecord))
-                                <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">                                
+                                <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag text-right" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">                                
                                 @else
                                 @foreach($getLastRecord as $glr)
                                     @if($glr->trx_code == $dP->from_payment_code)
