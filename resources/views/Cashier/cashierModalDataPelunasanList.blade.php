@@ -26,9 +26,9 @@
                 <tr>
                     <th></th>
                     <th>Nama Pelanggan</th>
-                    <th>No. Faktur</th>
-                    <th>Tgl. Faktur</th>
-                    <th>Tgl. Jatuh Tempo</th>
+                    <th>No.<br>Faktur</th>
+                    <th>Tgl.<br>Faktur</th>
+                    <th>Tgl.<br>Jatuh Tempo</th>
                     <th>Kredit</th>
                     <th>
                         Di Bayar
@@ -60,6 +60,7 @@
                             {{$doDate}}
                         </td>
                         <td>
+                            test
                             <input type="hidden" name="nominalFaktur[]" id="nominalFaktur{{$dP->idtr_kredit}}" value="{{$dP->nom_kredit}}">
                             <input type="text" name="selisihBayar" id="selisihBayar" value="{{number_format($dP->nominal,'0',',','.')}}" class="form-control form-control-sm form-control-border editInput nominal-selisih font-weight-bold" readonly>
                         </td>
