@@ -7,8 +7,7 @@
     <div class="card-header">
         <h3 class="card-title">Summary Hutang Pelanggan</h3>
     </div>  
-    <div class="card-bidy text-xs table-responsive p-0" style="height:500px;">
-
+    <div class="card-bidy text-xs table-responsive" style="height:500px;">
         <table class="table table-valign-middle table-hover table-sm">
             <thead>
                 <tr>
