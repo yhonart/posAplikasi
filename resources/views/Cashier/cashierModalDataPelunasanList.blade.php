@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <p class="text-muted">Input nominal pembayaran di kolom <b>"Di Bayar"</b></p>
+    <p class="text-muted">Input nominal pembayaran di kolom <b>"Pembayaran"</b></p>
     <div class="row">
         <div class="col-md-12">
         <table class="table table-sm table-hover text-xs table-valign-middle">
@@ -30,11 +30,11 @@
                     <th>Tgl.<br>Jatuh Tempo</th>
                     <th class="text-right">Kredit</th>
                     <th class="text-right">
-                        Di Bayar
+                        Pembayaran
                         <br>
                         <small>Gunakan ENTER untuk input nominal.</small>
                     </th>
-                    <th>Pembayaran</th>
+                    <th></th>
                     <th>Keterangan</th>
                 </tr>
             </thead>
