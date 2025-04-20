@@ -3451,7 +3451,7 @@ class CashierController extends Controller
             ->leftJoin('view_billing_action as c', 'a.from_payment_code', '=', 'c.billing_number')
             ->where([
                 ['a.status', '>=', '3'],
-                ['comp_id',$company]
+                ['a.comp_id',$company]
                 ])
             ->groupBy('a.from_payment_code')
             ->whereBetween('a.date', [$fromDate, $endDate])
