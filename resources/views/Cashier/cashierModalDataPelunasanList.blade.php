@@ -66,7 +66,8 @@
                                 @if(empty($getLastRecord)) 
                                     <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">
                                 @else                            
-                                @foreach($getLastRecord as $glr)                                
+                                @foreach($getLastRecord as $glr)    
+                                    {{$glr->trx_code}}                            
                                     @if($glr->trx_code == $dP->from_payment_code)
                                         <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag font-weight-bold text-danger text-right" autocomplete="off" onchange="saveChangeRecord(this,'tr_kredit_record','total_payment','{{$glr->idtr_kredit_record}}','idtr_kredit_record','1')" value="{{$glr->total_payment}}">                                    
                                     @endif
