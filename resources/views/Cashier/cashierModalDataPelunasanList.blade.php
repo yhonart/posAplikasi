@@ -95,7 +95,7 @@
             </tbody>
             <tbody>
                 <tr>
-                    <td colspan="4">Sub Total</td>
+                    <td colspan="4" class="text-right font-semibold">Sub Total</td>
                     <td>
                         <input class="form-control form-control-sm form-control-border border-width-3 price-tag from-weight-bold" name="exDisNomKredit" id="exDisNomKredit" value="{{$totalHutang->kredit}}" readonly>
                     </td>
