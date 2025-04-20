@@ -3479,7 +3479,7 @@ class CashierController extends Controller
 
         $Supplier = DB::table('supplier_item as a')
             ->select('a.*','b.address')
-            ->join('m_supplier b','b.idm_supplier','=','b.supplier_id')
+            ->join('m_supplier as b','b.idm_supplier','=','b.supplier_id')
             ->get();        
 
         return view('Report/cashierRecapExcel', compact('prdTrx', 'tempTPrice','cosGroup','paymentMethod','countPerTrx','Supplier'));
