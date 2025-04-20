@@ -63,8 +63,7 @@
                             @if($dP->nom_payed == $dP->nominal)
                                 {{number_format($dP->nom_payed,'0',',','.')}}
                             @elseif($dP->status == '1')
-                                <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">
-                                
+                                <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">                                
                                 @foreach($getLastRecord as $glr)
                                     @if($glr->trx_code == $dP->from_payment_code)
                                         <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag font-weight-bold text-danger" autocomplete="off" onchange="saveChangeRecord(this,'tr_kredit_record','total_payment','{{$glr->idtr_kredit_record}}','idtr_kredit_record','1')" value="{{$glr->total_payment}}">                                    
@@ -95,12 +94,12 @@
             </tbody>
             <tbody>
                 <tr>
-                    <td colspan="4" class="text-right font-semibold">Sub Total</td>
+                    <td colspan="4" class="text-right font-weight-bold">Sub Total</td>
                     <td>
-                        <input class="form-control form-control-sm form-control-border border-width-3 price-tag from-weight-bold" name="exDisNomKredit" id="exDisNomKredit" value="{{$totalHutang->kredit}}" readonly>
+                        <input class="form-control form-control-sm form-control-border border-width-3 price-tag font-weight-bold text-right" name="exDisNomKredit" id="exDisNomKredit" value="{{$totalHutang->kredit}}" readonly>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm form-control-border border-width-3 price-tag" name="exDisplayBayar" id="exDisplayBayar" value="{{$sumPayed->sumpayed}}" readonly>
+                        <input class="form-control form-control-sm form-control-border border-width-3 price-tag font-weight-bold text-right" name="exDisplayBayar" id="exDisplayBayar" value="{{$sumPayed->sumpayed}}" readonly>
                     </td>
                     <td colspan="2">
 
