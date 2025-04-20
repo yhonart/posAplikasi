@@ -3,7 +3,7 @@
     $grandTotalBayar = '0';
     $grandSaldoKredit = '0';
 @endphp
-<div class="card" >  
+<div class="card card-purple" >  
     <div class="card-header">
         <h3 class="card-title">Summary Hutang Pelanggan</h3>
     </div>  
