@@ -1831,8 +1831,7 @@ class CashierController extends Controller
         // update table tr_kredit
         DB::table('tr_kredit')
             ->where([
-                ['idtr_kredit', $rowID],
-                ['status','2']
+                ['idtr_kredit', $rowID]
                 ])
             ->update([
                 'nom_payed' => $updatePayed,
