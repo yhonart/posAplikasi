@@ -60,6 +60,7 @@
                             <input type="text" name="selisihBayar" id="selisihBayar" value="{{number_format($dP->nominal,'0',',','.')}}" class="form-control form-control-sm form-control-border editInput nominal-selisih font-weight-bold" readonly>
                         </td>
                         <td>
+                            {{$dP->status}} / {{$dP->nom_payed}} / {{$dP->nominal}}
                             @if($dP->nom_payed == $dP->nominal)
                                 {{number_format($dP->nom_payed,'0',',','.')}}
                             @elseif($dP->status == '1')
@@ -72,8 +73,7 @@
                                 <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="{{number_format($dP->nom_payed,'0',',','.')}}">
                             @endif
                         </td>
-                        <td>
-                            test 
+                        <td> 
                             <div class="form-group">
                                 <div class="form-check">
                                 <input class="form-check-input" type="radio" name="checkHutang" value="{{$dP->idtr_kredit}}">
