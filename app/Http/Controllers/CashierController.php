@@ -1656,8 +1656,8 @@ class CashierController extends Controller
 
         $getLastRecord = DB::table('tr_kredit_record')
             ->where([
-                ['status','1'],
-                ['member_id',$keyword]
+                ['member_id',$keyword],
+                ['status','1']
                 ])
             ->get();
             
