@@ -68,7 +68,7 @@
                                 @else
                                 @foreach($getLastRecord as $glr)
                                     @if($glr->trx_code == $dP->from_payment_code)
-                                        <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag font-weight-bold text-danger" autocomplete="off" onchange="saveChangeRecord(this,'tr_kredit_record','total_payment','{{$glr->idtr_kredit_record}}','idtr_kredit_record','1')" value="{{$glr->total_payment}}">                                    
+                                        <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag font-weight-bold text-danger text-right" autocomplete="off" onchange="saveChangeRecord(this,'tr_kredit_record','total_payment','{{$glr->idtr_kredit_record}}','idtr_kredit_record','1')" value="{{$glr->total_payment}}">                                    
                                     @endif
                                 @endforeach
                                 @endif
@@ -124,6 +124,16 @@
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="form-group row">
+                                <label class="label col-4">Kode Akun</label>
+                                <div class="col-8">
+                                    <select class="form-control form-control-sm" name="kodeAkun">
+                                        @foreach($accountCode as  $cc)
+                                            <option value="{{$cc->id_account}}">{{$cc->account_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="label col-4">No. Bukti</label>
                                 <div class="col-8">
                                     <input class="form-control form-control-sm" name="nomorBukti" id="nomorBukti" value="PBT-{{$periode}}-{{sprintf("%07d",$numbering)}}">
@@ -150,29 +160,9 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group row">
-                                <label class="label col-4">Kode Akun</label>
-                                <div class="col-8">
-                                    <select class="form-control form-control-sm" name="kodeAkun">
-                                        @foreach($accountCode as  $cc)
-                                            <option value="{{$cc->id_account}}">{{$cc->account_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="label col-4">Total Hutang</label>
-                                <div class="col-8">
-                                    <input class="form-control form-control-sm price-tag from-weight-bold" name="nominalKredit" id="nominalKredit" value="{{$totalHutang->kredit}}" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                            <label class="label col-4">Nominal Bayar</label>
-                            <div class="col-8">
-                                <input class="form-control form-control-sm price-tag" name="nominalBayar" id="nominalBayar" value="{{$sumPayed->sumpayed}}" readonly>
-                            </div>
-                            </div>
-                            <div class="form-group row">
                                 <div class="col-12">
+                                    <input type="hidden" class="form-control form-control-sm price-tag from-weight-bold" name="nominalKredit" id="nominalKredit" value="{{$totalHutang->kredit}}">
+                                    <input type="hidden" class="form-control form-control-sm price-tag" name="nominalBayar" id="nominalBayar" value="{{$sumPayed->sumpayed}}">
                                     <button type="submit" class="btn btn-success" id="btnSimpan"><i class="fa-regular fa-floppy-disk"></i> Simpan</button>
                                     <button type="button" class="btn btn-primary" id="cetakVoucher" style="display: none;"><i class="fa-solid fa-print"></i> Cetak Voucher</button>
                                 </div>
