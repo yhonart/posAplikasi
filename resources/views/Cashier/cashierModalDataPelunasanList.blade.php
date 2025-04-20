@@ -93,6 +93,20 @@
                     </tr>
                 @endforeach
             </tbody>
+            <tbody>
+                <tr>
+                    <td colspan="4">Sub Total</td>
+                    <td>
+                        <input class="form-control form-control-sm form-control-border border-width-3 price-tag from-weight-bold" name="exDisNomKredit" id="exDisNomKredit" value="{{$totalHutang->kredit}}" readonly>
+                    </td>
+                    <td>
+                        <input class="form-control form-control-sm form-control-border border-width-3 price-tag" name="exDisplayBayar" id="exDisplayBayar" value="{{$sumPayed->sumpayed}}" readonly>
+                    </td>
+                    <td colspan="2">
+
+                    </td>
+                </tr>
+            </tbody>
         </table>
         </div>
     </div>
