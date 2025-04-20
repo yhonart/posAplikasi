@@ -3464,7 +3464,7 @@ class CashierController extends Controller
         $paymentMethod = DB::table('tr_payment_method as a')
             ->select('a.core_id_trx','b.method_name','a.nominal','b.idm_payment_method')
             ->leftJoin('m_payment_method as b','a.method_name','=','b.idm_payment_method')
-            ->join('tr_store c','c.billing_number','a.core_id_trx')
+            ->join('tr_store as c','c.billing_number','a.core_id_trx')
             ->where([
                 ['a.status','1'],
                 ['c.comp_id',$company]
