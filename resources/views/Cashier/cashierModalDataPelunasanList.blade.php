@@ -59,14 +59,15 @@
                             <input type="hidden" name="nominalFaktur[]" id="nominalFaktur{{$dP->idtr_kredit}}" value="{{$dP->nom_kredit}}">
                             <input type="text" name="selisihBayar" id="selisihBayar" value="{{number_format($dP->nominal,'0',',','.')}}" class="form-control form-control-sm form-control-border editInput nominal-selisih font-weight-bold" readonly>
                         </td>
-                        <td>
-                            {{$dP->status}} / {{$dP->nom_payed}} / {{$dP->nominal}}
+                        <td>                            
                             @if($dP->nom_payed == $dP->nominal)
                                 {{number_format($dP->nom_payed,'0',',','.')}}
                             @elseif($dP->status == '1')
                                 @foreach($getLastRecord as $glr)
                                     @if($glr->trx_code == $dP->from_payment_code)
                                         <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag font-weight-bold text-danger" autocomplete="off" onchange="saveChangeRecord(this,'tr_kredit_record','total_payment','{{$glr->idtr_kredit_record}}','idtr_kredit_record','1')" value="{{$glr->total_payment}}">
+                                    @else
+                                        end of 
                                     @endif
                                 @endforeach
                             @else
