@@ -1655,6 +1655,10 @@ class CashierController extends Controller
             ->get();
 
         $getLastRecord = DB::table('tr_kredit_record')
+            ->where([
+                ['status','1'],
+                ['member_id',$keyword]
+                ])
             ->get();
             
         if ($valAction == '1') {
