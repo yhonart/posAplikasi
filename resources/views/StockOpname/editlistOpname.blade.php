@@ -36,8 +36,8 @@
                                         <th></th>
                                         <th width="30%">Nama Barang</th>
                                         <th>Satuan</th>
+                                        <th>Qty.</th>
                                         <th>Lokasi</th>
-                                        <th>Qty. Opname</th>
                                         <th>Stok Sebelumnya</th>
                                         <th>Selisih</th>
                                         <th></th>
