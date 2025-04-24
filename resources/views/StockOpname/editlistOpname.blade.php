@@ -35,7 +35,7 @@
                                     <tr>
                                         <th></th>
                                         <th width="30%">Nama Barang</th>
-                                        <th>Satuan</th>
+                                        <th width="10%">Satuan</th>
                                         <th>Qty.</th>
                                         <th>Lokasi</th>
                                         <th>Stok Sebelumnya</th>
