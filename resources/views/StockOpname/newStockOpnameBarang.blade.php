@@ -32,8 +32,8 @@
                                     <th> # </th>
                                     <th width="30%">Nama Barang</th>
                                     <th>Satuan</th>
-                                    <th>Qty. Opname</th>
                                     <th>Lokasi</th>
+                                    <th>Qty. Opname</th>
                                     <th>Stok Sebelumnya</th>
                                     <th>Selisih</th>
                                     <th></th>
@@ -59,15 +59,15 @@
                                         </select>
                                     </td>
                                     <td class="p-0">
-                                        <input type="text" name="qty" id="qty" class="form-control form-control-sm form-control-border rounded-0" autocomplete="off">
-                                    </td>
-                                    <td class="p-0">
                                         <select name="lokasi" id="lokasi" class="form-control form-control-sm form-control-border rounded-0">
                                             @foreach($lokasi as $l)
                                                 <option value="{{$l->idm_site}}">{{$l->site_name}}</option>
                                             @endforeach
                                         </select>
                                     </td>                                    
+                                    <td class="p-0">
+                                        <input type="text" name="qty" id="qty" class="form-control form-control-sm form-control-border rounded-0" autocomplete="off">
+                                    </td>
                                     <td class="p-0">
                                         <input type="text" name="lastStock" id="lastStock" class="form-control form-control-sm form-control-border rounded-0" readonly>
                                     </td>
