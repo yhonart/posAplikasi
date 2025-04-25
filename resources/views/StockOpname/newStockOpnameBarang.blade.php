@@ -171,9 +171,9 @@
                     invID.value = data.invID;
                     unitID.value = data.unitID;
                     unitVol.value = data.unitVol;
-                    $("#submitItem").focus();
                     computeSaldo();
                 })
+                $("#submitItem").focus();
             }
         });      
         
