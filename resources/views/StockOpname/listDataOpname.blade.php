@@ -25,9 +25,9 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <div id="displayTableOpname"></div>
-            <!-- <div class="card card-body text-xs elevation-2">
-            </div> -->
+            <div class="card card-body text-xs">
+                <div id="displayTableOpname"></div>
+            </div>
         </div>
     </div>
 </div>
