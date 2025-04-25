@@ -44,6 +44,7 @@
                                 <th>No</th>
                                 <th>Nama Barang</th>
                                 <th>Satuan</th>
+                                <th>Lokasi</th>
                                 <th>Qty. Opname</th>
                                 <th>Stok Awal</th>
                                 <th>Stok Akhir</th>
@@ -56,6 +57,7 @@
                                     <td>{{$noDetail++}}</td>
                                     <td>{{$listPrd->product_name}}</td>
                                     <td>{{$listPrd->product_satuan}}</td>
+                                    <td>{{$listPrd->site_name}}</td>
                                     <td>{{$listPrd->input_qty}}</td>
                                     <td>{{$listPrd->last_stock}}</td>
                                     <td>{{$listPrd->input_qty}}</td>
