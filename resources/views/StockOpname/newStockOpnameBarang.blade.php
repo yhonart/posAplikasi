@@ -178,6 +178,7 @@
         });      
         
         $("#qty").on('input', computeSaldo);
+
         function computeSaldo(){
             let lastStockVal = $("#lastStock").val(),
                 qty = $("#qty").val();
@@ -189,8 +190,24 @@
         }
         
         var actQty = document.getElementById("qty");
+        var actlastStock = document.getElementById("lastStock");
+        var actTotal = document.getElementById("total");
         
         actQty.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
+
+        actlastStock.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
+
+        actTotal.addEventListener('keydown', function(event) {  
             if (event.keyCode === 13) {
                 event.preventDefault();
                 addActivityItem();
