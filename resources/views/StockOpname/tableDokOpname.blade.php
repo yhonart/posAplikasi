@@ -33,7 +33,7 @@
     <tbody>
         @foreach($summaryOpname as $summary)
             <tr>                
-                <td>{{$summary->number_so}}</td>
+                <td class=" font-weight-bold">{{$summary->number_so}}</td>
                 <td>{{date("d-M-y",strtotime($summary->date_so))}}</td>
                 <td>{{$summary->created_by}}</td>
                 <td>{{$summary->description}}</td>
