@@ -141,7 +141,7 @@
         satuan.addEventListener("change", function(){
             $(".LOAD-SPINNER").fadeIn();
             let satuanVal = $(this).find(":selected").val(),
-                productVal = $("#product").val(),
+                productVal = $("#addProduct").val(),
                 location = $("#lokasi").val();
             // alert (location); 
             if(satuanVal !== '0' || satuanVal !== undefined){
