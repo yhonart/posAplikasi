@@ -38,7 +38,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-sm table-valign-middle table-hover " id="tableDetailStokOpname">
+                    <table class="table table-sm table-valign-middle table-hover table-light " id="tableDetailStokOpname">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -65,17 +65,6 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                        <tfoot class="bg-light font-weight-bold">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>Total</td>
-                                <td>{{$sumDetailOpname->lastStock}}</td>
-                                <td>{{$sumDetailOpname->inputStock}}</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
