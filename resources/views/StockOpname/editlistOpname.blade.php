@@ -33,7 +33,7 @@
                             <table class="table table-sm table-valign-middle" id="tableEditList">
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>#</th>
                                         <th width="30%">Nama Barang</th>
                                         <th width="10%">Satuan</th>
                                         <th>Qty.</th>

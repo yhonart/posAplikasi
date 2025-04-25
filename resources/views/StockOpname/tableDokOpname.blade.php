@@ -40,7 +40,7 @@
                 <td class="text-right">   
                     <span class="{{$bgColor[$summary->status]}} pl-2 pr-2 pt-1 pb-1 rounded-pill text-xs">{{$araystatus[$summary->status]}}</span>                    
                 </td>
-                <td>
+                <td class="text-right">
                     @if($approval >= '1' AND $summary->status == '2' AND $summary->t_input_stock<>'')
                         <button type="button" class="btn btn-sm btn-success btnApprove elevation-1 " title="Approve" data-opname="{{$summary->number_so}}"><i class="fa-solid fa-check"></i></button>
                     @endif    
