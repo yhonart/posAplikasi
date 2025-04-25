@@ -70,6 +70,13 @@
                                         <td class="p-0">
                                             <input type="number" class="form-control form-control-border form-control-sm" name="qty" id="qty">
                                         </td>
+                                        <td>
+                                            <select name="lokasi" id="lokasi" class="form-control form-control-sm form-control-border rounded-0">
+                                                @foreach($lokasi as $l)
+                                                    <option value="{{$l->idm_site}}">{{$l->site_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
                                         <td class="p-0">
                                             <input type="text" class="form-control form-control-border form-control-sm" name="lastStock" id="lastStock" readonly>
                                         </td>

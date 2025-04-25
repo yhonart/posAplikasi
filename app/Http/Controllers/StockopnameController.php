@@ -912,8 +912,11 @@ class StockopnameController extends Controller
                     ['sto_number',$idparam]
                 ])
                 ->first();
+
+        $lokasi = DB::table('m_site')
+                ->get();
             
-        return view('StockOpname/editlistOpname', compact('docOpname','listOpname','mProduct','sumStockOpname','idparam'));
+        return view('StockOpname/editlistOpname', compact('docOpname','listOpname','mProduct','sumStockOpname','idparam','lokasi'));
     }
     
     public function editDocumentOpname($idParam){
