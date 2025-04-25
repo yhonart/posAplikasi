@@ -171,9 +171,9 @@
                     invID.value = data.invID;
                     unitID.value = data.unitID;
                     unitVol.value = data.unitVol;
+                    $("#qty").val(0).focus().select();
                     computeSaldo();
                 })
-                $("#submitItem").focus();
             }
         });      
         
@@ -186,7 +186,6 @@
                 return
             }
             $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));
-            $("#qty").val(0).focus().select();
         }
         
         var actQty = document.getElementById("qty");
