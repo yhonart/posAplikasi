@@ -125,7 +125,8 @@
             unitID =  document.getElementById('unitID'),
             productChange =  document.getElementById('addProduct'),
             invID =  document.getElementById('invID'),
-            unitVol =  document.getElementById('unitVol');
+            unitVol =  document.getElementById('unitVol'),
+            lokasi = document.getElementById('lokasi');
             
         $("#addProduct").change(function(){
             let productID = $(this).find(":selected").val();
@@ -158,6 +159,27 @@
                 })
             }
         });  
+        
+        lokasi.addEventListener("change", function(){
+            $(".LOAD-SPINNER").fadeIn();
+            let satuanVal = $("#satuan").val(),
+                productVal = $("#product").val(),
+                location = $(this).find(":selected").val();
+            // alert (location); 
+            if(satuanVal !== '0' || satuanVal !== undefined){
+                $(".LOAD-SPINNER").fadeOut();
+                fetch("{{route('stockOpname')}}/listInputBarang/lastQty/"+satuanVal+"/"+productVal+"/"+location)
+                .then(response => response.json())
+                .then(data => {
+                    lastStock.value = data.lastQty;
+                    invID.value = data.invID;
+                    unitID.value = data.unitID;
+                    unitVol.value = data.unitVol;
+                    $("#qty").val(0).focus().select();
+                    computeSaldo();
+                })
+            }
+        });   
         
         $("#qty").on('input', computeSaldo);
         function computeSaldo(){
