@@ -150,7 +150,7 @@
                     invID.value = data.invID;
                     unitID.value = data.unitID;
                     unitVol.value = data.unitVol;
-                    $("#qty").val(0).focus().select();
+                    $("#lokasi").val(0).focus().select();
                     computeSaldo();
                 })
             }
