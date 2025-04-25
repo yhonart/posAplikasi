@@ -185,8 +185,7 @@
             if (typeof qty == "undefined") {
                 return
             }
-            $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));
-            $("#lastStock").focus();
+            $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));            
         }
         
         var actQty = document.getElementById("qty");
