@@ -19,7 +19,7 @@
         0=>"bg-danger",
     );
 ?>
-<table class="table table-sm table-valign-middle table-hover " id="listDocOpname">
+<table class="table table-sm table-valign-middle table-hover table-light " id="listDocOpname">
     <thead>
         <tr>
             <th>No. Dokumen</th>
