@@ -186,6 +186,7 @@
                 return
             }
             $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));
+            $("#lokasi").focus();
         }
         
         var actQty = document.getElementById("qty");
