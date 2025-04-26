@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Hash;
-
+use Carbon\Carbon;
 
 class StockopnameController extends Controller
 {    
@@ -262,12 +262,20 @@ class StockopnameController extends Controller
    {
         $approval = $this->userApproval();
         $toDayy = date("d-m-Y");
-        
+
+        $tanggalAwal = Carbon::now()->startOfMonth();
+        $tanggalAwal = Carbon::now()->endOfMonth();
+
         $summaryOpname = DB::table('inv_stock_opname as a');
         $summaryOpname = $summaryOpname->leftJoin('m_site as b','a.loc_so','b.idm_site');
-        $summaryOpname = $summaryOpname->where('a.status',$status);       
+        if ($status <> "All") {
+            $summaryOpname = $summaryOpname->where('a.status',$status);
+        }
         if ($fromDate <> '0' OR $endDate <> '0') {
             $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$fromDate,$endDate]);
+        }
+        else {
+            $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$tanggalAwal,$tanggalAwal]);
         }
         $summaryOpname = $summaryOpname->orderBy('a.idinv_opname','desc');
         $summaryOpname = $summaryOpname->limit(100);

@@ -61,7 +61,7 @@
     </tbody>
 </table>
 <p class=" bg-blue p-2">
-    <small>* Data yang di tampilkan secara default berdasarkan data hari ini </small>
+    * Data yang di tampilkan secara default berdasarkan data dalam satu bulan yang sama ! 
 </p>
 <script>
     $(function(){
