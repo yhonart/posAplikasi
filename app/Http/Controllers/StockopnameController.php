@@ -262,7 +262,7 @@ class StockopnameController extends Controller
    {
         $approval = $this->userApproval();
         $toDayy = date("d-m-Y");
-
+        $location = Auth::user()->location;
         $tanggalAwal = Carbon::now()->startOfMonth();
         $tanggalAkhir  = Carbon::now()->endOfMonth();
 
@@ -280,6 +280,7 @@ class StockopnameController extends Controller
         else {
             $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$tanggalAwal,$tanggalAkhir ]);
         }
+        $summaryOpname = $summaryOpname->where('comp_id',$location);
         $summaryOpname = $summaryOpname->orderBy('a.status','asc');
         $summaryOpname = $summaryOpname->limit(100);
         $summaryOpname = $summaryOpname->get();
