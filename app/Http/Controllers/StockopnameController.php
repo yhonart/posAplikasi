@@ -277,7 +277,7 @@ class StockopnameController extends Controller
         else {
             $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$tanggalAwal,$tanggalAkhir ]);
         }
-        $summaryOpname = $summaryOpname->orderBy('a.idinv_opname','desc');
+        $summaryOpname = $summaryOpname->orderBy('a.status','asc');
         $summaryOpname = $summaryOpname->limit(100);
         $summaryOpname = $summaryOpname->get();
             
