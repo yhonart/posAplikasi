@@ -264,7 +264,7 @@ class StockopnameController extends Controller
         $toDayy = date("d-m-Y");
 
         $tanggalAwal = Carbon::now()->startOfMonth();
-        $tanggalAwal = Carbon::now()->endOfMonth();
+        $tanggalAkhir  = Carbon::now()->endOfMonth();
 
         $summaryOpname = DB::table('inv_stock_opname as a');
         $summaryOpname = $summaryOpname->leftJoin('m_site as b','a.loc_so','b.idm_site');
@@ -275,7 +275,7 @@ class StockopnameController extends Controller
             $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$fromDate,$endDate]);
         }
         else {
-            $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$tanggalAwal,$tanggalAwal]);
+            $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$tanggalAwal,$tanggalAkhir ]);
         }
         $summaryOpname = $summaryOpname->orderBy('a.idinv_opname','desc');
         $summaryOpname = $summaryOpname->limit(100);
