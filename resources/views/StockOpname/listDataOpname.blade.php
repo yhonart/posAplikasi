@@ -16,6 +16,7 @@
         <div class="col-md-3">
             <label for="" class="label">Select Status</label>
             <select name="status" id="status" class="form-control form-control-sm">
+                <option value="All">-Semua Status-</option>
                 <option value="2">Submited</option>
                 <option value="1">Proses</option>
                 <option value="3">Disetujui</option>
