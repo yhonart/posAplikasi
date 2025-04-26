@@ -271,6 +271,9 @@ class StockopnameController extends Controller
         if ($status <> "All") {
             $summaryOpname = $summaryOpname->where('a.status',$status);
         }
+        else {
+            $summaryOpname = $summaryOpname->whereBetween('a.status',['2','3']);
+        }
         if ($fromDate <> '0' OR $endDate <> '0') {
             $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$fromDate,$endDate]);
         }
