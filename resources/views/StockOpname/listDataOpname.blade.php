@@ -54,7 +54,6 @@
                 let fromDate = $('#fromDate').val(),
                     endDate = $('#endDate').val(),         
                     status = $('#status').val();
-                alert(fromDate);
                 if(fromDate === '' || endDate === ''){
                     fromDate = '0';
                     endDate = '0';
