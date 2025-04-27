@@ -160,7 +160,7 @@ class CorrectPrdController extends Controller
         else {
             $lisDatKoreksi = $lisDatKoreksi->where('status',$status);            
         }
-        $lisDatKoreksi = $lisDatKoreksi->whereBetween("dateInput", [$fromDate, $endDate]);
+        $lisDatKoreksi = $lisDatKoreksi->whereBetween("dateInput", [$tanggalAwal, $tanggalAkhir]);
         $lisDatKoreksi = $lisDatKoreksi->where('comp_id',$company);
         $lisDatKoreksi = $lisDatKoreksi->limit(100);
         $lisDatKoreksi = $lisDatKoreksi->get();
