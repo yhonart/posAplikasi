@@ -44,7 +44,11 @@
                                 <tbody>
                                     <form id="formInputEditKoreksi">
                                         <tr>
-                                            <td>#</td>
+                                            <td>
+                                                #
+                                                <input type="hidden" name="numberKoreksi" id="numberKoreksi" value="{{$number}}">
+                                                <input type="hidden" class="form-control form-control-sm" name="invID" id="invID">
+                                            </td>
                                             <td class="p-0">
                                                 <select class="form-control form-control-sm val-reset" name="product" id="product">
                                                     <option value="0">..</option>
@@ -104,6 +108,169 @@
         $("#product").focus();
         loadListData();
     })
+    $(document).ready(function(){
+        let satuan =  document.getElementById('satuan'),
+            lastStock =  document.getElementById('lastStock'),
+            invID =  document.getElementById('invID'),
+            location = document.getElementById('location');
+
+        $("#product").change(function(){
+            let productID = $(this).find(":selected").val();
+            $("#location").focus();
+            $.ajax({
+                type : 'get',
+                url : "{{route('stockOpname')}}/listInputBarang/satuan/" + productID,
+                success : function(response){ 
+                    $("#satuan").html(response);
+                }
+            });
+        });
+
+        satuan.addEventListener("change", function(){
+            let satuanVal = $(this).find(":selected").val(),
+                locationVal = $("#location").find(":selected").val(),
+                productVal = $("#product").val();
+            // alert(productVal);
+            if(satuanVal !== '0' || satuanVal !== undefined){
+                fetch("{{route('koreksiBarang')}}/listInputBarang/lastQty/"+satuanVal+"/"+productVal+"/"+locationVal)
+                .then(response => response.json())
+                .then(data => {
+                    lastStock.value = data.lastQty;
+                    invID.value = data.invID;
+                    $("#t_type").focus();
+                })
+            }
+        });
+
+        $("#t_type").change(function(){
+            $("#qty").val("0").select();
+        });
+        
+        $("#location").change(function(){
+            $("#satuan").focus().select();
+        });
+        
+        $("#qty").on('input', computeSaldo);
+        
+        function computeSaldo(){
+            let lastStockVal = $("#lastStock").val(),
+                qty = $("#qty").val(),
+                t_type = $("#t_type").find(":selected").val();
+                
+            if (typeof qty == "undefined" || typeof qty == "0") {
+                return
+            }
+            
+            if (t_type === 'D'){
+                $("#tPerbaikan").val(parseFloat(qty) + parseFloat(lastStockVal));
+            }
+            else if (t_type === 'K'){                
+                $("#tPerbaikan").val(parseFloat(lastStockVal) - parseFloat(qty));
+            }
+
+            $("#addItemKorek").removeClass('btn-default');
+            $("#addItemKorek").addClass('bg-success');
+        }
+        
+        var actQty = document.getElementById("qty");
+        
+        actQty.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
+        
+        $("#addItemKorek").on('click', function (event){
+            event.preventDefault();
+            addActivityItem();
+        })
+        
+        $('#submitButton').on('click', function (e) {
+            $("#displayNotif").fadeIn("slow");
+            e.preventDefault();
+            let sumQty = $("#sumQty").val(),
+                sumStock = $("#sumStock").val(),
+                number = $("#numberKoreksi").val();
+                t_item = $("#t_item").val();
+            if(t_item === '0'){
+                alertify
+                  .alert("Tidak ada data yang di masukkan!", function(){
+                    alertify.message('OK');
+                  });
+            }
+            else{
+                alertify.prompt("Masukkan Catatan Laporan (Optional)", "...",
+                    function(evt, value ){
+                        alertify.success('Ok: ' + value);
+                        $.ajax({
+                            type : 'post',
+                            url : "{{route('koreksiBarang')}}/listInputBarang/submitLapKoreksi",
+                            data :  {sumQty:sumQty,sumStock:sumStock,number:number,t_item:t_item},
+                            success : function(data){
+                                window.location.reload();
+                            }
+                        }).set({title:"Submit Laporan"});
+                    },
+                    function(){
+                        alertify.error('Cancel');
+                    })
+                ;
+            }
+            $("#displayNotif").fadeOut("slow");
+        });
+    });
+
+    function addActivityItem() {
+        let productInput = $("#product").val(),
+            location = $("#location").val(),
+            satuan = $("#satuan").val(),
+            t_type = $("#t_type").val(),
+            qty = $("#qty").val(),
+            lastStock = $("#lastStock").val(),
+            invID = $("#invID").val(),
+            numberKoreksi = $("#numberKoreksi").val(),
+            tPerbaikan = $("#tPerbaikan").val();            
+            
+        let dataForm = {product:productInput,location:location,satuan:satuan,t_type:t_type,qty:qty,lastStock:lastStock,invID:invID,numberKoreksi:numberKoreksi,tPerbaikan:tPerbaikan};
+        submitData(dataForm);
+    }
+
+    function submitData(dataForm){
+        let display = "listInputBarang";
+        $("#displayNotif").fadeIn("slow");
+        $.ajax({
+            type : 'post',
+            url : "{{route('koreksiBarang')}}/listInputBarang/submitKoreksi",
+            data :  dataForm,
+            success : function(data){
+                // loadListData();
+                if(data.success){
+                    viewTableInput(display);
+                    $("form#formKoreksiInputBarang")[0].reset();
+                    alertify.success(data.success);
+                }
+                else if (data.warning){
+                    alertify
+                    .alert(data.warning, function(){
+                        alertify.message('OK');
+                    });
+                }
+                $("#displayNotif").fadeOut("slow");
+            }
+        });
+    }
+
+    function viewTableInput(display) {
+        $.ajax({
+            type : 'get',
+            url : "{{route('koreksiBarang')}}/"+display,
+            success : function(response){
+                $('#displayOnDiv').html(response);
+            }
+        });
+    }
+    
     function loadListData(){
         let number = "{{$number}}";
         $.ajax({
