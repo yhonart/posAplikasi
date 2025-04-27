@@ -51,22 +51,22 @@
             status = "All";        
         searchData(fromDate, endDate, status);
         $("#fromDate").change(function(){
-                let fromDate = $(this).find(":selected").val(),
+                let fromDate = $('#fromDate').val(),
                     endDate = $('#endDate').val(),         
                     status = $('#status').val();
-
                 alert(fromDate);
                 if(fromDate === '' || endDate === ''){
                     fromDate = '0';
                     endDate = '0';
-                }    
+                }       
                 searchData(fromDate, endDate, status);
         });
 
         $("#endDate").change(function(){
                 let fromDate = $('#fromDate').val(),
-                    endDate = $(this).find(":selected").val(),
+                    endDate = $("#endDate").val(),
                     status = $('#status').val();
+
                 if(fromDate === '' || endDate === ''){
                     fromDate = '0';
                     endDate = '0';
