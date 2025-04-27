@@ -437,12 +437,13 @@ class CorrectPrdController extends Controller
        $createdBy = Auth::user()->name;
     //   echo $number;
        $listBarang = DB::table('inv_list_correction as a')
+        ->select('a.*','b.product_name','b.site_name','a.product_satuan')
         ->leftJoin('view_product_stock as b','a.inv_id','b.idinv_stock')
         ->where([
-            ['number_correction',$number],    
-            ['created_by',$createdBy],
-            ['display','1'],
-            // ['status','1']
+            ['a.number_correction',$number],    
+            ['a.created_by',$createdBy],
+            ['a.display','1'],
+            ['a.status','1']
         ])
         ->get();
       
