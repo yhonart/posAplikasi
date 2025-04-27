@@ -51,9 +51,10 @@
             status = "All";        
         searchData(fromDate, endDate, status);
         $("#fromDate").change(function(){
-                fromDate = $(this).find(":selected").val();
-                endDate = $('#endDate').val();               
-                status = $('#status').val();
+                let fromDate = $(this).find(":selected").val(),
+                    endDate = $('#endDate').val(),         
+                    status = $('#status').val();
+
                 alert(fromDate);
                 if(fromDate === '' || endDate === ''){
                     fromDate = '0';
@@ -63,9 +64,9 @@
         });
 
         $("#endDate").change(function(){
-                fromDate = $('#fromDate').val();
-                endDate = $(this).find(":selected").val();
-                status = $('#status').val();
+                let fromDate = $('#fromDate').val(),
+                    endDate = $(this).find(":selected").val(),
+                    status = $('#status').val();
                 if(fromDate === '' || endDate === ''){
                     fromDate = '0';
                     endDate = '0';
@@ -74,9 +75,9 @@
         });
 
         $("#status").change(function(){
-                fromDate = $('#fromDate').val();
-                endDate = $('#endDate').val();
-                status = $(this).find(":selected").val();
+                let fromDate = $('#fromDate').val(),
+                    endDate = $('#endDate').val(),
+                    status = $(this).find(":selected").val();
                 if(fromDate === '' || endDate === ''){
                     fromDate = '0';
                     endDate = '0';
