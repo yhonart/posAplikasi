@@ -246,7 +246,7 @@
     }
 
     function submitData(dataForm){
-        let display = "{{$number}}";
+        let idparam = "{{$number}}";
         $("#displayNotif").fadeIn("slow");
         $.ajax({
             type : 'post',
