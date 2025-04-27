@@ -443,8 +443,7 @@ class CorrectPrdController extends Controller
         ->where([
             ['a.number_correction',$number],    
             ['a.created_by',$createdBy],
-            ['a.display','1'],
-            ['a.status','1']
+            ['a.display','1']
         ])
         ->get();
       
