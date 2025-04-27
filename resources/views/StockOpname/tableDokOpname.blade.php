@@ -19,7 +19,7 @@
         0=>"bg-danger",
     );
 ?>
-<table class="table table-sm table-valign-middle table-hover" id="listDocOpname">
+<table class="table table-sm table-valign-middle table-hover" id="listDocOpname">    
     <thead>
         <tr>
             <th>No. Dokumen</th>
@@ -59,6 +59,11 @@
             </tr>
         @endforeach
     </tbody>
+    <tfoot>
+        <tr>
+            <th>{{$tanggalAwal}} s/d {{$tanggalAkhir}}</th>
+        </tr>
+    </tfoot>
 </table>
 <p class=" bg-danger p-2">
     * Data yang ditampilkan pada halaman utama adalah data di bulan yang sedang berjalan ! 

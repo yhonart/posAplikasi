@@ -263,8 +263,14 @@ class StockopnameController extends Controller
         $approval = $this->userApproval();
         $toDayy = date("d-m-Y");
         $compID = Auth::user()->company;
-        $tanggalAwal = Carbon::now()->startOfMonth();
-        $tanggalAkhir  = Carbon::now()->endOfMonth();
+        if ($fromDate == '0' || $endDate == '0') {
+            $tanggalAwal = Carbon::now()->startOfMonth();
+            $tanggalAkhir  = Carbon::now()->endOfMonth();
+        }
+        else {
+            $tanggalAwal = $fromDate;
+            $tanggalAkhir  = $endDate;
+        }
 
         $summaryOpname = DB::table('inv_stock_opname as a');
         $summaryOpname = $summaryOpname->leftJoin('m_site as b','a.loc_so','b.idm_site');
@@ -273,19 +279,14 @@ class StockopnameController extends Controller
         }
         else {
             $summaryOpname = $summaryOpname->whereBetween('a.status',['2','3']);
-        }
-        if ($fromDate <> '0' OR $endDate <> '0') {
-            $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$fromDate,$endDate]);
-        }
-        else {
-            $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$tanggalAwal,$tanggalAkhir ]);
-        }
+        }        
         $summaryOpname = $summaryOpname->where('comp_id',$compID);
+        $summaryOpname = $summaryOpname->whereBetween('a.date_so',[$tanggalAwal,$tanggalAkhir ]);
         $summaryOpname = $summaryOpname->orderBy('a.status','asc');
         $summaryOpname = $summaryOpname->limit(100);
         $summaryOpname = $summaryOpname->get();
             
-        return view('StockOpname/tableDokOpname', compact('summaryOpname','approval'));
+        return view('StockOpname/tableDokOpname', compact('summaryOpname','approval','tanggalAwal','tanggalAkhir'));
    }
    
    public function detailOpname($opnameCode){
