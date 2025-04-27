@@ -34,7 +34,7 @@
                 <td class="text-right">
                     <span class="{{$bgColor[$ldk->status]}} pl-2 pr-2 pt-1 pb-1 rounded-pill text-xs">{{$araystatus[$ldk->status]}}</span>
                 </td>
-                <td>
+                <td class="text-right">
                     @if($ldk->status <> '0' AND $ldk->status <> '1')
                         @if($approval >= '1' AND $ldk->status == '2')
                             <button type="button" class="btn btn-sm btn-success btnApprove " title="Approve" data-koreksi="{{$ldk->number}}"><i class="fa-solid fa-check"></i></button>
