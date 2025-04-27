@@ -78,7 +78,7 @@
                                 <input type="hidden" class="form-control form-control-sm" name="invID" id="invID">
                             </td>
                             <td class="p-0">
-                                <select class="form-control val-reset" name="product" id="product">
+                                <select class="form-control form-control-sm val-reset" name="product" id="product">
                                     <option value="0">..</option>
                                     @foreach($mProduct as $mP)
                                         <option value="{{$mP->idm_data_product}}">{{$mP->product_name}}</option>
