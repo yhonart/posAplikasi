@@ -263,6 +263,8 @@ class StockopnameController extends Controller
         $approval = $this->userApproval();
         $toDayy = date("d-m-Y");
         $compID = Auth::user()->company;
+
+        echo $fromDate;
         if ($fromDate == '0' && $endDate == '0') {
             $tanggalAwal = Carbon::now()->startOfMonth();
             $tanggalAkhir  = Carbon::now()->endOfMonth();
