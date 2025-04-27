@@ -32,10 +32,10 @@
                                     <tr>
                                         <th>No</th>
                                         <th width="20%">Nama Barang</th>
-                                        <th>Lokasi</th>
-                                        <th>Satuan</th>
-                                        <th>D/K</th>
-                                        <th>Qty</th>
+                                        <th width="10%">Lokasi</th>
+                                        <th width="10%">Satuan</th>
+                                        <th width="10%">D/K</th>
+                                        <th width="10%">Qty</th>
                                         <th>Stok Awal</th>
                                         <th>Perbaikan</th>
                                         <th></th>
