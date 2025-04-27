@@ -51,7 +51,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <form id="formInputEditKoreksi">
+                                    <form id="formInputEditKoreksi" autocomplete="off">
                                         <tr>
                                             <td>
                                                 #
@@ -86,7 +86,7 @@
                                                 </select>
                                             </td>
                                             <td class="p-0">
-                                                <input type="number" class="form-control form-control-sm val-reset form-control-border rounded-0" name="qty" id="qty" autocomplate="off">
+                                                <input type="number" class="form-control form-control-sm val-reset form-control-border rounded-0" name="qty" id="qty">
                                             </td>
                                             <td class="p-0">
                                                 <input type="number" class="form-control form-control-sm val-reset form-control-border rounded-0" name="lastStock" id="lastStock" readonly>
@@ -125,11 +125,11 @@
 
         $("#product").change(function(){
             let productID = $(this).find(":selected").val();
-            $("#location").focus();
             $.ajax({
                 type : 'get',
                 url : "{{route('stockOpname')}}/listInputBarang/satuan/" + productID,
                 success : function(response){ 
+                    $("#location").focus();
                     $("#satuan").html(response);
                 }
             });
