@@ -721,7 +721,14 @@ class CorrectPrdController extends Controller
 
    public function editKoreksi ($number)
    {
+        $company = Auth::user()->company;
+        $mProduct = DB::table('m_product')
+            ->where('comp_id',$company)
+            ->orderBy('product_name','ASC')
+            ->get();
+        $mSite = DB::table('m_site')
+            ->get();
 
-        return view('StockCorrection/editKoreksi', compact('number'));
+        return view('StockCorrection/editKoreksi', compact('number','mProduct','mSite'));
    }
 }
