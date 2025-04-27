@@ -726,9 +726,16 @@ class CorrectPrdController extends Controller
             ->where('comp_id',$company)
             ->orderBy('product_name','ASC')
             ->get();
+
         $mSite = DB::table('m_site')
             ->get();
 
-        return view('StockCorrection/editKoreksi', compact('number','mProduct','mSite'));
+        $sumKoreksi = DB::table('inv_list_correction')
+            ->select(DB::raw('SUM(qty) as qty'), DB::raw('SUM(stock) as stock'), DB::raw('COUNT(idinv_list) as countKrs'))
+            ->where([
+                ['number_correction',$number]
+            ])
+            ->first();
+        return view('StockCorrection/editKoreksi', compact('number','mProduct','mSite','sumKoreksi'));
    }
 }
