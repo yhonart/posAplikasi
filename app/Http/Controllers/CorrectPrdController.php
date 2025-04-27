@@ -441,7 +441,8 @@ class CorrectPrdController extends Controller
         ->where([
             ['number_correction',$number],    
             ['created_by',$createdBy],
-            ['display','1']
+            ['display','1'],
+            ['status','1']
         ])
         ->get();
       
