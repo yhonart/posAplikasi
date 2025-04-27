@@ -442,7 +442,7 @@ class CorrectPrdController extends Controller
             ['number_correction',$number],    
             ['created_by',$createdBy],
             ['display','1'],
-            ['status','1']
+            // ['status','1']
         ])
         ->get();
       
