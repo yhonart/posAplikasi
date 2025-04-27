@@ -58,5 +58,14 @@
     </div>
 </div>
 <script>
-    
+    function loadListData(){
+        let number = "{{$number}}";
+        $.ajax({
+            type : 'get',
+            url : "{{route('koreksiBarang')}}/listInputBarang/listBarang/"+number,
+            success : function(response){
+                $('#locadListKoreksi').html(response);
+            }
+        });
+    }
 </script>
