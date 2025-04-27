@@ -722,6 +722,7 @@ class CorrectPrdController extends Controller
 
    public function editKoreksi ($number)
    {
-    echo $number;
+
+        return view('StockCorrection/editKoreksi', compact('number'));
    }
 }
