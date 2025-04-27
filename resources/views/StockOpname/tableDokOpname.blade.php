@@ -61,7 +61,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <th>{{$tanggalAwal}} s/d {{$tanggalAkhir}}</th>
+            <th colspan="6" class="text-info">{{$tanggalAwal}} s/d {{$tanggalAkhir}}</th>
         </tr>
     </tfoot>
 </table>
