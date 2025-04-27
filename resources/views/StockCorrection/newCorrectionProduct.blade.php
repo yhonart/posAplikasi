@@ -59,7 +59,7 @@
                     <tr>
                         <th>No</th>
                         <th width="30%">Nama Barang</th>
-                        <th>Kode Lokasi</th>
+                        <th>Lokasi</th>
                         <th>Satuan</th>
                         <th>D/K</th>
                         <th>Qty</th>
@@ -141,11 +141,11 @@
         
         $("#product").change(function(){
             let productID = $(this).find(":selected").val();
+            $("#location").focus();
             $.ajax({
                 type : 'get',
                 url : "{{route('stockOpname')}}/listInputBarang/satuan/" + productID,
                 success : function(response){ 
-                    $("#location").focus();
                     $("#satuan").html(response);
                 }
             });

@@ -44,7 +44,7 @@
                         @endif
                         <button type="button" class="btn btn-sm btn-primary btnDetail " id="btnDetail" title="View Detail" data-koreksi="{{$ldk->number}}"><i class="fa-solid fa-magnifying-glass"></i></button>                        
                         @if($approval >= '1' AND $ldk->status >= '2')
-                            <!--<a class="btn btn-sm btn-info" id="btnEdit" title="Edit"><i class="fa-solid fa-pencil"></i> Edit</a>-->
+                            <a class="btn btn-sm btn-info btnEdit" id="btnEdit" title="Edit"><i class="fa-solid fa-pencil"></i></a>
                         @endif
                     @endif
                 </td>
@@ -84,6 +84,23 @@
             $.ajax({
                 type:'get',
                 url:"{{route('koreksiBarang')}}/listDataKoreksi/detailKoreksi/"+idparam,
+                dataType: 'html',
+                success:function(response){
+                    $(".LOAD-SPINNER").fadeOut();
+                    $("#tableDataKoreksi").hide();
+                    $("#detailKoreksi").html(response);
+                }
+            });
+        });
+
+        $(".dataTable").on('click','.btnEdit', function () {
+            $(".LOAD-SPINNER").fadeIn();
+            $("#divTabelDataKoreksi").fadeOut();
+            var element = $(this);
+            var  idparam = element.attr("data-koreksi");
+            $.ajax({
+                type:'get',
+                url:"{{route('koreksiBarang')}}/listDataKoreksi/editKoreksi/"+idparam,
                 dataType: 'html',
                 success:function(response){
                     $(".LOAD-SPINNER").fadeOut();

@@ -149,6 +149,7 @@ class CorrectPrdController extends Controller
             $tanggalAwal = $fromDate;
             $tanggalAkhir  = $endDate;
         }
+
         $listOnProces = DB::table('inv_correction')
             ->whereBetween("status", ['1', '2'])
             ->get();
@@ -717,5 +718,10 @@ class CorrectPrdController extends Controller
                 'stock'=>$stock,
                 'saldo'=>$updateQty
             ]);
+   }
+
+   public function editKoreksi ($number)
+   {
+    echo $number;
    }
 }
