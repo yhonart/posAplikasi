@@ -61,7 +61,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <th colspan="6" class="text-info">{{date_format("d-M-Y", strtotime($tanggalAwal))}} s/d {{date_format("d-M-Y", strtotime($tanggalAkhir))}}</th>
+            <th colspan="6" class="text-info">{{date("d-M-Y", strtotime($tanggalAwal))}} s/d {{date("d-M-Y", strtotime($tanggalAkhir))}}</th>
         </tr>
     </tfoot>
 </table>
