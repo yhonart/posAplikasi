@@ -256,7 +256,7 @@
                 // loadListData();
                 if(data.success){
                     viewTableInput(idparam);
-                    $("form#formKoreksiInputBarang")[0].reset();
+                    $("form#formInputEditKoreksi")[0].reset();
                     alertify.success(data.success);
                 }
                 else if (data.warning){
