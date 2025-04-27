@@ -24,7 +24,39 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive" style="height:700px">
+                            <table class="table table-sm table-valign-middle" id="tableEditItemKoreksi">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th width="20%">Nama Barang</th>
+                                        <th>Lokasi</th>
+                                        <th>Satuan</th>
+                                        <th>D/K</th>
+                                        <th>Qty</th>
+                                        <th>Stok Awal</th>
+                                        <th>Perbaikan</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <form id="formInputEditKoreksi">
+                                        <tr>
+                                            <td>#</td>
+                                        </tr>
+                                    </form>
+                                </tbody>
+                                <tbody id="locadListKoreksi"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    
+</script>

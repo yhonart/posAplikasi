@@ -58,7 +58,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th width="30%">Nama Barang</th>
+                        <th width="20%">Nama Barang</th>
                         <th>Lokasi</th>
                         <th>Satuan</th>
                         <th>D/K</th>
