@@ -60,8 +60,8 @@
         @endforeach
     </tbody>
 </table>
-<p class=" bg-blue p-2">
-    * Data yang di tampilkan secara default berdasarkan data dalam satu bulan yang sama ! 
+<p class=" bg-danger p-2">
+    * Data yang ditampilkan pada halaman utama adalah data di bulan yang sedang berjalan ! 
 </p>
 <script>
     $(function(){
