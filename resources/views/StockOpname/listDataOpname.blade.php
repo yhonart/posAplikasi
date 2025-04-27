@@ -48,13 +48,13 @@
     $(document).ready(function(){
         let fromDate = '0',
             endDate = '0',
-            status = "All";
-        
+            status = "All";        
         searchData(fromDate, endDate, status);
         $("#fromDate").change(function(){
                 fromDate = $(this).find(":selected").val();
                 endDate = $('#endDate').val();               
                 status = $('#status').val();
+                alert(fromDate);
                 if(fromDate === '' || endDate === ''){
                     fromDate = '0';
                     endDate = '0';
