@@ -27,7 +27,7 @@
     <tbody>        
         @foreach($lisDatKoreksi as $ldk)
             <tr>
-                <td>{{$ldk->number}}</td>
+                <td class=" font-weight-bold">{{$ldk->number}}</td>
                 <td>{{date("d-M-y", strtotime($ldk->dateInput))}}</td>
                 <td>{{$ldk->notes}}</td>
                 <td>{{$ldk->created_by}}</td>
@@ -53,7 +53,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <th class="text-right text-info" colspan="6">{{$tanggalAwal}} s.d {{$tanggalAkhir}}</th>
+            <th class="text-right text-info" colspan="6">{{date('d-M-Y',strtotime($tanggalAwal))}} s.d {{date('d-M-Y', strtotime($tanggalAkhir))}}</th>
         </tr>
     </tfoot>
 </table>
