@@ -246,7 +246,7 @@
     }
 
     function submitData(dataForm){
-        let display = "listInputBarang";
+        let display = "{{$number}}";
         $("#displayNotif").fadeIn("slow");
         $.ajax({
             type : 'post',
@@ -255,7 +255,7 @@
             success : function(data){
                 // loadListData();
                 if(data.success){
-                    viewTableInput(display);
+                    viewTableInput(idparam);
                     $("form#formKoreksiInputBarang")[0].reset();
                     alertify.success(data.success);
                 }
@@ -270,12 +270,15 @@
         });
     }
 
-    function viewTableInput(display) {
+    function viewTableInput(idparam) {
         $.ajax({
-            type : 'get',
-            url : "{{route('koreksiBarang')}}/"+display,
-            success : function(response){
-                $('#displayOnDiv').html(response);
+            type:'get',
+            url:"{{route('koreksiBarang')}}/listDataKoreksi/editKoreksi/"+idparam,
+            dataType: 'html',
+            success:function(response){
+                $(".LOAD-SPINNER").fadeOut();
+                $("#tableDataKoreksi").hide();
+                $("#detailKoreksi").html(response);
             }
         });
     }
