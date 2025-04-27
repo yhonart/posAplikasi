@@ -167,7 +167,7 @@ class CorrectPrdController extends Controller
 
         $approval = $this->userApproval();
         
-        return view('StockCorrection/tableDokKereksi', compact('lisDatKoreksi','approval','listOnProces'));
+        return view('StockCorrection/tableDokKereksi', compact('lisDatKoreksi','approval','listOnProces','tanggalAwal','tanggalAkhir'));
    }
    
    public function listInputBarang(){

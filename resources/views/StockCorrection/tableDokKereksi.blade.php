@@ -51,6 +51,11 @@
             </tr>
         @endforeach
     </tbody>
+    <tfoot>
+        <tr>
+            <th class="text-right text-info" colspan="6">{{$tanggalAwal}} s.d {{$tanggalAkhir}}</th>
+        </tr>
+    </tfoot>
 </table>
 
 <script>
