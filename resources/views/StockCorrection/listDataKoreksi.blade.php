@@ -23,7 +23,8 @@
                 </div>
                 <div class="col-md-3">
                     <label for="" class="label">Select Status</label>
-                    <select name="status" id="status" class="form-control form-control-sm">                        
+                    <select name="status" id="status" class="form-control form-control-sm">   
+                        <option value="All">-Semua Status-</option>                     
                         <option value="2">Submited</option>
                         <option value="1">Proses</option>
                         <option value="3">Disetujui</option>
@@ -53,42 +54,42 @@
     $(document).ready(function(){
         let fromDate = '0',
             endDate = '0',
-            status = '2';
+            status = "All";
         
         searchData(fromDate, endDate, status);
 
         $("#fromDate").change(function(){
-                fromDate = $('#fromDate').val();
-                endDate = $('#endDate').val();               
+            let fromDate = $('#fromDate').val(),
+                endDate = $('#endDate').val(),
                 status = $('#status').val();
 
-                if(fromDate === '' || endDate === ''){
-                    fromDate = '0';
-                    endDate = '0';
-                }    
-                searchData(fromDate, endDate, status);
+            if(fromDate === '' || endDate === ''){
+                fromDate = '0';
+                endDate = '0';
+            }    
+            searchData(fromDate, endDate, status);
         });
 
         $("#endDate").change(function(){
-                fromDate = $('#fromDate').val();
-                endDate = $('#endDate').val();               
+            let fromDate = $('#fromDate').val(),
+                endDate = $('#endDate').val(),
                 status = $('#status').val();
-                if(fromDate === '' || endDate === ''){
-                    fromDate = '0';
-                    endDate = '0';
-                }  
-                searchData(fromDate, endDate, status);
+            if(fromDate === '' || endDate === ''){
+                fromDate = '0';
+                endDate = '0';
+            }  
+            searchData(fromDate, endDate, status);
         });
 
         $("#status").change(function(){
-                fromDate = $('#fromDate').val();
-                endDate = $('#endDate').val();
+            let fromDate = $('#fromDate').val(),
+                endDate = $('#endDate').val(),
                 status = $(this).find(":selected").val();
-                if(fromDate === '' || endDate === ''){
-                    fromDate = '0';
-                    endDate = '0';
-                }  
-                searchData(fromDate, endDate, status);
+            if(fromDate === '' || endDate === ''){
+                fromDate = '0';
+                endDate = '0';
+            }  
+            searchData(fromDate, endDate, status);
         });
 
         function searchData(fromDate, endDate, status){ 
