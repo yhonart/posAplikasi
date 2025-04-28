@@ -671,7 +671,10 @@ class MutasibarangController extends Controller
    }
    
    public function editMutasi ($idparam){
+        $company = Auth::user()->company;
+
         $mProduct = DB::table('m_product')
+            ->where('comp_id',$company)
             ->orderBy('product_name','asc')
             ->get();
             
