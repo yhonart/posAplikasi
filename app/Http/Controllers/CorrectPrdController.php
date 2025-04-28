@@ -736,6 +736,10 @@ class CorrectPrdController extends Controller
                 ['number_correction',$number]
             ])
             ->first();
-        return view('StockCorrection/editKoreksi', compact('number','mProduct','mSite','sumKoreksi'));
+
+        $koreksi = DB::table('inv_correction')
+            ->where('number',$number)
+            ->first();
+        return view('StockCorrection/editKoreksi', compact('number','mProduct','mSite','sumKoreksi','koreksi'));
    }
 }
