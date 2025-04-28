@@ -43,7 +43,7 @@
                             <button type="button" class="btn btn-sm btn-danger btnDelete " title="Delete" data-koreksi="{{$ldk->number}}"><i class="fa-solid fa-trash"></i></button>
                         @endif
                         <button type="button" class="btn btn-sm btn-primary btnDetail " id="btnDetail" title="View Detail" data-koreksi="{{$ldk->number}}"><i class="fa-solid fa-magnifying-glass"></i></button>                        
-                        @if($approval >= '1' AND $ldk->status >= '2')
+                        @if($approval == '1' AND $ldk->status == '2')
                             <a class="btn btn-sm btn-info btnEdit" id="btnEdit" title="Edit" data-koreksi="{{$ldk->number}}" title="Edit Data"><i class="fa-solid fa-pencil"></i></a>
                         @endif
                     @endif
