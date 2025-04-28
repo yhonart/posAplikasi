@@ -96,13 +96,14 @@
     $(document).ready(function(){
         let satuan =  document.getElementById('satuan'),
             lastStock =  document.getElementById('lastStock'),
-            invID =  document.getElementById('invID');
+            invID =  document.getElementById('invID'),
+            docNumber = "{{$tbMutasi->number}}";
         
         $("#mProduct").change(function(){
             let productID = $(this).find(":selected").val();
             $.ajax({
                 type : 'get',
-                url : "{{route('mutasi')}}/listSatuan/satuan/" + productID,
+                url : "{{route('mutasi')}}/listSatuan/satuan/" + productID + "/" + docNumber,
                 success : function(response){     
                     $("#satuan").html(response).focus();
                 }

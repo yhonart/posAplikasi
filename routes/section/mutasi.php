@@ -20,7 +20,7 @@ Route::get('mutasi/formEntryMutasi/editDocMutasi/{idparam}', [App\Http\Controlle
 Route::get('mutasi/listTableItem/deleteData/{idparam}', [App\Http\Controllers\MutasibarangController::class, 'deleteData']);
 Route::post('mutasi/listTableItem/editTable', [App\Http\Controllers\MutasibarangController::class, 'editTable']);
 
-Route::get('mutasi/listSatuan/satuan/{idmProduct}', [App\Http\Controllers\MutasibarangController::class, 'satuan']);
+Route::get('mutasi/listSatuan/satuan/{idmProduct}/{docNumber}', [App\Http\Controllers\MutasibarangController::class, 'satuan']);
 Route::get('mutasi/manualBook', function () {
     return view('Mutasi/manualBook');
 });

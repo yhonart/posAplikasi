@@ -490,15 +490,14 @@ class MutasibarangController extends Controller
         return view('Mutasi/editDocMutasi',compact('tbMutasi','mLoc','asalBarang','tujuanBarang'));
     }
     
-    public function satuan($productId){
+    public function satuan($productId, $docNumber){
         $createdBy = Auth::user()->name;
         $location = DB::table('inv_moving')
             ->where([
-                ['created_by',$createdBy],
-                ['status','1']
+                ['number', $docNumber]
             ])
             ->first();
-            
+        
         $productSatuan = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product',$productId],
