@@ -52,7 +52,7 @@
                 <td class="text-right">
                     <span class="{{$bgColor[$tm->status]}} pl-2 pr-2 pt-1 pb-1 rounded-pill text-xs">{{$statusDokumen[$tm->status]}}</span>
                 </td>
-                <td>
+                <td class="text-right">
                     @if($tm->status <> '0')
                         @if($approval >= '1' AND $tm->status == '2')
                             <button type="button" class="btn btn-sm btn-success btnApprove font-weight-bold" id="btnApprove{{$tm->idinv_moving}}" title="Kirim Barang" data-opname="{{$tm->number}}" data-id="{{$tm->idinv_moving}}"><i class="fa-solid fa-check"></i></button>
