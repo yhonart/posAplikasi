@@ -505,7 +505,14 @@ class ReturnItemController extends Controller
             ->count();
 
         $optionSupplier = DB::table('m_supplier')
-            ->where([['supplier_status','1'],['comp_id',$company]])
+            ->where([
+                ['supplier_status','1'],
+                ['comp_id',$company]
+                ])
+            ->orWhere([
+                ['supplier_status','Aktif'],
+                ['comp_id',$company]
+            ])
             ->get();
 
         return view ('ReturnItem/displayReturnNonInv', compact('optionSupplier','countNumberRetur','returnNumber'));
