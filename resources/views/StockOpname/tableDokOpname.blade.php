@@ -80,10 +80,10 @@
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
             "order": [[4, 'desc']],
             "layout": {
-                topStart: {
-                    div: {
-                        className: 'layout-start',
-                        text: 'top9Start'
+                "topStart": {
+                    "div": {
+                        "className": 'layout-start',
+                        "text": 'top9Start'
                     }
                 },
             }
