@@ -152,7 +152,7 @@ class MutasibarangController extends Controller
 
         $tableMoving = DB::table('inv_moving');
         if ($status == "All") {
-            $tableMoving=$tableMoving->whereBetween('status',['2','3']);
+            $tableMoving=$tableMoving->whereBetween('status',['2','4']);
         }
         else {
             $tableMoving=$tableMoving->where('status',$status);
