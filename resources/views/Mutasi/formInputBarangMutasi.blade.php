@@ -22,7 +22,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card card-body text-xs table-responsive p-1">
-            <table class="table table-sm table-valign-middle ">
+            <table class="table table-sm table-valign-middle table-striped-columns">
                 <thead>
                     <tr>
                         <th>No.</th>
