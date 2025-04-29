@@ -39,9 +39,11 @@
                     <tbody>
                         <form id="formInputMutasiBarang">
                             <tr>
-                                <td class="p-0" colspan="2">
+                                <td>
                                     <input type="hidden" class="form-control form-control-sm" name="invID" id="invID">
                                     <input type="hidden" class="form-control form-control-sm" name="warehouse" id="warehouse" value="{{$tbMutasi->from_loc}}">
+                                </td>
+                                <td class="p-0" colspan="2">                                    
                                     <select class="form-control form-control-sm " name="mProduct" id="mProduct">
                                         <option value="0"></option>
                                         @foreach($mProduct as $mp)
