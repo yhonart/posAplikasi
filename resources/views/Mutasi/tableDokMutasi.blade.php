@@ -60,10 +60,8 @@
                         
                         <button type="button" class="btn btn-sm btn-primary btnDetail font-weight-bold" id="btnDetail" title="View Detail" data-opname="{{$tm->number}}" data-id="{{$tm->idinv_moving}}"><i class="fa-solid fa-magnifying-glass"></i></button>
                         
-                        @if($tm->status == '2' AND $approval == '0')
-                            <button type="button" class="btn btn-sm btn-info btnEdit  font-weight-bold" id="btnEdit" title="Edit" data-opname="{{$tm->number}}" data-id="{{$tm->idinv_moving}}"><i class="fa-solid fa-pencil"></i></button>
-                        @elseif($tm->status >= '2' AND $approval >= '1')
-                            <button type="button" class="btn btn-sm btn-info btnEdit  font-weight-bold" id="btnEdit" title="Edit" data-opname="{{$tm->number}}" data-id="{{$tm->idinv_moving}}"><i class="fa-solid fa-pencil"></i></button>
+                        @if($tm->status == '2' AND $approval >= '1')
+                            <button type="button" class="btn btn-sm btn-info btnEdit  font-weight-bold" id="btnEdit" title="Edit" data-opname="{{$tm->number}}" data-id="{{$tm->idinv_moving}}"><i class="fa-solid fa-pencil"></i></button>                        
                         @endif
                         
                         @if($tm->status >= '1' AND $tm->status <= '2')
