@@ -36,42 +36,42 @@
                         <th width="30%">Keterangan</th>
                     </tr>
                 </thead>
-                    <tbody>
-                        <form id="formInputMutasiBarang">
-                            <tr>
-                                <td>
-                                    <input type="hidden" class="form-control form-control-sm" name="invID" id="invID">
-                                    <input type="hidden" class="form-control form-control-sm" name="warehouse" id="warehouse" value="{{$tbMutasi->from_loc}}">
-                                </td>
-                                <td class="p-0">                                    
-                                    <select class="form-control form-control-sm " name="mProduct" id="mProduct">
-                                        <option value="0"></option>
-                                        @foreach($mProduct as $mp)
-                                        <option value="{{$mp->idm_data_product}}">{{$mp->product_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td class="p-0">
-                                    <select class="form-control form-control-sm " name="satuan" id="satuan">
-                                        <option value="0"></option>
-                                    </select>
-                                </td>
-                                <td class="p-0">
-                                    <input type="text" class="form-control form-control-sm " name="lastStock" id="lastStock" readonly>
-                                </td>
-                                <td class="p-0">
-                                    <input type="number" class="form-control form-control-sm " name="qty" id="qty">
-                                </td>
-                                <td class="p-0">
-                                    <input type="text" class="form-control form-control-sm " name="keterangan" id="keterangan">
-                                </td>
-                                <td class="p-0">
-                                    <button class="btn border-0 elevation-0 btn-default " id="btnSubmit"><i class="fa-solid fa-check"></i></button>
-                                </td>
-                            </tr>
-                        </form>
-                    </tbody>
-                    <tbody id="loadListMutasi"></tbody>
+                <tbody>
+                    <form id="formInputMutasiBarang">
+                        <tr>
+                            <td>
+                                <input type="hidden" class="form-control form-control-sm" name="invID" id="invID">
+                                <input type="hidden" class="form-control form-control-sm" name="warehouse" id="warehouse" value="{{$tbMutasi->from_loc}}">
+                            </td>
+                            <td class="p-0">
+                                <select class="form-control form-control-sm " name="mProduct" id="mProduct">
+                                    <option value="0"></option>
+                                    @foreach($mProduct as $mp)
+                                    <option value="{{$mp->idm_data_product}}">{{$mp->product_name}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td class="p-0">
+                                <select class="form-control form-control-sm " name="satuan" id="satuan">
+                                    <option value="0"></option>
+                                </select>
+                            </td>
+                            <td class="p-0">
+                                <input type="text" class="form-control form-control-sm " name="lastStock" id="lastStock" readonly>
+                            </td>
+                            <td class="p-0">
+                                <input type="number" class="form-control form-control-sm " name="qty" id="qty">
+                            </td>
+                            <td class="p-0">
+                                <input type="text" class="form-control form-control-sm " name="keterangan" id="keterangan">
+                            </td>
+                            <td class="p-0">
+                                <button class="btn border-0 elevation-0 btn-default " id="btnSubmit"><i class="fa-solid fa-check"></i></button>
+                            </td>
+                        </tr>
+                    </form>
+                </tbody>
+                <tbody id="loadListMutasi"></tbody>
             </table>
         </div>
     </div>
