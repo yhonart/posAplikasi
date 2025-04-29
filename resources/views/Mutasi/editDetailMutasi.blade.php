@@ -25,7 +25,7 @@
                 <div class="form-group">
                 </div>
             </form>
-            <table class="table table-sm table-hover table-valign-middle table-striped-columns">
+            <table class="table table-sm table-hover table-valign-middle table-striped">
                 <thead>
                     <tr>
                         <th>No.</th>
