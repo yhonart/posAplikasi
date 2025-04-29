@@ -28,7 +28,7 @@
                         <th>No.</th>
                         <th width="30%">Nama Barang</th>
                         <th>Satuan</th>
-                        <th>Stock</th>
+                        <th>Stock <br> <small>Asal Barang</small></th>
                         <th width="10%">Mutasi</th>
                         <th width="30%">Keterangan</th>
                         <th>#</th>
