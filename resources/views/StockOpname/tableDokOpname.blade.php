@@ -70,13 +70,18 @@
 </p>
 <script>
     $(function(){
+        let toolbar = document.createElement('div');
+        toolbar.innerHTML = '<b>Custom tool bar! Text/images etc.</b>';
         $("#listDocOpname").DataTable({
             "responsive": true, 
             "lengthChange": false, 
             "autoWidth": false,
             "dom": 'Bfrtip',
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
-            "order": [[4, 'desc']]
+            "order": [[4, 'desc']],
+            "layout": {
+                "topStart": toolbar
+            }
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
     $(document).ready(function(){
