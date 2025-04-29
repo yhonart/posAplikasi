@@ -124,7 +124,7 @@
                     $("#qty").val(0).focus().select();
                     if(data.lastQty == '0'){
                         alertify
-                        .alert("Stock di lokasi 0, silahkan lakukan stock opname terlebih dahulu !", function(){
+                        .alert("Stock di lokasi asal 0, silahkan lakukan stock opname terlebih dahulu !", function(){
                             alertify.message('Mutasi barang dibatalkan!');
                         });
                     }
