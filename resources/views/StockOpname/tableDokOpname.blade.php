@@ -80,7 +80,12 @@
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
             "order": [[4, 'desc']],
             "layout": {
-                "topStart": 'test'
+                top9Start: {
+                    div: {
+                        className: 'layout-start',
+                        text: 'top9Start'
+                    }
+                },
             }
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
