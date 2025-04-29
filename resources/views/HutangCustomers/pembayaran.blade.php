@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 kolomFilter">
         <p class="text-muted">* Pilih nama pelanggan untuk input pembayaran hutang</p>
     </div>
 </div>
-<div class="row" id="kolomFilter">
+<div class="row kolomFilter">
     <div class="col-6 col-md-3">
         <div class="form-group">
             <label class="form-label">Cari Nama Pelanggan</label>
@@ -72,7 +72,7 @@
             let keyWord = $(this).find(":selected").val();
                 fromDate = $('#dariTanggal').val(),
                 endDate = $('#sampaiTanggal').val();
-            $("#kolomFilter").hide("slow");
+            $(".kolomFilter").hide("slow");
             searchData(keyWord, fromDate, endDate, valAction);
         });
         
