@@ -3,7 +3,7 @@
 ?>
 <div class="row">
     <div class="col-12">
-        <div class="card card-body text-xs">
+        <div class="card card-body">
             <div class="row mb-2">
                 <div class="col-md-12">
                     <dl class="row">
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <hr>
-            <table class="table table-sm table-valign-middle table-hover " id="tableDetailItemMutasi">
+            <table class="table table-sm table-valign-middle table-hover text-xs" id="tableDetailItemMutasi">
                 <thead>
                     <tr>
                         <th>Nama Barang</th>
