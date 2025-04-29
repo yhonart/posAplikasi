@@ -29,9 +29,9 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th width="30%">Nama Barang</th>
-                        <th>Satuan</th>
-                        <th>Stock | <small>Barang Asal</small></th>
+                        <th width="20%">Nama Barang</th>
+                        <th width="10%">Satuan</th>
+                        <th width="10%">Stock | <small>Barang Asal</small></th>
                         <th width="10%">Mutasi</th>
                         <th width="30%">Keterangan</th>
                     </tr>
