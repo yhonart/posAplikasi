@@ -16,7 +16,7 @@
                     </dl>
                     <dl class="row">
                         <dt class="col-md-3">Dari - Tujuan</dt>
-                        <dd class="col-md-4">: <b>{{$asalBarang->site_name}}</b> <i class="fa-solid fa-right-left"></i>to  <b>{{$tujuanBarang->site_name}}</b></dd>
+                        <dd class="col-md-4">: <b>{{$asalBarang->site_name}}</b> <i class="fa-solid fa-right-long text-primary"></i> <b>{{$tujuanBarang->site_name}}</b></dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-md-3">Keterangan</dt>
