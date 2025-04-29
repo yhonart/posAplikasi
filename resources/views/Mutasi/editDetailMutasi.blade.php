@@ -52,20 +52,20 @@
                                 </select>
                             </td>
                             <td class="p-0">
-                                <select class="form-control form-control-sm " name="satuan" id="satuan">
+                                <select class="form-control form-control-sm rounded-0 " name="satuan" id="satuan">
                                     <option value="0"></option>
                                 </select>
                             </td>
                             <td class="p-0">
-                                <input type="text" class="form-control form-control-sm " name="lastStock" id="lastStock" readonly>
+                                <input type="text" class="form-control form-control-sm rounded-0 " name="lastStock" id="lastStock" readonly>
                             </td>
                             <td class="p-0">
-                                <input type="number" class="form-control form-control-sm " name="qty" id="qty">
+                                <input type="number" class="form-control form-control-sm rounded-0 " name="qty" id="qty">
                             </td>
                             <td class="p-0">
-                                <input type="text" class="form-control form-control-sm " name="keterangan" id="keterangan">
+                                <input type="text" class="form-control form-control-sm rounded-0 " name="keterangan" id="keterangan">
                             </td>
-                            <td class="p-0">
+                            <td class="p-0 text-right">
                                 <button class="btn border-0 elevation-0 btn-default " id="btnSubmit"><i class="fa-solid fa-check"></i></button>
                             </td>
                         </tr>
