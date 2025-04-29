@@ -76,6 +76,11 @@
             </tr>
         @endforeach
     </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="8" class="text-right font-weight-bold">{{date('d-M-Y', strtotime($tanggalAwal))}} s/d {{date('d-M-Y', strtotime($tanggalAkhir))}}</th>
+        </tr>
+    </tfoot>
 </table>
 
 <script>

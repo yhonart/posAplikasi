@@ -21,6 +21,7 @@
                         <div class="col-md-3">
                             <label for="" class="label">Select Status</label>
                             <select name="status" id="status" class="form-control form-control-sm">
+                                <option value="All">-Pilih Status Dokumen-</option>
                                 <option value="2">Submited</option>
                                 <option value="1">Proses</option>
                                 <option value="4">Disetujui</option>
@@ -60,7 +61,7 @@
     $(document).ready(function(){
         let fromDate = '0',
             endDate = '0',
-            status = '2';
+            status = "All";
         
         searchData(fromDate, endDate, status);
 

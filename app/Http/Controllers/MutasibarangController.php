@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 
 class MutasibarangController extends Controller
@@ -140,14 +141,24 @@ class MutasibarangController extends Controller
         $userArea = $this->checkuserInfo();
         $company = Auth::user()->company;
 
-        $tableMoving = DB::table('inv_moving');
-        $tableMoving=$tableMoving->where([
-            ['status',$status],
-            ['comp_id',$company]
-        ]);
-        if ($fromDate<>'0' OR $endDate<>'0') {
-            $tableMoving=$tableMoving->whereBetween('date_moving',[$fromDate,$endDate]);
+        if ($fromDate == '0' && $endDate == '0') {
+            $tanggalAwal = Carbon::now()->startOfMonth();
+            $tanggalAkhir  = Carbon::now()->endOfMonth();
         }
+        else {
+            $tanggalAwal = $fromDate;
+            $tanggalAkhir  = $endDate;
+        }
+
+        $tableMoving = DB::table('inv_moving');
+        if ($status == "All") {
+            $tableMoving=$tableMoving->whereBetween('status',['2','3']);
+        }
+        else {
+            $tableMoving=$tableMoving->where('status',$status);
+        }
+        $tableMoving = $tableMoving->where('comp_id',$company);
+        $tableMoving=$tableMoving->whereBetween('date_moving',[$tanggalAwal,$tanggalAkhir]);
         $tableMoving=$tableMoving->orderBy('idinv_moving','desc');
         $tableMoving=$tableMoving->limit(100);
         $tableMoving=$tableMoving->get();
@@ -155,7 +166,7 @@ class MutasibarangController extends Controller
         $mSites = DB::table('m_site')
             ->get();
 
-        return view('Mutasi/tableDokMutasi',compact('tableMoving','approval','userArea','mSites'));
+        return view('Mutasi/tableDokMutasi',compact('tableMoving','approval','userArea','mSites','tanggalAwal','tanggalAkhir'));
     }
 
     public function getTableInputProduct (){
