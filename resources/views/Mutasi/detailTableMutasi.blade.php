@@ -30,9 +30,9 @@
                     <tr>
                         <th>Nama Barang</th>
                         <th>Satuan</th>
-                        <th>Stok Awal <br> <small>Tujuan Barang</small></th>
+                        <th>Stok Awal <br> <small>Asal Barang</small></th>
                         <th>Jml. Mutasi</th>
-                        <th>Stok Akhir <br> <small>Tujuan Barang</small></th>
+                        <th>Stok Akhir <br> <small>Asal Barang</small></th>
                         <th>Catatan</th>
                     </tr>
                 </thead>
