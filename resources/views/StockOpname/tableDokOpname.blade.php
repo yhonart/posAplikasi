@@ -80,7 +80,7 @@
             "buttons": ["copy", "csv", "excel", "pdf", "print"],
             "order": [[4, 'desc']],
             "layout": {
-                "topStart": "<b>Custom tool bar! Text/images etc.</b>"
+                "topStart": info
             }
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
