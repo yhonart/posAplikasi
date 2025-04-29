@@ -435,7 +435,6 @@ class MutasibarangController extends Controller
         $docMutasi = DB::table('inv_moving')
             ->where('number',$idParam)
             ->first();
-
         $locationID = $docMutasi->from_loc;
 
         $listMutasi = DB::table('inv_moving_list as a')
@@ -457,7 +456,7 @@ class MutasibarangController extends Controller
 
         $tujuanBarang = DB::table('inv_moving as a')
             ->select('a.to_loc','b.site_name')
-            ->leftJoin('m_site as b','a.from_loc','=','b.idm_site')
+            ->leftJoin('m_site as b','a.to_loc','=','b.idm_site')
             ->where('a.number',$idParam)
             ->first();
             

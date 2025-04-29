@@ -5,22 +5,31 @@
     <div class="col-12">
         <div class="card card-body text-xs border border-info">
             <div class="row mb-2">
-                <div class="col-12 col-md-6">
-                    <button class="btn btn-default mb-2 border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        <i class="fa-solid fa-file-lines"></i> <span class="text-info">Dokumen Mutasi</span>
-                    </button>
-                    <div class="collapse" id="collapseExample">
-                        <div id="divDisplayDokumen"></div>
-                    </div>
+                <div class="col-md-12">
+                    <dl class="row">
+                        <dt class="col-md-4">No. Dokumen</dt>
+                        <dd class="col-md-4">: {{$idParam}}</dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-md-4">Tgl. Transaksi</dt>
+                        <dd class="col-md-4">: {{$docMutasi->date_moving}}</dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-md-4">Dari - Tujuan</dt>
+                        <dd class="col-md-4">: {{$asalBarang->site_name}} to {{$tujuanBarang->site_name}}</dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-md-4">Keterangan</dt>
+                        <dd class="col-md-4">: {{$docMutasi->notes}}</dd>
+                    </dl>
                 </div>
             </div>
+            <hr>
             <table class="table table-sm table-valign-middle table-hover " id="tableDetailItemMutasi">
                 <thead>
                     <tr>
                         <th>Nama Barang</th>
                         <th>Satuan</th>
-                        <th>Asal Barang</th>
-                        <th>Tujuan Barang</th>
                         <th>Stok Awal <br> <small>Tujuan Barang</small></th>
                         <th>Jml. Mutasi</th>
                         <th>Stok Akhir <br> <small>Tujuan Barang</small></th>
@@ -32,13 +41,11 @@
                         <tr>
                             <td>{{$lm->product_name}}</td>
                             <td>{{$lm->product_satuan}}</td>
-                            <td>{{$asalBarang->site_name}}</td>
-                            <td>{{$tujuanBarang->site_name}}</td>
                             <td>{{$lm->last_stock}}</td>
                             <td>{{$lm->stock_taken}}</td>
                             <td>
                                 <?php
-                                    $stockAkhir = $lm->last_stock + $lm->stock_taken;
+                                    $stockAkhir = $lm->last_stock - $lm->stock_taken;
                                     echo $stockAkhir;
                                 ?>
                             </td>
