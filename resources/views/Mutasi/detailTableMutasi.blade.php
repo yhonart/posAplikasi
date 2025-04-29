@@ -3,7 +3,7 @@
 ?>
 <div class="row">
     <div class="col-12">
-        <div class="card card-body text-xs border border-info">
+        <div class="card card-body text-xs">
             <div class="row mb-2">
                 <div class="col-md-12">
                     <dl class="row">
@@ -16,7 +16,7 @@
                     </dl>
                     <dl class="row">
                         <dt class="col-md-4">Dari - Tujuan</dt>
-                        <dd class="col-md-4">: {{$asalBarang->site_name}} to {{$tujuanBarang->site_name}}</dd>
+                        <dd class="col-md-4">: <b>{{$asalBarang->site_name}}</b> <span class=" badge badge-dark"><i class="fa-solid fa-route"></i> to</span>  <b>{{$tujuanBarang->site_name}}</b></dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-md-4">Keterangan</dt>
