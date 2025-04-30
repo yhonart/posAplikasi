@@ -489,7 +489,7 @@ class MutasibarangController extends Controller
 
         $tujuanBarang = DB::table('inv_moving as a')
             ->select('a.to_loc','b.site_name')
-            ->leftJoin('m_site as b','a.from_loc','=','b.idm_site')
+            ->leftJoin('m_site as b','a.to_loc','=','b.idm_site')
             ->where('a.number',$idParam)
             ->first();
         
