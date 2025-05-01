@@ -170,7 +170,7 @@
               },
               function(){
                 alertify.error('Cancel');
-              }).set({title:"Delete Data"});
+            }).set({title:"Delete Data"});
         });
     });
 </script>

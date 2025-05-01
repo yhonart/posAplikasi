@@ -3,6 +3,7 @@
     <div class="col-12">
         <div class="d-flex flex-row-reverse">
             <button type="submit" class="btn btn-success font-weight-bold btn-sm ml-2 border-0" id="submitDataMutasi" data-number="{{$numberAct}}"><i class="fa-solid fa-circle-check"></i> Simpan Transaksi</button>    
+            <button type="button" class="btn btn-outline-danger font-weight-bold btn-sm ml-2 border-0" id="batalTransaksi" data-number="{{$numberAct}}"><i class="fa-solid fa-circle-xmark"></i> Batalkan Transaksi</button>    
             <button class="btn btn-default btn-sm font-weight-bold border-0" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <i class="fa-solid fa-file-pen"></i> Dokumen Mutasi
             </button>
@@ -158,6 +159,25 @@
             e.preventDefault();
             addActivityItem();
         });
+
+        $("#batalTransaksi").on('click', function(e){
+            e.preventDefault();
+            let number = "{{$numberAct}}";
+            alertify.confirm("Apakah anda yakin ingin membatalkan transaksi ini?.",
+              function(){
+                $.ajax({
+                    type:'get',
+                    url:"{{route('mutasi')}}/tableDataMutasi/deleteMutasi/"+number,
+                    dataType: 'html',
+                    success:function(response){
+                      window.location.reload();
+                    }
+                });
+              },
+              function(){
+                alertify.error('Cancel');
+            }).set({title:"Delete Data"});
+        })
         
         var actQty = document.getElementById("qty");
         
