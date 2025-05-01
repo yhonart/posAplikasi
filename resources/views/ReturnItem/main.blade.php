@@ -25,7 +25,7 @@
                 <div class="col-md-12">
                     <button class="btn btn-primary font-weight-bold onclick-submenu border-0 " data-click="purchasingList"><i class="fa-solid fa-dolly"></i> Dokumen Pembelian</button>
                     <button class="btn btn-primary border-0 font-weight-bold onclick-submenu " data-click="returnNonInv"><i class="fa-regular fa-folder-open"></i> Pengembalian Non Invoice</button>                     
-                    <button class="btn btn-outline-primary font-weight-bold onclick-submenu border-0 " data-click="returnHistory"><i class="fa-regular fa-folder-open"></i> History</button>                     
+                    <button class="btn btn-outline-primary font-weight-bold onclick-submenu border-0 " data-click="returnHistory"><i class="fa-regular fa-folder-open"></i> Riwayat</button>                     
                 </div>
             </div>
             <div class="row">
