@@ -24,7 +24,7 @@
             @if($checkArea <> 0)
             <div class="row mb-2">
                 <div class="col-md-6">
-                    <button class="btn btn-outline-Primary font-weight-bold onclick-submenu border-0 " data-click="addPurchasing" id="pr"><i class="fa-solid fa-dolly"></i> Tambah Pembelian</button>                        
+                    <button class="btn btn-primary font-weight-bold onclick-submenu border-0 " data-click="addPurchasing" id="pr"><i class="fa-solid fa-dolly"></i> Tambah Pembelian</button>                        
                     <button class="btn btn-outline-primary font-weight-bold onclick-submenu border-0 " data-click="dataPurchasing" id="productIn"><i class="fa-solid fa-file"></i> List Pembelian</button>
                     <a href="{{route('returnItem')}}" class="btn btn-outline-danger font-weight-bold border-0"><i class="fa-solid fa-rotate-left"></i> Pengembalian Barang</a>                                         
                 </div>
