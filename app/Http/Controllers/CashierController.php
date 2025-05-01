@@ -1711,7 +1711,7 @@ class CashierController extends Controller
             ->first();
 
         $namaToko = DB::table('m_company')
-            ->where('comp_id',$company)
+            ->where('idm_company',$company)
             ->first();
 
         $pdf = PDF::loadview('Cashier/cashierPrintPelunasan', compact('listVoucher', 'namaToko'))->setPaper("A4", 'landscape');
