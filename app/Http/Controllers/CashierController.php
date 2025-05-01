@@ -1868,7 +1868,7 @@ class CashierController extends Controller
             DB::table('tr_kredit')
                 ->where('from_payment_code',$number)
                 ->update([
-                    'nom_payed' => $changeKredit,
+                    'nom_payed' => $changePayed,
                     'nom_kredit' => $changeKredit
                 ]);
 
