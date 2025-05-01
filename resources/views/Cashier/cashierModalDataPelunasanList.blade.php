@@ -164,7 +164,7 @@
                                     <input type="hidden" class="form-control form-control-sm price-tag from-weight-bold" name="nominalKredit" id="nominalKredit" value="{{$totalHutang->kredit}}">
                                     <input type="hidden" class="form-control form-control-sm price-tag" name="nominalBayar" id="nominalBayar" value="{{$sumPayed->sumpayed}}">
                                     <button type="submit" class="btn btn-success" id="btnSimpan"><i class="fa-regular fa-floppy-disk"></i> Simpan Semua</button>
-                                    <button type="submit" class="btn btn-danger" id="btnSimpan"><i class="fa-solid fa-circle-xmark"></i> Batalkan Semua</button>
+                                    <button type="submit" class="btn btn-danger" id="btnBatal"><i class="fa-solid fa-circle-xmark"></i> Batalkan Semua</button>
                                     <button type="button" class="btn btn-primary" id="cetakVoucher" style="display: none;"><i class="fa-solid fa-print"></i> Cetak Voucher</button>
                                 </div>
                             </div>                
