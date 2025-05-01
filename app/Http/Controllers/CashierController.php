@@ -1847,12 +1847,44 @@ class CashierController extends Controller
         $editable = str_replace(".", "", $reqRecord->editval);
         $id = $reqRecord->id;
         $idKredit = $reqRecord->idKredit;
+        $number = $reqRecord->number;
 
-        DB::table($tableDB)
-            ->where($idKredit, $id)
-            ->update([
-                $column => $editable,
-            ]); 
+        if ($editable == '0') { 
+            $selectPayment = DB::table($tableDB)
+                ->where($idKredit, $id)
+                ->first();
+
+            $totalPayment = $selectPayment->total_payment;
+
+            $selectKredit = DB::table('tr_kredit')
+                ->where('form_payment_code',$number)
+                ->first();
+
+            $nomPayed = $selectKredit->nom_payed;
+            $nomKredit = $selectKredit->nom_kredit;
+            $changePayed = $nomPayed - $totalPayment;
+            $changeKredit = $nomKredit + $totalPayment;
+
+            DB::table('tr_kredit')
+                ->where('form_payment_code',$number)
+                ->update([
+                    'nom_payed' => $changeKredit,
+                    'nom_kredit' => $changeKredit
+                ]);
+
+            DB::table($tableDB)
+                ->where($idKredit, $id)
+                ->update([
+                    'status' => '0'
+                ]);
+        }
+        else{
+            DB::table($tableDB)
+                ->where($idKredit, $id)
+                ->update([
+                    $column => $editable,
+                ]);
+        }
     }
     public function modalDataReturn()
     {
