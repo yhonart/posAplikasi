@@ -1703,6 +1703,7 @@ class CashierController extends Controller
 
     public function printPelunasan($voucher)
     {
+        $company = Auth::user()->company;
 
         $listVoucher = DB::table('view_print_voucher')
             ->select(DB::raw('SUM(debit) as debit'), DB::raw('SUM(kredit) as kredit'), 'payment_number', 'no_kredit', 'created_by', 'verifikator', 'pembukuan', 'customer_store', 'account_name', 'account_code', 'created_at')
@@ -1710,6 +1711,7 @@ class CashierController extends Controller
             ->first();
 
         $namaToko = DB::table('m_company')
+            ->where('comp_id',$company)
             ->first();
 
         $pdf = PDF::loadview('Cashier/cashierPrintPelunasan', compact('listVoucher', 'namaToko'))->setPaper("A4", 'landscape');
