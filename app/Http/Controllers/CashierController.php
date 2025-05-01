@@ -1857,7 +1857,7 @@ class CashierController extends Controller
             $totalPayment = $selectPayment->total_payment;
 
             $selectKredit = DB::table('tr_kredit')
-                ->where('form_payment_code',$number)
+                ->where('from_payment_code',$number)
                 ->first();
 
             $nomPayed = $selectKredit->nom_payed;
@@ -1866,7 +1866,7 @@ class CashierController extends Controller
             $changeKredit = $nomKredit + $totalPayment;
 
             DB::table('tr_kredit')
-                ->where('form_payment_code',$number)
+                ->where('from_payment_code',$number)
                 ->update([
                     'nom_payed' => $changeKredit,
                     'nom_kredit' => $changeKredit
