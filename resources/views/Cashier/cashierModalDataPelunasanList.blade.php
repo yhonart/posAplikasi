@@ -21,7 +21,7 @@
     <p class="text-muted">Input nominal pembayaran di kolom <b>"Pembayaran"</b></p>
     <div class="row">
         <div class="col-md-12">
-        <table class="table table-sm table-hover text-xs table-valign-middle">
+        <table class="table table-sm table-hover text-xs table-valign-middle" id="tableKreditCus">
             <thead>
                 <tr>
                     <th></th>
@@ -226,6 +226,8 @@
                 success: function (data) {
                     alertify.success("Success!");
                     $("#btnSimpan").fadeOut("slow");
+                    $("#tableKreditCus").fadeOut("slow");
+                    $("#btnBatal").fadeOut("slow");
                     $("#cetakVoucher").fadeIn("slow");
                     //loadDataPelunasan(keyWord, fromDate, endDate);
                 }
