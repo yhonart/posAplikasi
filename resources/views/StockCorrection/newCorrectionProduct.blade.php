@@ -19,7 +19,8 @@
                         <button class="btn btn-default border-0 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             <i class="fa-solid fa-file-pen"></i> Dokumen Koreksi
                         </button>
-                        <button type="submit" class="btn btn-success border-0 font-weight-bold" id="submitButton"><i class="fa-solid fa-floppy-disk"></i> Simpan Koreksi Item</button>
+                        <button type="submit" class="btn btn-outline-danger border-0 font-weight-bold" id="batalTransaksi"><i class="fa-solid fa-circle-xmark"></i> Batalkan Transaksi</button>
+                        <button type="button" class="btn btn-success border-0 font-weight-bold" id="submitButton"><i class="fa-solid fa-floppy-disk"></i> Simpan Transaksi</button>
                     </div>
                 </form>
             </div>
@@ -211,6 +212,27 @@
             addActivityItem();
         })
         
+        $("#batalTransaksi").on('click', function (e){
+            $("#displayNotif").fadeIn("slow");
+            e.preventDefault();
+            let number = "{{$numberKrs}}"; 
+
+            alertify.confirm("Apakah anda yakin ingin membatalkan transaksi ini?.",
+                function(){
+                $.ajax({
+                    type:'get',
+                    url:"{{route('koreksiBarang')}}/listDataKoreksi/deleteKoreksi/"+number,
+                    dataType: 'html',
+                    success:function(response){
+                        window.location.reload();
+                    }
+                });
+                },
+                function(){
+                alertify.error('Cancel');
+            }).set({title:"Delete Data"});
+        });
+
         $('#submitButton').on('click', function (e) {
             $("#displayNotif").fadeIn("slow");
             e.preventDefault();
