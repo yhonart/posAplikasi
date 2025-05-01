@@ -183,7 +183,7 @@
 @endif
 
 <script>
-    $(document).ready(function(){  
+    $(function(){
         $('.price-tag').mask('000.000.000', {reverse: true});
         $( "#tglBukti" ).datepicker({
             dateFormat: 'yy-mm-dd',
@@ -191,6 +191,8 @@
             todayHighlight: true,
         });
         $('#tglBukti').datepicker("setDate",new Date());
+    })
+    $(document).ready(function(){  
 
         $("#cetakVoucher").click(function(){
             let voucherNumber = $("#nomorBukti").val();
