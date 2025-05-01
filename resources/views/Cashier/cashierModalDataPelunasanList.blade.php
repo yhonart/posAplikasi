@@ -59,7 +59,7 @@
                             <input type="hidden" name="nominalFaktur[]" id="nominalFaktur{{$dP->idtr_kredit}}" value="{{$dP->nom_kredit}}">
                             <input type="text" name="selisihBayar" id="selisihBayar" value="{{number_format($dP->nominal,'0',',','.')}}" class="form-control form-control-sm form-control-border editInput nominal-selisih font-weight-bold text-right" readonly>
                         </td>
-                        <td>                            
+                        <td class="p-0">                            
                             @if($dP->nom_payed == $dP->nominal)
                                 {{number_format($dP->nom_payed,'0',',','.')}}
                             @elseif($dP->status == '1')   
