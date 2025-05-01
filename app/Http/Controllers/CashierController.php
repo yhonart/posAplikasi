@@ -1673,7 +1673,7 @@ class CashierController extends Controller
                 ->select(DB::raw('SUM(total_payment) as sumpayed'))
                 ->where([
                     ['member_id',$keyword],
-                    ['status','>=','1']
+                    ['status','1']
                 ])
                 ->first();
             return view('Cashier/cashierModalDataPelunasanList', compact('countLastRecord','getLastRecord','dataPinjaman', 'keyword', 'fromDate', 'endDate', 'accountCode', 'periode', 'numbering', 'customerName', 'totalHutang', 'listStruk', 'countDataPinjaman','accountPenjualan','sumPayed'));
