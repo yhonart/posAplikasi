@@ -152,6 +152,9 @@
 </head>
 <body class="hold-transition layout-top-nav layout-fixed">
     <div class="wrapper">
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img src="{{asset('public/images/loadPage.gif')}}" alt="AdminLTELogo" height="60" width="60">
+        </div>
         <nav class="main-header navbar navbar-expand-md navbar-purple navbar-dark">
             <div class="container">
                 <a href="{{url('/')}}" class="navbar-brand">                    
