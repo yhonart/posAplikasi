@@ -156,8 +156,7 @@
                 url : "{{route('Cashier')}}/buttonAction/postUpdateCustomer",
                 data :  {idPelanggan:idPelanggan, trxCode:trxCode},
                 success : function(data){                
-                    cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
-                    cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);                    
+                    window.location.reload();
                 }
             }); 
         });
