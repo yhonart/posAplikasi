@@ -1,7 +1,7 @@
 <table class="table table-sm tabl-valign-middle table-hover" id="tableKreditFaktur">
     <thead>
         <tr>
-            <th>Nomor</th>
+            <th>No. Pembayaran</th>
             <th>Tgl. Pembayaran</th>
             <th>Pelanggan</th>
             <th>No.Perkiraan</th>
@@ -15,7 +15,7 @@
     <tbody>
         @foreach($historyFaktur as $hf)
             <tr>
-                <td>{{$hf->payment_number}}</td>
+                <td class="font-weight-bold">{{$hf->payment_number}}</td>
                 <td>{{$hf->date_payment}}</td>
                 <td>{{$hf->customer_store}}</td>
                 <td>{{$hf->account_code}} | {{$hf->account_name}}</td>

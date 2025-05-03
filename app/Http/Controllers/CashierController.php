@@ -1603,7 +1603,7 @@ class CashierController extends Controller
     {
         // echo $keyword."/".$fromDate."/".$endDate;
         $fields = ['from_payment_code', 'customer_store'];
-        $periode = date("ym");
+        $periode = date("mY");
         $company = Auth::user()->company;
 
         $countDataPinjaman = DB::table('view_customer_kredit')

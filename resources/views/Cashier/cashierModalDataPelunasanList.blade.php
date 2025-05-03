@@ -136,7 +136,7 @@
                             <div class="form-group row">
                                 <label class="label col-4">No. Bukti</label>
                                 <div class="col-8">
-                                    <input class="form-control form-control-sm" name="nomorBukti" id="nomorBukti" value="PBT-{{$periode}}-{{sprintf("%07d",$numbering)}}">
+                                    <input class="form-control form-control-sm" name="nomorBukti" id="nomorBukti" value="NB.{{$periode}}-{{sprintf('%07d',$numbering)}}">
                                 </div>
                             </div>
                             <div class="form-group row">
