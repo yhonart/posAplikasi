@@ -43,9 +43,9 @@
             <th></th>
             <th class="text-right">Sub Total</th>
             <td class="text-right"></td>
-            <td class="text-right">{{number_format($sumNKredit,'0',',','.')}}</td>
-            <td class="text-right">{{number_format($sumNBayar,'0',',','.')}}</td>
-            <td class="text-right">{{number_format($sumSisaKredit,'0',',','.')}}</td>
+            <td class="text-right font-weight-bold font-italic">{{number_format($sumNKredit,'0',',','.')}}</td>
+            <td class="text-right font-weight-bold font-italic">{{number_format($sumNBayar,'0',',','.')}}</td>
+            <td class="text-right font-weight-bold font-italic">{{number_format($sumSisaKredit,'0',',','.')}}</td>
             <td></td>
         </tr>
     </tfoot>
