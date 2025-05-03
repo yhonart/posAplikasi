@@ -142,7 +142,7 @@
                             <div class="form-group row">
                                 <label class="label col-4">Tgl. Bukti</label>
                                 <div class="col-8">
-                                    <input class="form-control form-control-sm" name="tglBukti" id="tglBukti">
+                                    <input class="form-control form-control-sm date-payment" name="tglBukti" id="tglBukti">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -185,12 +185,12 @@
 <script>
     $(function(){
         $('.price-tag').mask('000.000.000', {reverse: true});
-        $( "#tglBukti" ).datepicker({
+        $( ".date-payment" ).datepicker({
             dateFormat: 'yy-mm-dd',
             autoclose: true,
             todayHighlight: true,
         });
-        $('#tglBukti').datepicker("setDate",new Date());
+        $('.date-payment').datepicker("setDate",new Date());
     })
     $(document).ready(function(){  
 
