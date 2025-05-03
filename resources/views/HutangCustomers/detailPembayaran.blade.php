@@ -53,11 +53,11 @@ $saldo = 0;
                             <tbody>
                                 @foreach($kreditRecord as $kR)
                                     <tr>
-                                        <td>{{$kR->trx_code}}</td>
-                                        <td>{{number_format($kR->total_struk,'0','.',',')}}</td>
-                                        <td>{{number_format($kR->saldo_kredit,'0','.',',')}}</td>
-                                        <td>{{number_format($kR->total_payment,'0','.',',')}}</td>
-                                        <td>
+                                        <td class=" font-weight-bold">{{$kR->trx_code}}</td>
+                                        <td class=" text-right text-danger">{{number_format($kR->total_struk,'0','.',',')}}</td>
+                                        <td class=" text-right text-maroon">{{number_format($kR->saldo_kredit,'0','.',',')}}</td>
+                                        <td class=" text-right text-success">{{number_format($kR->total_payment,'0','.',',')}}</td>
+                                        <td class=" text-right text-info">
                                             <?php
                                                 $saldo = $kR->saldo_kredit - $kR->total_payment;
                                             ?>
