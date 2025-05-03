@@ -75,8 +75,7 @@
                             @else
                                 <input type="text" name="bayarPiutang" id="bayarPiutang{{$dP->idtr_kredit}}" value="" class="form-control form-control-sm form-control-border editInput nominal-bayar price-tag" autocomplete="off" onchange="saveChangePembayaran(this,'tr_kredit','nom_payed','{{$dP->idtr_kredit}}','idtr_kredit','1')" placeholder="Dibayar : {{number_format($dP->nom_payed,'0',',','.')}}">
                             @endif
-                            {{$countLastRecord}}
-
+                            {{$dP->status}}
                         </td>
                         <td> 
                             <div class="form-group">
