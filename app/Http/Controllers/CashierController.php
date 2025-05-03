@@ -2893,6 +2893,10 @@ class CashierController extends Controller
                 ['from_member_id', $memberID],
                 ['status', '1']
             ])
+            ->orWhere([
+                ['from_member_id', $memberID],
+                ['status', '2']
+            ])
             ->first();
 
         $point = DB::table('tr_member_point')
