@@ -1,5 +1,8 @@
 @extends('layouts.sidebarpage')
 @section('content')
+<?php
+$saldo = 0;
+?>
 <div class="content-header">
     <div class="container-fluid">
     <div class="row mb-2">
@@ -17,6 +20,7 @@
     </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
+
 <div class=" content">
     <div class=" container">
         <div class="card">            
@@ -53,6 +57,12 @@
                                         <td>{{number_format($kR->total_struk,'0','.',',')}}</td>
                                         <td>{{number_format($kR->saldo_kredit,'0','.',',')}}</td>
                                         <td>{{number_format($kR->total_payment,'0','.',',')}}</td>
+                                        <td>
+                                            <?php
+                                                $saldo = $kR->saldo_kredit - $kR->total_payment;
+                                            ?>
+                                            {{number_format($saldo,'0','.',',')}}
+                                        </td>
                                         <td>{{date('d-M-Y', strtotime($kR->date_trx))}}</td>
                                     </tr>
                                 @endforeach
