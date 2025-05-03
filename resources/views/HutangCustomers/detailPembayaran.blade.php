@@ -58,9 +58,9 @@ $sumSaldo = 0;
                                 @foreach($kreditRecord as $kR)
                                     <tr>
                                         <td class=" font-weight-bold">{{$kR->trx_code}}</td>
-                                        <td class=" text-right text-danger"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->total_struk,'0',',','.)}}</td>
-                                        <td class=" text-right text-maroon"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->saldo_kredit,'0',',','.)}}</td>
-                                        <td class=" text-right text-success"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->total_payment,'0',',','.)}}</td>
+                                        <td class=" text-right text-danger"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->total_struk,'0',',','.')}}</td>
+                                        <td class=" text-right text-maroon"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->saldo_kredit,'0',',','.')}}</td>
+                                        <td class=" text-right text-success"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->total_payment,'0',',','.')}}</td>
                                         <td class=" text-right text-info">
                                             <?php
                                                 $saldo = $kR->saldo_kredit - $kR->total_payment;
