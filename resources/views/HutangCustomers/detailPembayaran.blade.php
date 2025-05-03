@@ -2,6 +2,7 @@
 @section('content')
 <?php
 $saldo = 0;
+$saldo1 = 0;
 $sumTHutang = 0;
 $sumSisaHutang = 0;
 $sumPembayaran = 0;
@@ -63,11 +64,18 @@ $sumSaldo = 0;
                                         <td class=" text-right text-success"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->total_payment,'0',',','.')}}</td>
                                         <td class=" text-right text-info">
                                             <?php
-                                                $saldo = $kR->saldo_kredit - $kR->total_payment;
+                                                $saldo1 = $kR->saldo_kredit - $kR->total_payment;
                                                 $sumTHutang += $kR->total_struk;
                                                 $sumSisaHutang += $kR->saldo_kredit;
                                                 $sumPembayaran += $kR->total_payment;
                                                 $sumSaldo += $saldo;
+
+                                                if ($saldo1 <= 0) {
+                                                    $saldo = 0;
+                                                }
+                                                else {
+                                                    $saldo = $saldo1;
+                                                }
                                             ?>
                                             <i class="fa-solid fa-rupiah-sign"></i> {{number_format($saldo,'0','.',',')}}
                                         </td>
