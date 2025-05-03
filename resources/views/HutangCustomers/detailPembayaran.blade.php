@@ -19,14 +19,17 @@
 </div>
 <div class=" content">
     <div class=" container">
-        <div class="card">
-            <div class="card-header border-0">
-                <h3 class="card-title">Detail Pembayaran</h3>
-            </div>
+        <div class="card">            
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-12">
-
+                    <div class="col-md-6 col-12">
+                        <dl>
+                            <dt>Kepada</dt>
+                            <dd>
+                                {{$faktur->customer_store}} <br>
+                                {{$faktur->address}}
+                            </dd>
+                        </dl>
                     </div>
                 </div>
             </div>

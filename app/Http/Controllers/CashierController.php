@@ -4162,6 +4162,14 @@ class CashierController extends Controller
     }
 
     public function detailPembayaran($voucher){
-        return view('HutangCustomers/detailPembayaran', compact('voucher'));
+        $faktur = DB::table('view_payment_kredit')
+            ->where('payment_number',$voucher)
+            ->first();
+
+        $kreditRecord = DB::table('tr_kredit_record')
+            ->where('payment_number', $voucher)
+            ->get();
+
+        return view('HutangCustomers/detailPembayaran', compact('voucher','faktur','kreditRecord'));
     }
 }
