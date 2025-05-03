@@ -1803,6 +1803,7 @@ class CashierController extends Controller
         $numbering = $reqAction->numbering;
         $editVal = str_replace(".", "", $reqAction->editval);
         $periode = date("ym");
+        $voucher = $reqAction->voucher;
 
         // cek kredit 
         $cekValKredit = DB::table('tr_kredit')
@@ -1826,7 +1827,8 @@ class CashierController extends Controller
                     'member_id' => $cekValKredit->from_member_id,
                     'total_struk' => $cekValKredit->nominal,
                     'total_payment' => $editVal,
-                    'status'=>'1'
+                    'status'=>'1',
+                    'payment_number' => $voucher
                 ]);
         }
 

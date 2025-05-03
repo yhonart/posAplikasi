@@ -245,10 +245,11 @@
             keyWord = '0';
         }            
     function saveChangePembayaran(editableObj,tablename,column,id,idKredit,codeTrx){
+        let voucherNumber = $("#nomorBukti").val();
         $.ajax({
             url: "{{route('Cashier')}}/buttonAction/dataPelunasan/actionData",
             type: "POST",
-            data:'tablename='+tablename+'&column='+column+'&editval='+editableObj.value+'&id='+id+'&idKredit='+idKredit+'&codeTrx='+codeTrx+'&keyWord='+keyWord+'&numbering='+numberingPembayaran,
+            data:'tablename='+tablename+'&column='+column+'&editval='+editableObj.value+'&id='+id+'&idKredit='+idKredit+'&codeTrx='+codeTrx+'&keyWord='+keyWord+'&numbering='+numberingPembayaran+'&voucher='+voucherNumber,
             success: function(data){
                 loadDataPelunasan(keyWord, fromDate, endDate, actionType);
             }
