@@ -4160,4 +4160,8 @@ class CashierController extends Controller
         }
         
     }
+
+    public function detailPembayaran($voucher){
+        return view('HutangCustomers/detailPembayaran', compact('voucher'));
+    }
 }

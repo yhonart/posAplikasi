@@ -49,6 +49,7 @@ Route::post('Cashier/buttonAction/dataPelunasan/actionData', [App\Http\Controlle
 Route::post('Cashier/buttonAction/dataPelunasan/actionUpdateRecord', [App\Http\Controllers\CashierController::class, 'actionUpdateRecord']);
 Route::post('Cashier/buttonAction/dataPelunasan/postPelunasan', [App\Http\Controllers\CashierController::class, 'postPelunasan']);
 Route::get('Cashier/dataPelunasan/printPelunasan/{voucher}', [App\Http\Controllers\CashierController::class, 'printPelunasan']);
+Route::get('Cashier/dataPelunasan/detailPembayaran/{voucher}', [App\Http\Controllers\CashierController::class, 'detailPembayaran']);
 
 //RETURN
 Route::get('Cashier/buttonAction/dataReturn', [App\Http\Controllers\CashierController::class, 'modalDataReturn']);
