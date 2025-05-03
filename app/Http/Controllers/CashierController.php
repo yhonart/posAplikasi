@@ -1751,14 +1751,29 @@ class CashierController extends Controller
                 'total_kredit'=>$nominalKredit
             ]);
 
-        DB::table('tr_kredit')
+        $selectKredit = DB::table('tr_kredit')
             ->where([
                 ['status','1'],
                 ['from_member_id',$idPelanggan]
             ])
-            ->update([
-                'status'=>'2'
-            ]);       
+            ->get();
+        
+        foreach ($selectKredit as $asKey) {
+            $idTR = $asKey->idtr_kredit;
+            if ($asKey->nom_payed == $asKey->nominal) {
+                $status = '3';    
+            }
+            else {
+                $status = '2';
+            }
+            DB::table('tr_kredit')
+                ->where([
+                    ['idtr_kredit',$idTR]
+                ])
+                ->update([
+                    'status'=>$status
+                ]);
+        }
 
         DB::table('tr_kredit_record')
             ->where([
@@ -1813,7 +1828,7 @@ class CashierController extends Controller
         $nomKredit = $cekValKredit->nom_kredit;
         $nomPayed = $cekValKredit->nom_payed;
         $updateKredit = $nomKredit - $editVal;
-        $updatePayed = $nomPayed + $editVal;
+        $updatePayed = $nomPayed + $editVal;        
         
         // NOTED :
         // $codeTrx = 1 (Edit nominal bayar);
