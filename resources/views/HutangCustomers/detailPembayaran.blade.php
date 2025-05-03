@@ -79,9 +79,9 @@ $sumSaldo = 0;
                                 <tr>
                                     <th>Subtotal</th>
                                     <th class=" text-right text-danger"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($sumTHutang,'0',',','.')}}</th>
-                                    <th class=" text-right text-danger"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($sumSisaHutang,'0',',','.')}}</th>
-                                    <th class=" text-right text-danger"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($sumPembayaran,'0',',','.')}}</th>
-                                    <th class=" text-right text-danger"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($sumSaldo,'0',',','.')}}</th>
+                                    <th class=" text-right text-maroon"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($sumSisaHutang,'0',',','.')}}</th>
+                                    <th class=" text-right text-success"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($sumPembayaran,'0',',','.')}}</th>
+                                    <th class=" text-right text-info"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($sumSaldo,'0',',','.')}}</th>
                                     <th></th>
                                 </tr>
                             </tfoot>
