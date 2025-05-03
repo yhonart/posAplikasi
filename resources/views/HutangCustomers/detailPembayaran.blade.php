@@ -74,6 +74,9 @@ $sumSaldo = 0;
                                         <td>{{date('d-M-Y', strtotime($kR->date_trx))}}</td>
                                     </tr>
                                 @endforeach
+                                <tr>
+                                    <td class=" bg-dark" colspan="6"></td>
+                                </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
