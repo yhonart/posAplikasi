@@ -2622,7 +2622,7 @@ class CashierController extends Controller
         //         ->get();
         //     $nameMethod = $cekPaymentMethod->category;
         // }
-        echo $tPembayaran .">=". $kreditPlusBelanja; 
+        // echo $tPembayaran .">=". $kreditPlusBelanja; 
 
         //Cek count pembayaran
         $countMethod = DB::table('tr_payment_method')
@@ -2694,7 +2694,7 @@ class CashierController extends Controller
                     'nom_payed' => $tPembayaran,
                     'nom_kredit' => $absSelisih,
                     'nom_last_kredit' => $kredit,
-                    'status' => '1',
+                    'status' => '2',
                     'created_at' => now()
                 ]);
 
