@@ -53,7 +53,7 @@
                                         <td>{{number_format($kR->total_struk,'0','.',',')}}</td>
                                         <td>{{number_format($kR->saldo_kredit,'0','.',',')}}</td>
                                         <td>{{number_format($kR->total_payment,'0','.',',')}}</td>
-                                        <td>{{date('d-M-Y', strtotime($date_trx))}}</td>
+                                        <td>{{date('d-M-Y', strtotime($kR->date_trx))}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
