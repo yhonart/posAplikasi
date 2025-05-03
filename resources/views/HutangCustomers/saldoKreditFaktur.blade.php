@@ -25,6 +25,7 @@
                 <td class="text-right">{{number_format($hf->total_kredit,'0',',','.')}}</td>
                 <td>
                     <a href="{{route('Cashier')}}/dataPelunasan/printPelunasan/{{$hf->payment_number}}" class="btn btn-primary btn-sm" target="_blank"><i class="fa-solid fa-print"></i></a>
+                    <a href="{{route('Cashier')}}/dataPelunasan/printPelunasan/{{$hf->payment_number}}" class="btn btn-info btn-sm" target="_blank"><i class="fa-solid fa-eye"></i></a>
                 </td>
             </tr>
         @endforeach
