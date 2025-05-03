@@ -27,9 +27,37 @@
                             <dt>Kepada</dt>
                             <dd>
                                 {{$faktur->customer_store}} <br>
-                                {{$faktur->address}}
+                                {{$faktur->address}}, {{$faktur->city}} <br>
+                                {{$faktur->phone_number}}
                             </dd>
                         </dl>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No.Transaksi</th>
+                                    <th>T.Hutang</th>
+                                    <th>Sisa Hutang</th>
+                                    <th>Pembayaran</th>
+                                    <th>Saldo</th>
+                                    <th>Tgl.Pembayaran</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($kreditRecord as $kR)
+                                    <tr>
+                                        <td>{{$kR->trx_code}}</td>
+                                        <td>{{number_format($kR->total_struk,'0','.',',')}}</td>
+                                        <td>{{number_format($kR->saldo_kredit,'0','.',',')}}</td>
+                                        <td>{{number_format($kR->total_payment,'0','.',',')}}</td>
+                                        <td>{{date('d-M-Y', strtotime($date_trx))}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

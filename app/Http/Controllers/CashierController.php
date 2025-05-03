@@ -1828,7 +1828,8 @@ class CashierController extends Controller
                     'total_struk' => $cekValKredit->nominal,
                     'total_payment' => $editVal,
                     'status'=>'1',
-                    'payment_number' => $voucher
+                    'payment_number' => $voucher,
+                    'saldo_kredit' => $updateKredit
                 ]);
         }
 
@@ -4167,7 +4168,10 @@ class CashierController extends Controller
             ->first();
 
         $kreditRecord = DB::table('tr_kredit_record')
-            ->where('payment_number', $voucher)
+            ->where([
+                ['payment_number', $voucher],
+                ['status','2']
+                ])
             ->get();
 
         return view('HutangCustomers/detailPembayaran', compact('voucher','faktur','kreditRecord'));
