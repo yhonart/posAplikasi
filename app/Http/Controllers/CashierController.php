@@ -1615,10 +1615,10 @@ class CashierController extends Controller
                 ['periode', $periode],
                 ['status', '!=','0']
             ])
-            ->first();
+            ->count();
 
-        if (!empty($nomorBukti)) {
-            $numbering = $nomorBukti->numbering + 1;
+        if (!empty($nomorBukti <> '0')) {
+            $numbering = $nomorBukti + 1;
         } else {
             $numbering = '1';
         }
