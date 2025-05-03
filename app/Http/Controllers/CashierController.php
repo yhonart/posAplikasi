@@ -1613,7 +1613,7 @@ class CashierController extends Controller
         $nomorBukti = DB::table('tr_pembayaran_kredit')
             ->where([
                 ['periode', $periode],
-                ['status', '2']
+                ['status', '!=','0']
             ])
             ->first();
 
