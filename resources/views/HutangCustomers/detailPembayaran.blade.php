@@ -2,6 +2,10 @@
 @section('content')
 <?php
 $saldo = 0;
+$sumTHutang = 0;
+$sumSisaHutang = 0;
+$sumPembayaran = 0;
+$sumSaldo = 0;
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -28,7 +32,7 @@ $saldo = 0;
                 <div class="row">
                     <div class="col-md-6 col-12">
                         <dl>
-                            <dt>Kepada</dt>
+                            <dt>Pelanggan :</dt>
                             <dd>
                                 {{$faktur->customer_store}} <br>
                                 {{$faktur->address}}, {{$faktur->city}} <br>
@@ -54,12 +58,16 @@ $saldo = 0;
                                 @foreach($kreditRecord as $kR)
                                     <tr>
                                         <td class=" font-weight-bold">{{$kR->trx_code}}</td>
-                                        <td class=" text-right text-danger"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->total_struk,'0','.',',')}}</td>
-                                        <td class=" text-right text-maroon"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->saldo_kredit,'0','.',',')}}</td>
-                                        <td class=" text-right text-success"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->total_payment,'0','.',',')}}</td>
+                                        <td class=" text-right text-danger"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->total_struk,'0',',','.)}}</td>
+                                        <td class=" text-right text-maroon"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->saldo_kredit,'0',',','.)}}</td>
+                                        <td class=" text-right text-success"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($kR->total_payment,'0',',','.)}}</td>
                                         <td class=" text-right text-info">
                                             <?php
                                                 $saldo = $kR->saldo_kredit - $kR->total_payment;
+                                                $sumTHutang += $kR->total_struk;
+                                                $sumSisaHutang += $kR->saldo_kredit;
+                                                $sumPembayaran += $kR->total_payment;
+                                                $sumSaldo += $saldo;
                                             ?>
                                             <i class="fa-solid fa-rupiah-sign"></i> {{number_format($saldo,'0','.',',')}}
                                         </td>
@@ -67,6 +75,16 @@ $saldo = 0;
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Subtotal</th>
+                                    <th class=" text-right text-danger"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($sumTHutang,'0',',','.')}}</th>
+                                    <th class=" text-right text-danger"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($sumSisaHutang,'0',',','.')}}</th>
+                                    <th class=" text-right text-danger"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($sumPembayaran,'0',',','.')}}</th>
+                                    <th class=" text-right text-danger"><i class="fa-solid fa-rupiah-sign"></i> {{number_format($sumSaldo,'0',',','.')}}</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
