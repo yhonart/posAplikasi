@@ -3,7 +3,7 @@
         @foreach($productList as $pL)
         <tr data-id="{{$pL->idinv_stock}}">
             <td class="p-0" colspan="3" width="37%">
-                {{$pL->product_name}}
+                <a href="#" class=" font-weight-bold text-black" data-id="{{$pL->idinv_stock}}">{{$pL->product_name}}</a>                
             </td>
             <td class="p-0" width="12%">
                 {{$pL->product_satuan}}
