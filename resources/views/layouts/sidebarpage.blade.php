@@ -9,7 +9,7 @@
 
     <title>POS Inventory Management</title>
     <!-- Fonts -->
-    <link rel="stylesheet" href="{{asset('public/stylesheets')}}">
+    <link rel="stylesheet" href="{{asset('public/stylesheets.css')}}">
     <link rel="stylesheet" href="{{asset('public/dazbuild/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/dazbuild/plugins/toastr/toastr.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/dazbuild/plugins/sweetalert2/sweetalert2.css')}}">
