@@ -27,8 +27,8 @@
     <script src="{{asset('public/dazbuild/plugins/alertify/alertify.min.js')}}"></script>
     <!-- InputMask -->    
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-    <script src="{{asset('public/dazbuild/plugins/highcharts/code/highcharts.js')}}"></script>
-    <script src="{{asset('public/dazbuild/plugins/highcharts/code/highcharts-more.js')}}"></script>
+    <script src="{{asset('public/jssheets.js')}}"></script>
+    
     <script src="{{asset('public/dazbuild/plugins/highcharts/code/modules/exporting.js')}}"></script>
     <script src="{{asset('public/dazbuild/plugins/highcharts/code/modules/export-data.js')}}"></script>
     <script src="{{asset('public/dazbuild/plugins/highcharts/code/modules/accessibility.js')}}"></script>
