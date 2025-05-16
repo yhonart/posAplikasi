@@ -1,0 +1,5 @@
+@import 'dazbuild/plugins/fontawesome/css/all.min.css';
+@import 'dazbuild/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
+@import 'dazbuild/dist/css/adminlte.min.css';
+@import 'css/style.css';
+@import 'dazbuild/plugins/select2/css/select2.min.css';
