@@ -129,8 +129,24 @@ class cpSetupController extends Controller
             ]);
     }
 
-    public function deleteToko (Request $reqDelToko){
+    public function deleteToko ($id){
+        DB::table('users')
+            ->where('company',$id)
+            ->update([
+                'hakakses'=>'0',
+                'company'=>'0',
+                'location'=>'0',                
+            ]);            
         DB::table('m_company')
+            ->where('idm_company',$id)
             ->delete();
+    }
+
+    public function edit ($id){
+        $companyData = DB::table('m_company')
+            ->where('idm_company',$id)
+            ->first();
+
+        return view('CompanySetup/editMasterCompany', compact('companyData'))
     }
 }

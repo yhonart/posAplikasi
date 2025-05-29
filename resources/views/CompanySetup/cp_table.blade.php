@@ -8,7 +8,7 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-        <h1 class="m-0">Pengaturan Nama Toko/Gudang</h1>
+        <h1 class="m-0">Pengaturan Nama Usaha</h1>
         </div><!-- /.col -->
     </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -56,7 +56,8 @@
                                                 <td>{{$dc->location_name}}</td>
                                                 <td>
                                                     @if($userHakAkses == '3')
-                                                    <button type="button" id="btnDelete" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hapus Toko</button>
+                                                    <button type="button" id="btnDelete" class="btn btn-danger" data-id="{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i> Hapus</button>
+                                                    <button type="button" class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i> Edit</button>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -82,9 +83,22 @@
     $(document).ready(function(){               
         $('#btnDelete').on('click', function (e) {
             e.preventDefault();
-            $("#DisplayFormInput").load("{{route('CompanySetup')}}/companyDisplay/deleteToko");
-            alertify.success('Success message');
-            window.location.reload();
+            let el = $(this);
+            let id = el.attr("data-id");
+            alertify.confirm("Apakah anda yakin ingin menghapus data toko tersebut ?.",
+            function(){
+                $.ajax({
+                    type:'get',
+                    url:"{{route('CompanySetup')}}/companyDisplay/deleteToko/"+id, 
+                    success : function(response){
+                        window.location.reload();
+                    }           
+                });            
+                alertify.success('Ok');
+            },
+            function(){
+                alertify.error('Cancel');
+            });
         });
     })
 </script>
