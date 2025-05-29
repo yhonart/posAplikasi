@@ -1,3 +1,10 @@
+<?php
+$arrayModule = array(
+        "IM1"=>"Full Menu",
+        "IM2"=>"Full Menu Tanpa Kas",
+        "IM3"=>"Inventory + Kas",
+    );
+?>
 <div class="row">
     <div class="col-md-12">
         <div class="card card-purple">
@@ -42,6 +49,12 @@
                                 <label class="label col-md-4">Telefone</label>
                                 <div class="col-md-4">
                                     <input type="text" name="telefone" id="telefone" class="form-control form-control-sm" value="{{$companyData->telefone}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="label col-md-4">Company Apl Module</label>
+                                <div class="col-md-4">
+                                    {{$arrayModule[$companyData->sys_module_code]}}
                                 </div>
                             </div>
                             <div class="form-group">
