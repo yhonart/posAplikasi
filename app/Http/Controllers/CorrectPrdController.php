@@ -212,9 +212,8 @@ class CorrectPrdController extends Controller
             return view('StockCorrection/newCorrectionProduct', compact('mProduct','numberKrs','sumKoreksi','countKoreksi','koreksi','mSite'));
         }
    }
-   
-   public function submitFormKoreksi(Request $reqForm){
-       
+      
+   public function submitFormKoreksi(Request $reqForm){        
        $nomorKoreksi = $reqForm->nomorKoreksi;
        $filterTanggal = $reqForm->filterTanggal;
        $description = $reqForm->description;

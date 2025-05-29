@@ -234,7 +234,7 @@
                         <input class="form-control form-control-sidebar" type="search" placeholder="Cari Menu" id="searchMenu" aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-sidebar">
-                            <i class="fas fa-search fa-fw"></i>
+                                <i class="fas fa-search fa-fw"></i>
                             </button>
                         </div>
                     </div>
@@ -249,12 +249,6 @@
         <div class="content-wrapper bg-white">            
             <div class="row bg-light text-center p-2" id="displayNotif" style="display: none;">
                 <div class="col-md-12">
-                    <div class="spinner-grow spinner-grow-sm text-warning" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>                   
-                    <div class="spinner-grow spinner-grow-sm text-warning" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>                   
                     <div class="spinner-grow spinner-grow-sm text-warning" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>                   
