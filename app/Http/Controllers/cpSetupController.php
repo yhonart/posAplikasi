@@ -147,6 +147,6 @@ class cpSetupController extends Controller
             ->where('idm_company',$id)
             ->first();
 
-        return view('CompanySetup/editMasterCompany', compact('companyData'))
+        return view('CompanySetup/editMasterCompany', compact('companyData'));
     }
 }
