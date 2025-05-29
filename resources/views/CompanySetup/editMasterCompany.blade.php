@@ -1,8 +1,8 @@
 <?php
 $arrayModule = array(
-        "IM1"=>"Full Menu",
-        "IM2"=>"Full Menu Tanpa Kas",
-        "IM3"=>"Inventory + Kas",
+        "AM1"=>"Full Menu",
+        "AM2"=>"Full Menu Tanpa Kas",
+        "AM3"=>"Inventory + Kas",
     );
 ?>
 <div class="row">
