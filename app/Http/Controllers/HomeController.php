@@ -156,14 +156,16 @@ class HomeController extends Controller
         if($cekUserGroup >= '1'){
             $mainMenu = DB::table('m_public_system')
                 ->where([
-                    ['status','1'],
-                    ['module_code','like','%'.$sysModule.'%']
+                    ['status','1'],                    
                     ])
                 ->orderBy('ordering','asc')
                 ->get();
                 
             $subMenu = DB::table('m_submenu')
-                ->where('status','1')
+                ->where([
+                    ['status','1'],
+                    ['module_code','like','%'.$sysModule.'%']
+                    ])
                 ->get();
                 
         }
