@@ -57,7 +57,7 @@
                                                 <td>
                                                     @if($userHakAkses == '3')
                                                     <button type="button" id="btnDelete" class="btn btn-danger" data-id="{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i> Hapus</button>
-                                                    <button type="button" class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i> Edit</button>
+                                                    <button type="button" class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
                                                     @endif
                                                 </td>
                                             </tr>
