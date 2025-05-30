@@ -6,6 +6,7 @@ Route::get('CompanySetup/companyDisplay/add_new_cp', [App\Http\Controllers\cpSet
 Route::post('CompanySetup/companyDisplay/postNewCompany', [App\Http\Controllers\cpSetupController::class, 'postNewCompany']);
 Route::get('CompanySetup/companyDisplay/deleteToko/{id}', [App\Http\Controllers\cpSetupController::class, 'deleteToko']);
 Route::get('CompanySetup/companyDisplay/edit/{id}', [App\Http\Controllers\cpSetupController::class, 'edit']);
+Route::post('CompanySetup/companyDisplay/postEditCompany', [App\Http\Controllers\cpSetupController::class, 'postEditCompany']);
 
 Route::get('siteSetup', [App\Http\Controllers\cpSetupController::class, 'contentSite'])->name('content_site')->name('siteSetup');
 Route::get('CompanySetup/siteSetup/AddWarehouse', [App\Http\Controllers\cpSetupController::class, 'AddWarehouse']);

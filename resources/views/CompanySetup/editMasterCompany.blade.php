@@ -1,8 +1,8 @@
 <?php
 $arrayModule = array(
-        "AM1"=>"Full Menu",
-        "AM2"=>"Full Menu Tanpa Kas",
-        "AM3"=>"Inventory + Kas",
+        "AM1"=>"FULL MENU",
+        "AM2"=>"FULL MENU TANPA KAS",
+        "AM3"=>"INVENTORY + KAS",
     );
 ?>
 <div class="row">
@@ -52,9 +52,25 @@ $arrayModule = array(
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="label col-md-4">Company Apl Module</label>
+                                <label class="label col-md-4">Company APL Module</label>
+                                <div class="col-md-2">
+                                    <span class="font-weight-bold text-success">
+                                        {{$arrayModule[$companyData->sys_module_code]}}
+                                    </span>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-info btn-sm font-weight-bold" data-toggle="collapse" href="#changeModuleApl" role="button" aria-expanded="false" aria-controls="collapseExample">Change</button>
+                                </div>
                                 <div class="col-md-4">
-                                    {{$arrayModule[$companyData->sys_module_code]}}
+                                    <div class="collapse" id="collapseExample">
+                                        <select name="aplModule" id="aplModule" class="form-control form-control-sm">
+                                            <option value="{{$companyData->sys_module_code}}">{{$arrayModule[$companyData->sys_module_code]}}</option>
+                                            <option value="0" disabled></option>
+                                            <option value="AM1">FULL MENU</option>
+                                            <option value="AM2">FULL MENU TANPA KAS</option>
+                                            <option value="AM3">INVENTORY + KAS</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -67,3 +83,30 @@ $arrayModule = array(
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $("form#formEditCompany").submit(function(event){
+            event.preventDefault();
+            $("#btnUpdateCompany").fadeOut();
+            $.ajax({
+                url : "{{route('CompanySetup')}}/companyDisplay/postEditCompany",
+                type : 'POST',
+                data : new FormData(this),
+                async : true,
+                cache : true,
+                contentType : false,
+                processData : false,
+                success : function (data) {                    
+                    window.location.reload();
+                }
+            })
+        })
+    });
+</script>

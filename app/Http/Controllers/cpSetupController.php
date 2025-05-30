@@ -134,7 +134,7 @@ class cpSetupController extends Controller
             ->where('company',$id)
             ->update([
                 'hakakses'=>'0',
-                'company'=>'0',
+                'company'=>'0', 
                 'location'=>'0',                
             ]);            
         DB::table('m_company')
@@ -148,5 +148,9 @@ class cpSetupController extends Controller
             ->first();
 
         return view('CompanySetup/editMasterCompany', compact('companyData'));
+    }
+
+    public function postEditCompany (Request $reqEditComp){
+
     }
 }
