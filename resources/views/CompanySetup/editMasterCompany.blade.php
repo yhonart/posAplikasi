@@ -62,7 +62,7 @@ $arrayModule = array(
                                     <button class="btn btn-info btn-sm font-weight-bold" data-toggle="collapse" href="#changeModuleApl" role="button" aria-expanded="false" aria-controls="collapseExample">Change</button>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="collapse" id="collapseExample">
+                                    <div class="collapse" id="changeModuleApl">
                                         <select name="aplModule" id="aplModule" class="form-control form-control-sm">
                                             <option value="{{$companyData->sys_module_code}}">{{$arrayModule[$companyData->sys_module_code]}}</option>
                                             <option value="0" disabled></option>
