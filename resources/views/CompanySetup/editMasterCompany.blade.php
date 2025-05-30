@@ -15,6 +15,7 @@ $arrayModule = array(
                 <div class="row">
                     <div class="col-md-12">
                         <form id="formEditCompany">
+                            <input type="hidden" name="hiddenID" id="hiddenID" value="{{$companyData->idm_company}}">
                             <div class="form-group row">
                                 <label class="label col-md-4">Nama Perusahaan</label>
                                 <div class="col-md-4">

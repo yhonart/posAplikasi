@@ -54,7 +54,7 @@
                                                 <td>{{$dc->company_name}}</td>
                                                 <td>{{$dc->telefone}}</td>
                                                 <td>{{$dc->location_name}}</td>
-                                                <td>
+                                                <td class="text-right">
                                                     @if($userHakAkses == '3')
                                                     <button type="button" id="btnDelete" class="btn btn-danger" data-id="{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i> Hapus</button>
                                                     <button type="button" class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-pen-to-square"></i> Edit</button>

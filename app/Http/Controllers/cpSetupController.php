@@ -151,6 +151,26 @@ class cpSetupController extends Controller
     }
 
     public function postEditCompany (Request $reqEditComp){
+        $id = $reqEditComp->hiddenID;
+        $namaUsaha = $reqEditComp->namaUsaha;
+        $bidangUsaha = $reqEditComp->bidangUsaha;
+        $alamat = $reqEditComp->alamat;
+        $owner = $reqEditComp->owner;
+        $telefone = $reqEditComp->telefone;
+        $aplModule = $reqEditComp->aplModule;
+        $kodeUsaha = $reqEditComp->kodeUsaha;
 
+        DB::table('m_company')
+            ->where('idm_company',$id)
+            ->update([
+                'company_name'=>$namaUsaha,
+                'address'=>$alamat,
+                'company_code'=>$kodeUsaha,
+                'company_description'=>$bidangUsaha,
+                'owner'=>$owner,
+                'telefone'=>$telefone,
+                'sys_module_code'=>$aplModule
+            ]);
+        
     }
 }
