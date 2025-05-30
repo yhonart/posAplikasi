@@ -59,7 +59,7 @@ $arrayModule = array(
                                     </span>
                                 </div>
                                 <div class="col-md-2">
-                                    <button class="btn btn-info btn-sm font-weight-bold" data-toggle="collapse" href="#changeModuleApl" role="button" aria-expanded="false" aria-controls="collapseExample">Change</button>
+                                    <button class="btn btn-info btn-sm font-weight-bold" type="button" data-toggle="collapse" data-target="#changeModuleApl" aria-expanded="false" aria-controls="collapseExample">Change</button>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="collapse" id="changeModuleApl">
