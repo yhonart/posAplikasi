@@ -64,8 +64,7 @@ $arrayModule = array(
                                 <div class="col-md-4">
                                     <div class="collapse" id="changeModuleApl">
                                         <select name="aplModule" id="aplModule" class="form-control form-control-sm">
-                                            <option value="{{$companyData->sys_module_code}}">{{$arrayModule[$companyData->sys_module_code]}}</option>
-                                            <option value="0" disabled></option>
+                                            <option value="{{$companyData->sys_module_code}}" readonly></option>                                            
                                             <option value="AM1">FULL MENU</option>
                                             <option value="AM2">FULL MENU TANPA KAS</option>
                                             <option value="AM3">INVENTORY + KAS</option>
