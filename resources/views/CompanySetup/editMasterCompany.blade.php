@@ -75,6 +75,7 @@ $arrayModule = array(
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-sm btn-success font-weight-bold" id="btnUpdateCompany">Simpan</button>
+                                <button type="button" class="btn btn-sm btn-warning font-weight-bold" id="closeBtn">Batalkan</button>
                             </div>
                         </form>
                     </div>
@@ -91,7 +92,10 @@ $arrayModule = array(
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        $('#closeBtn').on('click', function (e) {
+            e.preventDefault();
+            window.location.reload();
+        });
         $("form#formEditCompany").submit(function(event){
             event.preventDefault();
             $("#btnUpdateCompany").fadeOut();
