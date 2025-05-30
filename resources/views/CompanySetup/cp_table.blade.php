@@ -42,7 +42,7 @@
                                             <th>Kode Usaha</th>
                                             <th>Nama Usaha</th>
                                             <th>Telefone</th>
-                                            <th>Lokasi</th>
+                                            <th>Alamat</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -53,7 +53,7 @@
                                                 <td>{{$dc->company_code}}-{{$dc->idm_company}}</td>
                                                 <td>{{$dc->company_name}}</td>
                                                 <td>{{$dc->telefone}}</td>
-                                                <td>{{$dc->location_name}}</td>
+                                                <td>{{$dc->address}}</td>
                                                 <td class="text-right">
                                                     @if($userHakAkses == '3')
                                                     <button type="button" id="btnDelete" class="btn btn-danger" data-id="{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i> Hapus</button>
