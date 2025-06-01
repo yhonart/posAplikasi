@@ -38,7 +38,7 @@
             </div>
             <hr>
             <div class="form-group">
-                <button class="btn btn-sm btn-danger" onclick="getLocation()">Get Location</button>
+                <button type="button" class="btn btn-sm btn-danger" onclick="getLocation()">Get Location</button>
             </div>
             <div class="form-group row">
                 <label for="Latitude" class="col-md-4">Latitude</label>
