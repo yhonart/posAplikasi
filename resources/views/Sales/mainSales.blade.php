@@ -9,7 +9,7 @@
         </div>
         <div class="row">
             <div class="col-md-8">
-                <div class=" table-responsive">
+                <div class="card card-body border-0 shadow-none table-responsive">
                     <a href="#" class="btn btn-info btn-flat BTN-CLICK m-auto" data-display="formKunjungan">                    
                         <i class="fa-solid fa-file"></i> Input Kunjungan
                     </a>
