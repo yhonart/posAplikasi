@@ -112,7 +112,7 @@ class HomeController extends Controller
             
         $userRoles = $dbUser->role_code;
         
-        if($role == '1' OR $role == '3'){
+        if($role == '1'){
             if ($userRoles == '1') {
                 return view('Dashboard/mainAdminDashboard', compact('userKasir'));
             }
@@ -122,6 +122,15 @@ class HomeController extends Controller
         }
         elseif($role == '2'){
             return view('Cashier/maintenancePage', compact('checkArea'));
+        }
+        elseif ($role == '3') {
+            return view('Sales/mainSales', compact('checkArea'));
+        }
+        elseif ($role == '4') {
+            return view('Sales/adminSales', compact('checkArea'));
+        }
+        elseif ($role == '5') {
+            return view('Sales/Kurir', compact('checkArea'));
         }
         // else{
         //     $this->middleware('guest')->except('logout');

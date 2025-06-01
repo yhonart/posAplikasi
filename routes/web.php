@@ -44,6 +44,7 @@ Route::get('/', function () {
         return view('auth.login');
     }
 });
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');    
 Route::get('/home/dashPenjualan', [App\Http\Controllers\HomeController::class, 'dashPenjualan']);    
 Route::get('/home/storeName', [App\Http\Controllers\HomeController::class, 'storeName']);
