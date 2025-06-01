@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <a href="#" class="btn btn-app bg-info">
-                                <span class="badge bg-info">0</span>
+                                <span class="badge bg-danger">0</span>
                                 <i class="fa-solid fa-table-list"></i> Daftar Kunjungan
                             </a>
                             <a href="{{route('sales')}}/formKunjungan" class="btn btn-app bg-info">                    
