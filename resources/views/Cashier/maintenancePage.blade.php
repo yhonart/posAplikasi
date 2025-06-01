@@ -9,9 +9,9 @@
             <div class="row mb-2">
                 <div class="col-md-12">
                     <div class="btn-group">
-                        <button class="btn btn-default btn-flat CLICK-LINK" data-link = "inventory"><i class="fa-solid fa-boxes-stacked"></i> Inventory</button>
-                        <button class="btn btn-default btn-flat CLICK-LINK" data-link = "pembelian"><i class="fa-solid fa-truck-ramp-box"></i> Pembelian</button>
-                        <button class="btn btn-default btn-flat CLICK-LINK" data-link = "keuangan"><i class="fa-solid fa-coins"></i> Keuangan</button>
+                        <button class="btn btn-default btn-flat CLICK-LINK font-weight-bold border-0" data-link = "inventory"><i class="fa-solid fa-boxes-stacked"></i> Inventory</button>
+                        <button class="btn btn-default btn-flat CLICK-LINK font-weight-bold border-0" data-link = "pembelian"><i class="fa-solid fa-truck-ramp-box"></i> Pembelian</button>
+                        <button class="btn btn-default btn-flat CLICK-LINK font-weight-bold border-0" data-link = "keuangan"><i class="fa-solid fa-chart-line"></i> Dashboard</button>
                     </div>
                 </div>
             </div>
