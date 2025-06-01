@@ -9,7 +9,7 @@
 ?>
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-sm table-responsive table-valign-middle">
+        <table class="table table-sm table-valign-middle">
             <thead>
                 <tr>
                     <th>No.</th>
@@ -17,7 +17,7 @@
                     <th>Pemilik</th>
                     <th>Share Lock</th>
                     <th>Progress</th>
-                    <th></th>
+                    <th>#</th>
                 </tr>
             </thead>
             <tbody>
