@@ -99,14 +99,14 @@
 
         function searchData(keyword){  
             // alert (keyword);
-            $("#loadProductList").fadeIn();
             let routeIndex = "{{route('Cashier')}}",
-                urlProductList = "productList",
-                panelProductList = $("#mainListProduct");
+            urlProductList = "productList",
+            panelProductList = $("#mainListProduct");
             if (keyword === '0' || keyword === '') {
                 $("#tableSelectProduk").fadeOut("slow");
             }
             else{
+                $("#loadProductList").fadeIn();
                 $("#tableSelectProduk").fadeIn("slow");
                 $.ajax({
                     type : 'get',
