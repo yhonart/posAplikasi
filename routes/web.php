@@ -133,6 +133,9 @@ Route::get('kasKecil', [App\Http\Controllers\TrxKasKecilController::class, 'kasK
 Route::get('kasBesar', [App\Http\Controllers\TrxKasBesarController::class, 'kasBesar'])->name('kasBesar');
 Route::get('trxReumbers', [App\Http\Controllers\TrxReumbersController::class, 'trxReumbers'])->name('trxReumbers');
 
+// Sales
+Route::get('sales', [App\Http\Controllers\SalesController::class, 'main'])->name('sales');
+
 include __DIR__.'/section/accounting.php';
 include __DIR__.'/section/asset.php';
 include __DIR__.'/section/cp_setup.php';
@@ -176,4 +179,6 @@ include __DIR__.'/section/piutang.php';
 include __DIR__.'/section/kasKecil.php';
 include __DIR__.'/section/trxKasBesar.php';
 include __DIR__.'/section/reumbers.php';
+
+include __DIR__.'/section/sales.php';
 ?>
