@@ -49,7 +49,7 @@
                     <input type="text" name="formStock" id="formStock" class="form-control form-control-sm form-control-border border-width-2" readonly>
                 </td>
                 <td class="p-0">
-                    <button class="btn btn-xs btn-success" id="btnSubmitItemCashier"><i class="fa-solid fa-circle-check"></i></button>
+                    <button class="btn btn-xs btn-success btn-flat btn-block" id="btnSubmitItemCashier"><i class="fa-solid fa-circle-check"></i></button>
                 </td>
             </tr>
         </form>
