@@ -54,7 +54,12 @@
 </table>
 <input type="hidden" name="removeAutofocus" id="removeAutofocus">
 <div id="tableSelectProduk"></div>
-
+<div id="loadProductList" style="display: none;">
+    <div class="spinner-grow spinner-grow-sm text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <span>Please Wait ....</span>
+</div>
 <script type="text/javascript">
      $(function () {   
         $("#fieldProduk").val(null).focus();
@@ -91,6 +96,7 @@
 
         function searchData(keyword){  
             // alert (keyword);
+            $("#loadProductList").fadeIn();
             let routeIndex = "{{route('Cashier')}}",
                 urlProductList = "productList",
                 panelProductList = $("#mainListProduct");
@@ -103,6 +109,7 @@
                     type : 'get',
                     url : "{{route('Cashier')}}/cariProduk/"+keyword+"/"+trxNumber,
                     success : function(response){
+                        $("#loadProductList").fadeOut();
                         if (response.warningCustomer) {
                             alertify
                             .alert(response.warningCustomer, function(){
