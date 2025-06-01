@@ -213,7 +213,7 @@ class AssManagedController extends Controller
         $mCategory = $reqPostModel->modelCategory;
         $mManufacture = $reqPostModel->modelManufacture;
         $mNote = $reqPostModel->modelNote;        
-        $mFile = str_replace(" ","",$reqPostModel->modelFile);
+        $mFile = $reqPostModel->modelFile;
 
         if ($mFile<>"") {
             $TypeDoc = $mFile->getClientOriginalExtension();

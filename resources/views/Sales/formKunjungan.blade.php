@@ -54,9 +54,9 @@
             </div>
             <hr>
             <div class="form-group row">
-                <label for="dateFU" class="col-md-4">Foto Toko</label>
+                <label for="fotoToko" class="col-md-4">Foto Toko</label>
                 <div class="col-md-4">
-                    <input type="file" class="form-control-file" name="dateFU" id="dateFU">
+                    <input type="file" class="form-control-file" name="fotoToko" id="fotoToko">
                 </div>
             </div>
             <div class="form-group">
@@ -66,6 +66,11 @@
     </div>
 </div>
 <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     const inLatitude = document.getElementById("Latitude");
     const inLongitude = document.getElementById("Longitude");
 
@@ -96,4 +101,22 @@
             break;
         }
     }
+    $(document).ready(function(){
+        $("form#inputFormKunjungan").submit(function(event){
+            event.preventDefault();
+            $.ajax({
+                url: "{{route('sales')}}/formKunjungan/postNewTransaksi",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {     
+                    $("form#inputFormKunjungan")[0].reset();
+                },                
+            });
+            return false;
+        });
+    });
 </script>
