@@ -1,9 +1,26 @@
 @extends('layouts.frontpage')
 @section('content')
 <script src="{{asset('public/js/cashierButton.js')}}"></script>
-<div class="content mt-0">
+<div class="content mt-1">
     <div class="container-fluid">
-        @if($checkArea <> 0)            
+        @if($checkArea <> 0)         
+        <!-- jika module systemnya hanya kasir dan inventory saja  -->
+         @if($module = "AM3")
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-flat CLICK-LINK" data-link = "inventory">Inventory</button>
+                        <button class="btn btn-default btn-flat CLICK-LINK" data-link = "pembelian">Pembelian</button>
+                        <button class="btn btn-default btn-flat CLICK-LINK" data-link = "keuangan">Keuangan</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="displayInventoryKasir"></div>
+                </div>
+            </div>
+         @endif
         <div class="row">
             <div class="col-12 col-lg-8 pr-0">
                 @include('Global.global_spinner')

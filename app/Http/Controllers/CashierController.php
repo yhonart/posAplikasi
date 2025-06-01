@@ -21,7 +21,20 @@ class CashierController extends Controller
         $this->TempKeuanganController = $tempKasBesar;
     }
 
-    // CEK INFORMASI USER TERKAIT AREA KERJA YANG TERDAFTAR PADA SISTEMre
+    // Cek Informasi Module Kasir
+    public function sysModule(){
+        $company = Auth::user()->company;
+
+        $compModule = DB::table('m_company')
+            ->select('sys_module_code')
+            ->where('idm_company',$company)
+            ->first();
+
+        $module = $compModule->sys_module_code;
+
+        return $module;
+    }
+    // CEK INFORMASI USER TERKAIT AREA KERJA YANG TERDAFTAR PADA SISTEM
     public function checkuserInfo()
     {
         $userID = Auth::user()->id;
@@ -194,9 +207,10 @@ class CashierController extends Controller
 
     public function mainCashier()
     {
+        $module = $this->sysModule();        
         $checkArea = $this->checkuserInfo();
         if (Auth::check()) {
-            return view('Cashier/maintenancePage', compact('checkArea'));
+            return view('Cashier/maintenancePage', compact('checkArea', 'module'));
         } else {
             return view('login');
         }
