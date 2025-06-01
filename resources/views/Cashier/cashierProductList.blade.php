@@ -53,13 +53,13 @@
     </tbody>
 </table>
 <input type="hidden" name="removeAutofocus" id="removeAutofocus">
-<div id="tableSelectProduk"></div>
 <div id="loadProductList" style="display: none;">
     <div class="spinner-grow spinner-grow-sm text-danger" role="status">
         <span class="sr-only">Loading...</span>
     </div>
     <span>Please Wait ....</span>
 </div>
+<div id="tableSelectProduk"></div>
 <script type="text/javascript">
      $(function () {   
         $("#fieldProduk").val(null).focus();
