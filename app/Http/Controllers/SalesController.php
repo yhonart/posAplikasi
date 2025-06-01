@@ -48,7 +48,7 @@ class SalesController extends Controller
         }
 
         DB::table('tracking_sales')
-            ->where([
+            ->insert([
                 'store_name'=>$store,
                 'store_owner'=>$storeOwner,
                 'phone'=>$phone,
