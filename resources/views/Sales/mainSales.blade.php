@@ -9,16 +9,18 @@
         </div>
         <div class="row">
             <div class="col-md-8">
-                <a href="#" class="btn btn-info btn-flat BTN-CLICK" data-display="formKunjungan">                    
-                    <i class="fa-solid fa-file"></i> Input Kunjungan
-                </a>
-                <a href="#" class="btn btn-default btn-flat BTN-CLICK" data-display="daftarKunjungan">
-                    <span class="badge bg-danger">0</span>
-                    <i class="fa-solid fa-table-list"></i> Daftar Kunjungan
-                </a>
-                <a href="#" class="btn btn-default btn-flat BTN-CLICK" data-display="salesDasboard">                    
-                    <i class="fa-solid fa-chart-line"></i> Sales Dashboard
-                </a>
+                <div class=" table-responsive">
+                    <a href="#" class="btn btn-info btn-flat BTN-CLICK m-auto" data-display="formKunjungan">                    
+                        <i class="fa-solid fa-file"></i> Input Kunjungan
+                    </a>
+                    <a href="#" class="btn btn-default btn-flat BTN-CLICK m-auto" data-display="daftarKunjungan">
+                        <span class="badge bg-danger">0</span>
+                        <i class="fa-solid fa-table-list"></i> Daftar Kunjungan
+                    </a>
+                    <a href="#" class="btn btn-default btn-flat BTN-CLICK m-auto" data-display="salesDasboard">                    
+                        <i class="fa-solid fa-chart-line"></i> Sales Dashboard
+                    </a>
+                </div>
                 <div class="card card-body border-0 shadow mt-2">
                     <div id="divSpinner" style="display: none;">
                         <div class="spinner-grow spinner-grow-sm text-primary" role="status">
