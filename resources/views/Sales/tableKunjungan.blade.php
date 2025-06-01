@@ -27,7 +27,8 @@
                         <td>{{$dk->store_name}}</td>
                         <td>{{$dk->store_owner}}</td>
                         <td>Latitude:{{$dk->latitude}}, Longtitude:{{$dk->longtitude}}</td>
-                        <td>{{$progress[$dk->progress]}}</td>                        
+                        <td>{{$progress[$dk->progress]}}</td>  
+                        <td></td>                      
                     </tr>
                 @endforeach
             </tbody>
