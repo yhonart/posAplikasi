@@ -44,9 +44,12 @@
                 <td class="p-0">
                     <input type="text" name="formJumlah" id="formJumlah" class="form-control form-control-sm form-control-border border-width-2" readonly>
                 </td>
-                <td class="p-0" colspan="2">
+                <td class="p-0">
                     <input type="hidden" name="formStockHidden" id="formStockHidden" class="form-control form-control-sm" readonly>
                     <input type="text" name="formStock" id="formStock" class="form-control form-control-sm form-control-border border-width-2" readonly>
+                </td>
+                <td class="p-0">
+                    <button class="btn btn-xs btn-success" id="btnSubmitItemCashier"><i class="fa-solid fa-circle-check"></i></button>
                 </td>
             </tr>
         </form>
