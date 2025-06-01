@@ -6,16 +6,16 @@
         @if($checkArea <> 0)         
         <!-- jika module systemnya hanya kasir dan inventory saja  -->
          @if($module = "AM3")
-            <div class="row">
+            <div class="row mb-2">
                 <div class="col-md-12">
                     <div class="btn-group">
-                        <button class="btn btn-default btn-flat CLICK-LINK" data-link = "inventory">Inventory</button>
-                        <button class="btn btn-default btn-flat CLICK-LINK" data-link = "pembelian">Pembelian</button>
-                        <button class="btn btn-default btn-flat CLICK-LINK" data-link = "keuangan">Keuangan</button>
+                        <button class="btn btn-default btn-flat CLICK-LINK" data-link = "inventory"><i class="fa-solid fa-boxes-stacked"></i> Inventory</button>
+                        <button class="btn btn-default btn-flat CLICK-LINK" data-link = "pembelian"><i class="fa-solid fa-truck-ramp-box"></i> Pembelian</button>
+                        <button class="btn btn-default btn-flat CLICK-LINK" data-link = "keuangan"><i class="fa-solid fa-coins"></i> Keuangan</button>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mb-2">
                 <div class="col-md-12">
                     <div id="displayInventoryKasir"></div>
                 </div>
