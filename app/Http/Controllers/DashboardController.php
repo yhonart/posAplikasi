@@ -385,4 +385,17 @@ class DashboardController extends Controller
             
         return view('Dashboard/DashboardPurchasing', compact('checkArea','sumTunai','sumHutang','doDate','sum30Ago'));
     }
+
+    public function hutangPembelian(){
+        $company = Auth::user()->company;
+
+        $tableHutang = DB::table('purchase_kredit as a')
+            ->leftJoin('purchase_order as b','b.purchase_number','=','a.number_dok')
+            ->where([
+                ['b.comp_id',$company]
+            ])
+            ->get();
+
+        return view('Dashboard/tableInfoHutang', compact('tableHutang'));
+    }
 }

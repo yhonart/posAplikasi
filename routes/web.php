@@ -24,11 +24,20 @@ Route::get('/', function () {
     if (Auth::check()) {
         $hakakses = Auth::user()->hakakses;
         $checkArea = Auth::user()->count_area;
-        if($hakakses == '1' OR $hakakses == '3'){            
+        if($hakakses == '1'){            
             return view('Dashboard/mainAdminDashboard');
         }
         elseif($hakakses == '2'){
             return view('Cashier/maintenancePage', compact('checkArea'));
+        }
+        elseif ($hakakses == '3') {
+            return view('Sales/mainSales', compact('checkArea'));
+        }
+        elseif ($hakakses == '4') { //Admin Sales
+            return view('Sales/adminSales', compact('checkArea'));
+        }
+        elseif ($hakakses == '5') { //Kurir
+            return view('Sales/Kurir', compact('checkArea'));
         }
     }
     else {
@@ -45,6 +54,7 @@ Route::get('home/GetGlobaDelete/WithDeleteId/{dataId}/{dataTb}/{dataCol}', [App\
 Route::post('home/GlobalLiveEditTable', [App\Http\Controllers\HomeController::class, 'GlobalEditTable']);
 Route::get('/home/searchingMenu/{keyword}', [App\Http\Controllers\HomeController::class, 'searchingMenu']);
 Route::get('home/displayPembelian', [App\Http\Controllers\DashboardController::class, 'displayPembelian']);
+Route::get('home/displayPembelian/hutangPembelian', [App\Http\Controllers\DashboardController::class, 'hutangPembelian']);
 
 Route::get('Stock', [App\Http\Controllers\StockListController::class, 'getMenu'])->name('Stock');
 Route::get('MoU', [App\Http\Controllers\MoUController::class, 'mainIndex'])->name('MoU');

@@ -11,7 +11,7 @@
                         <h6 class="text-danger font-weight-bold">
                             {{number_format($sumHutang->totalTunai,'0',',','.')}}
                         </h6>
-                        <a href="#" class="text-success font-weight-bold text-center el-zoom filter-info" data-display="Bayar">Bayar <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="#" class="text-success font-weight-bold text-center el-zoom filter-info" data-display="hutangPembelian">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -81,3 +81,19 @@
         <div id="tableFilter"></div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+    $('.filter-info').on('click', function (e) {
+        e.preventDefault();
+        let ell = $(this);
+        routeLink = ell.attr("data-link");
+        $.ajax({
+            type : 'get',
+            url : "{{route('home')}}/displayPembelian/"+routeLink,
+            success : function(response){
+                display.html(response);
+            }
+        });
+    });
+});
+</script>
