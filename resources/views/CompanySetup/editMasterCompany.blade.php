@@ -68,7 +68,7 @@ $arrayModule = array(
                                             <option value="{{$companyData->sys_module_code}}" readonly></option>                                            
                                             <option value="AM1">FULL MENU</option>
                                             <option value="AM2">FULL MENU TANPA KAS</option>
-                                            <option value="AM3">INVENTORY + KAS</option>
+                                            <option value="AM3">INVENTORY + KASIR</option>
                                         </select>
                                     </div>
                                 </div>
