@@ -134,7 +134,7 @@ class CashierController extends Controller
                     ['return_by',$createdName]
                 ])
                 ->count();
-        } elseif ($hakAkses == '2') {
+        } else {
             $countActiveDisplay = DB::table('tr_store')
                 ->where([
                     ['status', 1],
