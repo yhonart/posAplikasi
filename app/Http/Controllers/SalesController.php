@@ -14,7 +14,13 @@ class SalesController extends Controller
     }
 
     public function daftarKunjungan (){
+        $myAccount = Auth::user()->name;
+        $daftarKunjungan = DB::table('tracking_sales')
+            ->where('create_by',$myAccount)
+            ->orderBy('tracking_id','desc')
+            ->get();
 
+        return view('Sales/tableKunjungan', compact('daftarKunjungan'));
     }
 
     public function formKunjungan (){
