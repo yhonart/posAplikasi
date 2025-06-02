@@ -34,7 +34,7 @@
             <div class="form-group row">
                 <label for="dateFU" class="col-md-4">Tanggal Follow Up</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="dateFU" id="dateFU">
+                    <input type="text" class="form-control form-control-sm datetimepicker-input" name="dateFU" id="dateFU">
                 </div>
             </div>
             <hr>
@@ -77,6 +77,14 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    $(function(){
+        $( ".datetimepicker-input" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('.datetimepicker-input').datepicker("setDate",new Date());
+    });
     const inLatitude = document.getElementById("Latitude");
     const inLongitude = document.getElementById("Longitude");
     const mapDiv = document.getElementById('map');
@@ -91,6 +99,7 @@
     function success(position) {
         inLatitude.value = position.coords.latitude;
         inLongitude.value = position.coords.longitude;
+
         const map = new google.maps.Map(mapDiv, {
           center: { lat: latitude, lng: longitude },
           zoom: 15,
