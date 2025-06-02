@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card card-body border-0 shadow-none table-responsive">
                     <div class="row">
                         <div class="col-md-12">
@@ -24,15 +24,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
-                <div class="card card-body border-0 shadow mt-2 table-responsive">
-                    <div id="divSpinner" style="display: none;">
-                        <div class="spinner-grow spinner-grow-sm text-primary" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                    <div id="displaySales"></div>
-                </div>
+                </div>                
             </div>
             <div class="col-md-4">
                 <div class="card border-0 shadow">
