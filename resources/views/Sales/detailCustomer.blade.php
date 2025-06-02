@@ -1,6 +1,12 @@
 @extends('layouts.frontpage')
 @section('content')
-
+<style>
+    /* Gaya untuk memastikan peta ditampilkan dengan benar */
+    #map {
+        height: 400px; /* Atur tinggi peta */
+        width: 100%;  /* Atur lebar peta */
+    }
+</style>
 <div class="content mt-1">
     <div class="container-fluid">
         <div class="row mb-2">
