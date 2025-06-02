@@ -48,7 +48,7 @@ $progress = array(
                     </dl>
                     <dl class="row">
                         <dt class="col-md-4">Date Follow Up</dt>
-                        <dd class="col-md-4">{{$progress[$detailCus->date_fu]}}</dd>
+                        <dd class="col-md-4">{{$detailCus->date_fu}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-md-4">Foto Toko</dt>
