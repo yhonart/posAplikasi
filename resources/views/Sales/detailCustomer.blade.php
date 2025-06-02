@@ -29,8 +29,7 @@
     let map;
     let latVal = {{$detailCus->latitude}};
     let longVal = {{$detailCus->longtitude}};
-    
-    alert (latVal);
+
     function initMap() {
         // Longitude dan Latitude yang ingin Anda tampilkan
         const lokasiSaya = { lat: latVal, lng: longVal }; 
@@ -40,6 +39,11 @@
         });
 
         // Tambahkan marker ke peta
+        new google.maps.Marker({
+            position: lokasiSaya, // Posisi marker
+            map: map,             // Objek peta
+            title: "Lokasi Saya!" // Tooltip saat di-hover
+        });
         
     }   
 </script>
