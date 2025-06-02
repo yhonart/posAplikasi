@@ -29,6 +29,8 @@
     let map;
     let latVal = {{$detailCus->latitude}};
     let longVal = {{$detailCus->longtitude}};
+    
+    alert (latVal);
     function initMap() {
         // Longitude dan Latitude yang ingin Anda tampilkan
         const lokasiSaya = { lat: latVal, lng: longVal }; 
