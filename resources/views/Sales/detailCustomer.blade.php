@@ -53,7 +53,7 @@ $progress = array(
                     <dl class="row">
                         <dt class="col-md-4">Foto Toko</dt>
                         <dd class="col-md-4">
-                            <img src="{{asset('public/images/Upload')}}/{{$detailCus->store_name}}/{{$detailCus->picture_store}}" alt="Foto Toko" srcset="" class=" img-thumbnail">
+                            <img src="{{asset('public/images/Upload')}}/{{$detailCus->store_name}}/{{$detailCus->picture_store}}" alt="Foto Toko" srcset="" class=" img-thumbnail" width="30%">
                         </dd>
                     </dl>
                 </div>
