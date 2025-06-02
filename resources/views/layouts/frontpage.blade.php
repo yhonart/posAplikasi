@@ -167,7 +167,7 @@
                           <i class="fa-solid fa-user"></i> | {{Auth::user()->name}}
                         </a>                        
                      </li>
-                     <li class="nav-item d-none d-sm-inline-block">
+                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
