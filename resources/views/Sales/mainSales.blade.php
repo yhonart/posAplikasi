@@ -24,16 +24,14 @@
                             </a>
                         </div>
                     </div>
-                </div>                
-            </div>
-            <div class="col-md-4">
-                <div class="card border-0 shadow">
-                    <div class="card-header">
-                        <h3 class="card-title">Update Data Terbaru</h3>
+                </div>
+                <div class="card card-body border-0 shadow mt-2 table-responsive">
+                    <div id="divSpinner" style="display: none;">
+                        <div class="spinner-grow spinner-grow-sm text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
                     </div>
-                    <div class="card-body">
-
-                    </div>
+                    <div id="displaySales"></div>
                 </div>
             </div>
         </div>
