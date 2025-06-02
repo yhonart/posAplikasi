@@ -33,11 +33,7 @@
         });
 
         // Tambahkan marker ke peta
-        new google.maps.Marker({
-            position: lokasiSaya, // Posisi marker
-            map: map,             // Objek peta
-            title: "Lokasi Saya!" // Tooltip saat di-hover
-        });
+        
     }   
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWATSqbKPi6KunkVey74s45OojCu6Ws04&callback=initMap"></script>
