@@ -163,14 +163,14 @@
                 </a>                
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="#" role="button">
                           <i class="fa-solid fa-user"></i> | {{Auth::user()->name}}
                         </a>                        
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();" role="button">
                             <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
                         </a>
 
