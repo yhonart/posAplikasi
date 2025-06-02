@@ -73,4 +73,13 @@ class SalesController extends Controller
     public function salesDasboard (){
         
     }
+
+    public function detailCustomer ($id){
+
+        $detailCus = DB::table('tracking_sales')
+            ->where('tracking_id',$id)
+            ->first();
+
+        return view('Sales/detailCustomer', compact('detailCus'));
+    }
 }

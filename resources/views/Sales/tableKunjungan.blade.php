@@ -28,7 +28,9 @@
                         <td>{{$dk->store_owner}}</td>
                         <td><b>Latitude:</b>{{$dk->latitude}}, <b>Longtitude:</b>{{$dk->longtitude}}</td>
                         <td>{{$progress[$dk->progress]}}</td>  
-                        <td></td>                      
+                        <td>
+                            <a href="{{route('sales')}}/detailCustomer/{{$dk->tracking_id}}" class="btn btn-info btn-sm">Detail</a>
+                        </td>                      
                     </tr>
                 @endforeach
             </tbody>
