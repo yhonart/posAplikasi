@@ -41,10 +41,10 @@
         const lokasiSaya = { lat: latVal, lng: longVal }; 
         map = new google.maps.Map(document.getElementById("map"), {
             center: lokasiSaya, // Posisikan peta di lokasi yang ditentukan
-            zoom: 15,          // Atur level zoom (semakin tinggi, semakin dekat)
+            zoom: 20,          // Atur level zoom (semakin tinggi, semakin dekat)
         });       
     }   
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWATSqbKPi6KunkVey74s45OojCu6Ws04&callback=initMap&loading=async"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&loading=async"></script>
 
 @endsection
