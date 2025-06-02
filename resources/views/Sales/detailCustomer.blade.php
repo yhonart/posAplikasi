@@ -3,12 +3,12 @@
 
 <div class="content mt-1">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-md-12">
                 <a href="#" class="btn btn-info btn-flat">Daftar Kunjungan</a>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-md-12">
                 <div id="map"></div>
             </div>
@@ -27,8 +27,8 @@
 
 <script>
     let map;
-    let latVal = "{{$detailCus->latitude}}";
-    let longVal = "{{$detailCus->longtitude}}";
+    let latVal = '{{$detailCus->latitude}}';
+    let longVal = '{{$detailCus->longtitude}}';
     function initMap() {
         // Longitude dan Latitude yang ingin Anda tampilkan
         const lokasiSaya = { lat: latVal, lng: longVal }; 
