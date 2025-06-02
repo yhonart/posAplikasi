@@ -22,17 +22,23 @@
      * SPDX-License-Identifier: Apache-2.0
      */
     let map;
-    async function initMap() {
-        // Request needed libraries.
-        // const { Map } = await google.maps.importLibrary("maps");
-        const myLatlng = { lat: -25.363, lng: 131.044 };
-        map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 15,
-            center: myLatlng,
-        });
-    }
+    function initMap() {
+        // Longitude dan Latitude yang ingin Anda tampilkan
+        const lokasiSaya = { lat: -6.1753924, lng: 106.8271528 }; // Contoh: Monas, Jakarta
 
-    initMap();    
+        // Buat objek peta baru
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: lokasiSaya, // Posisikan peta di lokasi yang ditentukan
+            zoom: 15,          // Atur level zoom (semakin tinggi, semakin dekat)
+        });
+
+        // Tambahkan marker ke peta
+        new google.maps.Marker({
+            position: lokasiSaya, // Posisi marker
+            map: map,             // Objek peta
+            title: "Lokasi Saya!" // Tooltip saat di-hover
+        });
+    }   
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWATSqbKPi6KunkVey74s45OojCu6Ws04&callback=initMap"></script>
 
