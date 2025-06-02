@@ -35,7 +35,7 @@
 <script>
     let latVal = {{$detailCus->latitude}};
     let longVal = {{$detailCus->longtitude}};
-    let map;
+
     function initMap() {
     const chicago = new google.maps.LatLng(longVal, latVal);
     const map = new google.maps.Map(document.getElementById("map"), {
