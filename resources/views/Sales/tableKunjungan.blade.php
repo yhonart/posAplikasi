@@ -26,7 +26,7 @@
                         <td>{{$no++}}</td>
                         <td>{{$dk->store_name}}</td>
                         <td>{{$dk->store_owner}}</td>
-                        <td><b>Latitude:</b>{{$dk->latitude}}, <b>Longtitude:</b>{{$dk->longtitude}}</td>
+                        <td><b>Latitude:</b>{{$dk->latitude}}, <br> <b>Longtitude:</b>{{$dk->longtitude}}</td>
                         <td>{{$progress[$dk->progress]}}</td>  
                         <td>
                             <a href="{{route('sales')}}/detailCustomer/{{$dk->tracking_id}}" class="btn btn-info btn-sm">Detail</a>

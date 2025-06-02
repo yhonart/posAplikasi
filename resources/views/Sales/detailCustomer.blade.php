@@ -19,7 +19,7 @@ $progress = array(
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-md-12">
-                <a href="#" class="btn btn-info btn-flat">Daftar Kunjungan</a>
+                <a href="{{url('/')}}" class="btn btn-info btn-flat">Daftar Kunjungan</a>
             </div>
         </div>
         <div class="row mb-2">
@@ -53,7 +53,7 @@ $progress = array(
                     <dl class="row">
                         <dt class="col-md-4">Foto Toko</dt>
                         <dd class="col-md-4">
-                            <img src="{{asset('public/images/Upload')}}/{{$detailCus->store_name}}/{{$detailCus->picture_store}}" alt="Foto Toko" srcset="" class=" img-thumbnail" width="30%">
+                            <img src="{{asset('public/images/Upload')}}/{{$detailCus->store_name}}/{{$detailCus->picture_store}}" alt="Foto Toko" srcset="" class=" img-thumbnail" width="50%">
                         </dd>
                     </dl>
                 </div>
