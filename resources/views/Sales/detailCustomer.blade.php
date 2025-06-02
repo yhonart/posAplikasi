@@ -30,63 +30,46 @@
             </div>
         </div>
 </div>
-<script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "AIzaSyBWATSqbKPi6KunkVey74s45OojCu6Ws04", v: "weekly"});</script>
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
 <script>
     let latVal = {{$detailCus->latitude}};
     let longVal = {{$detailCus->longtitude}};
 
+    // In this example, we center the map, and add a marker, using a LatLng object
+    // literal instead of a google.maps.LatLng object. LatLng object literals are
+    // a convenient way to add a LatLng coordinate and, in most cases, can be used
+    // in place of a google.maps.LatLng object.
+    let map;
+
     function initMap() {
-    const chicago = new google.maps.LatLng(longVal, latVal);
-    const map = new google.maps.Map(document.getElementById("map"), {
-        center: chicago,
-        zoom: 3,
+    const mapOptions = {
+        zoom: 8,
+        center: { lat: -34.397, lng: 150.644 },
+    };
+
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    const marker = new google.maps.Marker({
+        // The below line is equivalent to writing:
+        // position: new google.maps.LatLng(-34.397, 150.644)
+        position: { lat: -34.397, lng: 150.644 },
+        map: map,
     });
-    const coordInfoWindow = new google.maps.InfoWindow();
-
-    coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
-    coordInfoWindow.setPosition(chicago);
-    coordInfoWindow.open(map);
-    map.addListener("zoom_changed", () => {
-        coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
-        coordInfoWindow.open(map);
+    // You can use a LatLng literal in place of a google.maps.LatLng object when
+    // creating the Marker object. Once the Marker object is instantiated, its
+    // position will be available as a google.maps.LatLng object. In this case,
+    // we retrieve the marker's position using the
+    // google.maps.LatLng.getPosition() method.
+    const infowindow = new google.maps.InfoWindow({
+        content: "<p>Marker Location:" + marker.getPosition() + "</p>",
     });
-    }
 
-    const TILE_SIZE = 256;
-
-    function createInfoWindowContent(latLng, zoom) {
-    const scale = 1 << zoom;
-    const worldCoordinate = project(latLng);
-    const pixelCoordinate = new google.maps.Point(
-        Math.floor(worldCoordinate.x * scale),
-        Math.floor(worldCoordinate.y * scale),
-    );
-    const tileCoordinate = new google.maps.Point(
-        Math.floor((worldCoordinate.x * scale) / TILE_SIZE),
-        Math.floor((worldCoordinate.y * scale) / TILE_SIZE),
-    );
-    return [
-        "LatLng: " + latLng,
-        "Zoom level: " + zoom,
-        "World Coordinate: " + worldCoordinate,
-        "Pixel Coordinate: " + pixelCoordinate,
-        "Tile Coordinate: " + tileCoordinate,
-    ].join("<br>");
-    }
-
-    // The mapping between latitude, longitude and pixels is defined by the web
-    // mercator projection.
-    function project(latLng) {
-    let siny = Math.sin((latLng.lat() * Math.PI) / 180);
-
-    // Truncating to 0.9999 effectively limits latitude to 89.189. This is
-    // about a third of a tile past the edge of the world tile.
-    siny = Math.min(Math.max(siny, -0.9999), 0.9999);
-    return new google.maps.Point(
-        TILE_SIZE * (0.5 + latLng.lng() / 360),
-        TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI)),
-    );
+    google.maps.event.addListener(marker, "click", () => {
+        infowindow.open(map, marker);
+    });
     }
 
     window.initMap = initMap;
