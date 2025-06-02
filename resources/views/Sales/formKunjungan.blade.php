@@ -1,3 +1,4 @@
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 <div class="row">
     <div class="col-md-12">
         <form id="inputFormKunjungan">
@@ -52,6 +53,11 @@
                     <input type="text" class="form-control form-control-sm" name="Longitude" id="Longitude" readonly>
                 </div>
             </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <div id="map"></div>
+                </div>
+            </div>
             <hr>
             <div class="form-group row">
                 <label for="fotoToko" class="col-md-4">Foto Toko</label>
@@ -73,6 +79,7 @@
     });
     const inLatitude = document.getElementById("Latitude");
     const inLongitude = document.getElementById("Longitude");
+    const mapDiv = document.getElementById('map');
 
     function getLocation() {
         if (navigator.geolocation) {
@@ -84,6 +91,15 @@
     function success(position) {
         inLatitude.value = position.coords.latitude;
         inLongitude.value = position.coords.longitude;
+        const map = new google.maps.Map(mapDiv, {
+          center: { lat: latitude, lng: longitude },
+          zoom: 15,
+        });
+
+        new google.maps.Marker({
+          position: { lat: latitude, lng: longitude },
+          map: map,
+        });
     }
     function error(error) {
         switch(error.code) {
