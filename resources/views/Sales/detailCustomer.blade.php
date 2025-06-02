@@ -46,7 +46,7 @@
 
     function initMap() {
     const mapOptions = {
-        zoom: 8,
+        zoom: 20,
         center: { lat: latVal, lng: longVal },
     };
 
