@@ -162,22 +162,25 @@
                     <span class="brand-text font-weight-bold"><i class="fa-solid fa-store"></i> KASIR</span>
                 </a>                
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" data-toggle="dropdown" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
                           <i class="fa-solid fa-user"></i> | {{Auth::user()->name}}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
-                            </a>                            
-                        </div>
+                        </a>                        
                      </li>
+                     <li class="nav-item d-none d-sm-inline-block">
+                        <a class="nav-link" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form> 
+                    </li>
                 </ul>
             </div>
         </nav>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form> 
         
         <div class="content-wrapper bg-white">
             @yield('content')
