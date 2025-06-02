@@ -36,15 +36,7 @@
         map = new google.maps.Map(document.getElementById("map"), {
             center: lokasiSaya, // Posisikan peta di lokasi yang ditentukan
             zoom: 15,          // Atur level zoom (semakin tinggi, semakin dekat)
-        });
-
-        // Tambahkan marker ke peta
-        new google.maps.Marker({
-            position: lokasiSaya, // Posisi marker
-            map: map,             // Objek peta
-            title: "Lokasi Saya!" // Tooltip saat di-hover
-        });
-        
+        });       
     }   
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWATSqbKPi6KunkVey74s45OojCu6Ws04&callback=initMap&loading=async"></script>
