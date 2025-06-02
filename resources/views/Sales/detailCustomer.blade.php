@@ -7,6 +7,14 @@
         width: 100%;  /* Atur lebar peta */
     }
 </style>
+<?php
+$progress = array(
+    1=>"Penawaran",
+    2=>"Follow Up",
+    3=>"Deal",
+    4=>"No Deal"
+);
+?>
 <div class="content mt-1">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -25,6 +33,28 @@
                     <dl class="row">
                         <dt class="col-md-4">Nama Toko</dt>
                         <dd class="col-md-4">{{$detailCus->store_name}}</dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-md-4">Pemilik Toko</dt>
+                        <dd class="col-md-4">{{$detailCus->store_owner}}</dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-md-4">Phone</dt>
+                        <dd class="col-md-4">{{$detailCus->phone}}</dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-md-4">Progress</dt>
+                        <dd class="col-md-4">{{$progress[$detailCus->progress]}}</dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-md-4">Date Follow Up</dt>
+                        <dd class="col-md-4">{{$progress[$detailCus->date_fu]}}</dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-md-4">Foto Toko</dt>
+                        <dd class="col-md-4">
+                            <img src="{{asset('public/Upload')}}/{{$detailCus->store_name}}/{{$detailCus->picture_store}}" alt="Foto Toko" srcset="" class=" img-thumbnail">
+                        </dd>
                     </dl>
                 </div>
             </div>
