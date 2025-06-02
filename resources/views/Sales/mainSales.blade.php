@@ -25,7 +25,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-body border-0 shadow mt-2">
+                <div class="card card-body border-0 shadow mt-2 table-responsive">
                     <div id="divSpinner" style="display: none;">
                         <div class="spinner-grow spinner-grow-sm text-primary" role="status">
                             <span class="sr-only">Loading...</span>
