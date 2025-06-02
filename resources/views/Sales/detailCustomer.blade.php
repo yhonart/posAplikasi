@@ -7,8 +7,6 @@
         width: 100%;  /* Atur lebar peta */
     }
 </style>
-<input type="hidden" name="latitude" id="latitude" value="{{$detailCus->latitude}}">
-<input type="hidden" name="longtitude" id="longtitude" value="{{$detailCus->longtitude}}">
 <div class="content mt-1">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -35,8 +33,8 @@
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWATSqbKPi6KunkVey74s45OojCu6Ws04&callback=initMap&v=weekly" defer ></script>
 <script>
-    let latVal = $("#latitude").val();
-    let longVal = $("#longtitude").val();
+    let latVal = {{$detailCus->latitude}};
+    let longVal = {{$detailCus->longtitude}};
 
     // In this example, we center the map, and add a marker, using a LatLng object
     // literal instead of a google.maps.LatLng object. LatLng object literals are

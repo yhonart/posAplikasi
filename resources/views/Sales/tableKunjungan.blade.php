@@ -9,7 +9,7 @@
 ?>
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-sm table-valign-middle">
+        <table class="table table-sm table-valign-middle table-responsive">
             <thead>
                 <tr>
                     <th>No.</th>
