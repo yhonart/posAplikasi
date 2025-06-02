@@ -43,7 +43,7 @@
 
     map = new Map(document.getElementById("map"), {
         center: { lat: latVal, lng: longVal },
-        zoom: 15,
+        zoom: 10,
     });
     }
     initMap();
