@@ -48,6 +48,7 @@
     const mapOptions = {
         zoom: 20,
         center: { lat: latVal, lng: longVal },
+        mapTypeId: 'satellite'
     };
 
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
