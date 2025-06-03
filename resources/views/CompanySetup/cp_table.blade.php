@@ -61,14 +61,16 @@
                                                 <td>{{$dc->company_name}}</td>
                                                 <td>{{$dc->telefone}}</td>
                                                 <td>{{$dc->address}}</td>
+                                                <td>
+                                                    <span class=" font-weight-bold text-success">
+                                                        {{$cpModule[$dc->sys_module_code]}}
+                                                    </span>
+                                                </td>
                                                 <td class="text-right">
                                                     @if($userHakAkses == '99')
                                                     <button type="button" id="btnDelete" class="btn btn-danger" data-id="{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i> Hapus</button>
                                                     <button type="button" class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
                                                     @endif
-                                                </td>
-                                                <td>
-                                                    {{$cpModule[$dc->sys_module_code]}}
                                                 </td>
                                             </tr>
                                         @endforeach
