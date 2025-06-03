@@ -162,28 +162,25 @@
                     <span class="brand-text font-weight-bold"><i class="fa-solid fa-store"></i> KASIR</span>
                 </a>                
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
+                    <li class="nav-item d-none d-md-block">
                         <a class="nav-link" href="#" role="button">
                           <i class="fa-solid fa-user"></i> | {{Auth::user()->name}}
                         </a>                        
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" role="button">
-                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <i class="fa-solid fa-right-from-bracket"></i> Logout
                         </a>
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form> 
                     </li>
                 </ul>
             </div>
-        </nav>
-        
+        </nav>        
         <div class="content-wrapper bg-white">
             @yield('content')
-        </div>
-        
+        </div>        
         <footer class="main-footer">
             <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
