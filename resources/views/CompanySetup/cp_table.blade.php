@@ -15,7 +15,7 @@
 </div>
 <div class="content">
     <div class="container-fluid">   
-        @if($userHakAkses == '3')         
+        @if($userHakAkses == '99')         
         <div class="row">
             <div class="col-12">                
                 <button class="btn btn-primary btn-sm font-weight-bold" id="btnCreate">Tambah Nama Usaha</button>
@@ -55,7 +55,7 @@
                                                 <td>{{$dc->telefone}}</td>
                                                 <td>{{$dc->address}}</td>
                                                 <td class="text-right">
-                                                    @if($userHakAkses == '3')
+                                                    @if($userHakAkses == '99')
                                                     <button type="button" id="btnDelete" class="btn btn-danger" data-id="{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i> Hapus</button>
                                                     <button type="button" class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
                                                     @endif
