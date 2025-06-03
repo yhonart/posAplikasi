@@ -21,7 +21,7 @@ class cpSetupController extends Controller
         $dataCompany = DB::table('m_company as a');
         $dataCompany = $dataCompany->select('a.*','location_name');
         $dataCompany = $dataCompany->leftJoin('m_comp_loc as b','b.location_id','=','a.location');
-        if ($userHakAkses <> '3') {
+        if ($userHakAkses <> '99') {
             $dataCompany = $dataCompany->where([
                 ['idm_company',$company],
                 ['location',$location]

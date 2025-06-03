@@ -137,7 +137,7 @@ class PersonaliaController extends Controller
                 ]);
         }
         
-        if($userHakAkses == '3'){
+        if($userHakAkses == '99'){
             $nameUser = DB::table('users')
                 ->where('id',$addAuth->id)
                 ->first();
@@ -217,7 +217,7 @@ class PersonaliaController extends Controller
             if ($keyword <> 0) {
                 $users = $users->where('name','LIKE','%'.$keyword.'%');
             }
-        if ($authHakAkses <> '3') {
+        if ($authHakAkses <> '99') {
             $users = $users->where('company',$company);
         }
         $users = $users->get();
