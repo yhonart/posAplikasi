@@ -3,6 +3,7 @@ $arrayModule = array(
         "AM1"=>"FULL MENU",
         "AM2"=>"FULL MENU TANPA KAS",
         "AM3"=>"INVENTORY + KASIR",
+        "AM4"=>"CUSTOMIZE MENU",
     );
 ?>
 <div class="row">
@@ -69,6 +70,7 @@ $arrayModule = array(
                                             <option value="AM1">FULL MENU</option>
                                             <option value="AM2">FULL MENU TANPA KAS</option>
                                             <option value="AM3">INVENTORY + KASIR</option>
+                                            <option value="AM4">CUSTOMIZE MENU</option>
                                         </select>
                                     </div>
                                 </div>
