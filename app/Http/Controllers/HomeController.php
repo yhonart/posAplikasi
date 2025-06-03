@@ -112,7 +112,7 @@ class HomeController extends Controller
             
         $userRoles = $dbUser->role_code;
         
-        if($role == '1'){
+        if($role == '1' OR $role == '99'){
             if ($userRoles == '1') {
                 return view('Dashboard/mainAdminDashboard', compact('userKasir'));
             }
