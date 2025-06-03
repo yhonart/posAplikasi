@@ -3,8 +3,10 @@
     $hakAkses = array(
         1=>"Admin",
         2=>"Kasir",
-        3=>"Administrator",
-        4=>"Sales"
+        3=>"Sales",
+        4=>"Sales",
+        5=>"Kurir",
+        99=>"Administrator",
     );
 ?>
 <div class="row">

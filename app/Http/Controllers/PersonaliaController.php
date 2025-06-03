@@ -214,9 +214,9 @@ class PersonaliaController extends Controller
         $users = $users->leftJoin('users_area as b','a.id','=','b.user_id');
         $users = $users->leftJoin('users_role as c','a.id','=','c.user_id');
         $users = $users->leftJoin('m_site as d','b.area_id','=','d.idm_site');
-            if ($keyword <> 0) {
-                $users = $users->where('name','LIKE','%'.$keyword.'%');
-            }
+        if ($keyword <> 0) {
+            $users = $users->where('name','LIKE','%'.$keyword.'%');
+        }
         if ($authHakAkses <> '99') {
             $users = $users->where('company',$company);
         }
