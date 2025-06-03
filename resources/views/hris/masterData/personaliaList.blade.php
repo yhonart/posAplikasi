@@ -4,7 +4,7 @@
         1=>"Admin",
         2=>"Kasir",
         3=>"Sales",
-        4=>"Sales",
+        4=>"Admin Sales",
         5=>"Kurir",
         99=>"Administrator",
     );
