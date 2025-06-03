@@ -3,6 +3,12 @@
 @section('content')
 <?php
     $no = 1;
+    $cpModule = array(
+        "AM1"=>"FULL MENU",
+        "AM2"=>"FULL MENU TANPA KAS",
+        "AM3"=>"INVENTORY + KASIR",
+        "AM4"=>"CUSTOMIZE MENU",
+    );
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -43,6 +49,7 @@
                                             <th>Nama Usaha</th>
                                             <th>Telefone</th>
                                             <th>Alamat</th>
+                                            <th>Module Aplikasi</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -59,6 +66,9 @@
                                                     <button type="button" id="btnDelete" class="btn btn-danger" data-id="{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i> Hapus</button>
                                                     <button type="button" class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
                                                     @endif
+                                                </td>
+                                                <td>
+                                                    {{$cpModule[$dc->sys_module_code]}}
                                                 </td>
                                             </tr>
                                         @endforeach
