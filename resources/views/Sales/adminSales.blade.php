@@ -8,8 +8,8 @@
                     <button type="button" class="navbar-toggler" data-toggler="collapse" data-target="#navbarSupportAdmin" aria-controls="navbarSupportAdmin" aria-expanded="false" aria-label="Toggle Navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse order-3" id="navbarSupportAdmin">
-                        <ul class="navbar-nav">
+                    <div class="collapse navbar-collapse" id="navbarSupportAdmin">
+                        <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
                                 <a href="#" class="nav-link" data-link="cstProduct">Produk</a>
                             </li>
