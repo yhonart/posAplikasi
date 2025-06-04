@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <button type="button" class="navbar-toggler" data-toggler="collapse" data-target="#navbarSupportAdmin" aria-controls="navbarSupportAdmin" aria-expanded="false" aria-label="Toggle Navigation">
+                    <button type="button" class="navbar-toggler" data-toggler="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportAdmin">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
                                 <a href="#" class="nav-link" data-link="cstProduct">Produk</a>
