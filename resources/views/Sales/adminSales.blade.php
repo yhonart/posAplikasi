@@ -53,13 +53,7 @@
         <section class=" container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class=" card card-body shadow border-0" style="min-height:73vh;" id="card-container-hd">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div id="divContent"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="divContent"></div>                    
                 </div>
             </div>
         </section>
