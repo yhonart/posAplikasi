@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <nav class="navbar navbar-expand navbar-light">
+                <nav class="navbar navbar-expand-lg navbar-light">
                     <button type="button" class="navbar-toggler" data-toggler="collapse" data-target="#navbarSupportAdmin" aria-controls="navbarSupportAdmin" aria-expanded="false" aria-label="Toggle Navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
