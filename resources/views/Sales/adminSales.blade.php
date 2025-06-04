@@ -1,7 +1,7 @@
 @extends('layouts.frontpage')
 @section('content')
 <script type="text/javascript">
-    const route_main = "{{route('Sales')}}";
+    const route_main = "{{route('sales')}}";
 </script>
 <div class="content mt-1">
     <div class="container-fluid">
