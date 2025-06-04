@@ -2,43 +2,64 @@
 @section('content')
 <div class="content mt-1">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <nav class="navbar navbar-expand-lg" style="width:100%;">
-                    <span class="d-flex navbar-brand">Admin Control</span>
-    
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">
-                            <li class="nav-item">
-                                <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="main_dashboard" data-toggle="tab" id="tab-menu-dash">
-                                    Data Produk
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="main_report" data-toggle="tab" id="tab-menu-report">
-                                    Data Pelanggan
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="main_borrow" data-toggle="tab" id="tab-menu-borrow">
-                                    Sales Order
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="main_request" data-toggle="tab" id="tab-menu-request">
-                                    Pengiriman
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+        <section class=" content-header">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg" style="width:100%;">
+                        <span class="d-flex navbar-brand">Admin Control</span>
+        
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+        
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">
+                                <li class="nav-item">
+                                    <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="mainDashboard" data-toggle="tab" id="tabMenuDash">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="mainProduct" data-toggle="tab" id="tabMenuProduct">
+                                        Data Produk
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="mainCustomer" data-toggle="tab" id="tabMenuCustomer">
+                                        Data Pelanggan
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="mainSalesOrder" data-toggle="tab" id="tabMenuSalesOrder">
+                                        Sales Order
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="mainDelivery" data-toggle="tab" id="tabMenuDelivery">
+                                        Pengiriman
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
             </div>
-        </div>
+        </section>
+        <section class=" container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class=" card card-body shadow border-0" style="min-height:73vh;" id="card-container-hd">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="divContent"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>        
 </div>
 <script>
@@ -48,29 +69,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        var route = "daftarKunjungan",
-            display = $("#displaySales");
-        displaySales(display, route);
         
-        $('.BTN-CLICK').on('click', function (e) {
-            e.preventDefault();
-            let ell = $(this);
-            var route = ell.attr("data-display"),
-                display = $("#displaySales");
-            displaySales(display, route);
-        });
-    
-        function displaySales(display, route) {
-            $("#divSpinner").fadeIn("slow");
-            $.ajax({
-                type : 'get',
-                url : "{{route('sales')}}/"+route,
-                success : function(response){
-                    $("#divSpinner").fadeOut("slow");
-                    $('#displaySales').html(response);
-                }
-            });
-        } 
     });
 </script>
 @endsection
