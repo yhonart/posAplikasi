@@ -4,8 +4,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                          <nav class="navbar navbar-expand-lg" style="width:100%;">
-                    <span class="d-flex navbar-brand"><span><b>Helpdesk</b> IT</span></span>
+                <nav class="navbar navbar-expand-lg" style="width:100%;">
+                    <span class="d-flex navbar-brand">Admin Control</span>
     
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,22 +16,22 @@
                         <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">
                             <li class="nav-item">
                                 <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="main_dashboard" data-toggle="tab" id="tab-menu-dash">
-                                    Home
+                                    Data Produk
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="main_report" data-toggle="tab" id="tab-menu-report">
-                                    Issues
+                                    Data Pelanggan
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="main_borrow" data-toggle="tab" id="tab-menu-borrow">
-                                    Equip. Loan
+                                    Sales Order
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="main_request" data-toggle="tab" id="tab-menu-request">
-                                    Request
+                                    Pengiriman
                                 </a>
                             </li>
                         </ul>
