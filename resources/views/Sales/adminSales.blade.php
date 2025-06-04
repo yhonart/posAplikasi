@@ -4,23 +4,35 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <button type="button" class="navbar-toggler" data-toggler="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
-                        <span class="navbar-toggler-icon"></span>
+                          <nav class="navbar navbar-expand-lg" style="width:100%;">
+                    <span class="d-flex navbar-brand"><span><b>Helpdesk</b> IT</span></span>
+    
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-ellipsis-h"></i>
                     </button>
+    
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav nav-pills ml-auto">
+                        <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">
                             <li class="nav-item">
-                                <a href="#" class="nav-link" data-link="cstProduct">Produk</a>
+                                <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="main_dashboard" data-toggle="tab" id="tab-menu-dash">
+                                    Home
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link" data-link="cstCustomer">Pelanggan</a>
+                                <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="main_report" data-toggle="tab" id="tab-menu-report">
+                                    Issues
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link" data-link="salesOrder">Sales Order</a>
+                                <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="main_borrow" data-toggle="tab" id="tab-menu-borrow">
+                                    Equip. Loan
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link" data-link="logistic">Logistik</a>
+                                <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="main_request" data-toggle="tab" id="tab-menu-request">
+                                    Request
+                                </a>
                             </li>
                         </ul>
                     </div>
