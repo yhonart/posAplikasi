@@ -134,7 +134,8 @@ Route::get('kasBesar', [App\Http\Controllers\TrxKasBesarController::class, 'kasB
 Route::get('trxReumbers', [App\Http\Controllers\TrxReumbersController::class, 'trxReumbers'])->name('trxReumbers');
 
 // Sales
-Route::get('sales', [App\Http\Controllers\SalesController::class, 'main'])->name('sales');
+Route::get('Sales', [App\Http\Controllers\SalesController::class, 'main'])->name('Sales');
+
 
 include __DIR__.'/section/accounting.php';
 include __DIR__.'/section/asset.php';

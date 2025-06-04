@@ -1,5 +1,8 @@
 @extends('layouts.frontpage')
 @section('content')
+<script type="text/javascript">
+    const route_main = "{{route('Sales')}}";
+</script>
 <div class="content mt-1">
     <div class="container-fluid">
         <section class=" content-header">
@@ -68,6 +71,13 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+
+        $('.ITEM-MAIN-MENU').on('click', function (e) {
+            e.preventDefault();
+            let path = $(this).attr('data-path');
+
+            $("#div-content").load(route_main+'/'+path);
         });
         
     });
