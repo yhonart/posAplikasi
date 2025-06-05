@@ -18,7 +18,7 @@ class SalesAdminController extends Controller
     }
 
     public function mainCustomer (){
-
+        return view ('AssetManagement/MasterData/CustomersIndex');
     }
 
     public function mainSalesOrder (){
