@@ -6,27 +6,20 @@
             1=>"Aktif",
             2=>"Non Member",
         );
-    @endphp
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Data Pelanggan</h3>
-        </div>
-        <div class="card-body">
-            <table class="table table-valign-middle table-hover table-sm">        
-                <tbody>
-                    @foreach($customer as $c)
-                        <tr>
-                            <td class="p-0">
-                                <a class="btn btn-default btn-block rounded-0 border-0 elevation-0 btn-sm text-primary font-weight-bold text-left DETAIL-CUS" href="#" data-index="{{$c->idm_customer}}">
-                                    {{$c->customer_store}}
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+    @endphp    
+    <table class="table table-valign-middle table-hover table-sm">        
+        <tbody>
+            @foreach($customer as $c)
+                <tr>
+                    <td class="p-0">
+                        <a class="btn btn-default btn-block rounded-0 border-0 elevation-0 btn-sm text-primary font-weight-bold text-left DETAIL-CUS" href="#" data-index="{{$c->idm_customer}}">
+                            {{$c->customer_store}}
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
     <small>{{$customer->links()}}</small>
 </div>
 <script>

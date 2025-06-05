@@ -8,12 +8,13 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <input type="text" name="searchCustomer" id="searchCustomer" class="form-control mb-1 " placeholder="Cari nama pelanggan" autofocus>
+                
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3">                
                 <div class="card card-body text-xs p-0 table-responsive " style="height:700px;">
+                    <input type="text" name="searchCustomer" id="searchCustomer" class="form-control mb-1 " placeholder="Cari nama pelanggan" autofocus>
                     @include('Global.global_spinner')
                     <div id="displayTableCustomers"></div>
                 </div>
