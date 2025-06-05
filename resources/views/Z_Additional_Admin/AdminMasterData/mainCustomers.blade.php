@@ -10,7 +10,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-3">                
-                <div class="card text-xs p-0 table-responsive border border-2 border-info shadow" style="height:700px;">
+                <div class="card card-info text-xs p-0 table-responsive border border-2 border-info shadow" style="height:700px;">
                     <div class="card-header">
                         <h3 class="card-title">Nama Pelanggan</h3>
                     </div>
