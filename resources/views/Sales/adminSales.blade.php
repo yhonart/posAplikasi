@@ -17,7 +17,7 @@
                             <i class="fas fa-ellipsis-h"></i>
                         </button>
         
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="collapse navbar-collapse table-responsive" id="navbarSupportedContent">
                             <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">
                                 
                                 <li class="nav-item">
