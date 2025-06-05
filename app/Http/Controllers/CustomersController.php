@@ -105,7 +105,7 @@ class CustomersController extends Controller
 
     public function TableDataCustomer ($keyword) {
         $authUserComp = Auth::user()->company;
-
+        echo $authUserComp;
         $customer = DB::table('m_customers');
             if ($keyword <> 0) {
                 $customer = $customer->where('customer_store','LIKE','%'.$keyword.'%');

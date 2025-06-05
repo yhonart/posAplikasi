@@ -1,36 +1,29 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-blue">
-            <div class="card-header">
-                <h3 class="card-title">Customer Data</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-primary font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Customers')}}/AddCustomers" ><i class="fa-solid fa-address-book"></i> New</button>
+                    <a href="{{route('Customers')}}/downloadAllCustomer" class="btn btn-sm btn-success font-weight-bold" target="_blank"><i class="fa-solid fa-file-excel"></i> Download</a>
+                </div>
             </div>
-            <div class="card-body table-responsive">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Customers')}}/AddCustomers" ><i class="fa-solid fa-address-book"></i> New</button>
-                            <a href="{{route('Customers')}}/downloadAllCustomer" class="btn btn-sm btn-success font-weight-bold" target="_blank"><i class="fa-solid fa-file-excel"></i> Download</a>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <input type="text" name="searchCustomer" id="searchCustomer" class="form-control mb-1 " placeholder="Cari nama pelanggan" autofocus>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-body text-xs p-0 table-responsive " style="height:700px;">
-                            @include('Global.global_spinner')
-                            <div id="displayTableCustomers"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-9">
-                        <div id="displayEditCos"></div>
-                    </div>
+            <div class="col-md-8">
+                <input type="text" name="searchCustomer" id="searchCustomer" class="form-control mb-1 " placeholder="Cari nama pelanggan" autofocus>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-body text-xs p-0 table-responsive " style="height:700px;">
+                    @include('Global.global_spinner')
+                    <div id="displayTableCustomers"></div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 col-md-9">
+                <div id="displayEditCos"></div>
+            </div>
+        </div>        
     </div>
 </div>
 <script>
