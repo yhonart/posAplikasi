@@ -11,5 +11,5 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/mainProduct', [App\Http\Controllers\SalesAdminController::class, 'mainProduct']);
     Route::get('sales/mainCustomer', [App\Http\Controllers\SalesAdminController::class, 'mainCustomer']);
     Route::get('sales/mainSalesOrder', [App\Http\Controllers\SalesAdminController::class, 'mainSalesOrder']);
-    Route::get('sales/mainDelivery', [App\Http\Controllers\SalesAdminController::class, 'mainDelivery']);
+    Route::get('sales/mainDeliveryReport', [App\Http\Controllers\SalesAdminController::class, 'mainDeliveryReport']);
 ?>

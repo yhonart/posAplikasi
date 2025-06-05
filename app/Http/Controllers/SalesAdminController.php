@@ -25,7 +25,7 @@ class SalesAdminController extends Controller
 
     }
 
-    public function mainDelivery (){
+    public function mainDeliveryReport (){
 
     }
 }
