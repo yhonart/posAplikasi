@@ -89,7 +89,7 @@
             e.preventDefault();
             let path = $(this).attr('data-path');
 
-            $("#div-content").load(route_main+'/'+path);
+            $("#divContent").load(route_main+'/'+path);
         });
         
     });
