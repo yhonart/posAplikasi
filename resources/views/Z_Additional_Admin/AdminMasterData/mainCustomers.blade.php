@@ -8,7 +8,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-primary font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Customers')}}/AddCustomers" ><i class="fa-solid fa-address-book"></i> Tambah</button>
+                            <button type="button" class="btn btn-primary font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Customers')}}/AddCustomers" ><i class="fa-solid fa-address-book"></i> New</button>
+                            <a href="{{route('Customers')}}/downloadAllCustomer" class="btn btn-success font-weight-bold" target="_blank"><i class="fa-solid fa-file-excel"></i> Download</a>
                         </div>
                     </div>
                 </div>
