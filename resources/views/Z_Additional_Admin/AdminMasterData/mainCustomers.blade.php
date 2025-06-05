@@ -12,18 +12,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-12 col-md-3">
                 <div class="card card-body text-xs p-0 table-responsive " style="height:700px;">
                     @include('Global.global_spinner')
                     <div id="displayTableCustomers"></div>
                 </div>
             </div>
-        </div>
-        <div class="row">
             <div class="col-12 col-md-9">
                 <div id="displayEditCos"></div>
             </div>
-        </div>        
+        </div>       
     </div>
 </div>
 <script>
