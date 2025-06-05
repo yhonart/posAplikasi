@@ -28,4 +28,8 @@ class SalesAdminController extends Controller
     public function mainDeliveryReport (){
 
     }
+
+    public function mainUser (){
+        return view ('hris/masterData/personaliaMaintenance');
+    }
 }

@@ -9,7 +9,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <nav class="navbar navbar-expand-lg table-responsive" style="width:100%;">
+                    <nav class="navbar navbar-expand-lg" style="width:100%;">
                         <span class="d-flex navbar-brand">Admin Control</span>
         
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

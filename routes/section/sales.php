@@ -12,4 +12,6 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/mainCustomer', [App\Http\Controllers\SalesAdminController::class, 'mainCustomer']);
     Route::get('sales/mainSalesOrder', [App\Http\Controllers\SalesAdminController::class, 'mainSalesOrder']);
     Route::get('sales/mainDeliveryReport', [App\Http\Controllers\SalesAdminController::class, 'mainDeliveryReport']);
+    
+    Route::get('sales/mainUser', [App\Http\Controllers\SalesAdminController::class, 'mainUser']);
 ?>
