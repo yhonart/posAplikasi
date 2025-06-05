@@ -7,7 +7,7 @@
                     <a href="{{route('Customers')}}/downloadAllCustomer" class="btn btn-sm btn-success font-weight-bold" target="_blank"><i class="fa-solid fa-file-excel"></i> Download</a>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <input type="text" name="searchCustomer" id="searchCustomer" class="form-control mb-1 " placeholder="Cari nama pelanggan" autofocus>
             </div>
         </div>
