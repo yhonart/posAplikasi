@@ -9,7 +9,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <nav class="navbar navbar-expand-lg" style="width:100%;">
+                    <nav class="navbar navbar-expand-lg table-responsive" style="width:100%;">
                         <span class="d-flex navbar-brand">Admin Control</span>
         
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -17,7 +17,7 @@
                             <i class="fas fa-ellipsis-h"></i>
                         </button>
         
-                        <div class="collapse navbar-collapse table-responsive" id="navbarSupportedContent">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">
                                 
                                 <li class="nav-item">
