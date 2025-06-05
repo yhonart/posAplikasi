@@ -18,7 +18,7 @@ class SalesAdminController extends Controller
     }
 
     public function mainCustomer (){
-        return view ('AssetManagement/MasterData/CustomersIndex');
+        return view ('Z_Additional_Admin/AdminMasterData/mainCustomers');
     }
 
     public function mainSalesOrder (){
