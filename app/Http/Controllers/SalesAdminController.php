@@ -10,7 +10,6 @@ use Illuminate\Support\Carbon;
 class SalesAdminController extends Controller
 {
     public function mainDashboard (){
-
     }
 
     public function mainProduct (){
