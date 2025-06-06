@@ -31,4 +31,8 @@ class SalesAdminController extends Controller
     public function mainUser (){
         return view ('Z_Additional_Admin/AdminMasterData/mainUsers');
     }
+
+    public function mainCategory (){
+        return view ('Z_Additional_Admin/AdminMasterData/mainCategory');
+    }
 }
