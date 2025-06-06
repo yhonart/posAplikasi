@@ -9,6 +9,7 @@
             </div>
             <div class="card-body text-xs">
                 <form id="FormNewCategory" enctype="multipart/form-data">
+                    <input type="hidden" name="initialCode" id="initialCode" value="ITC01">
                     <div class="form-group row">
                         <label for="categoryCode" class="col-sm-6 col-form-label">Kode Kategori</label>
                         <div class="col-sm-6">

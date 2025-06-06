@@ -26,6 +26,7 @@ class AssManagedController extends Controller
     public function PostNewCategory(Request $reqNewCat){
         $dataCatCode = strtoupper($reqNewCat->categoryCode);
         $dataCatName = strtoupper($reqNewCat->categoryName);
+        $initialCode = strtoupper($reqNewCat->initialCode);
 
         $dataMC = DB::table('m_asset_category')
             ->where([
@@ -46,6 +47,7 @@ class AssManagedController extends Controller
                 ->insert([
                     'category_code'=>$dataCatCode,
                     'category_name'=>$dataCatName,
+                    'initial_code'=>$initialCode,
                     'create_date'=>now(),                    
                 ]);
             $msg = array('success' => '✔ Data berhasil dimasukkan.');
