@@ -16,7 +16,7 @@ class SalesAdminController extends Controller
         $company = Auth::user()->company;
 
         $productCode = DB::table('m_product')
-            ->select('company','product_code','product_name')
+            ->select('product_code','product_name')
             ->where('comp_id',$company)
             ->get();
 
