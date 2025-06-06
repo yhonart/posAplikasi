@@ -15,4 +15,6 @@ use Illuminate\Support\Facades\Route;
     
     Route::get('sales/mainUser', [App\Http\Controllers\SalesAdminController::class, 'mainUser']);
     Route::get('sales/mainCategory', [App\Http\Controllers\SalesAdminController::class, 'mainCategory']);
+    Route::get('sales/mainCategory/newCategory', [App\Http\Controllers\SalesAdminController::class, 'newCategory']);
+    Route::get('sales/mainCategory/dataTableCategory', [App\Http\Controllers\SalesAdminController::class, 'dataTableCategory']);
 ?>
