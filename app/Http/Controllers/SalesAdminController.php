@@ -29,6 +29,6 @@ class SalesAdminController extends Controller
     }
 
     public function mainUser (){
-        return view ('hris/masterData/personaliaMaintenance');
+        return view ('Z_Additional_Admin/AdminMasterData/mainUsers');
     }
 }
