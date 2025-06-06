@@ -3,7 +3,7 @@
         <div class="row mb-2">
             <div class="col-md-4">
                 <div class="btn-group">
-                    <button class="btn btn-info font-weight-bold ITEM-DISPLAY" id="addCategory" data-open="newCategory"><i class="fa-solid fa-plus"></i> New</button>
+                    <button type="button" class="btn btn-sm btn-primary font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/mainCategory/newCategory" ><i class="fa-solid fa-address-book"></i> New</button>
                     <button class="btn btn-default text-info font-weight-bold ITEM-DISPLAY" id="listCategory" data-open="dataTableCategory"><i class="fa-solid fa-list"></i> List Data</button>
                 </div>
             </div>
