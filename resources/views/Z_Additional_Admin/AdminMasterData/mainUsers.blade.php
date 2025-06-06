@@ -3,7 +3,7 @@
         <div class="row mb-2">
             <div class="col-md-4">
                 <div class="btn-group">
-                    <button class="btn btn-info text-info font-weight-bold ITEM-DISPLAY" id="tambahPersonalia" data-open="newUsers"><i class="fa-solid fa-plus"></i> Tambah User</button>
+                    <button class="btn btn-info font-weight-bold ITEM-DISPLAY" id="tambahPersonalia" data-open="newUsers"><i class="fa-solid fa-plus"></i> Tambah User</button>
                     <button class="btn btn-default text-info font-weight-bold ITEM-DISPLAY" id="listPersonalia" data-open="dataTablePersonalia"><i class="fa-solid fa-list"></i> List Data</button>
                 </div>
             </div>
