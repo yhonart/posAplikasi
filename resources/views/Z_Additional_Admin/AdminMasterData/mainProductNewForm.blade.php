@@ -1,39 +1,41 @@
 <div class="row">
     <div class="col-md-12">
-        <form id="newProductForm">
-            <input type="hidden" name="productID" id="productID" value="">
-            <div class="form-group row">
-                <label for="" class="col-md-4">Kode Produk</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="productCode" id="productCode">
+        <div class="card card-body shadow">            
+            <form id="newProductForm">
+                <input type="hidden" name="productID" id="productID" value="">
+                <div class="form-group row">
+                    <label for="" class="col-md-4">Kode Produk</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control form-control-sm" name="productCode" id="productCode">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="" class="col-md-4">Nama Produk</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="productName" id="productName">
+                <div class="form-group row">
+                    <label for="" class="col-md-4">Nama Produk</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control form-control-sm" name="productName" id="productName">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="" class="col-md-4">Kategori Produk</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="productCategory" id="productCategory">
+                <div class="form-group row">
+                    <label for="" class="col-md-4">Kategori Produk</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control form-control-sm" name="productCategory" id="productCategory">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="" class="col-md-4">Set Minimum Stok</label>
-                <div class="col-md-4">
-                    <input type="number" class="form-control form-control-sm" name="minimumStock" id="minimumStock">
+                <div class="form-group row">
+                    <label for="" class="col-md-4">Set Minimum Stok</label>
+                    <div class="col-md-4">
+                        <input type="number" class="form-control form-control-sm" name="minimumStock" id="minimumStock">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <button type="button" class="btn btn-light borde shadow" id="btnAddVarianHarga">Input Varian Harga</button>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="divInputHarga"></div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-light borde shadow" id="btnAddVarianHarga">Input Varian Harga</button>
                 </div>
-            </div>
-        </form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="divInputHarga"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
