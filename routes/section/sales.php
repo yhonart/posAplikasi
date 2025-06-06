@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Route;
     
     // Admin 
     Route::get('sales/mainDashboard', [App\Http\Controllers\SalesAdminController::class, 'mainDashboard']);
+
+    // Admin Master Produk
     Route::get('sales/mainProduct', [App\Http\Controllers\SalesAdminController::class, 'mainProduct']);
+    Route::get('sales/mainProduct/newProduct', [App\Http\Controllers\SalesAdminController::class, 'newProduct']);
+
     Route::get('sales/mainCustomer', [App\Http\Controllers\SalesAdminController::class, 'mainCustomer']);
     Route::get('sales/mainSalesOrder', [App\Http\Controllers\SalesAdminController::class, 'mainSalesOrder']);
     Route::get('sales/mainDeliveryReport', [App\Http\Controllers\SalesAdminController::class, 'mainDeliveryReport']);

@@ -13,7 +13,18 @@ class SalesAdminController extends Controller
     }
 
     public function mainProduct (){
-        return view('Z_Additional_Admin/AdminMasterData/mainProduct');
+        $company = Auth::user()->company;
+
+        $productCode = DB::table('m_product')
+            ->select('company','product_code','product_name')
+            ->where('comp_id',$company)
+            ->get();
+
+        return view('Z_Additional_Admin/AdminMasterData/mainProduct',compact('productCode','company'));
+    }
+
+    public function newProduct (){
+        return view('Z_Additional_Admin/AdminMasterData/mainProductNewForm');
     }
 
     public function mainCustomer (){
