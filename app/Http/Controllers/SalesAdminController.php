@@ -59,6 +59,11 @@ class SalesAdminController extends Controller
         return view('Z_Additional_Admin/AdminMasterData/mainProductNewForm',compact('nextID','prdCode','prdCategory'));
     }
 
+    public function newPrice($id){
+
+        return view('Z_Additional_Admin/AdminMasterData/mainProductNewPrice', compact('id'));
+    }
+
     public function mainCustomer (){
         return view ('Z_Additional_Admin/AdminMasterData/mainCustomers');
     }
