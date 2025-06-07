@@ -14,20 +14,18 @@ class SalesAdminController extends Controller
 
     public function mainProduct (){
         $company = Auth::user()->company;
-
-        $id=DB::select("SHOW TABLE STATUS LIKE 'm_product'");            
-        $nextID=$id[0]->Auto_increment;
-
         $productCode = DB::table('m_product')
             ->select('product_code','product_name')
             ->where('comp_id',$company)
             ->get();
 
-        return view('Z_Additional_Admin/AdminMasterData/mainProduct',compact('productCode','company','nextID'));
+        return view('Z_Additional_Admin/AdminMasterData/mainProduct',compact('productCode','company'));
     }
 
     public function newProduct (){
-        return view('Z_Additional_Admin/AdminMasterData/mainProductNewForm');
+        $id=DB::select("SHOW TABLE STATUS LIKE 'm_product'");            
+        $nextID=$id[0]->Auto_increment;
+        return view('Z_Additional_Admin/AdminMasterData/mainProductNewForm',compact('nextID'));
     }
 
     public function mainCustomer (){
