@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card card-body shadow">            
             <form id="newProductForm">
-                <input type="hidden" name="productID" id="productID" value="">
+                <input type="text" name="productID" id="productID" value="{{$nextID}}">
                 <div class="form-group row">
                     <label for="" class="col-md-4">Kode Produk</label>
                     <div class="col-md-4">
@@ -28,14 +28,17 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-outline-info btn-sm" id="btnAddVarianHarga">Input Varian Harga</button>
+                    <button type="button" class="btn btn-outline-info btn-sm font-weight-bold" id="btnAddVarianHarga">Input Varian Harga</button>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div id="divInputHarga"></div>
+                        <div id="divTableVarianHarga"></div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+
+</script>
