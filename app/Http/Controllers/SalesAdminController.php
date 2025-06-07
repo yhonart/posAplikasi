@@ -41,6 +41,13 @@ class SalesAdminController extends Controller
             ->where('comp_id',$authCompany)
             ->count();
 
+        if ($countPrdComp == '0') {
+            $number = '1';
+        }
+        else {
+            $number = $countPrdComp;
+        }
+
         $companyCodePrd = $this->companyCode();
         $prdCode = $companyCodePrd ."". sprintf("%05d",$countPrdComp);
 
