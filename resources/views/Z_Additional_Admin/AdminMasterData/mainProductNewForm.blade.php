@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-light borde shadow" id="btnAddVarianHarga">Input Varian Harga</button>
+                    <button type="button" class="btn btn-outline-info btn-sm" id="btnAddVarianHarga">Input Varian Harga</button>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
