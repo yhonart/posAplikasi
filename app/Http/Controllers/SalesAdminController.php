@@ -42,6 +42,10 @@ class SalesAdminController extends Controller
             ->where('comp_id',$authCompany)
             ->count();
 
+        $prdCategory = DB::table('m_asset_category')
+            ->where('initial_code','ITC02')
+            ->get();
+
         if ($countPrdComp == '0') {
             $number = '1';
         }
@@ -52,7 +56,7 @@ class SalesAdminController extends Controller
         $companyCodePrd = $this->companyCode();
         $prdCode = $companyCodePrd ."". sprintf("%05d",$number);
 
-        return view('Z_Additional_Admin/AdminMasterData/mainProductNewForm',compact('nextID','prdCode'));
+        return view('Z_Additional_Admin/AdminMasterData/mainProductNewForm',compact('nextID','prdCode','prdCategory'));
     }
 
     public function mainCustomer (){

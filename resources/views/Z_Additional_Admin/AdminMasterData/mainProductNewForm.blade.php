@@ -18,7 +18,12 @@
                 <div class="form-group row">
                     <label for="" class="col-md-4">Kategori Produk</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control form-control-sm" name="productCategory" id="productCategory">
+                        <select name="productCategory" id="productCategory" class="form-control form-control-sm">
+                            <option value="0"></option>
+                            @foreach($prdCategory as $pct)
+                            <option value="{{$pct->idm_asset_category}}">{{$pct->category_name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
