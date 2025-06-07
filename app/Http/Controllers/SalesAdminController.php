@@ -37,7 +37,7 @@ class SalesAdminController extends Controller
         $nextID=$id[0]->Auto_increment;
         $authCompany = Auth::user()->company;
 
-        $countPrdComp = DB::table('m_company')
+        $countPrdComp = DB::table('m_product')
             ->where('comp_id',$authCompany)
             ->count();
 
