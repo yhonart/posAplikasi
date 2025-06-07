@@ -2,11 +2,11 @@
     <div class="col-md-12">
         <div class="card card-body shadow">            
             <form id="newProductForm">
-                <input type="text" name="productID" id="productID" value="{{$nextID}}">
+                <input type="hidden" name="productID" id="productID" value="{{$nextID}}">
                 <div class="form-group row">
                     <label for="" class="col-md-4">Kode Produk</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control form-control-sm" name="productCode" id="productCode">
+                        <input type="text" class="form-control form-control-sm" name="productCode" id="productCode" readonly value="{{$prdCode}}">
                     </div>
                 </div>
                 <div class="form-group row">

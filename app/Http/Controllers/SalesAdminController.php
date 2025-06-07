@@ -9,6 +9,16 @@ use Illuminate\Support\Carbon;
 
 class SalesAdminController extends Controller
 {
+    public function companyCode (){
+        $companyID = Auth::user()->company;
+        $company = DB::table('m_company')
+            ->select('company_code')
+            ->where('idm_company',$companyID)
+            ->first();
+        $code = $company->company_code;
+        return $code;
+    }
+
     public function mainDashboard (){
     }
 
@@ -25,7 +35,16 @@ class SalesAdminController extends Controller
     public function newProduct (){
         $id=DB::select("SHOW TABLE STATUS LIKE 'm_product'");            
         $nextID=$id[0]->Auto_increment;
-        return view('Z_Additional_Admin/AdminMasterData/mainProductNewForm',compact('nextID'));
+        $authCompany = Auth::user()->company;
+
+        $countPrdComp = DB::table('m_company')
+            ->where('comp_id',$authCompany)
+            ->count();
+
+        $companyCodePrd = $this->companyCode();
+        $prdCode = $companyCodePrd ."". sprintf("%05d",$countPrdComp);
+
+        return view('Z_Additional_Admin/AdminMasterData/mainProductNewForm',compact('nextID','prdCode'));
     }
 
     public function mainCustomer (){
