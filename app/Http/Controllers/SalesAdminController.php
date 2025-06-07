@@ -36,6 +36,7 @@ class SalesAdminController extends Controller
         $id=DB::select("SHOW TABLE STATUS LIKE 'm_product'");            
         $nextID=$id[0]->Auto_increment;
         $authCompany = Auth::user()->company;
+        $number = '0';
 
         $countPrdComp = DB::table('m_product')
             ->where('comp_id',$authCompany)
@@ -49,7 +50,7 @@ class SalesAdminController extends Controller
         }
 
         $companyCodePrd = $this->companyCode();
-        $prdCode = $companyCodePrd ."". sprintf("%05d",$countPrdComp);
+        $prdCode = $companyCodePrd ."". sprintf("%05d",$number);
 
         return view('Z_Additional_Admin/AdminMasterData/mainProductNewForm',compact('nextID','prdCode'));
     }
