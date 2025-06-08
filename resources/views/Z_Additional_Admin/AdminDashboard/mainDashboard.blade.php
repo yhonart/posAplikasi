@@ -22,7 +22,7 @@
                                 <span class="info-box-number">
                                     {{$countItem}}
                                     <br>                                    
-                                    <a href="#" class="ITEM-MAIN-MENU text-bg-dark" data-path="mainUser">
+                                    <a href="#" class="ITEM-MAIN-MENU text-dark" data-path="mainUser">
                                         <small>
                                             More Info <i class="fa-solid fa-arrow-right"></i>
                                         </small>
