@@ -65,7 +65,7 @@
             </div>
             <div>
                 <p>Data yang di hasilkan akan berjumlah 5 varian harga dengan masing-masing harga memiliki selisih 500, seperti contoh dibawah ini :</p>
-                <img src="{{asset('public/images/DocFlowChart/tableVariantPrice.png')}}" alt="" srcset="" class=" img-fluid img-size-50">
+                <img src="{{asset('public/images/DocFlowChart/tableVariantPrice.png')}}" alt="" srcset="" class=" img-fluid">
             </div>
         </div>
     </div>
