@@ -22,7 +22,7 @@
                                 <span class="info-box-number">
                                     {{$countItem}}
                                     <br>                                    
-                                    <a href="#" class="ITEM-MAIN-MENU text-dark" data-path="mainUser">
+                                    <a href="#" class="MORE-INFO text-dark" data-path="mainProduct">
                                         <small>
                                             More Info <i class="fa-solid fa-arrow-right"></i>
                                         </small>
@@ -36,3 +36,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('.MORE-INFO').on('click', function (e) {
+            e.preventDefault();
+            let path = $(this).attr('data-path');
+            $("#divContent").load(route_main+'/'+path);
+        });
+    });
+</script>
