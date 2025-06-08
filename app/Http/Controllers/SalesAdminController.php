@@ -96,6 +96,35 @@ class SalesAdminController extends Controller
         }
         return response()->json($msg);
     }
+
+    public function difference (Request $reqVarPriceFixed){
+        $valInit = $reqVarPriceFixed->valInit;
+        $valCount = $reqVarPriceFixed->valCount;
+        $valMinimum = $reqVarPriceFixed->valMinimum;
+        $valDif = $reqVarPriceFixed->valDif;
+        $id = $reqVarPriceFixed->id;
+        $varianPrice = 0;
+        $varianCode = "";
+
+        if ($valInit == "" || $valCount == "" || $valMinimum == "" || $valDif == "") {
+            $msg = array('warning' => 'Wajib Di isi semuanya, silahkan cek kembali!');
+        }
+        else {
+            for ($i=0; $i < $valCount ; $i++) { 
+                $varianCode = $valInit."".$i;
+                $varianPrice += $valMinimum + $valDif;
+                DB::table('m_z_varian_price')
+                    ->insert([
+                        'varian_price_code'=>$varianCode,
+                        'varian_price'=>$varianPrice,
+                        'core_product_id'=>$id,
+                        'status'=>'1'
+                    ]);
+            }
+            $msg = array('success' => 'Code Varian dan Varian Price Wajib Di Isi!');
+        }
+        return response()->json($msg);
+    }
     public function modalNewVarianFixed ($id){
         return view('Z_Additional_Admin/AdminMasterData/modalVarianPriceFixed', compact('id'));
     }

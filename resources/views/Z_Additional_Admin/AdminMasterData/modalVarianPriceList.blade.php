@@ -8,7 +8,7 @@
                 <table class="table table-sm text-xs">
                     <thead>
                         <tr>
-                            <th>No.</th>
+                            <th>No.</th>    
                             <th>Code</th>
                             <th>Price</th>
                             <th>#</th>

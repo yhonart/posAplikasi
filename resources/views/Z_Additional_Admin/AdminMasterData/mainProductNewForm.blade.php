@@ -4,19 +4,19 @@
             <form id="newProductForm">
                 <input type="hidden" name="productID" id="productID" value="{{$nextID}}">
                 <div class="form-group row">
-                    <label for="" class="col-md-4">Kode Produk</label>
+                    <label for="" class="col-md-4">Product Code</label>
                     <div class="col-md-4">
                         <input type="text" class="form-control form-control-sm" name="productCode" id="productCode" readonly value="{{$prdCode}}">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="col-md-4">Nama Produk</label>
+                    <label for="" class="col-md-4">Product Name</label>
                     <div class="col-md-4">
                         <input type="text" class="form-control form-control-sm" name="productName" id="productName">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="col-md-4">Kategori Produk</label>
+                    <label for="" class="col-md-4">Product Category</label>
                     <div class="col-md-4">
                         <select name="productCategory" id="productCategory" class="form-control form-control-sm">
                             <option value="0"></option>
@@ -27,13 +27,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="col-md-4">Set Minimum Stok</label>
+                    <label for="" class="col-md-4">Set Minimum Stock</label>
                     <div class="col-md-4">
                         <input type="number" class="form-control form-control-sm" name="minimumStock" id="minimumStock">
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-outline-info btn-sm font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" id="btnAddVarianHarga" href="{{route('sales')}}/mainProduct/newProduct/newPrice/{{$nextID}}">Input Varian Harga</button>
+                    <button type="button" class="btn btn-outline-info btn-sm font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" id="btnAddVarianHarga" href="{{route('sales')}}/mainProduct/newProduct/newPrice/{{$nextID}}">Add Varian Harga</button>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-sm btn-success font-weight-bold">Simpan</button>
+                    <button type="button" class="btn btn-sm btn-success font-weight-bold">Save</button>
                 </div>
             </form>
         </div>

@@ -4,10 +4,10 @@
             <div class="card-header p-0 pt-1 border-bottom-0">
                 <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link TABS-NEW-VARIAN" id="btnTabsManualPrice" data-toggle="pill" href="#tabDivVarianPrice" role="tab" aria-controls="tabDivVarianPrice" aria-selected="true" data-url="modalNewVarian">Manual Varian Price</a>
+                        <a class="nav-link TABS-NEW-VARIAN" id="btnTabsManualPrice" data-toggle="pill" href="#tabDivVarianPrice" role="tab" aria-controls="tabDivVarianPrice" aria-selected="true" data-url="modalNewVarian">Manual Variant Price</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link TABS-NEW-VARIAN" id="btnTabsManualPrice" data-toggle="pill" href="#tabDivVarianPrice" role="tab" aria-controls="tabDivVarianPrice" aria-selected="true" data-url="modalNewVarianFixed">Varian Price Fixed</a>
+                        <a class="nav-link TABS-NEW-VARIAN" id="btnTabsManualPrice" data-toggle="pill" href="#tabDivVarianPrice" role="tab" aria-controls="tabDivVarianPrice" aria-selected="true" data-url="modalNewVarianFixed">Variant Price Fixed</a>
                     </li>
                 </ul>
             </div>

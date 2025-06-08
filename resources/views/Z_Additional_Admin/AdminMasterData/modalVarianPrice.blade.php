@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <button type="button" class="btn btn-sm btn-success" id="saveVarianPrice">Simpan</button>
+            <button type="button" class="btn btn-sm btn-success" id="saveVarianPrice">Save</button>
         </div>
     </div>
 </form>
