@@ -6,8 +6,6 @@
                 <input type="text" name="firstNameCode" id="firstNameCode" class="form-control form-control-sm" placeholder="Kode Nama Depan">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-md-4">
             <div class="form-group">
                 <label for="firstNameCode">Count Varian Price</label>
@@ -15,8 +13,6 @@
                 <small>Jumlah varian harga yang akan dimasukkan</small>
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-md-4">
             <div class="form-group">
                 <label for="firstNameCode">Difference</label>
@@ -25,7 +21,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-12">
             <button type="submit" class="btn btn-sm btn-success" id="posVarianFixed">Simpan</button>
