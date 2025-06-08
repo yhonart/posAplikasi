@@ -12,7 +12,7 @@
                 </ul>
             </div>
             <div class="card-body">
-                <div class="tab-content" id="custom-tabs-three-tabContent">
+                <div class="tab-content active" id="custom-tabs-three-tabContent">
                     <div class="tab-pane fade" id="tabDivVarianPrice" role="tabpanel" aria-label="">
                         <div id="loadDisplaySpinner" style="display: none;">
                             <div class="spinner-grow spinner-grow-sm" role="status">
