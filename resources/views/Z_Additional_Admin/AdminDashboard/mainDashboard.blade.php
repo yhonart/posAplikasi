@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col-md-9">
-        <div class="card border border-info">
+        <div class="card border-0 shadow">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-3 col-6">
@@ -21,7 +21,12 @@
                                 <span class="info-box-text">All Product</span>
                                 <span class="info-box-number">
                                     {{$countItem}}
-                                    <a href="#">More Info <i class="fa-solid fa-arrow-right"></i></a>
+                                    <br>                                    
+                                    <a href="#">
+                                        <small>
+                                            More Info <i class="fa-solid fa-arrow-right"></i>
+                                        </small>
+                                    </a>
                                 </span>
                             </div>
                         </div>
