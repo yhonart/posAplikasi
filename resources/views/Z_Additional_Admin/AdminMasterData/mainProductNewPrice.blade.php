@@ -4,23 +4,36 @@
             <div class="card-header p-0 pt-1 border-bottom-0">
                 <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="tabsNewPriceManual" data-toggle="pill" href="#tabsNewPriceManual" role="tab" aria-controls="tabsNewPriceManual" aria-selected="true">Manual Varian Price</a>
+                        <a class="nav-link TABS-NEW-VARIAN" id="btnTabsManualPrice" data-toggle="pill" href="#tabDivVarianPrice" role="tab" aria-controls="tabDivVarianPrice" aria-selected="true" data-url="modalNewVarian">Manual Varian Price</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" id="tabsNewPriceFix" data-toggle="pill" href="#tabsNewPriceFix" role="tab" aria-controls="tabsNewPriceFix" aria-selected="true">Varian Price Fixed</a>
+                        <a class="nav-link TABS-NEW-VARIAN" id="btnTabsManualPrice" data-toggle="pill" href="#tabDivVarianPrice" role="tab" aria-controls="tabDivVarianPrice" aria-selected="true" data-url="modalNewVarianFixed">Varian Price Fixed</a>
                     </li>
                 </ul>
             </div>
             <div class="card-body">
                 <div class="tab-content" id="custom-tabs-three-tabContent">
-                    <div class="tab-pane fade show active" id="tabsNewPriceManual" role="tabpanel" aria-label="">
-
-                    </div>
-                    <div class="tab-pane fade show active" id="tabsNewPriceFix" role="tabpanel" aria-label="">
-
+                    <div class="tab-pane fade" id="tabDivVarianPrice" role="tabpanel" aria-label="">
+                        <div id="disFormVariant"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.TABS-NEW-VARIAN').on('click', function (e) {
+            e.preventDefault();
+            let path = $(this).attr('data-url'),
+                id = "{{$id}}";
+            $.ajax({
+                type : 'get',
+                url : "{{route('sales')}}/mainProduct/newProduct/"+path+"/"+id,
+                success : function(response){
+                    $('#disFormVariant').html(response);
+                }
+            });
+        });
+    });
+</script>

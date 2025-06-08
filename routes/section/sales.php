@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/mainProduct', [App\Http\Controllers\SalesAdminController::class, 'mainProduct']);
     Route::get('sales/mainProduct/newProduct', [App\Http\Controllers\SalesAdminController::class, 'newProduct']);
     Route::get('sales/mainProduct/newProduct/newPrice/{id}', [App\Http\Controllers\SalesAdminController::class, 'newPrice']);
+    Route::get('sales/mainProduct/newProduct/modalNewVarian/{id}', [App\Http\Controllers\SalesAdminController::class, 'modalNewVarian']);
+    Route::get('sales/mainProduct/newProduct/modalNewVarianFixed/{id}', [App\Http\Controllers\SalesAdminController::class, 'modalNewVarianFixed']);
 
     Route::get('sales/mainCustomer', [App\Http\Controllers\SalesAdminController::class, 'mainCustomer']);
     Route::get('sales/mainSalesOrder', [App\Http\Controllers\SalesAdminController::class, 'mainSalesOrder']);

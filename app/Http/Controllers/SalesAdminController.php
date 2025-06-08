@@ -64,6 +64,14 @@ class SalesAdminController extends Controller
         return view('Z_Additional_Admin/AdminMasterData/mainProductNewPrice', compact('id'));
     }
 
+    public function modalNewVarian ($id){
+        echo $id;
+    }
+
+    public function modalNewVarianFixed ($id){
+        echo $id;
+    }
+
     public function mainCustomer (){
         return view ('Z_Additional_Admin/AdminMasterData/mainCustomers');
     }
