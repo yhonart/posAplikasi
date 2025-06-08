@@ -16,10 +16,12 @@
                     </thead>
                     <tbody>
                         @foreach($varianPriceList as $vpl)
-                            <td>{{$novar++}}</td>
-                            <td>{{$vpl->varian_price_code}}</td>
-                            <td>{{$vpl->varian_price}}</td>
-                            <td></td>
+                            <tr>
+                                <td>{{$novar++}}</td>
+                                <td>{{$vpl->varian_price_code}}</td>
+                                <td>{{$vpl->varian_price}}</td>
+                                <td></td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

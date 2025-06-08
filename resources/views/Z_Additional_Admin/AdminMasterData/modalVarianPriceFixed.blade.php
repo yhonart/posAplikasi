@@ -56,13 +56,14 @@
                     }
                     else if (data.success) {
                         alertify.message(data.success);
-                        $("#varianPriceForm")[0].reset();
+                        $("#formVarianFixed")[0].reset();
+                        $("#divTableVarianHarga").load("{{route('sales')}}/mainProduct/newProduct/tableVarianPrice/"+id);
                     }
                     else{
-                        $("#varianPriceForm")[0].reset();
+                        $("#formVarianFixed")[0].reset();
                         alertify.message(data.success);
+                        $("#divTableVarianHarga").load("{{route('sales')}}/mainProduct/newProduct/tableVarianPrice/"+id);
                     }
-                    $("#divTableVarianHarga").load("{{route('sales')}}/mainProduct/newProduct/tableVarianPrice/"+id);
                 }
             }); 
         })

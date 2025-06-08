@@ -92,7 +92,7 @@ class SalesAdminController extends Controller
                     'core_product_id'=>$id,
                     'status'=>'1'
                 ]);
-            $msg = array('success' => 'Code Varian dan Varian Price Wajib Di Isi!');
+            $msg = array('success' => 'Success Data Berhasil Dimasukkan');
         }
         return response()->json($msg);
     }
@@ -110,7 +110,7 @@ class SalesAdminController extends Controller
             $msg = array('warning' => 'Wajib Di isi semuanya, silahkan cek kembali!');
         }
         else {
-            for ($i=0; $i < $valCount ; $i++) { 
+            for ($i=1; $i < $valCount ; $i++) { 
                 $varianCode = $valInit."".$i;
                 $varianPrice += $valMinimum + $valDif;
                 DB::table('m_z_varian_price')
@@ -121,7 +121,7 @@ class SalesAdminController extends Controller
                         'status'=>'1'
                     ]);
             }
-            $msg = array('success' => 'Code Varian dan Varian Price Wajib Di Isi!');
+            $msg = array('success' => 'Success Data Berhasil Dimasukkan');
         }
         return response()->json($msg);
     }
