@@ -88,7 +88,7 @@
 <script>
     $(function(){
         $("#divContent").load(route_main+'/mainDashboard');
-    })
+    });
     $(document).ready(function() {
         $.ajaxSetup({
             headers: {
