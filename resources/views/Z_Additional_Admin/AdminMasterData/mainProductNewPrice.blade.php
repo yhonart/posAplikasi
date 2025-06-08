@@ -15,7 +15,7 @@
                 <div class="tab-content" id="custom-tabs-three-tabContent">
                     <div class="tab-pane fade" id="tabDivVarianPrice" role="tabpanel" aria-label="">
                         <div id="loadDisplaySpinner" style="display: none;">
-                            <div class="spinner-grow" role="status">
+                            <div class="spinner-grow spinner-grow-sm" role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>
                             <span>...Please Wait !</span>
@@ -29,11 +29,18 @@
 </div>
 <script>
     $(document).ready(function(){
+        let id = "{{$id}}",
+            path = "tabDivVarianPrice";
+        loadDisForm(path,id);
+
         $('.TABS-NEW-VARIAN').on('click', function (e) {
             e.preventDefault();
             $("#loadDisplaySpinner").fadeIn();
-            let path = $(this).attr('data-url'),
-                id = "{{$id}}";
+            let path = $(this).attr('data-url');            
+            loadDisForm(path,id)
+        });
+        
+        function loadDisForm(path,id){
             $.ajax({
                 type : 'get',
                 url : "{{route('sales')}}/mainProduct/newProduct/"+path+"/"+id,
@@ -42,6 +49,6 @@
                     $('#disFormVariant').html(response);
                 }
             });
-        });
+        }
     });
 </script>
