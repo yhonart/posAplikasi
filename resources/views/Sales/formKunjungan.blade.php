@@ -78,13 +78,14 @@
         }
     });
     $(function(){
-        $( ".datetimepicker-input" ).datepicker({
+        $( "#dateFU" ).datepicker({
             dateFormat: 'yy-mm-dd',
             autoclose: true,
             todayHighlight: true,
         });
-        $('.datetimepicker-input').datepicker("setDate",new Date());
+        $('#dateFU').datepicker("setDate",new Date());
     });
+    
     const inLatitude = document.getElementById("Latitude");
     const inLongitude = document.getElementById("Longitude");
     const mapDiv = document.getElementById('map');
