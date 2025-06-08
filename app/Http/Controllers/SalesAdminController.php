@@ -112,7 +112,7 @@ class SalesAdminController extends Controller
         else {
             for ($i=1; $i < $valCount ; $i++) { 
                 $varianCode = $valInit."".$i;
-                $varianPrice += $valMinimum + $valDif;
+                $varianPrice = $valMinimum + ($valDif * $i);
                 DB::table('m_z_varian_price')
                     ->insert([
                         'varian_price_code'=>$varianCode,
