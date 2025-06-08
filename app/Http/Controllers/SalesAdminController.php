@@ -67,6 +67,14 @@ class SalesAdminController extends Controller
     public function modalNewVarian ($id){
         return view('Z_Additional_Admin/AdminMasterData/modalVarianPrice', compact('id'));
     }
+    
+    public function tableVarianPrice ($id){
+        $varianPriceList = DB::table('m_z_varian_price')
+            ->where('core_product_id',$id)
+            ->get();
+
+        return view('Z_Additional_Admin/AdminMasterData/modalVarianPriceList', compact('id','varianPriceList'));
+    }
 
     public function postNewVarian (Request $reqVarPrice){
         $varianCode = $reqVarPrice->valCode;

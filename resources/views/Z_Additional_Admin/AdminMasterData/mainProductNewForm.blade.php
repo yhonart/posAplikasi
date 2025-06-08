@@ -48,5 +48,8 @@
     </div>
 </div>
 <script>
-
+    $(function(){
+        let idProduct = "{{$nextID}}";
+        $("#divTableVarianHarga").load("{{route('sales')}}/mainProduct/newProduct/tableVarianPrice/"+idProduct)
+    })
 </script>

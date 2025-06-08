@@ -45,6 +45,7 @@
                         $("#varianPriceForm")[0].reset();
                         alertify.message(data.success);
                     }
+                    $("#divTableVarianHarga").load("{{route('sales')}}/mainProduct/newProduct/tableVarianPrice/"+id);
                 }
             }); 
         })
