@@ -39,8 +39,8 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="dateFU" class="col-md-4" style="display: none;">Tanggal Follow Up</label>
+            <div class="form-group row" style="display: none;" id="displayFU">
+                <label for="dateFU" class="col-md-4">Tanggal Follow Up</label>
                 <div class="col-md-4">
                     <input type="text" class="form-control form-control-sm datetimepicker-input" name="dateFU" id="dateFU">
                 </div>
@@ -151,12 +151,14 @@
                 $("#btnCetakBarcode").fadeIn("slow");
             }
             else if (valProgress == '2') {
-                $("#dateFU").fadeIn("slow")
+                $("#displayFU").fadeIn("slow");
+                $("#disProduct").fadeOut("slow");
+                $("#btnCetakBarcode").fadeOut("slow");
             }
             else{
                 $("#disProduct").fadeOut("slow");
                 $("#btnCetakBarcode").fadeOut("slow");
-                $("#dateFU").fadeOut("slow");
+                $("#displayFU").fadeOut("slow");
             }
         });
 
