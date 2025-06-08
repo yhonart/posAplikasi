@@ -14,6 +14,12 @@
             <div class="card-body">
                 <div class="tab-content" id="custom-tabs-three-tabContent">
                     <div class="tab-pane fade" id="tabDivVarianPrice" role="tabpanel" aria-label="">
+                        <div id="loadDisplaySpinner" style="display: none;">
+                            <div class="spinner-grow" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <span>...Please Wait !</span>
+                        </div>
                         <div id="disFormVariant"></div>
                     </div>
                 </div>
@@ -25,12 +31,14 @@
     $(document).ready(function(){
         $('.TABS-NEW-VARIAN').on('click', function (e) {
             e.preventDefault();
+            $("#loadDisplaySpinner").fadeIn();
             let path = $(this).attr('data-url'),
                 id = "{{$id}}";
             $.ajax({
                 type : 'get',
                 url : "{{route('sales')}}/mainProduct/newProduct/"+path+"/"+id,
                 success : function(response){
+                    $("#loadDisplaySpinner").fadeOut();
                     $('#disFormVariant').html(response);
                 }
             });
