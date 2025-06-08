@@ -43,7 +43,6 @@
         });
     })
     $(document).ready(function(){
-        loadDisForm(path,id);
         $('.TABS-NEW-VARIAN').on('click', function (e) {
             e.preventDefault();
             let path = $(this).attr('data-url'),
