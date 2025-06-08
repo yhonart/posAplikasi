@@ -76,7 +76,8 @@ class SalesAdminController extends Controller
                     'product_code'=>$productCode,
                     'product_name'=>$productName,
                     'product_category'=>$productCategory,
-                    'comp_id'=>$company
+                    'comp_id'=>$company,
+                    'minimum_stock'=>$minimumStock
                 ]);                
             $msg = array('success' => 'Produk berhasil ditambahkan');            
         }
@@ -155,7 +156,17 @@ class SalesAdminController extends Controller
     }
 
     public function detailProduct($dataID){
-        echo $dataID;
+        $companyID = Auth::user()->company;
+
+        $prdCategory = DB::table('m_asset_category')
+            ->where('initial_code','ITC02')
+            ->get();
+        
+        $productDetail = DB::table('m_product')
+            ->where('idm_data_product',$dataID)
+            ->first();
+
+        return view('Z_Additional_Admin/AdminMasterData/mainProductEditForm', compact('dataID','productDetail','prdCategory'));
     }
 
     public function mainCustomer (){
