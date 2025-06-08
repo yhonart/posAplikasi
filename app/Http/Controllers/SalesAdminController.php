@@ -97,7 +97,7 @@ class SalesAdminController extends Controller
         return response()->json($msg);
     }
 
-    public function difference (Request $reqVarPriceFixed){
+    public function postNewVarianFixed (Request $reqVarPriceFixed){
         $valInit = $reqVarPriceFixed->valInit;
         $valCount = $reqVarPriceFixed->valCount;
         $valMinimum = $reqVarPriceFixed->valMinimum;
