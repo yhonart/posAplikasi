@@ -25,7 +25,7 @@ class SalesAdminController extends Controller
     public function mainProduct (){
         $company = Auth::user()->company;
         $productCode = DB::table('m_product')
-            ->select('product_code','product_name')
+            ->select('product_code','product_name','idm_data_product')
             ->where('comp_id',$company)
             ->get();
 
