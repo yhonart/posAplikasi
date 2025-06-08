@@ -21,13 +21,21 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="progress" class="col-md-4">Progress</label>
+                <label for="progress" class="col-md-4">Progress / <small>Hasil Kunjungan</small></label>
                 <div class="col-md-4">
                     <select name="progress" id="progress" class="form-control form-control-sm">
                         <option value="1">Penawaran</option>
                         <option value="2">Follow Up</option>
                         <option value="3">Deal</option>
                         <option value="4">No Deal</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row" style="display: none;" id="disProduct">
+                <label for="progress" class="col-md-4">Pilih Produk</small></label>
+                <div class="col-md-4">
+                    <select name="produk" id="produk" class="form-control form-control-sm">
+                        <option value="0">--- Pilih ---</option>                        
                     </select>
                 </div>
             </div>
@@ -65,28 +73,21 @@
                     <input type="file" class="form-control-file" name="fotoToko" id="fotoToko">
                 </div>
             </div>
+            <div class="form-group row">
+                <label for="description" class="col-md-4">Catatan</label>
+                <div class="col-md-4">
+                    <textarea name="description" id="description" class="form-control" rows="5"></textarea>
+                </div>
+            </div>
             <div class="form-group">
+                <button type="button" class="btn btn-warning font-weight-bold" id="btnBatal"><i class="fa-solid fa-print"></i> Batal</button>
                 <button type="submit" class="btn btn-success font-weight-bold" id="btnSaveKunjungan"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+                <button type="button" class="btn btn-danger font-weight-bold" id="btnCetakBarcode" style="display: none;"><i class="fa-solid fa-print"></i> Cetak Barcode</button>
             </div>
         </form>
     </div>
 </div>
 <script>
-    $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $( "#dateFU" ).datepicker({
-            dateFormat: 'yy-mm-dd',
-            autoclose: true,
-            todayHighlight: true,
-        });
-        $('#dateFU').datepicker("setDate",new Date());
-
-    });
-    
     // Latitude and longtitude 
     const inLatitude = document.getElementById("Latitude");
     const inLongitude = document.getElementById("Longitude");
@@ -129,8 +130,32 @@
             break;
         }
     }
-    
-    $(document).ready(function(){
+
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $( "#dateFU" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('#dateFU').datepicker("setDate",new Date());
+
+        $("#progress").change(function(){
+            let valProgress = $(this).find(":selected").val();
+            if (valProgress == '3') {
+                $("#disProduct").fadeIn("slow");
+                $("#btnCetakBarcode").fadeIn("slow");
+            }
+            else{
+                $("#disProduct").fadeOut("slow");
+                $("#btnCetakBarcode").fadeOut("slow");
+            }
+        });
+
         $("form#inputFormKunjungan").submit(function(event){
             event.preventDefault();
             $.ajax({
