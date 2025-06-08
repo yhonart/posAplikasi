@@ -30,7 +30,7 @@
 <script>
     $(document).ready(function(){
         let id = "{{$id}}",
-            path = "tabDivVarianPrice";
+            path = "modalNewVarian";
         loadDisForm(path,id);
 
         $('.TABS-NEW-VARIAN').on('click', function (e) {
