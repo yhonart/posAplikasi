@@ -28,27 +28,35 @@
     </div>
 </div>
 <script>
-    $(document).ready(function(){
+    $(function(){
         let id = "{{$id}}",
             path = "modalNewVarian";
+            
+        $("#loadDisplaySpinner").fadeIn();
+        $.ajax({
+            type : 'get',
+            url : "{{route('sales')}}/mainProduct/newProduct/"+path+"/"+id,
+            success : function(response){
+                $('#disFormVariant').html(response);
+                $("#loadDisplaySpinner").fadeOut();
+            }
+        });
+    })
+    $(document).ready(function(){
         loadDisForm(path,id);
-
         $('.TABS-NEW-VARIAN').on('click', function (e) {
             e.preventDefault();
+            let path = $(this).attr('data-url'),
+                id = "{{$id}}";
             $("#loadDisplaySpinner").fadeIn();
-            let path = $(this).attr('data-url');            
-            loadDisForm(path,id)
-        });
-        
-        function loadDisForm(path,id){
             $.ajax({
                 type : 'get',
                 url : "{{route('sales')}}/mainProduct/newProduct/"+path+"/"+id,
                 success : function(response){
-                    $("#loadDisplaySpinner").fadeOut();
                     $('#disFormVariant').html(response);
+                    $("#loadDisplaySpinner").fadeOut();
                 }
             });
-        }
+        });
     });
 </script>
