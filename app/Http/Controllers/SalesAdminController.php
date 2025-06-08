@@ -80,7 +80,7 @@ class SalesAdminController extends Controller
                 ]);                
             $msg = array('success' => 'Produk berhasil ditambahkan');            
         }
-
+        return response()->json($msg);
     }
 
     public function newPrice($id){
