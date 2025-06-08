@@ -20,7 +20,7 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">All Product</span>
                                 <span class="info-box-number">
-                                    {{$productCode}}
+                                    {{$countItem}}
                                     <a href="#">More Info <i class="fa-solid fa-arrow-right"></i></a>
                                 </span>
                             </div>
