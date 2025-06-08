@@ -30,9 +30,9 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa-solid fa-circle-question"></i></button>
-            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-sm btn-success" id="posVarianFixed">Save</button>
+            <button class="btn btn-primary btn-sm font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa-solid fa-circle-question"></i></button>
+            <button type="button" class="btn btn-warning btn-sm font-weight-bold" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-sm btn-success font-weight-bold" id="posVarianFixed">Save</button>
         </div>
     </div>
 </form>
