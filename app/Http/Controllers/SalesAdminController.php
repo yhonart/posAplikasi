@@ -110,8 +110,9 @@ class SalesAdminController extends Controller
             $msg = array('warning' => 'Wajib Di isi semuanya, silahkan cek kembali!');
         }
         else {
-            for ($i=1; $i < $valCount ; $i++) { 
-                $varianCode = $valInit."".$i;
+            for ($i=0; $i < $valCount ; $i++) { 
+                $noCode = $i + 1;
+                $varianCode = $valInit."".$noCode;
                 $varianPrice = $valMinimum + ($valDif * $i);
                 DB::table('m_z_varian_price')
                     ->insert([
