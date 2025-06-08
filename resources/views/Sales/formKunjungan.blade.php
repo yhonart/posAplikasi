@@ -72,61 +72,63 @@
     </div>
 </div>
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $(function(){
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $( "#dateFU" ).datepicker({
             dateFormat: 'yy-mm-dd',
             autoclose: true,
             todayHighlight: true,
         });
         $('#dateFU').datepicker("setDate",new Date());
+
+        // Latitude and longtitude 
+        const inLatitude = document.getElementById("Latitude");
+        const inLongitude = document.getElementById("Longitude");
+        const mapDiv = document.getElementById('map');
+    
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error);
+            } else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        function success(position) {
+            inLatitude.value = position.coords.latitude;
+            inLongitude.value = position.coords.longitude;
+    
+            const map = new google.maps.Map(mapDiv, {
+              center: { lat: latitude, lng: longitude },
+              zoom: 15,
+            });
+    
+            new google.maps.Marker({
+              position: { lat: latitude, lng: longitude },
+              map: map,
+            });
+        }
+        function error(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                x.innerHTML = "User denied the request for Geolocation."
+                break;
+                case error.POSITION_UNAVAILABLE:
+                x.innerHTML = "Location information is unavailable."
+                break;
+                case error.TIMEOUT:
+                x.innerHTML = "The request to get user location timed out."
+                break;
+                case error.UNKNOWN_ERROR:
+                x.innerHTML = "An unknown error occurred."
+                break;
+            }
+        }
     });
     
-    const inLatitude = document.getElementById("Latitude");
-    const inLongitude = document.getElementById("Longitude");
-    const mapDiv = document.getElementById('map');
-
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(success, error);
-        } else { 
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-    }
-    function success(position) {
-        inLatitude.value = position.coords.latitude;
-        inLongitude.value = position.coords.longitude;
-
-        const map = new google.maps.Map(mapDiv, {
-          center: { lat: latitude, lng: longitude },
-          zoom: 15,
-        });
-
-        new google.maps.Marker({
-          position: { lat: latitude, lng: longitude },
-          map: map,
-        });
-    }
-    function error(error) {
-        switch(error.code) {
-            case error.PERMISSION_DENIED:
-            x.innerHTML = "User denied the request for Geolocation."
-            break;
-            case error.POSITION_UNAVAILABLE:
-            x.innerHTML = "Location information is unavailable."
-            break;
-            case error.TIMEOUT:
-            x.innerHTML = "The request to get user location timed out."
-            break;
-            case error.UNKNOWN_ERROR:
-            x.innerHTML = "An unknown error occurred."
-            break;
-        }
-    }
     $(document).ready(function(){
         $("form#inputFormKunjungan").submit(function(event){
             event.preventDefault();
