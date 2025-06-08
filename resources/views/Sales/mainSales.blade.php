@@ -60,7 +60,7 @@
 </div>
 <script>
     $(function(){
-        $("#divContent").load(route_main+'/daftarKunjungan');
+        $("#displaySales").load(route_main+'/daftarKunjungan');
     });
 
     $(document).ready(function() {
