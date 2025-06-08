@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-outline-info btn-sm font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" id="btnAddVarianHarga" href="{{route('sales')}}/mainProduct/newProduct/newPrice/{{$nextID}}">Add Varian Harga</button>
+                    <button type="button" class="btn btn-outline-info btn-sm font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" id="btnAddVarianHarga" href="{{route('sales')}}/mainProduct/newProduct/newPrice/{{$dataID}}">Add Varian Harga</button>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
