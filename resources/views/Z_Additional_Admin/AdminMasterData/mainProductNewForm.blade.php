@@ -52,4 +52,40 @@
         let idProduct = "{{$nextID}}";
         $("#divTableVarianHarga").load("{{route('sales')}}/mainProduct/newProduct/tableVarianPrice/"+idProduct)
     })
+    $(document).ready(function(){
+        $("form#newProductForm").submit(function(event){
+            event.preventDefault();
+            $.ajax({
+                url: "{{route('sales')}}/mainProduct/newProduct/postNewProduct",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {                    
+                    if (data.warning) {
+                        alertify
+                        .alert(data.warning, function(){
+                            alertify.message('OK');
+                        });
+                    }
+                    else if (data.success){
+                        reloadNewForm();
+                    }
+                },                
+            });
+            return false;
+        });
+
+        function reloadNewForm(){
+            $.ajax({
+                type : 'get',
+                url : "{{route('sales')}}/mainProduct/newProduct",
+                success : function(response){
+                    $('#divContentProduct').html(response);
+                }
+            });
+        }
+    });
 </script>

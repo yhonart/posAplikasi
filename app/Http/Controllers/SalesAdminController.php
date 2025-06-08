@@ -59,6 +59,30 @@ class SalesAdminController extends Controller
         return view('Z_Additional_Admin/AdminMasterData/mainProductNewForm',compact('nextID','prdCode','prdCategory'));
     }
 
+    public function postNewProduct(Request $reqPostNewPrd){
+        $productID = $reqPostNewPrd->productID;
+        $productCode = $reqPostNewPrd->productCode;
+        $productName = $reqPostNewPrd->productName;
+        $productCategory = $reqPostNewPrd->productCategory;
+        $minimumStock = $reqPostNewPrd->minimumStock;
+        $company = Auth::user()->company;
+
+        if ($productName == "" || $productCategory == "0") {
+            $msg = array('warning' => 'Nama produk dan categori produk wajib diisi!');
+        }
+        else {
+            DB::table('m_product')
+                ->insert([
+                    'product_code'=>$productCode,
+                    'product_name'=>$productName,
+                    'product_category'=>$productCategory,
+                    'comp_id'=>$company
+                ]);                
+            $msg = array('success' => 'Produk berhasil ditambahkan');            
+        }
+
+    }
+
     public function newPrice($id){
 
         return view('Z_Additional_Admin/AdminMasterData/mainProductNewPrice', compact('id'));
