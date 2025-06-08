@@ -154,6 +154,10 @@ class SalesAdminController extends Controller
         return view('Z_Additional_Admin/AdminMasterData/modalVarianPriceFixed', compact('id'));
     }
 
+    public function detailProduct($dataID){
+        echo $dataID;
+    }
+
     public function mainCustomer (){
         return view ('Z_Additional_Admin/AdminMasterData/mainCustomers');
     }

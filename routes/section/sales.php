@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/mainProduct/newProduct/tableVarianPrice/{id}', [App\Http\Controllers\SalesAdminController::class, 'tableVarianPrice']);
     Route::post('sales/mainProduct/newProduct/postNewVarian', [App\Http\Controllers\SalesAdminController::class, 'postNewVarian']);
     Route::post('sales/mainProduct/newProduct/postNewVarianFixed', [App\Http\Controllers\SalesAdminController::class, 'postNewVarianFixed']);
+    
+    Route::get('sales/mainProduct/detailProduct/{dataID}', [App\Http\Controllers\SalesAdminController::class, 'detailProduct']);
 
     Route::get('sales/mainCustomer', [App\Http\Controllers\SalesAdminController::class, 'mainCustomer']);
     Route::get('sales/mainSalesOrder', [App\Http\Controllers\SalesAdminController::class, 'mainSalesOrder']);

@@ -17,7 +17,7 @@
                                 @foreach($productCode as $pc)
                                     <tr>
                                         <td>
-                                            <a href="#" class="font-weight-bold text-black" data-id="{{$pc->idm_data_product}}">{{$pc->product_name}}</a>
+                                            <a href="#" class="font-weight-bold text-black SELECT-PRODUCT" data-id="{{$pc->idm_data_product}}">{{$pc->product_name}}</a>
                                         </td>
                                     </tr>
                                 @endforeach                                
@@ -39,6 +39,17 @@
             $.ajax({
                 type : 'get',
                 url : "{{route('sales')}}/mainProduct/newProduct",
+                success : function(response){
+                    $('#divContentProduct').html(response);
+                }
+            });
+        });
+        $('#SELECT-PRODUCT').on('click', function (e) {
+            e.preventDefault();
+            let dataID = $(this).attr('data-id');
+            $.ajax({
+                type : 'get',
+                url : "{{route('sales')}}/mainProduct/detailProduct/"+dataID,
                 success : function(response){
                     $('#divContentProduct').html(response);
                 }
