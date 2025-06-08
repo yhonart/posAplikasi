@@ -39,8 +39,10 @@
                     }
                     else if (data.success) {
                         alertify.message(data.success);
+                        $("#varianPriceForm")[0].reset();
                     }
                     else{
+                        $("#varianPriceForm")[0].reset();
                         alertify.message(data.success);
                     }
                 }
