@@ -65,11 +65,11 @@ class SalesAdminController extends Controller
     }
 
     public function modalNewVarian ($id){
-        echo $id;
+        return view('Z_Additional_Admin/AdminMasterData/modalVarianPrice', compact('id'));
     }
 
     public function modalNewVarianFixed ($id){
-        echo $id;
+        return view('Z_Additional_Admin/AdminMasterData/modalVarianPriceFixed', compact('id'));
     }
 
     public function mainCustomer (){
