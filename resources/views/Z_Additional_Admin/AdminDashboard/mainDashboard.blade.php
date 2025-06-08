@@ -31,6 +31,57 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-3 col-6">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-boxes-stacked"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">All Customer</span>
+                                <span class="info-box-number">
+                                    0
+                                    <br>                                    
+                                    <a href="#" class="MORE-INFO text-dark" data-path="tabMenuPelanggan">
+                                        <small>
+                                            More Info <i class="fa-solid fa-arrow-right"></i>
+                                        </small>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-boxes-stacked"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Sales Activity</span>
+                                <span class="info-box-number">
+                                    0
+                                    <br>                                    
+                                    <!-- <a href="#" class="MORE-INFO text-dark" data-path="tabMenuPelanggan">
+                                        <small>
+                                            More Info <i class="fa-solid fa-arrow-right"></i>
+                                        </small>
+                                    </a> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-boxes-stacked"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Customer Deals</span>
+                                <span class="info-box-number">
+                                    0
+                                    <br>                                    
+                                    <!-- <a href="#" class="MORE-INFO text-dark" data-path="tabMenuPelanggan">
+                                        <small>
+                                            More Info <i class="fa-solid fa-arrow-right"></i>
+                                        </small>
+                                    </a> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
