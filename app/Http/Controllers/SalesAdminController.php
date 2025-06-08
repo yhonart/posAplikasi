@@ -68,6 +68,26 @@ class SalesAdminController extends Controller
         return view('Z_Additional_Admin/AdminMasterData/modalVarianPrice', compact('id'));
     }
 
+    public function postNewVarian (Request $reqVarPrice){
+        $varianCode = $reqVarPrice->valCode;
+        $varianPrice = $reqVarPrice->valPrice;
+        $id = $reqVarPrice->valID;
+
+        if ($varianCode == "" || $varianPrice == "") {
+            $msg = array('warning' => 'Code Varian dan Varian Price Wajib Di Isi!');
+        }
+        else {
+            DB::table('m_z_varian_price')
+                ->insert([
+                    'varian_price_code'=>$varianCode,
+                    'varian_price'=>$varianPrice,
+                    'core_product_id'=>$id,
+                    'status'=>'1'
+                ]);
+            $msg = array('success' => 'Code Varian dan Varian Price Wajib Di Isi!');
+        }
+        return response()->json($msg);
+    }
     public function modalNewVarianFixed ($id){
         return view('Z_Additional_Admin/AdminMasterData/modalVarianPriceFixed', compact('id'));
     }
