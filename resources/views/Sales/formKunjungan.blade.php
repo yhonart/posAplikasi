@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="dateFU" class="col-md-4">Tanggal Follow Up</label>
+                <label for="dateFU" class="col-md-4" style="display: none;">Tanggal Follow Up</label>
                 <div class="col-md-4">
                     <input type="text" class="form-control form-control-sm datetimepicker-input" name="dateFU" id="dateFU">
                 </div>
@@ -80,7 +80,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <button type="button" class="btn btn-warning font-weight-bold" id="btnBatal"><i class="fa-solid fa-print"></i> Batal</button>
+                <button type="button" class="btn btn-warning font-weight-bold" id="btnBatal"><i class="fa-solid fa-xmark"></i> Batal</button>
                 <button type="submit" class="btn btn-success font-weight-bold" id="btnSaveKunjungan"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
                 <button type="button" class="btn btn-danger font-weight-bold" id="btnCetakBarcode" style="display: none;"><i class="fa-solid fa-print"></i> Cetak Barcode</button>
             </div>
@@ -150,9 +150,13 @@
                 $("#disProduct").fadeIn("slow");
                 $("#btnCetakBarcode").fadeIn("slow");
             }
+            else if (valProgress == '2') {
+                $("#dateFU").fadeIn("slow")
+            }
             else{
                 $("#disProduct").fadeOut("slow");
                 $("#btnCetakBarcode").fadeOut("slow");
+                $("#dateFU").fadeOut("slow");
             }
         });
 
