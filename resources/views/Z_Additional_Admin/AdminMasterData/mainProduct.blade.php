@@ -44,7 +44,7 @@
                 }
             });
         });
-        $('#SELECT-PRODUCT').on('click', function (e) {
+        $('.SELECT-PRODUCT').on('click', function (e) {
             e.preventDefault();
             let dataID = $(this).attr('data-id');
             $.ajax({
