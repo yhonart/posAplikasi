@@ -20,7 +20,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">
                                 
-                                <li class="nav-item">
+                                <li class="nav-item d-none d-md-block">
                                     <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="mainDashboard" data-toggle="tab" id="tabMenuDash">
                                         Home
                                     </a>
@@ -86,6 +86,9 @@
     </div>        
 </div>
 <script>
+    $(function(){
+        $("#divContent").load(route_main+'/mainDashboard');
+    })
     $(document).ready(function() {
         $.ajaxSetup({
             headers: {

@@ -20,6 +20,11 @@ class SalesAdminController extends Controller
     }
 
     public function mainDashboard (){
+        $companyID = Auth::user()->company;
+        $countItem = DB::table('m_product')
+            ->where('comp_id',$companyID)
+            ->count();
+        return view('Z_Additional_Admin/AdminDashboard/mainDashboard',compact('countItem'));
     }
 
     public function mainProduct (){
