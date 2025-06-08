@@ -36,11 +36,14 @@
                 <div class="col-md-4">
                     <select name="produk" id="produk" class="form-control form-control-sm">
                         <option value="0">--- Pilih ---</option>                        
+                        @foreach($product as $pList)
+                            <option value="{{$pList->idm_data_product}}">{{$pList->product_name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
             <div class="form-group row" style="display: none;" id="displayFU">
-                <label for="dateFU" class="col-md-4">Tanggal Follow Up</label>
+                <label for="dateFU" class="col-md-4">Tanggal</label>
                 <div class="col-md-4">
                     <input type="text" class="form-control form-control-sm datetimepicker-input" name="dateFU" id="dateFU">
                 </div>

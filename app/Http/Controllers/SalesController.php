@@ -24,7 +24,12 @@ class SalesController extends Controller
     }
 
     public function formKunjungan (){
-        return view('Sales/formKunjungan');
+        $companyID = Auth::user()->company;
+        $product = DB::table('m_product')
+            ->where('comp_id',$companyID)
+            ->get();
+
+        return view('Sales/formKunjungan', compact('product'));
     }
 
     public function postNewTransaksi (Request $dataKunjungan){
