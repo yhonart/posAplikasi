@@ -19,7 +19,7 @@
                             <tr>
                                 <td>{{$novar++}}</td>
                                 <td>{{$vpl->varian_price_code}}</td>
-                                <td>{{$vpl->varian_price}}</td>
+                                <td class="text-right">{{$vpl->varian_price}}</td>
                                 <td></td>
                             </tr>
                         @endforeach
