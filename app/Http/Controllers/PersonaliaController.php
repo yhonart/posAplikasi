@@ -35,6 +35,8 @@ class PersonaliaController extends Controller
         $lokasi = $userData->lokasi;
         $levelAdmin = $userData->levelAdmin;
         $password = Hash::make($userData->password);
+        // $authHakAkses = Auth::user()->hakakses;
+        $authCompany = Auth::user()->company;
 
         $nextId = DB::select("SHOW TABLE STATUS LIKE 'users'")[0]->Auto_increment; 
         
@@ -58,7 +60,9 @@ class PersonaliaController extends Controller
                 'username'=>$userName,    
                 'email'=>$email,    
                 'password'=>$password,
-                'hakakses'=>$hakAkses
+                'hakakses'=>$hakAkses,
+                'company'=>$authCompany,
+                'location'=>'1'
             ]);
 
         if ($levelAdmin == '1') {
