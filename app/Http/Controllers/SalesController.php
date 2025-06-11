@@ -9,6 +9,37 @@ use Illuminate\Support\Carbon;
 
 class SalesController extends Controller
 {
+    public function codeCompany (){
+        $companyID = Auth::user()->company;
+
+        $selectCodeComp = DB::table('m_company')
+            ->select('company_code')
+            ->where('idm_company',$companyID)
+            ->first();
+        $compCode = $selectCodeComp->company_code;
+
+        return $compCode;
+    }
+
+    public function numberCodeCustomer (){
+        $companyCode = $this->codeCompany();
+        $compID = Auth::user()->company;
+        $countCusComp = DB::table('m_customers')
+            ->where('comp_id',$compID)
+            ->count();
+        $numCus = "";
+        if ($countCusComp == '0') {
+            $number = '1';
+            $numCus = "CUS" . $companyCode . "-" .sprintf("%03d",$number);
+        }
+        else {
+            $number = $countCusComp + 1;
+            $numCus = "CUS" . $companyCode . "-" .sprintf("%03d",$number);
+        }
+
+        return $numCus;
+    }
+
     public function main(){
 
     }
@@ -41,9 +72,12 @@ class SalesController extends Controller
         $Latitude = $dataKunjungan->Latitude;
         $Longitude = $dataKunjungan->Longitude;
         $fotoToko = $dataKunjungan->fotoToko;
+        $product = $dataKunjungan->produk;
+        $address = $dataKunjungan->address;
 
         $createBy = Auth::user()->name;
         $companyID = Auth::user()->company;
+        $numCodeCus = $this->numberCodeCustomer();
 
         if ($fotoToko <> "") {
             $getFotoToko = $fotoToko->getClientOriginalName();
@@ -56,22 +90,54 @@ class SalesController extends Controller
             else{
                 $fotoToko->move($dirImage, $getFotoToko);
             }
-        }
+        }       
 
-        DB::table('tracking_sales')
-            ->insert([
-                'store_name'=>$store,
-                'store_owner'=>$storeOwner,
-                'phone'=>$phone,
-                'progress'=>$progress,
-                'date_fu'=>$dateFU,
-                'latitude'=>$Latitude,
-                'longtitude'=>$Longitude,
-                'picture_store'=>$getFotoToko,
-                'create_by'=>$createBy,
-                'created_date'=>now(),
-                'company_id'=>$companyID
-            ]);
+        if ($progress == '3') {
+            DB::table('m_customers')
+                ->insert([
+                    'customer_code'=>$numCodeCus,
+                    'customer_store'=>$store,
+                    'address'=>$address,
+                    'pic'=>$storeOwner,
+                    'sales'=>$createBy,
+                    'registered_date'=>now(),
+                    'comp_id'=>$companyID
+                ]);
+
+            DB::table('tracking_sales')
+                ->insert([
+                    'store_name'=>$store,
+                    'store_owner'=>$storeOwner,
+                    'phone'=>$phone,
+                    'progress'=>$progress,
+                    'date_fu'=>$dateFU,
+                    'latitude'=>$Latitude,
+                    'longtitude'=>$Longitude,
+                    'picture_store'=>$getFotoToko,
+                    'create_by'=>$createBy,
+                    'created_date'=>now(),
+                    'company_id'=>$companyID,
+                    'product_id'=>$product,
+                    'customer_code'=>$numCodeCus
+                ]);
+        }
+        else {
+            DB::table('tracking_sales')
+                ->insert([
+                    'store_name'=>$store,
+                    'store_owner'=>$storeOwner,
+                    'phone'=>$phone,
+                    'progress'=>$progress,
+                    'date_fu'=>$dateFU,
+                    'latitude'=>$Latitude,
+                    'longtitude'=>$Longitude,
+                    'picture_store'=>$getFotoToko,
+                    'create_by'=>$createBy,
+                    'created_date'=>now(),
+                    'company_id'=>$companyID,
+                    'product_id'=>$product
+                ]);
+        }
         
     }
 

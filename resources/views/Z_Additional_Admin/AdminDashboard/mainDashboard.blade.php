@@ -14,7 +14,7 @@
         <div class="card border-0 shadow">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-3 col-6">
+                    <div class="col-md-4 col-12">
                         <div class="info-box">
                             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-boxes-stacked"></i></span>
                             <div class="info-box-content">
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-6">
+                    <div class="col-md-4 col-12">
                         <div class="info-box">
                             <span class="info-box-icon bg-info elevation-1"><i class="fa-solid fa-store"></i></span>
                             <div class="info-box-content">
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-6">
+                    <div class="col-md-4 col-12">
                         <div class="info-box">
                             <span class="info-box-icon bg-info elevation-1"><i class="fa-solid fa-user-tie"></i></span>
                             <div class="info-box-content">
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-6">
+                    <div class="col-md-4 col-12">
                         <div class="info-box">
                             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-boxes-stacked"></i></span>
                             <div class="info-box-content">

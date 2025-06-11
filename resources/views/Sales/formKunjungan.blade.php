@@ -76,6 +76,12 @@
                     <input type="file" class="form-control-file" name="fotoToko" id="fotoToko">
                 </div>
             </div>
+            <div class="form-group row" style="display: none;" id="rowAddress">
+                <label for="fotoToko" class="col-md-4">Alamat Lengkap</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control-file" name="address" id="address">
+                </div>
+            </div>
             <div class="form-group row">
                 <label for="description" class="col-md-4">Catatan</label>
                 <div class="col-md-4">
@@ -151,6 +157,7 @@
             let valProgress = $(this).find(":selected").val();
             if (valProgress == '3') {
                 $("#disProduct").fadeIn("slow");
+                $("#rowAddress").fadeIn("slow");
                 $("#btnCetakBarcode").fadeIn("slow");
             }
             else if (valProgress == '2') {
@@ -164,6 +171,16 @@
                 $("#displayFU").fadeOut("slow");
             }
         });
+
+        $("#btnCetakBarcode").on('click', function(){
+            $.ajax({
+                url: "{{route('sales')}}/formKunjungan/PrintQR",
+                type: 'GET',
+                success: function (data) {     
+                    $("form#inputFormKunjungan")[0].reset();
+                },                
+            });
+        })
 
         $("form#inputFormKunjungan").submit(function(event){
             event.preventDefault();
@@ -181,5 +198,6 @@
             });
             return false;
         });
+
     });
 </script>
