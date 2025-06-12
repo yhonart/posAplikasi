@@ -72,6 +72,34 @@ class PersonaliaController extends Controller
                     'group_code'=>$levelAdmin
                 ]);
         }
+
+        if ($hakAkses == '3') {
+            $countSales = DB::table('m_sales')
+                ->where('comp_id',$authCompany)
+                ->count();
+
+            $compCode = DB::table('m_company')
+                ->select('company_code')
+                ->where('idm_company',$authCompany)
+                ->first();
+
+            if ($countSales == '0') {
+                $number = '1';
+                $numCode = "SL" . $compCode->company_code . sprintf("%03d",$number);
+            }
+            else{
+                $number = $countSales + 1;
+                $numCode = "SL" . $compCode->company_code . sprintf("%03d",$number);
+            }
+
+            DB::table('m_sales')
+                ->insert([
+                    'sales_code'=>$numCode,
+                    'sales_name'=>$namaLengkap,
+                    'sales_status'=>'1',
+                    'comp_id'=>$authCompany,
+                ]);
+        }
         
     }
     public function delPersonalia ($id) {
