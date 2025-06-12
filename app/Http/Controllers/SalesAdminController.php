@@ -239,7 +239,7 @@ class SalesAdminController extends Controller
 
     public function dataResultInv ($prdVal, $catVal){
         $companyID = Auth::user()->company;
-        
+
         $docInventory = DB::table('view_product_stock');
         $docInventory = $docInventory->where('comp_id', $companyID);
         if ($prdVal <> '0') {
@@ -248,6 +248,7 @@ class SalesAdminController extends Controller
         elseif ($catVal <> '0') {
             $docInventory = $docInventory->where('product_category',$catVal);
         }
+        $docInventory = $docInventory->orderBy('product_code','asc');
         $docInventory = $docInventory->get();
 
         return view ('Z_Additional_Admin/AdminInventory/mainInventoryTable', compact('docInventory','companyID'));
