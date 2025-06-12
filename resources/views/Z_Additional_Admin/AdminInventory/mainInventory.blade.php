@@ -1,7 +1,13 @@
 <section class="container">    
     <div class="row">
         <div class="col-md-12">
-            <div class="card border-0 shadow bg-light text-xs">                
+            <div class="card border-0 elevation-1 card-primary collapsed-card text-xs">
+                <div class="card-header">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-plus"></i> Filter
+                    </button>
+                    <!-- /.card-tools -->
+                </div>                
                 <div class="card-body">
                     <form id="formFilterItem">
                         <div class="row">
