@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-sm table-responsive table-valign-middle table-striped">
+        <table class="table table-sm table-valign-middle table-striped">
             <thead>
                 <tr>
                     <th>No.</th>
@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                
+
             </tbody>
         </table>
     </div>
