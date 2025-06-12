@@ -3398,7 +3398,10 @@ class CashierController extends Controller
         if ($hakakses == '2') {
             $trxRecord = $trxRecord->where('created_by', $createdBy);
         }
-        $trxRecord = $trxRecord->where('status','>=','3');
+        $trxRecord = $trxRecord->where([
+            ['status','>=','3'],
+            ['comp_id',$company]
+        ]);
         $trxRecord = $trxRecord->whereBetween('tr_date', [$fromDate, $endDate]);
         $trxRecord = $trxRecord->get();
 
