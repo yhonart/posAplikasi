@@ -1,13 +1,8 @@
-<section class="container">
+<section class="container">    
     <div class="row">
         <div class="col-md-12">
-            <span>Admin Inventory Item</span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card border-0 shadow bg-light">
-                <div class="card-header">
+            <div class="card border-0 shadow bg-light text-xs">
+                <div class="card-header border-0">
                     <h3 class="card-title">Filtering Item</h3>
                 </div>
                 <div class="card-body">
