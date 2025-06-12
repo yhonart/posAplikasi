@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="card border-0 elevation-1 collapsed-card text-xs">
                 <div class="card-header">
-                    <button type="button" class="btn btn-light elevation-1 btn-flat btn-sm" data-card-widget="collapse"> Filter</button>                    
+                    <button type="button" class="btn btn-info btn-sm font-weight-bold" data-card-widget="collapse"> Filter</button>                    
                 </div>                
                 <div class="card-body">
                     <form id="formFilterItem">
