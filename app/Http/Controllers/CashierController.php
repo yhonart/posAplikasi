@@ -3368,6 +3368,7 @@ class CashierController extends Controller
             $tableReport = $tableReport->where('created_by', $createdBy);
         }
         $tableReport = $tableReport->whereBetween('a.date_trx', [$fromDate, $endDate]);
+        $tableReport = $tableReport->where('a.comp_id',$company);
         $tableReport = $tableReport->get();
 
         $trStore = DB::table("tr_store_prod_list")
@@ -3382,7 +3383,10 @@ class CashierController extends Controller
         if ($hakakses == '2') {
             $bankTransaction = $bankTransaction->where('a.created_by', $createdBy);
         }
-        $bankTransaction = $bankTransaction->where('a.method_name', '4');
+        $bankTransaction = $bankTransaction->where([
+            ['a.method_name', '4'],
+            ['comp_id',$company]
+        ]);
         $bankTransaction = $bankTransaction->groupBy('a.bank_code');
         $bankTransaction = $bankTransaction->get();
 
