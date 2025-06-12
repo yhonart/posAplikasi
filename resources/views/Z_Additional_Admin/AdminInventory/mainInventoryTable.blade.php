@@ -7,7 +7,7 @@
         <table class="table table-sm table-valign-middle table-striped">
             <thead>
                 <tr>
-                    <th>No.</th>
+                    <th>No. {{$companyID}}</th>
                     <th>Product Code</th>
                     <th>Product Name</th>
                     <th>Saldo</th>

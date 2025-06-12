@@ -250,6 +250,6 @@ class SalesAdminController extends Controller
         }
         $docInventory = $docInventory->get();
 
-        return view ('Z_Additional_Admin/AdminInventory/mainInventoryTable', compact('docInventory'));
+        return view ('Z_Additional_Admin/AdminInventory/mainInventoryTable', compact('docInventory','companyID'));
     }
 }
