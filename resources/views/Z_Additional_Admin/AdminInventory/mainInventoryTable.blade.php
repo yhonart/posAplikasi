@@ -4,7 +4,7 @@
 ?>
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-sm table-valign-middle table-striped">
+        <table class="table table-sm table-valign-middle table-striped table-hover">
             <thead>
                 <tr>
                     <th>No. {{$companyID}}</th>
@@ -21,7 +21,9 @@
                         <td>{{$di->product_code}}</td>
                         <td>{{$di->product_name}}</td>
                         <td>{{$di->stock}}</td>
-                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-sm BTN-DETAIL"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
