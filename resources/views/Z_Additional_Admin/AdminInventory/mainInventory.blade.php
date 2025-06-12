@@ -13,13 +13,17 @@
                 <div class="card-body">
                     <form id="formFilterItem">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="">Produk</label>
                                     <select name="produk" id="produk" class="form-control form-control-sm">
                                         <option value="0"></option>
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="">Category</label>
                                     <select name="category" id="category" class="form-control form-control-sm">
@@ -30,7 +34,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-sm btn-success font-weight-bold">Simpan</button>
+                                <button type="submit" class="btn btn-sm btn-success font-weight-bold">Cari</button>
                             </div>
                         </div>
                     </form>
