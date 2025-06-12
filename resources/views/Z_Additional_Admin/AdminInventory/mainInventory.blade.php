@@ -40,7 +40,7 @@
 <section class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="card card-body">
+            <div class="card card-body table-responsive text-xs">
                 <div id="divTableInv"></div>
             </div>
         </div>
@@ -53,7 +53,7 @@
             categoryVal = '0';
 
         loadInventory (productVal,categoryVal);  
-              
+
         function loadInventory (productVal,categoryVal){
             $.ajax({
                 type : 'get',
