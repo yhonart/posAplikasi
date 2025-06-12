@@ -3407,17 +3407,22 @@ class CashierController extends Controller
 
         $tableMthodPayment = DB::table('view_trx_method');
         $tableMthodPayment = $tableMthodPayment->whereBetween('date_trx', [$fromDate, $endDate]);
-
         if ($hakakses == '2') {
             $tableMthodPayment = $tableMthodPayment->where('created_by', $createdBy);
         }
-        $tableMthodPayment = $tableMthodPayment->where('status_by_store', '>=', '3');
+        $tableMthodPayment = $tableMthodPayment->where([
+            ['status_by_store', '>=', '3'],
+            ['comp_id',$company]
+        ]);
         $tableMthodPayment = $tableMthodPayment->orderBy('core_id_trx', 'ASC');
         $tableMthodPayment = $tableMthodPayment->get();
 
         $grndTotalPembelian = DB::table('tr_store');
         $grndTotalPembelian = $grndTotalPembelian->select(DB::raw('SUM(t_bill) as grandTotalBelanja'));
-        $grndTotalPembelian = $grndTotalPembelian->where('status', '<>', '0');
+        $grndTotalPembelian = $grndTotalPembelian->where([
+            ['status', '<>', '0'],
+            ['comp_id',$company]
+        ]);
         $grndTotalPembelian = $grndTotalPembelian->whereBetween('tr_date', [$fromDate, $endDate]);
         if ($hakakses == '2') {
             $grndTotalPembelian = $grndTotalPembelian->where('created_by', $createdBy);
@@ -3431,7 +3436,10 @@ class CashierController extends Controller
             $pengeluaranKasir = $pengeluaranKasir->where('a.kasir',$createdBy);
         }
         $pengeluaranKasir = $pengeluaranKasir->whereBetween('a.trx_date', [$fromDate, $endDate]);
-        $pengeluaranKasir = $pengeluaranKasir->where('a.status','1');
+        $pengeluaranKasir = $pengeluaranKasir->where([
+            ['a.status','1'],
+            ['c.comp_id',$company]
+        ]);
         $pengeluaranKasir = $pengeluaranKasir->get();
 
 
