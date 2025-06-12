@@ -51,6 +51,9 @@
     $(document).ready(function() {
         let productVal = '0',
             categoryVal = '0';
+
+        loadInventory (productVal,categoryVal);  
+              
         function loadInventory (productVal,categoryVal){
             $.ajax({
                 type : 'get',
