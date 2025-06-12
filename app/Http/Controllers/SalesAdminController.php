@@ -234,6 +234,6 @@ class SalesAdminController extends Controller
 
     //STOCK INVENTORY
     public function mainStock(){
-        return view ('Z_Additional_Admin/AdminMasterData/mainInventory');
+        return view ('Z_Additional_Admin/AdminInventory/mainInventory');
     }
 }
