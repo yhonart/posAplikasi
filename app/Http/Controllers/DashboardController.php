@@ -266,30 +266,39 @@ class DashboardController extends Controller
         $condition = $reqPostOnClick->condition;
         $fromDate = $reqPostOnClick->fromDate;
         $endDate = $reqPostOnClick->endDate;
+        $company = Auth::user()->company;
         
         // echo $condition."-".$fromDate."-".$endDate;
         if($condition == "alltrx"){
             $allCondition = DB::table('view_trx_method');            
-            $allCondition = $allCondition->where('status_by_store','>=','3');
+            $allCondition = $allCondition->where([
+                ['status_by_store','>=','3'],
+                ['comp_id',$company]
+            ]);
             $allCondition = $allCondition->whereBetween('date_trx',[$fromDate, $endDate]);
             $allCondition = $allCondition->orderBy('core_id_trx','asc');
             $allCondition = $allCondition->get();
         }
         elseif($condition == "onprocess"){
             $allCondition = DB::table('view_billing_action');
-            $allCondition = $allCondition->where('status','1');
+            $allCondition = $allCondition->where([
+                ['status','1'],
+                ['comp_id',$company]
+            ]);
             $allCondition = $allCondition->whereBetween('tr_date',[$fromDate, $endDate]);
             $allCondition = $allCondition->get();
         }
         elseif($condition == "kredit"){
             $allCondition = DB::table('view_customer_kredit');
+            $allCondition = $allCondition->where('comp_id',$company);
             $allCondition = $allCondition->whereBetween('created_at',[$fromDate, $endDate]);
             $allCondition = $allCondition->get();
         }
         elseif($condition == "allSummery"){
             $allCondition = DB::table('view_billing_action');
             $allCondition = $allCondition->where([
-                    ['is_return','!=','1']
+                    ['is_return','!=','1'],
+                    ['comp_id',$company]
             ]);
             $allCondition = $allCondition->whereBetween('tr_date',[$fromDate, $endDate]);
             $allCondition = $allCondition->get();
