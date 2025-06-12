@@ -236,4 +236,8 @@ class SalesAdminController extends Controller
     public function mainStock(){
         return view ('Z_Additional_Admin/AdminInventory/mainInventory');
     }
+
+    public function dataResultInv ($prdVal, $catVal){
+        return view ('Z_Additional_Admin/AdminInventory/mainInventoryTable');
+    }
 }

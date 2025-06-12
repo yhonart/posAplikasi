@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card border-0 elevation-1 collapsed-card text-xs">
-                <div class="card-header">
-                    <button type="button" class="btn btn-info btn-sm font-weight-bold" data-card-widget="collapse"> <i class="fa-solid fa-filter"></i> Filter</button>                    
+                <div class="card-header border-0">
+                    <button type="button" class="btn btn-info btn-sm font-weight-bold" data-card-widget="collapse"> <i class="fa-solid fa-filter"></i> Filter Item</button>                    
                 </div>                
                 <div class="card-body">
                     <form id="formFilterItem">
@@ -34,15 +34,31 @@
                 </div>
             </div>
         </div>
+    </div>    
+</section>
+
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body">
+                <div id="divTableInv"></div>
+            </div>
+        </div>
     </div>
 </section>
 
 <script>
     $(document).ready(function() {
-        $('.MORE-INFO').on('click', function (e) {
-            e.preventDefault();
-            let path = $(this).attr('data-path');
-            $("#divContent").load(route_main+'/'+path);
-        });
+        let productVal = '0',
+            categoryVal = '0';
+        function loadInventory (productVal,categoryVal){
+            $.ajax({
+                type : 'get',
+                url : "{{route('sales')}}/mainStock/dataResultInv/"+ productVal + "/" + categoryVal,
+                success : function(response){
+                    $("#divTableInv").html(response);
+                }
+            });
+        }
     });
 </script>
