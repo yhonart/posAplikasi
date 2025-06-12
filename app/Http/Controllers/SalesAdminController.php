@@ -238,8 +238,8 @@ class SalesAdminController extends Controller
     }
 
     public function dataResultInv ($prdVal, $catVal){
-
-        $companyID = Auth::user()->campany;
+        $companyID = Auth::user()->company;
+        
         $docInventory = DB::table('view_product_stock');
         $docInventory = $docInventory->where('comp_id', $companyID);
         if ($prdVal <> '0') {
