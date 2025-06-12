@@ -1,9 +1,9 @@
 <section class="container">    
     <div class="row">
         <div class="col-md-12">
-            <div class="card border-0 elevation-1 card-primary collapsed-card text-xs">
+            <div class="card border-0 elevation-1 collapsed-card text-xs">
                 <div class="card-header">
-                    <h3 class="card-title" data-card-widget="collapse">Filter</h3>
+                    <button type="button" class="btn btn-light elevation-1 btn-flat btn-sm" data-card-widget="collapse"> Filter</button>                    
                 </div>                
                 <div class="card-body">
                     <form id="formFilterItem">
