@@ -72,6 +72,9 @@ class SalesAdminController extends Controller
         $minimumStock = $reqPostNewPrd->minimumStock;
         $company = Auth::user()->company;
 
+        $id=DB::select("SHOW TABLE STATUS LIKE 'm_product_unit'");            
+        $nextUnitID=$id[0]->Auto_increment;
+
         if ($productName == "" || $productCategory == "0") {
             $msg = array('warning' => 'Nama produk dan categori produk wajib diisi!');
         }
@@ -82,8 +85,36 @@ class SalesAdminController extends Controller
                     'product_name'=>$productName,
                     'product_category'=>$productCategory,
                     'comp_id'=>$company,
-                    'minimum_stock'=>$minimumStock
-                ]);                
+                    'minimum_stock'=>$minimumStock,
+                    'large_unit_val'=>'0',
+                    'medium_unit_val'=>'0',
+                    'small_unit_val'=>'0',
+                    'product_status'=>'1',
+                ]);
+                
+            DB::table('inv_stock')
+                ->insert([
+                    'product_id'=>$nextUnitID,
+                    'location_id'=>'3',
+                    'stock'=>'0',
+                    'stock_unit'=>'0',
+                    'stock_out'=>'0',
+                    'saldo'=>'0',
+                    'stock_status'=>'1',
+                ]);
+
+            DB::table('m_product_unit')
+                ->insert([
+                    'core_id_product'=>$productID,
+                    'product_satuan'=>'0',
+                    'product_price_order'=>'0',
+                    'status'=>'1',
+                    'product_size'=>'BESAR',
+                    'size_code'=>'1',
+                    'product_volume'=>'1'
+                ]);
+
+            
             $msg = array('success' => 'Produk berhasil ditambahkan');            
         }
         return response()->json($msg);
