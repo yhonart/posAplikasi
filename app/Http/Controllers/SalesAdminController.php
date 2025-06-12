@@ -231,4 +231,9 @@ class SalesAdminController extends Controller
     public function newCategory (){
         return view ('Z_Additional_Admin/AdminMasterData/mainCategoryNew');
     }
+
+    //STOCK INVENTORY
+    public function mainStock(){
+        return view ('Z_Additional_Admin/AdminMasterData/mainInventory');
+    }
 }

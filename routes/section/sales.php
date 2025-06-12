@@ -30,4 +30,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/mainCategory', [App\Http\Controllers\SalesAdminController::class, 'mainCategory']);
     Route::get('sales/mainCategory/newCategory', [App\Http\Controllers\SalesAdminController::class, 'newCategory']);
     Route::get('sales/mainCategory/dataTableCategory', [App\Http\Controllers\SalesAdminController::class, 'dataTableCategory']);
+    
+    Route::get('sales/mainStock', [App\Http\Controllers\SalesAdminController::class, 'mainStock']);
+    
 ?>
