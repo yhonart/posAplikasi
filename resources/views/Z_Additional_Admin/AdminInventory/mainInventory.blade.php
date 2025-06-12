@@ -3,10 +3,7 @@
         <div class="col-md-12">
             <div class="card border-0 elevation-1 card-primary collapsed-card text-xs">
                 <div class="card-header">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-plus"></i> Filter
-                    </button>
-                    <!-- /.card-tools -->
+                    <h3 class="card-title" data-card-widget="collapse">Filter</h3>
                 </div>                
                 <div class="card-body">
                     <form id="formFilterItem">
