@@ -3442,7 +3442,6 @@ class CashierController extends Controller
         ]);
         $pengeluaranKasir = $pengeluaranKasir->get();
 
-
         $pdf = PDF::loadview('Report/cashierDetailReport', compact('trxRecord','fromDate', 'endDate', 'tableReport', 'trStore', 'bankTransaction', 'creditRecord', 'tableMthodPayment', 'hakakses', 'grndTotalPembelian','pengeluaranKasir'))->setPaper("A4", 'portrait');
         return $pdf->stream();
     }
