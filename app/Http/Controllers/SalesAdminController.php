@@ -238,6 +238,18 @@ class SalesAdminController extends Controller
     }
 
     public function dataResultInv ($prdVal, $catVal){
-        return view ('Z_Additional_Admin/AdminInventory/mainInventoryTable');
+
+        $companyID = Auth::user()->campany;
+        $docInventory = DB::table('view_product_stock');
+        $docInventory = $docInventory->where('comp_id', $companyID);
+        if ($prdVal <> '0') {
+            $docInventory = $docInventory->where('idm_data_product',$prdVal);
+        }
+        elseif ($catVal <> '0') {
+            $docInventory = $docInventory->where('product_category',$catVal);
+        }
+        $docInventory = $docInventory->get();
+
+        return view ('Z_Additional_Admin/AdminInventory/mainInventoryTable', compact('docInventory'));
     }
 }
