@@ -117,7 +117,7 @@ $customerStatus = array(
                 <label class="form-label col-md-4 text-right">Sales</label>
                 <div class="col-md-4">
                     <select name="Sales" id="Sales" class="form-control form-control-sm ">
-                        <option value="{{$editCustomer->sales_code}}" readonly>{{$editCustomer->sales_name}}</option>
+                        <option value="{{$editCustomer->sales_code}}" readonly>{{$editCustomer->sales}}/{{$editCustomer->sales_name}}</option>
                         @foreach($sales as $s)
                             <option value="{{$s->sales_code}}">{{$s->sales_name}}</option>
                         @endforeach

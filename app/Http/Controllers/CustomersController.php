@@ -117,6 +117,7 @@ class CustomersController extends Controller
     }
 
     public function EditTable ($id){
+        $companyID = Auth::user()->company;
         $editCustomer = DB::table('m_customers')
             ->select('m_customers.*','m_sales.sales_name','m_sales.sales_code','c.idm_cos_group','c.group_name')
             ->leftJoin('m_sales', 'm_customers.sales','=','m_sales.sales_code')
@@ -125,7 +126,10 @@ class CustomersController extends Controller
             ->first();
 
         $sales = DB::table('m_sales')
-            ->where('sales_status',1)
+            ->where([
+                ['sales_status',1],
+                ['comp_id',$companyID]
+                ])
             ->get();
             
         $cosGroup = DB::table('m_cos_group')
