@@ -258,4 +258,23 @@ class SalesAdminController extends Controller
     public function mainStockOpname (){
         return view ('Z_Additional_Admin/AdminInventory/mainStockOpname');
     }
+
+    public function displayStockOpname (){
+        $companyID = Auth::user()->company;
+        $creator = Auth::user()->name;
+
+        $countActiveOpname = DB::table('inv_stock_opname')
+            ->where([
+                ['status','1'],
+                ['comp_id',$companyID],
+                ['created_by',$creator]
+            ])
+            ->count();
+        if ($countActiveOpname == 0) {
+            return view ('Z_Additional_Admin/AdminInventory/mainStockOpnameFormDok');
+        }
+        else {
+            return view ('Z_Additional_Admin/AdminInventory/mainStockOpnameFormItem');
+        }
+    }
 }
