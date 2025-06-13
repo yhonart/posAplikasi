@@ -253,4 +253,9 @@ class SalesAdminController extends Controller
 
         return view ('Z_Additional_Admin/AdminInventory/mainInventoryTable', compact('docInventory','companyID'));
     }
+
+    //STOCK OPNAME
+    public function mainStockOpname (){
+        return view ('Z_Additional_Admin/AdminInventory/mainStockOpname');
+    }
 }

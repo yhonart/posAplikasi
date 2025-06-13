@@ -34,4 +34,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/mainStock', [App\Http\Controllers\SalesAdminController::class, 'mainStock']);
     Route::get('sales/mainStock/dataResultInv/{prdVal}/{catVal}', [App\Http\Controllers\SalesAdminController::class, 'dataResultInv']);
     
+    Route::get('sales/mainStockOpname', [App\Http\Controllers\SalesAdminController::class, 'mainStockOpname']);
+
+    
 ?>
