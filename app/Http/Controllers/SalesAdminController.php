@@ -264,6 +264,7 @@ class SalesAdminController extends Controller
         $creator = Auth::user()->name;
         $compCode = $this->companyCode(); 
         $periode = date("mY");
+        $dateNo = date("dmy");
 
         $countNumbOpname = DB::table('inv_stock_opname')
             ->where([
@@ -278,7 +279,7 @@ class SalesAdminController extends Controller
         else {
             $no = $countNumbOpname + 1;
         }       
-        $numberDok = "OP" . $compCode . "-" . sprintf("%04d",$no);
+        $numberDok = "OP" . $compCode . $dateNo . "-" . sprintf("%04d",$no);
         $countActiveOpname = DB::table('inv_stock_opname')
             ->where([
                 ['status','1'],
@@ -290,12 +291,25 @@ class SalesAdminController extends Controller
         $mSite = DB::table('m_site')
             ->where('comp_id',$companyID)
             ->get();
-        echo $countActiveOpname;
+        
         if ($countActiveOpname == 0) {
             return view ('Z_Additional_Admin/AdminInventory/mainStockOpnameFormDok',compact('periode','numberDok','mSite'));
         }
         else {
-            return view ('Z_Additional_Admin/AdminInventory/mainStockOpnameFormItem');
+            $getNumber = DB::table('inv_stock_opname')
+                ->select('number_so')
+                ->where([
+                    ['status','1'],
+                    ['comp_id',$companyID],
+                    ['created_by',$creator]
+                ])
+                ->first();
+
+            $getProduct = DB::table('m_product')
+                ->where('comp_id',$companyID)
+                ->get();
+
+            return view ('Z_Additional_Admin/AdminInventory/mainStockOpnameFormItem', compact('getNumber','getProduct'));
         }
     }
 
