@@ -262,7 +262,23 @@ class SalesAdminController extends Controller
     public function displayStockOpname (){
         $companyID = Auth::user()->company;
         $creator = Auth::user()->name;
+        $compCode = $this->companyCode(); 
+        $periode = date("mY");
 
+        $countNumbOpname = DB::table('inv_stock_opname')
+            ->where([
+                ['comp_id',$companyID],
+                ['periode',$periode]
+                ])
+            ->count();
+
+        if ($countNumbOpname == '0') {
+            $no = '1';
+        }
+        else {
+            $no = $countNumbOpname + 1;
+        }       
+        $numberDok = "OP" . $compCode . "-" . sprintf("%04d",$no);
         $countActiveOpname = DB::table('inv_stock_opname')
             ->where([
                 ['status','1'],
@@ -270,11 +286,35 @@ class SalesAdminController extends Controller
                 ['created_by',$creator]
             ])
             ->count();
+        
         if ($countActiveOpname == 0) {
-            return view ('Z_Additional_Admin/AdminInventory/mainStockOpnameFormDok');
+            return view ('Z_Additional_Admin/AdminInventory/mainStockOpnameFormDok',compact('periode','numberDok'));
         }
         else {
             return view ('Z_Additional_Admin/AdminInventory/mainStockOpnameFormItem');
         }
+    }
+
+    public function postDokumen (Request $reqPostDok){
+        $dokNumber = $reqPostDok->dokNumber;
+        $dateDok = $reqPostDok->dateDok;
+        $location = $reqPostDok->location;
+        $description = $reqPostDok->description;
+        $periode = date("mY");
+        $createdBy = Auth::user()->name;
+
+        DB::table('inv_stock_opname')
+            ->insert([
+                'number_so'=>$dokNumber,
+                'periode'=>$periode,
+                'date_so'=>$dateDok,
+                'loc_so'=>$location,
+                'note_submit'=>$description,
+                'created_by'=>$createdBy,
+                'status'=>'1',
+                'date_input'=>now()
+            ]);
+
+        return back();
     }
 }

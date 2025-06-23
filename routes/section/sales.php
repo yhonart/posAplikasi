@@ -36,6 +36,7 @@ use Illuminate\Support\Facades\Route;
     
     Route::get('sales/mainStockOpname', [App\Http\Controllers\SalesAdminController::class, 'mainStockOpname']);
     Route::get('sales/displayStockOpname', [App\Http\Controllers\SalesAdminController::class, 'displayStockOpname']);
+    Route::post('sales/displayStockOpname/postDokumen', [App\Http\Controllers\SalesAdminController::class, 'postDokumen']);
 
     
 ?>

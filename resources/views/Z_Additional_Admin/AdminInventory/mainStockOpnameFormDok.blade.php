@@ -7,7 +7,7 @@
             <div class="form-group row">
                 <label for="dokNumber" class="col-md-3">No.Dokumen</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="dokNumber" id="dokNumber">
+                    <input type="text" class="form-control form-control-sm" name="dokNumber" id="dokNumber" value="{{$numberDok}}" readonly>
                 </div>
             </div>
             <div class="form-group row">
@@ -36,5 +36,34 @@
 </div>
 
 <script>
+$(document).ready(function(){
+    $("form#FormNewCategory").submit(function(event){
+        event.preventDefault();
+        alertify.confirm("Apakah Benar Anda Akan Menyimpan Dokumen Ini?",
+        function(){
+            $.ajax({
+                url: "{{route('sales')}}/displayStockOpname/postDokumen",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {                    
+                    alertify.success('Dokumen Berhasil Tersimpan');
+                    loadOpname ();
+                },                
+            });
+        },
+        function(){
+            alertify.error('Cancel');
+        });      
+        
+        return false;
+    });
 
+    function loadOpname (){
+        $("#displayStockOpname").load("{{route('sales')}}/displayStockOpname");
+    }
+});
 </script>
