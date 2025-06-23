@@ -306,6 +306,7 @@ class SalesAdminController extends Controller
         $description = $reqPostDok->description;
         $periode = date("mY");
         $createdBy = Auth::user()->name;
+        $companyID = Auth::user()->company;
 
         DB::table('inv_stock_opname')
             ->insert([
@@ -316,7 +317,8 @@ class SalesAdminController extends Controller
                 'note_submit'=>$description,
                 'created_by'=>$createdBy,
                 'status'=>'1',
-                'date_input'=>now()
+                'date_input'=>now(),
+                'comp_id'=>$companyID
             ]);
 
         return back();
