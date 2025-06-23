@@ -19,7 +19,11 @@
             <div class="form-group row">
                 <label for="location" class="col-md-3">Lokasi</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="location" id="location">
+                    <select name="location" id="location" class="form-control form-control-sm">
+                        @foreach($mSite as $ms)
+                            <option value="{{$ms->idm_site}}">{{$ms->site_name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="form-group row">

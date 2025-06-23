@@ -286,9 +286,13 @@ class SalesAdminController extends Controller
                 ['created_by',$creator]
             ])
             ->count();
+
+        $mSite = DB::table('m_site')
+            ->where('comp_id',$companyID)
+            ->get();
         
         if ($countActiveOpname == 0) {
-            return view ('Z_Additional_Admin/AdminInventory/mainStockOpnameFormDok',compact('periode','numberDok'));
+            return view ('Z_Additional_Admin/AdminInventory/mainStockOpnameFormDok',compact('periode','numberDok','mSite'));
         }
         else {
             return view ('Z_Additional_Admin/AdminInventory/mainStockOpnameFormItem');
