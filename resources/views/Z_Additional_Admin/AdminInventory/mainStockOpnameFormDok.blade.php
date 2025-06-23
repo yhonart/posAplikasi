@@ -36,34 +36,42 @@
 </div>
 
 <script>
-$(document).ready(function(){
-    $("form#FormNewCategory").submit(function(event){
-        event.preventDefault();
-        alertify.confirm("Apakah Benar Anda Akan Menyimpan Dokumen Ini?",
-        function(){
-            $.ajax({
-                url: "{{route('sales')}}/displayStockOpname/postDokumen",
-                type: 'POST',
-                data: new FormData(this),
-                async: true,
-                cache: true,
-                contentType: false,
-                processData: false,
-                success: function (data) {                    
-                    alertify.success('Dokumen Berhasil Tersimpan');
-                    loadOpname ();
-                },                
-            });
-        },
-        function(){
-            alertify.error('Cancel');
-        });      
-        
-        return false;
-    });
+    $( function() {
+        $( "#dateDok" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('#dateDok').datepicker("setDate",new Date());
+    } );
+    $(document).ready(function(){
+        $("form#FormNewCategory").submit(function(event){
+            event.preventDefault();
+            alertify.confirm("Apakah Benar Anda Akan Menyimpan Dokumen Ini?",
+            function(){
+                $.ajax({
+                    url: "{{route('sales')}}/displayStockOpname/postDokumen",
+                    type: 'POST',
+                    data: new FormData(this),
+                    async: true,
+                    cache: true,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {                    
+                        alertify.success('Dokumen Berhasil Tersimpan');
+                        loadOpname ();
+                    },                
+                });
+            },
+            function(){
+                alertify.error('Cancel');
+            });      
+            
+            return false;
+        });
 
-    function loadOpname (){
-        $("#displayStockOpname").load("{{route('sales')}}/displayStockOpname");
-    }
-});
+        function loadOpname (){
+            $("#displayStockOpname").load("{{route('sales')}}/displayStockOpname");
+        }
+    });
 </script>
