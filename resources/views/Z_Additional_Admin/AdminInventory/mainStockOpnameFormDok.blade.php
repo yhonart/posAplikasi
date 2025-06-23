@@ -51,26 +51,19 @@
     $(document).ready(function(){
         $("form#formDokStockOpname").submit(function(event){
             event.preventDefault();
-            alertify.confirm("Apakah Benar Anda Akan Menyimpan Dokumen Ini?",
-            function(){
-                $.ajax({
-                    url: "{{route('sales')}}/displayStockOpname/postDokumen",
-                    type: 'POST',
-                    data: new FormData(this),
-                    async: true,
-                    cache: true,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {                    
-                        alertify.success('Dokumen Berhasil Tersimpan');
-                        loadOpname ();
-                    },                
-                });
-            },
-            function(){
-                alertify.error('Cancel');
-            });      
-            
+            $.ajax({
+                url: "{{route('sales')}}/displayStockOpname/postDokumen",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {                    
+                    alertify.success('Dokumen Berhasil Tersimpan');
+                    loadOpname ();
+                },                
+            });
             return false;
         });
 
