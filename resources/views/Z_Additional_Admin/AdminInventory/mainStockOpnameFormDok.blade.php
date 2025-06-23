@@ -49,7 +49,7 @@
         $('#dateDok').datepicker("setDate",new Date());
     } );
     $(document).ready(function(){
-        $("form#FormNewCategory").submit(function(event){
+        $("form#formDokStockOpname").submit(function(event){
             event.preventDefault();
             alertify.confirm("Apakah Benar Anda Akan Menyimpan Dokumen Ini?",
             function(){
