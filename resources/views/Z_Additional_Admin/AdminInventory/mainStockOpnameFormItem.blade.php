@@ -174,7 +174,7 @@ $opnameNumber = $getNumber->number_so;
         }
 
         function loadPage (){
-            $linkRoute = "displayStockOpname";
+            const linkRoute = "displayStockOpname";
             $("#divContent").load("{{route('sales')}}/"+linkRoute);
         }
     });
