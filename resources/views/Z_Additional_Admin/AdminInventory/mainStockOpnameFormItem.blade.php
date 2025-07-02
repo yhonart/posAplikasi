@@ -15,9 +15,9 @@ $opnameNumber = $getNumber->number_so;
             <div class="card-header">
                 <h3 class="card-title">Stockopname {{$opnameNumber}}</h3>
             </div>
-            <div class="card-body p-1 text-xs">
+            <div class="card-body p-1">
                 <table class="table table-sm table-striped table-borderless">
-                    <thead>
+                    <thead class="text-xs">
                         <tr>
                             <th>#</th>
                             <th width="30%">Product</th>
@@ -54,7 +54,7 @@ $opnameNumber = $getNumber->number_so;
                                 <input type="text" name="total" id="total" class="form-control form-control-sm" readonly>
                             </td>
                             <td class="p-1">
-                                <input type="submit" class="btn btn-xs btn-flat">
+                                <input type="button" class="btn btn-default font-weight-bold btn-xs btn-flat" id="btnSimpanSOP">
                             </td>
                         </tr>
                     </tbody>
@@ -110,6 +110,8 @@ $opnameNumber = $getNumber->number_so;
                 })
             }
         });
+        
+        $("#qty").on('input', computeSaldo);
 
         function computeSaldo(){
             let lastStockVal = $("#lastStock").val(),
@@ -119,7 +121,18 @@ $opnameNumber = $getNumber->number_so;
                 return
             }
 
-            $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));            
+            $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));   
+            $("#btnSimpanSOP").removeClass('btn-default');         
+            $("#btnSimpanSOP").addClass('bg-success');         
+        }
+
+        $("#btnSimpanSOP").on('click', function (event){
+            event.preventDefault();
+            addActivityItem();
+        })
+
+        function addActivityItem() {
+            alert ("OK");
         }
     });
 </script>
