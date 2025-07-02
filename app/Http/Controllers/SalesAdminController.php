@@ -422,6 +422,6 @@ class SalesAdminController extends Controller
                 ['a.sto_number',$docNo],
             ])
             ->get(); 
-        return view('Z_Additional_Admin/AdminInventory/newStockOpnameBarangTable', compact('listBarang'));
+        return view('Z_Additional_Admin/AdminInventory/tableStockOpnameItem', compact('listBarang'));
     }
 }
