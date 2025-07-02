@@ -152,7 +152,9 @@ $opnameNumber = $getNumber->number_so;
                     satuanVal = $("#satuan").val(),
                     qtyVal = $("#qty").val(),
                     lastStockVal = $("#lastStock").val(),
-                    totalVal = $("#total").val();
+                    totalVal = $("#total").val(),
+                    invID = $("#invID").val();
+                    
             let dataForm = {product:prdVal,satuan:satuanVal,qty:qtyVal,lastStock:lastStockVal,total:totalVal,dokNumber:documentNumber,invID:invID};  
             submitData(dataForm);                  
             $("#tableStockOpname").fadeIn("slow");
