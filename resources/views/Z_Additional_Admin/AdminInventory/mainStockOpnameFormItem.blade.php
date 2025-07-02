@@ -59,6 +59,19 @@ $opnameNumber = $getNumber->number_so;
                         </tr>
                     </tbody>
                     <tbody id="inputListOpname"></tbody>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-success font-weight-bold">Simpan</button>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
