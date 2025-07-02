@@ -3,6 +3,14 @@ $opnameNumber = $getNumber->number_so;
 ?>
 <div class="row">
     <div class="col-md-12">
+        <div class=" btn-group">
+            <button class=" btn btn-default btn-sm">List Data Opname</button>
+            <button class=" btn btn-default btn-sm">Input Dok.Stock Opname</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
         <div class="card card-purple">
             <div class="card-header">
                 <h3 class="card-title">Stockopname {{$opnameNumber}}</h3>
