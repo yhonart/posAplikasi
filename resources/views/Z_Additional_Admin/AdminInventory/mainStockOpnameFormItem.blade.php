@@ -1,8 +1,11 @@
+<?php
+$opnameNumber = $getNumber->number_so;
+?>
 <div class="row">
     <div class="col-md-12">
         <div class="card card-purple">
             <div class="card-header">
-                <h3 class="card-title">Stock Opname {{$getNumber->number_so}}</h3>
+                <h3 class="card-title">Stockopname {{$opnameNumber}}</h3>
             </div>
             <div class="card-body p-1">
                 <table class="table table-sm table-striped">
@@ -28,7 +31,9 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="text" name="satuan" id="satuan" class="form-control form-control-sm">
+                                <select class="form-control form-control-sm" name="satuan" id="satuan">
+                                    <option value="0" readonly>--</option>
+                                </select>
                             </td>
                             <td>
                                 <input type="number" name="qty" id="qty" class="form-control form-control-sm">
@@ -46,3 +51,33 @@
         </div>
     </div>
 </div>
+<script>
+    $(function(){
+        $('#product').select2({
+            width: 'resolve'
+        });
+        $("#product").focus();
+        let paramId = "{{$opnameNumber}}";               
+    });
+
+    $(document).ready(function(){
+        let productID = document.getElementById("product"),
+            satuan = document.getElementById("satuan"),
+            qty = document.getElementById("qty"),
+            laststock = document.getElementById("lastStock"),
+            documentNumber = "{{$opnameNumber}}";
+
+        $("#product").change(function(){
+            $(".LOAD-SPINNER").fadeIn();
+            let productID = $(this).find(":selected").val();
+            $.ajax({
+                type : 'get',
+                url : "{{route('sales')}}/displaySatuanProduct/" + productID,
+                success : function(response){     
+                    $(".LOAD-SPINNER").fadeOut();
+                    $("#satuan").html(response).focus();
+                }
+            });
+        })
+    });
+</script>

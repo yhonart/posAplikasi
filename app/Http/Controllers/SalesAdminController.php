@@ -337,4 +337,16 @@ class SalesAdminController extends Controller
 
         return back();
     }
+
+    public function displaySatuanProduct ($prdID){
+        $productSatuan = DB::table('m_product_unit')
+            ->where([
+                ['core_id_product',$prdID],
+                ['product_volume','!=','0'],
+                ['product_satuan','!=','']
+                ])
+            ->orderBy('size_code','desc')
+            ->get();
+        return view('Z_Additional_Admin/AdminInventory/listSatuan', compact('productSatuan'));
+    }
 }
