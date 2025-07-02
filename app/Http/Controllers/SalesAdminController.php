@@ -416,6 +416,12 @@ class SalesAdminController extends Controller
     }
 
     public function tableInputItem($docNo){
-        echo $docNo;
+        $listBarang = DB::table('inv_list_opname as a')
+            ->join('view_product_stock as b','a.inv_id','=','b.idinv_stock')
+            ->where([
+                ['a.sto_number',$docNo],
+            ])
+            ->get(); 
+        return view('Z_Additional_Admin/AdminInventory/newStockOpnameBarangTable', compact('listBarang'));
     }
 }
