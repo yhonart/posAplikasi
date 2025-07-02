@@ -166,17 +166,7 @@ $opnameNumber = $getNumber->number_so;
                 data :  dataForm,
                 success : function(data){
                     $(".LOAD-SPINNER").fadeOut();
-                    if(data.success){
-                        alertify.success(data.success);
-                        loadDisplay(loadDiv);
-                    }
-                    else if (data.warning){
-                        alertify
-                        .alert(data.warning, function(){
-                            alertify.message('GAGAL! input Data');
-                        }).set({title:"WARNING INFO"});
-                    }
-                    $("#product").focus().select();
+                    
                 }
             });
         }
