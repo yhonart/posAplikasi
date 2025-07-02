@@ -72,11 +72,11 @@ $opnameNumber = $getNumber->number_so;
         $('#product').select2({
             width: 'resolve'
         });
-        $("#product").focus();
-        let paramId = "{{$opnameNumber}}";               
+        $("#product").focus();             
     });
 
     $(document).ready(function(){
+        loadListData();
         let productID = document.getElementById("product"),
             satuan = document.getElementById("satuan"),
             qty = document.getElementById("qty"),
@@ -176,6 +176,16 @@ $opnameNumber = $getNumber->number_so;
         function loadPage (){
             const linkRoute = "displayStockOpname";
             $("#divContent").load("{{route('sales')}}/"+linkRoute);
+        }
+
+        function loadListData(){
+            $.ajax({
+                type : 'get',
+                url : "{{route('sales')}}/displayStockOpname/tableInputItem/"+documentNumber,
+                success : function(response){
+                    $('#inputListOpname').html(response);
+                }
+            });
         }
     });
 </script>

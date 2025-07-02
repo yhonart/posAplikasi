@@ -40,6 +40,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/displaySatuanProduct/{prdID}', [App\Http\Controllers\SalesAdminController::class, 'displaySatuanProduct']);
     Route::get('sales/displayStock/{satuan}/{prdID}/{loc}', [App\Http\Controllers\SalesAdminController::class, 'displayStock']);
     Route::post('sales/displayStockOpname/postItem', [App\Http\Controllers\SalesAdminController::class, 'postItem']);
+    Route::get('sales/displayStockOpname/tableInputItem/{docNo}', [App\Http\Controllers\SalesAdminController::class, 'tableInputItem']);
 
     
 ?>

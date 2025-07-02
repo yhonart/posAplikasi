@@ -414,4 +414,8 @@ class SalesAdminController extends Controller
                 'saldo_konv'=>$lastStock
             ]);
     }
+
+    public function tableInputItem($docNo){
+        echo $docNo;
+    }
 }
