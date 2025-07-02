@@ -154,7 +154,7 @@ $opnameNumber = $getNumber->number_so;
                     qtyVal = $("#qty").val(),
                     lastStockVal = $("#lastStock").val(),
                     totalVal = $("#total").val(),
-                    invID = $("#invID").val();
+                    invID = $("#hiddenIDInv").val();
 
             let dataForm = {product:prdVal,satuan:satuanVal,qty:qtyVal,lastStock:lastStockVal,total:totalVal,dokNumber:documentNumber,invID:invID};  
             submitData(dataForm);                  
