@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
+        <div class="card card-purple">
             <div class="card-header">
                 <h3 class="card-title">Stock Opname {{$getNumber->number_so}}</h3>
             </div>
