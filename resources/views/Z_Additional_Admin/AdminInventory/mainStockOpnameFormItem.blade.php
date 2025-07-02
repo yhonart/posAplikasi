@@ -22,7 +22,7 @@ $opnameNumber = $getNumber->number_so;
                     <tbody>
                         <tr>
                             <td>#</td>
-                            <td>
+                            <td class="p-1">
                                 <select name="product" id="product" class="form-control form-control-sm">
                                     <option value="0"></option>
                                     @foreach($getProduct as $gp)
@@ -30,18 +30,18 @@ $opnameNumber = $getNumber->number_so;
                                     @endforeach
                                 </select>
                             </td>
-                            <td>
+                            <td class="p-1">
                                 <select class="form-control form-control-sm" name="satuan" id="satuan">
                                     <option value="0" readonly>--</option>
                                 </select>
                             </td>
-                            <td>
+                            <td class="p-1">
                                 <input type="number" name="qty" id="qty" class="form-control form-control-sm">
                             </td>
-                            <td>
+                            <td class="p-1">
                                 <input type="text" name="lastStock" id="lastStock" class="form-control form-control-sm">
                             </td>
-                            <td>
+                            <td class="p-1">
                                 <input type="submit" class="btn btn-xs btn-flat">
                             </td>
                         </tr>
