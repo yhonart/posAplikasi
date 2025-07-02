@@ -67,7 +67,7 @@ $opnameNumber = $getNumber->number_so;
                             <td></td>
                             <td></td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-success font-weight-bold">Simpan</button>
+                                <button type="button" class="btn btn-sm btn-success font-weight-bold btn-block btn-flat" id="btnSimpanOpname">Simpan</button>
                             </td>
                             <td></td>
                         </tr>
@@ -158,6 +158,24 @@ $opnameNumber = $getNumber->number_so;
         $("#btnSimpanSOP").on('click', function (event){
             event.preventDefault();
             addActivityItem();
+        });
+
+        $("#btnSimpanOpname").on('click', function (event){
+            alertify.confirm("Apakah anda yakin ingin menyimpan transaksi ini ?",
+            function(){
+                alertify.success('Ok');
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('sales')}}/displayStockOpname/submitTransItem/"+documentNumber,
+                    success : function(response){
+                        loadPage ();
+                    }
+                });
+            },
+            function(){
+                alertify.error('Cancel');
+            });
+            
         })
 
         function addActivityItem() {
