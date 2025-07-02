@@ -181,6 +181,7 @@ $opnameNumber = $getNumber->number_so;
     });
 
     function loadListData(){
+        let documentNumber = "{{$opnameNumber}}";
         $.ajax({
             type : 'get',
             url : "{{route('sales')}}/displayStockOpname/tableInputItem/"+documentNumber,
