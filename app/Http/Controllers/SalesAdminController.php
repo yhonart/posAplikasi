@@ -385,4 +385,33 @@ class SalesAdminController extends Controller
             }
             return response()->json(['error' => 'Product not found'], 404);
     }
+
+    public function postItem (Request $reqItem){
+        $dokNumber = $reqItem->dokNumber;
+        $productID = $reqItem->product;
+        $satuan = explode("|", $reqItem->satuan);
+        $qty = $reqItem->qty;
+        $lastStock = $reqItem->lastStock;
+        $total = $reqItem->total;
+        $invID = $reqItem->invID;
+        $satuanSize = $satuan[0];
+        $satuanName = $satuan[1];
+        $createdBy = Auth::user()->name;
+        
+        DB::table('inv_list_opname')
+            ->insert([
+                'sto_number'=>$dokNumber,
+                'inv_id'=>$invID,
+                'product_id'=>$productID,
+                'product_size'=>$satuanSize,
+                'last_stock'=>$lastStock,
+                'input_qty'=>$qty,
+                'selisih'=>$total,
+                'created_date'=>now(),
+                'created_by'=>$createdBy,
+                'status'=>'1',
+                'display'=>'1',
+                'saldo_konv'=>$lastStock
+            ]);
+    }
 }

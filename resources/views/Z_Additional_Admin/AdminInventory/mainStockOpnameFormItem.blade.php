@@ -16,7 +16,7 @@ $opnameNumber = $getNumber->number_so;
                 <h3 class="card-title">Stockopname {{$opnameNumber}}</h3>
             </div>
             <div class="card-body p-1">
-                <table class="table table-sm table-striped table-borderless">
+                <table class="table table-sm table-striped table-borderless" id="tableStockOpname">
                     <thead class="text-xs">
                         <tr>
                             <th>#</th>
@@ -33,7 +33,7 @@ $opnameNumber = $getNumber->number_so;
                             <td>#</td>
                             <td class="p-1">
                                 <select name="product" id="product" class="form-control form-control-sm" autocomplete="off">
-                                    <option value="0"></option>
+                                    <option value="0|0"></option>
                                     @foreach($getProduct as $gp)
                                         <option value="{{$gp->idm_data_product}}">{{$gp->product_name}}</option>
                                     @endforeach
@@ -64,6 +64,9 @@ $opnameNumber = $getNumber->number_so;
         </div>
     </div>
 </div>
+<div id="otherPass">
+    <input type="hidden" name="hiddenIDInv" id="hiddenIDInv" >
+</div>
 <script>
     $(function(){
         $('#product').select2({
@@ -78,7 +81,8 @@ $opnameNumber = $getNumber->number_so;
             satuan = document.getElementById("satuan"),
             qty = document.getElementById("qty"),
             laststock = document.getElementById("lastStock"),
-            documentNumber = "{{$opnameNumber}}";
+            documentNumber = "{{$opnameNumber}}",
+            hiddenIDInv = document.getElementById("hiddenIDInv");
 
         $("#product").change(function(){
             $(".LOAD-SPINNER").fadeIn();
@@ -105,6 +109,7 @@ $opnameNumber = $getNumber->number_so;
                 .then(response => response.json())
                 .then(data => {
                     lastStock.value = data.lastQty;
+                    hiddenIDInv.value = data.invID;
                     qty.value = '0';                  
                     $("#qty").focus();
                     computeSaldo();
@@ -142,7 +147,38 @@ $opnameNumber = $getNumber->number_so;
         })
 
         function addActivityItem() {
-            alert ("OK");
+            $("#tableStockOpname").fadeOut("slow");
+                let prdVal = $("#product").val(),
+                    satuanVal = $("#satuan").val(),
+                    qtyVal = $("#qty").val(),
+                    lastStockVal = $("#lastStock").val(),
+                    totalVal = $("#total").val();
+            let dataForm = {product:prdVal,satuan:satuanVal,qty:qtyVal,lastStock:lastStockVal,total:totalVal,dokNumber:documentNumber,invID:invID};  
+            submitData(dataForm);                  
+            $("#tableStockOpname").fadeIn("slow");
+        }
+
+        function submitData(dataForm){
+            $(".LOAD-SPINNER").fadeIn();
+            $.ajax({
+                type : 'post',
+                url : "{{route('sales')}}/displayStockOpname/postItem",
+                data :  dataForm,
+                success : function(data){
+                    $(".LOAD-SPINNER").fadeOut();
+                    if(data.success){
+                        alertify.success(data.success);
+                        loadDisplay(loadDiv);
+                    }
+                    else if (data.warning){
+                        alertify
+                        .alert(data.warning, function(){
+                            alertify.message('GAGAL! input Data');
+                        }).set({title:"WARNING INFO"});
+                    }
+                    $("#product").focus().select();
+                }
+            });
         }
     });
 </script>
