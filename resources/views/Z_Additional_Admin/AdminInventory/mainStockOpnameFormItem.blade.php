@@ -154,7 +154,7 @@ $opnameNumber = $getNumber->number_so;
                     lastStockVal = $("#lastStock").val(),
                     totalVal = $("#total").val(),
                     invID = $("#invID").val();
-                    
+
             let dataForm = {product:prdVal,satuan:satuanVal,qty:qtyVal,lastStock:lastStockVal,total:totalVal,dokNumber:documentNumber,invID:invID};  
             submitData(dataForm);                  
             $("#tableStockOpname").fadeIn("slow");
@@ -167,8 +167,7 @@ $opnameNumber = $getNumber->number_so;
                 url : "{{route('sales')}}/displayStockOpname/postItem",
                 data :  dataForm,
                 success : function(data){
-                    $(".LOAD-SPINNER").fadeOut();
-                    
+                    $(".LOAD-SPINNER").fadeOut();                    
                 }
             });
         }

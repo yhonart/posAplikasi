@@ -407,7 +407,7 @@ class SalesAdminController extends Controller
                 'last_stock'=>$lastStock,
                 'input_qty'=>$qty,
                 'selisih'=>$total,
-                'created_date'=>now(),
+                'created_at'=>now(),
                 'created_by'=>$createdBy,
                 'status'=>'1',
                 'display'=>'1',
