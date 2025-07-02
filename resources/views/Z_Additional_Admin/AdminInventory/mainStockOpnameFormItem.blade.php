@@ -174,7 +174,7 @@ $opnameNumber = $getNumber->number_so;
             },
             function(){
                 alertify.error('Cancel');
-            }).set('frameless', true).set({title:"Notif!"});
+            }).set({title:"Notif!"});
             
         })
 
