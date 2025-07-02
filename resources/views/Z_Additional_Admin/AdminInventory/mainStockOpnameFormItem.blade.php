@@ -1,11 +1,11 @@
 <?php
 $opnameNumber = $getNumber->number_so;
 ?>
-<div class="row">
+<div class="row mb-2">
     <div class="col-md-12">
         <div class=" btn-group">
-            <button class=" btn btn-default btn-sm">List Data Opname</button>
-            <button class=" btn btn-default btn-sm">Input Dok.Stock Opname</button>
+            <button class=" btn btn-default btn-sm border-0 font-weight-bold">List Data Opname</button>
+            <button class=" btn btn-default btn-sm border-0 font-weight-bold">Input Dok.Stock Opname</button>
         </div>
     </div>
 </div>
