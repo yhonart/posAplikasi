@@ -351,10 +351,14 @@ class SalesAdminController extends Controller
     }
 
     public function displayStock ($satuan, $prdID, $loc){
+        $explodeSatuan = explode("|",$satuan);
+        $prdSize = $explodeSatuan[0];
+        $prdSatuan = $explodeSatuan[1];
+
         $countData = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product',$prdID],
-                ['product_size',$satuan],
+                ['product_size',$prdSize],
                 ['location_id',$loc],
                 ])
             ->count();
@@ -362,7 +366,7 @@ class SalesAdminController extends Controller
         $lastStock = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product',$prdID],
-                ['product_size',$satuan],
+                ['product_size',$prdSize],
                 ['location_id',$loc],
                 ])
             ->first();
