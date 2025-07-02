@@ -167,9 +167,15 @@ $opnameNumber = $getNumber->number_so;
                 url : "{{route('sales')}}/displayStockOpname/postItem",
                 data :  dataForm,
                 success : function(data){
-                    $(".LOAD-SPINNER").fadeOut();                    
+                    $(".LOAD-SPINNER").fadeOut();   
+                    loadPage ();                 
                 }
             });
+        }
+
+        function loadPage (){
+            $linkRoute = "displayStockOpname";
+            $("#divContent").load("{{route('sales')}}/"+linkRoute);
         }
     });
 </script>
