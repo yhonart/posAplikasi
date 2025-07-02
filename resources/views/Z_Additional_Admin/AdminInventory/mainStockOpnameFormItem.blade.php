@@ -16,7 +16,7 @@ $opnameNumber = $getNumber->number_so;
                 <h3 class="card-title">Stockopname {{$opnameNumber}}</h3>
             </div>
             <div class="card-body p-1">
-                <table class="table table-sm table-striped table-bordered">
+                <table class="table table-sm table-striped table-borderless">
                     <thead>
                         <tr>
                             <th>#</th>
