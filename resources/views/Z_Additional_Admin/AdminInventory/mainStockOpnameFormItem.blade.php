@@ -103,7 +103,8 @@ $opnameNumber = $getNumber->number_so;
                 fetch("{{route('sales')}}/displayStock/"+satuanVal+"/"+productVal+"/"+location)
                 .then(response => response.json())
                 .then(data => {
-                    lastStock.value = data.lastQty;                    
+                    lastStock.value = data.lastQty;
+                    qty.value = '0';                  
                     $("#qty").focus();
                     computeSaldo();
                 })
