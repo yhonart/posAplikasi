@@ -58,6 +58,7 @@ $opnameNumber = $getNumber->number_so;
                             </td>
                         </tr>
                     </tbody>
+                    <tbody id="inputListOpname"></tbody>
                 </table>
             </div>
         </div>
