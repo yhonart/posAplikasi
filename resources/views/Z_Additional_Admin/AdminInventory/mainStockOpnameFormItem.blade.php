@@ -54,7 +54,7 @@ $opnameNumber = $getNumber->number_so;
                                 <input type="text" name="total" id="total" class="form-control form-control-sm" readonly>
                             </td>
                             <td class="p-1">
-                                <input type="button" class="btn btn-default font-weight-bold btn-xs btn-flat" id="btnSimpanSOP">
+                                <button type="button" class="btn btn-default font-weight-bold btn-xs btn-flat" id="btnSimpanSOP">Simpan</button>
                             </td>
                         </tr>
                     </tbody>
