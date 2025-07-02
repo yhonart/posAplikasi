@@ -65,7 +65,7 @@ $opnameNumber = $getNumber->number_so;
     </div>
 </div>
 <div id="otherPass">
-    <input type="text" name="hiddenIDInv" id="hiddenIDInv" >
+    <input type="hidden" name="hiddenIDInv" id="hiddenIDInv" >
 </div>
 <script>
     $(function(){
