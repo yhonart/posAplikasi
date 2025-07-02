@@ -20,7 +20,7 @@ $opnameNumber = $getNumber->number_so;
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Product</th>
+                            <th width="30%">Product</th>
                             <th>Satuan</th>
                             <th>Qty</th>
                             <th>Last Stock</th>
