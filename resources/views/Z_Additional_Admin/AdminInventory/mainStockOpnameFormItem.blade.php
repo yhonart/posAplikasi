@@ -15,7 +15,7 @@ $opnameNumber = $getNumber->number_so;
             <div class="card-header">
                 <h3 class="card-title">Stockopname {{$opnameNumber}}</h3>
             </div>
-            <div class="card-body p-1">
+            <div class="card-body p-1 text-xs">
                 <table class="table table-sm table-striped table-borderless">
                     <thead>
                         <tr>
@@ -24,6 +24,7 @@ $opnameNumber = $getNumber->number_so;
                             <th>Satuan</th>
                             <th>Qty</th>
                             <th>Last Stock</th>
+                            <th>Total Opname</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -31,7 +32,7 @@ $opnameNumber = $getNumber->number_so;
                         <tr>
                             <td>#</td>
                             <td class="p-1">
-                                <select name="product" id="product" class="form-control form-control-sm">
+                                <select name="product" id="product" class="form-control form-control-sm" autocomplete="off">
                                     <option value="0"></option>
                                     @foreach($getProduct as $gp)
                                         <option value="{{$gp->idm_data_product}}">{{$gp->product_name}}</option>
@@ -44,10 +45,13 @@ $opnameNumber = $getNumber->number_so;
                                 </select>
                             </td>
                             <td class="p-1">
-                                <input type="number" name="qty" id="qty" class="form-control form-control-sm">
+                                <input type="number" name="qty" id="qty" class="form-control form-control-sm" autocomplete="off">
                             </td>
                             <td class="p-1">
-                                <input type="text" name="lastStock" id="lastStock" class="form-control form-control-sm">
+                                <input type="text" name="lastStock" id="lastStock" class="form-control form-control-sm" readonly>
+                            </td>
+                            <td class="p-1">
+                                <input type="text" name="total" id="total" class="form-control form-control-sm" readonly>
                             </td>
                             <td class="p-1">
                                 <input type="submit" class="btn btn-xs btn-flat">
@@ -86,6 +90,35 @@ $opnameNumber = $getNumber->number_so;
                     $("#satuan").html(response).focus();
                 }
             });
-        })
+        });
+
+        satuan.addEventListener("change", function(){
+            $(".LOAD-SPINNER").fadeIn();
+            let satuanVal = $(this).find(":selected").val(),
+                productVal = $("#product").val(),
+                location = "{{$getNumber->loc_so}}";
+            // alert (location); 
+            if(satuanVal !== '0' || satuanVal !== undefined){
+                $(".LOAD-SPINNER").fadeOut();
+                fetch("{{route('sales')}}/displayStock/"+satuanVal+"/"+productVal+"/"+location)
+                .then(response => response.json())
+                .then(data => {
+                    lastStock.value = data.lastQty;                    
+                    $("#qty").focus();
+                    computeSaldo();
+                })
+            }
+        });
+
+        function computeSaldo(){
+            let lastStockVal = $("#lastStock").val(),
+                qty = $("#qty").val();
+            
+            if (typeof qty == "undefined") {
+                return
+            }
+
+            $("#total").val(parseFloat(qty) - parseFloat(lastStockVal));            
+        }
     });
 </script>

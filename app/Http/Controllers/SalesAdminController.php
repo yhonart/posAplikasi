@@ -297,7 +297,7 @@ class SalesAdminController extends Controller
         }
         else {
             $getNumber = DB::table('inv_stock_opname')
-                ->select('number_so')
+                ->select('number_so','loc_so')
                 ->where([
                     ['status','1'],
                     ['comp_id',$companyID],
@@ -348,5 +348,41 @@ class SalesAdminController extends Controller
             ->orderBy('size_code','desc')
             ->get();
         return view('Z_Additional_Admin/AdminInventory/listSatuan', compact('productSatuan'));
+    }
+
+    public function displayStock ($satuan, $prdID, $loc){
+        $countData = DB::table('view_product_stock')
+            ->where([
+                ['idm_data_product',$prdID],
+                ['product_size',$satuan],
+                ['location_id',$loc],
+                ])
+            ->count();
+
+        $lastStock = DB::table('view_product_stock')
+            ->where([
+                ['idm_data_product',$prdID],
+                ['product_size',$satuan],
+                ['location_id',$loc],
+                ])
+            ->first();
+            
+            if($countData<>'0'){
+                return response()->json([
+                    'lastQty' => $lastStock->stock,
+                    'invID' => $lastStock->idinv_stock,
+                    'unitID' => $lastStock->product_id,
+                    'unitVol' => $lastStock->product_volume,
+                ]);
+            }
+            else{
+                return response()->json([
+                    'lastQty' => '0',
+                    'invID' => '0',
+                    'unitID' => '0',
+                    'unitVol' => $satuan,
+                ]);
+            }
+            return response()->json(['error' => 'Product not found'], 404);
     }
 }
