@@ -127,6 +127,15 @@ $opnameNumber = $getNumber->number_so;
             $("#btnSimpanSOP").addClass('bg-success');         
         }
 
+        var actqty = document.getElementById("qty");
+
+        actqty.addEventListener('keydown', function(event) {  
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addActivityItem();
+            }   
+        });
+
         $("#btnSimpanSOP").on('click', function (event){
             event.preventDefault();
             addActivityItem();
