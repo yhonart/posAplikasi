@@ -20,7 +20,7 @@
     });
 
     $(document).ready(function() {
-        $('.ITEM-MAIN-MENU').on('click', function (e) {
+        $('.OPNAME-MENU').on('click', function (e) {
             e.preventDefault();
             let path = $(this).attr('data-path');
 
