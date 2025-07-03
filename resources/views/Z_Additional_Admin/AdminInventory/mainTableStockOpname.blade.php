@@ -14,6 +14,17 @@
                     <th></th>
                 </tr>
             </thead>
+            <tbody>
+                @foreach($tableOpname as  $to)
+                    <tr>
+                        <td>{{$to->number_so}}</td>
+                        <td>{{$to->date_so}}</td>
+                        <td>{{$to->site_name}}</td>
+                        <td>{{$to->status}}</td>
+                        <td>{{$to->created_by}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 </div>
