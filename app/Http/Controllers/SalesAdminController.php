@@ -467,9 +467,13 @@ class SalesAdminController extends Controller
     }
 
     public function mainTableStockOpname (){
+        $compID = Auth::user()->company;
         $tableOpname = DB::table('inv_stock_opname as a')
             ->select('a.*','b.site_code','b.site_name')
             ->leftJoin('m_site as b','a.loc_so','=','b.idm_site')
+            ->where([
+                ['a.comp_id',$compID]
+            ])
             ->get();
         return view('Z_Additional_Admin/AdminInventory/mainTableStockOpname', compact('tableOpname'));        
     }
