@@ -66,7 +66,7 @@ $opnameNumber = $getNumber->number_so;
 </div>
 <div class="row">
     <div class="col-md-2">
-        <button type="button" class="btn btn-sm btn-danger font-weight-bold btn-block btn-flat" id="btnSimpanOpname">Batalkan</button>
+        <button type="button" class="btn btn-sm btn-danger font-weight-bold btn-block btn-flat" id="btnBatalTransaksi">Batalkan</button>
     </div>
     <div class="col-md-2">
         <button type="button" class="btn btn-sm btn-success font-weight-bold btn-block btn-flat" id="btnSimpanOpname">Simpan</button>
