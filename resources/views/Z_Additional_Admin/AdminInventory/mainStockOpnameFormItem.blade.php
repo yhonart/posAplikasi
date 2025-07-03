@@ -171,7 +171,25 @@ $opnameNumber = $getNumber->number_so;
                 alertify.error('Cancel');
             }).set({title:"Notif!"});
             
-        })
+        });;
+
+        $("#btnBatalTransaksi").on('click', function (event){
+            alertify.confirm("Apakah anda yakin ingin membatalkan transaksi ini ?",
+            function(){
+                alertify.success('Ok');
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('sales')}}/displayStockOpname/submitBatalTransItem/"+documentNumber,
+                    success : function(response){
+                        loadPage ();
+                    }
+                });
+            },
+            function(){
+                alertify.error('Cancel');
+            }).set({title:"Notif!"});
+            
+        });
 
         function addActivityItem() {
             $("#tableStockOpname").fadeOut("slow");

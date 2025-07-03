@@ -451,4 +451,18 @@ class SalesAdminController extends Controller
                 ]);
         }
     }
+
+    public function submitBatalTransItem ($docNumber){
+        DB::table('inv_list_opname')
+            ->where('sto_number',$docNumber)
+            ->update([
+                'status'=>'0'
+            ]);
+
+        DB::table('inv_stock_opname')
+            ->where('number_so',$docNumber)
+            ->update([
+                'status'=>'0'
+            ]);
+    }
 }

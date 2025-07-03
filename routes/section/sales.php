@@ -42,6 +42,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('sales/displayStockOpname/postItem', [App\Http\Controllers\SalesAdminController::class, 'postItem']);
     Route::get('sales/displayStockOpname/tableInputItem/{docNo}', [App\Http\Controllers\SalesAdminController::class, 'tableInputItem']);
     Route::get('sales/displayStockOpname/submitTransItem/{docNo}', [App\Http\Controllers\SalesAdminController::class, 'submitTransItem']);
+    Route::get('sales/displayStockOpname/submitBatalTransItem/{docNo}', [App\Http\Controllers\SalesAdminController::class, 'submitBatalTransItem']);
 
     
 ?>
