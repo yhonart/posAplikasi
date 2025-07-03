@@ -465,4 +465,12 @@ class SalesAdminController extends Controller
                 'status'=>'0'
             ]);
     }
+
+    public function mainTableStockOpname (){
+        $tableOpname = DB::table('inv_stock_opname as a')
+            ->select('a.*','b.site_code','b.site_name')
+            ->leftJoin('m_site as b','a.loc_so','=','b.idm_site')
+            ->get();
+        return view('Z_Additional_Admin/AdminInventory/mainTableStockOpname', compact('tableOpname'));        
+    }
 }

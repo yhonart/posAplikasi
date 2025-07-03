@@ -25,8 +25,7 @@
             let path = $(this).attr('data-path');
 
             $("#displayStockOpname").load("{{route('sales')}}/"+path);
-        });
-    
+        });    
     });
 
 </script>
