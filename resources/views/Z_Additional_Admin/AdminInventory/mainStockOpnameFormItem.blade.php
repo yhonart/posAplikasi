@@ -9,7 +9,7 @@ $opnameNumber = $getNumber->number_so;
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mb-1">
     <div class="col-md-12">
         <div class="card card-purple">
             <div class="card-header">
@@ -58,23 +58,18 @@ $opnameNumber = $getNumber->number_so;
                             </td>
                         </tr>
                     </tbody>
-                    <tbody id="inputListOpname"></tbody>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-success font-weight-bold btn-block btn-flat" id="btnSimpanOpname">Simpan</button>
-                            </td>
-                            <td></td>
-                        </tr>
-                    </tbody>
+                    <tbody id="inputListOpname"></tbody>                    
                 </table>
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <button type="button" class="btn btn-sm btn-danger font-weight-bold btn-block btn-flat" id="btnSimpanOpname">Batalkan</button>
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-sm btn-success font-weight-bold btn-block btn-flat" id="btnSimpanOpname">Simpan</button>
     </div>
 </div>
 <div id="otherPass">

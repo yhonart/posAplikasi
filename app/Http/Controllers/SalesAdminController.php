@@ -428,4 +428,27 @@ class SalesAdminController extends Controller
             ->get(); 
         return view('Z_Additional_Admin/AdminInventory/tableStockOpnameItem', compact('listBarang'));
     }
+
+    public function submitTransItem ($docNumber){
+        $countItem = DB::table('inv_list_opname')
+            ->where('sto_number',$docNumber)
+            ->count();
+
+        if ($countItem == '0') {
+            # code...
+        }
+        else {
+            DB::table('inv_list_opname')
+                ->where('sto_number',$docNumber)
+                ->update([
+                    'status'=>'3'
+                ]);
+
+            DB::table('inv_stock_opname')
+                ->where('number_so',$docNumber)
+                ->update([
+                    'status'=>'3'
+                ]);
+        }
+    }
 }
