@@ -9,4 +9,8 @@ class KurirController extends Controller
     public function mainKurir(){
         return view('DeliveryJob/mainDelivery');
     }
+
+    public function funcDate ($date){
+        echo $date;
+    }
 }
