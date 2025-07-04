@@ -48,9 +48,9 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                         aria-haspopup="true" aria-expanded="false">Transaksi</a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainPenjualan" data-toggle="tab" id="tabMenuPenjualan">Sale </a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainReturn" data-toggle="tab" id="tab-menu-settings">Return Item</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainReceivables" data-toggle="tab" id="tab-menu-settings">Receivables</a>
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainPenjualan" data-toggle="tab" id="tabMenuPenjualan">Penjualan</a>
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainReturn" data-toggle="tab" id="tab-menu-settings">Pengembalian</a>
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainReceivables" data-toggle="tab" id="tab-menu-settings">Piutang</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -58,8 +58,8 @@
                                         aria-haspopup="true" aria-expanded="false">Report</a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainSalesReport" data-toggle="tab" id="tabMenuPenjualan">Sales</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainDeliveryReport" data-toggle="tab" id="tab-menu-settings">Delivery</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainDailyReport" data-toggle="tab" id="tab-menu-settings">Daily</a>
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainDeliveryReport" data-toggle="tab" id="tab-menu-settings">Pengiriman</a>
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainDailyReport" data-toggle="tab" id="tab-menu-settings">Harian</a>
                                     </div>
                                 </li>                                
                             </ul>
