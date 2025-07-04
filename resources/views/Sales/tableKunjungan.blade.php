@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
                 <table class="table table-sm table-valign-middle table-hover">
-                    <thead>
+                    <thead class="bg-gray">
                         <tr>
                             <th>No.</th>
                             <th>Toko</th>
@@ -33,8 +33,8 @@
                                 <td>{{$dk->store_owner}}</td>
                                 <td><b>Latitude:</b>{{$dk->latitude}}, <br> <b>Longtitude:</b>{{$dk->longtitude}}</td>
                                 <td>{{$progress[$dk->progress]}}</td>  
-                                <td>
-                                    <a href="{{route('sales')}}/detailCustomer/{{$dk->tracking_id}}" class="btn btn-info btn-sm">Detail</a>
+                                <td class="text-right">
+                                    <a href="{{route('sales')}}/detailCustomer/{{$dk->tracking_id}}" class="btn btn-outline-info btn-sm">Detail</a>
                                 </td>                      
                             </tr>
                         @endforeach
