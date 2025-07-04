@@ -8,7 +8,7 @@
     );
 ?>
 <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="card text-xs card-info">
             <div class="card-header">
                 <h3 class="card-title font-weight-bold">Daftar Kunjungan</h3>
