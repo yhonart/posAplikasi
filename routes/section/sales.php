@@ -44,6 +44,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/displayStockOpname/submitTransItem/{docNo}', [App\Http\Controllers\SalesAdminController::class, 'submitTransItem']);
     Route::get('sales/displayStockOpname/submitBatalTransItem/{docNo}', [App\Http\Controllers\SalesAdminController::class, 'submitBatalTransItem']);
     Route::get('sales/mainTableStockOpname', [App\Http\Controllers\SalesAdminController::class, 'mainTableStockOpname']);
-
+    
+    //Admin Kurir
+    Route::get('sales/mainKurir', [App\Http\Controllers\KurirController::class, 'mainKurir']);
     
 ?>
