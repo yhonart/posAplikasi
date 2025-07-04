@@ -1,9 +1,9 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWATSqbKPi6KunkVey74s45OojCu6Ws04&callback=initMap"></script>
 <div class="row">
     <div class="col-md-12">
-        <div class="card text-xs">
+        <div class="card text-xs card-info">
             <div class="card-header">
-                <h3>Form Kunjungan</h3>
+                <h3 class="card-title">Form Kunjungan</h3>
             </div>
             <div class="card-body">
                 <form id="inputFormKunjungan">
