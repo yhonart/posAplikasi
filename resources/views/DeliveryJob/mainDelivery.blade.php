@@ -34,6 +34,7 @@
         });
         $('.datetimepicker-input').datepicker("setDate",new Date());
         let selectedDate = $("#fromDate").val();
+        autoDisplay(selectedDate);
     });
 
     $(document).ready(function() {
