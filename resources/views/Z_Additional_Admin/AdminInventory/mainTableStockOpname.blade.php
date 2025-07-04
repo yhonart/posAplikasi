@@ -22,6 +22,10 @@
                         <td>{{$to->site_name}}</td>
                         <td>{{$to->status}}</td>
                         <td>{{$to->created_by}}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-outline-info ACT-VIEW" data-id="{{$to->idinv_opname}}"><i class="fa-solid fa-eye"></i></button>
+                            <button type="button" class="btn btn-sm btn-outline-success ACT-EDIT" data-id="{{$to->idinv_opname}}"><i class="fa-solid fa-pencil"></i></button>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
