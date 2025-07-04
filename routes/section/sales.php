@@ -47,5 +47,6 @@ use Illuminate\Support\Facades\Route;
     
     //Admin Kurir
     Route::get('sales/mainKurir', [App\Http\Controllers\KurirController::class, 'mainKurir']);
+    Route::get('sales/historyDelivery', [App\Http\Controllers\KurirController::class, 'historyDelivery']);
     
 ?>

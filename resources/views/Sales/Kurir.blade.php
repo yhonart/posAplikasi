@@ -17,50 +17,17 @@
                         </button>
         
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">
-                                
+                            <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
                                 <li class="nav-item d-none d-md-block">
                                     <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="mainKurir" data-toggle="tab" id="tabMenuDash">
-                                        Home
+                                        Schedule
                                     </a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Master Data</a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainUser" data-toggle="tab" id="tabMenuUser">User</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainCustomer" data-toggle="tab" id="tabMenuPelanggan">Customers</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainCategory" data-toggle="tab" id="tabMenuKategori">Category</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainUnit" data-toggle="tab" id="tabMenuProdukUnit">MOU</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainProduct" data-toggle="tab" id="tabMenuProduk">Product List</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Inventory</a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainStock" data-toggle="tab" id="tab-menu-stats">Stock</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainStockOpname" data-toggle="tab" id="tab-menu-settings">Stock Opname</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Transaksi</a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainPenjualan" data-toggle="tab" id="tabMenuPenjualan">Penjualan</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainReturn" data-toggle="tab" id="tab-menu-settings">Pengembalian</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainReceivables" data-toggle="tab" id="tab-menu-settings">Piutang</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Report</a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainSalesReport" data-toggle="tab" id="tabMenuPenjualan">Sales</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainDeliveryReport" data-toggle="tab" id="tab-menu-settings">Pengiriman</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainDailyReport" data-toggle="tab" id="tab-menu-settings">Harian</a>
-                                    </div>
-                                </li>                                
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="historyDelivery" data-toggle="tab" id="tabMenuHistory">
+                                        History
+                                    </a>
+                                </li>                                                             
                             </ul>
                         </div>
                     </nav>
@@ -68,9 +35,9 @@
             </div>
         </section>
         <section class=" container-fluid">
+            <div id="divContent"></div> 
             <div class="row">
                 <div class="col-12">
-                    <div id="divContent"></div> 
                     <div class="modal MODAL-GLOBAL" id="modal-global-large" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                             <div class="modal-content MODAL-CONTENT-GLOBAL">
