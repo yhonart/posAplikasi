@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
                 <table class="table table-sm table-valign-middle table-hover">
-                    <thead class="bg-gray">
+                    <thead class="bg-info">
                         <tr>
                             <th>No.</th>
                             <th>Toko</th>

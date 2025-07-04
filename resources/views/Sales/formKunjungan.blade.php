@@ -1,99 +1,106 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWATSqbKPi6KunkVey74s45OojCu6Ws04&callback=initMap"></script>
 <div class="row">
     <div class="col-md-12">
-        <form id="inputFormKunjungan">
-            <div class="form-group row">
-                <label for="store" class="col-md-4">Nama Toko</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="store" id="store">
-                </div>
+        <div class="card text-xs">
+            <div class="card-header">
+                <h3>Form Kunjungan</h3>
             </div>
-            <div class="form-group row">
-                <label for="storeOwner" class="col-md-4">Nama Pemilik Toko</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="storeOwner" id="storeOwner">
-                </div>
+            <div class="card-body">
+                <form id="inputFormKunjungan">
+                    <div class="form-group row">
+                        <label for="store" class="col-md-4">Nama Toko</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control form-control-sm" name="store" id="store">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="storeOwner" class="col-md-4">Nama Pemilik Toko</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control form-control-sm" name="storeOwner" id="storeOwner">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="phone" class="col-md-4">No.Telefone Toko</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control form-control-sm" name="phone" id="phone">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="progress" class="col-md-4">Progress / <small>Hasil Kunjungan</small></label>
+                        <div class="col-md-4">
+                            <select name="progress" id="progress" class="form-control form-control-sm">
+                                <option value="1">Penawaran</option>
+                                <option value="2">Follow Up</option>
+                                <option value="3">Deal</option>
+                                <option value="4">No Deal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" style="display: none;" id="disProduct">
+                        <label for="progress" class="col-md-4">Pilih Produk</small></label>
+                        <div class="col-md-4">
+                            <select name="produk" id="produk" class="form-control form-control-sm">
+                                <option value="0">--- Pilih ---</option>                        
+                                @foreach($product as $pList)
+                                    <option value="{{$pList->idm_data_product}}">{{$pList->product_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" style="display: none;" id="displayFU">
+                        <label for="dateFU" class="col-md-4">Tanggal</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control form-control-sm datetimepicker-input" name="dateFU" id="dateFU">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-sm btn-danger" onclick="getLocation()"><i class="fa-solid fa-map-location"></i> Get Location</button>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Latitude" class="col-md-4">Latitude</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control form-control-sm" name="Latitude" id="Latitude" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Longitude" class="col-md-4">Longitude</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control form-control-sm" name="Longitude" id="Longitude" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <div id="map"></div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label for="fotoToko" class="col-md-4">Foto Toko</label>
+                        <div class="col-md-4">
+                            <input type="file" class="form-control-file" name="fotoToko" id="fotoToko">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="display: none;" id="rowAddress">
+                        <label for="fotoToko" class="col-md-4">Alamat Lengkap</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control-file" name="address" id="address">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="description" class="col-md-4">Catatan</label>
+                        <div class="col-md-4">
+                            <textarea name="description" id="description" class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-warning font-weight-bold" id="btnBatal"><i class="fa-solid fa-xmark"></i> Batal</button>
+                        <button type="submit" class="btn btn-success font-weight-bold" id="btnSaveKunjungan"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+                        <button type="button" class="btn btn-danger font-weight-bold" id="btnCetakBarcode" style="display: none;"><i class="fa-solid fa-print"></i> Cetak Barcode</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group row">
-                <label for="phone" class="col-md-4">No.Telefone Toko</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="phone" id="phone">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="progress" class="col-md-4">Progress / <small>Hasil Kunjungan</small></label>
-                <div class="col-md-4">
-                    <select name="progress" id="progress" class="form-control form-control-sm">
-                        <option value="1">Penawaran</option>
-                        <option value="2">Follow Up</option>
-                        <option value="3">Deal</option>
-                        <option value="4">No Deal</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row" style="display: none;" id="disProduct">
-                <label for="progress" class="col-md-4">Pilih Produk</small></label>
-                <div class="col-md-4">
-                    <select name="produk" id="produk" class="form-control form-control-sm">
-                        <option value="0">--- Pilih ---</option>                        
-                        @foreach($product as $pList)
-                            <option value="{{$pList->idm_data_product}}">{{$pList->product_name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row" style="display: none;" id="displayFU">
-                <label for="dateFU" class="col-md-4">Tanggal</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm datetimepicker-input" name="dateFU" id="dateFU">
-                </div>
-            </div>
-            <hr>
-            <div class="form-group">
-                <button type="button" class="btn btn-sm btn-danger" onclick="getLocation()"><i class="fa-solid fa-map-location"></i> Get Location</button>
-            </div>
-            <div class="form-group row">
-                <label for="Latitude" class="col-md-4">Latitude</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="Latitude" id="Latitude" readonly>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="Longitude" class="col-md-4">Longitude</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="Longitude" id="Longitude" readonly>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                    <div id="map"></div>
-                </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-                <label for="fotoToko" class="col-md-4">Foto Toko</label>
-                <div class="col-md-4">
-                    <input type="file" class="form-control-file" name="fotoToko" id="fotoToko">
-                </div>
-            </div>
-            <div class="form-group row" style="display: none;" id="rowAddress">
-                <label for="fotoToko" class="col-md-4">Alamat Lengkap</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control-file" name="address" id="address">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="description" class="col-md-4">Catatan</label>
-                <div class="col-md-4">
-                    <textarea name="description" id="description" class="form-control" rows="5"></textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <button type="button" class="btn btn-warning font-weight-bold" id="btnBatal"><i class="fa-solid fa-xmark"></i> Batal</button>
-                <button type="submit" class="btn btn-success font-weight-bold" id="btnSaveKunjungan"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
-                <button type="button" class="btn btn-danger font-weight-bold" id="btnCetakBarcode" style="display: none;"><i class="fa-solid fa-print"></i> Cetak Barcode</button>
-            </div>
-        </form>
+        </div>        
     </div>
 </div>
 <script>
