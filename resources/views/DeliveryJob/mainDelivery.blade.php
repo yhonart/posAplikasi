@@ -46,7 +46,7 @@
     function autoDisplay(selectedDate){
         $.ajax({
             type : 'get',
-            url : "{{route('sales')}}/mainKurir/funcData/"+selectedDate,
+            url : "{{route('sales')}}/mainKurir/funcDate/"+selectedDate,
             success : function(response){
                 $("#contentSchedule").html(response);
             }
