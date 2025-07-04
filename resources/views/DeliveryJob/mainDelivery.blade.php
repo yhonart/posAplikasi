@@ -47,7 +47,7 @@
             type : 'get',
             url : "{{route('sales')}}/mainKurir/funcData/"+selectedDate,
             success : function(response){
-                $("#divDataPelunasan").html(response);
+                $("#contentSchedule").html(response);
             }
         });
     }
