@@ -1,8 +1,11 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
+        <div class="card card-purple">
             <div class="card-header">
                 <h3 class="card-title">Atur Pengiriman</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" id="closeLoadPage"><i class="fa-solid fa-circle-xmark"></i></button>
+                </div>
             </div>
             <div class="card-body">
                 <div class="form-group row">
