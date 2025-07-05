@@ -50,4 +50,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/mainKurir/funcDate/{date}', [App\Http\Controllers\KurirController::class, 'funcDate']);
     Route::get('sales/historyDelivery', [App\Http\Controllers\KurirController::class, 'historyDelivery']);
     
+    //Admin Konfig
+    Route::get('sales/configCustomer', [App\Http\Controllers\ConfigController::class, 'mainConfigCustomer']);
+    
 ?>

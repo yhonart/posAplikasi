@@ -49,8 +49,8 @@
                                         aria-haspopup="true" aria-expanded="false">Transaksi</a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainPenjualan" data-toggle="tab" id="tabMenuPenjualan">Penjualan</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainReturn" data-toggle="tab" id="tab-menu-settings">Pengembalian</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainReceivables" data-toggle="tab" id="tab-menu-settings">Piutang</a>
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainReturn" data-toggle="tab" id="tabMenuPengembalian">Pengembalian</a>
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainReceivables" data-toggle="tab" id="tabMenuPiutang">Piutang</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -58,8 +58,17 @@
                                         aria-haspopup="true" aria-expanded="false">Report</a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainSalesReport" data-toggle="tab" id="tabMenuPenjualan">Sales</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainDeliveryReport" data-toggle="tab" id="tab-menu-settings">Pengiriman</a>
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainDailyReport" data-toggle="tab" id="tab-menu-settings">Harian</a>
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainDeliveryReport" data-toggle="tab" id="tabMenuPengiriman">Pengiriman</a>
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainDailyReport" data-toggle="tab" id="tabMenuHarian">Harian</a>
+                                    </div>
+                                </li>                                
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Konfigurasi</a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="configCustomer" data-toggle="tab" id="tabMenuConfigCustomer">Customer</a>
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="configUser" data-toggle="tab" id="tabMenuConfigUser">User</a>
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="configOther" data-toggle="tab" id="tabMenuConfigOther">Other</a>
                                     </div>
                                 </li>                                
                             </ul>
