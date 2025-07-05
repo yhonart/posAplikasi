@@ -16,4 +16,12 @@ class ConfigController extends Controller
 
         return view("Z_Additional_Admin/AdminConfig/ConfigCustomer", compact('dbCustomer'));
     }
+
+    public function aturPengiriman ($idCus){
+        $customer = DB::table('m_customers')
+            ->where('idm_customer',$idCus)
+            ->first();
+
+        return view("Z_Additional_Admin/AdminConfig/ConfigCustomerDelivery", compact('customer'));
+    }
 }

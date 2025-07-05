@@ -25,7 +25,8 @@
                                 <td>{{$dbCus->payment_type}}</td>
                                 <td>{{$dbCus->kredit_limit}}</td>
                                 <td class="text-right">
-                                    <button type="button" class="btn btn-sm btn-info font-weight-bold">Atur Pengiriman</button>
+                                    <button type="button" class="btn btn-sm btn-info font-weight-bold ATUR-PENGIRIMAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPengiriman/{{$dbCus->idm_customer}}">Atur Pengiriman</button>
+                                    <button type="button" class="btn btn-sm btn-info font-weight-bold ATUR-PEMBAYARAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPembayaran/{{$dbCus->idm_customer}}">Atur Pembayaran</button>
                                 </td>
                             </tr>
                         @endforeach

@@ -52,5 +52,7 @@ use Illuminate\Support\Facades\Route;
     
     //Admin Konfig
     Route::get('sales/configCustomer', [App\Http\Controllers\ConfigController::class, 'mainConfigCustomer']);
+    Route::get('sales/configCustomer/aturPengiriman/{idmCus}', [App\Http\Controllers\ConfigController::class, 'aturPengiriman']);
+    Route::get('sales/configCustomer/aturPembayaran/{idmCus}', [App\Http\Controllers\ConfigController::class, 'aturPembayaran']);
     
 ?>
