@@ -22,6 +22,13 @@ class ConfigController extends Controller
             ->where('idm_customer',$idCus)
             ->first();
 
-        return view("Z_Additional_Admin/AdminConfig/ConfigCustomerDelivery", compact('customer'));
+        $customerCode = $customer->customer_code;
+        $trackingSales = DB::table('tracking_sales as a')
+            ->select('a.customer_code','b.product_code','b.product_name','b.idm_data_product')
+            ->leftJoin('m_product as b','a.product_id','=','b.idm_data_product')
+            ->where('a.customer_code',$customerCode)
+            ->first();
+
+        return view("Z_Additional_Admin/AdminConfig/ConfigCustomerDelivery", compact('customer','trackingSales'));
     }
 }
