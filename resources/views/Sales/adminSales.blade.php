@@ -64,7 +64,7 @@
                                 </li>                                
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Konfigurasi</a>
+                                        aria-haspopup="true" aria-expanded="false">Pengaturan</a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="configCustomer" data-toggle="tab" id="tabMenuConfigCustomer">Customer</a>
                                         <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="configUser" data-toggle="tab" id="tabMenuConfigUser">User</a>
