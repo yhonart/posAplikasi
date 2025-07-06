@@ -33,7 +33,7 @@
         $("#btnSimpanPembayaran").on('click', function (event){
             event.preventDefault();
             let idCus = "{{$idCus}}",
-                pembayaran = $("#metodePembayaran");
+                pembayaran = $("#metodePembayaran").val();
             $("#btnSimpanPembayaran").fadeOut();
             let dataFormPayment = {idCus : idCus, pembayaran : pembayaran};
             $.ajax({
