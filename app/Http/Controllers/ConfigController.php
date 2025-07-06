@@ -38,12 +38,19 @@ class ConfigController extends Controller
         $getIdCus = $reqPostSchedule->getIdCus;
         $createdBy = Auth::user()->name;
 
-        DB::table('config_delivery')
-            ->insert([
-                'customer_id'=>$getIdCus,
-                'frequuency'=>$getFreq,
-                'day_freq'=>$getDay,
-                'created_by'=>$createdBy
-            ]);
+        if ($getDay == '0' && $getFreq == "") {
+            $msg = array('warning' => 'Anda Harus Memilih Salah Satu Metode Jadwal Pengiriman !');
+        }
+        else {
+            DB::table('config_delivery')
+                ->insert([
+                    'customer_id'=>$getIdCus,
+                    'frequuency'=>$getFreq,
+                    'day_freq'=>$getDay,
+                    'created_by'=>$createdBy
+                ]);
+            $msg = array('success' => 'Data Berhasil Tersimpan !');
+        }
+        return response()->json($msg);
     }
 }

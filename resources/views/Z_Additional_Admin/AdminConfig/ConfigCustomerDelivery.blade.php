@@ -89,7 +89,15 @@
                 url : "{{route('sales')}}/configCustomer/postConfigSchedule",
                 data :  dataForm,
                 success : function(data){
-                    $("#notifSuccess").fadeIn();
+                    if (data.warning) {
+                        alertify
+                        .alert("This is an alert dialog.", function(){
+                            alertify.message('OK');
+                        });
+                    }
+                    else if(data.success){
+                        alertify.success('Success message');
+                    }
                 }
             });
         });
