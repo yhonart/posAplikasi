@@ -36,17 +36,24 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group row" style="display: none;" id="disProduct">
-                        <label for="progress" class="col-md-4">Pilih Produk</small></label>
-                        <div class="col-md-4">
-                            <select name="produk" id="produk" class="form-control form-control-sm">
-                                <option value="0">--- Pilih ---</option>                        
-                                @foreach($product as $pList)
-                                    <option value="{{$pList->idm_data_product}}">{{$pList->product_name}}</option>
-                                @endforeach
-                            </select>
+                    <div class="multi-field-wrapper">
+                        <div class="multi-fields">
+                            <div class="form-group row multi-field">                                 
+                                <label for="inputEmail3" class="col-sm-4 col-form-label">Equipment Code & Type</label>
+                                <select name="produk[]" id="produk" class="form-control form-control-sm">
+                                    <option value="0">--- Pilih ---</option>                        
+                                    @foreach($product as $pList)
+                                        <option value="{{$pList->idm_data_product}}">{{$pList->product_name}}</option>
+                                    @endforeach
+                                </select>
+                                <div class="col-sm-2">
+                                    <input type="number" class="form-control" id="eqpt_type" name="eqpt_type[]" autocomplete="off" style="text-transform:uppercase" placeholder="Eq. Type">
+                                </div>
+                                <button type="button" class="btn btn-danger btn-flat remove-field"><i class="fas fa-times"></i></button>&nbsp
+                                <button type="button" class="btn btn-info btn-flat add-field"><i class="fas fa-plus"></i></button>
+                            </div>
                         </div>
-                    </div>
+                    </div>                    
                     <div class="form-group row" style="display: none;" id="displayFU">
                         <label for="dateFU" class="col-md-4">Tanggal</label>
                         <div class="col-md-4">
@@ -146,6 +153,17 @@
             break;
         }
     }
+
+    $('.multi-field-wrapper').each(function() {
+	    var $wrapper = $('.multi-fields', this);
+	    $(".add-field", $(this)).click(function(e) {
+	        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('#produk').val('').focus();
+	    });
+	    $('.multi-field .remove-field', $wrapper).click(function() {
+	        if ($('.multi-field', $wrapper).length > 1)
+	            $(this).parent('.multi-field').remove();
+	    });
+    });
 
     $(document).ready(function() {
         $.ajaxSetup({
