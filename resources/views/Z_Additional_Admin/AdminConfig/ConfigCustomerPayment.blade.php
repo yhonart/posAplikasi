@@ -31,6 +31,7 @@
 <script>
     $(document).ready(function(){
         $("#btnSimpanPembayaran").on('click', function (event){
+            event.preventDefault();
             let idCus = "{{$idCus}}",
                 pembayaran = $("#metodePembayaran");
             $("#btnSimpanPembayaran").fadeOut();
