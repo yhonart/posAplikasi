@@ -25,7 +25,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row" id="fieldInputFrequency">
                             <label for="" class="col-md-4">Atur Berdasarkan Frequency</label>
                             <div class="col-md-4">
                                 <input type="number" class="form-control form-control-sm" name="frequency" id="frequency">
@@ -36,12 +36,17 @@
                         </div>                        
                         <div class="form-group row">
                             <div class="col-md-4">                                
-                                <button type="submit" class="btn btn-success btn-sm font-weight-bold">Simpan</button>
+                                <button type="submit" class="btn btn-success btn-sm font-weight-bold" id="simpanSchedule">Simpan</button>
                                 <button type="button" class="btn btn-warning btn-sm font-weight-bold" data-dismiss="modal" aria-label="Close">
-                                    Batal
+                                    Tutup
                                 </button>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class=" bg-light p-2 text-success font-weight-bold" style="display: none;" id="notifSuccess">Data Berhasil Tersimpan !</p>
                     </div>
                 </div>
                 <div class="row">
@@ -62,3 +67,32 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $("#delByDay").change(function(){
+            let delByDay = $(this).find(":selected").val();
+
+            if (delByDay !== '0') {
+                $("#fieldInputFrequency").fadeOut('slow');
+            }
+        });
+
+        $("#btnBatalTransaksi").on('click', function (event){
+            event.preventDefault();
+            $("#simpanSchedule").fadeOut();
+            let getDay = $("#delByDay").val(),
+                getFreq = $("#frequency").val(),
+                getIdCus = "{{$idCus}}";            
+            let dataForm = {getDay : getDay, getFreq : getFreq, getIdCus : getIdCus};
+            $.ajax({
+                type : 'post',
+                url : "{{route('sales')}}/configCustomer/postConfigSchedule",
+                data :  dataForm,
+                success : function(data){
+                    $("#notifSuccess").fadeIn();
+                }
+            });
+        });
+    });
+</script>

@@ -29,6 +29,21 @@ class ConfigController extends Controller
             ->where('a.customer_code',$customerCode)
             ->first();
 
-        return view("Z_Additional_Admin/AdminConfig/ConfigCustomerDelivery", compact('customer','trackingSales'));
+        return view("Z_Additional_Admin/AdminConfig/ConfigCustomerDelivery", compact('customer','trackingSales','idCus'));
+    }
+
+    public function postConfigSchedule (Request $reqPostSchedule){
+        $getDay = $reqPostSchedule->getDay;
+        $getFreq = $reqPostSchedule->getFreq;
+        $getIdCus = $reqPostSchedule->getIdCus;
+        $createdBy = Auth::user()->name;
+
+        DB::table('config_delivery')
+            ->insert([
+                'customer_id'=>$getIdCus,
+                'frequuency'=>$getFreq,
+                'day_freq'=>$getDay,
+                'created_by'=>$createdBy
+            ]);
     }
 }
