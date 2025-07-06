@@ -50,7 +50,7 @@ class ConfigController extends Controller
             DB::table('config_delivery')
                 ->insert([
                     'customer_id'=>$getIdCus,
-                    'frequuency'=>$getFreq,
+                    'frequency'=>$getFreq,
                     'day_freq'=>$getDay,
                     'created_by'=>$createdBy
                 ]);

@@ -5,7 +5,7 @@
             <dt class="col-md-4">Jadwal Pengiriman</dt>
             <dd class="col-md-4">
                 @if($selectSchedule->day_freq == '0')
-                    <span>{{$selectSchedule->frequuency}} Hari</span>
+                    <span>{{$selectSchedule->frequency}} Hari</span>
                 @else
                     <span>{{$selectSchedule->day_freq}}</span>
                 @endif
