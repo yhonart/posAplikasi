@@ -67,8 +67,8 @@
         });
         
         $('.ITEM-MAIN-MENU').on('click', function (e) {
-            e.preventDefault();
-            localStorage.clear();
+            e.preventDefault();           
+            window.getSelection().removeAllRanges();
             let ell = $(this);
             var route = ell.attr("data-path");
             displaySales(route);
