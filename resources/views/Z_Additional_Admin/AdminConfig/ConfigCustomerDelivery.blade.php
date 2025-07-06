@@ -17,9 +17,9 @@
                                     <td class="bg-gradient-blue" width="20%">Jadwal Pengiriman</td>
                                     <td>
                                         @if($selectSchedule->day_freq == '0')
-                                            <span>{{$selectSchedule->frequency}} Hari</span>
+                                            <span>Setiap : {{$selectSchedule->frequency}} Hari</span>
                                         @else
-                                            <span>{{$selectSchedule->day_freq}}</span>
+                                            <span>Setiap Hari : {{$selectSchedule->day_freq}}</span>
                                         @endif
                                     </td>
                                 </tr>

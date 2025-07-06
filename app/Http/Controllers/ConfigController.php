@@ -74,4 +74,11 @@ class ConfigController extends Controller
         }
         return response()->json($msg);
     }
+
+    public function aturPembayaran ($idCus){
+        $selectCustomer = DB::table('m_customers')
+            ->where('idm_customer',$idCus)
+            ->first();
+        return view("Z_Additional_Admin/AdminConfig/ConfigCustomerPayment", compact('idCus','selectCustomer'));
+    }
 }
