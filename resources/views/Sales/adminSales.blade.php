@@ -108,7 +108,7 @@
         $('.ITEM-MAIN-MENU').on('click', function (e) {
             e.preventDefault();
             let path = $(this).attr('data-path');
-            localStorage.clear();
+            window.getSelection().removeAllRanges();
             $("#divContent").load(route_main+'/'+path);
         });
         
