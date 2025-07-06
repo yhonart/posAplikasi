@@ -54,7 +54,7 @@
             event.preventDefault();
             let idCus = "{{$idCus}}",
                 pembayaran = $("#metodePembayaran").val(),
-                tempo = $("#fieldIdTempo").val();
+                tempo = $("#dayTempo").val();
             $("#btnSimpanPembayaran").fadeOut();
             let dataFormPayment = {idCus : idCus, pembayaran : pembayaran, tempo : tempo};
             $.ajax({
