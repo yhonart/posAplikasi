@@ -85,11 +85,13 @@ class ConfigController extends Controller
     public function postConfigPembayaran (Request $reqUpdatePayment){
         $idCus = $reqUpdatePayment->idCus;
         $pembayaran = $reqUpdatePayment->pembayaran;
+        $tempo = $reqUpdatePayment->tempo;
 
         DB::table('m_customers')
             ->where('idm_customer',$idCus)
             ->update([
-                'payment_type'=>$pembayaran
+                'payment_type'=>$pembayaran,
+                'payment_tempo'=>$tempo
             ]);
     }
 }

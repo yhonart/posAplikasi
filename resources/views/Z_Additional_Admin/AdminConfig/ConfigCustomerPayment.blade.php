@@ -18,6 +18,17 @@
                             <option value="Tempo">Tempo</option>
                         </select>
                     </div>
+                    <div class="col-md-4">
+                        @if($selectCustomer->payment_type == "Tempo")
+                            <span class="font-weight-bold text-info">Tempo {{$selectCustomer->payment_tempo}} Hari</span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group row" style="display: none;" id="fieldIdTempo">
+                    <label for="" class="col-md-4">Tempo</label>
+                    <div class="col-md-4">
+                        <input type="number" name="dayTempo" id="dayTempo" class="form-control form-control-sm">
+                    </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
@@ -30,12 +41,22 @@
 </div>
 <script>
     $(document).ready(function(){
+        $("#metodePembayaran").change(function(){
+            let delByDay = $(this).find(":selected").val();
+            if (delByDay !== "Tempo") {
+                $("#fieldIdTempo").fadeOut('slow');
+            }
+            else{
+                $("#fieldIdTempo").fadeIn('slow');
+            }
+        });
         $("#btnSimpanPembayaran").on('click', function (event){
             event.preventDefault();
             let idCus = "{{$idCus}}",
-                pembayaran = $("#metodePembayaran").val();
+                pembayaran = $("#metodePembayaran").val(),
+                tempo = $("#fieldIdTempo").val();
             $("#btnSimpanPembayaran").fadeOut();
-            let dataFormPayment = {idCus : idCus, pembayaran : pembayaran};
+            let dataFormPayment = {idCus : idCus, pembayaran : pembayaran, tempo : tempo};
             $.ajax({
                 type : 'post',
                 url : "{{route('sales')}}/configCustomer/postConfigPembayaran",
