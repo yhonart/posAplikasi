@@ -68,6 +68,7 @@
         
         $('.ITEM-MAIN-MENU').on('click', function (e) {
             e.preventDefault();
+            localStorage.clear();
             let ell = $(this);
             var route = ell.attr("data-path");
             displaySales(route);
