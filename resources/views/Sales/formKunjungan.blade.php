@@ -40,7 +40,7 @@
                         <div class="multi-fields">
                             <div class="form-group row multi-field">                                 
                                 <label for="inputEmail3" class="col-md-4 col-form-label">Equipment Code & Type</label>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <select name="produk[]" id="produk" class="form-control form-control-sm">
                                         <option value="0">--- Pilih ---</option>                        
                                         @foreach($product as $pList)
@@ -48,11 +48,11 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-4">
-                                    <input type="number" class="form-control" id="eqpt_type" name="eqpt_type[]" autocomplete="off" style="text-transform:uppercase" placeholder="Eq. Type">
-                                    <button type="button" class="btn btn-danger btn-flat remove-field"><i class="fas fa-times"></i></button>&nbsp
-                                    <button type="button" class="btn btn-info btn-flat add-field"><i class="fas fa-plus"></i></button>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control form-control-sm" id="eqpt_type" name="eqpt_type[]" autocomplete="off" style="text-transform:uppercase" placeholder="Eq. Type">
                                 </div>
+                                <button type="button" class="btn btn-danger btn-flat remove-field"><i class="fas fa-times"></i></button>&nbsp
+                                <button type="button" class="btn btn-info btn-flat add-field"><i class="fas fa-plus"></i></button>
                             </div>
                         </div>
                     </div>                    
