@@ -112,12 +112,12 @@
                 success : function(data){
                     if (data.warning) {
                         alertify
-                        .alert("This is an alert dialog.", function(){
+                        .alert(data.warning, function(){
                             alertify.message('OK');
                         });
                     }
                     else if(data.success){
-                        alertify.success('Success message');
+                        alertify.success(data.success);
                     }
                 }
             });

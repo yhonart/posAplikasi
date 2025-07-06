@@ -81,4 +81,15 @@ class ConfigController extends Controller
             ->first();
         return view("Z_Additional_Admin/AdminConfig/ConfigCustomerPayment", compact('idCus','selectCustomer'));
     }
+
+    public function postConfigPembayaran (Request $reqUpdatePayment){
+        $idCus = $reqUpdatePayment->idCus;
+        $pembayaran = $reqUpdatePayment->pembayaran;
+
+        DB::table('m_customers')
+            ->where('idm_customer',$idCus)
+            ->update([
+                'payment_type'=>$pembayaran
+            ]);
+    }
 }
