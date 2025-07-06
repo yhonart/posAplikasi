@@ -3,6 +3,7 @@
         <h3 class="card-title">Konfigurasi Customer/Pelanggan</h3>
     </div>
     <div class="card-body">
+        {{$countConfig}}
         @if($countConfig >= '1')
         <div class="row mb-2">
             <div class="col-md-12">
