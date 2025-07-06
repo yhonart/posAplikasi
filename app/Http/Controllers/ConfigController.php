@@ -47,13 +47,29 @@ class ConfigController extends Controller
             $msg = array('warning' => 'Anda Harus Memilih Salah Satu Metode Jadwal Pengiriman !');
         }
         else {
-            DB::table('config_delivery')
-                ->insert([
-                    'customer_id'=>$getIdCus,
-                    'frequency'=>$getFreq,
-                    'day_freq'=>$getDay,
-                    'created_by'=>$createdBy
-                ]);
+            $countConfig = DB::table('config_delivery')
+                ->where('customer_id',$getIdCus)
+                ->count();
+
+            if ($countConfig == '1') {
+                DB::table('config_delivery')
+                    ->where('customer_id',$getIdCus)
+                    ->update([
+                        'frequency'=>$getFreq,
+                        'day_freq'=>$getDay,
+                        'created_by'=>$createdBy,
+                        'status'=>'1'
+                    ]);
+            }
+            else {
+                DB::table('config_delivery')
+                    ->insert([
+                        'customer_id'=>$getIdCus,
+                        'frequency'=>$getFreq,
+                        'day_freq'=>$getDay,
+                        'created_by'=>$createdBy
+                    ]);
+            }
             $msg = array('success' => 'Data Berhasil Tersimpan !');
         }
         return response()->json($msg);

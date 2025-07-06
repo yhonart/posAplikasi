@@ -11,7 +11,7 @@
                 @if($countConfig >= "1")
                 <div class="row mb-2">
                     <div class="col-md-12">
-                        <table class="table table-sm">
+                        <table class="table table-sm table-bordered">
                             <tbody>
                                 <tr>
                                     <td class="bg-gradient-blue" width="20%">Jadwal Pengiriman</td>
