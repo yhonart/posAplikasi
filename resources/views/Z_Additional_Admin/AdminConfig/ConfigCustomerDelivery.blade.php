@@ -77,8 +77,7 @@
                 $("#fieldInputFrequency").fadeOut('slow');
             }
         });
-
-        $("#btnBatalTransaksi").on('click', function (event){
+        $("#simpanSchedule").on('click', function (event){
             event.preventDefault();
             $("#simpanSchedule").fadeOut();
             let getDay = $("#delByDay").val(),
