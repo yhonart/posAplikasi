@@ -51,8 +51,8 @@
                                 <div class="col-sm-2">
                                     <input type="number" class="form-control form-control-sm" id="eqpt_type" name="eqpt_type[]" autocomplete="off" style="text-transform:uppercase" placeholder="Eq. Type">
                                 </div>
-                                <button type="button" class="btn btn-sm btn-danger btn-flat remove-field"><i class="fas fa-times"></i></button>&nbsp
-                                <button type="button" class="btn btn-sm btn-info btn-flat add-field"><i class="fas fa-plus"></i></button>
+                                <button type="button" class="btn btn-danger btn-flat remove-field"><i class="fas fa-times"></i></button>&nbsp
+                                <button type="button" class="btn btn-info btn-flat add-field"><i class="fas fa-plus"></i></button>
                             </div>
                         </div>
                     </div>
