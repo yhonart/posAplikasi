@@ -1,4 +1,4 @@
-@if($countConfig >= '1')
+@if($countConfig >= "1")
 <div class="row mb-2">
     <div class="col-md-12">
         <dl class="row">
