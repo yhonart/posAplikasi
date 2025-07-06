@@ -174,6 +174,7 @@
             if ($('.multi-field', $wrapper).length > 1)
                 $(this).parent('.multi-field').remove();
         });
+        return false;
     });
     
     $(document).ready(function() {        
