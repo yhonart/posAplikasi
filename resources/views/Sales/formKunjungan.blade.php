@@ -166,8 +166,7 @@
 
     $('.multi-field-wrapper').each(function() {         
         var $wrapper = $('.multi-fields', this);
-        $(".add-field", $(this)).click(function(e) {
-            e.preventDefault();            
+        $('.add-field').on('click', function (e){
             alert("OK");
             $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper);
         });
