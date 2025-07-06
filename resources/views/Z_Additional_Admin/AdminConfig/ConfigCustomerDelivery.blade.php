@@ -14,7 +14,7 @@
                         <table class="table table-sm">
                             <tbody>
                                 <tr>
-                                    <td class="bg-gradient-blue">Jadwal Pengiriman</td>
+                                    <td class="bg-gradient-blue" width="20%">Jadwal Pengiriman</td>
                                     <td>
                                         @if($selectSchedule->day_freq == '0')
                                             <span>{{$selectSchedule->frequency}} Hari</span>
