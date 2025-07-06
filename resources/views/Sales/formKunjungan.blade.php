@@ -36,7 +36,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="multi-field-wrapper">
+                    <div class="multi-field-wrapper" id="multi-field-wrapper">
                         <div class="multi-fields">
                             <div class="form-group row multi-field">
                                 <label for="inputEmail3" class="col-sm-4 col-form-label">Equipment Code & Type</label>
@@ -164,7 +164,7 @@
         }
     }
 
-    $('.multi-field-wrapper').each(function() {         
+    $("#multi-field-wrapper").each(function() {         
         var $wrapper = $('.multi-fields', this);
         $('.add-field').on('click', function (e){
             alert("OK");
