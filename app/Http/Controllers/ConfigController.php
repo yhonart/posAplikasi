@@ -21,7 +21,12 @@ class ConfigController extends Controller
         $customer = DB::table('m_customers')
             ->where('idm_customer',$idCus)
             ->first();
-
+        $countConfig = DB::table('config_delivery')
+            ->where('customer_id',$idCus)
+            ->count();
+        $selectSchedule = DB::table('config_delivery')
+            ->where('customer_id',$idCus)
+            ->first();
         $customerCode = $customer->customer_code;
         $trackingSales = DB::table('tracking_sales as a')
             ->select('a.customer_code','b.product_code','b.product_name','b.idm_data_product')
@@ -29,7 +34,7 @@ class ConfigController extends Controller
             ->where('a.customer_code',$customerCode)
             ->first();
 
-        return view("Z_Additional_Admin/AdminConfig/ConfigCustomerDelivery", compact('customer','trackingSales','idCus'));
+        return view("Z_Additional_Admin/AdminConfig/ConfigCustomerDelivery", compact('customer','trackingSales','idCus','countConfig','selectSchedule'));
     }
 
     public function postConfigSchedule (Request $reqPostSchedule){
