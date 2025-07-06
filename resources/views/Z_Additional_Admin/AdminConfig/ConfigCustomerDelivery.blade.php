@@ -3,9 +3,9 @@
         <div class="card card-purple">
             <div class="card-header">
                 <h3 class="card-title">Atur Pengiriman</h3>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" id="closeLoadPage" data-card-widget="remove"><i class="fa-solid fa-circle-xmark"></i></button>
-                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="card-body">                
                 <div class="row">
