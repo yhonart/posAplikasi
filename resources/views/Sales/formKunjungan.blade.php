@@ -131,6 +131,7 @@
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
     }
+
     function success(position) {
         inLatitude.value = position.coords.latitude;
         inLongitude.value = position.coords.longitude;
@@ -145,6 +146,7 @@
           map: map,
         });
     }
+
     function error(error) {
         switch(error.code) {
             case error.PERMISSION_DENIED:
@@ -161,7 +163,9 @@
             break;
         }
     }
-    $('.multi-field-wrapper').each(function() {        
+
+    $('.multi-field-wrapper').each(function() { 
+        alert("OK");
         var $wrapper = $('.multi-fields', this);
         $(".add-field", $(this)).click(function(e) {
             // $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('#produk').val('').focus();

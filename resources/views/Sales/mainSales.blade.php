@@ -70,8 +70,20 @@
             e.preventDefault();
             let ell = $(this);
             var route = ell.attr("data-path");
-            $("#displaySales").load("{{route('sales')}}/"+route);
-        });        
+            displaySales(route);
+        });
+    
+        function displaySales(route) {
+            $("#divSpinner").fadeIn("slow");
+            $.ajax({
+                type : 'get',
+                url : "{{route('sales')}}/"+route,
+                success : function(response){
+                    $("#divSpinner").fadeOut("slow");
+                    $('#displaySales').html(response);
+                }
+            });
+        }        
     });
 </script>
 @endsection
