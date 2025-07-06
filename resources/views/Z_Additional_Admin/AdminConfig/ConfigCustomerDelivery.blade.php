@@ -1,3 +1,19 @@
+@if($countConfig >= '1')
+<div class="row mb-2">
+    <div class="col-md-12">
+        <dl class="row">
+            <dt class="col-md-4">Jadwal Pengiriman</dt>
+            <dd class="col-md-4">
+                @if($selectSchedule->day_freq == '0')
+                    <span>{{$selectSchedule->frequency}} Hari</span>
+                @else
+                    <span>{{$selectSchedule->day_freq}}</span>
+                @endif
+            </dd>
+        </dl>
+    </div>
+</div>
+@endif
 <div class="row">
     <div class="col-md-12">
         <div class="card card-purple">
