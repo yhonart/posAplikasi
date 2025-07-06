@@ -130,7 +130,7 @@
         } else { 
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
-    }
+    };
 
     function success(position) {
         inLatitude.value = position.coords.latitude;
@@ -145,7 +145,7 @@
           position: { lat: latitude, lng: longitude },
           map: map,
         });
-    }
+    };
 
     function error(error) {
         switch(error.code) {
@@ -162,19 +162,19 @@
             x.innerHTML = "An unknown error occurred."
             break;
         }
-    }
+    };
 
-    var $wrapper = $('.multi-fields', this);
-    $('.add-field').on('click', function (e){
-        alert("OK");
-        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper);
+    $("#multi-field-wrapper").each(function() {         
+        var $wrapper = $('.multi-fields', this);
+        $('.add-field').on('click', function (e){
+            alert("OK");
+            $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper);
+        });
+        $('.multi-field .remove-field', $wrapper).click(function() {
+            if ($('.multi-field', $wrapper).length > 1)
+                $(this).parent('.multi-field').remove();
+        });
     });
-    $('.multi-field .remove-field', $wrapper).click(function() {
-        if ($('.multi-field', $wrapper).length > 1)
-            $(this).parent('.multi-field').remove();
-    });
-    // $("#multi-field-wrapper").each(function() {         
-    // });
     
     $(document).ready(function() {        
         $( "#dateFU" ).datepicker({
