@@ -13,7 +13,7 @@
                             <th>Alamat</th>
                             <th>Type Pembayaran</th>
                             <th>Credit Limit</th>
-                            <th></th>
+                            <th>Pengaturan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,8 +25,11 @@
                                 <td>{{$dbCus->payment_type}}</td>
                                 <td>{{$dbCus->kredit_limit}}</td>
                                 <td class="text-right">
-                                    <button type="button" class="btn btn-sm btn-info font-weight-bold ATUR-PENGIRIMAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPengiriman/{{$dbCus->idm_customer}}">Atur Pengiriman</button>
-                                    <button type="button" class="btn btn-sm btn-info font-weight-bold ATUR-PEMBAYARAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPembayaran/{{$dbCus->idm_customer}}">Atur Pembayaran</button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-info font-weight-bold ATUR-PENGIRIMAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPengiriman/{{$dbCus->idm_customer}}">Pengiriman</button>
+                                        <button type="button" class="btn btn-sm btn-info font-weight-bold ATUR-PEMBAYARAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPembayaran/{{$dbCus->idm_customer}}">Pembayaran</button>
+                                        <button type="button" class="btn btn-sm btn-info font-weight-bold ATUR-PEMBAYARAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPembayaran/{{$dbCus->idm_customer}}">Penjualan</button>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

@@ -35,10 +35,8 @@
                             </div>
                         </div>                        
                         <div class="form-group row">
-                            <div class="col-md-4">
+                            <div class="col-md-4">                                
                                 <button type="submit" class="btn btn-success btn-sm font-weight-bold">Simpan</button>
-                            </div>
-                            <div class="col-md-4">
                                 <button type="button" class="btn btn-warning btn-sm font-weight-bold" data-dismiss="modal" aria-label="Close">
                                     Batal
                                 </button>
