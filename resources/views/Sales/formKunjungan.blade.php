@@ -36,23 +36,25 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group row multi-field" id="disProduct" style="display: none;">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">Produk </label>
-                        <div class="col-sm-2">
-                            <select name="produk" id="produk" class="form-control form-control-sm">
-                                <option value="0">--- Pilih ---</option>                        
-                                @foreach($product as $pList)
-                                    <option value="{{$pList->idm_data_product}}">{{$pList->product_name}}</option>
-                                @endforeach
-                            </select>
+                    <div id="disProduct" style="display: none;">
+                        <div class="form-group row multi-field">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">Produk </label>
+                            <div class="col-sm-2">
+                                <select name="produk" id="produk" class="form-control form-control-sm">
+                                    <option value="0">--- Pilih ---</option>                        
+                                    @foreach($product as $pList)
+                                        <option value="{{$pList->idm_data_product}}">{{$pList->product_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control form-control-sm" name="qtyOrder" id="qtyOrder" autocomplete="off" placeholder="Jumlah Order">
+                            </div>                        
+                            <button type="button" class="btn btn-info btn-flat add-field" id="addProduk"><i class="fas fa-plus"></i></button>
                         </div>
-                        <div class="col-sm-2">
-                            <input type="number" class="form-control form-control-sm" name="qtyOrder" id="qtyOrder" autocomplete="off" placeholder="Jumlah Order">
-                        </div>                        
-                        <button type="button" class="btn btn-info btn-flat add-field" id="addProduk"><i class="fas fa-plus"></i></button>
+    
+                        <div id="displayTableProduk"></div>
                     </div>
-
-                    <div id="displayTableProduk"></div>
                                         
                     <div class="form-group row" style="display: none;" id="displayFU">
                         <label for="dateFU" class="col-md-4">Tanggal</label>
