@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/detailCustomer/{id}', [App\Http\Controllers\SalesController::class, 'detailCustomer']);
     Route::get('sales/formKunjungan', [App\Http\Controllers\SalesController::class, 'formKunjungan']);
     Route::post('sales/formKunjungan/postNewTransaksi', [App\Http\Controllers\SalesController::class, 'postNewTransaksi']);
+    Route::post('sales/formKunjungan/postAddProduct', [App\Http\Controllers\SalesController::class, 'postAddProduct']);
     Route::get('sales/salesDasboard', [App\Http\Controllers\SalesController::class, 'salesDasboard']);
     
     // Admin 

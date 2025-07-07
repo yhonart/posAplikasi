@@ -63,6 +63,22 @@ class SalesController extends Controller
         return view('Sales/formKunjungan', compact('product'));
     }
 
+    public function postAddProduct (Request $reqPostProduk){
+        $produkID = $reqPostProduk->productID;
+        $qtyOrder = $reqPostProduk->qtyOrder;
+        $created = Auth::user()->name;
+
+        DB::table('config_customer_order')
+            ->insert([
+                'product_id'=>$produkID,
+                'qty_order'=>$qtyOrder,
+                'status'=>"1",
+                'created_by'=>$created
+            ]);
+
+        return back();
+    }
+    
     public function postNewTransaksi (Request $dataKunjungan){
         $store = strtoupper($dataKunjungan->store);
         $storeOwner = strtoupper($dataKunjungan->storeOwner);
@@ -153,4 +169,5 @@ class SalesController extends Controller
 
         return view('Sales/detailCustomer', compact('detailCus'));
     }
+    
 }

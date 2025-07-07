@@ -36,26 +36,23 @@
                             </select>
                         </div>
                     </div>
-                    <div class="multi-field-wrapper" id="multi-field-wrapper">
-                        <div class="multi-fields">
-                            <div class="form-group row multi-field">
-                                <label for="inputEmail3" class="col-sm-4 col-form-label">Equipment Code & Type</label>
-                                <div class="col-sm-2">
-                                    <select name="produk[]" class="form-control form-control-sm">
-                                        <option value="0">--- Pilih ---</option>                        
-                                        @foreach($product as $pList)
-                                            <option value="{{$pList->idm_data_product}}">{{$pList->product_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="number" class="form-control form-control-sm" name="eqpt_type[]" autocomplete="off" style="text-transform:uppercase" placeholder="Eq. Type">
-                                </div>
-                                <button type="button" class="btn btn-danger btn-flat remove-field"><i class="fas fa-times"></i></button>&nbsp
-                                <button type="button" class="btn btn-info btn-flat add-field"><i class="fas fa-plus"></i></button>
-                            </div>
+                    <div class="form-group row multi-field">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label">Produk </label>
+                        <div class="col-sm-2">
+                            <select name="produk" id="produk" class="form-control form-control-sm">
+                                <option value="0">--- Pilih ---</option>                        
+                                @foreach($product as $pList)
+                                    <option value="{{$pList->idm_data_product}}">{{$pList->product_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-sm" name="qtyOrder" id="qtyOrder" autocomplete="off" placeholder="Jumlah Order">
+                        </div>                        
+                        <button type="button" class="btn btn-info btn-flat add-field" id="addProduk"><i class="fas fa-plus"></i></button>
                     </div>
+
+                    <div id="displayTableProduk"></div>
                                         
                     <div class="form-group row" style="display: none;" id="displayFU">
                         <label for="dateFU" class="col-md-4">Tanggal</label>
@@ -163,18 +160,6 @@
             break;
         }
     };
-
-    $("#multi-field-wrapper").each(function() {         
-        var $wrapper = $('.multi-fields', this);
-        $('.add-field').on('click', function (e){
-            alert("OK");
-            $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper);
-        });
-        $('.multi-field .remove-field', $wrapper).click(function() {
-            if ($('.multi-field', $wrapper).length > 1)
-                $(this).parent('.multi-field').remove();
-        });
-    });
     
     $(document).ready(function() {        
         $( "#dateFU" ).datepicker({
@@ -211,7 +196,22 @@
                     $("form#inputFormKunjungan")[0].reset();
                 },                
             });
-        })
+        });
+
+        $("#addProduk").on('click', function(){
+            let productID = $("#produk").val(),
+                qtyOrder = $("#qtyOrder").val();
+
+            let dataAddProduk = {productID : productID, qtyOrder : qtyOrder};
+            $.ajax({
+                type : 'post',
+                url : "{{route('sales')}}/formKunjungan/postAddProduct",
+                data :  dataAddProduk,
+                success : function(data){                    
+                    alertify.success('Produk Tersimpan');
+                }
+            });
+        });
 
         $("form#inputFormKunjungan").submit(function(event){
             event.preventDefault();
