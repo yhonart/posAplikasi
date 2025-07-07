@@ -210,8 +210,8 @@
                 url : "{{route('sales')}}/formKunjungan/postAddProduct",
                 data :  dataAddProduk,
                 success : function(data){    
-                    $("#produk")[0].reset();                
-                    $("#qtyOrder")[0].reset(); 
+                    $("#produk").val();                
+                    $("#qtyOrder").val(); 
                     dataLoadProduk ();
                     alertify.success('Produk Tersimpan');
                 }
