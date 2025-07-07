@@ -106,7 +106,7 @@ class SalesController extends Controller
 
         $createBy = Auth::user()->name;
         $companyID = Auth::user()->company;
-        $numCodeCus = $this->numberCodeCustomer();
+        $numCodeCus = $this->numberCodeCustomer();        
 
         if ($fotoToko <> "") {
             $getFotoToko = $fotoToko->getClientOriginalName();
@@ -122,6 +122,15 @@ class SalesController extends Controller
         }       
 
         if ($progress == '3') {
+            DB::table('config_customer_order')
+                ->where([
+                    ['status','1'],
+                    ['created_by',$createBy]
+                ])
+                ->update([
+                    'status'=>'2'
+                ]);
+                
             DB::table('m_customers')
                 ->insert([
                     'customer_code'=>$numCodeCus,
@@ -146,7 +155,6 @@ class SalesController extends Controller
                     'create_by'=>$createBy,
                     'created_date'=>now(),
                     'company_id'=>$companyID,
-                    'product_id'=>$product,
                     'customer_code'=>$numCodeCus
                 ]);
         }
