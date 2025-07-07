@@ -78,7 +78,20 @@ class SalesController extends Controller
 
         return back();
     }
-    
+
+    public function tableProdukDeal (){
+        $created = Auth::user()->name;
+        $status = "1";
+        
+        $produkOrder = DB::table('config_customer_order as a')
+            ->select('a.*','b.product_name')
+            ->leftJoin('m_product as b','b.idm_data_product','=','a.product_id')
+            ->where('a.created_by',$created)
+            ->get();
+
+        return view('Sales/tableProdukOrder', compact('produkOrder'));
+    }
+
     public function postNewTransaksi (Request $dataKunjungan){
         $store = strtoupper($dataKunjungan->store);
         $storeOwner = strtoupper($dataKunjungan->storeOwner);

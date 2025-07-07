@@ -168,7 +168,7 @@
             todayHighlight: true,
         });
         $('#dateFU').datepicker("setDate",new Date());
-
+        dataLoadProduk ();
         $("#progress").change(function(){
             let valProgress = $(this).find(":selected").val();
             if (valProgress == '3') {
@@ -207,11 +207,18 @@
                 type : 'post',
                 url : "{{route('sales')}}/formKunjungan/postAddProduct",
                 data :  dataAddProduk,
-                success : function(data){                    
+                success : function(data){    
+                    $("#produk")[0].reset();                
+                    $("#qtyOrder")[0].reset(); 
+                    dataLoadProduk ();
                     alertify.success('Produk Tersimpan');
                 }
             });
         });
+
+        function dataLoadProduk (){
+            $("#displayTableProduk").load("{{route('sales')}}/formKunjungan/tableProdukDeal");
+        }
 
         $("form#inputFormKunjungan").submit(function(event){
             event.preventDefault();
