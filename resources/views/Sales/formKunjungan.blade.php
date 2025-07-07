@@ -36,7 +36,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group row multi-field">
+                    <div class="form-group row multi-field" id="disProduct" style="display: none;">
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Produk </label>
                         <div class="col-sm-2">
                             <select name="produk" id="produk" class="form-control form-control-sm">
