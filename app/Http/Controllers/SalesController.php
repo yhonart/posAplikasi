@@ -128,7 +128,8 @@ class SalesController extends Controller
                     ['created_by',$createBy]
                 ])
                 ->update([
-                    'status'=>'2'
+                    'status'=>'2',
+                    'customer_code'=>$numCodeCus,
                 ]);
                 
             DB::table('m_customers')
