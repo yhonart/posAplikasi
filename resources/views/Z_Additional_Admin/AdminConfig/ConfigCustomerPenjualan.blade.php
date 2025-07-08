@@ -50,6 +50,7 @@
 
 <script>
     function saveToDatabase(editableObj,tablename,column,id,idChange) {
+        alert(column);
         $.ajax({
             url: "{{route('sales')}}/configCustomer/aturPenjualan/updateQty",
             type: "POST",
