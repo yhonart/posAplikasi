@@ -5,9 +5,9 @@
                 <h3 class="card-title">Pengaturan Penjualan Pelanggan</h3>
             </div>
             <div class="card-body">
-                <div class="row">
+                <div class="row mb-2">
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-sm btn-warning">Tambah Order</button>
+                        <button type="button" class="btn btn-sm btn-warning font-weight-bold" id="addOrder">Tambah Order</button>
                     </div>
                 </div>
                 <div class="row">
@@ -26,9 +26,10 @@
                                     <tr>
                                         <td>{{$cor->product_code}}</td>
                                         <td>{{$cor->product_name}}</td>
-                                        <td>{{$cor->qty_order}}</td>
+                                        <td>
+                                            <input type="number" name="qtyOrderEdit" id="qtyOrderEdit" class="form-control form-control-sm" value="{{$cor->qty_order}}" onchange="saveToDatabase(this,'config_customer_order','qty_order','{{$cor->cus_order_id}}','cus_order_id')">
+                                        </td>
                                         <td class="text-right">
-                                            <button type="button" class="btn btn-sm btn-primary"><i class="fa-solid fa-pencil"></i></button>
                                             <button type="button" class="btn btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></button>
                                         </td>
                                     </tr>
@@ -46,3 +47,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    function saveToDatabase(editableObj,tablename,column,id,idChange) {
+        $.ajax({
+            url: "{{route('sales')}}/configCustomer/aturPenjualan/updateQty",
+            type: "POST",
+            data:'tablename='+tablename+'&column='+column+'&editval='+editableObj.value+'&id='+id+'&idChange='+idChange,            
+            success: function(data){
+                alertify.success('Data Berhasil Terupdate');                
+            }
+        });
+    }
+</script>

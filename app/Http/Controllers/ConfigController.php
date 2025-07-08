@@ -109,4 +109,18 @@ class ConfigController extends Controller
         return view("Z_Additional_Admin/AdminConfig/ConfigCustomerPenjualan", compact('mCustomer','customerOrder'));
 
     }
+
+    public function updateQty (Request $reqUpdateOrder){
+        $tablename = $reqUpdateOrder->tablename;
+        $column = $reqUpdateOrder->column;
+        $editval = $reqUpdateOrder->editval;
+        $id = $reqUpdateOrder->id;
+        $idChange = $reqUpdateOrder->idChange;
+
+        DB::table($tablename)
+            ->where($id, $idChange)
+            ->update([
+                $column => $editval
+            ]);
+    }
 }

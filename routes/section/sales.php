@@ -59,5 +59,6 @@ use Illuminate\Support\Facades\Route;
     Route::post('sales/configCustomer/postConfigSchedule', [App\Http\Controllers\ConfigController::class, 'postConfigSchedule']);
     Route::post('sales/configCustomer/postConfigPembayaran', [App\Http\Controllers\ConfigController::class, 'postConfigPembayaran']);
     Route::get('sales/configCustomer/aturPenjualan/{cusCode}', [App\Http\Controllers\ConfigController::class, 'aturPenjualan']);
+    Route::post('sales/configCustomer/aturPenjualan/updateQty', [App\Http\Controllers\ConfigController::class, 'updateQty']);
     
 ?>
