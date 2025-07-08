@@ -118,7 +118,7 @@ class ConfigController extends Controller
         $idChange = $reqUpdateOrder->idChange;
 
         DB::table($tablename)
-            ->where($id, $idChange)
+            ->where($idChange, $id)
             ->update([
                 $column => $editval
             ]);
