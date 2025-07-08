@@ -36,7 +36,12 @@
                             </tbody>
                         </table>
                     </div>
-                </div>                
+                </div>  
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-sm btn-warning font-weight-bold" data-dismiss="modal" aria-label="Close">Tutup</button>
+                    </div>
+                </div>              
             </div>
         </div>
     </div>
