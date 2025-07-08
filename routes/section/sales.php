@@ -58,5 +58,6 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/configCustomer/aturPembayaran/{idmCus}', [App\Http\Controllers\ConfigController::class, 'aturPembayaran']);
     Route::post('sales/configCustomer/postConfigSchedule', [App\Http\Controllers\ConfigController::class, 'postConfigSchedule']);
     Route::post('sales/configCustomer/postConfigPembayaran', [App\Http\Controllers\ConfigController::class, 'postConfigPembayaran']);
+    Route::get('sales/configCustomer/aturPenjualan/{cusCode}', [App\Http\Controllers\ConfigController::class, 'aturPenjualan']);
     
 ?>

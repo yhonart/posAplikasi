@@ -94,4 +94,19 @@ class ConfigController extends Controller
                 'payment_tempo'=>$tempo
             ]);
     }
+
+    public function aturPenjualan ($cusCode){
+        $mCustomer = DB::table('m_customers')
+            ->where('customer_code',$cusCode)
+            ->first();
+
+        $customerOrder = DB::table('config_customer_order as a')
+            ->select('a.*','b.product_name','b.product_code')
+            ->leftJoin('m_product as b','b.idm_data_product','=','a.product_id')
+            ->where('customer_code',$cusCode)
+            ->get();
+
+        return view("Z_Additional_Admin/AdminConfig/ConfigCustomerPenjualan", compact('mCustomer','customerOrder'));
+
+    }
 }
