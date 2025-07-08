@@ -5,7 +5,7 @@
     <div class="container-fluid">
         @if($checkArea <> 0)         
         <!-- jika module systemnya hanya kasir dan inventory saja  -->
-         @if($module = "AM3")
+         @if($module == "AM3")
             <div class="row mb-2">
                 <div class="col-md-12">
                     <div class="btn-group">
