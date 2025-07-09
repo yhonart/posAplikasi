@@ -40,8 +40,13 @@
 <section class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="card card-body table-responsive text-xs">
-                <div id="divTableInv"></div>
+            <div class="card card-purple table-responsive text-xs">
+                <div class="card-header">
+                    <h3 class="card-title">Inventory</h3>
+                </div>
+                <div class="card-body">
+                    <div id="divTableInv"></div>
+                </div>
             </div>
         </div>
     </div>
