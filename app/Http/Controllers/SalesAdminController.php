@@ -449,7 +449,32 @@ class SalesAdminController extends Controller
                 ->update([
                     'status'=>'3'
                 ]);
+
+            //update stock!
+            $selectItemOpname = DB::table('inv_list_opname')
+                ->where('sto_number',$docNumber)
+                ->get();
+
+            foreach ($selectItemOpname as $keyItem) {
+                $prdID = $keyItem->product_id;
+                $qtystockOpname = $keyItem->input_qty;
+
+                $getPrdUnit = DB::table('m_product_unit')
+                    ->where('core_id_product',$prdID)
+                    ->get();
+
+                foreach ($getPrdUnit as $keyUnit) {
+                    $prdUnitID = $keyUnit->idm_product_satuan;
+                    DB::table('inv_stock')
+                        ->where('product_id',$prdUnitID)
+                        ->update([
+                            'stock'=>$qtystockOpname
+                        ]);
+                }
+            }
         }
+
+        return back();
     }
 
     public function submitBatalTransItem ($docNumber){
