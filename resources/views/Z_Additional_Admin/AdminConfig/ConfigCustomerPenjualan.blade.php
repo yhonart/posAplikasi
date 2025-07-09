@@ -7,7 +7,7 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-sm btn-warning font-weight-bold" id="addOrder">Tambah Order</button>
+                        <button type="button" class="btn btn-sm btn-success font-weight-bold" id="addOrder"><i class="fa-solid fa-plus"></i> Tambah Order</button>
                     </div>
                 </div>
                 <div class="row">
@@ -40,7 +40,7 @@
                 </div>  
                 <div class="row">
                     <div class="col-md-12">
-                        <button class="btn btn-sm btn-warning font-weight-bold" data-dismiss="modal" aria-label="Close">Tutup</button>
+                        <button class="btn btn-sm btn-warning font-weight-bold" data-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i> Tutup</button>
                     </div>
                 </div>              
             </div>
