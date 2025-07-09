@@ -156,7 +156,7 @@
         <div class="preloader flex-column justify-content-center align-items-center">
             <img src="{{asset('public/images/loadPage.gif')}}" alt="AdminLTELogo" height="60" width="60">
         </div>
-        <nav class="main-header navbar navbar-expand-md navbar-purple navbar-dark">
+        <nav class="main-header navbar navbar-expand-md navbar-purple navbar-dark text-sm">
             <div class="container">
                 <div id="headerStoreName"></div>
                 <ul class="navbar-nav ml-auto">
