@@ -10,6 +10,11 @@
                         <button type="button" class="btn btn-sm btn-success font-weight-bold" id="addOrder"><i class="fa-solid fa-plus"></i> Tambah Order</button>
                     </div>
                 </div>
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <div id="displayFormAddOrder"></div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-sm table-valign-middle hover">
@@ -59,4 +64,18 @@
             }
         });
     }
+
+    $(document).ready(function(){
+        $("#addOrder").on('click', function (event){
+            event.preventDefault();
+            let cusCode = "{{$cusCode}}";
+            $.ajax({
+                type : 'get',
+                url : "{{route('sales')}}/configCustomer/aturPenjualan/addOrder/"+cusCode,
+                success : function(response){
+                    $("#displayFormAddOrder").html(response);
+                }
+            });
+        });
+    });
 </script>

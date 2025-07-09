@@ -106,7 +106,7 @@ class ConfigController extends Controller
             ->where('customer_code',$cusCode)
             ->get();
 
-        return view("Z_Additional_Admin/AdminConfig/ConfigCustomerPenjualan", compact('mCustomer','customerOrder'));
+        return view("Z_Additional_Admin/AdminConfig/ConfigCustomerPenjualan", compact('mCustomer','customerOrder','cusCode'));
 
     }
 
@@ -122,5 +122,31 @@ class ConfigController extends Controller
             ->update([
                 $column => $editval
             ]);
+    }
+
+    public function addOrder ($cusCode){
+        $companyID = Auth::user()->company;
+        $product = DB::table('m_product')
+            ->where('comp_id',$companyID)
+            ->get();
+        return view("Z_Additional_Admin/AdminConfig/ConfigCustomerPenjualanAddOrder", compact('product','cusCode'));
+    }
+
+    public function postOrder (Request $reqpostOrder){
+        $productID = $reqpostOrder->productID;
+        $qtyOrder = $reqpostOrder->qtyOrder;
+        $cusCode = $reqpostOrder->cusCode;
+        $created = Auth::user()->name;
+
+        DB::table('config_customer_order')
+            ->insert([
+                'product_id'=>$productID,
+                'qty_order'=>$qtyOrder,
+                'status'=>"1",
+                'created_by'=>$created,
+                'customer_code'=>$cusCode
+            ]);
+
+        return back();
     }
 }
