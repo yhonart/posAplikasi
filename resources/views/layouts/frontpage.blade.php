@@ -158,6 +158,7 @@
         </div>
         <nav class="main-header navbar navbar-expand-md navbar-purple navbar-dark">
             <div class="container">
+                <div id="headerStoreName"></div>
                 <a href="{{url('/')}}" class="navbar-brand">                    
                     <span class="brand-text font-weight-bold"><i class="fa-solid fa-store"></i> KASIR</span>
                 </a>                
@@ -190,5 +191,10 @@
             <strong>&copy; <a href="https://dazira.id">Dazira.id</a>.</strong>
         </footer>
     </div>
+    <script>
+        $(function(){
+            $("#headerStoreName").load("{{route('home')}}/storeName");
+        });
+    </script>
 </body>
 </html>
