@@ -159,9 +159,6 @@
         <nav class="main-header navbar navbar-expand-md navbar-purple navbar-dark">
             <div class="container">
                 <div id="headerStoreName"></div>
-                <a href="{{url('/')}}" class="navbar-brand">                    
-                    <span class="brand-text font-weight-bold"><i class="fa-solid fa-store"></i> KASIR</span>
-                </a>                
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item d-none d-md-block">
                         <a class="nav-link" href="#" role="button">
