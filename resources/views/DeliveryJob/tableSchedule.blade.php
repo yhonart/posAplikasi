@@ -1,7 +1,7 @@
 <?php
     $nomor = 1;
 ?>
-<table class="table table-sm table-valign-middle table-hover">
+<table class="table table-sm table-valign-middle table-hover table-responsive">
     <thead>
         <tr>
             <th></th>
