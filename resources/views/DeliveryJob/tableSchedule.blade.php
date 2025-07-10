@@ -4,7 +4,6 @@
 <table class="table table-sm table-valign-middle table-hover table-responsive">
     <thead>
         <tr>
-            <th></th>
             <th>Pelanggan</th>
             <th>Produk</th>
         </tr>
