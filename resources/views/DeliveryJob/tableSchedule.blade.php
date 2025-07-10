@@ -20,7 +20,13 @@
                     <small class="text-muted">Alamat : {{$lpr->address}}</small>
                 </td>
                 <td>
-                    
+                    @foreach($getProductOrder as $gpo)
+                        @if($gpo->customer_code == $lpr->customer_code)
+                            <ul>
+                                <li>{{$gpo->product_name}} : {{$gpo->qty_order}}</li>
+                            </ul>
+                        @endif
+                    @endforeach
                 </td>
             </tr>
         @endforeach
