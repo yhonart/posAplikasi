@@ -12,7 +12,7 @@
         </tbody>
     </table>
     @foreach($listPengiriman as $lpr)
-        <div class="card">
+        <div class="card border-info shadow-lg">
             <div class="card-header">
                 <h3 class="card-title font-weight-bold">{{$lpr->customer_store}}</h3>
             </div>
@@ -23,6 +23,7 @@
                         <small>{{$lpr->address}}</small>
                     </div>
                     <div class="col-md-4">
+                        <span class="font-weight-bold">Produk</span> <br>
                         @foreach($getProductOrder as $gpo)
                             @if($gpo->customer_code == $lpr->customer_code)
                                 <ul>
