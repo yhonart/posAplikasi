@@ -9,11 +9,13 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-12">
                     <span class="font-weight-bold">Alamat :</span> <br>
                     <small>{{$lpr->address}}</small>
                 </div>
-                <div class="col-md-6">
+            </div>
+            <div class="row">
+                <div class="col-12">
                     <span class="font-weight-bold">Produk</span> <br>
                     @foreach($getProductOrder as $gpo)
                         @if($gpo->customer_code == $lpr->customer_code)
