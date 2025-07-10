@@ -5,7 +5,7 @@
 </div>
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="card card-blue">
+        <div class="card card-blue shadow-lg">
             <div class="card-header">
                 <h3 class="card-title">Schedule</h3>
             </div>
