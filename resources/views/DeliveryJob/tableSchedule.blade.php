@@ -11,11 +11,9 @@
     </thead>
     <tbody>
         @foreach($listPengiriman as $lpr)
-            <tr>
-                <td class="text-left">
-                    <button type="button" class="btn btn-sm btn-flat btn-success"><i class="fa-solid fa-circle-check"></i></button>
-                </td>
+            <tr>                
                 <td>
+                    <button type="button" class="btn btn-sm btn-flat btn-success rounded-pill"><i class="fa-solid fa-circle-check"></i> Diterima</button> <br>
                     <b>{{$lpr->customer_store}}</b> <br>
                     <small class="text-muted">Alamat : {{$lpr->address}}</small>
                 </td>
