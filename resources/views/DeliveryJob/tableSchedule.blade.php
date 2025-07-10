@@ -12,7 +12,7 @@
         </tbody>
     </table>
     @foreach($listPengiriman as $lpr)
-        <div class="card border-1 border-info shadow-sm">
+        <div class="card border border-1 border-info shadow-sm">
             <div class="card-header">
                 <h3 class="card-title font-weight-bold">{{$lpr->customer_store}}</h3>
             </div>
