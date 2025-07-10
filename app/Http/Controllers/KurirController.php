@@ -26,6 +26,6 @@ class KurirController extends Controller
             7 => 'Minggu',
         ];
         
-        echo $today;
+        echo $dayNames[$today];
     }
 }
