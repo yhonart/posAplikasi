@@ -9,11 +9,11 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <span class="font-weight-bold">Alamat :</span> <br>
                     <small>{{$lpr->address}}</small>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <span class="font-weight-bold">Produk</span> <br>
                     @foreach($getProductOrder as $gpo)
                         @if($gpo->customer_code == $lpr->customer_code)
@@ -23,10 +23,8 @@
                         @endif
                     @endforeach
                     <br>
-                </div>
-                <div class="col-md-4">
-                    <button type="button" class="btn btn-info btn-sm rounded-pill">Diterima</button>
-                    <button type="button" class="btn btn-danger btn-sm rounded-pill">Pending</button>
+                    <button type="button" class="btn btn-info btn-sm rounded-pill elevation-2 font-weight-bold">Diterima</button>
+                    <button type="button" class="btn btn-danger btn-sm rounded-pill elevation-2 font-weight-bold">Pending</button>
                 </div>
             </div>
         </div>
