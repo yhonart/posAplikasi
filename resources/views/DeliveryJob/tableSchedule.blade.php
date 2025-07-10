@@ -31,6 +31,9 @@
                                 </ul>
                             @endif
                         @endforeach
+                        <br>
+                        <button type="button" class="btn btn-info btn-sm rounded-pill">Diterima</button>
+                        <button type="button" class="btn btn-danger btn-sm rounded-pill">Pending</button>
                     </div>
                 </div>
             </div>
