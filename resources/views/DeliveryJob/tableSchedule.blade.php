@@ -25,8 +25,8 @@
                         @endif
                     @endforeach
                     <br>
-                    <button type="button" class="btn btn-info btn-sm rounded-pill elevation-2 font-weight-bold">Diterima</button>
-                    <button type="button" class="btn btn-danger btn-sm rounded-pill elevation-2 font-weight-bold">Pending</button>
+                    <button type="button" class="btn btn-info btn-sm rounded-pill elevation-2 font-weight-bold"><i class="fa-solid fa-circle-check"></i> Diterima</button>
+                    <button type="button" class="btn btn-danger btn-sm rounded-pill elevation-2 font-weight-bold"><i class="fa-solid fa-clock-rotate-left"></i> Pending</button>
                 </div>
             </div>
         </div>
