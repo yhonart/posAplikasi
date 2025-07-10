@@ -1,7 +1,7 @@
 <?php
     $nomor = 1;
 ?>
-<table class="table table-sm table-valign-middle">
+<table class="table table-sm table-valign-middle table-hover">
     <thead>
         <tr>
             <th>No.</th>
@@ -21,7 +21,7 @@
                 <td>
 
                 </td>
-                <td>
+                <td class="text-right">
                     <button type="button" class="btn btn-sm btn-flat btn-default"><i class="fa-solid fa-circle-check text-success"></i></button>
                 </td>
             </tr>
