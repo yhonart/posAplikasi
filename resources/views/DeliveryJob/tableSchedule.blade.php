@@ -9,23 +9,29 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($listPengiriman as $lpr)
-            <tr>                
-                <td>
-                    <button type="button" class="btn btn-sm btn-flat btn-success rounded-pill"><i class="fa-solid fa-circle-check"></i> Diterima</button> <br>
-                    <b>{{$lpr->customer_store}}</b> <br>
-                    <small class="text-muted">Alamat : {{$lpr->address}}</small>
-                </td>
-                <td>
-                    @foreach($getProductOrder as $gpo)
-                        @if($gpo->customer_code == $lpr->customer_code)
-                            <ul>
-                                <li>{{$gpo->product_name}} : {{$gpo->qty_order}} Pcs.</li>
-                            </ul>
-                        @endif
-                    @endforeach
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+        </tbody>
+    </table>
+    @foreach($listPengiriman as $lpr)
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title font-weight-bold">{{$lpr->customer_store}}</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="font-weight-bold">Alamat :</span> <br>
+                        <small>{{$lpr->address}}</small>
+                    </div>
+                    <div class="col-md-4">
+                        @foreach($getProductOrder as $gpo)
+                            @if($gpo->customer_code == $lpr->customer_code)
+                                <ul>
+                                    <li>{{$gpo->product_name}} : {{$gpo->qty_order}} Pcs.</li>
+                                </ul>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>        
+    @endforeach

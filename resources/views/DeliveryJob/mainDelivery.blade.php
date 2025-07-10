@@ -5,18 +5,7 @@
 </div>
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="card card-purple shadow-sm">
-            <div class="card-header">
-                <h3 class="card-title">Jadwal Pengiriman</h3>
-            </div>
-            <div class="card-body p-0">                
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="contentSchedule"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="contentSchedule"></div>        
     </div>
 </div>
 <script>
