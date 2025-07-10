@@ -23,7 +23,7 @@
                     @foreach($getProductOrder as $gpo)
                         @if($gpo->customer_code == $lpr->customer_code)
                             <ul>
-                                <li>{{$gpo->product_name}} : {{$gpo->qty_order}}</li>
+                                <li>{{$gpo->product_name}} : {{$gpo->qty_order}} Pcs.</li>
                             </ul>
                         @endif
                     @endforeach
