@@ -32,6 +32,6 @@ class KurirController extends Controller
             ->where('day_freq',$hari)
             ->get();
 
-        return view('DeliveryJob/mainDelivery/tableSchedule', compact('listPengiriman'));        
+        return view('DeliveryJob/tableSchedule', compact('listPengiriman'));        
     }
 }
