@@ -26,6 +26,12 @@ class KurirController extends Controller
             7 => 'Minggu',
         ];
         
-        echo $dayNames[$today];
+        $hari =  $dayNames[$today];
+
+        $listPengiriman = DB::table('view_delivery_config')
+            ->where('day_freq',$hari)
+            ->get();
+
+        return view('DeliveryJob/mainDelivery/tableSchedule', compact('listPengiriman'));        
     }
 }
