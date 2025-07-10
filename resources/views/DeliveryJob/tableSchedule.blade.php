@@ -5,7 +5,7 @@
 @foreach($listPengiriman as $lpr)
     <div class="card border border-1 border-info shadow-sm">
         <div class="card-header">
-            <h3 class="card-title font-weight-bold">{{$lpr->customer_store}}</h3>
+            <h3 class="card-title font-weight-bold"><i class="fa-solid fa-store"></i> {{$lpr->customer_store}}</h3>
         </div>
         <div class="card-body">
             <div class="row">

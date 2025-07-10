@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <nav class="navbar navbar-expand-lg" style="width:100%;">
-                        <span class="d-flex navbar-brand">Admin Delivery</span>
+                        <span class="d-flex navbar-brand">Admin Delivery <i class="fa-solid fa-truck-fast text-info"></i></span>
         
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
