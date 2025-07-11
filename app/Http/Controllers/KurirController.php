@@ -99,7 +99,7 @@ class KurirController extends Controller
                 'created_by' => Auth::user()->name,
                 'created_at' => Carbon::now(),
             ]);
-            return response()->json(['message' => 'Foto berhasil disimpan!', 'photo' => $photo], 200);
+            return response()->json(['message' => 'Foto berhasil disimpan!'], 200);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Terjadi kesalahan saat menyimpan penerimaan: ' . $e->getMessage()], 500);
         }
