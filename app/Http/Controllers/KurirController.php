@@ -102,6 +102,5 @@ class KurirController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Terjadi kesalahan saat menyimpan penerimaan: ' . $e->getMessage()], 500);
         }
-        return response()->json(['success' => true, 'message' => 'Penerimaan berhasil disimpan']);
     }
 }
