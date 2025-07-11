@@ -8,17 +8,33 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div>
-                            <button id="startCamera">Mulai Kamera</button>
-                            <button id="takePhoto" disabled>Ambil Foto</button>
-                            <button id="submitPhoto" disabled>Simpan Foto</button>
+                            <button id="startCamera" class="btn btn-info rounded-pill">Mulai Kamera</button>
+                            <button id="takePhoto" class="btn btn-success rounded-pill" disabled>Ambil Foto</button>
+                            <button id="submitPhoto" class="btn btn-success rounded-pill" disabled>Simpan Foto</button>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center" style="margin-top: 20px;">
+                    <div class="col-md-12">
                         <video id="cameraFeed" autoplay playsinline></video>
                         <canvas id="photoCanvas"></canvas>
                         <img id="capturedImage" style="display: none; max-width: 100%; margin-top: 20px;">
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-md-12">
                         <p id="locationInfo">Mencari lokasi...</p>
                         <p id="statusMessage"></p>
                         <div class="loading" id="loadingSpinner">Mengirim data...</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Pastikan untuk memberikan izin akses kamera dan lokasi pada browser Anda.</p>
+                        <p>Foto yang diambil akan disimpan dengan informasi lokasi (jika tersedia).</p>
                     </div>
                 </div>
             </div>
