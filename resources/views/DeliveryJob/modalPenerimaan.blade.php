@@ -34,8 +34,10 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <p>Pastikan untuk memberikan izin akses kamera dan lokasi pada browser Anda.</p>
-                        <p>Foto yang diambil akan disimpan dengan informasi lokasi (jika tersedia).</p>
+                        <ul>
+                            <li>Pastikan untuk memberikan izin akses kamera dan lokasi pada browser Anda.</li>
+                            <li>Foto yang diambil akan disimpan dengan informasi lokasi (jika tersedia).</li>
+                        </ul>
                     </div>
                 </div>
             </div>
