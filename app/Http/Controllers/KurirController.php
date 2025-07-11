@@ -14,7 +14,8 @@ class KurirController extends Controller
     }
 
     public function funcDate ($date){
-        $today = Carbon::now()->dayOfWeekIso;
+        // $today = Carbon::now()->dayOfWeekIso;
+        $today = Carbon::parse($date)->dayOfWeekIso; // Use the provided date to determine the day of the week
         // $selectedDay = $request->input('day', $today);
         $dayNames = [
             1 => 'Senin',
