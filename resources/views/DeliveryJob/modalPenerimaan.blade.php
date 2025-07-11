@@ -186,7 +186,7 @@
 
         try {
             const response = await $.ajax({
-                url: '/photos', // Sesuaikan dengan rute Anda
+                url: "{{route('sales')}}/", // Sesuaikan dengan rute Anda
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

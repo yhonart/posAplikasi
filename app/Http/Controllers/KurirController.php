@@ -66,4 +66,14 @@ class KurirController extends Controller
     public function penerimaan($configID, $customerCode){
         return view('DeliveryJob/modalPenerimaan', compact('configID','customerCode'));
     }
+
+    public function postPenerimaan(Request $request){
+        $data = $request->all();
+        $data['created_by'] = Auth::user()->id;
+        $data['created_at'] = Carbon::now();
+
+        DB::table('delivery_receipt')->insert($data);
+
+        return response()->json(['success' => true, 'message' => 'Penerimaan berhasil disimpan']);
+    }
 }
