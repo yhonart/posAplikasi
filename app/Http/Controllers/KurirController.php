@@ -88,7 +88,9 @@ class KurirController extends Controller
             $filename = uniqid() . '.jpeg';
             $path = 'public/images/Delivery/' . $filename; // Path penyimpanan di storage
             // Simpan file ke storage
-            Storage::put($path, $imageData);
+            // Storage::put($path, $imageData);
+            $DirPublic = public_path()."/images/Delivery/";
+            file_put_contents($DirPublic . $filename, $imageData);
 
             DB::table('tr_delivery_receipt')->insert([
                 'config_id' => $request->input('configID'),
