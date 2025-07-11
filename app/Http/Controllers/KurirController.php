@@ -104,4 +104,5 @@ class KurirController extends Controller
             return response()->json(['success' => false, 'message' => 'Terjadi kesalahan saat menyimpan penerimaan: ' . $e->getMessage()], 500);
         }
     }
+    
 }
