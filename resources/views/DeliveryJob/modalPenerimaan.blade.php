@@ -8,10 +8,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div>
-                            <button id="startCamera" class="btn btn-danger rounded-pill"><i class="fa-solid fa-camera"></i> Mulai Kamera</button>
-                            <button id="takePhoto" class="btn btn-info rounded-pill" disabled><i class="fa-solid fa-camera-retro"></i> Ambil Foto</button>
-                            <button id="submitPhoto" class="btn btn-success rounded-pill" disabled><i class="fa-solid fa-floppy-disk"></i> Simpan Foto</button>
-                            <button id="loadPage" class="btn btn-warning rounded-pill"><i class="fa-solid fa-xmark"></i> Close</button>
+                            <button id="startCamera" class="btn btn-danger rounded-pill mt-2"><i class="fa-solid fa-camera"></i> Mulai Kamera</button>
+                            <button id="takePhoto" class="btn btn-info rounded-pill mt-2" disabled><i class="fa-solid fa-camera-retro"></i> Ambil Foto</button>
+                            <button id="submitPhoto" class="btn btn-success rounded-pill mt-2" disabled><i class="fa-solid fa-floppy-disk"></i> Simpan Foto</button>
+                            <button id="loadPage" class="btn btn-warning rounded-pill mt-2"><i class="fa-solid fa-xmark"></i> Close</button>
                         </div>
                     </div>
                 </div>
