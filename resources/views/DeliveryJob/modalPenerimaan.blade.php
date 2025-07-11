@@ -194,7 +194,9 @@
                 data: {
                     image: photoData,
                     latitude: currentLatitude,
-                    longitude: currentLongitude
+                    longitude: currentLongitude,
+                    configID: '{{ $configID }}',
+                    customerCode: '{{ $customerCode }}' 
                 },
                 dataType: 'json'
             });

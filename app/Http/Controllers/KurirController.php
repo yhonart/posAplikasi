@@ -68,12 +68,38 @@ class KurirController extends Controller
     }
 
     public function postPenerimaan(Request $request){
-        $data = $request->all();
-        $data['created_by'] = Auth::user()->id;
-        $data['created_at'] = Carbon::now();
+        $request->validate([
+            'image' => 'required', // Data base64 dari foto
+            'latitude' => 'nullable|string',
+            'longitude' => 'nullable|string',
+        ]);
 
-        DB::table('delivery_receipt')->insert($data);
+        try {
+           // Ambil data base64 dari request
+            $imageData = $request->input('image');
+            // Pisahkan bagian "data:image/jpeg;base64," dari data sebenarnya
+            list($type, $imageData) = explode(';', $imageData);
+            list(, $imageData) = explode(',', $imageData);
+            $imageData = base64_decode($imageData);
 
+            // Buat nama file unik
+            $filename = uniqid() . '.jpeg';
+            $path = 'public/images/Delivery/' . $filename; // Path penyimpanan di storage
+            // Simpan file ke storage
+            Storage::put($path, $imageData);
+
+            DB::table('delivery_receipt')->insert([
+                'config_id' => $request->input('configID'),
+                'customer_code' => $request->input('customerCode'),
+                'image' => $filename, // Simpan nama file
+                'latitude' => $request->input('latitude'),
+                'longitude' => $request->input('longitude'),
+                'created_by' => Auth::user()->name,
+                'created_at' => Carbon::now(),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Terjadi kesalahan saat menyimpan penerimaan: ' . $e->getMessage()], 500);
+        }
         return response()->json(['success' => true, 'message' => 'Penerimaan berhasil disimpan']);
     }
 }
