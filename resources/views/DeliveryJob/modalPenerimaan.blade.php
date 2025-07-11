@@ -1,3 +1,11 @@
+<style>
+    video { width: 100%; max-width: 640px; height: auto; border: 1px solid #ccc; background-color: #000; display: block; margin: 20px auto; }
+    canvas { display: none; border: 1px solid #ccc; margin-top: 20px; max-width: 640px; width: 100%; height: auto; background-color: #eee; }
+    .loading { display: none; margin-top: 10px; }
+    .loading.show { display: block; }
+    #statusMessage { margin-top: 20px; font-weight: bold; }
+    #locationInfo { margin-top: 10px; font-style: italic; color: #555; }
+</style>
 <div class="row">
     <div class="col-md-12">
         <div class="card card-purple">
