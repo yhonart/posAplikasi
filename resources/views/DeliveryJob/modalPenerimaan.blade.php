@@ -14,23 +14,17 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <button id="startCamera" class="btn btn-danger rounded-pill btn-block"><i class="fa-solid fa-camera"></i> Mulai Kamera</button>
-                                </div>
-                                <div class="col-md-3">
-                                    <button id="takePhoto" class="btn btn-info rounded-pill btn-block" disabled><i class="fa-solid fa-camera-retro"></i> Ambil Foto</button>
-                                </div>
-                                <div class="col-md-3">
-                                    <button id="submitPhoto" class="btn btn-success rounded-pill btn-block" disabled><i class="fa-solid fa-floppy-disk"></i> Simpan Foto</button>
-                                </div>
-                                <div class="col-md-3">
-                                    <button id="loadPage" class="btn btn-warning rounded-pill btn-block"><i class="fa-solid fa-xmark"></i> Close</button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-md-3">
+                        <button id="startCamera" class="btn btn-danger rounded-pill mt-1 btn-block"><i class="fa-solid fa-camera"></i> Mulai Kamera</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button id="takePhoto" class="btn btn-info rounded-pill mt-1 btn-block" disabled><i class="fa-solid fa-camera-retro"></i> Ambil Foto</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button id="submitPhoto" class="btn btn-success rounded-pill mt-1 btn-block" disabled><i class="fa-solid fa-floppy-disk"></i> Simpan Foto</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button id="loadPage" class="btn btn-warning rounded-pill mt-1 btn-block"><i class="fa-solid fa-xmark"></i> Close</button>
                     </div>
                 </div>
 
