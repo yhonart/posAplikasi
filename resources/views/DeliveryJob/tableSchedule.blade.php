@@ -1,7 +1,6 @@
 <?php
     $nomor = 1;
 ?>
-
 @foreach($listPengiriman as $lpr)
     <div class="card border border-1 border-info shadow-sm">
         <div class="card-header">
@@ -25,8 +24,8 @@
                         @endif
                     @endforeach
                     <br>
-                    <button type="button" class="btn btn-info btn-sm rounded-pill elevation-2 font-weight-bold"><i class="fa-solid fa-circle-check"></i> Diterima</button>
-                    <button type="button" class="btn btn-danger btn-sm rounded-pill elevation-2 font-weight-bold"><i class="fa-solid fa-clock-rotate-left"></i> Pending</button>
+                    <button type="button" class="btn btn-info btn-sm rounded-pill elevation-2 font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/mainKurir/penerimaan/{{$lpr->delconfig_id}}/{{$lpr->customer_code}}"><i class="fa-solid fa-circle-check"></i> Diterima</button>
+                    <button type="button" class="btn btn-danger btn-sm rounded-pill elevation-2 font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/mainKurir/pending/{{$lpr->delconfig_id}}"><i class="fa-solid fa-clock-rotate-left"></i> Pending</button>
                 </div>
             </div>
         </div>

@@ -37,4 +37,8 @@ class KurirController extends Controller
 
         return view('DeliveryJob/tableSchedule', compact('listPengiriman','getProductOrder'));        
     }
+
+    public function penerimaan($configID, $customerCode){
+        return view('DeliveryJob/modalPenerimaan', compact('configID','customerCode'));
+    }
 }
