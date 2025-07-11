@@ -90,7 +90,7 @@ class KurirController extends Controller
             // Simpan file ke storage
             Storage::put($path, $imageData);
 
-            DB::table('delivery_receipt')->insert([
+            DB::table('tr_delivery_receipt')->insert([
                 'config_id' => $request->input('configID'),
                 'customer_code' => $request->input('customerCode'),
                 'image' => $filename, // Simpan nama file
