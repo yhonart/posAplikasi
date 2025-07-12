@@ -100,6 +100,7 @@ class KurirController extends Controller
                 'longitude' => $request->input('longitude'),
                 'created_by' => Auth::user()->name,
                 'created_at' => Carbon::now(),
+                'status' => '1', // Status 1 untuk penerimaan
             ]);
             return response()->json(['message' => 'Foto berhasil disimpan!'], 200);
         } catch (\Exception $e) {

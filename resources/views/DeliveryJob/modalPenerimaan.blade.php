@@ -232,4 +232,8 @@
     document.addEventListener('DOMContentLoaded', () => {
         getLocation(); // Langsung minta izin lokasi saat halaman dimuat
     });
+
+    $('#loadPage').on('click', function() {
+        window.location.href = "{{ route('sales') }}/mainKurir"; // Ganti dengan rute yang sesuai
+    });
 </script>
