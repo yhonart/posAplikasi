@@ -266,12 +266,14 @@ class GlobSettingController extends Controller
     public function postModalFixed(Request $reqPostModalFixed){
         $nominal = $reqPostModalFixed->nominal;
         $createdBy = Auth::user()->name;
+        $company = Auth::user()->company;
         $sumberDana = "Setup Dana";
         $namaBank = '0';
 
         DB::table('m_trx_kas_kasir')
             ->insert([
-                'nominal_dana'=>$nominal
+                'nominal_dana'=>$nominal,
+                'comp_id'=>$company,
             ]);        
         
         DB::table('tr_kas')
