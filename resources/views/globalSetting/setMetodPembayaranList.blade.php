@@ -33,38 +33,56 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-    <button class="btn btn-success BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold mb-2" href="{{route('setPembayaran')}}/newAkunBank">Tambah Akun Bank</button>
+    <div class="col-md-6">    
         <div class="card card-outline card-success">
             <div class="card-header">
                 <h3 class="card-title font-weight-bold">Bank Account</h3>
             </div>
             <div class="card-body text-xs table-responsive">
-                <table class="table table-sm table-valign-middle text-nowrap">
-                    <thead>
-                        <tr>
-                            <th>Kode Bank</th>
-                            <th>Nama Bank</th>
-                            <th>Nomor</th>
-                            <th>Nama Akun</th>
-                            <th>#</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($mAccountBank as $accountBank)
-                            <tr>
-                                <td>{{$accountBank->bank_code}}</td>
-                                <td>{{$accountBank->bank_name}}</td>
-                                <td>{{$accountBank->account_number}}</td>
-                                <td>{{$accountBank->account_name}}</td>
-                                <td>
-                                    <button class="btn btn-sm BTN-OPEN-MODAL-GLOBAL-LG btn-info " href="{{route('setPembayaran')}}/editAkun/{{$accountBank->idm_payment}}"><i class="fa-solid fa-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger  DELETE-AKUN" id-akun="{{$accountBank->idm_payment}}"><i class="fa-solid fa-trash-can"></i></button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="font-weight-bold">Perusahaan :</span> <br>
+                        <small>{{$company}}</small>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="font-weight-bold">Hak Akses :</span> <br>
+                        <small>{{$hakAkses}}</small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-success BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold mb-2" href="{{route('setPembayaran')}}/newAkunBank">Tambah Akun Bank</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-sm table-valign-middle text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Kode Bank</th>
+                                    <th>Nama Bank</th>
+                                    <th>Nomor</th>
+                                    <th>Nama Akun</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($mAccountBank as $accountBank)
+                                    <tr>
+                                        <td>{{$accountBank->bank_code}}</td>
+                                        <td>{{$accountBank->bank_name}}</td>
+                                        <td>{{$accountBank->account_number}}</td>
+                                        <td>{{$accountBank->account_name}}</td>
+                                        <td>
+                                            <button class="btn btn-sm BTN-OPEN-MODAL-GLOBAL-LG btn-info " href="{{route('setPembayaran')}}/editAkun/{{$accountBank->idm_payment}}"><i class="fa-solid fa-pencil"></i></button>
+                                            <button class="btn btn-sm btn-danger  DELETE-AKUN" id-akun="{{$accountBank->idm_payment}}"><i class="fa-solid fa-trash-can"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>                
             </div>
         </div>
     </div>
