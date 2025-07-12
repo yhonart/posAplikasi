@@ -1,6 +1,9 @@
 <div class="row mt-2">
     <div class="col-md-6">
-        <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold mb-2" href="{{route('setPembayaran')}}/newPembayaran">Tambah Metode Pembayaran</button>
+        @if($hakAkses == '99')
+            <h3 class="text-info font-weight-bold">Pengaturan Metode Pembayaran</h3>
+            <button class="btn btn-info BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold mb-2" href="{{route('setPembayaran')}}/newPembayaran">Tambah Metode Pembayaran</button>
+        @endif
         <div class="card card-outline card-info">
             <div class="card-header">
                 <h3 class="card-title font-weight-bold">Metode Pembayaran</h3>
