@@ -256,7 +256,9 @@ class GlobSettingController extends Controller
             ->where('comp_id', $company)
             ->get();
 
-        return view('globalSetting/danaTetapKasKecil',compact('mainDanaTetap'));
+        $countData = $mainDanaTetap->count();
+
+        return view('globalSetting/danaTetapKasKecil',compact('mainDanaTetap','countData'));
     }
 
     public function formAddModalFix(){
