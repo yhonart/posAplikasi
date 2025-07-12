@@ -65,7 +65,7 @@
                                         <td>{{$accountBank->account_name}}</td>
                                         <td>
                                             <button class="btn btn-sm BTN-OPEN-MODAL-GLOBAL-LG btn-info " href="{{route('setPembayaran')}}/editAkun/{{$accountBank->idm_payment}}"><i class="fa-solid fa-pencil"></i></button>
-                                            <button class="btn btn-sm btn-danger  DELETE-AKUN" id-akun="{{$accountBank->idm_payment}}"><i class="fa-solid fa-trash-can"></i></button>
+                                            <button class="btn btn-sm btn-danger DELETE-AKUN" id-akun="{{$accountBank->idm_payment}}"><i class="fa-solid fa-trash-can"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
