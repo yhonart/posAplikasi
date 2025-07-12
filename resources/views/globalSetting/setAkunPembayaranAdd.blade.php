@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="card-body text-xs">
-        <form id="formAddAkunPembayaran">
+        <form id="formAddAkunPembayaran" autocomplete="off">
             <div class="form-group row">
                 <label class="col-md-4">Kode Bank</label>
                 <div class="col-md-4">
