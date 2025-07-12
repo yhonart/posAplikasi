@@ -250,7 +250,10 @@ class GlobSettingController extends Controller
     }
 
     public function modalKasKecil(){
+        $company = Auth::user()->company;
+        // Ambil data dana tetap kas kecil
         $mainDanaTetap = DB::table('m_trx_kas_kasir')
+            ->where('comp_id', $company)
             ->get();
 
         return view('globalSetting/danaTetapKasKecil',compact('mainDanaTetap'));
