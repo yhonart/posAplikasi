@@ -3,42 +3,53 @@
 @section('content')
 <div class="content-header">
     <div class="container-fluid">    
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="content">
-    <div class="container-fluid">  
-        <div class="row">
-            <div class="col-md-12">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-flat BTN-CLICK border-0" data-link="dashPenjualan">
-                        <i class="fa-solid fa-shop"></i> Penjualan Toko
-                    </button>
-                    <button type="button" class="btn btn-default btn-flat BTN-CLICK border-0" data-link="displayPembelian">
-                        <i class="fa-solid fa-cart-arrow-down"></i> Pembelian
-                    </button>
-                    <button type="button" class="btn btn-default btn-flat BTN-CLICK border-0" data-link="dashHutangPelanggan">
-                        <i class="fa-solid fa-file-invoice-dollar"></i> Hutang Pelanggan
-                    </button>
-                    <button type="button" class="btn btn-default btn-flat BTN-CLICK border-0" data-link="dashHutangToko">
-                        <i class="fa-solid fa-file-invoice"></i> Hutang Toko
-                    </button>
-                    <button type="button" class="btn btn-default btn-flat BTN-CLICK border-0" data-link="dashLaporanKeuangan">
-                        <i class="fa-solid fa-file-lines"></i> Laporan Keuangan
-                    </button>
+        <section class="content-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg" style="width:100%;">
+                        <span class="d-flex navbar-brand">Dashboard <i class="fa-solid fa-chart-line"></i></span>
+        
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+        
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link BTN-CLICK" href="#" data-link="dashPenjualan" data-toggle="tab" id="tabMenuDash">
+                                        Penjualan Toko
+                                    </a>
+                                </li>
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link BTN-CLICK" href="#" data-link="displayPembelian" data-toggle="tab" id="tabMenuHistory">
+                                        Pembelian
+                                    </a>
+                                </li>                                                             
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link BTN-CLICK" href="#" data-link="dashHutangPelanggan" data-toggle="tab" id="tabMenuHistory">
+                                        Hutang Pelanggan
+                                    </a>
+                                </li>                                                             
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link BTN-CLICK" href="#" data-link="dashHutangToko" data-toggle="tab" id="tabMenuHistory">
+                                        Hutang Toko
+                                    </a>
+                                </li>                                                             
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link BTN-CLICK" href="#" data-link="dashLaporanKeuangan" data-toggle="tab" id="tabMenuHistory">
+                                        Laporan Keuangan
+                                    </a>
+                                </li>                                                             
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-md-12">
-                <div id="displayAdminDashboard"></div>
-            </div>
-        </div>
+        </section>
+        <section class="container-fluid">
+            <div id="displayAdminDashboard"></div>
+        </section>
     </div>
 </div>
 
