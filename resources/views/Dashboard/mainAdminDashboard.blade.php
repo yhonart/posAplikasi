@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <nav class="navbar navbar-expand-lg" style="width:100%;">
-                        <span class="d-flex navbar-brand">Dashboard <i class="fa-solid fa-chart-line pl-2 text-info"></i></span>
+                        <span class="d-flex navbar-brand"><i class="fa-solid fa-chart-line pl-2 text-info"></i></span>
         
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

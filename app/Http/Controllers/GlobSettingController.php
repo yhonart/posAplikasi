@@ -92,13 +92,16 @@ class GlobSettingController extends Controller
 
     public function tableSetPembayaran (){
         $mPayMethod = DB::table('m_payment_method')
+            ->where('status','1')
             ->orderBy('method_name','asc')
             ->get();
 
         $mAccountBank = DB::table('m_company_payment')
             ->get();
 
-        return view('globalSetting/setMetodPembayaranList', compact('mPayMethod','mAccountBank'));
+        $hakAkses = Auth::user()->hakakses;
+
+        return view('globalSetting/setMetodPembayaranList', compact('mPayMethod','mAccountBank','hakAkses'));
     }
 
     public function editMethod ($idMethod){

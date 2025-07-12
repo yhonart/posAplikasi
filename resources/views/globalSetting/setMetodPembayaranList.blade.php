@@ -10,7 +10,7 @@
                     <thead>
                         <tr>
                             <th>Metode Pembayaran</th>
-                            <th>#</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -18,8 +18,10 @@
                             <tr>
                                 <td>{{$mpm->method_name}}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-info  BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('setPembayaran')}}/editMethod/{{$mpm->idm_payment_method}}"><i class="fa-solid fa-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger  DEL-METHOD" id-method="{{$mpm->idm_payment_method}}"><i class="fa-solid fa-trash"></i></button>
+                                    @if($hakAkses == '99')
+                                        <button class="btn btn-sm btn-info  BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('setPembayaran')}}/editMethod/{{$mpm->idm_payment_method}}"><i class="fa-solid fa-pencil"></i></button>
+                                        <button class="btn btn-sm btn-danger  DEL-METHOD" id-method="{{$mpm->idm_payment_method}}"><i class="fa-solid fa-trash"></i></button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
