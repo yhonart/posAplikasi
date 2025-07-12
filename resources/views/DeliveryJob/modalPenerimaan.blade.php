@@ -234,6 +234,6 @@
     });
 
     $('#loadPage').on('click', function() {
-        window.location.href = "{{ route('sales') }}/home";
+        window.location.href = "{{ route('home') }}";
     });
 </script>
