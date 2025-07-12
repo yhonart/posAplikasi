@@ -91,15 +91,18 @@ class GlobSettingController extends Controller
     }
 
     public function tableSetPembayaran (){
+        $company = Auth::user()->company;
+        $hakAkses = Auth::user()->hakakses;
+        // Ambil data metode pembayaran yang aktif
         $mPayMethod = DB::table('m_payment_method')
             ->where('status','1')
             ->orderBy('method_name','asc')
             ->get();
 
         $mAccountBank = DB::table('m_company_payment')
+            ->where('comp_id',$company)
             ->get();
 
-        $hakAkses = Auth::user()->hakakses;
 
         return view('globalSetting/setMetodPembayaranList', compact('mPayMethod','mAccountBank','hakAkses'));
     }
