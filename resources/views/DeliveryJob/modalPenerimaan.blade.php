@@ -234,6 +234,6 @@
     });
 
     $('#loadPage').on('click', function() {
-        window.location.href = "{{ route('sales') }}/mainKurir"; // Ganti dengan rute yang sesuai
+        window.location.href = "{{ route('sales') }}/home";
     });
 </script>
