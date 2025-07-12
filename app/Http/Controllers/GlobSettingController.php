@@ -104,7 +104,7 @@ class GlobSettingController extends Controller
             ->get();
 
 
-        return view('globalSetting/setMetodPembayaranList', compact('mPayMethod','mAccountBank','hakAkses'));
+        return view('globalSetting/setMetodPembayaranList', compact('mPayMethod', 'mAccountBank', 'hakAkses', 'company'));
     }
 
     public function editMethod ($idMethod){
