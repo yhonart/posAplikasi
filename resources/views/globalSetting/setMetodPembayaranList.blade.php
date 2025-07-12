@@ -38,17 +38,7 @@
             <div class="card-header">
                 <h3 class="card-title font-weight-bold">Bank Account</h3>
             </div>
-            <div class="card-body text-xs table-responsive">
-                <div class="row">
-                    <div class="col-md-6">
-                        <span class="font-weight-bold">Perusahaan :</span> <br>
-                        <small>{{$company}}</small>
-                    </div>
-                    <div class="col-md-6">
-                        <span class="font-weight-bold">Hak Akses :</span> <br>
-                        <small>{{$hakAkses}}</small>
-                    </div>
-                </div>
+            <div class="card-body text-xs table-responsive">                
                 <div class="row">
                     <div class="col-md-12">
                         <button class="btn btn-success BTN-OPEN-MODAL-GLOBAL-LG  font-weight-bold mb-2" href="{{route('setPembayaran')}}/newAkunBank">Tambah Akun Bank</button>

@@ -1,5 +1,5 @@
-<div class="card">
-    <div class="card-header border-0">
+<div class="card card-purple">
+    <div class="card-header">
         <h3 class="card-title">Tambah Akun Pembayaran</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool border-0 elevation-1" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
@@ -8,7 +8,7 @@
     <div class="card-body text-xs">
         <form id="formAddAkunPembayaran">
             <div class="form-group row">
-                <label class="col-md-4">Kode Bank`</label>
+                <label class="col-md-4">Kode Bank</label>
                 <div class="col-md-4">
                     <input type="text" class="form-control form-control-sm " name="kodeBank" id="kodeBank">
                 </div>

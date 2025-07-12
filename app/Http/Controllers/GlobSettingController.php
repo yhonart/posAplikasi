@@ -130,7 +130,6 @@ class GlobSettingController extends Controller
         DB::table('m_payment_method')
             ->where('idm_payment_method',$idMethod)
             ->delete();
-
     }
 
     public function newPembayaran(){
@@ -151,6 +150,7 @@ class GlobSettingController extends Controller
     }
     
     public function postnewAkunBank(Request $reqAkunBank){
+        $company = Auth::user()->company;
         DB::table('m_company_payment')
             ->insert([
                 'core_payment_method'=>'4',
@@ -158,6 +158,7 @@ class GlobSettingController extends Controller
                 'bank_name'=>strtoupper($reqAkunBank->namaBank),
                 'account_number'=>$reqAkunBank->noRek,
                 'account_name'=>strtoupper($reqAkunBank->namaAkun),
+                'comp_id'=>$company
             ]);
     }
     public function editAkun($id){
