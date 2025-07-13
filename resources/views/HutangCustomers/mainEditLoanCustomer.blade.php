@@ -22,9 +22,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <nav class="navbar navbar-expand-lg" style="width:100%;">
-                    <span class="d-flex navbar-brand">Admin Control</span>
-    
+                <nav class="navbar navbar-expand-lg" style="width:100%;">    
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-ellipsis-h"></i>
