@@ -30,15 +30,15 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
                             <li class="nav-item d-none d-md-block">
-                                <a class="nav-link DIS-ONCLICK font-weight-bold" href="#" data-display="listDataOpname" data-toggle="tab" id="pr">
-                                    <i class="fa-solid fa-table-list"></i> List Opname
-                                </a>
-                            </li>                                                                                                 
-                            <li class="nav-item d-none d-md-block">
                                 <a class="nav-link DIS-ONCLICK font-weight-bold" href="#" data-display="listInputBarang" data-toggle="tab" id="productIn">
                                     <i class="fa-solid fa-plus"></i> Buat Transaksi
                                 </a>
                             </li>                                                                                               
+                            <li class="nav-item d-none d-md-block">
+                                <a class="nav-link DIS-ONCLICK font-weight-bold" href="#" data-display="listDataOpname" data-toggle="tab" id="pr">
+                                    <i class="fa-solid fa-table-list"></i> List Opname
+                                </a>
+                            </li>                                                                                                 
                         </ul>
                     </div>
                 </nav>
