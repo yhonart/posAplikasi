@@ -18,15 +18,43 @@
     </div><!-- /.container-fluid -->
 </div>
 <div class="content mt-0">
-    <div class="container-fluid">
-        <div class="row mb-2">
+    <div class="container-fluid mb-2">
+        <div class="row">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary border-0 font-weight-bold CLICK-AR" data-display="pembayaran"><i class="fa-solid fa-receipt"></i> Pembayaran</button>
-                <button type="button" class="btn btn-primary border-0 font-weight-bold CLICK-AR" data-display="saldo"><i class="fa-solid fa-box-archive"></i> Riwayat</button>
-                <button type="button" class="btn btn-default border-0 font-weight-bold CLICK-AR" data-display="lapCustomer"><i class="fa-regular fa-folder-open"></i> Lap. Customer</button>
-                <button type="button" class="btn btn-default border-0 font-weight-bold CLICK-AR" data-display="setup"><i class="fa-solid fa-gear"></i> Setup</button>
+                <nav class="navbar navbar-expand-lg" style="width:100%;">                        
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
+                            <li class="nav-item d-none d-md-block">
+                                <a class="nav-link CLICK-AR font-weight-bold" href="#" data-display="pembayaran" data-toggle="tab" id="summary">
+                                    <i class="fa-solid fa-plus"></i> Summary Hutang
+                                </a>
+                            </li>                                                                                               
+                            <li class="nav-item d-none d-md-block">
+                                <a class="nav-link CLICK-AR font-weight-bold" href="#" data-display="saldo" data-toggle="tab" id="riwayat">
+                                    <i class="fa-solid fa-table-list"></i> Riwayat Pembayaran
+                                </a>
+                            </li>                                                                                                 
+                            <li class="nav-item d-none d-md-block">
+                                <a class="nav-link CLICK-AR font-weight-bold" href="#" data-display="lapCustomer" data-toggle="tab" id="lapCustomer">
+                                    <i class="fa-solid fa-table-list"></i> Lap.Pelanggan
+                                </a>
+                            </li>                                                                                                 
+                            <li class="nav-item d-none d-md-block">
+                                <a class="nav-link CLICK-AR font-weight-bold" href="#" data-display="setup" data-toggle="tab" id="setup">
+                                    <i class="fa-solid fa-table-list"></i> Konfigurasi
+                                </a>
+                            </li>                                                                                                 
+                        </ul>
+                    </div>
+                </nav>
             </div>
         </div>
+    </div>
+    <div class="container-fluid">        
         <div class="row">
             <div class="col-12">
                 <div id="displayMenu"></div>
