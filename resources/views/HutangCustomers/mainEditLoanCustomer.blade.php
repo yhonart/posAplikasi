@@ -32,44 +32,16 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
                                 <li class="nav-item d-none d-md-block">
-                                    <a class="nav-link CLICK-AR font-weight-bold" href="#" data-display="pembayaran" data-toggle="tab" id="summary">
-                                        <i class="fa-solid fa-clipboard-list"></i> Summary Hutang
+                                    <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="mainDashboard" data-toggle="tab" id="tabMenuDash">
+                                        Home
                                     </a>
-                                </li>                                                                                               
-                                <li class="nav-item d-none d-md-block">
-                                    <a class="nav-link CLICK-AR font-weight-bold" href="#" data-display="saldo" data-toggle="tab" id="riwayat">
-                                        <i class="fa-solid fa-money-check-dollar"></i> Riwayat Pembayaran
-                                    </a>
-                                </li>                                                                                                 
-                                <li class="nav-item d-none d-md-block">
-                                    <a class="nav-link CLICK-AR font-weight-bold" href="#" data-display="lapCustomer" data-toggle="tab" id="lapCustomer">
-                                        <i class="fa-solid fa-users-between-lines"></i> Lap.Pelanggan
-                                    </a>
-                                </li>                                                                                                 
-                                <li class="nav-item d-none d-md-block">
-                                    <a class="nav-link CLICK-AR font-weight-bold" href="#" data-display="setup" data-toggle="tab" id="setup">
-                                        <i class="fa-solid fa-screwdriver-wrench"></i> Konfigurasi
-                                    </a>
-                                </li>                                                                
+                                </li>                                                           
                             </ul>
                         </div>
                     </nav>
                 </div>
             </div>
-        </section>
-        <section class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div id="divContent"></div> 
-                    <div class="modal MODAL-GLOBAL" id="modal-global-large" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-                            <div class="modal-content MODAL-CONTENT-GLOBAL">
-                            </div>
-                        </div>
-                    </div>                   
-                </div>
-            </div>
-        </section>
+        </section>        
     </div>  
     <div class="container-fluid mb-2">        
         <div class="row">
