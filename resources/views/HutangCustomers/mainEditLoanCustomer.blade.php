@@ -30,22 +30,22 @@
                         <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
                             <li class="nav-item d-none d-md-block">
                                 <a class="nav-link CLICK-AR font-weight-bold" href="#" data-display="pembayaran" data-toggle="tab" id="summary">
-                                    <i class="fa-solid fa-plus"></i> Summary Hutang
+                                    <i class="fa-solid fa-clipboard-list"></i> Summary Hutang
                                 </a>
                             </li>                                                                                               
                             <li class="nav-item d-none d-md-block">
                                 <a class="nav-link CLICK-AR font-weight-bold" href="#" data-display="saldo" data-toggle="tab" id="riwayat">
-                                    <i class="fa-solid fa-table-list"></i> Riwayat Pembayaran
+                                    <i class="fa-solid fa-money-check-dollar"></i> Riwayat Pembayaran
                                 </a>
                             </li>                                                                                                 
                             <li class="nav-item d-none d-md-block">
                                 <a class="nav-link CLICK-AR font-weight-bold" href="#" data-display="lapCustomer" data-toggle="tab" id="lapCustomer">
-                                    <i class="fa-solid fa-table-list"></i> Lap.Pelanggan
+                                    <i class="fa-solid fa-users-between-lines"></i> Lap.Pelanggan
                                 </a>
                             </li>                                                                                                 
                             <li class="nav-item d-none d-md-block">
                                 <a class="nav-link CLICK-AR font-weight-bold" href="#" data-display="setup" data-toggle="tab" id="setup">
-                                    <i class="fa-solid fa-table-list"></i> Konfigurasi
+                                    <i class="fa-solid fa-screwdriver-wrench"></i> Konfigurasi
                                 </a>
                             </li>                                                                                                 
                         </ul>
