@@ -2,7 +2,7 @@
 @section('content')
 
     <!-- Header -->
-    <div class="content-header">
+    <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -17,17 +17,49 @@
                 </div>
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
-    </div>
+    </section>
     <!-- content -->
     <div class="content mt-0">
+        @if($checkArea <> 0)
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <nav class="navbar navbar-expand-lg" style="width:100%;">
+                        <span class="d-flex navbar-brand"><i class="fa-solid fa-chart-line pl-2 text-info"></i></span>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link onclick-submenu font-weight-bold" href="#" data-click="addPurchasing" data-toggle="tab" id="pr">
+                                        <i class="fa-solid fa-dolly"></i> Pembelian
+                                    </a>
+                                </li>                                                                                                 
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link onclick-submenu font-weight-bold" href="#" data-click="dataPurchasing" data-toggle="tab" id="productIn">
+                                        <i class="fa-solid fa-file"></i> List Pembelian
+                                    </a>
+                                </li>                                                                                                 
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link onclick-submenu font-weight-bold" href="{{route('returnItem')}}" data-click="dataPurchasing" data-toggle="tab" id="productIn">
+                                        <i class="fa-solid fa-rotate-left"></i> Pengembalian Barang
+                                    </a>
+                                </li>                                                                                                 
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        @endif
+        
         <div class="container-fluid">
             @if($checkArea <> 0)
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <button class="btn btn-primary font-weight-bold onclick-submenu border-0 " data-click="addPurchasing" id="pr"><i class="fa-solid fa-dolly"></i> Tambah Pembelian</button>                        
-                    <button class="btn btn-outline-primary font-weight-bold onclick-submenu border-0 " data-click="dataPurchasing" id="productIn"><i class="fa-solid fa-file"></i> List Pembelian</button>
-                    <a href="{{route('returnItem')}}" class="btn btn-outline-danger font-weight-bold border-0"><i class="fa-solid fa-rotate-left"></i> Pengembalian Barang</a>                                         
-                </div>
+            <div class="row mb-2">                
                 <div class="col-md-4" style="display: none;">
                     <select class="form-control " name="selectTransaksi" id="selectTransaksi">
                         <option value="0" readonly>Pilih transaksi hari ini.</option>
