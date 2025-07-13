@@ -6,7 +6,6 @@
 <div class="content mt-1">
     <div class="container-fluid">
         <section class=" content-header">
-
             <div class="row">
                 <div class="col-md-12">
                     <nav class="navbar navbar-expand-lg" style="width:100%;">
