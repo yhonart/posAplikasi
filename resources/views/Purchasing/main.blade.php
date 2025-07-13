@@ -42,7 +42,7 @@
                                     </a>
                                 </li>                                                                                                 
                                 <li class="nav-item d-none d-md-block">
-                                    <a class="nav-link onclick-submenu font-weight-bold" href="{{route('returnItem')}}" data-click="dataPurchasing" data-toggle="tab" id="linkPengembalian">
+                                    <a class="nav-link onclick-submenu font-weight-bold text-danger" href="{{route('returnItem')}}" data-click="dataPurchasing" data-toggle="tab" id="linkPengembalian">
                                         <i class="fa-solid fa-rotate-left"></i> Pengembalian Barang
                                     </a>
                                 </li>                                                                                                 
