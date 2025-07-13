@@ -19,15 +19,42 @@
     </div>
 <!-- content -->
     <div class="content">
-        <div class="container-fluid">
-            @if($checkArea <> 0)
-            <div class="row mb-2">
+        @if($checkArea <> 0)
+        <div class="container-fluid mb-2">
+            <div class="row">
                 <div class="col-md-12">
-                    <button class="btn btn-primary font-weight-bold onclick-submenu border-0 " data-click="purchasingList"><i class="fa-solid fa-dolly"></i> Dokumen Pembelian</button>
-                    <button class="btn btn-primary border-0 font-weight-bold onclick-submenu " data-click="returnNonInv"><i class="fa-regular fa-folder-open"></i> Pengembalian Non Invoice</button>                     
-                    <button class="btn btn-outline-primary font-weight-bold onclick-submenu border-0 " data-click="returnHistory"><i class="fa-regular fa-folder-open"></i> Riwayat</button>                     
+                    <nav class="navbar navbar-expand-lg" style="width:100%;">                        
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link onclick-submenu font-weight-bold" href="#" data-click="returnNonInv" data-toggle="tab" id="productIn">
+                                        <i class="fa-solid fa-plus"></i> Return Non Invoice
+                                    </a>
+                                </li>                                                                                               
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link onclick-submenu font-weight-bold" href="#" data-click="purchasingList" data-toggle="tab" id="pr">
+                                        <i class="fa-solid fa-table-list"></i> List Dok.Pembelian
+                                    </a>
+                                </li>                                                                                                 
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link onclick-submenu font-weight-bold" href="#" data-click="returnHistory" data-toggle="tab" id="pr">
+                                        <i class="fa-solid fa-table-list"></i> Riwayat Pengembalian
+                                    </a>
+                                </li>                                                                                                 
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </div>
+        </div>
+        @endif
+        
+        <div class="container-fluid">
+            @if($checkArea <> 0)
             <div class="row">
                 <div class="col-md-12">
                    <div id="displayInfo"></div>
