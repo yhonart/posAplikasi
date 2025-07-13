@@ -26,7 +26,6 @@
                 <div class="col-md-6">
                     <nav class="navbar navbar-expand-lg" style="width:100%;">
                         <span class="d-flex navbar-brand"><i class="fa-solid fa-chart-line pl-2 text-info"></i></span>
-
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
                                 <li class="nav-item d-none d-md-block">
