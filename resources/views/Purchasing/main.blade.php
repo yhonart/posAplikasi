@@ -23,9 +23,12 @@
         @if($checkArea <> 0)
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
-                    <nav class="navbar navbar-expand-lg" style="width:100%;">
-                        <span class="d-flex navbar-brand"><i class="fa-solid fa-chart-line pl-2 text-info"></i></span>
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg" style="width:100%;">                        
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
                                 <li class="nav-item d-none d-md-block">
@@ -39,7 +42,7 @@
                                     </a>
                                 </li>                                                                                                 
                                 <li class="nav-item d-none d-md-block">
-                                    <a class="nav-link onclick-submenu font-weight-bold" href="{{route('returnItem')}}" data-click="dataPurchasing" data-toggle="tab" id="productIn">
+                                    <a class="nav-link onclick-submenu font-weight-bold" href="{{route('returnItem')}}" data-click="dataPurchasing" data-toggle="tab" id="linkPengembalian">
                                         <i class="fa-solid fa-rotate-left"></i> Pengembalian Barang
                                     </a>
                                 </li>                                                                                                 
