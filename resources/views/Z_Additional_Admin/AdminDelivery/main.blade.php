@@ -10,7 +10,7 @@
     <div class="col-md-12">
         <div class="card card-info">
             <div class="card-header">
-                <h3 class="card-title"></h3>
+                <h3 class="card-title">List Pengiriman</h3>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -29,7 +29,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                             </tbody>
                         </table>
                     </div>
