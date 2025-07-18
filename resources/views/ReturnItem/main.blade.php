@@ -30,17 +30,17 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
-                                <li class="nav-item d-none d-md-block">
+                                <li class="nav-item">
                                     <a class="nav-link onclick-submenu font-weight-bold" href="#" data-click="returnNonInv" data-toggle="tab" id="productIn">
                                         <i class="fa-solid fa-plus"></i> Return Non Invoice
                                     </a>
                                 </li>                                                                                               
-                                <li class="nav-item d-none d-md-block">
+                                <li class="nav-item">
                                     <a class="nav-link onclick-submenu font-weight-bold" href="#" data-click="purchasingList" data-toggle="tab" id="pr">
                                         <i class="fa-solid fa-table-list"></i> List Dok.Pembelian
                                     </a>
                                 </li>                                                                                                 
-                                <li class="nav-item d-none d-md-block">
+                                <li class="nav-item">
                                     <a class="nav-link onclick-submenu font-weight-bold" href="#" data-click="returnHistory" data-toggle="tab" id="pr">
                                         <i class="fa-solid fa-table-list"></i> Riwayat Pengembalian
                                     </a>
@@ -52,7 +52,7 @@
             </div>
         </div>
         @endif
-        
+
         <div class="container-fluid">
             @if($checkArea <> 0)
             <div class="row">

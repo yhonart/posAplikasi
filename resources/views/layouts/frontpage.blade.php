@@ -151,7 +151,7 @@
     </script>
     
 </head>
-<body class="hold-transition layout-top-nav layout-fixed">
+<body class="hold-transition layout-top-nav layout-fixed text-sm">
     <div class="wrapper">
         <div class="preloader flex-column justify-content-center align-items-center">
             <img src="{{asset('public/images/loadPage.gif')}}" alt="AdminLTELogo" height="60" width="60">
