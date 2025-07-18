@@ -52,5 +52,9 @@ class DeliveryController extends Controller
             ->where('idm_delivery',$idDel)
             ->delete();
     }
+
+    public function mainPengiriman(){
+        return view('Z_Additional_Admin/AdminDelivery/main');
+    }
     
 }

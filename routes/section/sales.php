@@ -66,4 +66,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/configCustomer/aturPenjualan/addOrder/{cusCode}', [App\Http\Controllers\ConfigController::class, 'addOrder']);
     Route::post('sales/configCustomer/aturPenjualan/addOrder/postOrder', [App\Http\Controllers\ConfigController::class, 'postOrder']);
     
+    //Admin Transaksi 
+    Route::get('sales/mainPengiriman', [App\Http\Controllers\DeliveryController::class, 'mainPengiriman']);
+
 ?>

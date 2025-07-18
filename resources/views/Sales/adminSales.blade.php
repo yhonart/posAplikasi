@@ -47,7 +47,7 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                         aria-haspopup="true" aria-expanded="false">Transaksi</a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainPenjualan" data-toggle="tab" id="tabMenuPenjualan">Penjualan</a>
+                                        <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainPengiriman" data-toggle="tab" id="tabMenuPenjualan">Pengiriman</a>
                                         <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainReturn" data-toggle="tab" id="tabMenuPengembalian">Pengembalian</a>
                                         <a class="dropdown-item ITEM-MAIN-MENU" href="#" data-path="mainReceivables" data-toggle="tab" id="tabMenuPiutang">Piutang</a>
                                     </div>
