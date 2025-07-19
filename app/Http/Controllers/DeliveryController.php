@@ -70,7 +70,7 @@ class DeliveryController extends Controller
                 ])
             ->get();
 
-        return view('Z_Additional_Admin/AdminDelivery/mainTableDelivery', compact('deliveryRecept'));
+        return view('Z_Additional_Admin/AdminDelivery/mainTableDelivery', compact('deliveryRecept','date'));
     }
     
 }

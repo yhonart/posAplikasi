@@ -1,5 +1,10 @@
 <div class="row">
     <div class="col-md-12">
+        <p class="text-info font-weight-bold">Date : {{date('d-m-Y', strtotime($date))}}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
         <table class="table table-sm table-valign-middle table-striped">
             <thead>
                 <tr>
