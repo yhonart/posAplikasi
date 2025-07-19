@@ -53,8 +53,24 @@ class DeliveryController extends Controller
             ->delete();
     }
 
-    public function mainPengiriman(){
+    public function mainPengiriman(){      
+
         return view('Z_Additional_Admin/AdminDelivery/main');
+    }
+
+    public function selectDatePengiriman ($date){
+        $compID = Auth::user()->company;
+
+        $deliveryRecept = DB::table('tr_delivery_receipt as a')
+            ->select('a.*','b.customer_store','b.customer_id')
+            ->leftJoin('view_delivery_config as b', 'a.config_id','=','b.delconfig_id')
+            ->where([
+                ['comp_id',$compID],
+                ['delivery_date',$date]
+                ])
+            ->get();
+
+        return view('Z_Additional_Admin/AdminDelivery/mainTableDelivery', compact('deliveryRecept'));
     }
     
 }

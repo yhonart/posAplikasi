@@ -13,28 +13,41 @@
                 <h3 class="card-title">List Pengiriman</h3>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-sm table-valign-middle table-striped">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Customer</th>
-                                    <th>Produk</th>
-                                    <th>Qty</th>
-                                    <th>Tgl.Kirim</th>
-                                    <th>Waktu.Kirim</th>
-                                    <th>Pengirim</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <div id="displayTablePengiriman"></div>                
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $(function(){
+        $( "#dateSearch" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('#dateSearch').datepicker("setDate",new Date());
+        let selectedDate = $("#dateSearch").val();
+        autoDisplay(selectedDate);
+    });
+    $(document).ready(function() {
+        $("#dateSearch").change(function(){
+            let selectedDate = $('#dateSearch').val();                
+            autoDisplay(selectedDate);
+        });
+    });
+    function autoDisplay(selectedDate){
+        $.ajax({
+            type : 'get',
+            url : "{{route('sales')}}/mainPengiriman/selectDatePengiriman/"+selectedDate,
+            success : function(response){
+                $("#displayTablePengiriman").html(response);
+            }
+        });
+    }
+</script>
