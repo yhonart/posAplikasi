@@ -151,5 +151,13 @@ class KurirController extends Controller
             return response()->json(['success' => false, 'message' => 'Terjadi kesalahan saat menyimpan penerimaan: ' . $e->getMessage()], 500);
         }
     }
+
+    public function historyDelivery (){
+        return view('DeliveryJob/mainHistory');
+    }
+
+    public function historyDate ($date){
+        return view('DeliveryJob/tableHistoryDelivery', compact('date'));
+    }
     
 }

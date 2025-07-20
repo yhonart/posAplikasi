@@ -50,6 +50,7 @@ use Illuminate\Support\Facades\Route;
     //Admin Kurir
     Route::get('sales/mainKurir', [App\Http\Controllers\KurirController::class, 'mainKurir']);
     Route::get('sales/mainKurir/funcDate/{date}', [App\Http\Controllers\KurirController::class, 'funcDate']);
+    Route::get('sales/mainKurir/historyDate/{date}', [App\Http\Controllers\KurirController::class, 'historyDate']);
     Route::get('sales/historyDelivery', [App\Http\Controllers\KurirController::class, 'historyDelivery']);
     Route::get('sales/mainKurir/penerimaan/{configID}/{customerCode}', [App\Http\Controllers\KurirController::class, 'penerimaan']);
     Route::post('sales/mainKurir/postPenerimaan', [App\Http\Controllers\KurirController::class, 'postPenerimaan']);
