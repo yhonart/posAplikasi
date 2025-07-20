@@ -67,7 +67,7 @@ class KurirController extends Controller
     public function funcDate ($date){
         // $today = Carbon::now()->dayOfWeekIso;
         $today = Carbon::parse($date)->dayOfWeekIso; // Use the provided date to determine the day of the week
-        $myTime = Carbon::parse($date)->toDateTimeString;
+        
         // $selectedDay = $request->input('day', $today);
         $dayNames = [
             1 => 'Senin',
@@ -84,12 +84,12 @@ class KurirController extends Controller
         $listPengiriman = DB::table('view_delivery_config')
             ->where([
                 ['day_freq',$hari],
-                ['delivery_date',$myTime]
+                ['delivery_date','!=',$date]
                 ])
             ->get();
             
         $deliveryReceipt = DB::table('tr_delivery_receipt')
-            ->where('delivery_date',$myTime)
+            ->where('delivery_date',$date)
             ->gate();
 
         $getProductOrder = DB::table('view_product_order_customer')
@@ -99,7 +99,7 @@ class KurirController extends Controller
     }
 
     public function penerimaan($configID, $customerCode){
-        return view('DeliveryJob/modalPenerimaan', compact('configID','customerCode','myTime'));
+        return view('DeliveryJob/modalPenerimaan', compact('configID','customerCode','date'));
     }
 
     public function postPenerimaan(Request $request){

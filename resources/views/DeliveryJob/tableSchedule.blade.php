@@ -3,7 +3,7 @@
 ?>
 <div class="row mb-2">
     <div class="col-md-12">
-        <p class=" bg-gradient-light font-weight-bold m-2">{{$myTime}}</p>
+        <p class=" bg-gradient-light font-weight-bold m-2">{{$date}}</p>
     </div>
 </div>
 <div class="row">
