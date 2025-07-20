@@ -3,7 +3,7 @@
 ?>
 <div class="row mb-2">
     <div class="col-md-12">
-        <p class=" bg-gradient-light font-weight-bold m-3">Date : {{date('l', strtotime($date))}}, {{date('d-M-Y', strtotime($date))}}</p>
+        <p class=" bg-gradient-light font-weight-bold m-3">Date : {{$hari}}, {{date('d-M-Y h:i:s')}}</p>
     </div>
 </div>
 <div class="row">

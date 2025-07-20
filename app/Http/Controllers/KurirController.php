@@ -91,7 +91,7 @@ class KurirController extends Controller
         $getProductOrder = DB::table('view_product_order_customer')
             ->get();
 
-        return view('DeliveryJob/tableSchedule', compact('listPengiriman','getProductOrder','date'));        
+        return view('DeliveryJob/tableSchedule', compact('listPengiriman','getProductOrder','date','hari'));        
     }
 
     public function penerimaan($configID, $customerCode){
