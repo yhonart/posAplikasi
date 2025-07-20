@@ -87,19 +87,15 @@ class KurirController extends Controller
                 ['delivery_date','!=',$date]
                 ])
             ->get();
-            
-        $deliveryReceipt = DB::table('tr_delivery_receipt')
-            ->where('delivery_date',$date)
-            ->gate();
 
         $getProductOrder = DB::table('view_product_order_customer')
             ->get();
 
-        return view('DeliveryJob/tableSchedule', compact('listPengiriman','getProductOrder'));        
+        return view('DeliveryJob/tableSchedule', compact('listPengiriman','getProductOrder','date'));        
     }
 
     public function penerimaan($configID, $customerCode){
-        return view('DeliveryJob/modalPenerimaan', compact('configID','customerCode','date'));
+        return view('DeliveryJob/modalPenerimaan', compact('configID','customerCode'));
     }
 
     public function postPenerimaan(Request $request){
