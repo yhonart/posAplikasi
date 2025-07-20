@@ -1,6 +1,6 @@
-<div class="card">
+<div class="card card-info">
     <div class="card-header">
-        <h3 class="card-title">History Delivery</h3>
+        <h3 class="card-title font-weight-normal">History Delivery</h3>
     </div>
     <div class="card-body table-responsive">
         <table class="table table-sm table-valign-middle text-xs">
