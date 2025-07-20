@@ -1,6 +1,11 @@
 <?php
     $nomor = 1;
 ?>
+<div class="row mb-2">
+    <div class="col-md-12">
+        <p class=" bg-gradient-light font-weight-bold m-2">{{$myTime}}</p>
+    </div>
+</div>
 <div class="row">
     @foreach($listPengiriman as $lpr)
     <div class="col-md-4 col-12 mb-3">

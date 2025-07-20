@@ -11,6 +11,31 @@ use Carbon\Carbon;
 
 class KurirController extends Controller
 {
+    public function numberDelivery(){
+        $companyID = Auth::user()->company;
+        $dateNow = date("Y-m-d");
+
+        $countDelivery = DB::table('tr_delivery_receipt')
+            ->where('delivery_date',$dateNow)
+            ->count();
+
+        if ($countDelivery == '0') {
+            $nomor = '1';
+        }
+        else {
+            $nomor = $countDelivery + 1;
+        }
+
+        $codeCompany = DB::table('m_company')
+            ->select('company_code')
+            ->where('idm_company',$companyID)
+            ->first();
+
+        $numberTrx = "DL" . $codeCompany->company_code . sprintf("%04d",$nomor);
+
+        return $numberTrx;
+    }
+
     public function mainKurir(){        
         return view('DeliveryJob/mainDelivery');
     }
@@ -42,6 +67,7 @@ class KurirController extends Controller
     public function funcDate ($date){
         // $today = Carbon::now()->dayOfWeekIso;
         $today = Carbon::parse($date)->dayOfWeekIso; // Use the provided date to determine the day of the week
+        $myTime = Carbon::parse($date)->toDateTimeString;
         // $selectedDay = $request->input('day', $today);
         $dayNames = [
             1 => 'Senin',
@@ -54,10 +80,17 @@ class KurirController extends Controller
         ];
         
         $hari =  $dayNames[$today];
-
+        
         $listPengiriman = DB::table('view_delivery_config')
-            ->where('day_freq',$hari)
+            ->where([
+                ['day_freq',$hari],
+                ['delivery_date',$myTime]
+                ])
             ->get();
+            
+        $deliveryReceipt = DB::table('tr_delivery_receipt')
+            ->where('delivery_date',$myTime)
+            ->gate();
 
         $getProductOrder = DB::table('view_product_order_customer')
             ->get();
@@ -66,10 +99,14 @@ class KurirController extends Controller
     }
 
     public function penerimaan($configID, $customerCode){
-        return view('DeliveryJob/modalPenerimaan', compact('configID','customerCode'));
+        return view('DeliveryJob/modalPenerimaan', compact('configID','customerCode','myTime'));
     }
 
     public function postPenerimaan(Request $request){
+        
+        $trxNumber = $this->numberDelivery();
+        $companyID = Auth::user()->company;
+
         $request->validate([
             'image' => 'required', // Data base64 dari foto
             'latitude' => 'nullable|string',
@@ -93,6 +130,7 @@ class KurirController extends Controller
             file_put_contents($DirPublic . $filename, $imageData);
 
             DB::table('tr_delivery_receipt')->insert([
+                'delivery_number' => $trxNumber,
                 'config_id' => $request->input('configID'),
                 'customer_code' => $request->input('customerCode'),
                 'image' => $filename, // Simpan nama file
@@ -101,7 +139,17 @@ class KurirController extends Controller
                 'created_by' => Auth::user()->name,
                 'created_at' => Carbon::now(),
                 'status' => '1', // Status 1 untuk penerimaan
+                'comp_id' => $companyID,
+                'delivery_date' => now(),
+                'delivery_time' => now(),
             ]);
+
+            DB::table('config_delivery')
+                ->where('delconfig_id',$request->input('configID'))
+                ->update([
+                    'delivery_date'=>now()
+                ]);
+
             return response()->json(['message' => 'Foto berhasil disimpan!'], 200);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Terjadi kesalahan saat menyimpan penerimaan: ' . $e->getMessage()], 500);
