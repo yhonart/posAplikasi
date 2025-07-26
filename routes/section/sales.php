@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('sales/formKunjungan/postNewTransaksi', [App\Http\Controllers\SalesController::class, 'postNewTransaksi']);
     Route::post('sales/formKunjungan/postAddProduct', [App\Http\Controllers\SalesController::class, 'postAddProduct']);
     Route::get('sales/formKunjungan/tableProdukDeal', [App\Http\Controllers\SalesController::class, 'tableProdukDeal']);
+    Route::get('sales/formKunjungan/tableProdukDeal/deletedOrder/{dataID}', [App\Http\Controllers\SalesController::class, 'deletedOrder']);
     Route::get('sales/salesDasboard', [App\Http\Controllers\SalesController::class, 'salesDasboard']);
     
     // Admin 

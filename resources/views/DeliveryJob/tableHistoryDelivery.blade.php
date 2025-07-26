@@ -14,7 +14,17 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+                @foreach($trxDelivery as $tdl)
+                    <tr>
+                        <td>{{$tdl->delivery_number}}</td>
+                        <td>{{$tdl->delivery_number}}</td>
+                        <td></td>
+                        <td>{{$tdl->delivery_date}}</td>
+                        <td>{{$tdl->delivery_time}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 </div>

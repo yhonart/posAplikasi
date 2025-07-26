@@ -92,6 +92,14 @@ class SalesController extends Controller
         return view('Sales/tableProdukOrder', compact('produkOrder'));
     }
 
+    public function deletedOrder ($dataID){
+        DB::table('config_customer_order')
+            ->where('cus_order_id',$dataID)
+            ->delete();
+
+        return back();
+    }
+
     public function postNewTransaksi (Request $dataKunjungan){
         $store = strtoupper($dataKunjungan->store);
         $storeOwner = strtoupper($dataKunjungan->storeOwner);
