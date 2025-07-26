@@ -36,7 +36,7 @@
             let dataID = ell.attr("id-data");
             $.ajax({
                 type : 'get',
-                url : "{{route('sales')}}/formKunjungan/tableProdukDeal/deletedOrder/"+route,
+                url : "{{route('sales')}}/formKunjungan/tableProdukDeal/deletedOrder/"+dataID,
                 success : function(response){
                     loadTableOrder ();
                 }
