@@ -22,9 +22,18 @@
                         <td></td>
                         <td>{{$tdl->delivery_date}}</td>
                         <td>{{$tdl->delivery_time}}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-info BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/mainKurir/detailHistoryData/{{$tdl->delivery_id}}"><i class="fa-solid fa-eye"></i></button>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+
+    });
+</script>

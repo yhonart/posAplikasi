@@ -167,5 +167,9 @@ class KurirController extends Controller
 
         return view('DeliveryJob/tableHistoryDelivery', compact('date','trxDelivery'));
     }
+
+    public function detailHistoryData ($dataID){
+        echo $dataID;
+    }
     
 }
