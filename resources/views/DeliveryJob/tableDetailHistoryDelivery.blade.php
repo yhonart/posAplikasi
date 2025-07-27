@@ -1,13 +1,18 @@
-<div class="card card-purple">
+<div class="card card-info">
     <div class="card-header">
-        <h3 class="card-title"></h3>
+        <h3 class="card-title">Detail Transaksi {{$detailDelivery->delivery_number}}</h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
     </div>
     <div class="card-body">
-        <dl class="row">
-            <dt class="col-md-4">Nama Toko</dt>
-            <dd class="col-md-8">{{$detailDelivery->company_name}}</dd>
-            <dt class="col-md-4">Alamat Toko</dt>
-            <dd class="col-md-8">{{$detailDelivery->address}}</dd>
-        </dl>
+        The body of the card
+    </div>
+    <div class="card-footer text-right">
+        <button type="button" class="btn btn-warning btn-sm" data-card-widget="remove">
+            <i class="fas fa-times"></i> Close
+        </button>
     </div>
 </div>
