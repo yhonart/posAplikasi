@@ -18,7 +18,7 @@
                 @foreach($trxDelivery as $tdl)
                     <tr>
                         <td>{{$tdl->delivery_number}}</td>
-                        <td>{{$tdl->delivery_number}}</td>
+                        <td>{{$tdl->company_name}}</td>
                         <td></td>
                         <td>{{$tdl->delivery_date}}</td>
                         <td>{{$tdl->delivery_time}}</td>

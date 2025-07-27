@@ -169,7 +169,14 @@ class KurirController extends Controller
     }
 
     public function detailHistoryData ($dataID){
-        echo $dataID;
+        $detailDelivery = DB::table('tr_delivery_receipt as a')
+            ->select('a.*','b.day_freq', 'b.created_by', 'c.company_name', 'c.address')
+            ->leftJoin('config_delivery as b', 'b.delconfig_id','=','a.config_id')
+            ->leftJoin('m_company as c', 'c.company_code', '=', 'a.customer_code')
+            ->where('a.delivery_id',$dataID)
+            ->first();
+
+        return view('DeliveryJob/tableDetailHistoryDelivery', compact('dataID', 'detailDelivery'));
     }
     
 }
