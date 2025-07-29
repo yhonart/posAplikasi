@@ -159,6 +159,6 @@ class ConfigController extends Controller
         $dbUsers = DB::table('users as a')
             ->where('a.company', $compID)
             ->get();
-        return view("Z_Additional_Admin/AdminConfig/ConfigUserTableList");
+        return view("Z_Additional_Admin/AdminConfig/ConfigUserTableList", compact('dbUsers'));
     }
 }
