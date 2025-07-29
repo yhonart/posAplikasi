@@ -10,7 +10,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-4">
-                <button type="button" class="btn btn-sm btn-info">Tambah Akun</button>
+                <button type="button" class="btn btn-sm btn-info font-weight-bold ACTION-CLASS BTN-OPEN-MODAL-GLOBAL-LG">Tambah Akun</button>
             </div>
         </div>
         <div class="row">
@@ -21,5 +21,13 @@
     </div>
 </div>
 <script>
-    
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(function(){
+        $("#tableAkunToko").load("{{route('sales')}}/configUser/tableAkunToko");
+    });
 </script>

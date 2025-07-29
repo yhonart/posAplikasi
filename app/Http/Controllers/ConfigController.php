@@ -153,4 +153,12 @@ class ConfigController extends Controller
     public function configUser (){
         return view("Z_Additional_Admin/AdminConfig/ConfigUser");
     }
+
+    public function tableAkunToko (){
+        $compID = Auth::user()->company;
+        $dbUsers = DB::table('users as a')
+            ->where('a.company', $compID)
+            ->get();
+        return view("Z_Additional_Admin/AdminConfig/ConfigUserTableList");
+    }
 }

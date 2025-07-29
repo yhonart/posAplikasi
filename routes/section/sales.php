@@ -75,4 +75,5 @@ use Illuminate\Support\Facades\Route;
     
     //Admin Pengaturan User 
     Route::get('sales/configUser', [App\Http\Controllers\ConfigController::class, 'configUser']);
+    Route::get('sales/configUser/tableAkunToko', [App\Http\Controllers\ConfigController::class, 'tableAkunToko']);
 ?>
