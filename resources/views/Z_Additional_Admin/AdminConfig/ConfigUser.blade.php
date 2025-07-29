@@ -10,7 +10,7 @@
     <div class="card-body">
         <div class="row mb-2">
             <div class="col-md-4">
-                <button type="button" class="btn btn-sm btn-info font-weight-bold ACTION-CLASS BTN-OPEN-MODAL-GLOBAL-LG">Tambah Akun</button>
+                <button type="button" class="btn btn-sm btn-info font-weight-bold ACTION-CLASS BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configUser/createAkun">Tambah Akun</button>
             </div>
         </div>
         <div class="row">
