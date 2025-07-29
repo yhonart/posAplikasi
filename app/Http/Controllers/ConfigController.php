@@ -161,4 +161,14 @@ class ConfigController extends Controller
             ->get();
         return view("Z_Additional_Admin/AdminConfig/ConfigUserTableList", compact('dbUsers'));
     }
+
+    public function createAkun (){        
+        return view("Z_Additional_Admin/AdminConfig/ConfigUserCreate");
+    }
+    public function detailAkun ($id){        
+        return view("Z_Additional_Admin/AdminConfig/ConfigUserDetail");
+    }
+    public function editAkun ($id){        
+        return view("Z_Additional_Admin/AdminConfig/ConfigUserEdit");
+    }
 }

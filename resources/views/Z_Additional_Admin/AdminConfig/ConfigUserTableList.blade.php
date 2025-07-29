@@ -29,7 +29,7 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-info font-weight-bold ACTION-MODAL BTN-OPEN-MODAL-GLOBAL-LG" href="#"><i class="fa-solid fa-note-sticky"></i> Detail</button>
                         <button type="button" class="btn btn-sm btn-info font-weight-bold ACTION-MODAL BTN-OPEN-MODAL-GLOBAL-LG" href="#"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
-                        <button type="button" class="btn btn-sm btn-danger font-weight-bold ACTION-MODAL" data-id="{{$dbu->id}}">Deactivate</button>
+                        <button type="button" class="btn btn-sm btn-danger font-weight-bold ACTION-MODAL" data-id="{{$dbu->id}}"><i class="fa-solid fa-user-xmark"></i> Deactivate</button>
                     </div>
                 </td>
             </tr>

@@ -76,4 +76,7 @@ use Illuminate\Support\Facades\Route;
     //Admin Pengaturan User 
     Route::get('sales/configUser', [App\Http\Controllers\ConfigController::class, 'configUser']);
     Route::get('sales/configUser/tableAkunToko', [App\Http\Controllers\ConfigController::class, 'tableAkunToko']);
+    Route::get('sales/configUser/createAkun', [App\Http\Controllers\ConfigController::class, 'createAkun']);
+    Route::get('sales/configUser/detailAkun/{id}', [App\Http\Controllers\ConfigController::class, 'detailAkun']);
+    Route::get('sales/configUser/editAkun/{id}', [App\Http\Controllers\ConfigController::class, 'editAkun']);
 ?>
