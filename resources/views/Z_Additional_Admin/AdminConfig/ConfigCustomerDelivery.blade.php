@@ -46,7 +46,8 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row" id="fieldInputFrequency">
+
+                        <div class="form-group row" id="fieldInputFrequency" style="display: none;">
                             <label for="" class="col-md-4">Atur Berdasarkan Frequency</label>
                             <div class="col-md-4">
                                 <input type="number" class="form-control form-control-sm" name="frequency" id="frequency">
@@ -55,6 +56,7 @@
                                 <span>Hari</span>
                             </div>
                         </div>                        
+
                         <div class="form-group row">
                             <div class="col-md-4">                                
                                 <button type="submit" class="btn btn-success btn-sm font-weight-bold" id="simpanSchedule">Simpan</button>
