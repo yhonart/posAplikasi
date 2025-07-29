@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-md-4">
                 <button type="button" class="btn btn-sm btn-info font-weight-bold ACTION-CLASS BTN-OPEN-MODAL-GLOBAL-LG">Tambah Akun</button>
             </div>
