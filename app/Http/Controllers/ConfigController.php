@@ -149,4 +149,8 @@ class ConfigController extends Controller
 
         return back();
     }
+
+    public function configUser (){
+        return view("Z_Additional_Admin/AdminConfig/ConfigUser");
+    }
 }

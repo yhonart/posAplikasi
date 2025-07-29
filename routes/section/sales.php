@@ -72,5 +72,7 @@ use Illuminate\Support\Facades\Route;
     //Admin Transaksi 
     Route::get('sales/mainPengiriman', [App\Http\Controllers\DeliveryController::class, 'mainPengiriman']);
     Route::get('sales/mainPengiriman/selectDatePengiriman/{date}', [App\Http\Controllers\DeliveryController::class, 'selectDatePengiriman']);
-
+    
+    //Admin Pengaturan User 
+    Route::get('sales/configUser', [App\Http\Controllers\ConfigController::class, 'configUser']);
 ?>

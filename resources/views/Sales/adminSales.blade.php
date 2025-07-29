@@ -76,10 +76,13 @@
                 </div>
             </div>
         </section>
+
         <section class=" container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div id="divContent"></div> 
+                    
+                    <div id="divContent"></div>
+
                     <div class="modal MODAL-GLOBAL" id="modal-global-large" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                             <div class="modal-content MODAL-CONTENT-GLOBAL">
