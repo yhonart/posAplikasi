@@ -8,7 +8,7 @@
     );
     $nomor = 1;
 ?>
-<table class="table table-sm table-valign-middle text-xs table-striped" id="tableData">
+<table class="table table-sm table-valign-middle text-xs table-striped" id="tableDataUser">
     <thead>
         <tr>
             <th>No.</th>
@@ -38,7 +38,7 @@
 
 <script>
     $(function () {
-        $('#tableKategori').DataTable({
+        $('#tableDataUser').DataTable({
           "paging": true,
           "lengthChange": true,
           "searching": true,
