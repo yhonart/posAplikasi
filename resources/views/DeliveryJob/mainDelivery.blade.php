@@ -1,6 +1,6 @@
 <div class="row mb-2 justify-content-center"> 
     <div class="col-md-3">
-        <div class="position-absolute align-content-end">
+        <div class="fixed-bottom">
             <button type="button" class="btn btn-sm btn-info font-weight-bold ACTION-CLASS BTN-OPEN-MODAL-GLOBAL-LG">Non Schedule</button>
 
         </div>
