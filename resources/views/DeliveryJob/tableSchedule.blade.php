@@ -2,8 +2,11 @@
     $nomor = 1;
 ?>
 <div class="row mb-2">
-    <div class="col-md-12 position-absolute bottom">
-        <p class=" bg-gradient-info font-weight-bold p-3">List Schedule Pengiriman Date : {{$hari}}, {{date('d-M-Y h:i:s')}}</p>
+    <div class="col-md-12">
+        <div class=" position-absolute align-content-end">
+            <p class=" bg-gradient-info font-weight-bold p-3">List Schedule Pengiriman Date : {{$hari}}, {{date('d-M-Y h:i:s')}}</p>
+
+        </div>
     </div>
 </div>
 <div class="row">
