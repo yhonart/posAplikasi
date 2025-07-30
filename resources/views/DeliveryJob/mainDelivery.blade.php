@@ -1,6 +1,9 @@
 <div class="row mb-2 justify-content-center"> 
     <div class="col-md-3">
-        <button type="button" class="btn btn-sm btn-info font-weight-bold ACTION-CLASS BTN-OPEN-MODAL-GLOBAL-LG">Non Schedule</button>
+        <div class="position-absolute align-content-end">
+            <button type="button" class="btn btn-sm btn-info font-weight-bold ACTION-CLASS BTN-OPEN-MODAL-GLOBAL-LG">Non Schedule</button>
+
+        </div>
     </div>   
     <div class="col-md-3">
         <label for="fromDate" class="form-label">Pilih Tanggal</label>
