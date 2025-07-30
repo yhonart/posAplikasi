@@ -18,12 +18,12 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
                                 <li class="nav-item">
-                                    <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="mainKurir" data-toggle="tab" id="tabMenuDash">
+                                    <a class="nav-link font-weight-bold ITEM-MAIN-MENU" href="#" data-path="mainKurir" data-toggle="tab" id="tabMenuDash">
                                         Schedule
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="historyDelivery" data-toggle="tab" id="tabMenuHistory">
+                                    <a class="nav-link font-weight-bold ITEM-MAIN-MENU" href="#" data-path="historyDelivery" data-toggle="tab" id="tabMenuHistory">
                                         History
                                     </a>
                                 </li>                                                             
