@@ -10,26 +10,26 @@
                 <div class="col-md-12">
                     <nav class="navbar navbar-expand-lg" style="width:100%;">
                         <span class="d-flex navbar-brand">Admin Delivery <i class="fa-solid fa-truck-fast text-info"></i></span>
-        
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fas fa-ellipsis-h"></i>
+                            <i class="fa-solid fa-bars"></i>
                         </button>
         
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
-                                <li class="nav-item d-none d-md-block">
+                                <li class="nav-item">
                                     <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="mainKurir" data-toggle="tab" id="tabMenuDash">
                                         Schedule
                                     </a>
                                 </li>
-                                <li class="nav-item d-none d-md-block">
+                                <li class="nav-item">
                                     <a class="nav-link ITEM-MAIN-MENU" href="#" data-path="historyDelivery" data-toggle="tab" id="tabMenuHistory">
                                         History
                                     </a>
                                 </li>                                                             
                             </ul>
                         </div>
+
                     </nav>
                 </div>
             </div>
