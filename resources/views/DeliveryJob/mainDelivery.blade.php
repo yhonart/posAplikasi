@@ -1,7 +1,7 @@
 <div class="row mb-2 justify-content-center"> 
     <div class="col-md-3">
         <div class="fixed-bottom">
-            <button type="button" class="btn btn-app btn-info font-weight-bold ACTION-CLASS BTN-OPEN-MODAL-GLOBAL-LG">Non Schedule</button>
+            <button type="button" class="btn btn-app bg-gradient-info font-weight-bold ACTION-CLASS BTN-OPEN-MODAL-GLOBAL-LG">Non Schedule</button>
         </div>
     </div>   
     <div class="col-md-3">
