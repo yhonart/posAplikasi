@@ -1,8 +1,8 @@
 <div class="row mb-2 justify-content-center"> 
     <div class="col-md-3">
         <div class="fixed-bottom">            
-            <a class="btn btn-app bg-blue BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/">
-                <i class="fas fa-barcode"></i> Products
+            <a class="btn btn-app bg-blue BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/mainKurir/addNewNonSchedule">
+                <i class="fas fa-barcode"></i> Non Schedule
             </a>
         </div>
     </div>   
