@@ -57,6 +57,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('sales/mainKurir/penerimaan/{configID}/{customerCode}', [App\Http\Controllers\KurirController::class, 'penerimaan']);
     Route::post('sales/mainKurir/postPenerimaan', [App\Http\Controllers\KurirController::class, 'postPenerimaan']);
     Route::get('sales/mainKurir/pending/{configID}', [App\Http\Controllers\KurirController::class, 'pending']);
+    Route::get('sales/mainKurir/addNewNonSchedule', [App\Http\Controllers\KurirController::class, 'addNewNonSchedule']);
     
     //Admin Konfig
     Route::get('sales/configCustomer', [App\Http\Controllers\ConfigController::class, 'mainConfigCustomer']);

@@ -178,5 +178,14 @@ class KurirController extends Controller
 
         return view('DeliveryJob/tableDetailHistoryDelivery', compact('dataID', 'detailDelivery'));
     }
+
+    public function addNewNonSchedule (){
+        $compID = Auth::user->company;
+        $customers = DB::table('m_customers')
+            ->where('comp_id',$compID)
+            ->get();
+
+        return view('DeliveryJob/modalNonSch', compact('customers'));
+    }
     
 }
