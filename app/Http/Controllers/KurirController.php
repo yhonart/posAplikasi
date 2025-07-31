@@ -180,7 +180,7 @@ class KurirController extends Controller
     }
 
     public function addNewNonSchedule (){
-        $compID = Auth::user->company;
+        $compID = Auth::user()->company;
         $customers = DB::table('m_customers')
             ->where('comp_id',$compID)
             ->get();
