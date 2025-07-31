@@ -4,6 +4,10 @@
             <button type="button" class="btn btn-app bg-gradient-info font-weight-bold ACTION-CLASS BTN-OPEN-MODAL-GLOBAL-LG">
                 <i class="fa-solid fa-circle-plus"></i> Non Schedule
             </button>
+            <a class="btn btn-app bg-secondary">
+                <span class="badge bg-success">300</span>
+                <i class="fas fa-barcode"></i> Products
+            </a>
         </div>
     </div>   
     <div class="col-md-3">
