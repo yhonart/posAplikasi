@@ -6,7 +6,7 @@
             </a>
         </div>
         <div class="d-none d-md-block">            
-            <a class="btn btn-app bg-blue BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/mainKurir/addNewNonSchedule">
+            <a class="btn btn-app bg-glass-blur-light BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/mainKurir/addNewNonSchedule">
                 <i class="fas fa-barcode"></i> Non Schedule
             </a>
         </div>
