@@ -5,6 +5,11 @@
                 <i class="fas fa-barcode"></i> Non Schedule
             </a>
         </div>
+        <div class="d-none d-md-block">            
+            <a class="btn btn-app bg-blue BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/mainKurir/addNewNonSchedule">
+                <i class="fas fa-barcode"></i> Non Schedule
+            </a>
+        </div>
     </div>   
     <div class="col-md-3">
         <label for="fromDate" class="form-label">Pilih Tanggal</label>
