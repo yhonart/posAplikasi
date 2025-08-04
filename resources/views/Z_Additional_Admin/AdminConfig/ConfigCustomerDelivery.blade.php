@@ -35,7 +35,7 @@
                             <label for="">Jadwal Pengiriman Setiap Hari :</label>
                             <select name="delByDay" id="delByDay" class="form-control form-control-sm">
                                 @if($countConfig >= "1")
-                                    <option value="{{$selectSchedule->day_freq}}" disabled>{{$selectSchedule->day_freq}}</option>
+                                    <option value="{{$selectSchedule->day_freq}}" readonly>{{$selectSchedule->day_freq}}</option>
                                 @endif
                                 <option value="0" readonly>== Change ==</option>
                                 <option value="Senin">Senin</option>
