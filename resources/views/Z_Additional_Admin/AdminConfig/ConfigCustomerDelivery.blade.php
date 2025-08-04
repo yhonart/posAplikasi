@@ -56,11 +56,13 @@
                     <div class="col-md-12">
                         <div class="card card-body bg-light">
                             <p>
+                                <i class="fa-solid fa-circle-exclamation text-warning"></i>
                                 Form ini digunakan untuk mengatur jadwal pengiriman ke pelanggan.
                                 Pilih salah satu metode pengiriman, menggunakan jadwal hari tertentu atau menggunakan
                                 frequency berapa hari sekali dalam pengiriman.
                             </p>
                             <p>
+                                <i class="fa-solid fa-circle-exclamation text-warning"></i>
                                 Jika sudah dilakukan pengaturan ini maka kurir secara otomatis akan mendapatkan jadwal pengiriman. 
                             </p>
                         </div>
