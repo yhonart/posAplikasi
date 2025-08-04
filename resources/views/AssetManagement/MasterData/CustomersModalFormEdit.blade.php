@@ -12,6 +12,13 @@ $customerStatus = array(
         </div>
     </div>
     <div class="card-body text-xs">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-info font-weight-bold ATUR-PENGIRIMAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPengiriman/{{$dbCus->idm_customer}}"><i class="fa-solid fa-truck"></i>Jadwal Pengiriman</button>
+                </div>
+            </div>
+        </div>
         <form id="FormEditCustomer">
             <input type="hidden" name="customerID" id="customerID" value="{{$id}}">
             <input type="hidden" name="editorName" id="editorName" value="{{ Auth::user()->name }}">
@@ -65,7 +72,7 @@ $customerStatus = array(
                     <input type="email" name="emailUser" id="emailUser" value="{{$editCustomer->email}}" class="form-control form-control-sm ">
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row" style="display: none;">
                 <label class="form-label col-md-4 text-right">Jadwal Kirim</label>
                 <div class="col-md-4">
                     <select name="Schedule" id="Schedule" class="form-control form-control-sm ">

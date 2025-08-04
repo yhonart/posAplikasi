@@ -26,7 +26,7 @@
                                 <td>{{$dbCus->kredit_limit}}</td>
                                 <td class="text-right">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm bg-maroon font-weight-bold ATUR-PENGIRIMAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPengiriman/{{$dbCus->idm_customer}}"><i class="fa-solid fa-truck"></i> Pengiriman</button>
+                                        <button type="button" class="btn btn-sm bg-maroon font-weight-bold ATUR-PENGIRIMAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPengiriman/{{$dbCus->idm_customer}}"><i class="fa-solid fa-truck"></i>Jadwal Pengiriman</button>
                                         <button type="button" class="btn btn-sm bg-maroon font-weight-bold ATUR-PEMBAYARAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPembayaran/{{$dbCus->idm_customer}}"><i class="fa-solid fa-file-invoice"></i> Pembayaran</button>
                                         <button type="button" class="btn btn-sm bg-maroon font-weight-bold ATUR-PEMBAYARAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPenjualan/{{$dbCus->customer_code}}"><i class="fa-solid fa-basket-shopping"></i> Penjualan</button>
                                     </div>
