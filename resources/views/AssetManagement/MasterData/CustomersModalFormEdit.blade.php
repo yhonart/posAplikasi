@@ -15,7 +15,7 @@ $customerStatus = array(
         <div class="row">
             <div class="col-md-12">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-info font-weight-bold ATUR-PENGIRIMAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPengiriman/{{$dbCus->idm_customer}}"><i class="fa-solid fa-truck"></i>Jadwal Pengiriman</button>
+                    <button type="button" class="btn btn-sm btn-info font-weight-bold ATUR-PENGIRIMAN BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('sales')}}/configCustomer/aturPengiriman/{{$id}}"><i class="fa-solid fa-truck"></i>Jadwal Pengiriman</button>
                 </div>
             </div>
         </div>
