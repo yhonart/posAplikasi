@@ -58,8 +58,7 @@
                             <p>
                                 <i class="fa-solid fa-circle-exclamation text-warning"></i>
                                 Form ini digunakan untuk mengatur jadwal pengiriman ke pelanggan.
-                                Pilih salah satu metode pengiriman, menggunakan jadwal hari tertentu atau menggunakan
-                                frequency berapa hari sekali dalam pengiriman.
+                                Tentukan hari pengiriman kepada customer ini.
                             </p>
                             <p>
                                 <i class="fa-solid fa-circle-exclamation text-warning"></i>
