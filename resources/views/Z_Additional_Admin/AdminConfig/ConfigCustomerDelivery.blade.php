@@ -16,7 +16,7 @@
                                 @if($countConfig >= "1")
                                     <option value="{{$selectSchedule->day_freq}}" readonly>{{$selectSchedule->day_freq}}</option>
                                 @endif
-                                <option value="0" readonly>== Change ==</option>
+                                <option value="0" disabled>== Change ==</option>
                                 <option value="Senin">Senin</option>
                                 <option value="Selasa">Selasa</option>
                                 <option value="Rabu">Rabu</option>
