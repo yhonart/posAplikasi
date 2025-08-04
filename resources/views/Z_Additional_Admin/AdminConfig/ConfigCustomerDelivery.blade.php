@@ -2,33 +2,12 @@
     <div class="col-md-12">
         <div class="card card-purple">
             <div class="card-header">
-                <h3 class="card-title">Atur Pengiriman</h3>
+                <h3 class="card-title">Pengaturan Pengiriman Barang</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="card-body">       
-                @if($countConfig >= "1")
-                <div class="row mb-2">
-                    <div class="col-md-12">
-                        <table class="table table-sm table-bordered">
-                            <tbody>
-                                <tr>
-                                    <td class="bg-gradient-blue" width="20%">Jadwal Pengiriman</td>
-                                    <td>
-                                        @if($selectSchedule->day_freq == '0')
-                                            <span>Setiap : {{$selectSchedule->frequency}} Hari</span>
-                                        @else
-                                            <span>Setiap Hari : {{$selectSchedule->day_freq}}</span>
-                                        @endif
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <hr>  
-                @endif       
+            <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
