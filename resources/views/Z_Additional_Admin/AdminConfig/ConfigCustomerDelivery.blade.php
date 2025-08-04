@@ -30,21 +30,22 @@
                 <hr>  
                 @endif       
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group row">
-                            <label for="" class="col-md-4">Atur Berdasarkan Hari</label>
-                            <div class="col-md-4">
-                                <select name="delByDay" id="delByDay" class="form-control form-control-sm">
-                                    <option value="0" readonly></option>
-                                    <option value="Senin">Senin</option>
-                                    <option value="Selasa">Selasa</option>
-                                    <option value="Rabu">Rabu</option>
-                                    <option value="Kamis">Kamis</option>
-                                    <option value="Jumat">Jumat</option>
-                                    <option value="Sabtu">Sabtu</option>
-                                    <option value="Minggu">Minggu</option>
-                                </select>
-                            </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Jadwal Pengiriman Setiap Hari :</label>
+                            <select name="delByDay" id="delByDay" class="form-control form-control-sm">
+                                @if($countConfig >= "1")
+                                    <option value="{{$selectSchedule->day_freq}}" disabled>{{$selectSchedule->day_freq}}</option>
+                                @endif
+                                <option value="0" readonly>== Change ==</option>
+                                <option value="Senin">Senin</option>
+                                <option value="Selasa">Selasa</option>
+                                <option value="Rabu">Rabu</option>
+                                <option value="Kamis">Kamis</option>
+                                <option value="Jumat">Jumat</option>
+                                <option value="Sabtu">Sabtu</option>
+                                <option value="Minggu">Minggu</option>
+                            </select>
                         </div>
 
                         <div class="form-group row" id="fieldInputFrequency" style="display: none;">
