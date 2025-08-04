@@ -51,7 +51,7 @@
                     <input type="email" name="emailUser" id="emailUser" class="form-control form-control-sm ">
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row" style="display: none;">
                 <label class="form-label col-md-4 text-right">Jadwal Kirim</label>
                 <div class="col-md-4">
                     <select name="Schedule" id="Schedule" class="form-control form-control-sm">
