@@ -54,7 +54,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card card-body bg-gradient-blue">
+                        <div class="card card-body bg-light">
                             <p>
                                 Form ini digunakan untuk mengatur jadwal pengiriman ke pelanggan.
                                 Pilih salah satu metode pengiriman, menggunakan jadwal hari tertentu atau menggunakan
