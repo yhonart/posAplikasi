@@ -16,7 +16,7 @@
                                 @if($countConfig >= "1")
                                     <option value="{{$selectSchedule->day_freq}}" readonly>{{$selectSchedule->day_freq}}</option>
                                 @endif
-                                <option value="0" readonly style="color: #3D74B6; font-weight: bold;">== Change ==</option>
+                                <option value="0" readonly style="color: #DC3C22; font-weight: bold;">== Pilih Hari ==</option>
                                 <option value="Senin">Senin</option>
                                 <option value="Selasa">Selasa</option>
                                 <option value="Rabu">Rabu</option>
