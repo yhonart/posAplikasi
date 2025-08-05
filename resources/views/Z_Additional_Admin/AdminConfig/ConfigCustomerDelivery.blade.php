@@ -101,6 +101,9 @@
                     }
                     else if(data.success){
                         alertify.success(data.success);
+                        $('body').removeClass('modal-open');
+                        $("#modal-global-large").modal('hide');
+                        $('.modal-backdrop').remove();
                     }
                 }
             });
