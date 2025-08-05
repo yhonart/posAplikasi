@@ -171,7 +171,7 @@
         function searchData(loadKeyWord){     
             $.ajax({
                 type : 'get',
-                url : "{{route('Customers')}}/TableDataCustomer/searchTableCus/"+keyWord,
+                url : "{{route('Customers')}}/TableDataCustomer/searchTableCus/"+loadKeyWord,
                 success : function(response){
                     $("#displayTableCustomers").html(response);
                 }
