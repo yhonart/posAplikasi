@@ -158,8 +158,9 @@
                         }
                         else if(data.success){
                             alertify.success(data.success);
-                            global_style.hide_modal();
-                            window.location.reload();
+                            $('body').removeClass('modal-open');
+                            $("#modal-global-large").modal('hide');
+                            $('.modal-backdrop').remove();
                         }
                     },                
                 });
