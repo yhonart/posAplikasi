@@ -138,33 +138,44 @@
             routeIndex = "{{route('Customers')}}",
             tableData = "TableDataCustomer",
             displayData = $("#displayTableCustomers");
+        let loadKeyWord = 0;
             
-            $("form#FormAddCustomer").submit(function(event){
-                event.preventDefault();
-                $.ajax({
-                    url: routeIndex + "/AddCustomers/PostNewCustomer",
-                    type: 'POST',
-                    data: new FormData(this),
-                    async: true,
-                    cache: true,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) { 
-                        if(data.warning){
-                            alertify
-                              .alert(data.warning, function(){
-                                alertify.message('Input Data Dibatalkan!');
-                              }).set({title:"WARNING"});
-                        }
-                        else if(data.success){
-                            alertify.success(data.success);
-                            $('body').removeClass('modal-open');
-                            $("#modal-global-large").modal('hide');
-                            $('.modal-backdrop').remove();
-                        }
-                    },                
-                });
-                return false;
+        $("form#FormAddCustomer").submit(function(event){
+            event.preventDefault();
+            $.ajax({
+                url: routeIndex + "/AddCustomers/PostNewCustomer",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) { 
+                    if(data.warning){
+                        alertify
+                            .alert(data.warning, function(){
+                            alertify.message('Input Data Dibatalkan!');
+                            }).set({title:"WARNING"});
+                    }
+                    else if(data.success){
+                        alertify.success(data.success);
+                        $('body').removeClass('modal-open');
+                        $("#modal-global-large").modal('hide');
+                        $('.modal-backdrop').remove();
+                        searchData(loadKeyWord);
+                    }
+                },                
             });
+            return false;
+        });
+        function searchData(loadKeyWord){     
+            $.ajax({
+                type : 'get',
+                url : "{{route('Customers')}}/TableDataCustomer/searchTableCus/"+keyWord,
+                success : function(response){
+                    $("#displayTableCustomers").html(response);
+                }
+            });
+        }
     });
 </script>
