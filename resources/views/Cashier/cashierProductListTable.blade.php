@@ -54,7 +54,7 @@
                             cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
                         }
                     });
-                    alertify.success('Item berhasil di hapus');
+                    alertify.success('Item berhasil di hapus').set({title:"Konfirmasi Hapus Item"});
                 },
                 function(){
                     alertify.error('Cancel');
