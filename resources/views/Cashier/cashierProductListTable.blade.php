@@ -44,7 +44,7 @@
         $('.DELETE-LIST').on('click', function(){
             let elThis = $(this),
                 data = elThis.attr("data-id");
-                alertify.confirm("Apakah anda yakin ingin menghapus item item ini ?",
+                alertify.confirm("Apakah Anda yakin ingin menghapus item ini?",
                 function(){
                     $.ajax({
                         type : "get",
@@ -54,11 +54,12 @@
                             cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
                         }
                     });
-                    alertify.success('Item berhasil di hapus');
+                    alertify.success('Item berhasil dihapus');
                 },
                 function(){
                     alertify.error('Cancel');
-                }).set({title:"Konfirmasi Hapus Item"});
+                })
+                .set({title:"Konfirmasi Hapus Item"});
         });
         
     });
