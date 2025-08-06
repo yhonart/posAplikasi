@@ -144,7 +144,7 @@ $statusBarang = array(
                         <input type="text" name="volume[]" class="form-control form-control-sm " onchange="saveMasterBarang(this,'m_product_unit','product_volume','{{$unit1->idm_product_satuan}}','idm_product_satuan','{{$id}}')" value="{{$unit1->product_volume}}" {{$setReadOnly}}>
                     </td>
                     <td>
-                       <input type="text" name="setBarcode[]" class="form-control form-control-sm " onchange="saveMasterBarang(this,'m_product_unit','set_barcode','{{$unit1->idm_product_satuan}}','idm_product_satuan','{{$id}}')" value="{{$unit1->set_barcode}}" {{$setReadOnly}}>
+                       <input type="text" name="setBarcode[]" class="form-control form-control-sm " onchange="saveMasterBarang(this,'m_product_unit','set_barcode','{{$unit1->idm_product_satuan}}','idm_product_satuan','{{$id}}')" value="{{$unit1->set_barcode}}">
                     </td>
                     <td>
                         <button type="button" class="btn btn-outline-danger  DELLUNIT" data-id="{{$unit1->idm_product_satuan}}"><i class="fa-solid fa-xmark"></i></button>
