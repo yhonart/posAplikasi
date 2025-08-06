@@ -54,11 +54,11 @@
                             cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
                         }
                     });
-                    alertify.success('Item berhasil di hapus').set({title:"Konfirmasi Hapus Item"});
+                    alertify.success('Item berhasil di hapus');
                 },
                 function(){
                     alertify.error('Cancel');
-                });
+                }).set({title:"Konfirmasi Hapus Item"});
         });
         
     });
