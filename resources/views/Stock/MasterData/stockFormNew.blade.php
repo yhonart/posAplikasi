@@ -38,7 +38,7 @@
             <div class="form-group row">
                 <label for="katProduk" class="form-label col-md-3">Produk Kategori</label>
                 <div class="col-md-6">
-                    <select name="KatProduk" id="KatProduk" class="form-control form-control-sm">
+                    <select name="KatProduk" id="KatProduk" class="form-control form-control-sm SELECT2">
                         <option value="0">Pilih Kategori Produk</option>
                         @foreach($catProduct as $cp)
                             <option value="{{$cp->category_name}}">{{$cp->category_name}}</option>
@@ -49,7 +49,7 @@
             <div class="form-group row">
                 <label for="brand" class="form-label col-md-3">Brand / Merk</label>
                 <div class="col-md-6">
-                    <select name="brand" id="brand" class="form-control form-control-sm">
+                    <select name="brand" id="brand" class="form-control form-control-sm SELECT2">
                         <option value="0" readonly>Kategori Brand</option>
                         @foreach($manufacture as $mnf)
                             <option value="{{$mnf->manufacture_code}}">{{$mnf->manufacture_name}}</option>
@@ -187,7 +187,7 @@
 
 <script>    
     $(function(){
-        $('.select2').select2({
+        $('.SELECT2').select2({
             theme: 'bootstrap4'
         }); 
         var id = $("#PrdNextID").val();
