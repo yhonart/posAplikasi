@@ -196,7 +196,7 @@ $statusBarang = array(
 </div>
 <div class="row">
     <div class="col-12 table-responsive">
-        @if($countPrdSell>='1')
+        @if($countPrdSell >= '1')
         <table class="table">
             <thead>
                 <tr>
@@ -221,7 +221,7 @@ $statusBarang = array(
                             @if($size->size_code == '1')
                                 <input class="form-control form-control-sm text-right EDIT-PRICE " name="priceOrder" value="{{$size->product_price_order}}" onchange="saveMasterBarang(this,'m_product_unit','product_price_order','{{$size->idm_product_satuan}}','idm_product_satuan','{{$id}}')">
                             @else
-                                <input class="form-control form-control-sm text-right " value="{{$size->product_price_order}}" readonly>
+                                <input class="form-control form-control-sm text-right EDIT-PRICE" value="{{$size->product_price_order}}" readonly>
                             @endif
                         </td>
                         @foreach($cosGroup as $cg1)
