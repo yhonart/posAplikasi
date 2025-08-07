@@ -100,7 +100,8 @@
                                                 echo "<span class='ml-2'><b>".$b."</b><small>".$filData->product_satuan."</small></span>";
                                             }
                                             elseif($filData->product_volume<>'0'){
-                                                    echo "<span class='ml-2'><b>".(int)$b."</b> <small>".$filData->product_satuan."/".$filData->product_volume."</small></span>";
+                                                    $getSelisih = (int)$filData->product_volume / (int)$b;
+                                                    echo "<span class='ml-2'><b>".(int)$getSelisih."</b> <small>".$filData->product_satuan."/".$filData->product_volume."</small></span>";
                                                 
                                             }
                                         }
