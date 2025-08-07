@@ -943,14 +943,16 @@ class CashierController extends Controller
         $countActiveBill = DB::table('tr_store')
             ->where([
                 ['status','1'],
-                ['created_by',$createdName]
+                ['created_by',$createdName],
+                ['comp_id',$company]
             ])
             ->count(); 
 
         $countRerun = DB::table('tr_store')
             ->where([
                 ['status','1'],
-                ['return_by',$createdName]
+                ['return_by',$createdName],
+                ['comp_id',$company]
             ])
             ->count();
         
@@ -971,7 +973,8 @@ class CashierController extends Controller
                 ->where([
                     ['status', 1],
                     ['billing_number', $billNumber],
-                    ['created_by', $createdName]
+                    ['created_by', $createdName],
+                    ['comp_id',$company]
                 ])
                 ->orderBy('tr_store_id', 'desc')
                 ->first();
@@ -981,7 +984,8 @@ class CashierController extends Controller
                 ->where([
                     ['status', 1],
                     ['billing_number', $billNumber],
-                    ['return_by', $createdName]
+                    ['return_by', $createdName],
+                    ['comp_id',$company]
                 ])
                 ->orderBy('tr_store_id', 'desc')
                 ->first();
