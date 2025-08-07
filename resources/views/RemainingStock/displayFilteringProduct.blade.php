@@ -97,10 +97,10 @@
                                         
                                         if($filData->core_id_product == $mp->idm_data_product AND $filData->product_satuan <> ""){
                                             if($filData->size_code=='1' AND $filData->stock=='0'){
-                                                echo "<span class='ml-2'><b>".$b."</b> dd<small>".$filData->product_satuan."</small></span>";
+                                                echo "<span class='ml-2'><b>".$b."</b><small>".$filData->product_satuan."</small></span>";
                                             }
                                             elseif($filData->product_volume<>'0'){
-                                                    echo "<span class='ml-2'><b>".(int)$b." ss</b> <small>".$filData->product_satuan."</small></span>";
+                                                    echo "<span class='ml-2'><b>".(int)$b."</b> <small>".$filData->product_satuan."/".$filData->product_volume."</small></span>";
                                                 
                                             }
                                         }
