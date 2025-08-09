@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card card-purple">
     <div class="card-header">
         <h3 class="card-title">
             Tambah Lokasi Toko/Gudang
@@ -43,6 +43,7 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-sm btn-success" id="btnSimpan">Simpan</button>
+                        <button type="submit" class="btn btn-sm btn-danger" id="btnClose" data-dismiss="modal">Batal</button>
                     </div>
                 </form>
             </div>
