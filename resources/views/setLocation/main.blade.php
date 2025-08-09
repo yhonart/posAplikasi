@@ -5,7 +5,7 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-        <h1 class="m-0">Pengaturan Nama Usaha</h1>
+        <h1 class="m-0">Pengaturan Lokasi Toko/Gudang</h1>
         </div><!-- /.col -->
     </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -13,7 +13,7 @@
 
 <div class="content">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-12">                
                 <a class="btn btn-primary btn-sm font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href = "{{route('setLokasi')}}/newLokasi">Tambah Lokasi</a>
             </div>
