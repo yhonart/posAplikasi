@@ -136,6 +136,9 @@ Route::get('trxReumbers', [App\Http\Controllers\TrxReumbersController::class, 't
 // Sales
 Route::get('sales', [App\Http\Controllers\SalesController::class, 'main'])->name('sales');
 
+// Set Lokasi 
+Route::get('setLokasi', [App\Http\Controllers\setLokasiController::class, 'main'])->name('setLokasi');
+
 //Custome Aplication
 
 include __DIR__.'/section/accounting.php';
