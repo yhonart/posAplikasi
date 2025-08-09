@@ -65,7 +65,7 @@
         </tr>
     </tfoot>
 </table>
-<p class=" bg-danger p-2">
+<p class=" alert-danger p-2">
     * Data yang ditampilkan pada halaman utama adalah data di bulan yang sedang berjalan ! 
 </p>
 <script>
