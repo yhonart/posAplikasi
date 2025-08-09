@@ -15,7 +15,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">                
-                <a class="btn btn-primary btn-sm font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href = "">Tambah Lokasi</a>
+                <a class="btn btn-primary btn-sm font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href = "{{route('setLokasi')}}/newLokasi">Tambah Lokasi</a>
             </div>
         </div>
 
