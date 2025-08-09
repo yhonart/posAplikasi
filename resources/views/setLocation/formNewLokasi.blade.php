@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <form id="formNewLokasiToko">
                     <div class="form-group row">
-                        <label for="namaLokasi" class="col-md-4">Nama Lokasi</label>
+                        <label for="namaLokasi" class="col-md-4 text-right">Nama Lokasi</label>
                         <div class="col-md-4">
                             <input type="text" name="namaLokasi" id="namaLokasi" class="form-control form-control-sm">
                         </div>
