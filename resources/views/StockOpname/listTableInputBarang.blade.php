@@ -8,11 +8,11 @@
     <td>{{$lBarang->product_name}}</td>
     <td>{{$lBarang->product_satuan}}</td>
     <td>
-        <input type="hidden" name="opnameNumber" id="opnameNumber" value="{{$lBarang->sto_number}}">
-        <input type="number" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputQty" id="inputQty" onchange="saveToDatabase(this,'{{$lBarang->id_list}}','id_list')">        
+        {{$lBarang->site_name}}
     </td>
     <td>
-        {{$lBarang->site_name}}
+        <input type="hidden" name="opnameNumber" id="opnameNumber" value="{{$lBarang->sto_number}}">
+        <input type="number" class="form-control form-control-border form-control-sm" value="{{$lBarang->input_qty}}" name="inputQty" id="inputQty" onchange="saveToDatabase(this,'{{$lBarang->id_list}}','id_list')">        
     </td>
     <td>
         <input type="text" class="form-control form-control-border form-control-sm text-center" value="{{$lBarang->last_stock}}" name="inputLastStock" id="inputLastStock" readonly>        
