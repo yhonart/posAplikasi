@@ -10,6 +10,6 @@ use Illuminate\Support\Carbon;
 class setLokasiController extends Controller
 {
     public function main (){
-        return view('seLocation/main');
+        return view('setLocation/main');
     }
 }
