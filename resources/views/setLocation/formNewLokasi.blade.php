@@ -36,8 +36,8 @@
                         <label for="groupLoc" class="col-md-4 text-right">Group Lokasi</label>
                         <div class="col-md-4">
                             <select name="gropuLoc" id="groupLoc" class="form-control form-control-sm">
-                                <option value="3">Toko</option>
-                                <option value="4">Gudang</option>
+                                <option value="1">Toko</option>
+                                <option value="2">Gudang</option>
                             </select>
                         </div>
                     </div>

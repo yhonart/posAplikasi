@@ -18,4 +18,13 @@ class setLokasiController extends Controller
         
         return view('setLocation/formNewLokasi');
     }
+
+    public function tableDataLokasi (){
+        $company = Auth::user()->company;
+        $dbLokasi = DB::table('m_site')
+            ->where('comp_id',$company)
+            ->get();
+
+        return view('setLocation/tableDataLokasi', compact('dbLokasi'));
+    }
 }

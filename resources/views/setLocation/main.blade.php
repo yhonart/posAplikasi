@@ -26,4 +26,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(function(){
+        $("#listTableLokasiToko").load("{{route('setLokasi')}}/tableDataLokasi");
+    });
+</script>
 @endsection
