@@ -63,10 +63,10 @@ class StockopnameController extends Controller
             // Jika periode ditemukan
             if($countPeriode == '0'){
                 $stp = '1';
-                $nostp = "STP".$noCompCode."".$dateNumber."-".sprintf("%07d",$stp);
+                $nostp = "STP".$noCompCode."".$dateNumber."-".sprintf("%05d",$stp);
             }else{
                 $stp = $countPeriode + 1;
-                $nostp = "STP".$noCompCode."".$dateNumber."-".sprintf("%07d",$stp);
+                $nostp = "STP".$noCompCode."".$dateNumber."-".sprintf("%05d",$stp);
             }                
         }
         // Jika data ditemukan.
