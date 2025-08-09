@@ -178,6 +178,7 @@ class StockopnameController extends Controller
                 ->first();
 
             $lokasi = DB::table('m_site')
+                ->where('comp_id',$company)
                 ->get();
                 
             return view('StockOpname/newStockOpnameBarang', compact('mProduct','opnameNumber','sumStockOpname','countOpname','stockOpname','mSite','lokasi'));
