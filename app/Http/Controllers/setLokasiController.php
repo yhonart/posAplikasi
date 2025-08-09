@@ -19,6 +19,21 @@ class setLokasiController extends Controller
         return view('setLocation/formNewLokasi');
     }
 
+    public function postNewLocation(Request $postDataLocation){
+        $company = Auth::user()->company;
+        
+        DB::table('m_site')
+            ->insert([
+                'site_code'=>$postDataLocation->kodeLokasi,
+                'site_name'=>$postDataLocation->namaLokasi,
+                'site_address'=>$postDataLocation->address,
+                'site_status'=>'1',
+                'site_city'=>$postDataLocation->city,
+                'comp_id'=>$company,
+                'site_group'=>$postDataLocation->groupLoc
+            ]);
+    }
+
     public function tableDataLokasi (){
         $company = Auth::user()->company;
         $dbLokasi = DB::table('m_site')

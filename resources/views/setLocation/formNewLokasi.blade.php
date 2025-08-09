@@ -50,3 +50,40 @@
         </div>
     </div>
 </div>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(document).ready(function() {
+        $("form#formNewLokasiToko").submit(function(event){
+            event.preventDefault();
+            $.ajax({
+                url: "{{route('setLokasi')}}/newLokasi/postNewLocation",
+                type: 'POST',
+                data: new FormData(this),
+                async: true,
+                cache: true,
+                contentType: false,
+                processData: false,
+                success: function (data) { 
+                    $('body').removeClass('modal-open');
+                    $("#modal-global-large").modal('hide');
+                    $('.modal-backdrop').remove();    
+                    loadData();
+                },                
+            });
+            return false;
+        });
+
+        function loadData(){
+            $("#listTableLokasiToko").load("{{route('setLokasi')}}/tableDataLokasi");
+        }
+
+    });
+
+
+</script>

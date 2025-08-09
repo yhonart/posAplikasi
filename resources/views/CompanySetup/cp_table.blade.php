@@ -14,7 +14,7 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-        <h1 class="m-0">Pengaturan Nama Usaha</h1>
+        <h1 class="m-0">Informasi Nama Toko</h1>
         </div><!-- /.col -->
     </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -32,13 +32,11 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body text-xs">
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div id="DisplayFormInput"></div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <table class="table table-sm table-valign-middle table-striped table-hover">
