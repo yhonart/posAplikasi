@@ -12,4 +12,10 @@ class setLokasiController extends Controller
     public function main (){
         return view('setLocation/main');
     }
+
+    public function newFormLokasi (){
+        $company = Auth::user()->company;
+        
+        return view('setLocation/formNewLokasi');
+    }
 }

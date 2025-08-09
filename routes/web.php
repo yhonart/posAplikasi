@@ -186,4 +186,6 @@ include __DIR__.'/section/trxKasBesar.php';
 include __DIR__.'/section/reumbers.php';
 
 include __DIR__.'/section/sales.php';
+
+include __DIR__.'/section/setLokasi.php';
 ?>
