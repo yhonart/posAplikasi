@@ -18,7 +18,7 @@
                             <th>Nama</th>
                             <th>Alamat</th>
                             <th>Group</th>
-                            <th class="text-right"></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,9 +27,9 @@
                                 <td>{{$nomor++}}</td>
                                 <td>{{$lokasi->site_code}}</td>
                                 <td>{{$lokasi->site_name}}</td>
-                                <td><b>{{$lokasi->site_city}}</b>, <span class="text-muted">{{$lokasi->site_address}}</span></td>
+                                <td><b>{{$lokasi->site_city}}</b>, <small class="text-muted">{{$lokasi->site_address}}</small></td>
                                 <td>{{$arrGroup[$lokasi->site_group]}}</td>
-                                <td>
+                                <td class="text-right">
                                     <button class="btn btn-warning btn-sm EDIT-LOKASI"><i class="fa-solid fa-pen-to-square"></i></button>
                                 </td>
                             </tr>
