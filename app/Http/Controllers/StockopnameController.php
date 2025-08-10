@@ -150,6 +150,10 @@ class StockopnameController extends Controller
             ->count();
             
         $mSite = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
         
         
@@ -178,7 +182,10 @@ class StockopnameController extends Controller
                 ->first();
 
             $lokasi = DB::table('m_site')
-                ->where('comp_id',$company)
+                ->where([
+                    ['comp_id',$company],
+                    ['site_status','1']
+                    ])
                 ->get();
                 
             return view('StockOpname/newStockOpnameBarang', compact('mProduct','opnameNumber','sumStockOpname','countOpname','stockOpname','mSite','lokasi'));
@@ -929,12 +936,17 @@ class StockopnameController extends Controller
                 ->first();
 
         $lokasi = DB::table('m_site')
-                ->get();
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
+            ->get();
             
         return view('StockOpname/editlistOpname', compact('docOpname','listOpname','mProduct','sumStockOpname','idparam','lokasi'));
     }
     
     public function editDocumentOpname($idParam){
+        $company = Auth::user()->company;
         $docOpname2 = DB::table('inv_stock_opname as a')
                 ->select('a.*','b.site_name')
                 ->leftJoin('m_site as b','a.loc_so','=','idm_site')
@@ -942,6 +954,10 @@ class StockopnameController extends Controller
                 ->first();
                 
         $mLoc = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
             
         return view('StockOpname/editFormOpname', compact('docOpname2','mLoc','idParam'));

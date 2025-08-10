@@ -87,6 +87,7 @@ class cpSetupController extends Controller
     }
 
     public function postDataWarehouse (Request $reqSite){
+        $company = Auth::user()->company;
         DB::table('m_site')
             ->insert([                
                 'site_code'=>strtoupper($reqSite->locationCode),
@@ -94,13 +95,20 @@ class cpSetupController extends Controller
                 'site_address'=>$reqSite->locationAddress,
                 'site_city'=>$reqSite->cityName,
                 'site_status'=>'1',
+                'comp_id'=>$company,
+                'site_group'=>'2'
             ]);
         $msg = array('success' => '✔ DATA BERHASIL DIMASUKKAN.');
         return response()->json($msg);
     }
 
     public function warehouseTable (){
+        $company = Auth::user()->company;
         $tableSite = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
 
         $tableCompany = DB::table('m_company')

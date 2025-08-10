@@ -30,7 +30,13 @@ class RemainingController extends Controller
     }
 
     public function remainingStock(){
+        $company = Auth::user()->company;
+
         $listofSite = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
         
         $category = DB::table('m_asset_category')

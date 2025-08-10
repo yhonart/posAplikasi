@@ -164,6 +164,10 @@ class MutasibarangController extends Controller
         $tableMoving=$tableMoving->get();
 
         $mSites = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
 
         return view('Mutasi/tableDokMutasi',compact('tableMoving','approval','userArea','mSites','tanggalAwal','tanggalAkhir'));
@@ -188,6 +192,10 @@ class MutasibarangController extends Controller
             ->first();
         
         $mLoc = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
 
         if (!empty($tbMutasiL)) {
@@ -210,6 +218,10 @@ class MutasibarangController extends Controller
         $company = Auth::user()->company;
 
         $mLoc = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
 
         $counInvMoving = DB::table('inv_moving')
@@ -476,7 +488,8 @@ class MutasibarangController extends Controller
     
     public function editDocMutasi ($idParam){
         // echo $idParam;
-        
+        $company = Auth::user()->company;
+
         $tbMutasi = DB::table('inv_moving')
             ->where('number',$idParam)
             ->first();
@@ -495,6 +508,10 @@ class MutasibarangController extends Controller
         
         
         $mLoc = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
             
         return view('Mutasi/editDocMutasi',compact('tbMutasi','mLoc','asalBarang','tujuanBarang'));
@@ -692,6 +709,10 @@ class MutasibarangController extends Controller
             ->first();
             
         $mLoc = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
             
         $location = $tbMutasi->from_loc;

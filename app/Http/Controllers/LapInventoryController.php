@@ -52,6 +52,10 @@ class LapInventoryController extends Controller
             ->get();
             
         $mSite = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
             
         return view ('LapInventory/formFiltering',compact('mProduct','mSite'));

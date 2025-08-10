@@ -118,7 +118,13 @@ class CorrectPrdController extends Controller
 
    public function koreksiBarang(){
        $nKrs = $this->numberSO();
+       $company = Auth::user()->company;
+
        $listofSite = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
             
         $countKrs = DB::table('inv_correction')

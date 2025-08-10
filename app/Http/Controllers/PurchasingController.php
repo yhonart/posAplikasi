@@ -464,6 +464,10 @@ class PurchasingController extends Controller
             ->get();
             
         $warehouse = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
             
         $statusPurchase = DB::table('view_purchase_order')
@@ -552,6 +556,7 @@ class PurchasingController extends Controller
     
     public function loadBarang ($numberPO){
         $createdBy = Auth::user()->name;
+        $company = Auth::user()->company;
         $listDataBarang = DB::table('view_purchase_lo')
             ->where([
                 ['purchase_number',$numberPO]
@@ -566,6 +571,10 @@ class PurchasingController extends Controller
             ->get();
             
         $warehouse = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
             
         return view ('Purchasing/tableListBarang', compact('listDataBarang','mProduct','satuanBarang','warehouse','numberPO'));
@@ -712,6 +721,8 @@ class PurchasingController extends Controller
     }
     
     public function editTablePO($dataEdit){
+        $company = Auth::user()->company;
+
         $editPurchase = DB::table('view_purchase_order')
             ->where('purchase_number',$dataEdit)
             ->first();
@@ -725,6 +736,10 @@ class PurchasingController extends Controller
             ->get();
             
         $warehouse = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
             
         return view ('Purchasing/tableEditPenerimaan', compact('editPurchase','editPurchaseDetail','supplier','prodName','warehouse','dataEdit'));

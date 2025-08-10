@@ -707,7 +707,10 @@ class ReturnItemController extends Controller
 
         // Get data warehouse
             $warehouse = DB::table('m_site')
-                ->where('site_status','1')
+                ->where([
+                    ['site_status','1'],
+                    ['comp_id',$company]
+                    ])
                 ->get();
 
         return view ('ReturnItem/displayReturnNonInvInputItem', compact('returnNumber','listProduk','warehouse','supplierID'));

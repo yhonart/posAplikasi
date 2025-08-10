@@ -408,6 +408,10 @@ class StockListController extends Controller
                 ->get();
                 
             $mLoc = DB::table('m_site')
+                ->where([
+                    ['comp_id',$authUserComp],
+                    ['site_status','1']
+                    ])
                 ->get();
             
             foreach($mUnit as $sl){

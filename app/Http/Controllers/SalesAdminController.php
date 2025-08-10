@@ -289,7 +289,10 @@ class SalesAdminController extends Controller
             ->count();
 
         $mSite = DB::table('m_site')
-            ->where('comp_id',$companyID)
+            ->where([
+                ['comp_id',$companyID],
+                ['site_status','1']
+                ])
             ->get();
         
         if ($countActiveOpname == 0) {

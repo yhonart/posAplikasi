@@ -21,7 +21,12 @@ class PersonaliaController extends Controller
     }
     
     public function newUsers (){
+        $company = Auth::user()->company;
         $mSite = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
             
         return view ('hris/masterData/personaliaAddForm',compact('mSite'));
@@ -189,7 +194,8 @@ class PersonaliaController extends Controller
     
     public function loadDataHakAkses (Request $reqLoad){
         $id = $reqLoad->id;
-        
+        $company = Auth::user()->company;
+
         $dbUserArea = DB::table('users_area as a')
             ->select('a.*', 'b.site_name','b.idm_site')
             ->leftJoin('m_site as b','a.area_id','=','b.idm_site')
@@ -205,6 +211,10 @@ class PersonaliaController extends Controller
             ->first();
             
         $mSite = DB::table('m_site')
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+            ])
             ->get();
             
         $mGAdmin = DB::table('m_group_admin')
