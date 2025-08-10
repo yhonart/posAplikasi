@@ -37,9 +37,20 @@ class setLokasiController extends Controller
     public function tableDataLokasi (){
         $company = Auth::user()->company;
         $dbLokasi = DB::table('m_site')
-            ->where('comp_id',$company)
+            ->where([
+                ['comp_id',$company],
+                ['site_status','1']
+                ])
             ->get();
 
         return view('setLocation/tableDataLokasi', compact('dbLokasi'));
+    }
+
+    public function DeleteTable ($dataID){
+        DB::table('m_site')
+            ->where('idm_site',$dataID)
+            ->update([
+                'site_status'=>'0'
+            ]);
     }
 }

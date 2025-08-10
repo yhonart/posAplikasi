@@ -31,6 +31,7 @@
                                 <td>{{$arrGroup[$lokasi->site_group]}}</td>
                                 <td class="text-right">
                                     <button class="btn btn-warning btn-sm EDIT-LOKASI"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn btn-danger btn-sm DELETE-LOKASI" data-id="{{$lokasi->idm_site}}"><i class="fa-solid fa-circle-xmark"></i></button>
                                 </td>
                             </tr>
                         @endforeach
@@ -40,3 +41,26 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.DELETE-LOKASI').on('click', function (e) {
+            e.preventDefault();
+            let dataID = $(this).attr('data-id');
+            alertify.confirm("Apakah anda yakin ingin menghapus lokasi ini ?",
+            function(){
+                alertify.success('Ok');
+                $.ajax({
+                    url: "{{route('setLokasi')}}/tableDataLokasi/DeleteTable/" + dataID,
+                    type: 'GET',
+                    success: function (data) {   
+                        window.location.reload();                
+                    },                
+                });
+            },
+            function(){
+                alertify.error('Cancel');
+            });
+            
+        });
+    });
+</script>
