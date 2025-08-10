@@ -59,7 +59,7 @@
             },
             function(){
                 alertify.error('Cancel');
-            });
+            }).set({title:"Konfirmasi delete lokasi"});
             
         });
     });
