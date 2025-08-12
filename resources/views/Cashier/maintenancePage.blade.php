@@ -35,7 +35,7 @@
         @elseif($checkArea <> 0 && $checkGroup <> 1)
             <div class="row d-flex justify-content-center">
                 <div class="col-8">
-                    <div class="alert alert-warning alert-dismissible text-center">
+                    <div class="alert blue-alert alert-dismissible text-center">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Alert!</h5>
                         <span class="font-weight-bold">
