@@ -39,7 +39,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Alert!</h5>
                         <p class="font-weight-bold">
-                            User group area anda bukan "TOKO", silahkan rubah user group anda menjadi Work Group "TOKO". Silahkan hubungi Administrator untuk mengubah Work Group.
+                            User group area anda bukan "TOKO", silahkan rubah user group anda menjadi Work Group "TOKO". Silahkan hubungi Admin/SPV untuk mengubah Work Group.
                         </p>
                     </div>                        
                 </div>
