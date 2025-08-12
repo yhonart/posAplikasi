@@ -53,7 +53,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="txt-left" align="left">{{$tSL->qty}} {{$tSL->unit}} {{number_format($tSL->m_price,0,',','.')}}</td>
+                            <td class="txt-left" align="left">{{$tSL->qty}} {{$tSL->unit}} {{number_format($tSL->unit_price,0,',','.')}}</td>
                             <td class="txt-right" align="right">{{number_format($tSL->t_price,0,',','.')}}</td>
                         </tr>
                         <?php
