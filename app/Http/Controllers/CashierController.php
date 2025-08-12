@@ -38,17 +38,17 @@ class CashierController extends Controller
     public function checkuserInfo()
     {
         $userID = Auth::user()->id;
-        $cekUserArea = DB::table('users_area AS a')
-            ->select('a.area_id', 'b.site_code', 'b.site_name')
-            ->leftJoin('m_site AS b', 'a.area_id', '=', 'b.idm_site')
-            ->where('a.user_id', $userID)
+        $cekUserArea = DB::table('view_user_work_area')
+            ->select('area_id')
+            ->where('id', $userID)
             ->first();
+
         if (!empty($cekUserArea)) {
-            # code...
             $userAreaID = $cekUserArea->area_id;
         } else {
             $userAreaID = 0;
         }
+
         return $userAreaID;
     }
 
@@ -383,7 +383,7 @@ class CashierController extends Controller
                     
                 }
                  // Insert into laporan
-                $location = '3';
+                $location = $this->checkuserInfo();
                 $prodQty = '1';
                 $description = "Penjualan ".$username;                
                 $this->TempInventoryController->reportBarangKeluar($product, $satuan, $location, $prodQty, $description, $billNumber, $username);
@@ -399,7 +399,7 @@ class CashierController extends Controller
                 }
                 $productList = $productList->where([
                     ['idm_customer',$memberID],
-                    ['location_id','3'],
+                    ['location_id',$this->checkuserInfo()],
                     ['customer_type',$cosGroup],
                     ['comp_id',$company]
                 ]);
@@ -494,7 +494,7 @@ class CashierController extends Controller
                 ]);
 
             // Insert into laporan
-            $location = '3';
+            $location = $this->checkuserInfo();
             $prodQty = $qtySubmit;
             $description = "Penjualan ".$customerName;
             $this->TempInventoryController->reportBarangKeluar($product, $satuan, $location, $prodQty, $description, $billNumber, $username);
@@ -607,7 +607,7 @@ class CashierController extends Controller
         $dataStock = DB::table('inv_stock')
             ->where([
                 ['product_id', $sizeProd->idm_product_satuan],
-                ['location_id', '3']
+                ['location_id', $this->checkuserInfo()]
             ])
             ->first();
 
@@ -774,7 +774,7 @@ class CashierController extends Controller
             ]);
 
         // Insert into laporan
-        $location = '3';
+        $location = $this->checkuserInfo();
         $description = "Penjualan ".$customerName;
 
         $this->TempInventoryController->reportBarangKeluar($prodId, $prodSatuan, $location, $prodQty, $description, $transNumber, $createdBy);        
@@ -783,7 +783,7 @@ class CashierController extends Controller
         $dataStock = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product', $prodId],
-                ['location_id', '3']
+                ['location_id', $this->checkuserInfo()]
             ])
             ->get();
 
@@ -791,7 +791,7 @@ class CashierController extends Controller
         $codeSatu = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product', $prodId],
-                ['location_id', '3'],
+                ['location_id', $this->checkuserInfo()],
                 ['size_code', '1'],
             ])
             ->first();
@@ -799,7 +799,7 @@ class CashierController extends Controller
         $codeDua = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product', $prodId],
-                ['location_id', '3'],
+                ['location_id', $this->checkuserInfo()],
                 ['size_code', '2'],
             ])
             ->first();
@@ -807,7 +807,7 @@ class CashierController extends Controller
         $codeTiga = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product', $prodId],
-                ['location_id', '3'],
+                ['location_id', $this->checkuserInfo()],
                 ['size_code', '3'],
             ])
             ->first();
@@ -875,7 +875,7 @@ class CashierController extends Controller
             DB::table('inv_stock')
                 ->where('idinv_stock', $ds->idinv_stock)
                 ->update([
-                    'location_id' => '3',
+                    'location_id' => $this->checkuserInfo(),
                     'stock' => $a,
                     'stock_out' => $prodQty,
                     'saldo' => $a
@@ -904,7 +904,7 @@ class CashierController extends Controller
 
         $stock = DB::table('view_product_stock')
             ->select('stock', 'core_id_product', 'product_satuan')
-            ->where('location_id', '3')
+            ->where('location_id', $this->checkuserInfo())
             ->get();
 
         $listSatuanPrd = DB::table('m_product_unit')
@@ -1428,7 +1428,6 @@ class CashierController extends Controller
 
     public function deleteData($data)
     {
-
         // Ambil data dari transaksi barang sesuai dengan ID;
         $listData = DB::table('tr_store_prod_list')
             ->select('from_payment_code', 'product_code', 'qty', 'unit', 't_price','satuan')
@@ -1449,7 +1448,7 @@ class CashierController extends Controller
             ->where([
                 ['core_id_product', $prodID],
                 ['product_size', $satuan],
-                ['location_id','3']
+                ['location_id',$this->checkuserInfo()]
             ])
             ->first();
 
@@ -1462,7 +1461,7 @@ class CashierController extends Controller
                 ['core_id_product', $prodID],
                 ['product_volume','!=','0'],
                 ['product_satuan','!=',''],
-                ['location_id','3']
+                ['location_id',$this->checkuserInfo()]
             ])
             ->get();
 
@@ -2143,7 +2142,7 @@ class CashierController extends Controller
             $hrgSatuan = $prdItem->m_price;
             $totalBelanja = $hrgSatuan * $editVal;
             $lastQty = $prdItem->qty;
-            $locationID = '3';
+            $locationID = $this->checkuserInfo();
 
             //update history qty terlebih dahulu.
             DB::table('tr_store_prod_list')
@@ -2156,7 +2155,7 @@ class CashierController extends Controller
             $dataStock = DB::table('view_product_stock')
                 ->where([
                     ['idm_data_product', $productID],
-                    ['location_id', '3']
+                    ['location_id', $this->checkuserInfo()]
                 ])
                 ->get();
 
@@ -2164,7 +2163,7 @@ class CashierController extends Controller
             $codeSatu = DB::table('view_product_stock')
                 ->where([
                     ['idm_data_product', $productID],
-                    ['location_id', '3'],
+                    ['location_id', $this->checkuserInfo()],
                     ['size_code', '1'],
                 ])
                 ->first();
@@ -2173,7 +2172,7 @@ class CashierController extends Controller
             $codeDua = DB::table('view_product_stock')
                 ->where([
                     ['idm_data_product', $productID],
-                    ['location_id', '3'],
+                    ['location_id', $this->checkuserInfo()],
                     ['size_code', '2'],
                 ])
                 ->first();
@@ -2181,7 +2180,7 @@ class CashierController extends Controller
             $codeTiga = DB::table('view_product_stock')
                 ->where([
                     ['idm_data_product', $productID],
-                    ['location_id', '3'],
+                    ['location_id', $this->checkuserInfo()],
                     ['size_code', '3'],
                 ])
                 ->first();
@@ -2249,7 +2248,7 @@ class CashierController extends Controller
                     DB::table('inv_stock')
                         ->where('idinv_stock', $ds->idinv_stock)
                         ->update([
-                            'location_id' => '3',
+                            'location_id' => $this->checkuserInfo(),
                             'stock' => $a
                         ]);
                 }
@@ -2301,7 +2300,7 @@ class CashierController extends Controller
                     DB::table('inv_stock')
                         ->where('idinv_stock', $ds->idinv_stock)
                         ->update([
-                            'location_id' => '3',
+                            'location_id' => $this->checkuserInfo(),
                             'stock' => $a
                         ]);
                 }
@@ -3100,7 +3099,7 @@ class CashierController extends Controller
                         ['a.core_id_product', $prodID],
                         ['a.product_volume', '!=', '0'],
                         ['a.product_satuan', '!=', ''],
-                        ['b.location_id', '3']
+                        ['b.location_id', $this->checkuserInfo()]
                     ])
                     ->get();
 
@@ -3250,7 +3249,7 @@ class CashierController extends Controller
             $productID = $lt->product_code;
             $qty = $lt->qty;
             $satuan = $lt->satuan;
-            $location = '3';
+            $location = $this->checkuserInfo();
 
             $this->TempInventoryController->tambahStock($productID, $qty, $satuan, $location);
         }
@@ -3707,7 +3706,7 @@ class CashierController extends Controller
                         $productID = $iDelete->product_code;
                         $qty = $iDelete->qty;
                         $satuan = $iDelete->satuan;
-                        $location = '3';
+                        $location = $this->checkuserInfo();
     
                         $this->TempInventoryController->tambahStock($productID, $qty, $satuan, $location);
                     }
@@ -4112,7 +4111,7 @@ class CashierController extends Controller
         $dataStock = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product', $productID],
-                ['location_id', '3']
+                ['location_id', $this->checkuserInfo()]
             ])
             ->get();
 
@@ -4120,7 +4119,7 @@ class CashierController extends Controller
         $codeSatu = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product', $productID],
-                ['location_id', '3'],
+                ['location_id', $this->checkuserInfo()],
                 ['size_code', '1'],
             ])
             ->first();
@@ -4128,7 +4127,7 @@ class CashierController extends Controller
         $codeDua = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product', $productID],
-                ['location_id', '3'],
+                ['location_id', $this->checkuserInfo()],
                 ['size_code', '2'],
             ])
             ->first();
@@ -4136,7 +4135,7 @@ class CashierController extends Controller
         $codeTiga = DB::table('view_product_stock')
             ->where([
                 ['idm_data_product', $productID],
-                ['location_id', '3'],
+                ['location_id', $this->checkuserInfo()],
                 ['size_code', '3'],
             ])
             ->first();
@@ -4204,7 +4203,7 @@ class CashierController extends Controller
             DB::table('inv_stock')
                 ->where('idinv_stock', $ds->idinv_stock)
                 ->update([
-                    'location_id' => '3',
+                    'location_id' => $this->checkuserInfo(),
                     'stock' => $a,
                     'stock_out' => $prodQty,
                     'saldo' => $a
