@@ -52,6 +52,24 @@ class CashierController extends Controller
         return $userAreaID;
     }
 
+    public function checkGroupWorkArea()
+    {
+        $userID = Auth::user()->id;
+        $cekWorkGroup = DB::table('view_user_work_area')
+            ->select('site_group')
+            ->where('id', $userID)
+            ->first();
+        
+        if (!empty($cekWorkGroup)) {
+            $workGroup = $cekWorkGroup->site_group;
+        }
+        else {
+            $workGroup = 0;
+        }
+
+        return $workGroup;
+    }
+
     // Buat nomor transaksi baru.
     public function checkBillNumber()
     {
@@ -209,8 +227,9 @@ class CashierController extends Controller
     {
         $module = $this->sysModule();        
         $checkArea = $this->checkuserInfo();
+        $checkGroup = $this->checkGroupWorkArea();
         if (Auth::check()) {
-            return view('Cashier/maintenancePage', compact('checkArea', 'module'));
+            return view('Cashier/maintenancePage', compact('checkArea', 'module','checkGroup'));
         } else {
             return view('login');
         }

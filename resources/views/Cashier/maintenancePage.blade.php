@@ -3,9 +3,9 @@
 <script src="{{asset('public/js/cashierButton.js')}}"></script>
 <div class="content mt-1">
     <div class="container-fluid">
-        @if($checkArea <> 0)         
-        <!-- jika module systemnya hanya kasir dan inventory saja  -->
-         @if($module == "AM3")
+        @if($checkArea <> 0 && $checkGroup == 1)         
+            <!-- jika module systemnya hanya kasir dan inventory saja  -->
+            @if($module == "AM3")
             <div class="row mb-2">
                 <div class="col-md-12">
                     <div class="btn-group">
@@ -20,19 +20,30 @@
                     <div id="displayInventoryKasir"></div>
                 </div>
             </div>
-         @endif
-        <div class="row">
-            <div class="col-12 col-lg-8 pr-0">
-                @include('Global.global_spinner')
-                <div class=" table-responsive text-xs p-0" style="height:700px;">
-                    <div id="mainListProduct"></div>
+            @endif
+            <div class="row">
+                <div class="col-12 col-lg-8 pr-0">
+                    @include('Global.global_spinner')
+                    <div class=" table-responsive text-xs p-0" style="height:700px;">
+                        <div id="mainListProduct"></div>
+                    </div>                    
                 </div>
-                
+                <div class="col-12 col-lg-4">
+                    <div id="mainButton"></div>
+                </div>
             </div>
-            <div class="col-12 col-lg-4">
-                <div id="mainButton"></div>
+        @elseif($checkArea <> 0 && $checkGroup <> 1)
+            <div class="row d-flex justify-content-center">
+                <div class="col-8">
+                    <div class="alert alert-warning alert-dismissible text-center">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                        <span class="font-weight-bold">
+                            User group area anda bukan "TOKO", silahkan rubah user group anda menjadi Work Group "TOKO"
+                        </span>
+                    </div>                        
+                </div>
             </div>
-        </div>
         @else
             <div class="row d-flex justify-content-center">
                 <div class="col-8">
