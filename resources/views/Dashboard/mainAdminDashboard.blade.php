@@ -16,27 +16,27 @@
         
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
-                                <li class="nav-item d-none d-md-block">
+                                <li class="nav-item">
                                     <a class="nav-link BTN-CLICK" href="#" data-link="dashPenjualan" data-toggle="tab" id="tabMenuDash">
                                         Penjualan Toko
                                     </a>
                                 </li>
-                                <li class="nav-item d-none d-md-block">
+                                <li class="nav-item">
                                     <a class="nav-link BTN-CLICK" href="#" data-link="displayPembelian" data-toggle="tab" id="tabMenuHistory">
                                         Pembelian
                                     </a>
                                 </li>                                                             
-                                <li class="nav-item d-none d-md-block">
+                                <li class="nav-item">
                                     <a class="nav-link BTN-CLICK" href="#" data-link="dashHutangPelanggan" data-toggle="tab" id="tabMenuHistory">
                                         Hutang Pelanggan
                                     </a>
                                 </li>                                                             
-                                <li class="nav-item d-none d-md-block">
+                                <li class="nav-item">
                                     <a class="nav-link BTN-CLICK" href="#" data-link="dashHutangToko" data-toggle="tab" id="tabMenuHistory">
                                         Hutang Toko
                                     </a>
                                 </li>                                                             
-                                <li class="nav-item d-none d-md-block">
+                                <li class="nav-item">
                                     <a class="nav-link BTN-CLICK" href="#" data-link="dashLaporanKeuangan" data-toggle="tab" id="tabMenuHistory">
                                         Laporan Keuangan
                                     </a>
