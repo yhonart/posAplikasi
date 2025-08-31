@@ -11,7 +11,7 @@
                 <input type="hidden" name="tBayar" id="tBayar" value="0">
                 <input type="hidden" name="tSelisih" id="tSelisih" readonly>
                 <input type="hidden" name="totalPayment" id="totalPayment" value="{{$totalPayment->totalBilling}}" readonly>
-                <input type="text" name="noStruck" id="noStruck" class="form-control " value="{{$trPaymentInfo->billing_number}}" readonly>
+                <input type="text" name="noStruck" id="noStruck" class="form-control " value="{{$billNumber}}" readonly>
             </div>
         </div>
         <hr>

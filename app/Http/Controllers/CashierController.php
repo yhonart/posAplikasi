@@ -186,6 +186,7 @@ class CashierController extends Controller
         $dateDB = date("Y-m-d");
         $company = Auth::user()->company;
 
+        //Cek apakah ada nomor transaksi yang di return
         $countReturnNumber = DB::table('tr_store')
             ->where([
                 ['status','1'],
@@ -193,7 +194,8 @@ class CashierController extends Controller
                 ['comp_id',$company]
             ])
             ->count();
-        if ($countReturnNumber == '0') {
+
+        if ($countReturnNumber == '0') { // Jika Tidak Ada
             $billNumbering = DB::table("tr_store")
                 ->where([
                     ['store_id', $area],
@@ -1044,7 +1046,7 @@ class CashierController extends Controller
             ->first();
 
         if ($countActiveBill >= '1' OR $countRerun >= '1') {
-            return view('Cashier/cashierButtonListNotEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID', 'customerType', 'trPoint','nomKredit'));
+            return view('Cashier/cashierButtonListNotEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID', 'customerType', 'trPoint','nomKredit','billNumber'));
         } else {
             return view('Cashier/cashierButtonListEmpty', compact('pCode', 'members', 'delivery', 'countDisplay', 'trPaymentInfo', 'totalPayment', 'areaID'));
         }
