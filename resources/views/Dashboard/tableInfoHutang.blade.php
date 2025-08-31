@@ -16,6 +16,18 @@
                             <th>Belum Dibayar</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @foreach($tableHutang as $th)
+                            <tr>
+                                <td>{{$th->number_dok}}</td>
+                                <td>{{$th->store_name}}</td>
+                                <td>{{$th->kredit}}</td>
+                                <td></td>
+                                <td class=" text-right text-blue font-weight-bolder">{{number_format($th->payed,'0',',','.')}}</td>
+                                <td class=" text-right text-blue font-weight-bolder">{{number_format($th->selisih,'0',',','.')}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>

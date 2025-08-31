@@ -399,7 +399,8 @@ class DashboardController extends Controller
         $company = Auth::user()->company;
 
         $tableHutang = DB::table('purchase_kredit as a')
-            ->leftJoin('purchase_order as b','b.purchase_number','=','a.number_dok')
+            ->select('a.*','b.store_name')
+            ->leftJoin('view_purchase_order as b','b.purchase_number','=','a.number_dok')
             ->where([
                 ['b.comp_id',$company]
             ])
