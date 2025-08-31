@@ -91,7 +91,7 @@ $(document).ready(function(){
             type : 'get',
             url : "{{route('home')}}/displayPembelian/"+routeLink,
             success : function(response){
-                display.html(response);
+                $("#tableFilter").html(response);
             }
         });
     });
