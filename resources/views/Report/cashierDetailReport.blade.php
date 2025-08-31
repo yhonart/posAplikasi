@@ -82,7 +82,7 @@
     <table class="styled-table text-nowrap table-valign-middle" width="100%">
         <thead style="white-space: nowrap;">
             <tr>
-                <th>No</th>
+                <th>Nos</th>
                 <th>No. Bukti</th>
                 <th>Tgl. Bukti</th>
                 <th>Nama Pelanggan</th>
