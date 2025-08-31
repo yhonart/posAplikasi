@@ -3407,7 +3407,7 @@ class CashierController extends Controller
         }
         $bankTransaction = $bankTransaction->where([
             ['a.method_name', '4'],
-            ['comp_id',$company]
+            ['a.comp_id',$company]
         ]);
         $bankTransaction = $bankTransaction->groupBy('a.bank_code');
         $bankTransaction = $bankTransaction->get();
