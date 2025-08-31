@@ -86,7 +86,7 @@ $(document).ready(function(){
     $('.filter-info').on('click', function (e) {
         e.preventDefault();
         let ell = $(this);
-        routeLink = ell.attr("data-link");
+        routeLink = ell.attr("data-display");
         $.ajax({
             type : 'get',
             url : "{{route('home')}}/displayPembelian/"+routeLink,
