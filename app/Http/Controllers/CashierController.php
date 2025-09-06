@@ -2972,7 +2972,7 @@ class CashierController extends Controller
     public function deleteAllTrx($noBill)
     {
         $deleteUser = Auth::user()->name;
-        $storeLocation = Auth::user()->location;
+        $storeLocation = $this->checkuserInfo();
         echo $storeLocation;
         $nom_payed = 0;
         //Check data apakah user melakukan return dari F10
