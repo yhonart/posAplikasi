@@ -2973,7 +2973,7 @@ class CashierController extends Controller
     {
         $deleteUser = Auth::user()->name;
         $storeLocation = $this->checkuserInfo();
-        echo $storeLocation;
+                
         $nom_payed = 0;
         //Check data apakah user melakukan return dari F10
         $countStatus = DB::table('tr_return_record')
@@ -3113,7 +3113,7 @@ class CashierController extends Controller
                     $satuan = $satuan1;
                 }
 
-                $sumQty = $prodUnit->stock + $qty;
+                $sumQty = $pest->stock + $qty;
                 $stockOut = $prodUnit->stock_out - $qty;
 
                 //UPDATE STOCK
