@@ -2972,6 +2972,8 @@ class CashierController extends Controller
     public function deleteAllTrx($noBill)
     {
         $deleteUser = Auth::user()->name;
+        $storeLocation = Auth::user()->location;
+
         $nom_payed = 0;
         //Check data apakah user melakukan return dari F10
         $countStatus = DB::table('tr_return_record')
@@ -3093,12 +3095,14 @@ class CashierController extends Controller
                 if ($satuan1 == NULL) {
                     $prodUnit = $prodUnit->where([
                         ['core_id_product', $prodID],
-                        ['product_size', $unit]
+                        ['product_size', $unit],
+                        ['location_id', $storeLocation]
                     ]);
                 } else {
                     $prodUnit = $prodUnit->where([
                         ['core_id_product', $prodID],
-                        ['product_satuan', $unit]
+                        ['product_satuan', $unit],
+                        ['location_id', $storeLocation]
                     ]);
                 }
                 $prodUnit = $prodUnit->first();
