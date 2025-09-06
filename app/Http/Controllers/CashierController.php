@@ -2973,7 +2973,7 @@ class CashierController extends Controller
     {
         $deleteUser = Auth::user()->name;
         $storeLocation = Auth::user()->location;
-
+        echo $storeLocation;
         $nom_payed = 0;
         //Check data apakah user melakukan return dari F10
         $countStatus = DB::table('tr_return_record')
