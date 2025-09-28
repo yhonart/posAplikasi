@@ -23,7 +23,7 @@
                     <div class="form-group row">
                         <label class="col-md-4">Nominal Kas</label>
                         <div class="col-md-4">
-                            <input class="form-control form-control-sm " name="nominalKas" id="nominalKas">
+                            <input class="form-control form-control-sm price-text" name="nominalKas" id="nominalKas">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -35,6 +35,11 @@
     </div>
 </div>
 <script>
+    $(function(){
+        $('.price-text').mask('000.000.000', {
+            reverse: true
+        });
+    })
     $("form#formCreateKas").submit(function(event){
         event.preventDefault();
         $.ajax({

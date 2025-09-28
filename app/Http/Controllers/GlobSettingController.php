@@ -35,7 +35,7 @@ class GlobSettingController extends Controller
 
     public function postNewNominal(Request $reqPostNom){
         $userKasir = $reqPostNom->selectPersonil;
-        $nominalKas = $reqPostNom->nominalKas;
+        $nominalKas = str_replace(".", "", $reqPostNom->nominalKas);
         $company = Auth::user()->company;
 
         if ($nominalKas <> '' OR $nominalKas <> '0') {
