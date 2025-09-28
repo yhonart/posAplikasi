@@ -12,7 +12,7 @@
         @if($mm->type_menu == '1')
         <li class="nav-item {{$menuOpen}}">
             <a href="#" class="nav-link">
-                <i class="{{$mm->icon}} text-purple"></i>
+                <i class="{{$mm->icon}}"></i>
                 <p>
                     {{$mm->system_name}}
                     <i class="fas fa-angle-left right"></i>
@@ -35,7 +35,7 @@
         </li>
         @else
         <li class="nav-item">
-            <a href="{{route($mm->link_url)}}" class="nav-link bg-purple bg-gradient" target="_blank">
+            <a href="{{route($mm->link_url)}}" class="nav-link bg-info bg-gradient" target="_blank">
                 <i class="{{$mm->icon}}"></i>
                 <p>
                     {{$mm->system_name}}
@@ -48,7 +48,7 @@
     @foreach($mainMenu as $mm)
         @if($mm->type_menu <> '1')
             <li class="nav-item">
-                <a href="{{route($mm->link_url)}}" class="nav-link bg-purple bg-gradient" target="_blank">
+                <a href="{{route($mm->link_url)}}" class="nav-link bg-info bg-gradient" target="_blank">
                     <i class="{{$mm->icon}}"></i>
                     <p>
                         {{$mm->system_name}}
