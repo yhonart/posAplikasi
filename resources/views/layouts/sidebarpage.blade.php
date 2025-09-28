@@ -213,7 +213,7 @@
             </ul>
         </nav>
         
-        <aside class="main-sidebar sidebar-dark-light elevation-1 bg-info">
+        <aside class="main-sidebar sidebar-dark-light elevation-1">
             <!-- Brand Logo -->
             <a href="{{route('home')}}" class="brand-link"> 
             <img src="{{asset('public/images/favicon_dazira/favicon-32x32.png')}}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">     
