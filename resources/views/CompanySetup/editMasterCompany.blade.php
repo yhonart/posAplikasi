@@ -42,26 +42,26 @@ $arrayModule = array(
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="label col-md-4">Owner/Personal Paraf</label>
+                                <label class="label col-md-4">Nama Pemilik Usaha</label>
                                 <div class="col-md-4">
                                     <input type="text" name="owner" id="owner" class="form-control form-control-sm" value="{{$companyData->owner}}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="label col-md-4">Telefone</label>
+                                <label class="label col-md-4">Telephone</label>
                                 <div class="col-md-4">
                                     <input type="text" name="telefone" id="telefone" class="form-control form-control-sm" value="{{$companyData->telefone}}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="label col-md-4">Company APL Module</label>
+                                <label class="label col-md-4">Module Aplikasi</label>
                                 <div class="col-md-2">
                                     <span class="font-weight-bold text-success">
                                         {{$arrayModule[$companyData->sys_module_code]}}
                                     </span>
                                 </div>
                                 <div class="col-md-2">
-                                    <button class="btn btn-info btn-sm font-weight-bold" type="button" data-toggle="collapse" data-target="#changeModuleApl" aria-expanded="false" aria-controls="collapseExample">Change</button>
+                                    <button class="btn btn-info btn-sm font-weight-bold" type="button" data-toggle="collapse" data-target="#changeModuleApl" aria-expanded="false" aria-controls="collapseExample">Ubah Module</button>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="collapse" id="changeModuleApl">
