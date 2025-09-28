@@ -139,7 +139,7 @@
     //  }, 1000)
 </script>
 
-<body class="hold-transition sidebar-mini layout-fixed text-sm">
+<body class="hold-transition sidebar-mini layout-fixed text-sm sidebar-collapse">
     <div class="wrapper">
         <div class="preloader flex-column justify-content-center align-items-center">
             <img src="{{asset('public/images/loadPage.gif')}}" alt="AdminLTELogo" height="60" width="60">
@@ -213,7 +213,7 @@
             </ul>
         </nav>
         
-        <aside class="main-sidebar sidebar-light-purple elevation-1 bg-light">
+        <aside class="main-sidebar sidebar-light-purple elevation-1">
             <!-- Brand Logo -->
             <a href="{{route('home')}}" class="brand-link"> 
             <img src="{{asset('public/images/favicon_dazira/favicon-32x32.png')}}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">     
