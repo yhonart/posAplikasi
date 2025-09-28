@@ -1,4 +1,4 @@
-<div class="card card-purple">
+<div class="card card-info">
     <div class="card-header border-0">
         <h3 class="card-title font-weight-bold">Tambah Nominal Kas Untuk Kasir</h3>
         <div class="card-tools">
