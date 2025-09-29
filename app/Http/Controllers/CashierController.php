@@ -229,9 +229,11 @@ class CashierController extends Controller
     {
         $module = $this->sysModule();        
         $checkArea = $this->checkuserInfo();
-        $checkGroup = $this->checkGroupWorkArea();
+        // $checkGroup = $this->checkGroupWorkArea();
+        $checkGroup = '1';
+
         if (Auth::check()) {
-            return view('Cashier/maintenancePage', compact('checkArea', 'module','checkGroup'));
+            return view('Cashier/maintenancePage', compact('checkArea', 'module', 'checkGroup'));
         } else {
             return view('login');
         }
