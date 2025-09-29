@@ -99,6 +99,8 @@ class HomeController extends Controller
         $role = Auth::user()->hakakses;
         $checkArea = $this->checkuserInfo(); 
         $userID = Auth::user()->id;
+        $checkGroup = '1';
+        $module = $this->moduleMenu(); 
 
         $dbUser = DB::table('users_role as a')
             ->select('a.*','b.name','b.email')
@@ -121,7 +123,7 @@ class HomeController extends Controller
             }
         }
         elseif($role == '2'){
-            return view('Cashier/maintenancePage', compact('checkArea'));
+            return view('Cashier/maintenancePage', compact('checkArea', 'module', 'checkGroup'));
         }
         elseif ($role == '3') {
             return view('Sales/mainSales', compact('checkArea'));
