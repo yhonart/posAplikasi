@@ -16,17 +16,17 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">                            
                                 <ul class="nav nav-pills mr-auto" id="main-menu-bar-helpdesk">                                
                                     <li class="nav-item">
-                                        <a class="nav-link BTN-CLICK font-weight-bold" href="{{route('Cashier')}}" data-link="dashPenjualan" data-toggle="tab" id="tabMenuDash">
+                                        <a class="nav-link BTN-CLICK font-weight-bold" href="#" data-link="productList" data-toggle="tab" id="tabMenuDash">
                                             KASIR
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link BTN-CLICK font-weight-bold" href="#" data-link="displayPembelian" data-toggle="tab" id="tabMenuHistory">
+                                        <a class="nav-link BTN-CLICK font-weight-bold" href="#" data-link="TransProduct" data-toggle="tab" id="tabMenuHistory">
                                             BRAND
                                         </a>
                                     </li>                                                             
                                     <li class="nav-item">
-                                        <a class="nav-link BTN-CLICK font-weight-bold" href="#" data-link="dashHutangPelanggan" data-toggle="tab" id="tabMenuHistory">
+                                        <a class="nav-link BTN-CLICK font-weight-bold" href="#" data-link="remainingStock" data-toggle="tab" id="tabMenuHistory">
                                             STOCK
                                         </a>
                                     </li>                                                             
@@ -100,8 +100,27 @@
         let codeModule = "{{$module}}";
 
         if (codeModule === "AM3") {
-            let devLoadDisplay = $("#displayLoadInventory");
-            cashier_style.load_productList(routeIndex,urlProductList,devLoadDisplay);
+            let route = "Cashier",
+            display = $("#displayLoadInventory");
+            displayCustomCashier(display, route);
+
+            $('.BTN-CLICK').on('click', function (e) {
+                e.preventDefault();
+                let ell = $(this);
+                route = ell.attr("data-link");
+                display = $("#displayLoadInventory");
+                displayCustomCashier(display, route);
+            });
+
+            function displayCustomCashier(display, route){
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('"+route+"')}}",
+                    success : function(response){
+                        display.html(response);
+                    }
+                });
+            }
         }
     });
 </script>
