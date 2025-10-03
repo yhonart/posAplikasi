@@ -16,23 +16,23 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">                            
                                 <ul class="nav nav-pills mr-auto" id="main-menu-bar-helpdesk">                                
                                     <li class="nav-item">
-                                        <a class="nav-link BTN-CLICK" href="{{route('Cashier')}}" data-link="dashPenjualan" data-toggle="tab" id="tabMenuDash">
+                                        <a class="nav-link BTN-CLICK font-weight-bold" href="{{route('Cashier')}}" data-link="dashPenjualan" data-toggle="tab" id="tabMenuDash">
                                             KASIR
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link BTN-CLICK" href="#" data-link="displayPembelian" data-toggle="tab" id="tabMenuHistory">
+                                        <a class="nav-link BTN-CLICK font-weight-bold" href="#" data-link="displayPembelian" data-toggle="tab" id="tabMenuHistory">
                                             BRAND
                                         </a>
                                     </li>                                                             
                                     <li class="nav-item">
-                                        <a class="nav-link BTN-CLICK" href="#" data-link="dashHutangPelanggan" data-toggle="tab" id="tabMenuHistory">
+                                        <a class="nav-link BTN-CLICK font-weight-bold" href="#" data-link="dashHutangPelanggan" data-toggle="tab" id="tabMenuHistory">
                                             STOCK
                                         </a>
                                     </li>                                                             
                                     <li class="nav-item">
-                                        <a class="nav-link BTN-CLICK" href="#" data-link="dashHutangToko" data-toggle="tab" id="tabMenuHistory">
-                                            DASHBOARD
+                                        <a class="nav-link BTN-CLICK font-weight-bold" href="#" data-link="dashHutangToko" data-toggle="tab" id="tabMenuHistory">
+                                            LAPORAN
                                         </a>
                                     </li>                                                      
                                 </ul>
@@ -44,7 +44,7 @@
                         <div id="displayLoadInventory"></div>
                     </div>
                 </div>
-            @endif
+            @else
             <div class="row" id="displayKasir">
                 <div class="col-12 col-lg-8 pr-0">
                     @include('Global.global_spinner')
@@ -56,6 +56,7 @@
                     <div id="mainButton"></div>
                 </div>
             </div>
+            @endif
         @elseif($checkArea <> 0 && $checkGroup <> 1)
             <div class="row d-flex justify-content-center">
                 <div class="col-8">
