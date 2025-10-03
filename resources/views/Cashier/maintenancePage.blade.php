@@ -100,7 +100,7 @@
         let codeModule = "{{$module}}";
 
         if (codeModule === "AM3") {
-            let route = "Cashier",
+            let route = "productList",
             display = $("#displayLoadInventory");
             displayCustomCashier(display, route);
 
