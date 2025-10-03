@@ -14,7 +14,7 @@
                                 <i class="fa-solid fa-bars"></i>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">                            
-                                <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
+                                <ul class="nav nav-pills mr-auto" id="main-menu-bar-helpdesk">                                
                                     <li class="nav-item">
                                         <a class="nav-link BTN-CLICK" href="{{route('Cashier')}}" data-link="dashPenjualan" data-toggle="tab" id="tabMenuDash">
                                             KASIR
