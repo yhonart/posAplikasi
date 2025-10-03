@@ -91,9 +91,16 @@
             panelProductList = $("#mainListProduct"),
             urlButtonForm = "buttonAction",
             panelButtonForm = $("#mainButton");
-
         cashier_style.load_productList(routeIndex,urlProductList,panelProductList);
         cashier_style.load_buttonForm(routeIndex,urlButtonForm,panelButtonForm);
+
+        // for am3 
+        let codeModule = "{{$module}}";
+
+        if (codeModule === "AM3") {
+            let devLoadDisplay = $("#displayLoadInventory");
+            cashier_style.load_productList(routeIndex,urlProductList,devLoadDisplay);
+        }
     });
 </script>
 
