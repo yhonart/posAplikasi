@@ -21,7 +21,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link BTN-CLICK font-weight-bold" href="#" data-link="TransProduct" data-toggle="tab" id="tabMenuHistory">
+                                        <a class="nav-link BTN-CLICK font-weight-bold" href="#" data-link="StockBarang" data-toggle="tab" id="tabMenuHistory">
                                             BRAND
                                         </a>
                                     </li>                                                             

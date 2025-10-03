@@ -81,7 +81,3 @@ Route::post('Cashier/buttonAction/postDaleteData', [App\Http\Controllers\Cashier
 //Unlock
 Route::post('Cashier/buttonAction/unlockReturn', [App\Http\Controllers\CashierController::class, 'unlockReturn']);
 Route::post('Cashier/buttonAction/unlock', [App\Http\Controllers\CashierController::class, 'unlockBarang']);
-
-
-
-

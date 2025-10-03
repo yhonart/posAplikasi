@@ -139,6 +139,9 @@ Route::get('sales', [App\Http\Controllers\SalesController::class, 'main'])->name
 // Set Lokasi 
 Route::get('setLokasi', [App\Http\Controllers\setLokasiController::class, 'main'])->name('setLokasi');
 
+//Z_Additional POS 
+Route::get('Cashier/StockBarang', [App\Http\Controllers\TransactionController::class, 'StockBarang']);
+
 //Custome Aplication
 
 include __DIR__.'/section/accounting.php';
