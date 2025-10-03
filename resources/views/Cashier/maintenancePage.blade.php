@@ -8,8 +8,7 @@
             @if($module == "AM3")
                 <div class="row mb-2">
                     <div class="col-md-12">
-                        <nav class="navbar navbar-expand-lg" style="width:100%;">
-                            <span class="d-flex navbar-brand"><i class="fa-solid fa-chart-line pl-2 text-info"></i></span>
+                        <nav class="navbar navbar-expand-lg" style="width:100%;">                            
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="fa-solid fa-bars"></i>
