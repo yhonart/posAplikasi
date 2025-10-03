@@ -102,20 +102,21 @@
         if (codeModule === "AM3") {
             let route = "productList",
             display = $("#displayLoadInventory");
-            displayCustomCashier(display, route);
+            functionLoad(display, route);
 
             $('.BTN-CLICK').on('click', function (e) {
                 e.preventDefault();
                 let ell = $(this);
                 route = ell.attr("data-link");
                 display = $("#displayLoadInventory");
-                displayCustomCashier(display, route);
+                functionLoad(display, route);
             });
 
-            function displayCustomCashier(display, route){
+
+            function functionLoad(display, route){
                 $.ajax({
                     type : 'get',
-                    url : "{{route('Cashier')}}",
+                    url : "{{route('Cashier')}}/"+route,
                     success : function(response){
                         display.html(response);
                     }
