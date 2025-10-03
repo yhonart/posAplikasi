@@ -115,7 +115,7 @@
             function displayCustomCashier(display, route){
                 $.ajax({
                     type : 'get',
-                    url : "{{route('cashier')}}",
+                    url : "{{route('Cashier')}}",
                     success : function(response){
                         display.html(response);
                     }
