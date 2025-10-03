@@ -12,7 +12,7 @@
                             <span class="d-flex navbar-brand"><i class="fa-solid fa-chart-line pl-2 text-info"></i></span>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <i class="fas fa-th-large"></i>
+                                <i class="fa-solid fa-bars"></i>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">                            
                                 <ul class="nav nav-pills ml-auto" id="main-menu-bar-helpdesk">                                
