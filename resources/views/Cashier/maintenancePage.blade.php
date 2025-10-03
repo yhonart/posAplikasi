@@ -41,7 +41,9 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-12">
-                        <div id="displayLoadInventory"></div>
+                        <div class="table-responsive text-xs p-0" style="height:300px;">
+                            <div id="displayLoadInventory"></div>
+                        </div>
                     </div>
                 </div>
             @else
