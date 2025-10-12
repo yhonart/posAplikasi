@@ -10,6 +10,23 @@ use Illuminate\Support\Facades\Hash;
 
 class ZAdditionalPosController extends Controller
 {
+    public function checkuserInfo()
+    {
+        $userID = Auth::user()->id;
+        $cekUserArea = DB::table('view_user_work_area')
+            ->select('area_id')
+            ->where('id', $userID)
+            ->first();
+
+        if (!empty($cekUserArea)) {
+            $userAreaID = $cekUserArea->area_id;
+        } else {
+            $userAreaID = 0;
+        }
+
+        return $userAreaID;
+    }
+    
     public function getInfoNumber()
     {
         $username = Auth::user()->name;
