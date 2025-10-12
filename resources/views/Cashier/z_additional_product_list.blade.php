@@ -35,9 +35,6 @@
                     <input type="text" name="formHargaSatuan" id="formHargaSatuan" class="form-control form-control-sm form-control-border border-width-2" readonly>
                 </td>
                 <td class="p-0">
-                    <input type="text" name="formDisc" id="formDisc" class="form-control form-control-sm form-control-border border-width-2" autocomplete="off" >
-                </td>
-                <td class="p-0">
                     <input type="text" name="formJumlah" id="formJumlah" class="form-control form-control-sm form-control-border border-width-2" readonly>
                 </td>
                 <td class="p-0">
