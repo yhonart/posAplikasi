@@ -141,6 +141,7 @@ Route::get('setLokasi', [App\Http\Controllers\setLokasiController::class, 'main'
 
 //Z_Additional POS 
 Route::get('Cashier/StockBarang', [App\Http\Controllers\TransactionController::class, 'StockBarang']);
+Route::get('Cashier/AdditionalProductList', [App\Http\Controllers\ZAdditionalPosController::class, 'AdditionalProductList']);
 
 //Custome Aplication
 

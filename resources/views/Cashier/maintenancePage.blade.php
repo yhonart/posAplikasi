@@ -16,7 +16,7 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">                            
                                 <ul class="nav nav-pills mr-auto" id="main-menu-bar-helpdesk">                                
                                     <li class="nav-item">
-                                        <a class="nav-link BTN-CLICK font-weight-bold" href="#" data-link="productList" data-toggle="tab" id="tabMenuDash">
+                                        <a class="nav-link BTN-CLICK font-weight-bold" href="#" data-link="AdditionalProductList" data-toggle="tab" id="tabMenuDash">
                                             KASIR
                                         </a>
                                     </li>
@@ -100,7 +100,7 @@
         let codeModule = "{{$module}}";
 
         if (codeModule === "AM3") {
-            let route = "productList",
+            let route = "AdditionalProductList",
             display = $("#displayLoadInventory");
             functionLoad(display, route);
 
@@ -111,7 +111,6 @@
                 display = $("#displayLoadInventory");
                 functionLoad(display, route);
             });
-
 
             function functionLoad(display, route){
                 $.ajax({
