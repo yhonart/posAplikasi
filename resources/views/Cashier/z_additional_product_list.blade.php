@@ -1,12 +1,12 @@
-<div class="row">
+<div class="row mb-2">
     <div class="col-md-3">
         <input type="text" class="form-control form-control-md" name="billingNumber" id="billingNumber" value="{{$billNumber}}">
     </div>    
     <div class="col-md-3">
-        <button type="button" id="bayarTransaksi" class="btn btn-primary btn-lg btn-block">BAYAR</button>
+        <button type="button" id="bayarTransaksi" class="btn btn-success btn-lg btn-block">BAYAR</button>
     </div>
     <div class="col-md-3">
-        <button type="button" id="batalTransaksi" class="btn btn-primary btn-lg btn-block">BATAL</button>
+        <button type="button" id="batalTransaksi" class="btn btn-danger btn-lg btn-block">BATAL</button>
     </div>
 </div>
 <table class="table table-bordered table-hover text-nowrap text-xs">
