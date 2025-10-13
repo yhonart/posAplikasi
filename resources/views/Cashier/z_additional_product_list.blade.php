@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        <form id="formInputBarangKasir">            
+        <form id="formInputBarangKasir">
             <tr data-id="idForm">
                 <input type="hidden" name="transNumber" id="transNumber" value="{{$billNumber}}">
                 <input type="hidden" name="prodName" id="prodName" autocomplete="off" list="browsers">
