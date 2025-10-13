@@ -24,12 +24,12 @@ Route::get('/', function () {
     if (Auth::check()) {
         $hakakses = Auth::user()->hakakses;
         $checkArea = Auth::user()->count_area;
-
+        
         if($hakakses == '1' OR $hakakses == '99'){            
             return view('Dashboard/mainAdminDashboard');
         }
         elseif($hakakses == '2'){
-            Route::get('Cashier', [App\Http\Controllers\CashierController::class, 'mainCashier'])->name('Cashier');
+            Route::get('Cashier', [App\Http\Controllers\CashierController::class, 'mainCashier']);
             // return view('Cashier/maintenancePage', compact('checkArea','checkGroup','module'));
         }
         elseif ($hakakses == '3') {
