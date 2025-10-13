@@ -1,15 +1,5 @@
 <!-- <p class="bg-danger p-1">Halaman ini sedang proses perbaikan 🙏</p> -->
-<div class="row">
-    <div class="col-md-3">
-        <input type="text" class="form-control form-control-lg" name="billingNumber" id="billingNumber" value="{{$billNumber}}">
-    </div>    
-    <div class="col-md-3">
-        <button type="button" id="bayarTransaksi" class="btn btn-primary btn-lg btn-block">BAYAR</button>
-    </div>
-    <div class="col-md-3">
-        <button type="button" id="batalTransaksi" class="btn btn-primary btn-lg btn-block">BATAL</button>
-    </div>
-</div>
+
 <table class="table table-sm table-valign-middle table-head-fixed table-hover table-bordered animate__animated animate__fadeIn" id="listTableItemTrx">
     <thead>
         <tr>
