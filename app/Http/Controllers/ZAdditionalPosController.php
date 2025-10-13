@@ -41,7 +41,7 @@ class ZAdditionalPosController extends Controller
                 ['status','1'],
                 ['comp_id',$company],
                 ['created_by',$username],
-                ['DATE(created_date)', $dateDB]
+                ['tr_date', $dateDB]
             ])
             ->count();
 
@@ -49,7 +49,7 @@ class ZAdditionalPosController extends Controller
             $countOfBill = DB::table('tr_store')
                 ->where([
                     ['comp_id',$company],
-                    ['DATE(created_date)', $dateDB],
+                    ['tr_date', $dateDB],
                     ['created_by',$username]
                 ])
                 ->count();
@@ -61,7 +61,7 @@ class ZAdditionalPosController extends Controller
                 ->where([
                     ['status','1'],
                     ['comp_id',$company],
-                    ['DATE(created_date)', $dateDB],
+                    ['tr_date', $dateDB],
                     ['created_by',$username]
                 ])
                 ->orderBy('billing_number', 'DESC')
