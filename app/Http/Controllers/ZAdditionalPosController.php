@@ -54,6 +54,7 @@ class ZAdditionalPosController extends Controller
                 ])
                 ->count();
             $newBillNumber = $countOfBill + 1;
+            $newBillNumber = str_pad($newBillNumber, 5, '0', STR_PAD_LEFT);
         }
         else {
             $getBillNumber = DB::table('tr_store')
