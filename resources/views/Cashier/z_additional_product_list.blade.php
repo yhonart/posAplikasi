@@ -3,10 +3,10 @@
         <input type="text" class="form-control form-control-md" name="billingNumber" id="billingNumber" value="{{$billNumber}}">
     </div>    
     <div class="col-md-3 col-6">
-        <button type="button" id="bayarTransaksi" class="btn btn-success btn-lg btn-block btn-flat">BAYAR</button>
+        <button type="button" id="bayarTransaksi" class="btn bg-purple font-weight-bold btn-lg btn-block btn-flat">BAYAR</button>
     </div>
     <div class="col-md-3 col-6">
-        <button type="button" id="batalTransaksi" class="btn btn-danger btn-lg btn-block btn-flat">BATAL</button>
+        <button type="button" id="batalTransaksi" class="btn bg-light font-weight-bold btn-lg btn-block btn-flat">BATAL</button>
     </div>
 </div>
 <table class="table table-bordered table-hover text-nowrap text-xs">
