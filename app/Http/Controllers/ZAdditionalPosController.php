@@ -34,11 +34,11 @@ class ZAdditionalPosController extends Controller
         $hakAkses = Auth::user()->hakakses;
         $dateDB = date("Y-m-d");
         $company = Auth::user()->company;
-        $getCompanyCode = DB::table('tb_company')
-            ->select('comp_code')
-            ->where('id', $company)
+        $getCompanyCode = DB::table('m_company')
+            ->select('company_code')
+            ->where('idm_company', $company)
             ->first();
-        $companyCode = $getCompanyCode->comp_code;
+        $companyCode = $getCompanyCode->company_code;
         //Cek apakah ada nomor transaksi yang di return
         $countBill = DB::table('tr_store')
             ->where([
