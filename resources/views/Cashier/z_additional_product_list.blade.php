@@ -14,7 +14,7 @@
     <tbody>
         <form id="formInputBarangKasir">            
             <tr data-id="idForm">
-                <input type="text" name="transNumber" id="transNumber" value="{{$billNumber}}">
+                <input type="hidden" name="transNumber" id="transNumber" value="{{$billNumber}}">
                 <input type="hidden" name="prodName" id="prodName" autocomplete="off" list="browsers">
                 <input type="hidden" name="prodNameHidden1" id="prodNameHidden1">
                 <input type="hidden" name="hargaModal" id="hargaModal">
