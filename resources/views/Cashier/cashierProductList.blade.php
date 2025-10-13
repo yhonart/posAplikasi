@@ -18,7 +18,7 @@
         <form id="formInputBarangKasir">            
             <tr>
                 <td>
-                    <input type="text" class="form-control form-group-lg" name="transNumber" id="transNumber" value="{{$billNumber}}">                    
+                    <input type="text" class="form-control form-control-lg" name="transNumber" id="transNumber" value="{{$billNumber}}">                    
                 </td>
                 <td>
                     <button class="btn btn-lg btn-primary" id="btnBayar">BAYAR</button>
