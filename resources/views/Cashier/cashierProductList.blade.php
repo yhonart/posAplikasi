@@ -16,15 +16,9 @@
     <tbody id="trLoadProduct"></tbody>
     <tbody id="trInputProdut">
         <form id="formInputBarangKasir">            
-            <tr>
-                <td>
-                    <input type="text" class="form-control form-control-lg" name="transNumber" id="transNumber" value="{{$billNumber}}">                    
-                </td>
-                <td>
-                    <button class="btn btn-lg btn-primary" id="btnBayar">BAYAR</button>
-                </td>
-            </tr>
+            
             <tr data-id="idForm">
+                <input type="text" class="form-control form-control-lg" name="transNumber" id="transNumber" value="{{$billNumber}}">                    
                 <input type="hidden" name="prodName" id="prodName" autocomplete="off" list="browsers">
                 <input type="hidden" name="prodNameHidden1" id="prodNameHidden1">
                 <input type="hidden" name="hargaModal" id="hargaModal">
