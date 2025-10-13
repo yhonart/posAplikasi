@@ -36,42 +36,40 @@ class ZAdditionalPosController extends Controller
         $company = Auth::user()->company;
 
         //Cek apakah ada nomor transaksi yang di return
-        $countReturnNumber = DB::table('tr_store')
+        $countBill = DB::table('tr_store')
             ->where([
                 ['status','1'],
-                ['return_by',$username],
-                ['comp_id',$company]
+                ['comp_id',$company],
+                ['created_by',$username],
+                ['DATE(created_at)', $dateDB]
             ])
             ->count();
 
-        if ($countReturnNumber == '0') { // Jika Tidak Ada
-            $billNumbering = DB::table("tr_store")
+        if ($countBill == '0') { // Jika Tidak Ada
+            $countOfBill = DB::table('tr_store')
                 ->where([
-                    ['store_id', $area],
-                    ['status', '1'],
-                    ['created_by', $username],
-                    ['comp_id',$company]
+                    ['comp_id',$company],
+                    ['DATE(created_at)', $dateDB],
+                    ['created_by',$username]
                 ])
-                ->first();
+                ->count();
+            $newBillNumber = $countOfBill + 1;
         }
         else {
-            $billNumbering = DB::table("tr_store")
+            $getBillNumber = DB::table('tr_store')
+                ->select('billing_number')
                 ->where([
-                    ['store_id', $area],
-                    ['status', '1'],
-                    ['return_by', $username],
-                    ['comp_id',$company]
+                    ['status','1'],
+                    ['comp_id',$company],
+                    ['DATE(created_at)', $dateDB],
+                    ['created_by',$username]
                 ])
+                ->orderBy('billing_number', 'DESC')
                 ->first();
+            $newBillNumber = $getBillNumber->billing_number;
         }
 
-        if (!empty($billNumbering)) {
-            $nomorstruk = $billNumbering->billing_number;
-        } else {
-            $nomorstruk = "0";
-        }
-        
-        return $nomorstruk;
+        return $newBillNumber;
     }   
 
     public function AdditionalProductList()
