@@ -33,6 +33,7 @@ class ZAdditionalPosController extends Controller
         $area = $this->checkuserInfo();
         $hakAkses = Auth::user()->hakakses;
         $dateDB = date("Y-m-d");
+        $dateBill = date("dmy");
         $company = Auth::user()->company;
         $getCompanyCode = DB::table('m_company')
             ->select('company_code')
@@ -58,7 +59,7 @@ class ZAdditionalPosController extends Controller
                 ])
                 ->count();
             $newBillNumber = $countOfBill + 1;
-            $newBillNumber = "TRX" . $companyCode . str_pad($newBillNumber, 5, '0', STR_PAD_LEFT);
+            $newBillNumber = "TR" . $companyCode . $dateBill . str_pad($newBillNumber, 3, '0', STR_PAD_LEFT);
         }
         else {
             $getBillNumber = DB::table('tr_store')
