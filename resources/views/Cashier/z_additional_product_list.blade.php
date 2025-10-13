@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-3">
-        <input type="text" class="form-control form-control-lg" name="billingNumber" id="billingNumber" value="{{$billNumber}}">
+        <input type="hidden" class="form-control form-control-md" name="billingNumber" id="billingNumber" value="{{$billNumber}}">
     </div>    
     <div class="col-md-3">
         <button type="button" id="bayarTransaksi" class="btn btn-primary btn-lg btn-block">BAYAR</button>
