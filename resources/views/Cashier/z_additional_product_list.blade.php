@@ -114,24 +114,9 @@
                     type : 'get',
                     url : "{{route('Cashier')}}/cariProduk/"+keyword+"/"+trxNumber,
                     success : function(response){
-                        $("#loadProductList").fadeOut();
-                        if (response.warningCustomer) {
-                            alertify
-                            .alert(response.warningCustomer, function(){
-                                alertify.message('OK');
-                                window.location.reload();
-                            }).set({title:"Alert !"});
-                        }
-                        else if(response.success){
-                            $("#fieldProduk").val('');
-                            loadTableData(trxNumber);
-                            // totalBelanja(trxNumber);
-                            alertify.success(response.success);
-                        }
-                        else{
-                            $("#formQty").val(null).focus();
-                            $("#tableSelectProduk").html(response);                            
-                        }
+                        $("#loadProductList").fadeOut();                        
+                        $("#formQty").val(null).focus();
+                        $("#tableSelectProduk").html(response);                            
                     }
                 });
             }
