@@ -83,4 +83,8 @@ class ZAdditionalPosController extends Controller
         $billNumber = $this->getInfoNumber();
         return view('Cashier/z_additional_product_list', compact('billNumber'));
     }
+
+    public function cariProduk($keyword, $trxNumber){
+        echo $keyword." ".$trxNumber;
+    }
 }

@@ -60,3 +60,81 @@
         </form>
     </tbody>
 </table>
+<input type="hidden" name="removeAutofocus" id="removeAutofocus">
+<div id="loadProductList" style="display: none;">
+    <div class="spinner-grow spinner-grow-sm text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <span>Please Wait ....</span>
+</div>
+<div id="tableSelectProduk"></div>
+
+<script type="text/javascript">
+    $(function(){
+        $("#fieldProduk").val(null).focus();
+    })
+    $(document).ready(function(){
+        let keyword = '0',
+            timer_cari_equipment = null,
+            trxNumber = "{{$billNumber}}";
+
+        let routeIndex = "{{route('Cashier')}}",
+            urlProductList = "productList",
+            panelProductList = $("#mainListProduct");
+        loadTableData(trxNumber);
+        document.addEventListener('keydown', function(event) {  
+            if (event.key === 'F3') {
+                event.preventDefault();
+                $("#fieldProduk").val("").focus();
+            }
+        });
+        $("#fieldProduk").keyup(function (e) {
+            e.preventDefault();
+            clearTimeout(timer_cari_equipment); 
+            timer_cari_equipment = setTimeout(function(){                
+                let keyword = $("#fieldProduk").val().trim();
+                if(keyword == ''){
+                    keyword = '0';
+                }
+            searchData(keyword)                         
+        }, 700)
+        });
+        function searchData(keyword){  
+            // alert (keyword);
+            let routeIndex = "{{route('Cashier')}}",
+            urlProductList = "productList",
+            panelProductList = $("#mainListProduct");
+            if (keyword === '0' || keyword === '') {
+                $("#tableSelectProduk").fadeOut("slow");
+            }
+            else{
+                $("#loadProductList").fadeIn();
+                $("#tableSelectProduk").fadeIn("slow");
+                $.ajax({
+                    type : 'get',
+                    url : "{{route('Cashier')}}/cariProduk/"+keyword+"/"+trxNumber,
+                    success : function(response){
+                        $("#loadProductList").fadeOut();
+                        if (response.warningCustomer) {
+                            alertify
+                            .alert(response.warningCustomer, function(){
+                                alertify.message('OK');
+                                window.location.reload();
+                            }).set({title:"Alert !"});
+                        }
+                        else if(response.success){
+                            $("#fieldProduk").val('');
+                            loadTableData(trxNumber);
+                            totalBelanja(trxNumber);
+                            alertify.success(response.success);
+                        }
+                        else{
+                            $("#formQty").val(null).focus();
+                            $("#tableSelectProduk").html(response);                            
+                        }
+                    }
+                });
+            }
+        } 
+    })
+</script>
