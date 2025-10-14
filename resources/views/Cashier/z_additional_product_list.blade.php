@@ -112,7 +112,7 @@
                 $("#tableSelectProduk").fadeIn("slow");
                 $.ajax({
                     type : 'get',
-                    url : "{{route('Cashier')}}/cariProduk/"+keyword+"/"+trxNumber,
+                    url : "{{route('Cashier')}}/AdditionalcariProduk/"+keyword+"/"+trxNumber,
                     success : function(response){
                         $("#loadProductList").fadeOut();                        
                         $("#formQty").val(null).focus();
