@@ -125,7 +125,7 @@
                         else if(response.success){
                             $("#fieldProduk").val('');
                             loadTableData(trxNumber);
-                            totalBelanja(trxNumber);
+                            // totalBelanja(trxNumber);
                             alertify.success(response.success);
                         }
                         else{
@@ -136,5 +136,16 @@
                 });
             }
         } 
+
+        function loadTableData(trxNumber){
+            $.ajax({
+                type : 'get',
+                url : "{{route('Cashier')}}/productList/listTableTransaksi/"+trxNumber,
+                success : function(response){                
+                    $("#trLoadProduct").html(response);
+                }
+            });
+        }
+
     })
 </script>
