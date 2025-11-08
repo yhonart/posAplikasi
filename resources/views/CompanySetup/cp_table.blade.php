@@ -60,7 +60,7 @@
                                                 <td>{{$dc->telefone}}</td>
                                                 <td>{{$dc->address}}</td>
                                                 <td>
-                                                    @if(!empty($dc->sys_module_code) && isset($cpModule[$dc->sys_module_code]))
+                                                    @if(!empty($dc->sys_module_code))
                                                     <span class=" font-weight-bold text-success">
                                                         {{$cpModule[$dc->sys_module_code]}}
                                                     </span>
