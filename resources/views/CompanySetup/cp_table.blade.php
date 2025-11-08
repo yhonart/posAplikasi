@@ -60,9 +60,15 @@
                                                 <td>{{$dc->telefone}}</td>
                                                 <td>{{$dc->address}}</td>
                                                 <td>
+                                                    @if(!empty($dc->sys_module_code) && isset($cpModule[$dc->sys_module_code]))
                                                     <span class=" font-weight-bold text-success">
                                                         {{$cpModule[$dc->sys_module_code]}}
                                                     </span>
+                                                    @else
+                                                    <span class=" font-weight-bold text-danger">
+                                                        MODULE TIDAK DITEMUKAN
+                                                    </span>
+                                                    @endif
                                                 </td>
                                                 <td class="text-right">
                                                     @if($userHakAkses == '99')
