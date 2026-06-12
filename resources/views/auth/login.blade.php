@@ -12,7 +12,7 @@
 </div> -->
 <div class="card rounded">
     <div class="card-body text-xs login-card-body text-xs">
-        <img src="{{asset('public/images/Logo1.png')}}" alt="" srcset="" class=" img-fluid">
+        <img src="{{asset('public/images/logoNiroApps.png')}}" alt="" srcset="" class=" img-fluid">
         <p class="login-box-msg mt-0">POS-Apps</p>
         <hr>
         <form id="fromLogin" method="POST" action="{{ route('login') }}">
