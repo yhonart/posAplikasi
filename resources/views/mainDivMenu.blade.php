@@ -1,5 +1,5 @@
 <?php
-    $cekUserGroup = "";
+    // $cekUserGroup = "";
     if($cekUserGroup >= '1'){
         $menuOpen = "";
     }
