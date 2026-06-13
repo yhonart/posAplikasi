@@ -7,6 +7,7 @@
         $menuOpen = "menu-open";
     }
     // $menuOpen = "menu-open";
+    echo "User Group :".$cekUserGroup;
 ?>
 @if($cekUserGroup >= '1')
     @foreach($mainMenu as $mm)
