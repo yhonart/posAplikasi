@@ -1,21 +1,17 @@
 @extends('layouts.login')
 
 @section('content')
-<!-- <div class="row justify-content-center">
+<div class="row justify-content-center">
     <div class="col-md-12">
         <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-            Under Recovery Data. System sedang dalam proses maintenance : Pemulihan data, update security dan update framework 
+            🧑‍🔧 MOHON MAAF!,System dalam tahap pemulihan Database, Terima Kasih. 
         </div>
     </div>
-</div> -->
+</div>
 <div class="card rounded">
-    <div class="card-body text-xs login-card-body text-xs">
-        <div class="alert alert-secondary" role="alert">
-            🧑‍🔧System dalam tahap pemulihan Database. 🧑‍💻🧑‍💻🧑‍💻
-        </div>
-        <hr>
+    <div class="card-body text-xs login-card-body text-xs">        
         <img src="{{asset('public/images/logoNiroApps.png')}}" alt="" srcset="" class=" img-fluid">
         <p class="login-box-msg mt-0">POS & Inventory Application</p>
         <hr>
