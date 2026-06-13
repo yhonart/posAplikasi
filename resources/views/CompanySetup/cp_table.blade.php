@@ -4,10 +4,10 @@
 <?php
     $no = 1;
     $cpModule = array(
-        "AM1"=>"FULL MENU",
-        "AM2"=>"FULL MENU TANPA KAS",
-        "AM3"=>"INVENTORY + KASIR",
-        "AM4"=>"CUSTOMIZE MENU",
+        "MC01"=>"FULL MENU",
+        "MC02"=>"FULL MENU TANPA KAS",
+        "MC03"=>"INVENTORY + KASIR",
+        "MC04"=>"CUSTOMIZE MENU",
     );
 ?>
 <div class="content-header">

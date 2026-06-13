@@ -67,10 +67,10 @@ $arrayModule = array(
                                     <div class="collapse" id="changeModuleApl">
                                         <select name="aplModule" id="aplModule" class="form-control form-control-sm">
                                             <option value="{{$companyData->sys_module_code}}" readonly></option>                                            
-                                            <option value="AM1">FULL MENU</option>
-                                            <option value="AM2">FULL MENU TANPA KAS</option>
-                                            <option value="AM3">INVENTORY + KASIR</option>
-                                            <option value="AM4">CUSTOMIZE MENU</option>
+                                            <option value="MC01">FULL MENU</option>
+                                            <option value="MC02">FULL MENU TANPA KAS</option>
+                                            <option value="MC03">INVENTORY + KASIR</option>
+                                            <option value="MC04">CUSTOMIZE MENU</option>
                                         </select>
                                     </div>
                                 </div>
