@@ -216,14 +216,14 @@
         <aside class="main-sidebar elevation-4 sidebar-light-info elevation-1">
             <!-- Brand Logo -->
             <a href="{{route('home')}}" class="brand-link"> 
-            <img src="{{asset('public/images/favicon_dazira/favicon-32x32.png')}}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">     
+            <img src="{{asset('public/images/logoNiro.png')}}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">     
                 <span class="brand-text font-weight-bold" id="ajaxClientName"></span>
             </a>
 
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                      <img src="{{asset('public/images/logoNiro.png')}}" alt="User Image">
+                      <img src="{{asset('public/images/profile.png')}}" alt="User Image">
                     </div>
                     <div class="info">
                       <a href="#" class="d-block">{{Auth::user()->name}}</a>
