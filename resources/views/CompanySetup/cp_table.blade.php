@@ -57,8 +57,8 @@
                                                 <td>{{$no++}}</td>
                                                 <td class="text-right">
                                                     @if($userHakAkses == '99')
-                                                    <button type="button" id="btnDelete" class="btn btn-danger" data-id="{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i></button>
-                                                    <button type="button" class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                    <button type="button" id="btnDelete" class="btn btn-danger btn-xs" data-id="{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i></button>
+                                                    <button type="button" class="btn btn-primary btn-xs BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-pen-to-square"></i></button>
                                                     @endif
                                                 </td>
                                                 <td>{{$dc->company_code}}-{{$dc->idm_company}}</td>
