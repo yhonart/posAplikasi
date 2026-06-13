@@ -43,18 +43,24 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Action</th>
                                             <th>Kode Usaha</th>
                                             <th>Nama Usaha</th>
                                             <th>Telefone</th>
                                             <th>Alamat</th>
                                             <th>Module Aplikasi</th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($dataCompany as $dc)
                                             <tr>
                                                 <td>{{$no++}}</td>
+                                                <td class="text-right">
+                                                    @if($userHakAkses == '99')
+                                                    <button type="button" id="btnDelete" class="btn btn-danger" data-id="{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i></button>
+                                                    <button type="button" class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                    @endif
+                                                </td>
                                                 <td>{{$dc->company_code}}-{{$dc->idm_company}}</td>
                                                 <td>{{$dc->company_name}}</td>
                                                 <td>{{$dc->telefone}}</td>
@@ -69,13 +75,7 @@
                                                         MODULE TIDAK DITEMUKAN
                                                     </span>
                                                     @endif
-                                                </td>
-                                                <td class="text-right">
-                                                    @if($userHakAkses == '99')
-                                                    <button type="button" id="btnDelete" class="btn btn-danger" data-id="{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i> Hapus</button>
-                                                    <button type="button" class="btn btn-primary BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
-                                                    @endif
-                                                </td>
+                                                </td>                                                
                                             </tr>
                                         @endforeach
                                     </tbody>
