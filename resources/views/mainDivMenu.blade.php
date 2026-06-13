@@ -1,4 +1,5 @@
 <?php
+    $cekUserGroup = "";
     if($cekUserGroup >= '1'){
         $menuOpen = "";
     }
@@ -6,7 +7,7 @@
         $menuOpen = "menu-open";
     }
     // $menuOpen = "menu-open";
-    ?>
+?>
 @if($cekUserGroup >= '1')
     @foreach($mainMenu as $mm)
         @if($mm->type_menu == '1')

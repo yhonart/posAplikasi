@@ -139,7 +139,7 @@
     //  }, 1000)
 </script>
 
-<body class="hold-transition sidebar-mini layout-fixed text-sm sidebar-collapse">
+<body class="hold-transition sidebar-mini layout-fixed text-sm">
     <div class="wrapper">
         <div class="preloader flex-column justify-content-center align-items-center">
             <img src="{{asset('public/images/loadPage.gif')}}" alt="AdminLTELogo" height="60" width="60">
@@ -223,7 +223,7 @@
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                      <img src="{{asset('public/images/profile.png')}}" alt="User Image">
+                      <img src="{{asset('public/images/logoNiro.png')}}" alt="User Image">
                     </div>
                     <div class="info">
                       <a href="#" class="d-block">{{Auth::user()->name}}</a>
