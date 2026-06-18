@@ -52,6 +52,7 @@
     <div class="form-group row"`>
         <div class="col-md-4">
             <button type="submit" class="btn btn-success font-weight-bold" id="submitBtn">Simpan</button>
+            <button type="submit" class="btn btn-default font-weight-bold" id="submitBtn">Batal</button>
         </div>        
         <div class="col-md-8">
             <div class="red-alert p-2 rounded rounded-2 notive-display" style="display:none;">

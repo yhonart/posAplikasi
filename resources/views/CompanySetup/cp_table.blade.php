@@ -94,6 +94,7 @@
         $('#btnCreate').on('click', function (e) {
             e.preventDefault();
             $("#DisplayFormInput").load("{{route('CompanySetup')}}/companyDisplay/add_new_cp");
+            $("#btnCreate").hide('slow');
         });
     })
     $(document).ready(function(){               
