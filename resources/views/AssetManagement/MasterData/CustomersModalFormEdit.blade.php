@@ -4,7 +4,7 @@ $customerStatus = array(
         1=>"Aktif",
     );
 @endphp
-<div class="card">
+<div class="card card-blue card-outline">
     <div class="card-header border-0">
         <h3 class="card-title font-weight-bold">Edit Pelanggan</h3>
         <div class="card-tools">

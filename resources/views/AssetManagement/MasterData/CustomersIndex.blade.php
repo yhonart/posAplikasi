@@ -13,11 +13,9 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row mt-2">
-            <div class="col-12 col-md-3">
-                <div class="btn-group btn-block mb-2">
-                    <button type="button" class="btn btn-primary font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Customers')}}/AddCustomers" ><i class="fa-solid fa-address-book"></i> Tambah</button>
-                    <a href="{{route('Customers')}}/downloadAllCustomer" class="btn btn-success font-weight-bold" target="_blank"><i class="fa-solid fa-file-excel"></i> Download</a>
-                </div>
+            <div class="col-12 col-md-3">                
+                <button type="button" class="btn btn-outline-info font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Customers')}}/AddCustomers" ><i class="fa-solid fa-address-book"></i> Tambah Pelanggan</button>
+                <a href="{{route('Customers')}}/downloadAllCustomer" class="btn btn-outline-success font-weight-bold" target="_blank"><i class="fa-solid fa-file-excel"></i> Download</a>
                 <input type="text" name="searchCustomer" id="searchCustomer" class="form-control mb-1 " placeholder="Cari nama pelanggan" autofocus>
                 <div class="card card-body text-xs p-0 table-responsive " style="height:700px;">
                     @include('Global.global_spinner')
