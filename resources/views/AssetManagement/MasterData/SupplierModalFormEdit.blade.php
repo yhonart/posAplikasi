@@ -49,7 +49,7 @@
                 <label class="form-label col-md-4 text-right">Jadwal Kirim</label>
                 <div class="col-md-4">
                     <select name="Schedule" id="Schedule" class="form-control form-control-sm">
-                        <option value="0" readonly>{{$editSupplier->schedule_delivery}}</option>                        
+                        <option value="{{$editSupplier->schedule_delivery}}" readonly>{{$editSupplier->schedule_delivery}}</option>                        
                         <option value="Senin">Senin</option>
                         <option value="Selasa">Selasa</option>
                         <option value="Rabu">Rabu</option>
@@ -64,7 +64,7 @@
                 <label class="form-label col-md-4 text-right">Tipe Pembayaran</label>
                 <div class="col-md-4">
                     <select name="paymentType" id="paymentType" class="form-control form-control-sm ">
-                        <option value="0" readonly>{{$editSupplier->payment_type}}</option>
+                        <option value="{{$editSupplier->payment_type}}" readonly>{{$editSupplier->payment_type}}</option>
                         <option value="Tunai">Tunai</option>
                         <option value="Tempo">Tempo</option>
                     </select>
@@ -80,7 +80,7 @@
                 <label class="form-label col-md-4 text-right">Level</label>
                 <div class="col-md-4">
                     <select name="Level" id="Level" class="form-control form-control-sm">
-                        <option value="0" readonly>{{$editSupplier->level}}</option>
+                        <option value="{{$editSupplier->level}}" readonly>{{$editSupplier->level}}</option>
                         <option value="Gold">Gold</option>
                         <option value="Silver">Silver</option>
                     </select>
@@ -90,7 +90,7 @@
                 <label class="form-label col-md-4 text-right">Status</label>
                 <div class="col-md-4">
                     <select name="Status" id="Status" class="form-control form-control-sm">
-                        <option value="0" readonly>{{$editSupplier->supplier_status}}</option>
+                        <option value="{{$editSupplier->supplier_status}}" readonly>{{$editSupplier->supplier_status}}</option>
                         <option value="Aktif">Aktif</option>
                         <option value="Tdk. Aktif">Tdk. Aktif</option>
                     </select>

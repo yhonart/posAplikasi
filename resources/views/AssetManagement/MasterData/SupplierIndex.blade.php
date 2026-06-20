@@ -15,8 +15,8 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="btn-group btn-block mb-2">
-                    <button class="btn btn-primary font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Supplier')}}/AddSupliyer"><i class="fa-solid fa-plus"></i> Supplier</button>
-                    <a href="{{route('Supplier')}}/tableSupplier/downloadExcelSupplier" class="btn btn-success font-weight-bold" target="_blank"><i class="fa-solid fa-file-excel"></i> Download</a>
+                    <button class="btn btn-sm btn-info font-weight-bold BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('Supplier')}}/AddSupliyer"><i class="fa-solid fa-plus"></i> Tambah Supplier</button>
+                    <a href="{{route('Supplier')}}/tableSupplier/downloadExcelSupplier" class="btn btn-sm btn-success font-weight-bold" target="_blank"><i class="fa-solid fa-file-excel"></i> Download Data</a>
                 </div>
             </div>
         </div>
