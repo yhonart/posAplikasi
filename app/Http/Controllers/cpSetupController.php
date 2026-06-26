@@ -33,8 +33,12 @@ class cpSetupController extends Controller
     }
 
     public function formAddCompany (){
+        $company = Auth::user()->company;
         $selectLocation = DB::table('m_comp_loc')
-            ->where('is_delete','0')
+            ->where([
+                ['is_delete','0'],
+                ['comp_id',$company]
+                ])
             ->get();
 
         return view ('CompanySetup/companyFormAdd', compact('selectLocation'));
