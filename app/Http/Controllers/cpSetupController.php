@@ -18,14 +18,9 @@ class cpSetupController extends Controller
         $company = Auth::user()->company;
         $location = Auth::user()->location;
 
-        $dataCompany = DB::table('m_company as a');
-        $dataCompany = $dataCompany->select('a.*','location_name');
-        $dataCompany = $dataCompany->leftJoin('m_comp_loc as b','b.location_id','=','a.location');
+        $dataCompany = DB::table('m_company');
         if ($userHakAkses <> '99') {
-            $dataCompany = $dataCompany->where([
-                ['idm_company',$company],
-                ['location',$location]
-            ]);
+            $dataCompany = $dataCompany->where('idm_company',$company);
         }
         $dataCompany = $dataCompany->get();
 

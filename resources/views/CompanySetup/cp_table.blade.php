@@ -42,7 +42,6 @@
                                 <table class="table table-sm table-valign-middle table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
                                             <th>Action</th>
                                             <th>Kode Usaha</th>
                                             <th>Nama Usaha</th>
@@ -54,12 +53,11 @@
                                     <tbody>
                                         @foreach($dataCompany as $dc)
                                             <tr>
-                                                <td>{{$no++}}</td>
                                                 <td class="text-left">
                                                     @if($userHakAkses == '99')
                                                     <button type="button" id="btnDelete" class="btn btn-danger btn-xs" data-id="{{$dc->idm_company}}"><i class="fa-solid fa-trash"></i></button>
-                                                    <button type="button" class="btn btn-primary btn-xs BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-pen-to-square"></i></button>
                                                     @endif
+                                                    <button type="button" class="btn btn-primary btn-xs BTN-OPEN-MODAL-GLOBAL-LG" href="{{route('CompanySetup')}}/companyDisplay/edit/{{$dc->idm_company}}"><i class="fa-solid fa-pen-to-square"></i></button>
                                                 </td>
                                                 <td>{{$dc->company_code}}-{{$dc->idm_company}}</td>
                                                 <td>{{$dc->company_name}}</td>
