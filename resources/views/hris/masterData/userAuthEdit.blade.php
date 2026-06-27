@@ -10,7 +10,7 @@
             <div class="card-body text-xs">
                 <div id="loadDataHakAkses"></div>
                 @if($countArea == '0')
-                <form id="formEditProfile">
+                <form id="formEditAuth">
                     <input type="hidden" name="userID" value="{{$id}}">
                     <div class="form-group row">
                         <div class="col-12 col-md-4">
@@ -40,18 +40,20 @@
                                 <option value="3">Admin Staff</option>
                             </select>
                         </div>
-                        <div class="col-12 col-md-4">
+                        <div class="col-12 col-md-4 mt-2">
                             <button type="submit" class="btn btn-success">Simpan</button>
                         </div>
                     </div>
                 </form>
                 @endif
                 <hr>
+                
                 @if($superUser->role_code == '1')
                 <p>User memiliki hak akses Super User/Administrator</p>
                 @elseif(empty($superUser))
                 <p>User tidak memiliki hak akses admin !</p>
                 @else
+
                 <h5 class="font-weight-bold text-muted">Konfigurasi hak akses menu</h5>
                 <form id="createHakAksesMenu">
                     <input type="hidden" name="userID" value="{{$id}}">
@@ -69,7 +71,7 @@
                                 <option value="0" readonly>Sub Menu</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <button type="submit" class="btn btn-success btn-sm " id="submitAkses">Simpan</button>
                         </div>
                     </div>
@@ -80,7 +82,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mt-2">
     <div class="col-12">
         <span class="notive-display bg-danger p-2 rounded rounded-2 elevation-2 font-weight-bold" id="notiveDisplay" style="display:none;"></span>
     </div>
