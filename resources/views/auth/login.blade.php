@@ -1,7 +1,7 @@
 @extends('layouts.login')
 
 @section('content')
-<div class="row justify-content-center">
+<!-- <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -9,7 +9,7 @@
             🧑‍🔧 MOHON MAAF!,System dalam tahap pemulihan Database, Terima Kasih. 
         </div>
     </div>
-</div>
+</div> -->
 <div class="card rounded">
     <div class="card-body text-xs login-card-body text-xs">        
         <img src="{{asset('public/images/logoNiroApps.png')}}" alt="" srcset="" class=" img-fluid">
@@ -61,7 +61,53 @@
                     </button>
                 </div>
             </div>
+            <div class="row mb-0">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-outline-info btn-block mb-1" data-toggle="modal" data-target="#exampleModal">
+                        User Login Testing
+                    </button>
+                </div>
+            </div>
         </form>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">User Login Testing</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-sm table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                        <th>Hak Akses</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>admin</td>
+                                        <td>4dmin@2026</td>
+                                        <td>Admin Toko</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
