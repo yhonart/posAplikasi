@@ -251,19 +251,27 @@ class PersonaliaController extends Controller
     public function searchData ($keyword){
         $company = Auth::user()->company;
         $authHakAkses = Auth::user()->hakakses;
-        $users = DB::table('users as a');
-        $users = $users->select('a.*','b.*','c.*','d.site_name','e.company_name','e.company_code');
-        $users = $users->leftJoin('users_area as b','a.id','=','b.user_id');
-        $users = $users->leftJoin('users_role as c','a.id','=','c.user_id');
-        $users = $users->leftJoin('m_site as d','b.area_id','=','d.idm_site');
-        $users = $users->leftJoin('m_company as e','e.idm_company','=','a.company');
+        $users = DB::table('view_user_comp_loc');
         if ($keyword <> 0) {
             $users = $users->where('name','LIKE','%'.$keyword.'%');
         }
         if ($authHakAkses <> '99') {
             $users = $users->where('company',$company);
         }
-        $users = $users->get();
+        $users = $users->get();        
+        // $users = DB::table('users as a');
+        // $users = $users->select('a.*','b.*','c.*','d.site_name','e.company_name','e.company_code');
+        // $users = $users->leftJoin('users_area as b','a.id','=','b.user_id');
+        // $users = $users->leftJoin('users_role as c','a.id','=','c.user_id');
+        // $users = $users->leftJoin('m_site as d','b.area_id','=','d.idm_site');
+        // $users = $users->leftJoin('m_company as e','e.idm_company','=','a.company');
+        // if ($keyword <> 0) {
+        //     $users = $users->where('name','LIKE','%'.$keyword.'%');
+        // }
+        // if ($authHakAkses <> '99') {
+        //     $users = $users->where('company',$company);
+        // }
+        // $users = $users->get();
 
         return view ('hris/masterData/personaliaList', compact('users','authHakAkses'));
     }

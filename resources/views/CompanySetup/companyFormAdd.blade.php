@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="location" class="col-md-4 form-label">Lokasi</label>
+        <label for="location" class="col-md-4 form-label">Lokasi/Kota</label>
         <div class="col-md-8">
             <select name="location" id="location" class="form-control form-control-sm">
                 <option value="0">===</option>
