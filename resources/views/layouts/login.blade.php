@@ -13,13 +13,11 @@
     <link rel="stylesheet" href="{{asset('public/dazbuild/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/dazbuild/dist/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/css/style.css')}}">
-    <link href="https://jsdelivr.net" rel="stylesheet">
     <!-- Scripts -->
     <script src="{{asset('public/plugins/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('public/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('public/dist/js/adminlte.min.js')}}"></script>
     <script src="{{asset('public/js/globalcustome.js')}}"></script>
-    <script src="https://jsdelivr.net"></script>
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
