@@ -69,7 +69,10 @@
             <div class="row mb-0">
                 <div class="col-12">
                     <button type="button" class="btn btn-outline-info mb-1" id="adminLogin">
-                        Admin
+                        🧑‍💼Admin
+                    </button>
+                    <button type="button" class="btn btn-outline-warning mb-1" id="kasirLogin">
+                        🧑‍💻Kasir
                     </button>
                 </div>
             </div>
@@ -78,12 +81,17 @@
 </div>
 <script>
     const adminLogin = document.getElementById("adminLogin");
+    const kasirLogin = document.getElementById("kasirLogin");
     const userName = document.getElementById("userName");
     const passwordUser = document.getElementById("passwordUser");
 
     adminLogin.addEventListener("click", () => {
         userName.value = "admin";
         passwordUser.value = "4dmin@2026";
+    });
+    kasirLogin.addEventListener("click", () => {
+        userName.value = "kasir";
+        passwordUser.value = "kasir@2026";
     });
 </script>
 @endsection
