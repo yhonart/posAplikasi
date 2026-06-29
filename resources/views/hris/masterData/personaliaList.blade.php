@@ -18,7 +18,6 @@
                         <td>NO.</td>
                         <td>Nama</td>
                         <td>User Name</td>
-                        <td>Lokasi Kerja</td>
                         <td>Hak Akses</td>
                         <td>Toko</td>
                         <td>#</td>
@@ -30,7 +29,6 @@
                             <td class="text-center">{{$no++}}</td>
                             <td>{{$u->name}}</td>
                             <td>{{$u->username}}</td>
-                            <td>{{$u->site_name}}</td>
                             <td>{{$hakAkses[$u->hakakses]}}</td>
                             <td><b>[{{$u->company_code}}]</b> {{$u->company_name}}</td>
                             <td class="text-right">                                
