@@ -50,8 +50,8 @@
         <section class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="alert alert-info" role="alert">
-                        System masih dalam proses pemeliharaan.
+                    <div class="alert alert-danger" role="alert">
+                        System masih dalam proses testing, sehingga masih ada proses yang terbatas.
                     </div>
                 </div>
             </div>
