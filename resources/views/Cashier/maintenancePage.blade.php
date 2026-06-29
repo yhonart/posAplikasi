@@ -3,6 +3,13 @@
 <script src="{{asset('public/js/cashierButton.js')}}"></script>
 <div class="content mt-1">
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger" role="alert">
+                    System masih dalam proses testing, sehingga masih ada proses yang terbatas.
+                </div>
+            </div>
+        </div>
         @if($checkArea <> 0 && $checkGroup == 1)         
             <!-- jika module systemnya hanya kasir dan inventory saja  -->
             @if($module == "AM3")
