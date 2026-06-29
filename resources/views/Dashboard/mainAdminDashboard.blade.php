@@ -48,6 +48,13 @@
             </div>
         </section>
         <section class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info" role="alert">
+                        System masih dalam proses pemeliharaan.
+                    </div>
+                </div>
+            </div>
             <div id="displayAdminDashboard"></div>
         </section>
     </div>

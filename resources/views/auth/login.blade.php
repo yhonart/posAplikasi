@@ -63,7 +63,7 @@
             </div>
             <div class="row mb-0">
                 <div class="col-12">
-                    <button type="submit" class="btn btn-outline-info btn-block mb-1" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-outline-info btn-block mb-1" data-toggle="modal" data-target="#exampleModal">
                         User Login Testing
                     </button>
                 </div>
