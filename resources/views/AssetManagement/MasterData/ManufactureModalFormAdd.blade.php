@@ -73,8 +73,7 @@
                         $("#notiveDisplay").html(data.warning);
                     }
                     else{
-                        global_style.hide_modal();
-                        global_style.load_table(loadSpinner,routeIndex,tableData,displayData);
+                        window.location.reload();
                     }
                 },                
             });
