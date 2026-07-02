@@ -156,6 +156,7 @@ class StockListController extends Controller
         $cosGroup = $reqPriceGrouping->cosGroup;
         $priceOrder = str_replace(".","",$reqPriceGrouping->priceOrder);
         $priceSell = str_replace(".","",$reqPriceGrouping->priceSell);
+        $company = Auth::user()->company;
         
         //cek data di dalam produk jual
         $countTbSell = DB::table('m_product_price_sell')
@@ -241,8 +242,12 @@ class StockListController extends Controller
 
     public function listSizePrdInput ($idPrd){
         // echo $idPrd;
+        $company = Auth::user()->company;
         $listSizePrd = DB::table('m_product_unit')
-            ->where('core_id_product',$idPrd)
+            ->where([
+                ['core_id_product',$idPrd],
+                ['comp_id',$company]
+                ])
             ->orderBy('size_code','ASC')
             ->get();
         
@@ -824,7 +829,8 @@ class StockListController extends Controller
         $setBarcode = $reqPostUnit -> setBarcode;
         $stock = $reqPostUnit -> stock;
         $sizecode = '0';
-        
+        $company = Auth::user()->company;
+
         if($prdSize == "BESAR"){
             $sizecode = '1';
             $colM_Product = "large_unit_val";
@@ -934,7 +940,8 @@ class StockListController extends Controller
                 'set_barcode'=>$setBarcode,    
                 'stock'=>$stock,    
                 'size_code'=>$sizecode,
-                'status'=>'1'
+                'status'=>'1',
+                'comp_id'=>$company
             ]);
         
         $getCusGroup = DB::table('m_cos_group')
