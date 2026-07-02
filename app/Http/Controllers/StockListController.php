@@ -954,7 +954,8 @@ class StockListController extends Controller
                 'size_product'=>$prdSize,
                 'cos_group'=>$gcg->idm_cos_group,
                 'price_sell'=>'0',
-                'price_sell_status'=>'1'
+                'price_sell_status'=>'1',
+                'comp_id'=>$company
             ]);
         }
         
