@@ -7,7 +7,7 @@ $statusBarang = array(
 <div class="row mb-2">
     <div class="col-12">
         @if($mProduct->product_status == '1')
-        <button class="btn btn-outline-primary btn-sm rounded-lg" id="deleteProduct" data-id="{{$mProduct->idm_data_product}}">Hapus Barang Dari Kasir</button>
+        <button class="btn btn-outline-primary btn-sm rounded-pill" id="deleteProduct" data-id="{{$mProduct->idm_data_product}}">Hapus Barang Dari Kasir</button>
         @elseif($mProduct->product_status == '0')
         <button class="btn btn-success btn-sm  font-weight-bold" id="activeProduct" data-id="{{$mProduct->idm_data_product}}">Tambahkan Barang Ke Kasir</button>
         @endif
